@@ -1,0 +1,1179 @@
+\chapter[Evolución del esquema ACM2YAML]{Evolución del esquema\newline ACM2YAML}
+\label{cap:evolucion}
+
+Este capítulo desarrolla la contribución C-02 y responde a la segunda pregunta
+de investigación enunciada en la Sección~\ref{sec:introduccion:objetivos}: si
+ACM2YAML es suficientemente expresivo para representar la capacidad contractual
+de las APIs de correo, y qué extensiones requiere. La respuesta no se construye
+por análisis del esquema, sino por confrontación: cada carencia que aquí se
+documenta apareció al modelar un servicio real o al consumir su Datasheet, y cada propuesta lleva pegado
+el caso que la obliga.
+
+El capítulo se organiza del siguiente modo.
+En primer lugar se describe cómo un elemento no soportado registrado al construir el catálogo se convierte en propuesta de extensión, y la segunda clase de evidencia que se añade a la recurrencia, la verificación por uso.
+A continuación se distinguen las dos clases de carencia que el dominio ha revelado, cada una con su remedio y su prueba.
+Sigue el inventario consolidado de elementos no soportados con su recurrencia sobre las ocho APIs del catálogo, y sobre él se formulan primero las propuestas de expresividad y luego las de contrato.
+Después se reúnen las observaciones que el catálogo ha registrado y que no son carencias del esquema.
+Por último se analiza la compatibilidad de cada propuesta con v0.3, se declara qué queda fuera y por qué, y se formula la respuesta a la pregunta de investigación.
+
+\section{De los elementos no soportados a las propuestas}
+\label{sec:evolucion:metodo}
+
+El Capítulo~\ref{cap:catalogo} fijó el marco: las Datasheets del catálogo siguen ACM2YAML v0.3, las carencias del esquema se registran como elementos no soportados numerados, y un elemento no soportado se promueve por una de dos vías (Sección~\ref{sec:propuesta:conformidad}).
+La primera es la recurrencia: el patrón reaparece en al menos dos APIs del dominio.
+Ese criterio protege la utilidad del catálogo, que no depende de que las propuestas se acepten, y refuerza las propuestas mismas, que llegan respaldadas por frecuencias observadas en lugar de por un caso aislado.
+Un elemento no soportado que cumple el criterio queda promovido.
+Entre los promovidos, solo lleva número de propuesta, P-nn, el que además tiene en este capítulo una forma concreta contrastada con el texto de la guía.
+P-05 es la excepción, porque no sale de ningún elemento no soportado y su prueba es el fallo del motor en tres Datasheets.
+
+La segunda vía, la traza, admite una sola API si se cumplen a la vez tres condiciones.
+La condición L1 pide el hecho citado con literal o medido en un sondeo ejecutado, con su evidencia archivada.
+La condición L2 pide la consecuencia ejecutada sobre el consumidor de referencia.
+El motor, con la Datasheet delante y sin manipularla, tiene que devolver un valor falso o dejar sin responder lo que respondería si el esquema expresara la carencia.
+Un caso de control tiene que mostrar que sabe responder bien.
+La condición L3 pide que ningún mecanismo ya existente de la guía cubra esa carencia y que no la explique un defecto del motor ya conocido.
+La recurrencia muestra el alcance de una carencia, y la traza, cuando falta recurrencia, muestra el daño.
+La columna de vía de las Tablas~\ref{tab:recurrencia} y~\ref{tab:recurrencia:b} dice por cuál entra cada elemento no soportado y, en los que no entran, qué condición da por no cumplida el veredicto de su fila.
+
+Las Datasheets del catálogo siguen v0.3, pero usan dos formas que la guía no define.
+Una es la unidad \texttt{MBs}, con la que todas las Datasheets salvo las de Postmark y Resend expresan sus topes de tamaño, y que la de Mailgun completa con \texttt{MiBs}.
+La otra es el registro de ausencias \texttt{not\_found}, donde las ocho anotan lo que el proveedor no publica (Apartados~\ref{subsec:evolucion:p02} y~\ref{subsec:evolucion:p04}).
+
+La recurrencia demuestra que una carencia pertenece al dominio, pero no demuestra
+que la forma adoptada para sortearla funcione. Esa segunda comprobación exige un
+consumidor, y aquí aparece una particularidad del ecosistema que condiciona el
+método de este capítulo: \textbf{no existe validador oficial de Datasheets}. Se
+buscó en los cuatro repositorios del ecosistema y no hay esquema JSON, ni
+analizador estático, ni integración continua que compruebe la conformidad de un
+fichero \texttt{datasheet.yaml}. PRIME4API es un motor de cálculo y no un
+validador: recorre el documento con accesos directos al diccionario, y sus
+esquemas describen las peticiones y respuestas de su propia API REST en lugar del
+artefacto \citep{prime4apirepo}. SPHERE valida \textit{pricings} del canal web y,
+de los ficheros que recibe, solo el tamaño y el tipo \citep{sphere}. El
+repositorio de la guía aporta la norma y los ejemplos, no un comprobador
+\citep{apisconsumptionmodel}.
+
+La consecuencia metodológica es directa: si no hay validador, la conformidad de una Datasheet solo puede establecerse \textbf{por uso}, haciéndola consumir por el motor de referencia.
+Este trabajo ha implementado esa verificación como una herramienta que ingiere una Datasheet en PRIME4API.
+La herramienta la somete a diecisiete comprobaciones fijas y a una más por cada plan de \textit{pricing} del fichero.
+Las fijas son cinco de navegación, siete de evaluación y cinco de la superficie de análisis del motor.
+Esa superficie incluye la recomendación de plan y las curvas de capacidad, que ya documenta el TFM que introdujo el motor \citep{gavira2026tfm}.
+El motor siguió cambiando las curvas después de la entrega de ese TFM.
+La herramienta se publica con el catálogo y deja la traza completa de cada error.
+Clona el motor si no tiene copia, sin fijar la revisión, y reutiliza esa copia después.
+Un tercero puede repetir el procedimiento, pero el resultado depende de la revisión que clone.
+Las ejecuciones de la Tabla~\ref{tab:verificacion} se hicieron entre agosto y septiembre de 2026, y no todas registran la revisión del motor que usaron.
+La copia local del motor se clonó el 4 de septiembre, y su último cambio es del 18 de agosto.
+La revisión importa porque el motor sigue en desarrollo y sus resultados se mueven con él.
+
+Cada propuesta de este capítulo declara, por tanto, dos cosas separadas: en
+cuántas APIs del catálogo aparece la carencia, y si existe traza de ejecución que
+demuestre su efecto sobre el consumidor. La primera es un argumento sobre el
+dominio y la segunda, sobre el modelo.
+
+\section{Dos clases de carencia}
+\label{sec:evolucion:clases}
+
+Los elementos no soportados registrados durante la construcción del catálogo no son todos de
+la misma naturaleza, y confundirlas debilita las propuestas. El material reunido
+se separa en dos clases.
+
+Una \textbf{carencia de expresividad} se produce cuando el dominio afirma algo que
+el esquema no tiene dónde poner. Postmark ofrece seis volúmenes contratados para
+su cuota mensual, cada uno con su precio y su sobrecoste, y una cuota de v0.3
+tiene un \texttt{value} escalar y un \texttt{overage\_cost} único: no hay campo
+donde escribir la lista. Estas carencias se detectan al modelar, se manifiestan
+como pérdida de información, y su prueba es la recurrencia: que una API venda por
+volumen contratado puede ser una peculiaridad, que dos lo hagan empieza a ser el
+dominio.
+
+Un \textbf{defecto de contrato} es distinto. Aquí el esquema sí ofrece una forma,
+la Datasheet la usa correctamente, y el consumidor de referencia falla al leerla.
+El campo \texttt{max} de un \texttt{workload} admite quedar vacío, que es lo
+honesto cuando el proveedor no publica tope, y PRIME4API convierte ese valor a
+número sin comprobar nulos. La Datasheet es conforme y deja sin responder operaciones enteras del motor.
+Estas carencias no se detectan modelando, porque el fichero se escribe sin
+resistencia. Se detectan ejecutando, y su prueba no es la frecuencia sino la
+traza.
+
+La distinción importa por tres razones. La primera es la carga de la prueba: una
+carencia de expresividad se discute y un defecto de contrato se reproduce, de modo
+que este último puede sostenerse con una sola API si la traza es concluyente. La
+segunda es el remedio: la expresividad se corrige en el esquema, mientras que el
+contrato admite corrección en el esquema, en el motor o en ambos, y conviene decir
+en cuál. La tercera es el destinatario, porque las dos clases se comunican en
+repositorios distintos. La separación no estaba planteada al inicio del trabajo y
+apareció al ejecutar la primera verificación, lo que también señala su límite: es
+una distinción útil para ordenar este capítulo, obtenida sobre un solo esquema y
+un solo consumidor, y no se afirma aquí que valga fuera de ese caso.
+
+\section{Inventario consolidado de elementos no soportados}
+\label{sec:evolucion:inventario}
+
+Las Tablas~\ref{tab:recurrencia} y~\ref{tab:recurrencia:b} recogen el inventario sobre las ocho APIs del catálogo y la vía de promoción de cada elemento no soportado.
+La Tabla~\ref{tab:fricciones} del Capítulo~\ref{cap:catalogo} presentaba los ocho elementos no soportados del piloto.
+Aquí se suman los veintiocho aparecidos en las siete APIs siguientes, se retira uno que no sobrevivió a la verificación y se aplica el criterio de promoción a los treinta y cinco.
+Los elementos no soportados F-23 a F-38 aparecieron al construir las cuatro últimas APIs.
+La segunda tabla los presenta con su número y un nombre corto.
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\setlength{\abovecaptionskip}{3pt}
+\begin{tabular}{|c|p{4.6cm}|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Id} & \textbf{Carencia} & \textbf{PM} & \textbf{RS} & \textbf{SG} & \textbf{MS} & \textbf{BR} & \textbf{SE} & \textbf{MC} & \textbf{MG} & \textbf{Vía} & \textbf{Prop.} \\
+\hline
+F-01 & Un \textit{rate} que existe y cuyo valor no se publica & sí & parc. & parc. & parc. & parc. & sí & sí & sí & recurr. & P-04 \\
+\hline
+F-02 & Volumen contratado con precio y sobrecoste propios & sí & sí & sí & sí & var. & --- & --- & sí & recurr. & P-01 \\
+\hline
+F-03 & CRF multiplicativo entre dimensiones anidadas & sí & sí & acot. & acot. & acot. & sí & --- & --- & recurr. & P-02 \\
+\hline
+F-04 & Restricciones declaradas que el proveedor admite no aplicar o que la respuesta no refleja & sí & --- & --- & sí & n/v & sí & sí & n/v & recurr. & discus. \\
+\hline
+F-05 & \textit{Results Per Request} documentada y no serializable & sí & n/v & sí & sí & sí & sí & sí & sí & recurr. & --- \\
+\hline
+F-06 & \texttt{workload} acotado por una métrica distinta de la suya & sí & sí & sí & sí & sí & sí & sí & sí & recurr. & P-03 \\
+\hline
+F-07 & \textit{Add-ons} que modifican dimensiones de capacidad & sí & sí & sí & sí & sí & sí & sí & sí & recurr. & --- \\
+\hline
+F-08 & El plan real es \textit{tier} $\times$ volumen contratado & sí & parc. & sí & sí & sí & var. & var. & var. & recurr. & --- \\
+\hline
+F-09 & El documento caduca entero, y sus datos caducan uno a uno & n/v & sí & sí & sí & sí & sí & parc. & --- & recurr. & --- \\
+\hline
+F-10 & Dos productos de precio con unidades de consumo distintas & --- & sí & sí & parc. & var. & var. & sí & var. & recurr. & --- \\
+\hline
+F-11 & Límites de recursos por plan, que no son consumo & sí & sí & sí & sí & sí & var. & --- & sí & recurr. & --- \\
+\hline
+F-12 & La recepción consume la cuota de envío & n/v & sí & n/v & sí & n/v & n/v & n/v & n/v & recurr. & --- \\
+\hline
+F-13 & El sobrecoste es opcional y no existe en el plan gratuito & sí & sí & sí & sí & var. & --- & var. & sí & recurr. & --- \\
+\hline
+F-14 & El plan tiene fecha de caducidad & --- & --- & sí & sí & --- & var. & --- & var. & recurr. & --- \\
+\hline
+F-15 & Dos canales, dos \texttt{workload} distintos para la misma cuota & n/v & n/v & sí & sí & sí & var. & sí & sí & recurr. & --- \\
+\hline
+F-16 & El sobrecoste tiene un tope que impone el proveedor & n/v & n/v & sí & --- & --- & --- & --- & --- & traza & P-07 \\
+\hline
+\hline
+F-18 & La capacidad depende del estado de la suscripción o de la reputación, no del plan & sí & sí & parc. & sí & var. & sí & sí & sí & recurr. & P-06 \\
+\hline
+F-21 & Un cupo de destinatarios distintos que se gasta al probar & --- & --- & --- & sí & --- & --- & --- & --- & traza & P-08 \\
+\hline
+F-22 & Una credencial que solo se gestiona desde la web & sí & --- & --- & --- & sí & sí & sí & n/v & recurr. & --- \\
+\hline
+\end{tabular}
+\caption{Inventario de elementos no soportados sobre las ocho APIs del catálogo, F-01 a F-22, con la vía de promoción de cada uno. Columnas: PM Postmark, RS Resend, SG SendGrid, MS MailerSend, BR Brevo, SE Amazon SES, MC Mailchimp y MG Mailgun. En las columnas de API, sí: el elemento no soportado aparece, también como variante que suma. var.: variante que no suma. parc.: aparece en parte. acot.: aparece en variante acotada. ---: comprobado y ausente. n/v: sin fuente que lo afirme ni lo niegue. susp.: en suspenso. El número de «sí» de una fila es su recuento sobre las ocho APIs. En la columna de vía, recurr.: dos APIs o más. traza: una sola API, con las tres condiciones de la Sección~\ref{sec:evolucion:metodo} cumplidas. L2, L3 o L2 y L3: lo que el veredicto de la fila da por no cumplido. Donde falta L2, puede faltar además el veredicto de L3 (Sección~\ref{sec:evolucion:fuera}). En la de propuesta, discus.: se discute en la Sección~\ref{sec:evolucion:fuera}. Faltan F-17, F-19 y F-20, retirados. F-19 lo absorben F-11 y F-18, y F-20 pasó a observación. F-17 se retiró al cerrarse en peticiones la discrepancia sobre la unidad del tope diario de MailerSend, de la que dependía su única ocurrencia.}
+\label{tab:recurrencia}
+\end{table}
+
+\begin{table}[H]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{|c|p{4.6cm}|c|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Id} & \textbf{Carencia} & \textbf{PM} & \textbf{RS} & \textbf{SG} & \textbf{MS} & \textbf{BR} & \textbf{SE} & \textbf{MC} & \textbf{MG} & \textbf{Vía} & \textbf{Prop.} \\
+\hline
+F-23 & Un comodín de prefijo con excepción & --- & --- & --- & var. & sí & var. & --- & --- & L3 & --- \\
+\hline
+F-24 & Una cuota superada que retiene hasta un número fijo de envíos y deja de entregar los siguientes & --- & --- & --- & var. & sí & --- & --- & --- & traza & P-09 \\
+\hline
+F-25 & Un \textit{endpoint}, dos modos de envío y una carga que depende de otro campo & --- & --- & --- & --- & sí & var. & --- & --- & L3 & --- \\
+\hline
+F-26 & Un precio que depende de la geografía y una sola divisa en el fichero & --- & --- & parc. & sí & sí & var. & var. & sí & recurr. & --- \\
+\hline
+F-27 & Un exceso que cambia el plan en vez de pagarse por unidad, disparado por otra dimensión & --- & --- & --- & --- & sí & --- & --- & --- & L2 & --- \\
+\hline
+F-28 & Una lista de IP autorizadas decide si la llamada entra & parc. & n/v & parc. & sí & sí & n/v & sí & parc. & recurr. & --- \\
+\hline
+F-29 & Un precio por unidad sin cuota incluida de la que colgarlo & --- & --- & --- & --- & --- & sí & --- & --- & L3 & --- \\
+\hline
+F-30 & Precio por tramos marginales sobre el mismo consumo & --- & --- & --- & --- & --- & sí & --- & --- & L2 y L3 & --- \\
+\hline
+F-31 & La unidad de gobierno es el par cuenta $\times$ región & n/v & --- & var. & --- & --- & sí & --- & var. & L2 & --- \\
+\hline
+F-32 & Precio unitario degresivo sin planes que lo sostengan & --- & --- & --- & --- & --- & --- & sí & --- & L2 & --- \\
+\hline
+F-33 & Una franquicia que no caduca ni se renueva: la cuota sin ventana & --- & --- & --- & --- & --- & --- & sí & --- & L2 & --- \\
+\hline
+F-34 & Dos topes de tamaño sobre la misma llamada, uno del mensaje y otro de la petición & var. & n/v & var. & parc. & parc. & var. & sí & sí & recurr. & --- \\
+\hline
+F-35 & El literal de un tope trae una cifra fraccionaria y el máximo de un \texttt{workload} es entero & n/v & n/v & --- & n/v & n/v & n/v & n/v & sí & L2 y L3 & --- \\
+\hline
+F-36 & Dos contadores sobre la misma ventana, y un solo caudal por nodo & n/v & --- & n/v & --- & --- & --- & --- & sí & L2 & --- \\
+\hline
+F-37 & Un tope de capacidad que fija el cliente, no el proveedor & n/v & n/v & n/v & var. & sí & var. & n/v & sí & recurr. & --- \\
+\hline
+F-38 & Dos cuotas concurrentes de la misma unidad & --- & sí & --- & --- & --- & --- & --- & susp. & L2 & --- \\
+\hline
+\end{tabular}
+\caption{Continuación de la Tabla~\ref{tab:recurrencia}: elementos no soportados F-23 a F-38, con la misma notación.}
+\label{tab:recurrencia:b}
+\end{table}
+
+El criterio promueve veinticuatro de los treinta y cinco elementos no soportados: veintiuno por recurrencia y tres por traza.
+Los otros once no promueven.
+F-06 y F-07 aparecen en las ocho APIs, y F-05 en siete.
+La mayoría de los recurrentes, trece de veintiuno, aparece en cuatro APIs o más.
+En el otro extremo, F-12, F-14, F-34 y F-37 cumplen el umbral con dos APIs justas.
+Una celda sin verificar solo puede sumar, así que, respecto de esas celdas, el recuento de cada fila es un mínimo.
+
+La Tabla~\ref{tab:propuestas} dice de dónde sale cada propuesta.
+De los veinticuatro promovidos, este capítulo formula extensión para ocho, y P-05, la propuesta restante, no sale de ningún elemento no soportado.
+De esos ocho, entran por recurrencia F-01, F-02, F-03, F-06 y F-18, y F-01 lleva además traza.
+F-16, F-21 y F-24 entran por traza, cada uno con su prueba sobre el motor.
+En F-16 el motor promete un volumen que el proveedor rechaza, y en F-21 declara alcanzable en cero segundos un objetivo que la medición no consiguió enviar.
+En F-24 escribe como un muro, sin exceso posible, una cuota que el proveedor publica con una cola de reintento.
+P-05 no tiene fila en el inventario: su carencia apareció al ejecutar y no al modelar, y sigue sin número F-nn.
+Un inventario construido al modelar no puede contener lo que solo se ve al usar, y esa asimetría es el motivo por el que la sección anterior separa las dos clases.
+El resto de los promovidos no lleva número de propuesta, y la Sección~\ref{sec:evolucion:fuera} dice por qué.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|l|p{0.24\textwidth}|c|c|l|l|c|}
+\hline
+\textbf{Propuesta} & \textbf{Qué pide} & \textbf{Elemento} & \textbf{APIs} & \textbf{Prueba} & \textbf{Clase} & \textbf{Apdo.} \\
+\hline
+P-01 & Volúmenes contratados en la cuota, con precio y sobrecoste propios & F-02 & 5/8 & recurr. & expresividad & \ref{subsec:evolucion:p01} \\
+\hline
+P-02 & Consumo de una petición como producto de dimensiones anidadas & F-03 & 3/8 & recurr. & expresividad & \ref{subsec:evolucion:p02} \\
+\hline
+P-03 & Tope de una carga expresado en otra métrica & F-06 & 8/8 & recurr. & expresividad & \ref{subsec:evolucion:p02} \\
+\hline
+P-04 & Marca de valor no publicado junto al campo & F-01 & 4/8 & recurr. y traza & contrato & \ref{subsec:evolucion:p04} \\
+\hline
+P-05 & Plan con precio que existe y no es público & --- & --- & motor & contrato & \ref{subsec:evolucion:p05} \\
+\hline
+P-06 & Estado de la suscripción y reputación, declarados una vez y con su disparador & F-18 & 6/8 & recurr. & expresividad & \ref{subsec:evolucion:p06} \\
+\hline
+P-07 & Tope del sobrecoste & F-16 & 1/8 & traza & expresividad & \ref{subsec:evolucion:p07} \\
+\hline
+P-08 & Cuota de entidades distintas, sin periodo y con ámbito de cuenta & F-21 & 1/8 & traza & expresividad & \ref{subsec:evolucion:p08} \\
+\hline
+P-09 & Comportamiento de la cuota al superarse & F-24 & 1/8 & traza & expresividad & \ref{subsec:evolucion:p09} \\
+\hline
+Rectif. & Forma de lista de \texttt{workload} en la guía & --- & --- & --- & guía & \ref{subsec:evolucion:dv01} \\
+\hline
+\end{tabular}
+\caption{Propuestas del capítulo y su origen. Elemento: el elemento no soportado del inventario del que sale cada propuesta. APIs: su recuento sobre las ocho del catálogo. Prueba, recurr.: la carencia aparece en dos APIs o más. traza: la consecuencia está ejecutada sobre el motor, con las tres condiciones de la Sección~\ref{sec:evolucion:metodo} cumplidas. motor: el consumidor de referencia falla al leer una forma que la guía admite. P-05 no sale de ningún elemento no soportado del inventario, y el criterio de promoción no se le aplica. La última fila rectifica la guía y no extiende el esquema.}
+\label{tab:propuestas}
+\end{table}
+
+Al pasar de cuatro APIs a ocho, ningún elemento no soportado que promovía deja de hacerlo.
+F-01 recurre ahora en cuatro APIs y conserva la traza, y F-07 aparece en las ocho sin propuesta.
+F-18 recurre en seis, así que P-06, que antes quedaba formulada sin promover, entra por recurrencia.
+F-22, que antes no promovía, recurre ahora en cuatro con la variante que suma de Amazon SES.
+De los dieciséis elementos no soportados que abren las cuatro últimas APIs, F-26, F-28, F-34 y F-37 recurren y promueven.
+Los demás cuentan en una sola API, y entre ellos solo F-24 promueve, por traza.
+La Sección~\ref{sec:evolucion:fuera} dice qué condición de la traza le falta a cada uno de los que no promueven.
+
+Dos anotaciones sobre cómo se ha contado, porque de ellas depende que el recuento signifique algo.
+F-01 aparece en las ocho APIs y solo cuenta en cuatro.
+Es plena donde el proveedor admite que el límite existe y no le da cifra.
+Postmark documenta el error \texttt{429} y no publica ningún umbral.
+Amazon SES escribe que su caudal de envío «varies based on your specific use case» \citep{sesdocs}.
+Mailchimp no cifra la cuota horaria de la cuenta de pago (Apartado~\ref{subsec:hallazgos:mailchimp}).
+La documentación de desarrollador de Mailgun no cifra el umbral de su límite \citep{mailgundocs}.
+El proveedor publica un único caudal en sus preguntas frecuentes, 1.500 peticiones por segundo por IP de cliente.
+El caudal de la cuenta queda así sin cifra (Apartado~\ref{subsec:hallazgos:mailgun}).
+Es parcial donde una cifra cubre una parte y deja otra sin cubrir.
+Resend publica un \textit{rate} por defecto de diez peticiones por segundo por equipo y un procedimiento para ampliarlo bajo petición.
+SendGrid publica un caudal de envío que ninguna cabecera deja observar, y devuelve cabeceras de caudal en los endpoints de lectura, que ninguna página cifra.
+Brevo cifra sus endpoints y no el canal SMTP ni la segmentación.
+Y MailerSend publica cuatro caudales y deja sin cifra dos de sus cuatro estados de reputación.
+Contar las parciales como plenas habría subido la recurrencia de cuatro a ocho con situaciones que no son la misma, y le habría restado crédito al recuento.
+
+F-08 es la segunda anotación, y aquí el recuento sí se mueve.
+En el piloto, F-08 englobaba también los límites de recursos por plan, que desde Resend tienen número propio (F-11).
+La mitad que suma aquí es que la superficie de la API cambie con el \textit{tier}.
+Con las ocho APIs, esa mitad aparece en Postmark, SendGrid, MailerSend y Brevo, y como variante que no suma en Amazon SES, Mailchimp y Mailgun.
+Aun así no produce propuesta, porque el esquema ya admite esa forma.
+Un endpoint que un plan no tiene se omite de ese plan, que es como la Datasheet de MailerSend modela el lote en su plan gratuito, a reserva de que el proveedor lo confirme.
+F-08 promueve igualmente, porque la recurrencia cuenta en cuántas APIs aparece el patrón y no comprueba si v0.3 ya lo expresa.
+Lo que no cabe es que la superficie cambie con el estado de la suscripción o con la reputación en lugar de con el plan, y eso es F-18.
+
+El recuento deja treinta y una celdas sin verificar y una en suspenso.
+En cuatro filas bastaría con que una de esas celdas pasara a «sí» para cambiar la vía.
+F-31, F-35 y F-36 pasarían a recurrentes, y F-16 pasaría de la traza a la recurrencia.
+F-38 pasaría también a recurrente si en Mailgun se confirma que dos cuotas de la misma unidad se aplican a la vez.
+En las demás filas con celdas sin verificar, la vía no cambia aunque la celda se resuelva.
+F-37 descansa en una regla provisional sobre qué variantes suman, y con otra regla bajaría a una sola API.
+
+\section{Propuestas de expresividad}
+\label{sec:evolucion:expresividad}
+
+\subsection{P-01. La cuota declara volúmenes contratados}
+\label{subsec:evolucion:p01}
+
+\textbf{El caso.} Los tres planes de pago de Postmark se anuncian con la fórmula
+\textit{``Starting at 10,000 emails/month''} \citep{postmarkpricing}, y la
+estructura completa solo es observable desde el panel de una cuenta propia: seis
+volúmenes contratados, de 10.000 mensajes por 15 USD a 1.500.000 por 775, con
+negociación directa por encima del último. En el \textit{tier} Basic el sobrecoste
+baja de 1,80 a 1,70 USD por millar al pasar de 125.000 a 300.000, y su valor
+en los demás cruces de \textit{tier} y volumen no es observable con una cuenta sin
+aprobar (Sección~\ref{sec:propuesta:piloto}). Resend exhibe la misma estructura y
+la publica: su plan Scale recorre seis volúmenes contratados, de 100.000 mensajes
+por 90 USD a 2.500.000 por 1.150, con el sobrecoste descendiendo de 0,90 a
+0,46 USD por millar \citep{resendpricing}.
+
+En Postmark la lista de volúmenes contratados solo era observable desde el panel
+de una cuenta propia, y en Resend está publicada en la página de precios, de modo
+que la misma carencia queda demostrada con una fuente citable y sin necesidad de
+acceso privilegiado.
+
+Mailgun publica la misma lista de volúmenes contratados en un selector de su página de precios.
+En su plan Scale, el sobrecoste baja de 1,10 a 0,40 USD por millar al subir de volumen \citep{mailgunpricing}.
+Con SendGrid y MailerSend, la carencia aparece en cinco APIs del catálogo (Tabla~\ref{tab:recurrencia}).
+Brevo vende también volúmenes contratados, pero sin sobrecoste, y esa variante no suma al recuento.
+
+\textbf{Qué hace v0.3.} Una cuota declara un \texttt{value} escalar y un \texttt{overage\_cost} único, de modo que no cabe ni la lista de volúmenes contratados ni el sobrecoste propio de cada uno.
+Las Datasheets de Postmark, Resend y Mailgun modelan el volumen mínimo de cada plan.
+La lista completa solo queda en el registro de procedencia, en prosa que ninguna herramienta lee.
+
+\textbf{Consecuencia.} La Datasheet de Resend afirma que Scale son 100.000
+mensajes con un sobrecoste de 0,90 USD por millar. Es cierto en el primer
+volumen contratado y falso en el último, donde el mismo plan son 2.500.000
+mensajes a 0,46. Comparar ese plan con el de un proveedor de volumen fijo usando
+el único número serializado falsea la comparación de precios, que es precisamente
+lo que el método de comparación de este trabajo se propone hacer bien.
+
+\textbf{Propuesta.} Que una cuota admita una lista de volúmenes contratados, cada
+uno con su precio y su sobrecoste, más una entrada explícita para el tramo
+negociado. El Extracto de código~\ref{lst:p01} muestra la forma sobre el caso de
+Resend.
+
+\begin{lstlisting}[style=datasheetyaml,caption={P-01: volúmenes contratados dentro de un plan, con precio y sobrecoste propios (caso Resend, plan Scale; se muestran tres de los seis).},label={lst:p01}]
+quota_email_transactional_monthly_scale:
+  unit: emails
+  period: {value: 1, unit: MONTH}
+  window_type: fixed_billing_cycle
+  contracted_volumes:
+    - value: 100000
+      price: 90
+      overage_cost: {price: 0.90, value: 1000}
+    - value: 500000
+      price: 350
+      overage_cost: {price: 0.70, value: 1000}
+    - value: 2500000
+      price: 1150
+      overage_cost: {price: 0.46, value: 1000}
+\end{lstlisting}
+
+\textbf{Efecto sobre las herramientas.} PRIME4API calcula la curva de coste a
+partir del precio del plan y del sobrecoste de la cuota. Con un único par de
+valores, la curva es una recta y el resultado es correcto solo en el volumen
+modelado. Con la lista, la curva pasa a tener una pendiente distinta en cada
+volumen contratado, que es lo que el proveedor cobra en realidad. La recomendación
+de plan, que el TFM de Gavira Sánchez ya ejecuta (su Tabla 5.12) \citep{gavira2026tfm}, depende directamente de esa curva.
+
+\subsection{P-02 y P-03. El \texttt{workload} deja de ser una terna escalar}
+\label{subsec:evolucion:p02}
+
+Los elementos no soportados F-03 y F-06 recurren por separado y piden el mismo cambio de fondo:
+que el consumo de una petición deje de expresarse con una sola terna
+\texttt{unit}, \texttt{min}, \texttt{max}. Se presentan juntas porque afectan al
+mismo punto del esquema y porque separarlas obligaría a proponer dos veces la
+misma reforma.
+
+\textbf{El caso de P-02.} El endpoint \texttt{/emails/batch} de Resend acepta
+\textit{``Trigger up to 100 batch emails at once''} y cada mensaje admite hasta
+cincuenta direcciones en el campo \texttt{to} \citep{resenddocs}. Hasta aquí es
+una ambigüedad de modelado. Lo que la convierte en prueba es que el proveedor
+declara por escrito cómo se contabiliza: \textit{``Multiple To, CC, or BCC
+recipients count as separate emails''}. El consumo de una llamada es el producto
+de los dos factores. Postmark presenta la misma estructura en
+\texttt{/email/batch} y \texttt{/email/batchWithTemplates}, con quinientos
+mensajes por llamada y cincuenta destinatarios totales por mensaje, límite este
+último que la documentación declaraba por campo y que el sondeo empírico del
+piloto corrigió (Sección~\ref{sec:propuesta:piloto}). Lo que Postmark nunca ha
+declarado por escrito es cómo se contabiliza ese consumo \citep{postmarkapi}.
+Amazon SES es el tercer caso pleno: su envío en lote recibe una lista de entradas con sus propios destinatarios.
+Su cuota cuenta destinatarios y no mensajes \citep{sesdocs}.
+La variante acotada es la de SendGrid, MailerSend y Brevo: un tope sobre el total de destinatarios de la petición, que no suma al recuento (Tabla~\ref{tab:recurrencia}).
+
+\textbf{Consecuencia de P-02.} La Datasheet serializa \texttt{max: 100}, que es el
+número de mensajes y no el de unidades consumidas. El factor de consumo por
+petición alimenta las preguntas del motor sobre agotamiento de cuota y coste de
+sobrecoste, y con ese valor las respuestas salen mal por un factor de hasta
+cincuenta.
+El fallo da un número plausible, que el consumidor no tiene cómo distinguir de uno correcto.
+En Postmark el error se deducía. En Resend lo
+refuta la propia documentación del proveedor.
+
+\textbf{El caso de P-03.} El endpoint \texttt{/email/bulk} de Postmark no tiene
+tope de mensajes: el proveedor documenta \textit{``as many recipients as you need,
+as long as your total payload (including attachments) stays under 50 MB''}
+\citep{postmarkapi}. Resend acota los adjuntos en \textit{``max 40MB per email,
+after Base64 encoding of the attachments''} \citep{resenddocs}. En los dos casos
+la cota efectiva no está en la unidad del \texttt{workload} sino en otra métrica,
+y medida después de codificar, de modo que el tope en contenido útil depende de la
+codificación.
+F-06, la de P-03, aparece en las ocho APIs.
+Mailchimp Transactional acota cada llamada por el tamaño de su JSON, que debe ocupar menos de 10 MB, y no por el número de mensajes.
+Amazon SES acota cada mensaje en 40 MB tras la codificación \citep{sesdocs}.
+Brevo acota el correo entero en 20 MB.
+Mailgun acota la misma llamada a la vez por destinatarios, por tamaño de la petición y por tamaño de las opciones, con tres cifras distintas.
+El Capítulo~\ref{cap:hallazgos} cita los literales de Mailchimp, Brevo y Mailgun en el apartado de cada una.
+
+\textbf{Consecuencia de P-03.} En Postmark y Resend, el tope real está en otra métrica, y el campo \texttt{max} de la unidad propia queda sin cifra que escribir.
+Todas las Datasheets del catálogo salvo las de Postmark y Resend declaran el tope de tamaño como una carga aparte en \texttt{MBs}, y la de Mailgun usa además \texttt{MiBs}.
+En MailerSend y en Amazon SES esa carga no tiene cuota propia, y es la que hace fallar la curva acumulada del motor (Sección~\ref{sec:evolucion:contrato}).
+
+\textbf{Propuesta.} Que \texttt{workload} admita composición entre dimensiones
+anidadas y que \texttt{max} pueda expresarse en una métrica distinta de la unidad
+declarada. El Extracto de código~\ref{lst:p02} muestra las dos formas sobre los
+casos anteriores.
+
+\begin{lstlisting}[style=datasheetyaml,caption={P-02 y P-03: composición de dimensiones anidadas y cota expresada en otra métrica.},label={lst:p02}]
+# P-02. El consumo es el producto de los dos factores.
+workload:
+  - unit: messages
+    min: 1
+    max: 100
+    composes:
+      unit: emails
+      max_per_unit: 50
+# P-03. El tope real esta en otra metrica, medida tras codificar.
+workload:
+  - unit: emails
+    min: 1
+    max_by: {unit: MBs, value: 40, measured_after: base64}
+\end{lstlisting}
+
+\textbf{Efecto sobre las herramientas.} Las dos formas alimentan el mismo cálculo.
+El factor de consumo por petición deja de ser un entero y pasa a ser una función
+de la petición, lo que obliga a PRIME4API a evaluar el consumo máximo y no solo el
+declarado. Es un cambio de mayor calado que P-01 y afecta a las operaciones de
+navegación además de a las de evaluación.
+
+\subsection{P-06. El estado de la suscripción y la reputación se declaran una vez}
+\label{subsec:evolucion:p06}
+
+\textbf{El caso.} MailerSend publica cuatro estados de reputación con nombre, y da cifra para dos de ellos \citep{mailersenddocs}.
+Cuando la cuenta entra bajo revisión, \texttt{/v1/email} pasa de 120 a 10 peticiones por minuto y el lote de 10 a 1, y ese estado no depende del plan.
+El sondeo del Apartado~\ref{subsec:hallazgos:mailersend} midió esas mismas cifras sobre una cuenta recién creada, sin aprobar ni plan contratado, que es un estado de la suscripción.
+Los límites medidos fueron 10 peticiones por minuto y 1 lote por minuto.
+El sondeo midió también la cuota diaria de 100 peticiones.
+La mensual de 100 correos es la publicada y no se midió (Tabla~\ref{tab:hallazgos:mailersend:estados}).
+Cada envío admitía una dirección en \texttt{to} y cada lote cinco objetos.
+La cuenta recién abierta que midió el sondeo no es la que describe el valor por defecto de la Datasheet.
+
+El caso obliga a separar tres nociones.
+La cuenta es la identidad del cliente ante el proveedor, y puede tener varias suscripciones.
+Resend, por ejemplo, muestra bajo la misma cuenta una suscripción transaccional y otra de \textit{marketing} (Apartado~\ref{subsec:hallazgos:resend}).
+El «estado de la suscripción» es la fase en que el proveedor sitúa la suscripción del cliente: en modo de prueba, sin aprobar o en el entorno de pruebas.
+La «reputación» es la valoración que hace el proveedor de cómo consume el cliente, por ejemplo por los errores que provocan sus peticiones.
+Es un factor que amplía o reduce la capacidad sin cambiar de suscripción.
+En MailerSend, la cuenta sin aprobar es un estado de la suscripción, y la revisión que baja \texttt{/v1/email} a 10 peticiones por minuto es un efecto de la reputación.
+
+En seis de las ocho APIs del catálogo la capacidad depende del estado de la suscripción o de la reputación, y no del plan (Tabla~\ref{tab:recurrencia}).
+Por el estado de la suscripción, Postmark limita a quién se envía mientras la cuenta está en modo de prueba, y Amazon SES limita el caudal en el entorno de pruebas \citep{sesdocs}.
+MailerSend reduce los topes en la cuenta sin aprobar, y la cuenta de demostración de Mailchimp tiene una cuota horaria fija.
+Por la reputación, MailerSend reduce el caudal bajo revisión, Amazon SES publica tres valores de \texttt{EnforcementStatus} sin cifra, y en Mailgun el caudal crece con la reputación del remitente.
+Resend amplía el caudal a los remitentes de confianza bajo petición y sin publicar cuánto \citep{resenddocs}, y Mailchimp ata a la reputación la cuota horaria de las cuentas de pago.
+Los literales de Postmark, Mailchimp y Mailgun están en los Apartados~\ref{subsec:hallazgos:postmark}, \ref{subsec:hallazgos:mailchimp} y~\ref{subsec:hallazgos:mailgun}.
+
+\textbf{Qué hace v0.3.} Más de lo que este trabajo supuso al empezar el catálogo.
+La guía del esquema documenta \textit{aliases} de estado dentro de un endpoint, y
+usa esta misma API como caso \citep{apisconsumptionmodel}. Su vocabulario de
+ejemplo tiene dos nombres: \texttt{healthy\_reputation} y
+\texttt{under\_review\_reputation}. El catálogo no los había empleado en ninguna
+Datasheet, y esta pasada los adopta con un tercer estado para la cuenta sin
+aprobar, que el proveedor documenta y el ejemplo de la guía no recoge. Las cifras
+del Capítulo~\ref{cap:hallazgos} no cambian, porque el estado sano conserva el
+valor por defecto. Lo que cambia es que el motor devuelve una fila por estado
+donde antes devolvía una sola. El elemento no soportado deja de ser «el esquema no lo expresa»
+y pasa a ser hasta dónde llega el mecanismo.
+
+\textbf{Qué no cubre.} Tres carencias, y las tres se ven al aplicar el mecanismo,
+no al leerlo.
+
+La primera es que el alias no tiene campo para el disparador. Un \texttt{trigger}
+escalar dentro del alias se ignora en silencio. Escrito al nivel del endpoint, que
+es donde parece natural ponerlo, el motor lo lee como un estado más, porque trata
+como estado todo diccionario cuya clave no sea una de las cuatro que conoce. El
+daño depende de dónde se escriba. En un
+endpoint que ya declara estados y no lleva \texttt{rate} propio, el estado
+fantasma sale vacío y las filas reales aguantan. En un endpoint que lleva su
+\texttt{rate} al nivel del endpoint, el endpoint deja de tener fila propia: el
+comodín \texttt{/*} devolvía 60 peticiones por minuto sin estado y pasa a devolver
+esas mismas 60 bajo un estado que no existe. Ninguna de las tres comprobaciones del
+ciclo avisa: el validador de formato da 16 conformidades y 2 avisos, y la
+verificación por uso 20 aciertos y 1 error, exactamente lo mismo que con la
+Datasheet limpia.
+
+La segunda carencia está en la guía: un alias admite también el
+\texttt{workload} y el código de referencia lo recoge, pero la guía solo
+documenta el \textit{rate} y la cuota. La consecuencia se midió aquí. La primera
+pasada dio por fuera del mecanismo el cambio de carga por petición, que en esta API
+va de setenta destinatarios a dos, y lo hizo por leer la guía. Cabía.
+Mientras eso no se escriba, el mecanismo se usa por debajo de lo que da.
+
+La tercera es que un estado de la suscripción se declara siete veces.
+El estado no depende del plan ni del endpoint, y el esquema no tiene dónde declararlo una sola vez para toda la Datasheet.
+La referencia se repite en los siete bloques de endpoint y nada liga las copias.
+Cambiar el estado obliga a tocar siete sitios, y nada detecta que uno se quede atrás.
+El recuento de semáforos hereda el problema.
+De los valores en verde de esta Datasheet, el tope de 50 MB del lote aparece tres veces, una por estado, copiado del endpoint.
+Solo una nota del registro de procedencia impide leer esas tres copias como tres evidencias.
+Esta tercera carencia recurre.
+La Datasheet de Amazon SES repite su alias de \textit{sandbox} en ocho bloques y la de Mailchimp el de demostración en tres.
+El disparador y la carga por alias, en cambio, solo se han medido en MailerSend.
+
+\textbf{Propuesta.} Tres cambios sobre el mecanismo de la guía, que lo extienden y
+no lo sustituyen. El primero es un atributo de disparador con sitio propio, que
+diga si el cambio de estado lo impone el proveedor o lo elige el cliente y que
+lleve su condición en prosa. El segundo es documentar el \texttt{workload} por
+alias, que la implementación ya admite. El tercero es una forma de declarar un
+estado una sola vez para toda la Datasheet, con las referencias de cada endpoint
+apuntando a esa declaración. Los tres no son la misma clase de cambio: el primero y
+el tercero extienden el esquema, el segundo rectifica la guía sin tocar el esquema,
+y la corrección que cierra esta subsección es del motor. El Extracto de
+código~\ref{lst:p06} muestra los tres sobre el caso de MailerSend.
+
+\begin{lstlisting}[style=datasheetyaml,caption={P-06: los estados de la suscripción y de la reputación declarados una vez, con su disparador y con la carga por petición que la guía no documenta (caso MailerSend).},label={lst:p06}]
+# Declaracion unica, fuera de los endpoints.
+account_states:
+  unapproved_account:
+    trigger: {mode: provider_managed, condition: "cuenta sin dominio verificado"}
+    rate: rate_request_email_unapproved
+    quota: quota_email_monthly_unapproved
+    workload: workload_email_unapproved   # admitido por el motor, no documentado
+# Cada endpoint referencia el estado en lugar de repetirlo.
+/v1/email:
+  states: [healthy_reputation, under_review_reputation, unapproved_account]
+\end{lstlisting}
+
+\textbf{La reputación como campo genérico.} Los estados de ejemplo de la guía llevan la reputación en el nombre, pero ningún campo dice cómo se mueve ni cuánto cambia la capacidad.
+Se propone como extensión un campo de reputación genérico: un factor que amplía o reduce la capacidad declarada, con su efecto y sus disparadores.
+Con él, el esquema podría registrar si el proveedor publica su reputación de forma completa y determinista.
+Es completa si da la capacidad de cada estado de reputación.
+Es determinista si dice qué hace cambiar de estado y con qué umbral.
+La Tabla~\ref{tab:evolucion:reputacion} aplica los dos criterios a las ocho APIs con lo que consta en sus registros, sin inferir lo que no consta.
+Ninguna publica su reputación de forma completa y determinista.
+Resend, MailerSend, SES, Mailchimp, Mailgun y SendGrid la publican incompleta y no determinista: dicen que la reputación mueve la capacidad, pero ninguna da a la vez la cifra de cada estado y el umbral que lo dispara.
+Son opacas Postmark y Brevo, que solo la nombran para su infraestructura de envío.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|p{1.9cm}|p{4.4cm}|p{2.2cm}|p{2.4cm}|p{2.4cm}|}
+\hline
+\textbf{API} & \textbf{Estados publicados} & \textbf{Umbral} & \textbf{Efecto con cifra} & \textbf{Veredicto} \\
+\hline
+Postmark & No consta & No consta & No consta & opaca \\
+\hline
+Resend & Ninguno: amplía el caudal a remitentes de confianza, a petición & No & No & incompleta y no determinista \\
+\hline
+SendGrid & Ninguno: bloqueo temporal 403 por peticiones erróneas & No & No & incompleta y no determinista \\
+\hline
+MailerSend & Cuatro con nombre & No: indicios como los 429, sin umbral ni ventana & En dos de los cuatro, y la pausa del envío en \textit{Sending paused} & incompleta y no determinista \\
+\hline
+Brevo & No consta & No consta & No consta & opaca \\
+\hline
+Amazon SES & Tres valores de \texttt{EnforcementStatus} & No: aumento automático con un criterio sin umbral & No, salvo la pausa del envío en \texttt{SHUTDOWN} & incompleta y no determinista \\
+\hline
+Mailchimp & Niveles en el panel & No & No en las cuentas de pago & incompleta y no determinista \\
+\hline
+Mailgun & Ninguno: los caudales suben con la reputación & No & No & incompleta y no determinista \\
+\hline
+\end{tabular}
+\caption{La reputación en las ocho APIs del catálogo. Completa: el proveedor da la capacidad de cada estado. Determinista: dice qué hace cambiar de estado y con qué umbral. Opaca: los registros de la API no recogen que la reputación cambie su capacidad.}
+\label{tab:evolucion:reputacion}
+\end{table}
+
+\textbf{Efecto sobre las herramientas.} El motor ya devuelve una fila por estado,
+así que leer la capacidad por estado no le exige ningún cambio. Lo que cambia es
+qué se le puede preguntar. Con el disparador declarado, una consulta puede separar
+los estados que el cliente elige de los que le impone el proveedor, que es la
+diferencia entre una capacidad contratable y una contingencia. Con la declaración
+única, el recuento de evidencia deja de contar copias. Y hace falta una corrección
+más, que es del motor y no del esquema: rechazar la clave que no reconoce en lugar
+de convertirla en estado.
+Con la revisión del motor usada en este trabajo, una clave desconocida no produce ningún error, y el estado fantasma solo se ve leyendo la respuesta.
+El motor responde mal, además, en un listado al que le falta el campo para preguntar por estado de la suscripción.
+Tampoco ese fallo es del esquema, porque los canales de cálculo leen bien lo que la Datasheet declara.
+
+\subsection{P-07. El sobrecoste declara su tope}
+\label{subsec:evolucion:p07}
+
+\textbf{El caso.} Desde marzo de 2026, SendGrid limita el envío mensual a diez veces
+el volumen contratado. Una cuenta con el plan Essentials de 50.000
+correos puede enviar 500.000 al mes, y por encima recibe un error de créditos
+agotados \citep{sendgriddocs}. El dato no está en la página de precios ni en el
+artículo de sobrecostes. Está en uno de resolución de errores.
+
+\textbf{Qué hace v0.3.} \texttt{overage\_cost} es un precio unitario sin límite de
+cantidad. La Datasheet declara los 50.000 correos incluidos y el precio de cada
+correo extra, y eso se lee como capacidad ilimitada a ese precio. El tope solo
+cabe en el registro de procedencia, en prosa, donde ningún consumidor lo evalúa. La
+guía define el campo como un objeto con precio y valor, y no le da ningún subcampo
+que acote la cantidad \citep{apisconsumptionmodel}.
+
+\textbf{La traza.} Pedida al motor la recomendación de presupuesto para 600.000
+correos sobre ese plan, el motor responde 734,95 USD y declara el objetivo
+alcanzable en 59 segundos. El punto de control por debajo del tope, 400.000 correos, devuelve 474,95
+USD con la misma forma: el motor cruza los 500.000 sin que nada cambie.
+El motor sabe negarse cuando el esquema se lo permite: con un presupuesto de 100 USD
+declara el objetivo inalcanzable. La respuesta falsa no viene del motor, viene del
+documento que lee.
+
+\textbf{Propuesta.} Que \texttt{overage\_cost} admita un máximo opcional, expresado como factor sobre el volumen contratado o en unidades absolutas.
+Con él, la Datasheet de SendGrid declara diez veces el plan y el motor deja de prometer un volumen que el proveedor rechaza.
+La extensión es retrocompatible, porque un documento que no declare el campo se lee igual que con v0.3.
+La extensión emparenta con F-13, que pide que el sobrecoste declare su modo.
+Las dos juntas le darían al sobrecoste un tope y un modo, en lugar del precio unitario abierto de v0.3.
+Lo que se retiene por encima de una cuota sin cobrarlo es otra carencia, y la trata P-09 (Apartado~\ref{subsec:evolucion:p09}).
+
+\subsection{P-09. La cuota declara qué hace con lo que la supera}
+\label{subsec:evolucion:p09}
+
+\textbf{El caso.} La cuota del plan gratuito de Brevo es de 300 correos al día.
+Al agotarla, el correo transaccional no se corta en seco: «once you reach your daily limit, up to 1,000 additional emails are held in a retry queue. Emails beyond this queue are not delivered» \citep{brevohelpfree}.
+La cuota tiene así dos umbrales, el de la cifra publicada y el de la cola, y lo que ocurre entre los dos solo vale para el correo transaccional.
+El literal no dice si el cliente recibe algún error por los correos que la cola ya no admite, y la cola no se ha observado (Apartado~\ref{subsec:hallazgos:brevo}).
+
+\textbf{Qué hace v0.3.} De los campos de la cuota, solo \texttt{overage\_cost} habla de su borde \citep{apisconsumptionmodel}.
+Sin él, la cuota se lee como un muro.
+Con precio cero, se lee como un exceso que no se cobra ni se acaba.
+Ninguna de las dos lecturas es la de Brevo.
+La Datasheet declara los 300 correos sin sobrecoste, que en v0.3 se escribe igual que un muro.
+
+\textbf{La traza.} Con la Datasheet sin manipular, el motor devuelve para esa cuota 300 correos al día sin sobrecoste y sin rastro de la cola.
+Es la misma forma que devuelve para la prueba gratuita de SendGrid, que sí es un muro.
+El caso de control es el plan Essentials de SendGrid: la Datasheet le declara sobrecoste, y el motor lo devuelve con su precio.
+El motor distingue un muro de un exceso que se cobra, pero no un muro de una cola, porque la Datasheet no tiene cómo decirlo.
+
+\textbf{Propuesta.} Que la cuota admita un bloque \texttt{overflow} con las unidades que retiene por encima de su valor y lo que hace con ellas.
+Si falta, la cuota es un muro, y un documento que no declare el bloque se lee igual que con v0.3.
+Si hay sobrecoste, sigue en \texttt{overage\_cost}, y el bloque nuevo solo describe la franja que no se cobra.
+La propuesta emparenta con P-04, porque las dos piden que el esquema diga qué clase de límite declara, además de su número.
+El Extracto de código~\ref{lst:p09} muestra la forma sobre el caso de Brevo.
+
+\begin{lstlisting}[style=datasheetyaml,caption={P-09: una cuota que retiene lo que la supera hasta un tope fijo (caso Brevo, plan gratuito, correo transaccional).},label={lst:p09}]
+quota_email_daily_free:
+  value: 300
+  unit: emails
+  period: {value: 1, unit: DAY}
+  overflow:              # P-09: lo que la cuota hace al superarse
+    capacity: 1000       # envios retenidos en la cola de reintento
+    behavior: queued     # en cola, y el exceso no se entrega
+\end{lstlisting}
+
+\textbf{Frontera con P-07.} P-07 acota lo que se cobra por encima de la cuota, y P-09 describe lo que se retiene sin cobrarlo.
+Las dos tocan el mismo borde, y reunirlas en una sola forma es decisión de la guía.
+F-27 también toca ese borde, con un exceso que cambia el plan, pero no promueve (Sección~\ref{sec:evolucion:fuera}).
+
+\subsection{P-08. Un cupo que cuenta destinatarios distintos y no se repone}
+\label{subsec:evolucion:p08}
+
+\textbf{El caso.} La cuenta de MailerSend sin aprobar puede escribir a dos
+direcciones distintas, y solo a esas dos \citep{mailersenddocs}. El cupo es de la cuenta,
+no un tope por petición. Solo lo levanta la aprobación, y la documentación no le da
+ventana. El listado de destinatarios devuelve cero, así que el cupo no se lee por ese
+canal. Los sondeos de este trabajo lo encontraron alcanzado sin haber enviado nunca un
+correo, y de ahí se infiere que lo gastaron intentos que no enviaron nada. Qué petición
+lo gastó no se determinó.
+
+\textbf{Qué hace v0.3.} Una cuota tiene valor, unidad y periodo, y aquí fallan los
+tres. La unidad no es correos ni peticiones, sino direcciones distintas. No hay
+periodo, porque el cupo no se renueva. Y, según esa inferencia, lo consume el intento y no el envío. El esquema
+no distingue los dos. Tampoco es uno de los recursos que pide
+F-11: un dominio o un token se tienen o no se tienen, y este cupo se gasta. La
+Datasheet lo deja en el registro de procedencia, en prosa.
+La guía da como ejemplos de unidad de una cuota peticiones, correos, SMS, registros, gigabytes y tokens, y sus formatos estándar añaden horas y minutos \citep{apisconsumptionmodel}.
+Ninguno cuenta entidades distintas.
+Una unidad nueva, como la \texttt{MBs} del catálogo, no bastaría: la cuota seguiría sin decir su ámbito, su falta de periodo ni qué la consume.
+
+\textbf{La traza.} El motor lee la Datasheet del catálogo y atribuye al estado no aprobado una capacidad acumulada de 110 correos en un mes, frente a los 100 de su cuota mensual.
+Y declara alcanzable un objetivo de tres destinatarios, sin coste y en cero segundos.
+La medición del 14 de septiembre no
+envió ni un correo, y las dos cuotas modeladas quedaron intactas. El control
+confirma que el motor sabe declarar inalcanzable un objetivo con esa misma
+Datasheet. La prueba tiene un alcance acotado: esa respuesta no sería falsa en una
+cuenta recién abierta. Lo es en cuanto el cupo se ha gastado, que es el estado en que quedó la cuenta de este
+trabajo tras probar la API sin la aprobación.
+
+\textbf{Propuesta.} Que una cuota pueda declarar cuatro cosas que v0.3 no declara: que su unidad son entidades distintas, que su ámbito es la cuenta, que no tiene periodo, y qué la consume, si el intento o el resultado.
+En el catálogo, el cupo es de MailerSend: las otras siete APIs se comprobaron y no lo tienen (Tabla~\ref{tab:recurrencia}), y por eso la propuesta entra por traza.
+
+\textbf{Frontera con P-06.} Este cupo se registró al principio dentro de F-18,
+porque aparece en la cuenta sin aprobar. Comparten dónde salen, no qué piden. F-18
+es un problema de selector: el esquema sabe decir el número de cada estado y no
+sabe decir cuál manda ni qué dispara el cambio. F-21 es un problema de dimensión,
+porque el límite no cabe ni con selector ni sin él. Se separan para que ninguna
+carencia cuente dos veces y cada propuesta pida una sola forma.
+
+\subsection{F-07 recurre y queda fuera}
+\label{subsec:evolucion:f07}
+
+Los \textit{add-ons} que modifican dimensiones de capacidad aparecen en las ocho APIs.
+En las cuatro primeras la IP dedicada exige un plan mínimo, y en Postmark, Resend y MailerSend también un umbral de volumen.
+Las tres que publican precio lo dan al mes.
+Postmark cobra 50 USD por la IP dedicada y la condiciona a superar 300.000 mensajes al mes y a estar en Pro.
+Resend cobra 30 USD y la condiciona a superar 3.000 mensajes al día y a estar en Scale.
+SendGrid la incluye en Pro y Premier, pero no en Essentials, y cobra 30 USD por cada IP adicional.
+Y la página de precios de MailerSend la reserva a Enterprise, para cuentas que envían más de 100.000 correos a la semana, y no publica precio.
+Las páginas de producto que la cobran a 50 USD desde 500.000 correos al mes quedan como incoherencia registrada.
+En las cuatro últimas la forma cambia de una API a otra.
+Brevo la cobra al año y la ofrece como complemento del plan Professional \citep{brevopricing}.
+Amazon SES la cobra por mes y por IP \citep{sespricing}.
+Mailchimp la ofrece por 29,95 USD al mes sin umbral de volumen publicado \citep{mailchimppricing}.
+Mailgun cobra 59 USD al mes por cada IP adicional y da acceso a ella desde los 50.000 correos \citep{mailgunpricing}.
+El elemento no soportado recurre en las ocho y aun así no se propone extensión.
+
+La razón es de alcance y no de evidencia. La Datasheet no tiene bloque de
+\textit{add-ons} porque el esquema los deriva al canal web, que este trabajo no
+modela por la decisión de alcance tomada en la Sección~\ref{sec:propuesta:criterios}.
+Proponer aquí un bloque de \textit{add-ons} sería resolver en el canal API un
+problema que pertenece a la vinculación entre los dos canales, que el trabajo que
+introdujo el modelo dejó explícitamente como línea futura \citep{gavira2026tfm}.
+Lo que este catálogo aporta es un argumento con ocho casos para que esa vinculación se aborde, no una extensión unilateral que la haga innecesaria.
+
+\section{Defectos de contrato}
+\label{sec:evolucion:contrato}
+
+Las ocho Datasheets del catálogo superan el validador de formato de este trabajo, que comprueba su estructura contra la guía del esquema.
+Sometidas a la herramienta de verificación, ninguna de las ocho es plenamente consumible por PRIME4API.
+La Tabla~\ref{tab:verificacion} recoge el resultado de la verificación por uso.
+
+\begin{table}[H]
+\centering
+\begin{tabular}{|l|c|c|p{5.2cm}|}
+\hline
+\textbf{Datasheet} & \textbf{Correctas} & \textbf{Con error} & \textbf{Causa de los errores} \\
+\hline
+Postmark & 11 & 10 & Diez por valor ausente (P-04) \\
+\hline
+Resend & 8 & 13 & Cinco con el error del valor ausente (P-04) y ocho con el del precio no público (P-05). Cada causa sola da doce o trece \\
+\hline
+SendGrid & 8 & 13 & Trece por precio no público (P-05) \\
+\hline
+MailerSend & 20 & 1 & Uno por curva acumulada sobre un solo caudal \\
+\hline
+Brevo & 9 & 13 & Trece por precio no público (P-05) \\
+\hline
+Amazon SES & 20 & 1 & Uno por curva acumulada sobre un solo caudal \\
+\hline
+Mailchimp Transactional & 8 & 10 & Diez por valor ausente (P-04) \\
+\hline
+Mailgun & 20 & 1 & Uno por curva acumulada con el mismo mensaje que MailerSend y Amazon SES \\
+\hline
+\end{tabular}
+\caption{Resultado de ingerir las ocho Datasheets del catálogo en PRIME4API con la herramienta de verificación. Diecisiete comprobaciones fijas por fichero más una por plan. El validador de formato de este trabajo daba cero errores en las ocho.}
+\label{tab:verificacion}
+\end{table}
+
+La distancia entre el validador de formato, que no da ningún error, y la columna de errores de la tabla es el argumento de esta sección.
+Un fichero puede ser conforme a la norma y dejar sin responder operaciones enteras del motor, porque entre el esquema y su consumidor hay un contrato implícito que la norma no escribe.
+
+Mailchimp Transactional y Mailgun se sometieron a la herramienta el 24 de septiembre de 2026, con PRIME4API en la revisión \texttt{8e6011c}, después que las otras seis.
+Mailchimp da diez errores, con la conversión de un valor nulo que la Tabla~\ref{tab:verificacion} atribuye a P-04 (Apartado~\ref{subsec:evolucion:p04}), el defecto que la dejaba sin respuesta en catorce de las diecisiete llamadas al motor de la Sección~\ref{sec:hallazgos:catalogo-pi}.
+Mailgun contestó a las diecisiete llamadas y la herramienta le encontró un error.
+Su caso muestra que responder a esas llamadas no equivale a superar las comprobaciones.
+
+Las filas de MailerSend, Amazon SES y Mailgun son de otra naturaleza, y conviene despacharlas aquí porque no producen propuesta de esquema.
+El único error de MailerSend lo causa una dimensión de \texttt{workload} acotada solo por caudal.
+El tope de 50 MB del cuerpo del lote no tiene cuota propia.
+El motor construye entonces un escenario con un caudal y ninguna cuota, y falla al dividir milisegundos por una duración sin convertirla.
+Solo cae la curva acumulada, y el resto de la superficie pasa.
+Es el caso normal de F-06: el proveedor solo publica un tope de tamaño.
+SendGrid lo esquivó mientras su endpoint de envío repetía el \textit{rate} del plan, porque con dos caudales el motor toma otro camino.
+El catálogo dejó de repetir límites el 14 de septiembre de 2026 (Sección~\ref{sec:hallazgos:limites-rates}).
+Desde entonces la herramienta solo registra en SendGrid los trece errores del precio no público, y su escenario de un solo caudal no se ha aislado.
+El remedio cabe en una línea del motor.
+Amazon SES reproduce el fallo con la misma traza, y al ejecutar sus escenarios uno a uno el fallo alcanza a 52 de 84.
+
+Mailgun reproduce el mismo mensaje de error, con 20 de 21 comprobaciones correctas (Tabla~\ref{tab:verificacion}).
+Su Datasheet declara dos dimensiones de tamaño que ninguna cuota acota: 52 MiB en \texttt{/v3/\allowbreak\char`\{domain\_name\char`\}/\allowbreak messages} y 25 MB en \texttt{/v3/\allowbreak\char`\{domain\_name\char`\}/\allowbreak bounces/\allowbreak import}.
+El envío lleva además el \textit{rate} del endpoint, y con dos caudales el motor tomaría el otro camino, el que convierte la duración.
+La importación de rebotes solo recibe el del plan, que es la forma que produce el fallo en MailerSend.
+El escenario concreto no se ha aislado, y atribuirle la misma causa es inferencia.
+Sin las Datasheets de MailerSend y de Amazon SES, el error de Mailgun no tendría ninguna causa candidata.
+
+\subsection{Un defecto que no produce error: la cuota que no cambia de unidad}
+\label{subsec:evolucion:h1}
+
+El caso anterior falla y se ve. Este responde, y la respuesta es incompleta.
+MailerSend declara en su plan Hobby dos cuotas en unidades distintas, 5.000 correos
+al mes y 1.000 peticiones al día, y su endpoint de envío declara además un
+\texttt{workload} de hasta setenta correos por petición. Ese factor es el que el
+motor usa para convertir entre las dos unidades.
+
+Pedida la curva en correos, la respuesta trae el caudal y la cuota mensual, y no la
+diaria. Pedida en peticiones, trae los tres límites: la cuota diaria tal cual y la
+mensual dividida por el factor. El motor sí cruza las unidades, y lo hace con el
+factor que la Datasheet declara. De las tres conversiones que ese factor permite
+hace dos. Multiplica el caudal de peticiones por $k$ para darlo en correos, y
+divide la cuota mensual de correos por $k$ para darla en peticiones. La cuota
+diaria de peticiones no la multiplica por nada.
+
+La consecuencia se mide en la propia respuesta. Con $k = 1$ la curva en correos
+alcanza los 5.000 del plan a los 41 minutos. Con la cuota diaria dentro, los alcanza
+el quinto día, que es la escalera de la Figura~\ref{fig:escalera-hobby}. Son dos
+órdenes de magnitud de diferencia, y quien pregunta en la dimensión del dominio se
+lleva la cifra optimista.
+
+Nada de esto produce un error. Las comprobaciones de la fila de MailerSend en la
+Tabla~\ref{tab:verificacion} pasan, salvo la de la curva acumulada, que es el caso
+anterior. La Datasheet declara los tres límites con su unidad y la pieza que haría
+falta ya está en el fichero, porque el factor de conversión es el mismo que el motor
+aplica en los otros dos casos. Por eso esto es defecto de contrato y no carencia de
+expresividad: el remedio es del consumidor, y el esquema no tiene nada que añadir.
+
+El renderizador agrava el hueco en vez de compensarlo. Pedido el documento sin
+filtrar dimensión, el motor devuelve cuatro figuras y las cuatro son de correos. La
+dimensión de peticiones, la única que lleva la cuota diaria, solo se dibuja si se
+pide con un parámetro cuyo valor por defecto es falso, porque esa serie suele ser
+redundante con un límite nativo en peticiones. En MailerSend no lo es. Y filtrada
+esa dimensión sin el parámetro, el servicio responde con un documento de tres
+kilobytes y ninguna figura dentro. El endpoint de datos, en cambio, devuelve las dos
+dimensiones sin que se le pida nada, de modo que la ausencia está solo en el dibujo.
+
+A diferencia del caso anterior, que Amazon SES reproduce y cuyo mensaje repite Mailgun, este solo se ve con la Datasheet de MailerSend.
+MailerSend es la única de las ocho que declara cuotas en dos unidades, así que en las otras siete no hay conversión entre cuotas que el motor pueda omitir.
+
+\subsection{Una ambigüedad previa: la forma de \texttt{workload}}
+\label{subsec:evolucion:dv01}
+
+Antes de las dos propuestas conviene despejar un caso que no es carencia del
+modelo sino desacuerdo entre sus fuentes. La guía del esquema documenta
+\texttt{workload} como un mapa \citep{apisconsumptionmodel}. La Datasheet de
+referencia del mismo repositorio lo serializa como una lista, y el trabajo que
+introdujo el modelo la usa también en sus extractos y en el anexo de SendGrid
+\citep{gavira2026tfm}. PRIME4API tolera las dos formas al calcular y solo acepta
+la lista al navegar, de modo que una Datasheet escrita siguiendo la guía produce
+números correctos y falla al recorrerla, que es justo lo que hacen el agente
+conversacional y la plataforma de publicación.
+
+Un mapa solo puede declarar una métrica, y el TFM de Gavira Sánchez sostiene que «cualquier endpoint cuya petición consuma métricas distintas de forma simultánea necesita declararlas por separado» \citep{gavira2026tfm}.
+La lista es entonces un requisito del modelo, y las ocho Datasheets del catálogo usan esa forma.
+La propuesta es corregir la guía y, opcionalmente, normalizar en el motor para que los ficheros escritos contra la redacción actual no queden inservibles.
+
+\subsection{P-04. Distinguir «sin límite» de «límite no publicado»}
+\label{subsec:evolucion:p04}
+
+\textbf{El caso.} Resend no publica el \textit{rate} de su plan negociado, y su Datasheet deja el campo que lo declara presente y vacío.
+Ahí el campo vacío dice que el límite existe y su valor no se conoce.
+En Postmark y en Mailchimp Transactional la misma forma recoge lo contrario: la fuente no pone tope en la unidad del campo.
+Postmark anuncia para \texttt{/email/bulk} «as many recipients as you need» (el literal de P-03, Apartado~\ref{subsec:evolucion:p02}) mientras la carga total no pase de 50 MB, y ese endpoint no se ha medido.
+Mailchimp niega por escrito el tope de destinatarios en la API, «there's no recipient limitation», y acota el JSON de cada llamada por debajo de 10 MB.
+En el sondeo, una llamada con 5.000 destinatarios devolvió HTTP 200 sin rechazo, aunque con esta cuenta la respuesta no informa de ningún tope (Apartado~\ref{subsec:hallazgos:mailchimp}).
+En los dos casos la cota publicada está en otra métrica, los bytes de la llamada (P-03, Apartado~\ref{subsec:evolucion:p02}).
+Leído solo el campo, el consumidor no puede saber cuál de las dos lecturas le toca, y esa es la ambigüedad que P-04 pide cerrar.
+
+P-04 se apoya en las dos vías, cada una sobre un conjunto distinto de APIs.
+La recurrencia es la de F-01, un \textit{rate} que existe sin cifra, en cuatro APIs (Tabla~\ref{tab:recurrencia}).
+En Mailchimp la aporta la cuota horaria de la cuenta de pago, que el proveedor no cifra, y no el tope de destinatarios.
+La traza es la de un campo vacío en tres Datasheets, y el campo no siempre es un \textit{rate}.
+
+\textbf{La traza.} El motor convierte esos valores a número sin comprobar nulos y
+falla con un error de conversión de tipo. En Postmark caen por esta causa las
+cuatro operaciones de cálculo, la navegación por rangos del factor de consumo y
+las cinco comprobaciones de la superficie de análisis del motor: los diez errores del
+fichero. En Resend el mismo error aparece en cinco comprobaciones y el de P-05 en las
+otras ocho.
+El fichero lleva a la vez el campo vacío y las cadenas \texttt{custom} de P-05, y un control retira cada defecto por separado.
+Con el campo vacío relleno, la herramienta da trece errores, todos por la cadena \texttt{custom}.
+Con las cadenas sustituidas por números, da doce, todos por el campo vacío.
+Cualquiera de los dos defectos tumba por sí solo casi las mismas comprobaciones que los dos juntos.
+
+Mailchimp Transactional reproduce el fallo en la tanda de diecisiete llamadas al motor de la Sección~\ref{sec:hallazgos:catalogo-pi}.
+El motor responde con \texttt{HTTP 500} y el mismo error de conversión en catorce de las diecisiete, y solo contestan las consultas que no calculan tiempo.
+Con el máximo relleno en memoria, sin tocar el fichero, el error pasa a ser una división por cero.
+La causa es un segundo campo vacío, el periodo de la franquicia de 500 correos de la cuenta de demostración.
+Con los dos rellenos, la misma llamada devuelve \texttt{200}.
+La herramienta de verificación le da los diez errores con el mismo mensaje (Tabla~\ref{tab:verificacion}).
+
+\textbf{Por qué el esquema no ofrece salida.} Las dos alternativas disponibles tienen coste.
+Omitir el campo hace que la Datasheet afirme implícitamente que no hay límite.
+En Resend, donde el límite existe, omitirlo es lo contrario de la verdad: produciría una respuesta optimista y falsa.
+En Postmark y en Mailchimp, omitirlo coincidiría con lo que dice el proveedor en la unidad del campo, pero el consumidor leería la misma ausencia que deja un límite que sí existe.
+La otra alternativa, declararlo vacío, deja sin responder operaciones enteras del motor.
+La Datasheet de Amazon SES toma la primera para el caudal de una cuenta en producción: no lo declara y anota la ausencia en su registro \texttt{not\_found}.
+No hay tercera opción en v0.3, y esta traza, repetida en tres Datasheets, muestra que la decisión de modelado tiene consecuencias medibles.
+El registro de ausencias que usan las ocho Datasheets dice qué falta en el documento, pero no en qué campo.
+Que el catálogo haya necesitado ese registro apoya la propuesta, porque la marca diría en el propio campo qué falta.
+Con la marca, las dos lecturas se separan.
+Resend la lleva en su campo.
+Postmark y Mailchimp pueden omitirlo, y la omisión dice lo mismo que su fuente: no hay tope en esa unidad.
+La cota en bytes la declara la Datasheet de Mailchimp como carga aparte, y la de Postmark necesita P-03 (Apartado~\ref{subsec:evolucion:p02}).
+
+\textbf{Propuesta.} Una marca explícita de valor no publicado junto al campo, de
+modo que el consumidor pueda omitir esa dimensión y seguir evaluando el resto en
+lugar de abandonar el documento. La corrección se reparte: el esquema declara la
+marca y el motor la respeta.
+La distinción entre las dos lecturas tiene que alcanzar también al periodo de una cuota, que es el segundo campo vacío de Mailchimp.
+Ahí, como en su tope de destinatarios, no falta una cifra: la franquicia de la cuenta de demostración no caduca ni se renueva (Apartado~\ref{subsec:hallazgos:mailchimp}).
+
+\subsection{P-05. Declarar un plan cuyo precio existe y no es público}
+\label{subsec:evolucion:p05}
+
+\textbf{El caso.} Resend no publica cifras del plan Enterprise, ni el precio ni la cuota, y la Datasheet recoge en los dos campos el valor \texttt{custom}.
+Es lo que publica el proveedor, y es la forma que la guía documenta para un valor negociable \citep{apisconsumptionmodel}.
+
+\textbf{La traza.} El motor intenta convertir esa cadena a número y falla. El
+fallo no queda acotado al plan afectado: como la evaluación recorre todos los
+planes del documento, un único valor no numérico impide evaluar también los tres
+planes publicados al detalle, que son los que cualquiera va a consultar.
+Con ese error fallan las siete operaciones de evaluación y el precio del plan Enterprise, que son ocho
+de los trece errores de esa Datasheet. Si se rellena el campo vacío, los trece errores son de esta causa.
+SendGrid y Brevo lo reproducen con trece errores cada una, todos con el mismo mensaje: la cadena \texttt{custom} no se convierte a número (Tabla~\ref{tab:verificacion}).
+
+\textbf{Por qué importa.} En siete de las ocho APIs del catálogo hay al menos un precio que no se publica.
+En seis es un plan, y en Mailchimp el precio por encima de cuatro millones de correos al mes.
+Las Datasheets de Resend, SendGrid y Brevo escriben ese plan con \texttt{custom}, como admite la guía, y el motor falla en las tres.
+Las demás lo dejan fuera de sus planes.
+
+\textbf{Propuesta.} Dos cambios separables.
+En el esquema, una forma explícita de declarar un plan que tiene precio aunque no lo publique.
+Sustituiría a la cadena \texttt{custom} que la guía admite para un valor negociable y que el motor no sabe leer.
+En el motor, aislar el fallo por plan para que un plan no evaluable devuelva su error y los demás sigan calculándose.
+El segundo cambio es independiente del primero y por sí solo recupera tres de los cuatro planes de la Datasheet de Resend.
+
+\section{Observaciones que no son carencias del esquema}
+\label{sec:evolucion:observaciones}
+
+La construcción del catálogo deja además un registro de observaciones numeradas
+que no proponen nada sobre ACM2YAML, y que se recogen aquí por dos razones: su
+destinatario es otro, y varias condicionan cómo se construyen las Datasheets que
+sí alimentan las propuestas.
+
+\textbf{O-06} es sobre la especificación formal que publican los proveedores. La
+OpenAPI de SendGrid, en el repositorio \texttt{twilio/sendgrid-oai}, declara mil
+elementos como tope de \texttt{personalizations}, \texttt{cc} y \texttt{bcc}, y no
+declara ninguno para \texttt{to} ni menciona el tamaño máximo del mensaje o los
+caudales. El tope total de mil destinatarios solo existe en la prosa de la
+referencia de la API \citep{sendgriddocs}. La de MailerSend, publicada en
+SwaggerHub, tampoco declara el tope de \texttt{to}, omite otros cinco campos del
+cuerpo y no menciona la respuesta \texttt{429}, y anuncia además un \texttt{200}
+donde la documentación del proveedor dice \texttt{202} \citep{mailersenddocs}.
+La de Brevo, un fichero archivado de 207 rutas, no menciona el caudal ni una sola vez, y la documentación en prosa sí lo publica \citep{brevodocs}.
+En Amazon SES, el contrato legible por máquina de la versión 2 no declara ningún límite (Apartado~\ref{subsec:hallazgos:ses}), y la página de límites sí los publica \citep{sesdocs}.
+La consecuencia es de método: una Datasheet construida solo desde la especificación formal sería peor que la construida desde la prosa en las cuatro APIs donde se ha comprobado.
+
+\textbf{O-07} es que un mismo nombre de cabecera llega con dos formas de valor. En
+SendGrid \texttt{X-RateLimit-Reset} trae un número pequeño en tres endpoints y una
+marca de tiempo Unix en otros tres, y la documentación solo muestra la segunda forma
+\citep{sendgridratelimits}. Leer el número pequeño como segundos restantes es una
+inferencia, coherente con los tres instantes medidos: cada valor coincide con los
+segundos que faltaban para el siguiente cambio de minuto. Para una herramienta que
+lea cabeceras y calcule cuándo reintentar, el mismo nombre con dos formas de valor es
+una trampa sin aviso.
+
+\textbf{O-09} es sobre el propio ecosistema. La Datasheet de MailerSend que el
+repositorio de la guía trae como ejemplo define caudales de 15 y 30 peticiones por
+minuto que después no asigna. Al lote le asigna el de 10 en los cuatro planes, aunque
+el proveedor publica 15 para Starter y 30 para Professional. Declara además ventana
+deslizante en las cuotas mensuales, que ninguna fuente del proveedor dice
+\citep{apisconsumptionmodel}. La ruta del lote que usa tampoco
+existe. No es carencia del esquema.
+Son divergencias de modelado del ejemplo, y no hay evidencia de que sean cambios en el tiempo, porque el propio fichero ya definía los caudales de 15 y 30.
+Lo que sí caduca en ese ejemplo son los precios y los sobrecostes, y en ellos se apoya el argumento de F-09 de la Sección~\ref{sec:evolucion:fuera}.
+
+\textbf{O-11} es sobre el canal por el que un cliente observa su consumo.
+MailerSend publica la regla (cada petición descuenta una unidad de la cuota diaria)
+y dos formas de observarla, una cabecera en cada respuesta y un endpoint dedicado
+\citep{mailersenddocs}. La regla se cumple y el canal va por detrás: el contador
+expuesto se actualiza por lotes y con retardo, y la reposición de la ventana diaria
+tampoco es inmediata. Once horas y veinticuatro minutos después de la medianoche que repone
+la cuota, el endpoint seguía sirviendo el saldo del día anterior con la fecha de
+reposición del siguiente. Qué lo pone al día no se midió. Aquí no hay nada que proponer, porque v0.3 no modela el
+canal de observación del consumo de ninguna API. Lo que hay es un límite del método
+de medición: un sondeo no puede usar el contador de la respuesta siguiente como
+coste de la anterior, ni fiarse de él para saber en qué ventana está.
+
+\textbf{O-20} es sobre lo que cuesta un sondeo.
+Los sondeos de Brevo usaban un destinatario que no se puede entregar, para que el proveedor rechazara cada petición y la cifra se leyera en el cuerpo del error.
+Con la cabecera de modo \textit{sandbox}, el envío devolvió \texttt{201}, porque ese modo solo valida el formato de la petición (Apartado~\ref{subsec:hallazgos:brevo}).
+Que una petición no se pueda entregar no implica que el proveedor la rechace, y en Brevo las dos cosas se separan.
+Que un sondeo no envíe correo ni gaste cuota no se deduce, por tanto, de su diseño, y hay que comprobarlo en cada API.
+
+\textbf{O-22} es sobre el mismo método en Mailchimp Transactional.
+Con diez destinatarios o menos, la API rechaza en la respuesta el envío de una cuenta sin dominio verificado.
+Desde once destinatarios, o con un adjunto (el menor probado, de 5 MB), deja el envío en cola sin decir si saldrá.
+Por encima de ese umbral, que el proveedor no publica, deja de existir la vía de medir haciendo que el proveedor rechace la petición (Apartado~\ref{subsec:hallazgos:mailchimp}).
+
+Otras observaciones del registro no están en esta sección porque ya tienen sitio en el capítulo.
+O-08 sostiene lo que v0.3 ya ofrece en P-06, los \textit{aliases} de estado.
+O-12 es la medición de la primera carencia de P-06, el disparador sin sitio propio.
+No valió como prueba de F-18 porque describe un punto ciego del método de verificación.
+Y O-10 es el fallo del motor que la Sección~\ref{sec:evolucion:contrato} trata tras la Tabla~\ref{tab:verificacion}.
+
+\section{Compatibilidad y vía de contribución}
+\label{sec:evolucion:compatibilidad}
+
+Las nueve propuestas no tienen el mismo coste para quien ya use v0.3.
+Todas salvo P-02, P-03 y P-05 son retrocompatibles: añaden campos opcionales que un documento existente puede no declarar sin dejar de ser válido, y un consumidor que los ignore se comporta igual que con v0.3.
+P-02 y P-03 no lo son en el mismo grado.
+Cambian la naturaleza del factor de consumo por petición, que deja de ser un entero para pasar a ser una expresión, y eso obliga a tocar las operaciones que lo leen.
+P-05 sustituye la cadena \texttt{custom} que la guía admite para un valor negociable, y las Datasheets de Resend, SendGrid y Brevo, que la usan, tendrían que cambiar ese campo.
+La corrección de la forma de \texttt{workload} es una rectificación de la guía y no una extensión, y su coste recae sobre los documentos escritos contra la redacción actual.
+
+La ausencia de mecanismo se establece sobre el texto de la guía, que es lo que pide la condición L3 a las que entran por traza.
+En P-06 se contrastó también el código de referencia, que recoge el \texttt{workload} por alias.
+La guía no tiene ninguno de los mecanismos que piden P-06, P-07, P-08 y P-09.
+P-06 pide un sitio para el disparador del estado de la suscripción y de la reputación, y P-07 un tope para el sobrecoste.
+P-08 pide una cuota sin ventana que cuente entidades distintas, y P-09 una forma de decir qué hace una cuota con lo que la supera.
+La propia guía deja la puerta abierta a este tipo de trabajo, porque declara el esquema preliminar y anticipa que habrá APIs donde haya que adaptar o extender los campos \citep{apisconsumptionmodel}.
+
+Dos matices sobre P-06.
+Su parte de documentación no cuesta nada, porque describe lo que la implementación de referencia ya hace.
+Su corrección del motor sí rompe algo: rechazar la clave desconocida invalida cualquier documento que la lleve, y ninguna Datasheet del catálogo la lleva.
+Sin esa corrección, una clave desconocida no produce error, y solo se detecta al leer la respuesta del motor.
+
+Sobre la vía de contribución, el trabajo se atiene a una regla previa: ninguna discrepancia se comunica sin comprobar antes si ya está reportada.
+El rastreo realizado sobre los cuatro repositorios del ecosistema devuelve un solo \textit{issue} pertinente al esquema, abierto en el motor por Ramón Gavira Sánchez, que pide aceptar listas de \textit{rates} y cuotas \citep{prime4apirepo}.
+Como el código ya lo implementa, merece un comentario en ese \textit{issue} antes que uno nuevo.
+El repositorio de la guía tiene veinticinco \textit{issues}, todos peticiones de modelado de una API concreta.
+El rastreo es del 10 de agosto de 2026 y no cubre lo aparecido después.
+Ninguna de las carencias propuestas hasta esa fecha estaba reportada.
+Lo que el capítulo documenta después sigue sin contrastar contra los \textit{issues} abiertos, y ese contraste es condición previa para comunicarlo.
+
+\section{Lo que queda fuera}
+\label{sec:evolucion:fuera}
+
+Entre los veinticuatro elementos no soportados promovidos hay dieciséis sin número de propuesta.
+Estos dieciséis entran por recurrencia, así que su patrón es del dominio.
+Un número de propuesta pide además una forma concreta y su contraste con el texto de la guía, y esta sección dice por qué cada uno de ellos no lo tiene.
+Las ocho primeras propuestas salen de las cuatro primeras APIs, y la ampliación a ocho solo añade P-09.
+La numeración sigue, por tanto, el orden en que se trabajó cada forma y no la recurrencia: F-11, en seis APIs, no lleva número, y F-21, en una, sí.
+F-07 y F-08 ya quedan justificadas en el Apartado~\ref{subsec:evolucion:f07} y en la Sección~\ref{sec:evolucion:inventario}.
+
+F-04 plantea si pertenece a la capacidad contractual un límite que el proveedor declara y que la respuesta a la petición no refleja.
+Es una pregunta conceptual sobre la definición del modelo y no un problema de serialización.
+Por eso se discute aquí y no se convierte en propuesta.
+La variante que añade MailerSend la agudiza en lugar de resolverla.
+El endpoint de lote acepta con un \texttt{202} un envío que la validación diferida rechaza entero.
+El estado final de los dos lotes medidos da cinco errores de validación y ningún correo enviado.
+Un consumidor que mida su consumo por la respuesta de la petición cuenta cinco correos que nunca salieron.
+También está medida en Amazon SES y en Mailchimp Transactional.
+Amazon SES declara una petición por segundo en sus acciones de gestión \citep{sesdocs}, y respondió con \texttt{200} a doce peticiones seguidas a 5,7 por segundo.
+Mailchimp Transactional declara que el JSON de cada llamada debe ocupar menos de 10 MB, y respondió con \texttt{200} a una llamada de unos 40 MB (Apartado~\ref{subsec:hallazgos:mailchimp}).
+El registro de elementos no soportados esboza una salida: distinguir en el esquema el límite publicado del aplicado, con la fuente de cada uno.
+En Amazon SES y en Mailchimp Transactional la cifra publicada y la aplicada difieren, así que la pregunta tiene además una cara práctica: hay que elegir qué cifra va al fichero.
+Este capítulo no hace esa elección, que queda como trabajo futuro (Capítulo~\ref{cap:conclusiones}).
+
+F-05 corresponde a una dimensión que el propio esquema declara fuera de su versión operativa, así que proponerla sería reiterar una línea futura ya reconocida.
+
+El registro de elementos no soportados esboza una forma para once de las doce restantes, y la de F-12 la enuncia este capítulo.
+La Tabla~\ref{tab:sinforma} recoge las doce.
+Este capítulo no las trabaja ni las contrasta con el texto de la guía, y por eso no llevan número de propuesta.
+F-09, en cinco APIs, y F-10, en tres, tienen además argumentos que no dependen de la frecuencia.
+El de F-09 es que el propio repositorio de la guía conserva una Datasheet con valores caducados a los cinco meses.
+El de F-10, que un servicio con dos unidades de consumo distintas obliga a modelar uno de los dos productos sin poder declarar en el fichero que solo cubre ese.
+Con el catálogo cerrado, las formas de las doce siguen sin fijar.
+Fijarlas es trabajo futuro (Capítulo~\ref{cap:conclusiones}), y la tabla deja el punto de partida.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|l|c|p{0.26\textwidth}|c|p{0.36\textwidth}|}
+\hline
+\textbf{Dónde} & \textbf{Id} & \textbf{Carencia} & \textbf{APIs} & \textbf{Forma esbozada} \\
+\hline
+Documento & F-09 & El documento caduca entero, y sus datos caducan uno a uno & 5/8 & Fecha de verificación por afirmación en el registro de procedencia \\
+\hline
+Documento & F-10 & Dos productos de precio con unidades de consumo distintas & 3/8 & Varios catálogos por servicio, o un campo que acote qué producto se modela \\
+\hline
+Plan & F-11 & Límites de recursos por plan, que no son consumo & 6/8 & Bloque de recursos en el plan, con nombre, valor y unidad y sin periodo \\
+\hline
+Plan & F-13 & El sobrecoste es opcional y no existe en el plan gratuito & 5/8 & Modo del sobrecoste declarado en el plan \\
+\hline
+Plan & F-14 & El plan tiene fecha de caducidad & 2/8 & Vigencia del plan y plan al que cae al expirar \\
+\hline
+Precio & F-26 & Un precio que depende de la geografía y una sola divisa en el fichero & 3/8 & Precio como lista de ofertas, cada una con su divisa \\
+\hline
+Cuota & F-12 & La recepción consume la cuota de envío & 2/8 & Declarar que un evento entrante reenviado descuenta de la cuota de envío, con un factor que depende de la ruta \\
+\hline
+Carga & F-34 & Dos topes de tamaño sobre la misma llamada, uno del mensaje y otro de la petición & 2/8 & Carga que declara el objeto medido además de la unidad \\
+\hline
+Canal & F-15 & Dos canales, dos \texttt{workload} distintos para la misma cuota & 5/8 & Canales declarados, o carga declarada por canal \\
+\hline
+Acceso & F-28 & Una lista de IP autorizadas decide si la llamada entra & 3/8 & Condiciones de admisión declarables en el plan o en la credencial \\
+\hline
+Bloque nuevo & F-37 & Un tope de capacidad que fija el cliente, no el proveedor & 2/8 & Bloque de límites que configura el cliente, fuera de la capacidad contractual \\
+\hline
+Operación & F-22 & Una credencial que solo se gestiona desde la web & 4/8 & Qué canal ofrece cada operación, registrado por operación \\
+\hline
+\end{tabular}
+\caption{Promovidos sin número de propuesta y con una forma esbozada en el registro de elementos no soportados de cada API, salvo F-12, cuya forma enuncia este capítulo. Dónde: la parte del esquema que tocaría la forma. APIs: recuento sobre las ocho del catálogo. Las formas no se han trabajado ni contrastado con la guía en este capítulo.}
+\label{tab:sinforma}
+\end{table}
+
+F-22 queda en la frontera del objeto del esquema.
+Describe qué operaciones ofrece cada canal de un producto, y el esquema describe precios, cuotas y límites.
+Su forma entra en la tabla porque el registro la esboza, pero no amplía la capacidad contractual que el esquema modela.
+
+Los once elementos no soportados sin promover cuentan todos en una sola API, así que solo podían entrar por traza.
+La columna de vía de las Tablas~\ref{tab:recurrencia} y~\ref{tab:recurrencia:b} dice qué condición le falta a cada uno según el veredicto de su fila.
+En F-23 y F-25 falla L3, porque un mecanismo de la guía cubre al menos una de sus dos mitades, y en F-29 la comprobación de L3 está pendiente.
+En F-32, F-33, F-36 y F-38 falta L2, porque ninguna ejecución archivada muestra su efecto sobre la Datasheet sin manipularla.
+En F-27 y F-31 también falta L2, aunque hay ejecución archivada: ninguno de los valores que devuelve se puede dar por falso.
+En F-30 y F-35 faltan L2 y L3.
+En F-32, F-33 y F-36 L3 no tiene veredicto escrito, y en F-38 está en disputa.
+En F-27, el exceso que cambia el plan, la ejecución archivada devuelve un coste plano, y ninguna fuente dice qué pasa al agotar el volumen en los planes de pago.
+Una curva plana no distingue un muro de un cambio de plan, y el disparador, que cuenta contactos, no entra en una consulta hecha en correos.
+La diferencia con F-24 está en la fuente: allí un literal publica la cola de reintento, y el muro que devuelve el motor lo contradice.
+
+F-36 y F-38 piden que una cuota o un \textit{rate} admita varios valores de la misma unidad.
+Es el \textit{issue} del motor que abrió Ramón Gavira Sánchez en abril de 2026, «Soportar listas de rates y cuotas en datasheet» \citep{prime4apirepo}, y que la Sección~\ref{sec:evolucion:compatibilidad} ya menciona.
+El motor ya lo implementa en su código, y la guía no lo documenta.
+Como mucho, el catálogo le aporta dos casos, y ninguno cumple el criterio, porque ninguno tiene ejecución archivada.
+Un tercero, F-17, descansaba en una frase del centro de ayuda que la página de precios del mismo proveedor contradice, y se retiró.
+
+Y queda una pregunta que el motor plantea y este capítulo no convierte en
+propuesta. Una Datasheet con límites en dos unidades no declara cuál de las dos mide
+el plan, y quien la consume elige la dimensión al preguntar. El
+Apartado~\ref{subsec:evolucion:h1} la trata como defecto del consumidor, porque el
+factor de conversión está en el fichero y el motor lo aplica en los otros dos casos.
+Si se quisiera que lo dijera la Datasheet, la forma sería declarar en qué dimensión
+mide el proveedor. La misma pregunta aparece en el precio. La
+Tabla~\ref{tab:a06-presupuesto} del capítulo anterior responde al tiempo mínimo con
+dos cifras, según se trate la cuota con sobrecoste como un tope duro o se la expanda
+con un presupuesto. Nada en el fichero dice cuál de los dos regímenes describe el
+plan. Son F-13 y F-16 vistos desde el motor.
+F-16 ya tiene forma en P-07, y F-13 queda con los promovidos sin forma fijada de la Tabla~\ref{tab:sinforma}.
+
+\section{Respuesta a la pregunta de investigación}
+\label{sec:evolucion:respuesta}
+
+La RQ2 pregunta si ACM2YAML es suficientemente expresivo para representar la capacidad contractual de las APIs de correo, y qué extensiones requiere.
+Con las ocho APIs del catálogo, la respuesta a la primera mitad es que no.
+La respuesta a la segunda son las nueve propuestas de la Tabla~\ref{tab:propuestas}, siete de expresividad y dos de contrato, más la rectificación de la guía.
+
+Interesa dónde está la insuficiencia, porque no está solo donde cabía esperar.
+La dimensión que falta y que el catálogo documenta, los resultados por petición, aparece en siete APIs (F-05), y queda fuera porque el esquema ya la reconoce como línea futura.
+Las carencias de P-01, P-02 y P-03 no hablan de dimensiones que falten en el metamodelo.
+Gavira Sánchez ya declara que v0.3 captura dos de las cuatro dimensiones de capacidad del metamodelo \citep{gavira2026tfm}.
+Hablan de las dimensiones que sí existen: se declaran con valores escalares mientras el dominio las vende por listas, las consume por productos o las acota en otra métrica.
+La que sostiene P-06 es de otro tipo.
+El dominio añade un eje que el esquema solo sabe declarar dentro de cada endpoint y repetido en todos: la capacidad depende también del estado de la suscripción y de la reputación.
+El mecanismo que la guía ya ofrece para ese eje llega hasta la cifra y no hasta lo que la dispara.
+Con las ocho APIs, ese eje aparece en seis, y F-18, el elemento no soportado de P-06, promueve por recurrencia.
+
+El exceso sobre una cuota es el tercer frente.
+P-07 le pide un tope y P-09 que declare qué hace con lo que la supera, y las dos tocan el mismo borde de la cuota.
+El modo del sobrecoste, que pide F-13, queda esbozado en la Tabla~\ref{tab:sinforma}.
+Fuera de ese frente, P-08 pide una cuota que cuente entidades distintas y no se reponga.
+Los elementos no soportados de P-07, P-08 y P-09 entran por traza, con una sola API cada una.
+
+Y las dos carencias de contrato no son de expresividad en absoluto: el esquema admite el valor que describe al proveedor, y el consumidor de referencia falla al leerlo.
+En P-04 el campo vacío no dice si el límite no se publica o no existe, y el motor falla al convertirlo a número.
+En P-05 la guía admite la cadena \texttt{custom} para un valor negociable, y el motor falla al leerla.
+
+El capítulo entrega, por tanto, nueve propuestas y una rectificación de la guía sobre un inventario de treinta y cinco elementos no soportados y las ocho APIs del catálogo.
+La Tabla~\ref{tab:sinforma} recoge otros doce promovidos con una forma esbozada y sin trabajar en este capítulo.
+De ellos, F-22 queda en la frontera del objeto, porque describe qué operaciones ofrece cada canal.
+El resto amplía el inventario de lo que el esquema no expresa, pero sin forma fijada no llega a propuesta.
+Los cuatro promovidos restantes, F-04, F-05, F-07 y F-08, quedan fuera por los motivos de la Sección~\ref{sec:evolucion:fuera}.
+Al pasar de cuatro APIs a ocho, ninguna propuesta pierde su prueba.
+El límite de la respuesta es de validez externa: la recurrencia se mide sobre ocho APIs de un solo dominio y con un solo consumidor de referencia.
+Qué parte de la respuesta vale para otras APIs de correo y para otros dominios queda para el Capítulo~\ref{cap:conclusiones}.

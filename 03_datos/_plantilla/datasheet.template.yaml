@@ -1,0 +1,71 @@
+# Datasheet ACM2YAML v0.3 — <NOMBRE DE LA API>
+# Semáforo: 🟢 explícito en fuente oficial | 🟡 inferido o ambiguo | 🔴 no documentado
+# Convención de claves: [tipo]_[recurso]_[contexto]_[plan]  — nunca números en la clave
+
+associated_saas:            # 🟢/🟡/🔴 [Fn]
+type:                       # full_saas | partial_saas | api_first
+url:
+syntax_version: 0.3
+date:                       # YYYY-MM-DD
+currency:                   # USD | EUR | GBP
+base_uri:
+consumption_units:
+  - requests
+  -                         # emails | sms | records | tokens | MBs...
+
+capacity:
+  # quota_<recurso>_<contexto>_<plan>:
+  #   value:
+  #   unit:
+  #   period:
+  #     value:
+  #     unit:               # MONTH | DAY | HOUR | MIN
+  #   window_type:          # rolling | fixed_utc_midnight | fixed_billing_cycle
+  #   overage_cost:
+  #     price:
+  #     value:
+
+max_power:
+  # rate_<recurso>_<contexto>_<plan>:
+  #   value:
+  #   unit:
+  #   period:
+  #     value:
+  #     unit:               # MIN | SECOND | HOUR
+  # Si el proveedor NO publica umbral: deja el bloque vacío ({}) y documenta el
+  # porqué aquí y en fricciones.md. NUNCA rellenar a ojo.
+
+plans:
+  # <plan>:
+  #   price:
+  #   period:
+  #     value: 1
+  #     unit: MONTH
+  #   quota:                # referencia a una clave de capacity
+  #   rate:                 # referencia a una clave de max_power
+  #   endpoints:
+  #     /*:                 # comodín: límites por defecto de todos los endpoints
+  #       rate:
+  #     /ruta:
+  #       rate:
+  #       quota:
+  #       workload:         # el CRF: cuánto consume cada petición
+  #         unit:
+  #         min:
+  #         max:
+  #         description:
+  #     /ruta/con/alias:    # alias = modo de consumo distinto del mismo endpoint
+  #       quota:
+  #       <alias_1>:
+  #         rate:
+  #       <alias_2>:
+  #         rate:
+  #         quota:
+
+metadata:
+  sources_visited:
+    -
+  data_provenance:
+    - "<cita literal> [<url>]"
+  not_found:
+    - "<dato buscado>: no publicado"

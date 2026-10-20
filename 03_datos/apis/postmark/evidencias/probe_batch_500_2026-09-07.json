@@ -1,0 +1,85 @@
+[
+{
+  "caso": "B500",
+  "instante_utc": "2026-09-07T21:47:03Z",
+  "http": 200,
+  "cuerpo": {
+    "n_respuestas": 500,
+    "recuento_por_error": {
+      "412|While your account is pending approval, all recipient addresses must share the same domain as the 'From' address. The domain of the 'From' address is 'alum.us.es', but you are attempting to send email to the following domain(s): 'example.invalid'.": 500
+    },
+    "primera": {
+      "ErrorCode": 412,
+      "Message": "While your account is pending approval, all recipient addresses must share the same domain as the 'From' address. The domain of the 'From' address is 'alum.us.es', but you are attempting to send email to the following domain(s): 'example.invalid'."
+    }
+  },
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 21:47:04 GMT",
+    "x-ratelimit-limit-second": "5000",
+    "ratelimit-limit": "5000",
+    "ratelimit-remaining": "4999",
+    "ratelimit-reset": "1",
+    "x-ratelimit-remaining-second": "4999",
+    "x-postmark-account": "546797",
+    "x-postmark-server": "20186205"
+  }
+},
+{
+  "caso": "B501",
+  "instante_utc": "2026-09-07T21:47:07Z",
+  "http": 422,
+  "cuerpo": {
+    "ErrorCode": 410,
+    "Message": "You may only send up to 500 messages in a single batched request."
+  },
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 21:47:07 GMT",
+    "ratelimit-limit": "5000",
+    "ratelimit-remaining": "4999",
+    "ratelimit-reset": "1",
+    "x-ratelimit-remaining-second": "4999",
+    "x-ratelimit-limit-second": "5000"
+  }
+},
+{
+  "caso": "T500",
+  "instante_utc": "2026-09-07T21:47:11Z",
+  "http": 200,
+  "cuerpo": {
+    "n_respuestas": 500,
+    "recuento_por_error": {
+      "412|While your account is pending approval, all recipient addresses must share the same domain as the 'From' address. The domain of the 'From' address is 'alum.us.es', but you are attempting to send email to the following domain(s): 'example.invalid'.": 500
+    },
+    "primera": {
+      "ErrorCode": 412,
+      "Message": "While your account is pending approval, all recipient addresses must share the same domain as the 'From' address. The domain of the 'From' address is 'alum.us.es', but you are attempting to send email to the following domain(s): 'example.invalid'."
+    }
+  },
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 21:47:11 GMT",
+    "x-ratelimit-remaining-second": "4999",
+    "x-ratelimit-limit-second": "5000",
+    "ratelimit-limit": "5000",
+    "ratelimit-remaining": "4999",
+    "ratelimit-reset": "1",
+    "x-postmark-account": "546797",
+    "x-postmark-server": "20186205"
+  }
+},
+{
+  "caso": "T501",
+  "instante_utc": "2026-09-07T21:47:14Z",
+  "http": 422,
+  "cuerpo": {
+    "ErrorCode": 410,
+    "Message": "You may only send up to 500 messages in a single batched request."
+  },
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 21:47:15 GMT",
+    "x-ratelimit-remaining-second": "4999",
+    "x-ratelimit-limit-second": "5000",
+    "ratelimit-limit": "5000",
+    "ratelimit-remaining": "4999",
+    "ratelimit-reset": "1"
+  }
+}]

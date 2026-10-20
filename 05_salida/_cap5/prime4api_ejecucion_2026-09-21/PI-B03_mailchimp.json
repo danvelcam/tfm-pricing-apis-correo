@@ -1,0 +1,27 @@
+{
+ "pregunta": "PI-B03",
+ "operacion": "Q10",
+ "descripcion": "12.000 correos al mes: coste total por plan (sobrecoste frente a subir de plan), planes calculables",
+ "api": "mailchimp",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 12000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 500,
+   "ms": 22,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ ]
+}

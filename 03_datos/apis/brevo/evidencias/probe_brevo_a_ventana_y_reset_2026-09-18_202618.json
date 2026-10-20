@@ -1,0 +1,223 @@
+{
+ "resumen": {
+  "api": "brevo",
+  "paquete": "A (cero envios)",
+  "sondeo": "ventana_y_reset",
+  "fecha_utc": "2026-09-18T20:26:31.733944+00:00",
+  "envios_reales": 0,
+  "peticiones": 6,
+  "invariante_cero_envios": "CUMPLIDA",
+  "cuerpo_del_429": {
+   "alcanzado": true,
+   "peticion": "f1_rafaga_03",
+   "bytes_descargados": "0",
+   "content_length": "0",
+   "content_type": null,
+   "retry_after": null,
+   "cuerpo_literal": "",
+   "cabeceras_de_caudal": {
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "0",
+    "x-sib-ratelimit-reset": "1"
+   }
+  },
+  "ventana_por_segundo": {
+   "muestras": [
+    {
+     "peticion": "f2_reposicion_01",
+     "http": "400",
+     "s_desde_el_rechazo": 0.426
+    }
+   ],
+   "reposicion_s_desde_el_rechazo": 0.426,
+   "reposicion_s_desde_la_primera_peticion": 0.702,
+   "ultimo_429_s_desde_el_rechazo": null,
+   "veredicto": "la ventana se repone 0.702 s despues de la primera peticion de la serie; con el tope en 2 y el rechazo en la tercera, eso fija la ventana declarada de 1 s si el valor cae cerca de 1"
+  },
+  "DISC_13_en_endpoint_horario": {
+   "endpoint": "/v3/account",
+   "declarado": "All other endpoints | 100 RPH | - [F6]",
+   "limit": "5000",
+   "reset_a": "2021",
+   "reset_b": "2009",
+   "segundos_entre_lecturas": 12.306,
+   "caida_de_reset": 12.0,
+   "veredicto": "reset baja 12.0 en 12.306 s reales: cuenta SEGUNDOS, y lo hace en un endpoint declarado solo por hora, que es donde el factor 3.600 de DISC-13 mordia"
+  }
+ },
+ "casos": {
+  "f1_rafaga_01": {
+   "ruta": "/smtp/emails?limit=1",
+   "http": "400",
+   "bytes_descargados": "119",
+   "linea_de_estado": "HTTP/2 400",
+   "cabeceras_todas": {
+    "date": "Fri, 18 Sep 2026 20:26:18 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "119",
+    "vary": "Origin, Accept-Encoding",
+    "x-xss-protection": "0",
+    "x-frame-options": "SAMEORIGIN",
+    "strict-transport-security": "max-age=0; includeSubDomains",
+    "x-download-options": "noopen",
+    "x-content-type-options": "nosniff",
+    "etag": "W/\"77-D7fA/6UoZP/dtldpZ8UVXrZBIc4\"",
+    "x-envoy-upstream-service-time": "20",
+    "access-control-allow-credentials": "true",
+    "sib-request-id": "2c3c8ff8-809d-9e34-8039-8fa10cbed259",
+    "access-control-allow-origin": "*",
+    "access-control-allow-headers": "*",
+    "access-control-allow-methods": "PUT, POST, GET, DELETE, PATCH, OPTIONS",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1",
+    "server": "cloudflare",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a3d315b8cca4fe6a-BCN"
+   },
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}",
+   "epoch": 1789763178.2707367
+  },
+  "f1_rafaga_02": {
+   "ruta": "/smtp/emails?limit=1",
+   "http": "400",
+   "bytes_descargados": "119",
+   "linea_de_estado": "HTTP/2 400",
+   "cabeceras_todas": {
+    "date": "Fri, 18 Sep 2026 20:26:18 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "119",
+    "vary": "Origin, Accept-Encoding",
+    "x-xss-protection": "0",
+    "x-frame-options": "SAMEORIGIN",
+    "strict-transport-security": "max-age=0; includeSubDomains",
+    "x-download-options": "noopen",
+    "x-content-type-options": "nosniff",
+    "etag": "W/\"77-D7fA/6UoZP/dtldpZ8UVXrZBIc4\"",
+    "x-envoy-upstream-service-time": "19",
+    "access-control-allow-credentials": "true",
+    "sib-request-id": "6879ca9a-03dd-9611-9bc3-05e004cd2030",
+    "access-control-allow-origin": "*",
+    "access-control-allow-headers": "*",
+    "access-control-allow-methods": "PUT, POST, GET, DELETE, PATCH, OPTIONS",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "0",
+    "x-sib-ratelimit-reset": "1",
+    "server": "cloudflare",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a3d315b98f4e5111-BCN"
+   },
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}",
+   "epoch": 1789763178.4246106
+  },
+  "f1_rafaga_03": {
+   "ruta": "/smtp/emails?limit=1",
+   "http": "429",
+   "bytes_descargados": "0",
+   "linea_de_estado": "HTTP/2 429",
+   "cabeceras_todas": {
+    "date": "Fri, 18 Sep 2026 20:26:18 GMT",
+    "content-length": "0",
+    "access-control-allow-credentials": "true",
+    "sib-request-id": "f22f81f5-4484-9396-8a8e-c057ad530e51",
+    "access-control-allow-origin": "*",
+    "access-control-allow-headers": "*",
+    "access-control-allow-methods": "PUT, POST, GET, DELETE, PATCH, OPTIONS",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "0",
+    "x-sib-ratelimit-reset": "1",
+    "x-envoy-ratelimited": "true",
+    "server": "cloudflare",
+    "x-envoy-upstream-service-time": "12",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a3d315baacf0fea2-AMS"
+   },
+   "cuerpo_crudo": "",
+   "epoch": 1789763178.546043
+  },
+  "f2_reposicion_01": {
+   "ruta": "/smtp/emails?limit=1",
+   "http": "400",
+   "bytes_descargados": "119",
+   "linea_de_estado": "HTTP/2 400",
+   "cabeceras_todas": {
+    "date": "Fri, 18 Sep 2026 20:26:19 GMT",
+    "content-type": "application/json; charset=utf-8",
+    "content-length": "119",
+    "vary": "Origin, Accept-Encoding",
+    "x-xss-protection": "0",
+    "x-frame-options": "SAMEORIGIN",
+    "strict-transport-security": "max-age=0; includeSubDomains",
+    "x-download-options": "noopen",
+    "x-content-type-options": "nosniff",
+    "etag": "W/\"77-D7fA/6UoZP/dtldpZ8UVXrZBIc4\"",
+    "x-envoy-upstream-service-time": "22",
+    "access-control-allow-credentials": "true",
+    "sib-request-id": "f22487ca-f2ba-93c4-b091-62b65a5e26bf",
+    "access-control-allow-origin": "*",
+    "access-control-allow-headers": "*",
+    "access-control-allow-methods": "PUT, POST, GET, DELETE, PATCH, OPTIONS",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1",
+    "server": "cloudflare",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a3d315bd9e67bfb9-WAW"
+   },
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}",
+   "epoch": 1789763178.972371
+  },
+  "f3_account_a": {
+   "ruta": "/account",
+   "http": "200",
+   "bytes_descargados": "775",
+   "linea_de_estado": "HTTP/2 200",
+   "cabeceras_todas": {
+    "date": "Fri, 18 Sep 2026 20:26:19 GMT",
+    "content-type": "application/json",
+    "server": "cloudflare",
+    "cache-control": "no-cache, private",
+    "access-control-allow-origin": "https://api.brevo.com,*",
+    "access-control-allow-methods": "GET, POST, OPTIONS, PUT, PATCH, HEAD,PUT, POST, GET, DELETE, PATCH, OPTIONS",
+    "access-control-allow-headers": "Authorization, Origin, X-Requested-With, Content-Type, Accept, x-xsrf-token, x-csrf-token,*",
+    "vary": "accept-encoding",
+    "x-envoy-upstream-service-time": "70",
+    "access-control-allow-credentials": "true",
+    "sib-request-id": "67ca941a-2635-92c9-8ed8-ed37e4647e9c",
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4999",
+    "x-sib-ratelimit-reset": "2021",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a3d315bf3c60ee44-WAW"
+   },
+   "cuerpo_crudo": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":300,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}",
+   "epoch": 1789763179.2292473
+  },
+  "f3_account_b": {
+   "ruta": "/account",
+   "http": "200",
+   "bytes_descargados": "775",
+   "linea_de_estado": "HTTP/2 200",
+   "cabeceras_todas": {
+    "date": "Fri, 18 Sep 2026 20:26:31 GMT",
+    "content-type": "application/json",
+    "server": "cloudflare",
+    "cache-control": "no-cache, private",
+    "access-control-allow-origin": "https://api.brevo.com,*",
+    "access-control-allow-methods": "GET, POST, OPTIONS, PUT, PATCH, HEAD,PUT, POST, GET, DELETE, PATCH, OPTIONS",
+    "access-control-allow-headers": "Authorization, Origin, X-Requested-With, Content-Type, Accept, x-xsrf-token, x-csrf-token,*",
+    "vary": "accept-encoding",
+    "x-envoy-upstream-service-time": "58",
+    "access-control-allow-credentials": "true",
+    "sib-request-id": "a3df9d33-7cf7-9a95-b7e1-88b383d343a0",
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4998",
+    "x-sib-ratelimit-reset": "2009",
+    "cf-cache-status": "DYNAMIC",
+    "cf-ray": "a3d3160b7c51aa4b-BCN"
+   },
+   "cuerpo_crudo": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":300,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}",
+   "epoch": 1789763191.5347528
+  }
+ }
+}

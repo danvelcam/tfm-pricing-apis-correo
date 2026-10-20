@@ -1,0 +1,35 @@
+==============================================================================
+DATASHEET: mailchimp   (03_datos/apis/mailchimp/datasheet.yaml)
+==============================================================================
+  [OK ] nav.plans                          ["transactional_email"]
+  [OK ] nav.endpoints                      ["/messages/send", "/messages/send-template", "/messages/send-raw", "/messages/search", "/messages/search-time-series", "/messages/info", "/messages/c ...
+  [OK ] nav.capacity_units                 ["emails", "requests", "MBs"]
+  [OK ] nav.aliases                        ["demo"]
+  [ERR] nav.crf_ranges                     TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [OK ] pricing[transactional_email]       {"price": 20.0, "period_ms": 2592000000, "currency": "USD"}
+  [ERR] curve.scenarios                    TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] curve.accumulated                  TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] curve.inflection                   TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] budget.cost_curve                  TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] budget.recommendation              TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [OK ] op.rates                           {"planes": ["transactional_email"], "items": 9}
+  [OK ] op.quotas                          {"planes": ["transactional_email"], "items": 9}
+  [OK ] op.limits                          {"planes": ["transactional_email"], "items": 9}
+  [ERR] op.min_time                        TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.capacity_at                     TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.quota_exhaustion_threshold      TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.idle_time_period                TypeError: float() argument must be a string or a real number, not 'NoneType'
+  ---- mailchimp: 8 OK / 10 ERR
+
+RESUMEN
+  mailchimp          8 OK   NO CONFORME (10)
+      · nav.crf_ranges: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.scenarios: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.accumulated: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.inflection: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · budget.cost_curve: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · budget.recommendation: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.min_time: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.capacity_at: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.quota_exhaustion_threshold: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.idle_time_period: TypeError: float() argument must be a string or a real number, not 'NoneType'

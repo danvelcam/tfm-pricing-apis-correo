@@ -1,0 +1,99 @@
+=== resend_tal_cual
+  [OK ] pricing[pro]                       {"price": 20.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[scale]                     {"price": 90.0, "period_ms": 2592000000, "currency": "USD"}
+  [ERR] pricing[enterprise]                ValueError: could not convert string to float: 'custom'
+  [ERR] curve.scenarios                    TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] curve.accumulated                  TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] curve.inflection                   TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] budget.cost_curve                  TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] budget.recommendation              TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.rates                           ValueError: could not convert string to float: 'custom'
+  [ERR] op.quotas                          ValueError: could not convert string to float: 'custom'
+  [ERR] op.limits                          ValueError: could not convert string to float: 'custom'
+  [ERR] op.min_time                        ValueError: could not convert string to float: 'custom'
+  [ERR] op.capacity_at                     ValueError: could not convert string to float: 'custom'
+  [ERR] op.quota_exhaustion_threshold      ValueError: could not convert string to float: 'custom'
+  [ERR] op.idle_time_period                ValueError: could not convert string to float: 'custom'
+  ---- control: 8 OK / 13 ERR
+
+RESUMEN
+  control            8 OK   NO CONFORME (13)
+      · pricing[enterprise]: ValueError: could not convert string to float: 'custom'
+      · curve.scenarios: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.accumulated: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.inflection: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · budget.cost_curve: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · budget.recommendation: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.rates: ValueError: could not convert string to float: 'custom'
+      · op.quotas: ValueError: could not convert string to float: 'custom'
+      · op.limits: ValueError: could not convert string to float: 'custom'
+      · op.min_time: ValueError: could not convert string to float: 'custom'
+      · op.capacity_at: ValueError: could not convert string to float: 'custom'
+      · op.quota_exhaustion_threshold: ValueError: could not convert string to float: 'custom'
+      · op.idle_time_period: ValueError: could not convert string to float: 'custom'
+=== resend_sin_nulo
+  [OK ] pricing[pro]                       {"price": 20.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[scale]                     {"price": 90.0, "period_ms": 2592000000, "currency": "USD"}
+  [ERR] pricing[enterprise]                ValueError: could not convert string to float: 'custom'
+  [ERR] curve.scenarios                    ValueError: could not convert string to float: 'custom'
+  [ERR] curve.accumulated                  ValueError: could not convert string to float: 'custom'
+  [ERR] curve.inflection                   ValueError: could not convert string to float: 'custom'
+  [ERR] budget.cost_curve                  ValueError: could not convert string to float: 'custom'
+  [ERR] budget.recommendation              ValueError: could not convert string to float: 'custom'
+  [ERR] op.rates                           ValueError: could not convert string to float: 'custom'
+  [ERR] op.quotas                          ValueError: could not convert string to float: 'custom'
+  [ERR] op.limits                          ValueError: could not convert string to float: 'custom'
+  [ERR] op.min_time                        ValueError: could not convert string to float: 'custom'
+  [ERR] op.capacity_at                     ValueError: could not convert string to float: 'custom'
+  [ERR] op.quota_exhaustion_threshold      ValueError: could not convert string to float: 'custom'
+  [ERR] op.idle_time_period                ValueError: could not convert string to float: 'custom'
+  ---- control: 8 OK / 13 ERR
+
+RESUMEN
+  control            8 OK   NO CONFORME (13)
+      · pricing[enterprise]: ValueError: could not convert string to float: 'custom'
+      · curve.scenarios: ValueError: could not convert string to float: 'custom'
+      · curve.accumulated: ValueError: could not convert string to float: 'custom'
+      · curve.inflection: ValueError: could not convert string to float: 'custom'
+      · budget.cost_curve: ValueError: could not convert string to float: 'custom'
+      · budget.recommendation: ValueError: could not convert string to float: 'custom'
+      · op.rates: ValueError: could not convert string to float: 'custom'
+      · op.quotas: ValueError: could not convert string to float: 'custom'
+      · op.limits: ValueError: could not convert string to float: 'custom'
+      · op.min_time: ValueError: could not convert string to float: 'custom'
+      · op.capacity_at: ValueError: could not convert string to float: 'custom'
+      · op.quota_exhaustion_threshold: ValueError: could not convert string to float: 'custom'
+      · op.idle_time_period: ValueError: could not convert string to float: 'custom'
+=== resend_sin_custom
+  [OK ] pricing[free]                      {"price": 0.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[pro]                       {"price": 20.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[scale]                     {"price": 90.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[enterprise]                {"price": 1000.0, "period_ms": 2592000000, "currency": "USD"}
+  [ERR] curve.scenarios                    TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] curve.accumulated                  TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] curve.inflection                   TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] budget.cost_curve                  TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] budget.recommendation              TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.rates                           TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.quotas                          TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.limits                          TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.min_time                        TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.capacity_at                     TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.quota_exhaustion_threshold      TypeError: float() argument must be a string or a real number, not 'NoneType'
+  [ERR] op.idle_time_period                TypeError: float() argument must be a string or a real number, not 'NoneType'
+  ---- control: 9 OK / 12 ERR
+
+RESUMEN
+  control            9 OK   NO CONFORME (12)
+      · curve.scenarios: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.accumulated: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · curve.inflection: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · budget.cost_curve: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · budget.recommendation: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.rates: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.quotas: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.limits: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.min_time: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.capacity_at: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.quota_exhaustion_threshold: TypeError: float() argument must be a string or a real number, not 'NoneType'
+      · op.idle_time_period: TypeError: float() argument must be a string or a real number, not 'NoneType'

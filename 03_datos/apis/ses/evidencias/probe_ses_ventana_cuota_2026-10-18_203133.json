@@ -1,0 +1,282 @@
+{
+  "sondeo": "ses_ventana_cuota",
+  "pregunta": "DISC-10",
+  "region": "eu-west-1",
+  "presupuesto_envios": 1,
+  "envios_gastados": 1,
+  "inicio_utc": "2026-10-18T20:31:33+00:00",
+  "envio": {
+    "utc": "2026-10-18T20:31:37+00:00",
+    "http": 200,
+    "cuerpo": {
+      "MessageId": "010201a150b67e41-0829441d-d1b5-4dfc-bb26-20693474a693-000000"
+    }
+  },
+  "lecturas": [
+    {
+      "utc": "2026-10-18T20:31:37+00:00",
+      "http": 200,
+      "SentLast24Hours": 0.0,
+      "fase": "antes"
+    },
+    {
+      "utc": "2026-10-18T20:31:39+00:00",
+      "horas_desde_envio": 0.001,
+      "http": 200,
+      "SentLast24Hours": 0.0
+    },
+    {
+      "utc": "2026-10-18T20:46:40+00:00",
+      "horas_desde_envio": 0.251,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T21:01:40+00:00",
+      "horas_desde_envio": 0.501,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T21:16:40+00:00",
+      "horas_desde_envio": 0.751,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T21:31:41+00:00",
+      "horas_desde_envio": 1.001,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T21:46:41+00:00",
+      "horas_desde_envio": 1.251,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T22:01:41+00:00",
+      "horas_desde_envio": 1.501,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T22:16:42+00:00",
+      "horas_desde_envio": 1.751,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T22:31:42+00:00",
+      "horas_desde_envio": 2.001,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T22:46:42+00:00",
+      "horas_desde_envio": 2.251,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T23:01:43+00:00",
+      "horas_desde_envio": 2.501,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T23:16:43+00:00",
+      "horas_desde_envio": 2.752,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T23:31:43+00:00",
+      "horas_desde_envio": 3.002,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-18T23:46:43+00:00",
+      "horas_desde_envio": 3.252,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T00:01:44+00:00",
+      "horas_desde_envio": 3.502,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T00:16:44+00:00",
+      "horas_desde_envio": 3.752,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T00:31:45+00:00",
+      "horas_desde_envio": 4.002,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T00:46:46+00:00",
+      "horas_desde_envio": 4.252,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T01:01:46+00:00",
+      "horas_desde_envio": 4.502,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T01:16:46+00:00",
+      "horas_desde_envio": 4.752,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T01:31:47+00:00",
+      "horas_desde_envio": 5.003,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T01:46:48+00:00",
+      "horas_desde_envio": 5.253,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T02:01:48+00:00",
+      "horas_desde_envio": 5.503,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T02:16:48+00:00",
+      "horas_desde_envio": 5.753,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T02:31:49+00:00",
+      "horas_desde_envio": 6.003,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T02:46:49+00:00",
+      "horas_desde_envio": 6.253,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T03:01:49+00:00",
+      "horas_desde_envio": 6.503,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T03:16:50+00:00",
+      "horas_desde_envio": 6.753,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T03:31:50+00:00",
+      "horas_desde_envio": 7.003,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T03:46:50+00:00",
+      "horas_desde_envio": 7.254,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T04:01:51+00:00",
+      "horas_desde_envio": 7.504,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T04:16:51+00:00",
+      "horas_desde_envio": 7.754,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T04:31:51+00:00",
+      "horas_desde_envio": 8.004,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T04:46:51+00:00",
+      "horas_desde_envio": 8.254,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T05:01:52+00:00",
+      "horas_desde_envio": 8.504,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T05:16:52+00:00",
+      "horas_desde_envio": 8.754,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T05:31:52+00:00",
+      "horas_desde_envio": 9.004,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T05:46:52+00:00",
+      "horas_desde_envio": 9.254,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T06:01:53+00:00",
+      "horas_desde_envio": 9.504,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T06:16:53+00:00",
+      "horas_desde_envio": 9.754,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T06:31:53+00:00",
+      "horas_desde_envio": 10.004,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T07:22:20+00:00",
+      "horas_desde_envio": 10.845,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    },
+    {
+      "utc": "2026-10-19T07:37:20+00:00",
+      "horas_desde_envio": 11.095,
+      "http": 200,
+      "SentLast24Hours": 1.0
+    }
+  ],
+  "veredicto": null
+}

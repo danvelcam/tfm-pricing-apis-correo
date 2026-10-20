@@ -1,0 +1,44 @@
+﻿[
+    {
+        "test":  "A_51_To",
+        "http":  422,
+        "ErrorCode":  300,
+        "Message":  "Maximum of 50 recipients allowed per email message."
+    },
+    {
+        "test":  "B_50_To",
+        "http":  200,
+        "ErrorCode":  0,
+        "Message":  "Test job accepted"
+    },
+    {
+        "test":  "C_25To_25Cc  (50 tot)",
+        "http":  200,
+        "ErrorCode":  0,
+        "Message":  "Test job accepted"
+    },
+    {
+        "test":  "D_26To_25Cc  (51 tot)",
+        "http":  422,
+        "ErrorCode":  300,
+        "Message":  "Maximum of 50 recipients allowed per email message."
+    },
+    {
+        "test":  "E_50To_1Cc   (51 tot)",
+        "http":  422,
+        "ErrorCode":  300,
+        "Message":  "Maximum of 50 recipients allowed per email message."
+    },
+    {
+        "test":  "F_50_50_50  (150 tot)",
+        "http":  422,
+        "ErrorCode":  300,
+        "Message":  "Maximum of 50 recipients allowed per email message."
+    },
+    {
+        "test":  "G_bulk_600_msgs",
+        "http":  403,
+        "ErrorCode":  10,
+        "Message":  "The Postmark Test API Token may only be used on the /email endpoint."
+    }
+]

@@ -1,0 +1,15 @@
+# Sondeo Mailgun D — caudal contra GET /v4/domains
+# Fecha: 2026-09-21   ·   Envios: 0, solo lectura
+# Tope declarado: 2000 peticiones GET
+# Literal que se pone a prueba: «1,500 API requests per second per client IP»
+
+tanda  nominal  enviadas  segundos  tasa_real  2xx   429   otros  primera_429
+-----  -------  --------  --------  ---------  ----  ----  -----  -----------
+10     10/s     20        0.75      26.7       20    0     0      -
+25     25/s     50        0.75      66.7       50    0     0      -
+50     50/s     100       0.83      120.5      100   0     0      -
+100    100/s    200       1.00      200.0      200   0     0      -
+200    200/s    400       1.32      303.0      400   0     0      -
+400    400/s    800       4.30      186.0      800   0     0      -
+
+Peticiones gastadas: 1570 de un tope de 2000. Envios de correo: 0.

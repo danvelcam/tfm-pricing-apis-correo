@@ -1,0 +1,307 @@
+# Datasheet ACM2YAML v0.3 — Postmark
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: postmark                                   # 🟢
+type: api_first                                             # 🟢
+url: https://postmarkapp.com/pricing                        # 🟢
+syntax_version: 0.3
+date: 2026-08-03
+currency: USD                                               # 🟢
+consumption_units:
+  - requests
+  - emails
+  - MBs
+
+capacity:
+  quota_email_included_free:
+    value: 100                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+
+  quota_email_included_basic:
+    value: 10000                                            # 🟡
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0018                                         # 🟢
+      value: 1
+
+  quota_email_included_pro:
+    value: 10000                                            # 🟡
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0013                                         # 🟢
+      value: 1
+
+  quota_email_included_platform:
+    value: 10000                                            # 🟡
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0012                                         # 🟢
+      value: 1
+
+# 🟡
+max_power:
+  rate_request_rest:
+    value: 5000                                             # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+plans:
+  free:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_included_free
+    rate: rate_request_rest
+    endpoints:
+      /email:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios en total entre To, Cc y Bcc.
+      /email/withTemplate:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual con plantilla; 50 destinatarios en total por mensaje, igual que /email (verificado empíricamente).
+      /email/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes por llamada; cada mensaje hasta 50 destinatarios (verificado empíricamente, 500 entra y 501 no).
+      /email/batchWithTemplates:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes con plantilla por llamada (verificado empíricamente, 500 entra y 501 no).
+      /email/bulk:
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Sin tope de mensajes por llamada; limitado por payload de 50 MB.
+      /messages/outbound:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de enviados; hasta 500 resultados por petición.
+
+  basic:
+    price: 15.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_included_basic
+    rate: rate_request_rest
+    endpoints:
+      /email:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios en total entre To, Cc y Bcc.
+      /email/withTemplate:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual con plantilla; 50 destinatarios en total por mensaje, igual que /email (verificado empíricamente).
+      /email/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes por llamada; cada mensaje hasta 50 destinatarios (verificado empíricamente, 500 entra y 501 no).
+      /email/batchWithTemplates:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes con plantilla por llamada (verificado empíricamente, 500 entra y 501 no).
+      /email/bulk:
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Sin tope de mensajes por llamada; limitado por payload de 50 MB.
+      /messages/outbound:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de enviados; hasta 500 resultados por petición.
+
+  pro:
+    price: 16.50                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_included_pro
+    rate: rate_request_rest
+    endpoints:
+      /email:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios en total entre To, Cc y Bcc.
+      /email/withTemplate:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual con plantilla; 50 destinatarios en total por mensaje, igual que /email (verificado empíricamente).
+      /email/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes por llamada; cada mensaje hasta 50 destinatarios (verificado empíricamente, 500 entra y 501 no).
+      /email/batchWithTemplates:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes con plantilla por llamada (verificado empíricamente, 500 entra y 501 no).
+      /email/bulk:
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Sin tope de mensajes por llamada; limitado por payload de 50 MB.
+      /messages/outbound:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de enviados; hasta 500 resultados por petición.
+      /messages/inbound:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de entrantes; hasta 500 resultados por petición.
+
+  platform:
+    price: 18.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_included_platform
+    rate: rate_request_rest
+    endpoints:
+      /email:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios en total entre To, Cc y Bcc.
+      /email/withTemplate:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual con plantilla; 50 destinatarios en total por mensaje, igual que /email (verificado empíricamente).
+      /email/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes por llamada; cada mensaje hasta 50 destinatarios (verificado empíricamente, 500 entra y 501 no).
+      /email/batchWithTemplates:
+        workload:
+          - unit: emails
+            min: 1
+            max: 500                                        # 🟢
+            description: Hasta 500 mensajes con plantilla por llamada (verificado empíricamente, 500 entra y 501 no).
+      /email/bulk:
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Sin tope de mensajes por llamada; limitado por payload de 50 MB.
+      /messages/outbound:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de enviados; hasta 500 resultados por petición.
+      /messages/inbound:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de entrantes; hasta 500 resultados por petición.
+
+metadata:
+  sources_visited:
+    - https://postmarkapp.com/pricing
+    - https://postmarkapp.com/developer/api/overview
+    - https://postmarkapp.com/developer/api/email-api
+    - https://postmarkapp.com/developer/api/messages-api
+    - https://postmarkapp.com/developer/api/templates-api
+    - https://postmarkapp.com/developer/api/bulk-email
+    - https://postmarkapp.com/bulk-api
+    - https://postmarkapp.com/support/article/do-we-have-rate-limits-for-smtp
+    - https://postmarkapp.com/support/article/1056-what-are-the-attachment-and-email-size-limits
+    - https://postmarkapp.com/support/article/how-long-are-inbound-and-outbound-messages-stored-in-activity
+  data_provenance:
+    - "NOTA Test de type (C2/D9, 2026-09-14): las OCHO operaciones comprobadas contra la referencia de API, de ahi el verde, que mide cobertura del test y no el valor; el valor sigue siendo api_first. 1 envio; 2 plantillas con 'POST /templates', 'PUT /templates/{templateIdOrAlias}' y 'DELETE', sin restriccion publicada sobre las creadas en la interfaz; 3 dominios con 'POST /domains', 'PUT /domains/{domainid}/verifyDkim' y 'PUT /domains/{domainid}/verifyReturnPath'; 4 credenciales adicionales con 'POST /servers' y token de cuenta, cuya respuesta trae 'ApiTokens', la lista de tokens del servidor nuevo; 5 webhooks con GET, POST, PUT y DELETE sobre /webhooks, mas verify y statistics; 6 inbound routing con GET, POST y DELETE sobre /triggers/inboundrules, mas bypass y retry sobre /messages/inbound/{messageid}; 7 supresiones y rebotes con POST y dump sobre /message-streams/{stream_id}/suppressions y GET /bounces con PUT /bounces/{bounceid}/activate; 8 actividad con GET /messages/outbound, details, dump, opens y clicks. Ninguna operacion del dominio del correo quedo solo en el panel. Escalon 2 hecho el mismo dia: el panel con cuenta propia se recorrio entero contra la lista de ocho. La unica asimetria, no eliminatoria, es la operacion 4: el panel genera y borra tokens de un servidor ya creado ('Server API tokens', 'Generate another token', 'Delete') y la referencia no publica ningun endpoint para eso, solo 'POST /servers', que devuelve los del servidor nuevo; se anota como F-22 y el type no cambia. La familia de errores SMTP TOKENS (1450-1460) del overview tampoco tiene pagina de referencia (registro operacion por operacion en la entrada F13 de fuentes.md) [https://postmarkapp.com/developer/api/webhooks-api, consultado 2026-09-14]"
+    - "El panel gestiona los tokens del servidor: 'Server API tokens', con 'Generate another token' y 'Delete'; cada stream lleva sus pestanas 'Activity', 'Suppressions' y 'Webhooks', y el servidor tiene un stream 'inbound'. La generacion y el borrado de tokens de un servidor ya creado no estan en la referencia de API: es la operacion 4 del test C2 y la friccion F-22 [observacion de panel con cuenta propia, 2026-09-14]"
+    - "Free: $0.00/mes, 100 emails/mes, 'No overages allowed in this plan' [https://postmarkapp.com/pricing]"
+    - "Basic $15 · Pro $16.50 · Platform $18 al mes, todos 'Starting at 10,000 emails/month' [https://postmarkapp.com/pricing]"
+    - "Sobrecoste por tier en el volumen mínimo: 'Extra emails @ $1.80 / 1,000' (Basic), 'Extra emails @ $1.30 / 1,000' (Pro), 'Extra emails @ $1.20 / 1,000' (Platform); Free: 'No overages allowed in this plan' [https://postmarkapp.com/pricing]"
+    - "Pro añade 'Inbound email processing' [https://postmarkapp.com/pricing]"
+    - "Add-ons: Dedicated IPs 'Starts at $50/month per IP' con requisito 'sending 300,000 emails per month or more'; Custom Activity Retention 'Starts at $5/month'; DMARC Monitoring 'Starts at $14/month per domain'; en el panel, 'Optional Add-ons — Pro and Platform plans only' [https://postmarkapp.com/pricing; observación de panel con cuenta propia, 2026-08-03]"
+    - "Error '429 — Rate Limit Exceeded': 'We have detected that you are making requests at a rate that exceeds acceptable use of the API', sin umbral numérico [https://postmarkapp.com/developer/api/overview]"
+    - "Autenticación con cabecera X-Postmark-Server-Token, 'Used for requests that require server level privileges', o account token; token de pruebas 'POSTMARK_API_TEST' [https://postmarkapp.com/developer/api/overview]"
+    - "Error '410 — Too many batch messages': 'Your batched request contains more than 500 messages.' [https://postmarkapp.com/developer/api/overview]"
+    - "Tamaños: 'The request exceeded Postmark's size limit of 10 MB for our Email API', '50 MB total payload size for our Batch Email API', 'We calculate the size of the email after it has been base64 encoded' [https://postmarkapp.com/support/article/1056-what-are-the-attachment-and-email-size-limits]"
+    - "To, Cc y Bcc declaran 'Multiple addresses are comma separated. Max 50.' por campo [https://postmarkapp.com/developer/api/email-api]"
+    - "Límite real: 50 destinatarios TOTALES por mensaje — 'Maximum of 50 recipients allowed per email message' [verificación empírica con token de pruebas, 2026-08-03]"
+    - "/email/withTemplate aplica el mismo tope: con 51 direcciones en To responde 422, ErrorCode 300, 'Maximum of 50 recipients allowed per email message.' antes de enviar [verificación empírica con token de servidor real, plantilla 'welcome', 2026-09-06]"
+    - "NOTA: esa misma respuesta 422 trae 'ratelimit-limit: 5000', 'x-ratelimit-limit-second: 5000' y 'ratelimit-reset: 1', no publicados en la documentación; registrados como DISC-02 y en not_found, adoptado en max_power en ámbar el 2026-09-07 tras el sondeo de caudal (D-024) [evidencias/probe_withtemplate_2026-09-06.json, 2026-09-06]"
+    - "/email/batch y /email/batchWithTemplates admiten 500 mensajes por lote y rechazan 501: con 501 responden 422, ErrorCode 410, 'You may only send up to 500 messages in a single batched request.'; con 500 el lote entra (HTTP 200 con 500 respuestas) [verificación empírica con token de servidor real, 2026-09-07]"
+    - "El sondeo del lote no gastó cuota: los 500 destinatarios eran de un dominio no verificado y la cuenta, pendiente de aprobación, rechazó cada mensaje con ErrorCode 412, 'While your account is pending approval, all recipient addresses must share the same domain as the From address' [evidencias/probe_batch_500_2026-09-07.json, 2026-09-07]"
+    - "Sondeo de caudal inocuo: 200 peticiones a /email en 4,57 s (25 en paralelo, rechazadas con ErrorCode 412 sin enviar); 'ratelimit-limit: 5000' y 'ratelimit-reset: 1' en las 200; el 429 no se alcanza. En cada segundo del servidor 'ratelimit-remaining' marca 4999 entre cuatro y ocho veces, con mínimo 4986 en el segundo de 48 respuestas: se descarta un único contador que descuente cada petición al responder, y el sondeo no distingue entre varios contadores en paralelo y uno que no se actualiza al instante. Adoptado en max_power como 'rate_request_rest' 5000 req/s en ámbar: la ventana de un segundo se lee de las cabeceras, y el 429 no se ha forzado (D-024, DISC-02) [evidencias/probe_caudal_2026-09-07.json, 2026-09-07]"
+    - "El token de pruebas solo opera en /email — 'may only be used on the /email endpoint' [verificación empírica con token de pruebas, 2026-08-03]"
+    - "GET /messages/outbound e inbound: 'Max 500. Count + Offset cannot exceed 10,000 messages' [https://postmarkapp.com/developer/api/messages-api]"
+    - "/email/bulk: 'Right now, the Bulk API works with Broadcast Streams only.'; 'as many recipients as you need, as long as your total payload (including attachments) stays under 50 MB'; 'Every message sent through the Bulk API counts toward your monthly email limit'; 'Postmark will optimize the sending speed for you' [https://postmarkapp.com/developer/api/bulk-email; https://postmarkapp.com/bulk-api]"
+    - "Plantillas: 'a Server may have up to 100 templates'; lotes con plantilla: 'we accept up to 500 messages per API call' [https://postmarkapp.com/developer/api/templates-api]"
+    - "Retención: 45 días por defecto y 'you can adjust this timeframe from 7 to 365 days with our Retention Add-on' [https://postmarkapp.com/support/article/how-long-are-inbound-and-outbound-messages-stored-in-activity]"
+    - "SMTP: 'We recommend that customers limit the total number of connections' y 'We do not have any systems in place to enforce these limits'; el proveedor los llama 'somewhat arbitrary, and informal' [https://postmarkapp.com/support/article/do-we-have-rate-limits-for-smtp]"
+    - "Escalera de volumen del panel ('Choose a plan'), tier Basic: '10,000 → $15 (+ $1.80 per 1,000)', '50,000 → $55 (+ $1.80)', '125,000 → $115 (+ $1.80)', '300,000 → $245 (+ $1.70)', '700,000 → $455 (+ $1.70)', '1,500,000 → $775 (+ $1.70)', 'Need a bigger plan? Email to discuss our high-volume plans.' [observación de panel con cuenta propia, 2026-08-03]"
+    - "Tiers del panel ('Choose a tier'): Basic 'Up to 4 users · SMTP & REST API · Up to 5 servers · Up to 15 streams · Up to 5 signature domains'; Pro 'Up to 6 users · Up to 10 servers · Up to 30 streams · Up to 10 signature domains · All Event Webhooks · Inbound email processing · Stats & Open/Link Tracking APIs'; Platform 'Unlimited users · Unlimited servers · Unlimited streams · Unlimited signature domains' [observación de panel con cuenta propia, 2026-08-03]"
+    - "La cuota free renueva por ciclo de cuenta: 'Your 100 free emails will renew on Sep 4, 2026' con alta el 3 de agosto [observación de panel con cuenta propia, 2026-08-03]"
+    - "Test mode: 'While your account is in test mode, you can only send and process 100 emails. In the meantime, you can only send emails to alum.us.es and other domains that you have verified. Inbound processing doesn't have any domain restrictions.' [observación de panel con cuenta propia, 2026-08-03]"
+    - "API Explorer oficial: 'With Swagger, it is possible to describe REST APIs in a standard way using a simple YAML file.' [https://postmarkapp.com/blog/introducing-the-postmark-api-explorer]"
+  not_found:
+    - "Rate limit numérico de la API REST: no publicado (solo existe el error 429). Adoptado en ámbar desde la cabecera: ratelimit-limit 5000 por segundo, medido en el sondeo de caudal del 2026-09-07 (evidencias/probe_caudal_2026-09-07.json, DISC-02, D-024); el 429 no se ha alcanzado y la segmentación (cuenta o servidor) sigue sin documentar"
+    - "Límite de concurrencia de la API REST: no publicado (el de SMTP no aplica)"
+    - "URL directa del fichero Swagger/OpenAPI: no localizada"
+    - "Ventana de la cuota mensual en planes de pago: no explicitada (en free, confirmada por panel como ciclo de cuenta)"
+    - "Precio y sobrecoste de cada volumen en los tiers Pro y Platform: no observable con cuenta sin aprobar. El sobrecoste varía a la vez por tier (1.80/1.30/1.20 en 10k, página de precios) y por volumen (1.80 hasta 125k, 1.70 desde 300k, panel sobre Basic); su valor en cada cruce queda sin determinar"
+    - "Disponibilidad de /email/bulk por plan: no documentada"

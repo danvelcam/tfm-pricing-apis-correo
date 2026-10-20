@@ -1,0 +1,27 @@
+{
+ "pregunta": "PI-G02",
+ "operacion": "Q10",
+ "descripcion": "Coste de un mes de 25.000 correos en el primer plan de pago sin cambiar de plan",
+ "api": "mailchimp",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 25000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 500,
+   "ms": 22,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ ]
+}

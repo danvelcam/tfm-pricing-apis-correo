@@ -1,0 +1,52 @@
+{
+  "fichero": "11_control_budget_100usd.json",
+  "pregunta": "Caso de control de F-16: la misma pregunta que 07 (600.000 correos en Essentials) con un presupuesto de 100 USD, para ver que responde el motor cuando el coste no cabe en el presupuesto.",
+  "api": "sendgrid",
+  "plan": "essentials",
+  "friccion": "F-16",
+  "condicion": "L2 (D-042) - caso de control",
+  "servicio": "http://localhost:8003/api/v1/datasheet",
+  "ejecutado": "2026-10-18T21:38:02",
+  "llamada": {
+    "endpoint": "POST /budget/recommendation",
+    "url_completa": "http://localhost:8003/api/v1/datasheet/budget/recommendation?desired_capacity=600000&capacity_unit=emails&max_budget=100",
+    "params": {
+      "desired_capacity": "600000",
+      "capacity_unit": "emails",
+      "max_budget": "100"
+    },
+    "body": {
+      "endpoint_path": "/v3/mail/send",
+      "plan_names": [
+        "essentials"
+      ]
+    },
+    "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+    "datasheet_sha256": "a73d81c000dee8896e74cc816eda8e05203ddc13aaea670fd866ae27af99d597",
+    "nota_body": "El cuerpo real anade `datasheet_source` con el YAML integro de la Datasheet del catalogo, sin modificar."
+  },
+  "http": 200,
+  "ms": 30,
+  "respuesta": {
+    "desired_capacity": 600000.0,
+    "capacity_unit": "emails",
+    "max_budget": 100.0,
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+      {
+        "plan": "essentials",
+        "endpoint": "/v3/mail/send",
+        "dimension": "emails",
+        "base_cost": 19.95,
+        "overage_cost": 715.0,
+        "total_cost": 734.95,
+        "currency": "USD",
+        "affordable": false,
+        "unreachable": true,
+        "unreachable_reason": "budget_limit"
+      }
+    ]
+  },
+  "datasheet_sha256": "dc265bcad7c60936eab50cfbf6da5df6c6def1febd6c7e62788aad41d143c243"
+}

@@ -1,0 +1,87 @@
+{
+ "pregunta": "PI-D03",
+ "operacion": "Q9",
+ "descripcion": "Umbral de agotamiento de cuota (CRF que iguala cuota y rate) en el primer plan de pago",
+ "api": "sendgrid",
+ "llamadas": [
+  {
+   "endpoint": "POST /quota-exhaustion-threshold",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "essentials"
+    ]
+   },
+   "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+   "http": 200,
+   "ms": 27,
+   "respuesta": {
+    "results": {
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": [
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.00133,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "4s"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 500.0,
+          "value": [
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.00133,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "0s"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 1000.0,
+          "value": [
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.00133,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "0s"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

@@ -1,0 +1,6 @@
+{
+ "mailersend": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003, imagen rgavira123/prime4api del compose de docker/testing), 15 llamadas POST hechas con requests desde la misma maquina el 2026-09-10; datasheet_source = el datasheet.yaml integro (metadata incluida, que el motor no lee); alias healthy_reputation en el cuerpo de las 15",
+  "fecha": "2026-09-10T18:04:06"
+ }
+}

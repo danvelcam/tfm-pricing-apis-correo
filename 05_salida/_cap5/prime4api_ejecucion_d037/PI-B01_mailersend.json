@@ -1,0 +1,168 @@
+{
+ "pregunta": "PI-B01",
+ "operacion": "Q6",
+ "descripcion": "Suscripción más barata para 40.000 correos al mes: primero todos los planes (falla con precio custom o rate vacío), después solo los calculables",
+ "api": "mailersend",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation"
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 62,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "starter",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 35.0,
+      "overage_cost": 0.0,
+      "total_cost": 35.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 19980000.0,
+      "time_to_capacity": "5h33min"
+     },
+     {
+      "plan": "hobby",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 7.0,
+      "overage_cost": 52.5,
+      "total_cost": 59.5,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 19980000.0,
+      "time_to_capacity": "5h33min"
+     },
+     {
+      "plan": "professional",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 110.0,
+      "overage_cost": 0.0,
+      "total_cost": 110.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 19980000.0,
+      "time_to_capacity": "5h33min"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  },
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation",
+    "plan_names": [
+     "free",
+     "hobby",
+     "starter",
+     "professional"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 62,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "starter",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 35.0,
+      "overage_cost": 0.0,
+      "total_cost": 35.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 19980000.0,
+      "time_to_capacity": "5h33min"
+     },
+     {
+      "plan": "hobby",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 7.0,
+      "overage_cost": 52.5,
+      "total_cost": 59.5,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 19980000.0,
+      "time_to_capacity": "5h33min"
+     },
+     {
+      "plan": "professional",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 110.0,
+      "overage_cost": 0.0,
+      "total_cost": 110.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 19980000.0,
+      "time_to_capacity": "5h33min"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/v1/email",
+      "alias": "healthy_reputation",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

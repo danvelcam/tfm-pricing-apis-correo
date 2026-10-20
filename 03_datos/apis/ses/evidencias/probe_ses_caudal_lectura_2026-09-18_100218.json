@@ -1,0 +1,401 @@
+{
+  "sondeo": "ses_caudal_lectura",
+  "region": "eu-west-1",
+  "presupuesto_envios": 0,
+  "envios_gastados": 0,
+  "caudal_publicado_por_la_api": {
+    "Max24HourSend": 200.0,
+    "MaxSendRate": 1.0,
+    "SentLast24Hours": 5.0
+  },
+  "pasadas": {
+    "secuencial": {
+      "ritmo_por_segundo": 5.7,
+      "filas": [
+        {
+          "peticion": 1,
+          "t_desde_inicio_s": 0.174,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 2,
+          "t_desde_inicio_s": 0.349,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 3,
+          "t_desde_inicio_s": 0.526,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 4,
+          "t_desde_inicio_s": 0.698,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 5,
+          "t_desde_inicio_s": 0.886,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 6,
+          "t_desde_inicio_s": 1.055,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 7,
+          "t_desde_inicio_s": 1.215,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 8,
+          "t_desde_inicio_s": 1.388,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 9,
+          "t_desde_inicio_s": 1.547,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 10,
+          "t_desde_inicio_s": 1.735,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 11,
+          "t_desde_inicio_s": 1.91,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 12,
+          "t_desde_inicio_s": 2.087,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        }
+      ]
+    },
+    "concurrente": {
+      "ritmo_por_segundo": 140.8,
+      "codigos": {
+        "429": 9,
+        "200": 21
+      },
+      "filas": [
+        {
+          "peticion": 7,
+          "t_desde_inicio_s": 0.157,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 10,
+          "t_desde_inicio_s": 0.159,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 6,
+          "t_desde_inicio_s": 0.16,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 4,
+          "t_desde_inicio_s": 0.162,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 15,
+          "t_desde_inicio_s": 0.163,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 3,
+          "t_desde_inicio_s": 0.164,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 14,
+          "t_desde_inicio_s": 0.164,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 16,
+          "t_desde_inicio_s": 0.165,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 24,
+          "t_desde_inicio_s": 0.168,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 20,
+          "t_desde_inicio_s": 0.169,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 21,
+          "t_desde_inicio_s": 0.169,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 28,
+          "t_desde_inicio_s": 0.169,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 17,
+          "t_desde_inicio_s": 0.17,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 22,
+          "t_desde_inicio_s": 0.17,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 27,
+          "t_desde_inicio_s": 0.17,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 2,
+          "t_desde_inicio_s": 0.173,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 30,
+          "t_desde_inicio_s": 0.173,
+          "http": 429,
+          "errortype": "TooManyRequestsException",
+          "cuerpo_si_error": {
+            "message": "Rate exceeded"
+          },
+          "cabeceras_de_caudal": {
+            "x-amzn-errortype": "TooManyRequestsException"
+          }
+        },
+        {
+          "peticion": 1,
+          "t_desde_inicio_s": 0.174,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 5,
+          "t_desde_inicio_s": 0.174,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 11,
+          "t_desde_inicio_s": 0.18,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 18,
+          "t_desde_inicio_s": 0.181,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 8,
+          "t_desde_inicio_s": 0.182,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 9,
+          "t_desde_inicio_s": 0.184,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 25,
+          "t_desde_inicio_s": 0.187,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 12,
+          "t_desde_inicio_s": 0.188,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 23,
+          "t_desde_inicio_s": 0.189,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 26,
+          "t_desde_inicio_s": 0.189,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 13,
+          "t_desde_inicio_s": 0.191,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 29,
+          "t_desde_inicio_s": 0.194,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        },
+        {
+          "peticion": 19,
+          "t_desde_inicio_s": 0.213,
+          "http": 200,
+          "errortype": "",
+          "cuerpo_si_error": null,
+          "cabeceras_de_caudal": {}
+        }
+      ]
+    }
+  },
+  "veredicto": "rechazo alcanzado",
+  "fecha_utc": "2026-09-18_100218"
+}

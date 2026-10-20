@@ -1,0 +1,95 @@
+{
+ "caso": "C7",
+ "pregunta": "PI-B01",
+ "operacion": "Q6",
+ "descripcion": "Suscripcion mas barata para 3 destinatarios distintos al mes, sobre los planes calculables con el estado sin aprobar",
+ "api": "mailersend",
+ "servicio": "http://localhost:8003/api/v1/datasheet",
+ "ejecutado": "2026-09-15T13:04:37",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": "3",
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free",
+     "hobby",
+     "starter",
+     "professional"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 108,
+   "respuesta": {
+    "desired_capacity": 3.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "free",
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 0.0,
+      "time_to_capacity": "0s"
+     },
+     {
+      "plan": "hobby",
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimension": "emails",
+      "base_cost": 7.0,
+      "overage_cost": 0.0,
+      "total_cost": 7.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 0.0,
+      "time_to_capacity": "0s"
+     },
+     {
+      "plan": "starter",
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimension": "emails",
+      "base_cost": 35.0,
+      "overage_cost": 0.0,
+      "total_cost": 35.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 0.0,
+      "time_to_capacity": "0s"
+     },
+     {
+      "plan": "professional",
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimension": "emails",
+      "base_cost": 110.0,
+      "overage_cost": 0.0,
+      "total_cost": 110.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 0.0,
+      "time_to_capacity": "0s"
+     }
+    ]
+   }
+  }
+ ]
+}

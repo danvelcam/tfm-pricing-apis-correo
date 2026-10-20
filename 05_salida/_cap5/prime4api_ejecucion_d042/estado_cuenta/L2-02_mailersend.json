@@ -1,0 +1,38 @@
+{
+ "id": "L2-02",
+ "pregunta": "La misma pregunta, acotada al estado de cuenta no aprobada: se manda alias unapproved_account en el cuerpo. NavRequest no declara el campo alias, así que el filtro se ignora en silencio",
+ "api": "mailersend",
+ "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+ "datasheet_sha256": "3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd",
+ "datasheet_sin_tocar": true,
+ "origen": "PRIME4API de SPHERE en local (localhost:8003)",
+ "fecha": "2026-09-15T13:04:32",
+ "llamada": {
+  "endpoint": "POST /api/v1/datasheet/nav/crf-ranges",
+  "params": {},
+  "body": {
+   "plan_names": [
+    "free"
+   ],
+   "endpoint_path": "/v1/email",
+   "alias": "unapproved_account"
+  },
+  "datasheet_source": "<YAML crudo de 03_datos/apis/mailersend/datasheet.yaml, sha256 3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd>",
+  "http": 200,
+  "ms": 172,
+  "respuesta": {
+   "plans": [
+    "free"
+   ],
+   "endpoint": "/v1/email",
+   "crf_ranges": [
+    {
+     "unit": "emails",
+     "min": 1.0,
+     "max": 70.0,
+     "description": "Envío individual; hasta 50 destinatarios en to más 10 en cc y 10 en bcc, cada destinatario consume una unidad."
+    }
+   ]
+  }
+ }
+}

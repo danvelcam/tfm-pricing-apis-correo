@@ -1,0 +1,78 @@
+{
+ "pregunta": "PI-D01",
+ "operacion": "Q5",
+ "descripcion": "Qué se agota antes en el primer plan de pago: t_min para agotar la cuota al rate máximo (k = 1) y veredicto para consumir la cuota entera en un mes",
+ "api": "sendgrid",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "essentials"
+    ]
+   },
+   "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+   "http": 200,
+   "ms": 27,
+   "respuesta": {
+    "results": {
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "quotas": [
+        {
+         "value": 50000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.00133,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 50000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "essentials"
+    ]
+   },
+   "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+   "http": 200,
+   "ms": 29,
+   "respuesta": {
+    "capacity_goal": 50000,
+    "results": {
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "4s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

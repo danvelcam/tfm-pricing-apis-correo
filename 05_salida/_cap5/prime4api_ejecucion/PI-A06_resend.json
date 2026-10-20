@@ -1,0 +1,78 @@
+{
+ "pregunta": "PI-A06",
+ "operacion": "Q1",
+ "descripcion": "Tiempo mínimo para enviar 100.000 correos con el primer plan de pago, k = 1 y k máximo",
+ "api": "resend",
+ "llamadas": [
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/resend/datasheet.yaml",
+   "http": 200,
+   "ms": 25,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "pro": [
+      {
+       "endpoint": "/emails",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "30day1h23min19s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "50"
+   },
+   "body": {
+    "endpoint_path": "/emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/resend/datasheet.yaml",
+   "http": 200,
+   "ms": 24,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "pro": [
+      {
+       "endpoint": "/emails",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 50.0,
+          "value": "30day1min39s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

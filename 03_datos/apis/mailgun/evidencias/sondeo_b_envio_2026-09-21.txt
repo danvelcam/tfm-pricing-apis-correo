@@ -1,0 +1,32 @@
+# Sondeo Mailgun B — un envio real
+# Fecha: 2026-09-21
+# Dominio: sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org (sandbox)
+# Destinatario: la guarda de la lista blanca devolvio una direccion y es la que viaja.
+# Presupuesto declarado: 1 envio. Un 2xx cierra el sondeo.
+
+═══ POST /v3/$dominio/messages ═══
+HTTP 200
+--- cuerpo ---
+{"id":"<20260921174726.3c6e512a1c5dbdaa@sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org>","message":"Queued. Thank you."}
+--- cabeceras (D6: se registran, no se adoptan) ---
+HTTP/2 200 
+access-control-allow-credentials: true
+access-control-allow-origin: *
+account-id: 6aaa62707917cfec17591ee8
+cache-control: no-store
+content-type: application/json; charset=utf-8
+date: Mon, 21 Sep 2026 17:47:26 GMT
+strict-transport-security: max-age=63072000; includeSubDomains
+x-mailgun-key-id: 44ec4598-c6accad8
+x-ratelimit-limit: 80000
+x-ratelimit-remaining: 79999
+x-ratelimit-reset: 1790012856315
+x-recipient-limit: 2000000
+x-recipient-remaining: 1999999
+x-recipient-reset: 1790012856315
+x-server: influx
+x-xss-protection: 1; mode=block
+content-length: 126
+
+
+RESULTADO: el destinatario ESTA autorizado en el sandbox. Envios gastados: 1.

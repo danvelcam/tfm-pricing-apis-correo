@@ -1,0 +1,99 @@
+{
+ "pregunta": "PI-B03",
+ "operacion": "Q10",
+ "descripcion": "12.000 correos al mes: coste total por plan (sobrecoste frente a subir de plan), planes calculables",
+ "api": "brevo",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 12000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "free",
+     "starter",
+     "standard",
+     "professional"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 56,
+   "respuesta": {
+    "desired_capacity": 12000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "professional",
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "dimension": "emails",
+      "base_cost": 499.0,
+      "overage_cost": 0.0,
+      "total_cost": 499.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 11000.0,
+      "time_to_capacity": "11s"
+     },
+     {
+      "plan": "professional",
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "dimension": "emails",
+      "base_cost": 499.0,
+      "overage_cost": 0.0,
+      "total_cost": 499.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 5000.0,
+      "time_to_capacity": "5s"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/v3/smtp/email",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     },
+     {
+      "plan": "starter",
+      "endpoint": "/v3/smtp/email",
+      "dimension": "emails",
+      "base_cost": 9.0,
+      "overage_cost": 0.0,
+      "total_cost": 9.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     },
+     {
+      "plan": "standard",
+      "endpoint": "/v3/smtp/email",
+      "dimension": "emails",
+      "base_cost": 18.0,
+      "overage_cost": 0.0,
+      "total_cost": 18.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

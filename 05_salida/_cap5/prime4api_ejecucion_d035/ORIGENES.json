@@ -1,0 +1,10 @@
+{
+ "sendgrid": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003), reejecución tras D-035",
+  "fecha": "2026-09-14T18:34:18"
+ },
+ "resend": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003), reejecución tras D-035",
+  "fecha": "2026-09-14T18:34:23"
+ }
+}

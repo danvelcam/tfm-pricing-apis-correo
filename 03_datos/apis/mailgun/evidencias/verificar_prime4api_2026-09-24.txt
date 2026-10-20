@@ -1,0 +1,29 @@
+==============================================================================
+DATASHEET: mailgun   (03_datos/apis/mailgun/datasheet.yaml)
+==============================================================================
+  [OK ] nav.plans                          ["free", "basic", "foundation", "scale"]
+  [OK ] nav.endpoints                      ["/v3/{domain_name}/messages", "/v3/{domain_name}/events", "/v4/domains", "/v3/{domain_name}/templates", "/v3/{domain_name}/bounces/import", "/v5/acco ...
+  [OK ] nav.capacity_units                 ["emails", "requests", "MiBs", "MBs"]
+  [OK ] nav.aliases                        null
+  [OK ] nav.crf_ranges                     [{"unit": "emails", "min": 1.0, "max": 1000.0, "description": "Envío individual o por lotes; hasta 1.000 destinatarios por petición, y cada destinatar ...
+  [OK ] pricing[free]                      {"price": 0.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[basic]                     {"price": 15.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[foundation]                {"price": 35.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] pricing[scale]                     {"price": 90.0, "period_ms": 2592000000, "currency": "USD"}
+  [OK ] curve.scenarios                    {"n": 104}
+  [ERR] curve.accumulated                  TypeError: unsupported operand type(s) for /: 'int' and 'TimeDuration'
+  [OK ] curve.inflection                   {"escenarios_dibujados": 104}
+  [OK ] budget.cost_curve                  {"curvas_de_coste": 104}
+  [OK ] budget.recommendation              {"recomendaciones": 104}
+  [OK ] op.rates                           {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  [OK ] op.quotas                          {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  [OK ] op.limits                          {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  [OK ] op.min_time                        {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  [OK ] op.capacity_at                     {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  [OK ] op.quota_exhaustion_threshold      {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  [OK ] op.idle_time_period                {"planes": ["free", "basic", "foundation", "scale"], "items": 24}
+  ---- mailgun: 20 OK / 1 ERR
+
+RESUMEN
+  mailgun           20 OK   NO CONFORME (1)
+      · curve.accumulated: TypeError: unsupported operand type(s) for /: 'int' and 'TimeDuration'

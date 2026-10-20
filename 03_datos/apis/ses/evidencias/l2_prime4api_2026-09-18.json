@@ -1,0 +1,562 @@
+{
+  "demandas_en_correos": [
+    1.0,
+    100000.0,
+    10000000.0
+  ],
+  "casos": {
+    "ses": {
+      "papel": "caso",
+      "f29_coste": [
+        {
+          "plan": "a_la_carte",
+          "precio_plan": 0.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 21,
+          "cuotas_elasticas": 0,
+          "coste_total_por_demanda": {
+            "1": 0.0,
+            "100000": 0.0,
+            "10000000": 0.0
+          },
+          "plano": true
+        },
+        {
+          "plan": "essentials",
+          "precio_plan": 0.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 21,
+          "cuotas_elasticas": 0,
+          "coste_total_por_demanda": {
+            "1": 0.0,
+            "100000": 0.0,
+            "10000000": 0.0
+          },
+          "plano": true
+        },
+        {
+          "plan": "pro",
+          "precio_plan": 105.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 21,
+          "cuotas_elasticas": 0,
+          "coste_total_por_demanda": {
+            "1": 105.0,
+            "100000": 105.0,
+            "10000000": 105.0
+          },
+          "plano": true
+        },
+        {
+          "plan": "enterprise",
+          "precio_plan": 500.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 21,
+          "cuotas_elasticas": 0,
+          "coste_total_por_demanda": {
+            "1": 500.0,
+            "100000": 500.0,
+            "10000000": 500.0
+          },
+          "plano": true
+        }
+      ],
+      "f31_capacidad": {
+        "ejes_del_documento": {
+          "planes": [
+            "a_la_carte",
+            "essentials",
+            "pro",
+            "enterprise"
+          ],
+          "endpoints": [
+            "/*",
+            "/v2/email/outbound-emails",
+            "/v2/email/outbound-bulk-emails",
+            "/v2/email/account"
+          ],
+          "aliases": [
+            "sandbox"
+          ]
+        },
+        "cuotas": {
+          "a_la_carte": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-bulk-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/account",
+              "alias": "None",
+              "result": "[]"
+            }
+          ],
+          "essentials": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-bulk-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/account",
+              "alias": "None",
+              "result": "[]"
+            }
+          ],
+          "pro": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-bulk-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/account",
+              "alias": "None",
+              "result": "[]"
+            }
+          ],
+          "enterprise": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/outbound-bulk-emails",
+              "alias": "sandbox",
+              "result": "[{'value': 200.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v2/email/account",
+              "alias": "None",
+              "result": "[]"
+            }
+          ]
+        }
+      }
+    },
+    "postmark": {
+      "papel": "control",
+      "f29_coste": {
+        "error": "TypeError: float() argument must be a string or a real number, not 'NoneType'"
+      },
+      "f31_capacidad": {
+        "ejes_del_documento": {
+          "planes": [
+            "free",
+            "basic",
+            "pro",
+            "platform"
+          ],
+          "endpoints": [
+            "/email",
+            "/email/withTemplate",
+            "/email/batch",
+            "/email/batchWithTemplates",
+            "/email/bulk",
+            "/messages/outbound",
+            "/messages/inbound"
+          ],
+          "aliases": null
+        },
+        "cuotas": {
+          "free": [
+            {
+              "endpoint": "/email",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/email/withTemplate",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/email/batch",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/email/batchWithTemplates",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/email/bulk",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/messages/outbound",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            }
+          ],
+          "basic": [
+            {
+              "endpoint": "/email",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0018, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/withTemplate",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0018, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/batch",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0018, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/batchWithTemplates",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0018, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/bulk",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0018, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/messages/outbound",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0018, 'value': 1.0}}]"
+            }
+          ],
+          "pro": [
+            {
+              "endpoint": "/email",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/withTemplate",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/batch",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/batchWithTemplates",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/bulk",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/messages/outbound",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/messages/inbound",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            }
+          ],
+          "platform": [
+            {
+              "endpoint": "/email",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/withTemplate",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/batch",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/batchWithTemplates",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/email/bulk",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/messages/outbound",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/messages/inbound",
+              "alias": "None",
+              "result": "[{'value': 10000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0012, 'value': 1.0}}]"
+            }
+          ]
+        }
+      }
+    },
+    "sendgrid": {
+      "papel": "control",
+      "f29_coste": {
+        "error": "ValueError: could not convert string to float: 'custom'"
+      },
+      "f31_capacidad": {
+        "error": "ValueError: could not convert string to float: 'custom'"
+      }
+    },
+    "mailersend": {
+      "papel": "control",
+      "f29_coste": [
+        {
+          "plan": "free",
+          "precio_plan": 0.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 19,
+          "cuotas_elasticas": 0,
+          "coste_total_por_demanda": {
+            "1": 0.0,
+            "100000": 0.0,
+            "10000000": 0.0
+          },
+          "plano": true
+        },
+        {
+          "plan": "hobby",
+          "precio_plan": 7.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 55,
+          "cuotas_elasticas": 18,
+          "coste_total_por_demanda": {
+            "1": 7.0,
+            "100000": 149.5,
+            "10000000": 14999.5
+          },
+          "plano": false
+        },
+        {
+          "plan": "starter",
+          "precio_plan": 35.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 55,
+          "cuotas_elasticas": 18,
+          "coste_total_por_demanda": {
+            "1": 35.0,
+            "100000": 100.0,
+            "10000000": 12970.0
+          },
+          "plano": false
+        },
+        {
+          "plan": "professional",
+          "precio_plan": 110.0,
+          "moneda": "USD",
+          "escenarios_del_plan": 55,
+          "cuotas_elasticas": 18,
+          "coste_total_por_demanda": {
+            "1": 110.0,
+            "100000": 175.0,
+            "10000000": 13045.0
+          },
+          "plano": false
+        }
+      ],
+      "f31_capacidad": {
+        "ejes_del_documento": {
+          "planes": [
+            "free",
+            "hobby",
+            "starter",
+            "professional"
+          ],
+          "endpoints": [
+            "/*",
+            "/v1/email",
+            "/v1/bulk-email"
+          ],
+          "aliases": [
+            "healthy_reputation",
+            "under_review_reputation",
+            "unapproved_account"
+          ]
+        },
+        "cuotas": {
+          "free": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[{'value': 100.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 100.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 500.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 100.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 500.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 100.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 500.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            }
+          ],
+          "hobby": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 5000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0015, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 5000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0015, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 5000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0015, 'value': 1.0}}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 5000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0015, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 5000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0015, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 1000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 5000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0015, 'value': 1.0}}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            }
+          ],
+          "starter": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 100000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            }
+          ],
+          "professional": [
+            {
+              "endpoint": "/*",
+              "alias": "None",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "healthy_reputation",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "under_review_reputation",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}]"
+            },
+            {
+              "endpoint": "/v1/bulk-email",
+              "alias": "unapproved_account",
+              "result": "[{'value': 500000.0, 'unit': 'requests', 'period': '1day', 'overage_cost': None}, {'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0013, 'value': 1.0}}, {'value': 100.0, 'unit': 'emails', 'period': '30day', 'overage_cost': None}]"
+            }
+          ]
+        }
+      }
+    }
+  }
+}

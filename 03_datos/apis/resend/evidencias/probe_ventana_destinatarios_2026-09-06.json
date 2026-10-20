@@ -1,0 +1,69 @@
+[
+{
+  "caso": "A_ventana_diaria_1_envio",
+  "instante_utc": "2026-09-06T18:36:25Z",
+  "http": 200,
+  "cuerpo": {
+    "id": "473a543c-ccd5-4cba-b024-3abba2953181"
+  },
+  "cabeceras": {
+    "date": "Sun, 06 Sep 2026 18:36:26 GMT",
+    "ratelimit-limit": "10",
+    "ratelimit-policy": "10;w=1",
+    "ratelimit-remaining": "9",
+    "ratelimit-reset": "1",
+    "x-resend-daily-quota": "0",
+    "x-resend-monthly-quota": "0"
+  }
+},
+{
+  "caso": "B1_to_51",
+  "instante_utc": "2026-09-06T18:36:28Z",
+  "http": 422,
+  "cuerpo": {
+    "statusCode": 422,
+    "name": "validation_error",
+    "message": "Field `to` has a maximum of 50 items."
+  },
+  "cabeceras": {
+    "date": "Sun, 06 Sep 2026 18:36:28 GMT",
+    "ratelimit-limit": "10",
+    "ratelimit-policy": "10;w=1",
+    "ratelimit-remaining": "9",
+    "ratelimit-reset": "1"
+  }
+},
+{
+  "caso": "B2_to_26_cc_25_total_51",
+  "instante_utc": "2026-09-06T18:36:30Z",
+  "http": 422,
+  "cuerpo": {
+    "statusCode": 422,
+    "name": "validation_error",
+    "message": "The total number of recipients cannot exceed 50."
+  },
+  "cabeceras": {
+    "date": "Sun, 06 Sep 2026 18:36:30 GMT",
+    "ratelimit-limit": "10",
+    "ratelimit-policy": "10;w=1",
+    "ratelimit-remaining": "9",
+    "ratelimit-reset": "1"
+  }
+},
+{
+  "caso": "B3_to_25_cc_25_total_50",
+  "instante_utc": "2026-09-06T18:36:33Z",
+  "http": 200,
+  "cuerpo": {
+    "id": "69eed6a3-1086-4f10-b171-051bf7c6a082"
+  },
+  "cabeceras": {
+    "date": "Sun, 06 Sep 2026 18:36:33 GMT",
+    "ratelimit-limit": "10",
+    "ratelimit-policy": "10;w=1",
+    "ratelimit-remaining": "9",
+    "ratelimit-reset": "1",
+    "x-resend-daily-quota": "1",
+    "x-resend-monthly-quota": "1"
+  }
+}]

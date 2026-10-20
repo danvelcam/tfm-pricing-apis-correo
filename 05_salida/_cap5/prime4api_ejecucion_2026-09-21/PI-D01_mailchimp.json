@@ -1,0 +1,65 @@
+{
+ "pregunta": "PI-D01",
+ "operacion": "Q5",
+ "descripcion": "Qué se agota antes en el primer plan de pago: t_min para agotar la cuota al rate máximo (k = 1) y veredicto para consumir la cuota entera en un mes",
+ "api": "mailchimp",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 200,
+   "ms": 22,
+   "respuesta": {
+    "results": {
+     "transactional_email": [
+      {
+       "endpoint": "/messages/send",
+       "alias": "demo",
+       "quotas": [
+        {
+         "value": 25000.0,
+         "unit": "emails",
+         "period": "30day"
+        },
+        {
+         "value": 500.0,
+         "unit": "emails",
+         "period": ""
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 25000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 500,
+   "ms": 22,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ ]
+}

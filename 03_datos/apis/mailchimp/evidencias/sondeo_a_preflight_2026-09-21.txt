@@ -1,0 +1,19 @@
+# Sondeo Mandrill A — rechazos previos a la entrega
+# Fecha: 2026-09-21
+# Destinatario de todas las pruebas: sondeo@example.invalid (RFC 2606, no resuelve)
+# La cuenta no tiene dominio de envio verificado.
+# Presupuesto declarado: 0 envios entregados. Un sent/queued aborta.
+
+═══ T4a · POST /users/info ═══
+HTTP 200
+{"reputation": 0, "hourly_quota": 25, "backlog": 0}
+
+═══ T1 · POST /messages/send a un destinatario que no puede recibir ═══
+HTTP 200
+[{"email":"sondeo@example.invalid","status":"rejected","_id":"89359bcfb1814c4ba98d807037f3c73a","reject_reason":"unsigned","queued_reason":null}]
+
+═══ T2 · numero de destinatarios por llamada ═══
+
+!!! ABORTA: T2 con 100 destinatarios devolvio un destinatario en estado sent/queued/scheduled.
+!!! Mandrill ACEPTO el mensaje para entrega y este sondeo se declara de coste cero.
+!!! No se ejecuta ninguna prueba mas. Anotar el gasto en el libro.

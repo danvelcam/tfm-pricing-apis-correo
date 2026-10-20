@@ -1,0 +1,123 @@
+{
+ "pregunta": "PI-D03",
+ "operacion": "Q9",
+ "descripcion": "Umbral de agotamiento de cuota (CRF que iguala cuota y rate) en el primer plan de pago",
+ "api": "resend",
+ "llamadas": [
+  {
+   "endpoint": "POST /quota-exhaustion-threshold",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/resend/datasheet.yaml",
+   "http": 200,
+   "ms": 26,
+   "respuesta": {
+    "results": {
+     "pro": [
+      {
+       "endpoint": "/emails",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": [
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0009,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "1h23min19s"
+           },
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0009,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "1h23min19s"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 26.0,
+          "value": [
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0009,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "3min12s"
+           },
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0009,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "3min12s"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 50.0,
+          "value": [
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0009,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "1min39s"
+           },
+           {
+            "quota": {
+             "value": 50000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0009,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "1min39s"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

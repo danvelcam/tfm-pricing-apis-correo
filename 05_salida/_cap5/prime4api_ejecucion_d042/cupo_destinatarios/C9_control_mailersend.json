@@ -1,0 +1,91 @@
+{
+ "caso": "C9",
+ "pregunta": "control",
+ "operacion": "Q6",
+ "descripcion": "Control del campo unreachable: la misma Datasheet y el mismo alias con un objetivo que el caudal no alcanza (100.000 correos) y con presupuesto 0, para comprobar que el motor si sabe decir que no",
+ "api": "mailersend",
+ "servicio": "http://localhost:8003/api/v1/datasheet",
+ "ejecutado": "2026-09-15T13:04:37",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": "100000",
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 112,
+   "respuesta": {
+    "desired_capacity": 100000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "free",
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  },
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": "3",
+    "capacity_unit": "emails",
+    "max_budget": "0"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 123,
+   "respuesta": {
+    "desired_capacity": 3.0,
+    "capacity_unit": "emails",
+    "max_budget": 0.0,
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "free",
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "budget_surplus": 0.0,
+      "unreachable": false,
+      "time_to_capacity_ms": 0.0,
+      "time_to_capacity": "0s"
+     }
+    ]
+   }
+  }
+ ]
+}

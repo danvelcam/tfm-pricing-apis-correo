@@ -1,0 +1,447 @@
+# Datasheet ACM2YAML v0.3 — Brevo (Email API)
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: brevo                                      # 🟢
+type: api_first                                             # 🟢
+url: https://www.brevo.com/pricing/                         # 🟢
+syntax_version: 0.3
+date: 2026-09-16
+currency: USD                                               # 🟢
+consumption_units:
+  - requests
+  - emails
+  - MBs
+
+capacity:
+  quota_email_daily_free:
+    value: 300                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: DAY
+    # 🔴 ancla del reinicio diario no publicada — hueco deliberado (ver metadata.not_found)
+    window_type:
+
+  quota_email_monthly_starter:
+    value: 5000                                             # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+
+  quota_email_monthly_standard:
+    value: 5000                                             # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+
+  quota_email_monthly_professional:
+    value: 150000                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+
+  quota_email_monthly_enterprise:
+    value: custom                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+
+# 🟢
+max_power:
+  rate_request_send_general:
+    value: 1000                                             # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+  rate_request_send_advanced:
+    value: 2000                                             # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+  rate_request_send_extended:
+    value: 6000                                             # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+  rate_request_activity_general:
+    value: 2                                                # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+  rate_request_other_general:
+    value: 100                                              # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: HOUR
+
+plans:
+  free:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_daily_free
+    endpoints:
+      /*:
+        rate: rate_request_other_general
+      /v3/smtp/email:
+        rate: rate_request_send_general
+        workload:
+          - unit: emails
+            min: 1
+            max: 2000                                       # 🟡
+            description: Envío individual o por lotes sobre el mismo endpoint; hasta 2.000 destinatarios en total por petición y 99 por versión de mensaje. Cada destinatario consume una unidad de la cuota, MEDIDO el 2026-09-17 —una sola petición con dos destinatarios descuenta 2 del saldo (sondeo [E3])—.
+          - unit: MBs
+            min: 1
+            max: 20                                         # 🟡
+            description: Tamaño del correo, contenido más adjuntos, hasta 20 MB.
+      /v3/smtp/emails:
+        rate: rate_request_activity_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de registros transaccionales; hasta 1.000 resultados por petición y un mes de ventana consultable.
+      /v3/smtp/blockedContacts:
+        rate: rate_request_send_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de contactos bloqueados; hasta 100 resultados por petición.
+
+  starter:
+    price: 9.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_starter
+    endpoints:
+      /*:
+        rate: rate_request_other_general
+      /v3/smtp/email:
+        rate: rate_request_send_general
+        workload:
+          - unit: emails
+            min: 1
+            max: 2000                                       # 🟡
+            description: Envío individual o por lotes sobre el mismo endpoint; hasta 2.000 destinatarios en total por petición y 99 por versión de mensaje. Cada destinatario consume una unidad de la cuota, MEDIDO el 2026-09-17 —una sola petición con dos destinatarios descuenta 2 del saldo (sondeo [E3])—.
+          - unit: MBs
+            min: 1
+            max: 20                                         # 🟡
+            description: Tamaño del correo, contenido más adjuntos, hasta 20 MB.
+      /v3/smtp/emails:
+        rate: rate_request_activity_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de registros transaccionales; hasta 1.000 resultados por petición y un mes de ventana consultable.
+      /v3/smtp/blockedContacts:
+        rate: rate_request_send_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de contactos bloqueados; hasta 100 resultados por petición.
+
+  standard:
+    price: 18.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_standard
+    endpoints:
+      /*:
+        rate: rate_request_other_general
+      /v3/smtp/email:
+        rate: rate_request_send_general
+        workload:
+          - unit: emails
+            min: 1
+            max: 2000                                       # 🟡
+            description: Envío individual o por lotes sobre el mismo endpoint; hasta 2.000 destinatarios en total por petición y 99 por versión de mensaje. Cada destinatario consume una unidad de la cuota, MEDIDO el 2026-09-17 —una sola petición con dos destinatarios descuenta 2 del saldo (sondeo [E3])—.
+          - unit: MBs
+            min: 1
+            max: 20                                         # 🟡
+            description: Tamaño del correo, contenido más adjuntos, hasta 20 MB.
+      /v3/smtp/emails:
+        rate: rate_request_activity_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de registros transaccionales; hasta 1.000 resultados por petición y un mes de ventana consultable.
+      /v3/smtp/blockedContacts:
+        rate: rate_request_send_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de contactos bloqueados; hasta 100 resultados por petición.
+
+  professional:
+    price: 499.00                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_professional
+    endpoints:
+      /*:
+        rate: rate_request_other_general
+      /v3/smtp/email:
+        workload:
+          - unit: emails
+            min: 1
+            max: 2000                                       # 🟡
+            description: Envío individual o por lotes sobre el mismo endpoint; hasta 2.000 destinatarios en total por petición y 99 por versión de mensaje. Cada destinatario consume una unidad de la cuota, MEDIDO el 2026-09-17 —una sola petición con dos destinatarios descuenta 2 del saldo (sondeo [E3])—.
+          - unit: MBs
+            min: 1
+            max: 20                                         # 🟡
+            description: Tamaño del correo, contenido más adjuntos, hasta 20 MB.
+        general:
+          rate: rate_request_send_general
+        advanced:
+          rate: rate_request_send_advanced
+      /v3/smtp/emails:
+        rate: rate_request_activity_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de registros transaccionales; hasta 1.000 resultados por petición y un mes de ventana consultable.
+      /v3/smtp/blockedContacts:
+        rate: rate_request_send_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de contactos bloqueados; hasta 100 resultados por petición.
+      # 🟡
+      /v3/inbound/events:
+        rate: rate_request_other_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de eventos de correo entrante; hasta 500 resultados por petición.
+
+  enterprise:
+    price: custom                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_enterprise
+    endpoints:
+      /*:
+        rate: rate_request_other_general
+      /v3/smtp/email:
+        workload:
+          - unit: emails
+            min: 1
+            max: 2000                                       # 🟡
+            description: Envío individual o por lotes sobre el mismo endpoint; hasta 2.000 destinatarios en total por petición y 99 por versión de mensaje. Cada destinatario consume una unidad de la cuota, MEDIDO el 2026-09-17 —una sola petición con dos destinatarios descuenta 2 del saldo (sondeo [E3])—.
+          - unit: MBs
+            min: 1
+            max: 20                                         # 🟡
+            description: Tamaño del correo, contenido más adjuntos, hasta 20 MB.
+        general:
+          rate: rate_request_send_general
+        advanced:
+          rate: rate_request_send_advanced
+        extended:
+          rate: rate_request_send_extended
+      /v3/smtp/emails:
+        rate: rate_request_activity_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de registros transaccionales; hasta 1.000 resultados por petición y un mes de ventana consultable.
+      /v3/smtp/blockedContacts:
+        rate: rate_request_send_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de contactos bloqueados; hasta 100 resultados por petición.
+      # 🟡
+      /v3/inbound/events:
+        rate: rate_request_other_general
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de eventos de correo entrante; hasta 500 resultados por petición.
+
+metadata:
+  sources_visited:
+    - https://www.brevo.com/pricing/
+    - https://www.brevo.com/pricing/see-all-features/
+    - https://www.brevo.com/pricing/pay-as-you-go/?selected=email
+    - https://www.brevo.com/pricing/pay-as-you-go/?selected=ip
+    - https://www.brevo.com/products/transactional-email/
+    - https://www.brevo.com/blog/api-rate-limiting/
+    - https://developers.brevo.com/docs/api-limits
+    - https://developers.brevo.com/docs/limit-headers
+    - https://developers.brevo.com/docs/platform-quotas
+    - https://developers.brevo.com/docs/how-it-works
+    - https://developers.brevo.com/docs/batch-send-transactional-emails
+    - https://developers.brevo.com/docs/schedule-batch-sendings
+    - https://developers.brevo.com/docs/heterogenous-versions-batch-emails
+    - https://developers.brevo.com/docs/using-sandbox-mode
+    - https://developers.brevo.com/docs/smtp-integration
+    - https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity
+    - https://developers.brevo.com/docs/batch-webhooks
+    - https://developers.brevo.com/reference/send-transac-email
+    - https://developers.brevo.com/reference/get-transac-emails-list
+    - https://developers.brevo.com/reference/get-account
+    - https://developers.brevo.com/openapi/email-api.json
+    - https://api.brevo.com/v3/swagger_definition_v3.yml
+    - https://developers.brevo.com/changelog/2026/2/10
+    - https://developers.brevo.com/llms.txt
+    - https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan
+    - https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans
+    - https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan
+    - https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email
+  data_provenance:
+    - "NOTA Test de type (C2/D9, completo el 2026-09-18): el color mide cobertura del test, no el valor, y el test ya está entero. Las tres operaciones que deciden el type existen en la API Y en el panel, así que ninguna es exclusiva de la web: (1) enviar, 'Send a transactional email to one or more recipients' y 'Transactional email (API/SMTP)' con marca en los cinco planes; (2) crear o editar plantilla, 'operationId: createSmtpTemplate' y 'operationId: updateSmtpTemplate' en la especificación, más 'Create Template' en el panel; (3) alta de dominio y su verificación, 'Create a new sender domain' y 'Authenticate a sender domain' en la especificación, más 'Add a domain' en el panel. De las otras cinco, que no cambian el valor: (5) webhooks y (7) supresiones y (8) actividad están en la API y en el panel; (6) el inbound routing está SOLO en la API, como webhook de tipo inbound, y no tiene página en el panel; y (4) las credenciales adicionales son lo contrario, SOLO panel: la API únicamente crea claves de una subcuenta Corporate y la clave propia se genera con el botón del panel, que es la fricción F-22. Dos avisos que la cita necesita. Las operaciones (3) y (5) aparecen en la especificación de plataforma y NO en la troceada de la Email API, que declara 21 rutas: se citan igual porque el test pregunta si la operación existe en la API, y existe. Y el panel registra la petición enviada en modo sandbox, cosa que el expediente daba por imposible: dos filas de registro para la sonda del 2026-09-17 [https://api.brevo.com/v3/swagger_definition_v3.yml y https://developers.brevo.com/openapi/email-api.json, consultadas el 2026-09-18; observación de panel con cuenta propia, 2026-09-17 y 2026-09-18]"
+    - "Cinco planes con tarjeta propia en la lista oficial de precios: 'Free', 'price': '0'; 'Starter', 'price': '9'; 'Standard', 'price': '18'; 'Professional', 'price': '499'; 'Enterprise', 'price': 'Custom Price', con 'Custom price' y 'Talk to sales' en la tarjeta renderizada [https://www.brevo.com/pricing/]"
+    - "Volumen de entrada de cada plan de pago: 'From 5,000 emails per month' (Starter), 'From 150,000 emails per month' (Professional) y 'Standard plan: Starting at $18/month for 5,000 emails/month', que es la única fuente que cifra el Standard [https://www.brevo.com/pricing/; https://www.brevo.com/products/transactional-email/]"
+    - "Techo del escalonado por plan, que no se modela porque v0.3 lleva el volumen de entrada: 'Up to 100,000 emails per month' (Starter), 'Up to 500,000 emails per month' (Standard), 'Up to 10 million emails per month' (Professional), 'Custom number of emails per month' (Enterprise) [https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan]"
+    - "Escalera de volumen y precio del Starter, leída escalón a escalón del configurador 'Customize your plan': '5k emails/month' '$9.00 with monthly billing', '10k' '$17.00', '15k' '$25.00', '20k' '$32.00', '30k' '$39.00', '40k' '$46.00', '50k' '$56.00', '60k' '$65.00', '80k' '$74.00', '100k' '$82.00'; el precio no es lineal con el volumen y el último escalón, 'More', no publica ni volumen ni precio [https://www.brevo.com/pricing/]"
+    - "Escalera del Standard: '$18.00', '$35.00', '$49.00', '$69.00', '$79.00', '$89.00', '$97.00', '$104.00', '$119.00', '$139.00', '$179.00', '$249.00', '$309.00', '$429.00' sobre las marcas '5k | 10k | 15k | 20k | 30k | 40k | 50k | 60k | 80k | 100k | 150k | 250k | 350k | 500k | More' [https://www.brevo.com/pricing/]"
+    - "Escalera del Professional: '$499.00', '$599.00', '$699.00', '$999.00', '$1,479.00', '$1,863.00', '$2,170.00', '$2,447.00', '$2,866.00', '$3,285.00', '$3,705.00', '$4,543.00' sobre las marcas '150k | 250k | 500k | 1M | 2M | 3M | 4M | 5M | 6M | 7M | 8M | 10M | More' [https://www.brevo.com/pricing/]"
+    - "NOTA: el escalón de correos fija también el tope de contactos almacenados —'5k emails/month' 'Included' '500 contacts' 'Included'; '10k' '1,500 contacts'; '15k' '2,500 contacts'; '20k' y superiores '500,000 contacts'—, y el acoplamiento va en los dos sentidos: 'If you have more contacts than the limit allowed for a given tier, you won't be able to select that lower tier.' Es límite de recurso, no cuota, y no se modela [https://www.brevo.com/pricing/; https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan]"
+    - "Precio anual, que no cabe junto al mensual en un solo campo price: 'name': 'Starter', 'price': '96.96', 'unitCode': 'ANN'; Standard '194.04'; Professional '5388.96'; el conmutador de la página los presenta como 'Yearly (-10%)' y los muestra en mensual equivalente ($8.08, $16.17, $449.08). Se modela el mensual [https://www.brevo.com/pricing/]"
+    - "Los precios son sin impuestos: 'The prices shown in this article and on our pricing page are exclusive of taxes.' [https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans]"
+    - "NOTA: la página de precios sirve ocho divisas —'EUR (Euro)', 'USD (US Dollar)', 'GBP (British Pound)', 'BRL (Brazilian Real)', 'INR (Indian Rupee)', 'CAD (Canadian Dollar)', 'AUD (Australian Dollar)', 'CHF (Swiss Franc)'— y geolocaliza: desde España sirve EUR con Starter 7, Standard 15 y Professional 499. Las cifras no son conversiones entre sí (9 USD frente a 7 EUR) y ninguna divisa se declara canónica. La datasheet declara USD porque es la del bloque JSON-LD y la del centro de ayuda [https://www.brevo.com/pricing/]"
+    - "Cuota diaria del plan gratuito: 'The Free plan includes 300 email sends per day. The daily limit resets every day, and unused emails do not roll over to the next day.'; la misma cifra en el configurador, 'Daily email volume (campaigns & transactional)' '300 emails/day' [https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan; https://www.brevo.com/pricing/]"
+    - "El tope diario es exclusivo del gratuito: 'It includes no daily sending limit' (Starter) y 'To remove the daily limit or send more emails, upgrade to a Starter, Standard, Professional, or Enterprise plan.' [https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans; https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan]"
+    - "Al agotar la cuota diaria los transaccionales no se rechazan: 'once you reach your daily limit, up to 1,000 additional emails are held in a retry queue. Emails beyond this queue are not delivered.' Un colchón acotado seguido de descarte silencioso no es tope duro ni sobrecoste, y no se puede expresar en el esquema; el campo lleva solo el 300 [https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan; https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan]"
+    - "Agotar la cuota diaria bloquea además la programación: 'Once you reach the daily limit of 300 emails, you cannot schedule a campaign in advance for the next day. You need to wait until your quota resets.' [https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan]"
+    - "Ancla de la ventana mensual, que es lo que fija fixed_billing_cycle: 'With a monthly subscription, you are charged each month on your billing date. Your credits are renewed each month on your billing date. Any unused credits expire just before the new credits are added.'; y en el plan anual, 'if your yearly plan starts on the 12th, your credits will be topped up on the 12th of each month' [https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans]"
+    - "Los correos incluidos caducan con el periodo: 'The emails included in your plan need to be used within your monthly billing period. Any unused emails expire and won't carry over to the next month.' [https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan]"
+    - "NOTA: la página de precios describe el mismo ciclo como un periodo fijo de treinta días —'If you subscribe to a monthly plan, the subscription period is 30 days and charges are processed at the beginning of each period.'—, lo que no cambia el tipo de ventana pero deja el día del reinicio sin fijar; el día es consultable por cuenta con 'startDate' y 'endDate' de GET /v3/account [https://www.brevo.com/pricing/; https://developers.brevo.com/reference/get-account]"
+    - "La cuota es una sola y compartida entre los dos productos de la cuenta: 'Can I use my emails to send both marketing and transactional emails?' 'Yes, you can use your email credits to send both marketing and transactional emails.', y el configurador rotula el deslizador 'Monthly email volume (campaigns & transactional)'. El producto modelado no tiene cuota propia [https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan; https://www.brevo.com/pricing/]"
+    - "NOTA: ninguna página de developers.brevo.com publica cuántos correos incluye cada plan. El volumen vive solo en la página de precios y en el centro de ayuda, y el caudal solo en la documentación de desarrollador [https://developers.brevo.com/docs/api-limits; https://www.brevo.com/pricing/]"
+    - "Caudal del tramo General, que el proveedor atribuye a los cinco planes: 'General rate limits: Standard limits for most use cases. Available to all account types (Free, Starter, Standard, Professional, and Enterprise).' [https://developers.brevo.com/docs/api-limits]"
+    - "Filas modeladas del tramo General: 'POST /v3/smtp/email  GET /v3/smtp/blockedContacts | 3,600,000 RPH | 1,000 RPS', 'GET /v3/smtp/emails | 7,200 RPH | 2 RPS' y 'All other endpoints | 100 RPH | -'; las unidades son 'RPS (Requests per second): Maximum requests allowed per second' y 'RPH (Requests per hour): Maximum requests allowed per hour' [https://developers.brevo.com/docs/api-limits]"
+    - "NOTA: el proveedor exige respetar las dos unidades a la vez —'Some endpoints have both RPS and RPH limits. When both apply, you must respect both simultaneously.'—, pero en las diez filas que publican las dos el RPH es exactamente el RPS por 3.600, así que la segunda cifra no añade restricción y la datasheet serializa el RPS. Las filas que solo publican RPH sí son un tope independiente y se serializan como tal [https://developers.brevo.com/docs/api-limits]"
+    - "NOTA: el caudal se escalona en tres tramos que no son los cinco planes: 'Advanced rate limits: Higher limits for advanced use cases. Available to Professional and Enterprise accounts.' (2.000 RPS en el envío) y 'Extended rate limits: Maximum limits for high-throughput integrations. Available to Enterprise accounts.' (6.000 RPS). Ninguna fuente dice si se aplican al contratar el plan o hay que solicitarlos. Desde el 2026-09-17 cada plan referencia los tramos que el proveedor le atribuye literalmente, declarados como aliases con su vocabulario: general en los cinco, advanced tambien en professional y enterprise, y extended solo en enterprise. Los tres valores van en ambar mientras DISC-01 siga abierta, porque la guia de lotes publica otra cifra para el mismo endpoint [https://developers.brevo.com/docs/api-limits]"
+    - "NOTA: la guía de envío por lotes publica para el mismo endpoint 'Execute the endpoint up to 6000 times per hour (100 times per minute)', seiscientas veces menos que los 3.600.000 por hora de la página de caudal, y el blog oficial da una tercera cifra, 'the batch endpoint can be called up to 5 times per minute'. El valor modelado es el de la página canónica y por eso va en ámbar [https://developers.brevo.com/docs/batch-send-transactional-emails; https://www.brevo.com/blog/api-rate-limiting/]"
+    - "El caudal del envío es el mismo para el endpoint de envío y para la consulta de contactos bloqueados, que el proveedor publica en una sola fila: 'POST /v3/smtp/email  GET /v3/smtp/blockedContacts | 3,600,000 RPH | 1,000 RPS' [https://developers.brevo.com/docs/api-limits]"
+    - "NOTA: esa fila es compartida y el proveedor no dice si los 1.000 por segundo son un cubo repartido entre las dos rutas o uno por ruta. La datasheet los declara por ruta, que es lo único que el esquema admite, y así el fichero declara 1.000 dos veces donde el proveedor publica una sola cifra. CORREGIDO el 2026-09-17: la versión anterior decía que PRIME4API agrega 2.000 por segundo, y eso es falso — medido contra el motor, op.limits del plano free devuelve cuatro entradas independientes, con 1.000 en cada una de las dos rutas y ninguna suma. El riesgo es de quien sume las dos filas para estimar el techo conjunto, no del motor: 'Some endpoints have both RPS and RPH limits. When both apply, you must respect both simultaneously.' no arbitra este caso, porque habla de las dos unidades de una misma fila [https://developers.brevo.com/docs/api-limits]"
+    - "NOTA: entre el caudal propio de los dos endpoints dedicados y el de 'All other endpoints' hay un tercer nivel que el esquema no puede expresar, porque es un prefijo con excepción: 'All endpoints under /v3/smtp/{…}* | 300 RPH | -' con '*Excludes POST /v3/smtp/email and GET /v3/smtp/blockedContacts, which have dedicated limits.' El comodín de la datasheet lleva los 100 RPH del nivel más bajo, que es el valor conservador [https://developers.brevo.com/docs/api-limits]"
+    - "NOTA: la nota de exclusión de ese prefijo solo nombra dos rutas —'*Excludes POST /v3/smtp/email and GET /v3/smtp/blockedContacts, which have dedicated limits.'— y GET /v3/smtp/emails, que también tiene fila propia (7.200 por hora), no aparece en ella. Si el prefijo la alcanza, su tope efectivo son 300 por hora y no 7.200; la fuente no lo resuelve y la contradicción va como DISC-17, sin arbitrar [https://developers.brevo.com/docs/api-limits]"
+    - "El caudal se segmenta por plan y por endpoint, lo que sostiene declararlo en el endpoint: 'The x-sib-ratelimit-limit header indicates the maximum number of requests you can make in the current time window. This value depends on your account plan and the specific endpoint.' [https://developers.brevo.com/docs/limit-headers]"
+    - "Rechazo por caudal: 'When you exceed a rate limit, the API returns a 429 Too Many Requests status code.' [https://developers.brevo.com/docs/api-limits]"
+    - "El agotamiento de cuota tiene respuesta distinguible del caudal: '402 | Payment Required | Account requires activation or additional credits' y el código de cuerpo 'not_enough_credits | Insufficient credits to complete the request' [https://developers.brevo.com/docs/how-it-works]"
+    - "NOTA: la referencia del propio endpoint de envío aplana a 400 lo que la tabla general separa: su único bloque de errores es '### 400 Bad Request Error' y dentro enumera 'not_enough_credits', 'permission_denied' y 'account_under_validation'. El motivo viaja en el cuerpo, no en el estado HTTP [https://developers.brevo.com/reference/send-transac-email]"
+    - "NOTA: las dos especificaciones OpenAPI que publica Brevo no declaran el 429 en POST /v3/smtp/email, ni las cabeceras x-sib-ratelimit-*, ni ninguna mención al caudal; la histórica sí declara '402' y '429' con mensaje literal en /transactionalSMS/sms. El contrato máquina del correo transaccional no permite distinguir un freno por caudal de una petición malformada [https://developers.brevo.com/openapi/email-api.json; https://api.brevo.com/v3/swagger_definition_v3.yml]"
+    - "Tres cabeceras de caudal en toda respuesta, no solo en el 429: 'x-sib-ratelimit-limit', 'x-sib-ratelimit-remaining' y 'x-sib-ratelimit-reset', con 'Rate limit headers are included in all responses, not just 429 errors.' Es la vía de medición que no gasta envío [https://developers.brevo.com/docs/limit-headers]"
+    - "Ventana del caudal sin tipo publicado: la única pista es 'Calculate your rate limit allowance and distribute requests evenly across the time window' y una reposición 'expressed in the granularity unit (typically seconds)', donde 'typically' no fija la unidad [https://developers.brevo.com/docs/api-limits; https://developers.brevo.com/docs/limit-headers]"
+    - "Topes de la petición de envío: 'Maximum total recipients per API request is 2000. Maximum recipients per message version is 99. Individual params objects must not exceed 100 KB. Cumulative params across all versions must not exceed 1000 KB.' El literal vive dentro de la descripción de messageVersions, así que el 2.000 se modela en ámbar [https://developers.brevo.com/reference/send-transac-email]"
+    - "NOTA: la guía de lotes contradice ese tope —'Send up to 1000 email messages in one API call'—, y mil versiones a 99 destinatarios darían 99.000, casi cincuenta veces el tope de la referencia. Ninguna de las dos fuentes menciona a la otra [https://developers.brevo.com/docs/batch-send-transactional-emails]"
+    - "El lote no tiene endpoint propio: 'Do not pass an outer to parameter. Define all recipients inside each message version. If you include an outer to parameter, the request will fail.' LEÍDO ASÍ EL 2026-09-16. RELEÍDA el 2026-09-21, la misma página cierra la frase de otra manera: 'Do not pass an outer to parameter. Define all recipients inside each message version. If you include an outer to parameter, it is ignored in favor of the recipients defined in messageVersions.' El 2026-09-16 no se volcó la página, así que la relectura no distingue si el registro se equivocó o si el proveedor la cambió, y manda E8: se anotan las dos fechas, la cita NO cae y esto es evidencia de F-09. El archivo web se consultó el 2026-09-21 para fechar el cambio y respondió «Internet Archive services are temporarily offline», que E8 resuelve por el mismo carril. La diferencia no es de forma: «the request will fail» describe un rechazo y «it is ignored» describe una precedencia, así que la palabra «excluyentes» sale de esta línea y del modelado hasta que se mida. La medida existe y está sin ejecutar: el caso p7_to_y_messageversions de probe_brevo_a_preflight_rechazo.sh manda las dos formas a la vez en modo sandbox [https://developers.brevo.com/docs/batch-send-transactional-emails]"
+    - "NOTA: email-api.json no vale como contrato completo del endpoint de envío. Declara únicamente 201 y 400 en paths./smtp/email.post.responses, y la cadena '202' no aparece ni una vez en todo el fichero, mientras la especificación completa y la referencia renderizada sí publican el 202 de programación. Era DISC-05 hasta el 2026-09-21, y dejó de serlo porque una ausencia comprobada no es un literal (D12): el hallazgo de trazabilidad se conserva, la discrepancia no [https://developers.brevo.com/openapi]"
+    - "NOTA: el 2.000 de workload.max se queda en ámbar por D1 desde que DISC-04 cerró por E5 (1) el 2026-09-21 (regla D13: salir de D11 no es entrar en verde). El literal es 'Maximum total recipients per API request is 2000', pero está dentro de la descripción del parámetro messageVersions, que acota el envío por versiones; que ese tope gobierne también una petición sin versiones no lo publica ninguna fuente, y darlo por hecho es inferencia [https://developers.brevo.com/reference/sendtransacemail]"
+    - "NOTA: el tope de destinatarios cae a 99 si la petición lleva adjunto —'If you add an attachment in your API script, you can only send your transactional email to a maximum of 99 recipients.'—, una capacidad condicionada a la presencia de un campo que el esquema no expresa; el workload lleva el caso general [https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email]"
+    - "Tamaño del correo transaccional: 'The size limit for transactional emails is 20MB, including the attachments and email content.' Es el único sitio del dominio donde aparece: la documentación de desarrollador no publica ningún tamaño de petición [https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email]"
+    - "NOTA: la página de producto publica 'Max attachment size | 25 MB per email', que es mayor que el total del correo. Esa pareja fue DISC-16 y se cerró el 2026-09-21 por E5 supuesto 1: el 25 acota el adjunto y el 20 el correo entero, así que no hablan de la misma magnitud y nunca hubo contradicción excluyente. El ámbar del campo YA NO VIENE DE AHÍ. Viene de D1 por la regla D13: el README de v0.3 define workload por petición y el literal acota por correo, en un endpoint que admite lote, así que el mapeo es inferencia; y la base de medida no está publicada. La sección de plantilla del centro de ayuda añade además un tope por adjunto, 'The attachment should be less than 4MB.', que la sección de API omite [https://www.brevo.com/products/transactional-email/; https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email]"
+    - "Adjuntos por extensión, sin tope de tamaño en la referencia: 'Supported file extensions: xlsx, xls, ods, docx, docm, doc, csv, pdf, txt, gif, jpg, jpeg, png, tif, tiff, rtf, bmp, cgm, css, shtml, html, htm, zip, xml, ppt, pptx, tar, ez, ics, mobi, msg, pub, eps, odt, mp3, m4a, m4v, wma, ogg, flac, wav, aif, aifc, aiff, mp4, mov, avi, mkv, mpeg, mpg, wmv, pkpass, xlsm.' [https://developers.brevo.com/reference/send-transac-email]"
+    - "Programación del envío, que es límite temporal y no consumible: 'Scheduled emails may be delayed by up to 5 minutes.' y 'you can schedule a message up to 72 hours in the future (from the moment the API request is executed)' [https://developers.brevo.com/reference/send-transac-email; https://developers.brevo.com/docs/schedule-batch-sendings]"
+    - "Idempotencia con ventana propia: 'The TTL for idempotencyKey is 30 minutes. After the TTL expires, you can reuse the same key for a new request.' [https://developers.brevo.com/docs/heterogenous-versions-batch-emails]"
+    - "Topes por petición de las consultas, que el esquema no serializa: GET /smtp/emails 'limit long Optional 0-1000 Defaults to 500' y 'Maximum time period that can be selected is one month'; GET /smtp/blockedContacts máximo 100; GET /inbound/events máximo 500; GET /smtp/statistics/events máximo 5.000 [https://developers.brevo.com/reference/get-transac-emails-list; https://developers.brevo.com/openapi/email-api.json]"
+    - "Profundidad temporal consultable de las estadísticas: 'Number of days in the past including today (positive integer, maximum 90). Not compatible with startDate and endDate. Defaults to 30 if neither dates nor days are provided.' [https://developers.brevo.com/openapi/email-api.json]"
+    - "Los endpoints por plan se derivan de la lista oficial, que atribuye capacidades y no rutas: 'Transactional email (API/SMTP)', 'APIs' y 'Outbound webhooks' con marca en los cinco planes, e 'Inbound webhooks' con cruz en Free, Starter y Standard y marca en Professional y Enterprise [https://www.brevo.com/pricing/see-all-features/]"
+    - "NOTA: el salto de esa fila a la ruta GET /v3/inbound/events es inferencia y por eso el endpoint va en 🟡. La descripción literal de la capacidad es 'Receive real-time events from external sources to update data and objects in Brevo and trigger automations', que son eventos externos que ENTRAN a Brevo, no correo entrante, y ninguna fuente ata la ruta a un plan [https://www.brevo.com/pricing/see-all-features/]"
+    - "Confirmación de que el gratuito tiene acceso completo a la API: 'Yes! All Brevo plans give you access to transactional email features, including RESTful APIs, SMTP, outbound webhooks, unlimited log retention, and more.' y 'Full API and SMTP access' [https://www.brevo.com/pricing/; https://www.brevo.com/products/transactional-email/]"
+    - "Modo de pruebas sin consumo: 'Add the X-Sib-Sandbox header with the value drop to your request. In sandbox mode: No emails are sent to recipients · No email logs are created in your Brevo account · You receive a success response', con el aviso 'Sandbox mode only validates the API request format.' [https://developers.brevo.com/docs/using-sandbox-mode]"
+    - "Segundo canal sobre la misma cuota y con capacidad distinta por petición: 'The SMTP relay does not support batch sending. Use the batch sending API endpoints for batch operations.', con puertos 587, 2525 y 465. No publica ni conexiones simultáneas ni mensajes por conexión [https://developers.brevo.com/docs/smtp-integration]"
+    - "Base de la API y autenticación, que v0.3 no tiene dónde declarar: 'All API requests use the base URL with version v3:' 'https://api.brevo.com/v3/' e 'Include your API key in the api-key header for every request.' [https://developers.brevo.com/docs/how-it-works]"
+    - "Cuota de exportación con ventana propia, que ningún bloque puede referenciar porque la página no publica la ruta: 'Maximum 20 export jobs per 7-day period.' [https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity]"
+    - "Límites de objetos que el proveedor llama quotas y no son consumo: 'Quotas limit the number of objects you can create via the API, UI, or other integrations.', con '10,000 email campaigns | 50,000 email campaigns', '5M stored contacts | 900M stored contacts', '300 created lists | 600 created lists' y '50 active workflows | 500 active workflows'. Su granularidad son dos tramos, 'General quota' y 'Enterprise quota', frente a los tres del caudal y los cinco planes [https://developers.brevo.com/docs/platform-quotas]"
+    - "Límites de recursos por plan: 'Users' 'Single user | Single user | Up to 3 (add-on) | 10 included | Unlimited' y 'Contact limit' 'Up to 100K contacts | Up to 500K contacts | Up to 500K contacts | Up to 2M contacts | Unlimited' [https://www.brevo.com/pricing/see-all-features/]"
+    - "No hay precio por correo excedido en ningún plan; lo más cercano es una negación: 'There are no hidden fees with Brevo. Sign up for a plan or purchase credits as you need them, there are no additional fees.' [https://www.brevo.com/pricing/]"
+    - "El único mecanismo automático de sobrecoste que publica el proveedor se dispara por contactos, no por correos: 'If you reach or exceed that limit, we will automatically upgrade your plan to the next tier.' y 'The cost of your subscription will increase accordingly.' [https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans]"
+    - "Cambiar de escalón se cobra prorrateado al instante y bajar espera al ciclo siguiente: 'When adding emails to your plan, you are charged immediately, with a pro-rated charge from the date of your purchase to your next billing date.' y 'When removing emails from your plan, the change will apply on your next billing date.' [https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan]"
+    - "Créditos prepago como vía de exceso, con equivalencia unitaria: 'Purchase credits to send emails with no daily sending limit and without the Brevo logo. No expiration date.' y 'One credit equals one email sent to one contact.'; paquetes de 5.000 a 1.000.000 con precios '$32.00', '$59.00', '$95.00', '$165.00', '$275.00', '$940.00' y '$1,600.00' [https://www.brevo.com/pricing/pay-as-you-go/?selected=email; https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans]"
+    - "NOTA: los créditos prepago no solo añaden volumen, cambian el plan efectivo: 'Prepaid email credits give you access to all Starter plan features and the Remove Brevo logo add-on. The limit of 2,000 contacts in automations also applies.' [https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans]"
+    - "NOTA: la unidad de descuento de la cuota mensual del plan no está publicada. La datasheet asume que cada destinatario consume una unidad encadenando dos literales que no hablan del volumen del plan: 'Yes, you can use your email credits to send both marketing and transactional emails.', que denomina el volumen del plan en créditos, y 'One credit equals one email sent to one contact.', que define el crédito en el contexto del saldo prepago. Es inferencia, no literal, y la cierra el sondeo 1 de REVISION.md [https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan; https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans]"
+    - "Add-ons que tocan dimensiones de capacidad: IP dedicada '$251.00' 'per year per dedicated IP', 'Available as a paid add-on for Professional plan, included in Enterprise.'; asientos de marketing, con el selector en USD y 'Monthly' y la pestaña Standard del calculador, '1 marketing seat included. $12.00 per month per additional seat.' con 'Add up to 2 additional Marketing users.' (en 'Yearly (-10%)' la misma fila da '$10.80') [https://www.brevo.com/pricing/pay-as-you-go/?selected=ip; https://www.brevo.com/pricing/]"
+    - "NOTA: incoherencia del pricing (D17, DISC-08 cerrada el 2026-10-18). Vale la página de precios en USD y 'Monthly' (E9): 'No Brevo logo' '$12.00 per month', 'Sales Advanced' '$65.00 per month/user' y el asiento de marketing '$12.00 per month per additional seat'. El centro de ayuda da otras cifras: 'The Remove Brevo logo add-on costs $9 per month.', 'The Sales Advanced package costs $64 per month.' y 'Each additional marketing seat costs $9 per month.'. 'The Sales Essentials package costs $31 per month.' coincide con '$31.00' en 'Monthly', y la IP dedicada, $251 al año, también [https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans; https://www.brevo.com/pricing/]"
+    - "El envío en el gratuito está condicionado a una aprobación previa cuyos topes no se publican: 'Once we approve your account for sending, you can start sending up to 300 emails per day.', y el cuerpo de error tiene un código para ese estado, 'account_under_validation | Account is pending validation' [https://www.brevo.com/pricing/; https://developers.brevo.com/docs/how-it-works]"
+    - "Retención de registros: 'unlimited log retention' en la página de precios y 'Customized log retention' con marca en los cinco planes en la tabla comparativa, sin periodo en ninguna; el panel la fija el cliente entre 1 y 24 meses (DISC-10, cerrada por E5 (1): 'unlimited' no publica una duración). Es política, no cuota [https://www.brevo.com/pricing/; https://www.brevo.com/pricing/see-all-features/]"
+    - "Capacidad de salida del proveedor hacia el cliente, fuera de lo que v0.3 modela: 'Each batch contains up to 500 events by default.' con ventana de cinco minutos [https://developers.brevo.com/docs/batch-webhooks]"
+    - "NOTA: el caudal cambia con el tiempo y endpoint a endpoint, con fecha: 'Added dedicated rate limits for the following endpoints: POST /v3/orders/status, POST /v3/products' [https://developers.brevo.com/changelog/2026/2/10]"
+    - "NOTA sobre el verde de currency: el literal que lo sostiene es '\"priceCurrency\": \"USD\"' del bloque JSON-LD de UNA de las ocho ofertas que la página sirve. El verde cubre ese literal y no la elección de USD como divisa canónica del fichero, que es del modelador y no del proveedor: ninguna fuente declara cuál es la de referencia (Q8, F-26, metadata.not_found) [https://www.brevo.com/pricing/]"
+    - "Productos de la misma cuenta que quedan fuera del modelado: 'POST /v3/transactionalSMS/send | 540,000 RPH | 150 RPS' y 'Transactional WhatsApp (API)', con cruz en Free, Starter y Standard [https://developers.brevo.com/docs/api-limits; https://www.brevo.com/pricing/see-all-features/]"
+    - "POST /v3/smtp/email acepta en modo SANDBOX una petición cuyo remitente no está verificado y cuyo dominio no existe: con remitente y destinatario en example.invalid y la cabecera 'X-Sib-Sandbox: drop', la respuesta fue 201 con '{\"messageId\":\"<202609171534.72501669544@smtp-relay.mailin.fr>\"}'. Lo medido es la validación de FORMATO en sandbox, que es lo único que sandbox declara comprobar —'Sandbox mode only validates the API request format'—, así que NO dice qué exige la ruta sin la cabecera: el 2xx no demuestra que haya envío ni que no lo haya. Si esa aceptación descuenta crédito NO está medido, y el panel no puede responderlo porque sandbox declara 'No email logs are created in your Brevo account'. Tampoco está medido si el mensaje se descartó o se cursó hacia un dominio sin MX, que sería un rebote [verificación empírica, 2026-09-17, evidencias/probe_brevo_a_preflight_rechazo_2026-09-17_153449.json; el cuerpo y las cabeceras de la petición se reconstruyen desde 05_salida/_herramientas/probe_brevo_a_preflight_rechazo.sh, que el volcado de ese día no registraba]"
+    - "Contrato de rechazo medido en el endpoint de envío: una petición sin el objeto sender devuelve 400 con '{\"code\":\"missing_parameter\",\"message\":\"sender is missing\"}', el único 4xx explícito que esta pasada obtuvo. El cuerpo del error trae {code,message} como declara la especificación, y es la vara de medir que necesitan los sondeos de carga [verificación empírica, 2026-09-17, evidencias/probe_brevo_a_preflight_rechazo_2026-09-17_153449.json]"
+    - "NOTA (D6): las dos respuestas de ese sondeo, el 400 y el 201, traen 'x-sib-ratelimit-limit: 1000', 'x-sib-ratelimit-remaining: 999' y 'x-sib-ratelimit-reset: 1' sobre POST /v3/smtp/email, con 2,4 s entre ellas. Las dos peticiones llevaban 'X-Sib-Sandbox: drop', y que una petición en sandbox consuma el mismo bucket de caudal que una real NO está medido. La cabecera no declara su ventana: el número desnudo coincide con el 1.000 RPS del tramo General y no con los 6.000 por hora de la guía de lotes, y el 'remaining' de vuelta a 999 tras 2,4 s acota la ventana por debajo de 2,4 s sin fijarla. Apareció en un sondeo de rechazo, no de caudal, y el que se diseñó para medir caudal no se ejecutó: registrada y NO adoptada. DISC-01 y DISC-15 siguen abiertas (DISC-13 se cerró después, con [E5], el 2026-09-18) y los tres rate se quedan en ámbar [verificación empírica, 2026-09-17, evidencias/probe_brevo_a_preflight_rechazo_2026-09-17_153449.json]"
+    - "NOTA sobre el alcance de la verificación empírica del 2026-09-17: se midió la cuenta del plan Free, y solo con dos peticiones. Starter, Standard, Professional y Enterprise no se han contratado ni medido, así que ningún valor de esos cuatro planes cambia de color por esta medición, y los ámbar que dependen de las preguntas abiertas de REVISION.md siguen donde estaban [verificación empírica, 2026-09-17]"
+    - "Tramos de caudal del endpoint de envío, adoptados como aliases con el vocabulario del proveedor: 'General rate limits: Standard limits for most use cases. Available to all account types (Free, Starter, Standard, Professional, and Enterprise).' 1.000 peticiones por segundo, 'Advanced rate limits: Higher limits for advanced use cases. Available to Professional and Enterprise accounts.' 2.000, y 'Extended rate limits: Maximum limits for high-throughput integrations. Available to Enterprise accounts.' 6.000. Las tres citas se corrigieron el 2026-09-21: la versión anterior empalmaba el nombre del tramo, dos puntos y la cola de la frase, y ese empalme no es un literal de la página. No se reproduce aquí entre comillas simples porque esa es la marca de cita y el verificador lo leería como una. El contenido no cambia —el tramo y los planes elegibles son los mismos— y el literal de hoy ya estaba citado bien en la NOTA del caudal, doce líneas más arriba. Cada plan referencia los tramos de los que es elegible; cuál rige por defecto no lo publica ninguna fuente y va a not_found. El rate va dentro de cada alias y no compartido en el endpoint, porque un rate compartido más aliases cae en DV-05 y concatena en vez de sustituir, medido contra PRIME4API el 2026-09-17 [https://developers.brevo.com/docs/api-limits; D-048, D7 ampliada]"
+    - "Caudal de GET /v3/smtp/emails confirmado en su fila propia y no en el prefijo: la API devuelve 'x-sib-ratelimit-limit: 2', 'x-sib-ratelimit-remaining: 1' y 'x-sib-ratelimit-reset: 1' en la respuesta 400 'Please pass atleast one of the following filters', que son los 2 por segundo de su fila de [F6] y no los 300 por hora del prefijo /v3/smtp/{...}. Cierra DISC-17 y Q11 [sondeo de lectura [E2], 2026-09-17, coste cero]"
+    - "Ese caudal alcanza la respuesta de rechazo el 2026-09-18 y por eso sube a verde: tres peticiones seguidas a GET /v3/smtp/emails dentro del mismo segundo dan 400, 400 y 429, con 'x-sib-ratelimit-remaining' en 1, 0 y 0. La ampliación D-024 de la sección E pide confirmar el contador y alcanzar el rechazo, y las dos cosas están: el límite es 2 y el rechazo cae en la tercera; la ventana ya se había repuesto 0,702 s después de la primera petición de la serie, en la única muestra que devolvió el sondeo cada 250 ms, lo que descarta una ventana de un segundo que arranque con la primera petición; con una sola muestra no se distingue una ventana fija alineada con el reloj de una reposición gradual. Las dos lecturas de control tomadas después del rechazo devuelven 200, así que el 429 es de la fila de esta ruta y no alcanza ni al prefijo /v3/smtp/{...} ni a 'All other endpoints' [sondeo [E5], 2026-09-18, coste cero, evidencias/probe_brevo_a_429_rps_2026-09-18_195606.json y evidencias/probe_brevo_a_ventana_y_reset_2026-09-18_202618.json]"
+    - "NOTA (no es un dato adoptado): el caudal de 'All other endpoints' está medido 50 veces por encima de lo publicado. [F6] publica 100 por hora y GET /v3/account devuelve 'x-sib-ratelimit-limit: 5000' con 'x-sib-ratelimit-reset: 601'. Por D6 se registra y no se adopta —el sondeo era de lectura de cabeceras y no alcanzó la respuesta de rechazo que D-024 exige para el verde—, así que rate_request_other_general se queda en su valor publicado. La dirección del error queda escrita: el valor conservador es el que más se aparta de lo medido [sondeo de lectura [E2], 2026-09-17]"
+    - "NOTA (no es un dato): la cabecera de caudal no viene en todas las respuestas, contra lo que [F7] afirma —'in all responses, not just 429 errors'—. Medido el 2026-09-17: viene en el 400 de GET /v3/smtp/emails y en el 200 de GET /v3/account, y no viene en los 200 de GET /v3/smtp/templates ni de GET /v3/senders. No va por éxito frente a error: va por endpoint [sondeo de lectura [E2], 2026-09-17]"
+  not_found:
+    - "Saldo único entre marketing y transaccional, MEDIDO el 2026-09-17. La cuenta expone una sola entrada de correo en el campo plan, con type free, credits 300 y creditsType sendLimit, y es la que se movió al enviar un transaccional, así que el transaccional consume el saldo de la cuenta y no uno propio. Lo que esto NO mide es que la campaña salga de esa misma entrada, que sigue solo publicado [sondeo [E3], 2026-09-17]"
+    - "Cuál de los tramos de caudal rige por defecto cuando un plan es elegible de más de uno: no publicado. Professional es elegible de General y Advanced, y Enterprise de los tres. Los aliases declaran los elegibles pero el esquema no tiene dónde decir cuál está vigente, que es el mismo hueco que O-12 registra en MailerSend para el disparador de estado. Y dos ejes independientes sobre el mismo endpoint —el tramo y el modo de consumo con adjunto o sin él, que es DISC-04— no componen: los aliases son un mapa plano y exigirían su producto cartesiano (F-08, reescrita con D-048)"
+    - "Si el tramo Extended se puede leer del fichero: no comprobable hoy. El alias queda declarado en enterprise, pero price: custom tumba toda consulta de ese plan en PRIME4API, que es DV-03. Medido el 2026-09-17: las trece operaciones del verificador fallan con could not convert string to float: custom, las mismas trece que antes de declarar el alias"
+    - "Coste de exceso por correo: no publicado en ninguno de los cuatro planes de pago. Buscado en la página de precios (tarjetas, configurador y preguntas frecuentes), en la tabla comparativa y en los dos artículos del centro de ayuda sobre planes y sobre añadir correos. Lo más cercano es la negación 'there are no additional fees'. Ningún plan lleva bloque overage_cost, y la ausencia del bloque no distingue 'no hay sobrecoste' de 'no se publica'"
+    - "Qué ocurre al agotar el volumen mensual en un plan de pago: no publicado. Solo se documenta el gratuito (cola de reintento de 1.000 y descarte). Para Starter, Standard y Professional no se dice si se bloquea el envío, si se encola, si se factura o si se sube de escalón"
+    - "Ancla del reinicio de la cuota diaria del gratuito: 'The daily limit resets every day' no dice ni a qué hora ni en qué huso, así que window_type se queda vacío"
+    - "Día del reinicio de la ventana mensual: el ancla está publicada (el día de facturación) y el día concreto no; depende de la cuenta y solo lo expone GET /v3/account con startDate y endDate en Unix. Dos fuentes describen el ciclo distinto, como mes natural anclado al alta y como periodo fijo de treinta días"
+    - "Volumen y precio del plan Enterprise: 'Custom Price' y 'Custom number of emails per month'. Tampoco se publica el volumen mínimo de entrada ni el umbral desde el que se accede al tramo Extended de caudal"
+    - "Volumen y precio del escalón 'More', última marca de los deslizadores de Starter, Standard y Professional"
+    - "Activación de los tramos Advanced y Extended: 'Available to Professional and Enterprise accounts' no dice si se aplican al contratar el plan o hay que solicitarlos. Sin eso, el caudal de Professional es 1.000 o 2.000 peticiones por segundo y el de Enterprise es uno de tres valores. Los tres tramos publicados en el envío son 1.000, 2.000 y 6.000 RPS; la datasheet lleva el primero. Medido el 2026-09-17 en esta cuenta Free, en POST /v3/smtp/email y en modo sandbox, respuestas 400 y 201, evidencias/probe_brevo_a_preflight_rechazo_2026-09-17_153449.json: 'x-sib-ratelimit-limit: 1000', que es el número del tramo General; registrado sin adoptar por D6, y de los otros cuatro planes no se ha medido nada"
+    - "Caudal del prefijo /v3/smtp/{…}, 300 peticiones por hora en el tramo General: publicado pero no modelable, porque es un comodín de prefijo con una excepción explícita de dos rutas y v0.3 solo admite el comodín /* por plan. El comodín de la datasheet lleva los 100 por hora de 'All other endpoints'"
+    - "Segmentación del caudal: el proveedor no la publica, y por clave está MEDIDO — dos claves de la misma cuenta comparten un solo contador, 'x-sib-ratelimit-remaining' 4999, 4998, 4997 con la primera, 4996 con la segunda y 4995 de vuelta con la primera [verificación empírica sin envíos, 2026-09-17]. Sigue sin saberse si cambia por IP de origen o por sub-organización, que esta cuenta gratuita no puede responder"
+    - "Reparto de la fila compartida de caudal: no se publica si los 1.000 por segundo de la fila que agrupa POST /v3/smtp/email y GET /v3/smtp/blockedContacts son un cubo repartido entre las dos rutas o uno por ruta. La datasheet los declara por ruta, que es la única forma que el esquema admite, y quien sume las dos filas para estimar el techo conjunto obtiene 2.000, el doble de lo que el proveedor concede entre las dos. El motor NO suma: medido el 2026-09-17, devuelve 1.000 en cada ruta por separado. Lo que el esquema no tiene es forma de decir que las dos comparten medidor, y eso no promociona a fricción porque la condición L2 de B9 exige que el motor devuelva un valor falso, y no lo devuelve"
+    - "Alcance del prefijo /v3/smtp/{…} sobre GET /v3/smtp/emails: la nota de exclusión solo nombra POST /v3/smtp/email y GET /v3/smtp/blockedContacts, y GET /v3/smtp/emails tiene fila propia sin estar excluida. La lectura alternativa —que el prefijo la gobierne y su tope efectivo sean 300 por hora— queda DESCARTADA midiendo el 2026-09-18: el rechazo llega en la tercera petición del mismo segundo, que es el tope de la fila propia, y no en la petición 301 de la hora. Lo que sigue sin medirse es la ventana horaria de esa fila: los 7.200 por hora son publicados y no comprobados, porque agotarlos exige dos órdenes de magnitud más de peticiones [sondeo [E5], 2026-09-18]"
+    - "Unidad de descuento de la cuota: MEDIDA el 2026-09-17, y es el destinatario. Sigue sin publicarse —los dos literales de equivalencia unitaria, el crédito y el correo a un contacto, son del saldo prepago y no del volumen incluido en el plan— pero ya no es inferencia: una sola petición con dos destinatarios de la lista blanca descuenta 2 del saldo, con control de deriva en 0 y lectura tomada 90 s después del envío. Par de bisección 0 / 2 [sondeo [E3], 2026-09-17]"
+    - "Atribución de GET /v3/inbound/events por plan: la lista oficial solo cifra la capacidad 'Inbound webhooks', que describe recepción de eventos externos y no correo entrante, y ninguna fuente ata la ruta a un plan. La datasheet la atribuye a Professional y Enterprise en 🟡"
+    - "Tipo de ventana de los caudales: no se publica si la de RPS y RPH es fija o deslizante"
+    - "Unidad de la cabecera x-sib-ratelimit-reset: MEDIDA el 2026-09-18 y es el segundo, incluso donde el endpoint se declara solo por hora, que es donde la diferencia valía un factor 3.600. GET /v3/account, que [F6] mete en 'All other endpoints | 100 RPH | -', devuelve 'x-sib-ratelimit-reset: 2021' y, 12,306 s después, '2009': baja 12. El endpoint por segundo no sirve para medirlo, porque allí las dos lecturas registradas predicen el mismo delta. DISC-13 cerrada [sondeo [E5], 2026-09-18, evidencias/probe_brevo_a_ventana_y_reset_2026-09-18_202618.json]"
+    - "Cuerpo del 429: el único literal publicado, con el código 'too_many_requests', está en el blog y ese valor no aparece en la tabla de códigos de error de la documentación ni en el enum del OpenAPI"
+    - "Cabecera Retry-After: el proveedor declara que no la usa; el tiempo de espera solo viaja en x-sib-ratelimit-reset"
+    - "Tope de destinatarios de to sin messageVersions: la única cifra publicada, 2.000, vive dentro de la descripción de messageVersions, y ninguna de las dos especificaciones declara maxItems en to, cc, bcc, messageVersions ni attachment, pese a que la spec de contactos sí lo usa. Los topes del envío no son verificables por máquina"
+    - "Reparto de los 2.000 destinatarios entre to, cc y bcc: no publicado"
+    - "Tope de destinatarios cuando la petición lleva adjunto: el centro de ayuda dice 99 y la referencia dice 2.000, sin regla de prioridad, y el esquema no expresa una carga condicionada a la presencia de un campo"
+    - "Tamaño de petición y de adjunto en la documentación de desarrollador: no publicado en la referencia del endpoint ni en ninguna de las dos especificaciones. Las dos únicas cifras, 20 MB y 25 MB, están en el centro de ayuda y en una página de producto, y acotan magnitudes distintas: el correo entero una y el adjunto la otra (DISC-16, cerrada el 2026-09-21 por E5 supuesto 1). No se contradicen; lo que falta es la cifra por petición"
+    - "Denominador del tope de tamaño: el campo workload es por petición y el literal de 20 MB acota el correo, en un endpoint que admite hasta 2.000 destinatarios por petición. Fuera del envío simple los dos denominadores no coinciden y ninguna fuente publica el de petición. Es lo que mantiene el campo en ámbar por D1 desde que DISC-16 se cerró (regla D13, consejo 2026-09-21). No es discrepancia: no hay segundo literal que enfrentar"
+    - "Base de medida del tope de tamaño: ninguna fuente dice si los 20 MB se cuentan sobre el adjunto decodificado o sobre el cuerpo de la petición, que va en base64 y pesa un 33 % más; ni si la unidad es MB decimal o MiB; ni si el tope muerde en validación o en entrega. Las tres preguntas están escritas en las cabeceras de probe_brevo_a_tamano.sh y probe_brevo_b_tamano_entrega.sh, y ninguno de los dos se ha ejecutado. Que Resend sí lo fije —'max 40MB per email, after Base64 encoding of the attachments'— prueba que el eje discrimina entre proveedores"
+    - "Tope por adjunto en la vía de API: los 4 MB del centro de ayuda se declaran solo en la sección de plantilla y no se pueden extrapolar"
+    - "429 declarado en el endpoint de envío: la especificación troceada no contiene la cadena en ninguna de sus 21 rutas y la histórica solo la declara en cuatro rutas de contactos y en el SMS transaccional"
+    - "Cabeceras x-sib-ratelimit-* en las especificaciones: cero ocurrencias en las dos, pese a que la documentación dice que vienen en todas las respuestas"
+    - "Límites del canal SMTP: ni conexiones simultáneas, ni mensajes por conexión, ni destinatarios por mensaje, ni si el caudal de la API alcanza al relay"
+    - "Concurrencia de la API: no publicada. Solo hay peticiones por segundo y por hora"
+    - "Número máximo de claves de API y de claves SMTP por cuenta: no publicado"
+    - "Granularidad de plan de las platform quotas: la tabla solo distingue 'General' y 'Enterprise' y no dice a qué planes corresponde 'General'"
+    - "Retención de registros por plan: ninguna fuente pública da un periodo; el panel da 1 a 24 meses para esta cuenta y no dice si el techo cambia con el plan (DISC-10)"
+    - "Precio unitario por correo: no publicado. Solo se deriva dividiendo precio de escalón entre volumen de escalón, y no es lineal ni dentro de un plan ni entre planes"
+    - "Tramos intermedios de créditos prepago y cómo conviven con el volumen mensual de un plan de pago: no publicado"
+    - "Topes del estado de cuenta no aprobada: 'Once we approve your account for sending' implica un estado previo sin envío, y no se publican ni sus cifras ni el disparador de la aprobación, así que no genera alias de estado"
+    - "Caudal efectivo del plan gratuito: el tramo General atribuye 1.000 peticiones por segundo al envío también en el gratuito, y ninguna fuente aclara si ese caudal aplica a una cuenta con tope de 300 correos al día. Medido el 2026-09-17 en POST /v3/smtp/email y en modo sandbox, respuestas 400 y 201, evidencias/probe_brevo_a_preflight_rechazo_2026-09-17_153449.json: la cabecera anuncia 'x-sib-ratelimit-limit: 1000' también en esta cuenta, SIN que la cabecera declare la ventana, así que el 'por segundo' saldría de emparejar el número con la fila General de la tabla y eso es justo lo que DISC-01 no arbitra; registrado sin adoptar por D6, porque el sondeo de caudal no se ejecutó"
+    - "Tamaño máximo del mensaje en entrada de correo: NO BUSCADO en esta pasada. Ninguna de las 28 páginas de sources_visited es documentación de inbound y ninguna entrada [F1]-[F28] de fuentes.md la recoge, así que no hay cita que sostenga ni el dato ni su ausencia"
+    - "Validación del remitente en la petición: no se publica si el remitente tiene que estar verificado, ni si su dominio tiene que existir, para que POST /v3/smtp/email acepte la petición. El hueco sigue ABIERTO. Medido el 2026-09-17 SOLO en modo sandbox y en cuenta Free: con 'X-Sib-Sandbox: drop' la petición se acepta con 201 pese al remitente en example.invalid, o sea que la validación de FORMATO no lo exige. Como el proveedor declara que sandbox 'only validates the API request format', esto NO decide qué exige la ruta sin la cabecera, y la vía es repetir la petición sin sandbox, que ya es paquete B. Tampoco está medido si esa aceptación descuenta crédito [evidencias/probe_brevo_a_preflight_rechazo_2026-09-17_153449.json]"
+    - "Divisa canónica: la página sirve ocho y geolocaliza, con cifras que no son conversiones entre sí, y ninguna fuente declara cuál es la de referencia"

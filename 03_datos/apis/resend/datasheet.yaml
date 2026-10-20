@@ -1,0 +1,295 @@
+# Datasheet ACM2YAML v0.3 — Resend
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: resend                                     # 🟢
+type: api_first                                             # 🟢
+url: https://resend.com/pricing                             # 🟢
+syntax_version: 0.3
+date: 2026-09-01
+currency: USD                                               # 🟢
+consumption_units:
+  - requests
+  - emails
+  - MBs
+
+capacity:
+  quota_email_transactional_daily_free:
+    value: 100                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: DAY
+    window_type: rolling                                    # 🟡
+  quota_email_transactional_monthly_free:
+    value: 3000                                             # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+
+  quota_email_transactional_monthly_pro:
+    value: 50000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0009                                         # 🟢
+      value: 1
+
+  quota_email_transactional_monthly_scale:
+    value: 100000                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0009                                         # 🟢
+      value: 1
+
+  quota_email_transactional_monthly_enterprise:
+    value: custom                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+
+
+max_power:
+  rate_request_team_free:
+    value: 10                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+  rate_request_team_pro:
+    value: 10                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+  rate_request_team_scale:
+    value: 10                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+  # 🔴 caudal negociado — hueco deliberado (ver metadata.not_found)
+  rate_request_team_enterprise:
+    value:
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+plans:
+  free:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_transactional_monthly_free
+    rate: rate_request_team_free
+    endpoints:
+      /emails:
+        quota: quota_email_transactional_daily_free
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; 50 destinatarios en total entre to y cc por petición (verificado empíricamente; bcc sin probar), y cada destinatario consume una unidad.
+      /emails/batch:
+        quota: quota_email_transactional_daily_free
+        workload:
+          - unit: emails
+            min: 1
+            max: 100                                        # 🟢
+            description: Hasta 100 mensajes por llamada; cada mensaje consume una unidad por destinatario.
+      /emails/{id}:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de un envío concreto por identificador.
+      /domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta y verificación de dominios de envío.
+
+  pro:
+    price: 20.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_transactional_monthly_pro
+    rate: rate_request_team_pro
+    endpoints:
+      /emails:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; 50 destinatarios en total entre to y cc por petición (verificado empíricamente; bcc sin probar), y cada destinatario consume una unidad.
+      /emails/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 100                                        # 🟢
+            description: Hasta 100 mensajes por llamada; cada mensaje consume una unidad por destinatario.
+      /emails/{id}:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de un envío concreto por identificador.
+      /emails/{id}/cancel:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Cancelación de un envío programado que aún no ha salido.
+      /domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta y verificación de dominios de envío.
+
+  scale:
+    price: 90.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_transactional_monthly_scale
+    rate: rate_request_team_scale
+    endpoints:
+      /emails:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; 50 destinatarios en total entre to y cc por petición (verificado empíricamente; bcc sin probar), y cada destinatario consume una unidad.
+      /emails/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 100                                        # 🟢
+            description: Hasta 100 mensajes por llamada; cada mensaje consume una unidad por destinatario.
+      /emails/{id}:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de un envío concreto por identificador.
+      /emails/{id}/cancel:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Cancelación de un envío programado que aún no ha salido.
+      /domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta y verificación de dominios de envío.
+
+  enterprise:
+    price: custom                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_transactional_monthly_enterprise
+    rate: rate_request_team_enterprise
+    endpoints:
+      /emails:
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; 50 destinatarios en total entre to y cc por petición (verificado empíricamente; bcc sin probar), y cada destinatario consume una unidad.
+      /emails/batch:
+        workload:
+          - unit: emails
+            min: 1
+            max: 100                                        # 🟢
+            description: Hasta 100 mensajes por llamada; cada mensaje consume una unidad por destinatario.
+      /emails/{id}:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de un envío concreto por identificador.
+      /emails/{id}/cancel:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Cancelación de un envío programado que aún no ha salido.
+
+metadata:
+  sources_visited:
+    - https://resend.com/pricing
+    - https://resend.com/pricing.md
+    - https://resend.com/docs/api-reference/introduction
+    - https://resend.com/docs/api-reference/rate-limit
+    - https://resend.com/docs/api-reference/emails/send-email
+    - https://resend.com/docs/api-reference/emails/send-batch-emails
+    - https://resend.com/docs/knowledge-base/what-is-resend-pricing
+    - https://github.com/API-TaskForce/apis_consumption_model
+  data_provenance:
+    - "NOTA Test de type (C2/D9, 2026-09-14): las OCHO operaciones comprobadas, las cinco ultimas releidas en la referencia de cada endpoint y ya no en el indice agregado, de ahi el verde, que mide cobertura del test y no el valor; el valor sigue siendo api_first. 1 envio; 2 plantillas con Create, Retrieve, List, Update, Delete, Publish y Duplicate Template; 3 dominios con Create y Verify Domain; 4 credenciales con 'POST /api-keys', 'Add a new API key to authenticate communications with Resend.', mas Update API key, Delete API key y Rotate Signing Secret de los webhooks; 5 webhooks con 'POST /webhooks', 'Create a webhook to receive real-time notifications about email events.', y sus Update, Delete, Replay Event y List Attempts; 6 inbound routing con 'GET /emails/receiving', 'Retrieve a list of received emails for the authenticated user.', y la configuracion por webhook email.received, que la guia de recepcion declara API-able: 'create your webhook from the Webhooks API'; el registro MX es acto del usuario en su DNS, la misma excepcion que C2 escribe para la operacion 3; 7 supresiones con 'POST /suppressions', 'Add an email address to the suppression list.', mas List, Remove y las dos variantes batch; 8 actividad y logs con 'GET /logs', 'Retrieve a list of API request logs.', mas List Sent Emails y Retrieve Metrics. Ninguna operacion del dominio del correo quedo solo en el panel, comprobado tambien por dentro: el escalon 2 recorrio el menu el mismo dia y la unica asimetria es a favor de la API, que gestiona supresiones sin seccion equivalente en el panel (registro operacion por operacion en las entradas F10 y F11 de fuentes.md) [https://resend.com/docs/api-reference/api-keys/create-api-key, consultado 2026-09-14]"
+    - "El menu del panel expone 'API keys', 'Webhooks', 'Domains' y 'Logs', y no tiene seccion de supresiones, que la API si gestiona; con la cuenta vacia, Domains dice 'No domains yet' y 'Verify a domain by adding a DNS record and start sending and receiving emails from your own address.' [observacion de panel con cuenta propia, 2026-09-14]"
+    - "Free: $0/mes, 3.000 emails/mes y 'Limited to 100 emails per day' [https://resend.com/pricing.md]"
+    - "Pro desde $20/mes con 50.000 emails/mes y Scale desde $90/mes con 100.000: '| Pro | $20/mo | 50,000 | $0.90 |' y '| Scale | $90/mo | 100,000 | $0.90 |' [https://resend.com/pricing.md]"
+    - "Enterprise con precio, volumen y condiciones a medida: '| Enterprise | Custom | Custom | Custom |' [https://resend.com/pricing.md]"
+    - "El volumen mensual se contrata dentro del plan y el sobrecoste baja al subir: '| Pro | $35/mo | 100,000 | $0.90 |', '| Scale | $160/mo | 200,000 | $0.80 |', '| Scale | $350/mo | 500,000 | $0.70 |', '| Scale | $650/mo | 1,000,000 | $0.65 |', '| Scale | $825/mo | 1,500,000 | $0.52 |', '| Scale | $1,150/mo | 2,500,000 | $0.46 |' [https://resend.com/pricing.md]"
+    - "'The overage rate applies only to emails sent beyond the included volume' [https://resend.com/pricing.md]"
+    - "La cuota se consume por destinatario: 'Multiple To, CC, or BCC recipients count as separate emails' [https://resend.com/docs/knowledge-base/what-is-resend-pricing]"
+    - "Caudal: 'The default maximum rate limit is 10 requests per second per team', compartido por todas las claves de API del equipo [https://resend.com/docs/api-reference/rate-limit]"
+    - "'This number can be increased for trusted senders upon request' [https://resend.com/docs/api-reference/rate-limit]"
+    - "El 429 devuelve cabeceras ratelimit-limit, ratelimit-remaining, ratelimit-reset y retry-after — 'How many seconds to wait before making a follow-up request' [https://resend.com/docs/api-reference/rate-limit]"
+    - "Autenticación por Bearer con clave 're_xxxxxxxxx'; base https://api.resend.com [https://resend.com/docs/api-reference/introduction]"
+    - "429 documentado como 'The rate limit was exceeded' [https://resend.com/docs/api-reference/introduction]"
+    - "Envío individual: el campo to declara 'For multiple addresses, send as an array of strings. Max 50.'; cc y bcc solo 'For multiple addresses, send as an array of strings.' sin tope [https://resend.com/docs/api-reference/emails/send-email]"
+    - "Adjuntos: 'max 40MB per email, after Base64 encoding of the attachments' [https://resend.com/docs/api-reference/emails/send-email]"
+    - "Lote: 'Trigger up to 100 batch emails at once'; el campo attachments 'is not supported yet' [https://resend.com/docs/api-reference/emails/send-batch-emails]"
+    - "Dominios incluidos por plan, captura 2026-08-05: 1 (Free), 10 (Pro), 1.000 (Scale); captura 2026-09-01: '100 emails a day, 3 domains', 'All Free features, 10 domains', 'All Pro features, 1,000 domains' [https://resend.com/pricing.md]"
+    - "Retención de datos de 30 días en Free, Pro y Scale ('30-day data retention'); flexible en Enterprise ('flexible data retention') [https://resend.com/pricing.md]"
+    - "IP dedicada como add-on: 'Dedicated IPs — $30 / mo', 'Available on the Scale plan to customers exceeding 3,000 emails sent per day' [https://resend.com/pricing.md]"
+    - "El correo de marketing es un producto de precio aparte: 'Marketing plans are not limited by the number of emails sent — only by the number of contacts' [https://resend.com/pricing.md]"
+    - "Dos suscripciones independientes bajo la misma cuenta: 'Transactional — 3,000 emails — $0 / mo' y 'Marketing — 1,000 contacts — $0 / mo' [observación de panel con cuenta propia, 2026-09-01]"
+    - "El panel desglosa 'Monthly limit 0 / 3000' y 'Daily limit 0 / 100' en 'Sending' y 'Receiving': la recepción consume la misma cuota [observación de panel con cuenta propia, 2026-09-01]"
+    - "Sección Team del plan Free: 'Rate limit 10 req/s', 'Domains 0 / 3', 'Automations 0 / 10.000', 'AI credits 0 / 5' [observación de panel con cuenta propia, 2026-09-01]"
+    - "Dominios incluidos en Free: 'Domains 0 / 3' en el panel (2026-09-01), igual que el pricing de esa fecha; el pricing del 2026-08-05 decía 1. Límite de recursos, no de consumo: no se modela como cuota (fricción F-11) [https://resend.com/pricing.md + observación de panel con cuenta propia]"
+    - "Pay-as-you-go marcado 'Paid feature', interruptor apagado: 'When enabled, you will continue sending and receiving transactional emails beyond your quota … $0.90 for each additional bucket of 1,000 emails'. En Free no está disponible: la cuota es tope duro (fricción F-13) [observación de panel con cuenta propia, 2026-09-01]"
+    - "Add-on 'Domains - $20 / Mo — Adds 100 domains … paid transactional plan'; 'Dedicated IPs - $30 / Mo … Scale plan or higher'; 'Single Sign-On - $150 / Mo … Scale plan or higher' [observación de panel con cuenta propia, 2026-09-01]"
+    - "El panel no tiene formulario de envío transaccional: la sección Emails muestra 'No sent emails yet — Start sending emails to see insights and previews for every message' y remite a 'Go to docs'; el envío desde interfaz es Broadcasts, producto de marketing. type = api_first sobre el producto modelado [observación de panel con cuenta propia, 2026-09-01]"
+    - "Canal SMTP alternativo: 'Send emails using SMTP instead of the REST API', host 'smtp.resend.com', puerto 465, usuario 'resend', contraseña 'YOUR_API_KEY' [observación de panel con cuenta propia, 2026-09-01]"
+    - "Retención de datos de 30 días en todos los planes ('30-day data retention'): política, no consumo; no se modela como cuota (Q4, 2026-09-01) [https://resend.com/pricing.md]"
+    - "NOTA (no es un dato): reverificación adversarial de todas las fuentes documentales el 2026-09-01: precios, volúmenes, sobrecostes, 100/día, 3.000/mes, To 'Max 50', lote 100, adjuntos 40 MB, 10 rps y retención 30 días coinciden con lo capturado el 2026-08-05 [https://resend.com/pricing.md, https://resend.com/docs/api-reference/rate-limit, https://resend.com/docs/api-reference/emails/send-email, https://resend.com/docs/api-reference/emails/send-batch-emails, https://resend.com/docs/knowledge-base/what-is-resend-pricing]"
+    - "Ventana del límite diario: 'daily_quota_exceeded … wait until 24 hours have passed' (no dice si son 24 h desde el primer envío o desde el rechazo) [https://resend.com/docs/api-reference/errors, 2026-09-01]"
+    - "'Both sent and received emails count towards these quotas' (documentado desde al menos el 2026-09-01; no constaba el 2026-08-05) [https://resend.com/docs/api-reference/rate-limit]"
+    - "Cabeceras de cuota en cada respuesta: 'x-resend-daily-quota Your used daily email sending quota. Only sent to free plan users.' y 'x-resend-monthly-quota Your used monthly email sending quota.' [https://resend.com/docs/api-reference/rate-limit, 2026-09-01]"
+    - "Free: 'Overage Not available'; 'Paid plans have no daily sending limit' [https://resend.com/docs/knowledge-base/what-is-resend-pricing, 2026-09-01]"
+    - "Dominios incluidos: 3 (Free) / 10 (Pro) / 1,000 (Scale) / 'Set by contract' (Enterprise) en pricing y knowledge base el 2026-09-01; el 2026-08-05 el pricing decía 1 en Free. Cambio de la oferta, no discrepancia entre fuentes [https://resend.com/pricing.md]"
+    - "Otros límites de recursos por plan: '5 webhook endpoints, 100 AI credits / mo' (Pro), '10 webhook endpoints, 500 AI credits / mo' (Scale), '| Free | 5 |' créditos de IA [https://resend.com/pricing.md, 2026-09-01]"
+    - "Enterprise incluye 'Enterprise rate limits' como característica: el caudal ampliado es contractual y no se publica [https://resend.com/pricing.md, 2026-09-01]"
+    - "Tope de destinatarios por petición: 50 EN TOTAL entre to y cc (bcc sin probar). Con 51 en to la API responde 422 'Field `to` has a maximum of 50 items.'; con 26 en to y 25 en cc responde 422 'The total number of recipients cannot exceed 50.'; con 25 y 25 acepta (200) [verificación empírica con clave de la cuenta Free, envío a la propia dirección, 2026-09-06]"
+    - "Caudal del plan Free confirmado en cabeceras de respuesta: 'ratelimit-limit: 10', 'ratelimit-policy: 10;w=1' (10 peticiones por ventana de 1 s), 'ratelimit-remaining: 9', 'ratelimit-reset: 1' [verificación empírica, 2026-09-06]"
+    - "Las cabeceras de cuota devuelven el consumo acumulado antes de la petición: 'x-resend-daily-quota: 0' y 'x-resend-monthly-quota: 0' en el primer envío del día, 'x-resend-daily-quota: 1' y 'x-resend-monthly-quota: 1' en el siguiente [verificación empírica, 2026-09-06]"
+    - "Un envío con 50 direcciones idénticas cuenta como 1 email en el panel: 'Daily limit 2 / 100' y 'Monthly limit 2 / 3000' tras dos envíos: la deduplicación de destinatarios repetidos no está documentada; no prueba nada sobre destinatarios distintos, que la documentación dice contar uno a uno [verificación empírica + observación de panel, 2026-09-06]"
+    - "Sin dominio verificado la API devuelve 403 'You can only send testing emails to your own email address' [https://resend.com/docs/api-reference/errors, 2026-09-01]"
+  not_found:
+    - "Origen de la ventana de 24 h del límite diario (desde el primer envío o desde el rechazo): la documentación dice 'wait until 24 hours have passed' sin más; el panel no muestra fecha de reposición. Observable con las cabeceras x-resend-daily-quota, pendiente de sondeo"
+    - "Caudal del plan Enterprise: no publicado, las condiciones son negociadas"
+    - "Caudal de Enterprise y de trusted senders: el panel del plan Free confirma 10 req/s y no ofrece vía de solicitud; el valor ampliado no se publica"
+    - "Umbral que define a un 'trusted sender' y caudal concedido tras la solicitud: no publicados"
+    - "Cooling period tras un 429: solo se documenta la cabecera retry-after, sin valor publicado"
+    - "Tope de destinatarios por mensaje dentro de una llamada a /emails/batch: no documentado"

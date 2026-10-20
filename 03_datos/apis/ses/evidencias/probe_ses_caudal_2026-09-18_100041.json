@@ -1,0 +1,50 @@
+{
+  "sondeo": "ses_caudal",
+  "fecha_utc": "2026-09-18_100041",
+  "region": "eu-west-1",
+  "caudal_publicado_por_la_api": {
+    "Max24HourSend": 200.0,
+    "MaxSendRate": 1.0,
+    "SentLast24Hours": 0.0
+  },
+  "presupuesto_envios": 2,
+  "envios_gastados": 2,
+  "pasos": [
+    {
+      "intento": 1,
+      "t_desde_inicio_s": 0.257,
+      "respuesta": {
+        "http": 200,
+        "ms": 257,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 10:00:40 GMT",
+          "content-type": "application/json",
+          "content-length": "76",
+          "connection": "close",
+          "x-amzn-requestid": "43df1f4e-99ae-42b9-b261-3d311e426b16"
+        },
+        "cuerpo": {
+          "MessageId": "010201a0b3f608c1-d010423a-903f-4974-b783-3529057a2ab0-000000"
+        }
+      }
+    },
+    {
+      "intento": 2,
+      "t_desde_inicio_s": 0.518,
+      "respuesta": {
+        "http": 200,
+        "ms": 260,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 10:00:41 GMT",
+          "content-type": "application/json",
+          "content-length": "76",
+          "connection": "close",
+          "x-amzn-requestid": "aa63cee8-3c73-428c-86bc-7aeb7d1ed468"
+        },
+        "cuerpo": {
+          "MessageId": "010201a0b3f609c2-738ef572-d40e-47ea-8c2a-f9252deeb78d-000000"
+        }
+      }
+    }
+  ]
+}

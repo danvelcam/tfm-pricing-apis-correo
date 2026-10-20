@@ -1,0 +1,81 @@
+{
+ "pregunta": "PI-D02",
+ "operacion": "Q5",
+ "descripcion": "Rates del primer plan de pago y capacidad en 1 mes con la cuota expandida (presupuesto muy alto): el rate limita por encima de R·W·k",
+ "api": "sendgrid",
+ "llamadas": [
+  {
+   "endpoint": "POST /rates",
+   "params": {
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "essentials"
+    ]
+   },
+   "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+   "http": 200,
+   "ms": 64,
+   "respuesta": {
+    "results": {
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "rates": [
+        {
+         "value": 10000.0,
+         "unit": "requests",
+         "period": "1s"
+        },
+        {
+         "value": 10000.0,
+         "unit": "requests",
+         "period": "1s"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "essentials"
+    ]
+   },
+   "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+   "http": 200,
+   "ms": 43,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 25920010000.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

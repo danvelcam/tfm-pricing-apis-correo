@@ -1,0 +1,43 @@
+{
+ "pregunta": "PI-A07",
+ "operacion": "Q3",
+ "descripcion": "Capacidad acumulada en 7 días con el plan gratuito, k = 1",
+ "api": "sendgrid",
+ "llamadas": [
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "7day",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "free_trial"
+    ]
+   },
+   "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+   "http": 200,
+   "ms": 72,
+   "respuesta": {
+    "time": "7day",
+    "results": {
+     "free_trial": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 800.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

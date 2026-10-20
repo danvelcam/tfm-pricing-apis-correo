@@ -1,0 +1,88 @@
+\chapter*{Resumen}
+Las APIs de correo electrónico se han consolidado como la pieza con la
+que una aplicación moderna envía correo. Proveedores como SendGrid,
+Resend, Mailgun
+o Amazon SES ofrecen servicios que permiten el envío transaccional y
+de marketing a través de interfaces programáticas. Sin embargo,
+seleccionar la API más adecuada para un proyecto concreto es una
+decisión mal informada. Cuántas peticiones por segundo admite un
+\textit{endpoint}, cuántos destinatarios caben en una llamada o qué
+ocurre al superar la cuota son datos que rara vez están en la página de
+precios. Aparecen repartidos entre documentación de desarrollador,
+artículos de soporte y políticas de uso, cuando aparecen. Las
+comparativas que sí son fáciles de encontrar las elaboran los propios
+proveedores.
+
+Esta situación dificulta la comparación objetiva y sistemática entre
+APIs. Pongamos un equipo que necesite enviar 100.000 correos al mes en
+ráfagas de 1.000 peticiones por minuto, y además con soporte de webhooks
+y envío en lote. No tiene forma de averiguar qué proveedor las
+cumple todas a la vez.
+Existen estándares como OpenAPI para la descripción funcional de APIs
+REST. Las condiciones de consumo de una API, en cambio, carecen de un
+equivalente asentado que las recoja de forma estructurada, comparable y
+procesable por máquina.
+
+Este trabajo se enmarca en el \textit{Pricing Intelligence}, la línea
+de investigación que persigue transformar la información contenida en
+los planes de precios en conocimiento útil para la toma de decisiones.
+Dentro de esa línea, trabajos previos del grupo han conceptualizado la
+capacidad contractual de las APIs mediante el \textit{API Capacity
+Model} (ACM) y su serialización ACM2YAML. De ahí nace la
+\textit{Datasheet}: un documento orientado a máquinas que reúne en una
+sola representación la información que está dispersa. Sobre ella
+operan las herramientas del ecosistema: PRIME4API como motor de análisis
+de la capacidad, HARVEY4API como interfaz de consulta y SPHERE como
+\textit{hub} de publicación. Dichos artefactos, sin
+embargo, se han validado hasta ahora sobre tres pricings de dos
+servicios \citep{gavira2026tfm}, y su versión operativa captura dos de
+las cuatro dimensiones del metamodelo.
+
+El objetivo de este Trabajo Fin de Máster es llevar ese instrumental a
+un dominio real y a escala. Para ello se construye un catálogo de
+Datasheets de un conjunto representativo de APIs de correo electrónico,
+documentado de forma rigurosa a partir de la documentación técnica
+oficial de cada proveedor y con trazabilidad explícita de las fuentes.
+La confrontación del modelo con el dominio permite, además, identificar
+y corregir sus carencias de expresividad.
+
+La contribución de este trabajo es cuádruple. En primer lugar, se
+aporta un catálogo curado y versionado de Datasheets del dominio del
+correo, preparado como contribución a SPHERE y reutilizable por el resto
+del ecosistema.
+En segundo lugar, se propone una evolución del esquema ACM2YAML
+justificada caso a caso: cada extensión responde a un escenario real
+que la versión previa no era capaz de representar. En tercer lugar, se
+caracteriza cómo interactúan los límites de uso y los \textit{rates} en el
+dominio. Cuándo el \textit{rate} impide llegar a agotar la cuota, cuándo la cuota
+se agota antes de que el \textit{rate} llegue a notarse, y qué le cuesta eso al
+consumidor. La relación estaba definida en el modelo, pero no
+caracterizada sobre un dominio real. Se analiza con la interpretación
+geométrica de la capacidad y las operaciones de PRIME4API.
+En cuarto lugar, se
+establece un método de comparación sistemática que responde a preguntas
+de decisión del tipo \textit{``¿cuál es la API más adecuada si mis
+requisitos son X?''}. El método cruza los requisitos funcionales con
+los no funcionales en la misma consulta.
+
+El encargo fijaba tres fuentes para seleccionar las APIs. Eran las
+analizadas en un Trabajo Fin de Máster previo del mismo programa, las ya modeladas
+en el ecosistema y una consulta documentada a un modelo de lenguaje. La
+primera no pudo ejecutarse, porque ese trabajo llegó con la selección ya
+hecha. Las otras dos y el piloto del método dan las ocho APIs del
+catálogo.
+
+Los resultados muestran que estructurar formalmente el conocimiento
+sobre las APIs de correo hace visibles diferencias entre proveedores que
+las comparativas convencionales no dejan ver. Muestran también que una
+parte significativa de la capacidad contractual de estos servicios no
+llega a publicarse: eso marca el límite de lo que puede conocerse por
+documentación y deja el resto en manos de la medición empírica. Cabe
+esperar que tanto el instrumento como el método sean extensibles a otros
+dominios de APIs más allá del correo, aunque esa extensibilidad queda sin
+probar.
+
+\vspace{.5cm}
+{\raggedright\noindent\textbf{Palabras clave:} Pricing Intelligence, APIs de correo electrónico, \textit{datasheets} de APIs, capacidad de APIs,
+\textit{rate limits}, cuotas de uso, comparación sistemática de APIs, ACM2YAML,
+propiedades no funcionales, selección de servicios\par}

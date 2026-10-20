@@ -1,0 +1,364 @@
+# Pricing2YAML (sintaxis del grupo ISA, la que usa SPHERE) — Amazon SES, Email API v2.
+# Fuente: 03_datos/apis/ses/datasheet.yaml (ACM2YAML v0.3, cerrada el 2026-09-18).
+# Cada valor lleva entre corchetes la línea de la Datasheet de la que sale (DS:n).
+# SES no incluye volumen de correos en ningún plan: se paga por destinatario (DS:209-211).
+# La Datasheet no puede escribir ese precio en v0.3 y lo remite a su matriz funcional, así que
+# los precios por uso y lo que cambia por plan citan esa matriz (FM:n = 03_datos/apis/ses/features.md)
+# y la captura de precios del TFM (PC:n = evidencias/paginas/2026-09-18/aws_amazon_com_ses_pricing.txt).
+# Plan y estado de cuenta son del par cuenta y región (DS:208, DS:215).
+# Lo que no cabe en esta sintaxis está en no_admite.md (R21), no aquí.
+saasName: Amazon SES
+syntaxVersion: '3.0'
+version: '2026-09-18'
+url: https://aws.amazon.com/ses/pricing/
+createdAt: '2026-09-18'
+currency: USD
+billing:
+  monthly: 1
+variables: {}
+tags:
+  - Envío
+  - Entregabilidad
+  - Recursos
+features:
+  transactionalEmailApi:
+    description: 'Envío individual por POST /v2/email/outbound-emails [DS:50-62, DS:222]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  bulkEmailApi:
+    description: 'Envío en lote por POST /v2/email/outbound-bulk-emails [DS:63-71, DS:222]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  smtpRelay:
+    description: 'Canal SMTP; no existe en 10 de las 29 regiones con endpoint de API [FM:39]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  accountApi:
+    description: 'GET /v2/email/account, la vía documentada para leer los límites vigentes; no hay cabeceras de caudal [DS:72-78, DS:223]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INFORMATION
+    tag: Recursos
+  otherApiOperations:
+    description: 'Resto de operaciones de la API v2, el comodín /* de la Datasheet [DS:47-49, DS:218]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: MANAGEMENT
+    tag: Recursos
+  globalEndpoints:
+    description: 'Envío por endpoint multirregión; incluido en Enterprise, aparte en el resto [FM:49, PC:253]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Envío
+  emailValidation:
+    description: 'Validación de direcciones por API; Pro y Enterprise incluyen un cupo mensual; en el resto se paga cada una [FM:50, PC:295]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Entregabilidad
+  sesDeliverability:
+    description: 'Virtual Deliverability Manager, entregabilidad de SES; incluida en los tres planes, à la carte se paga por correo y consulta [FM:47]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: INFORMATION
+    tag: Entregabilidad
+  globalDeliverability:
+    description: 'Virtual Deliverability Manager, entregabilidad global; incluida en Pro y Enterprise [FM:48, PC:238]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: INFORMATION
+    tag: Entregabilidad
+  managedDedicatedIp:
+    description: 'IP dedicada administrada; incluida en Pro y Enterprise [FM:46, PC:243]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Entregabilidad
+  standardDedicatedIp:
+    description: 'IP dedicada estándar o propia (BYOIP); aparte en los cuatro planes [FM:44-45, PC:263]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Entregabilidad
+  openIngressEndpoint:
+    description: 'Mail Manager, endpoint de entrada abierto; Enterprise incluye uno; en el resto se paga cada uno [FM:54, PC:300]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+usageLimits:
+  billedEmailsPerMonth:
+    description: 'Correos facturados al mes, por destinatario. Ningún plan incluye volumen: cada bloque de 1.000 se paga con el add-on de su plan [DS:209-211, DS:216, FM:35]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: email
+    type: RENEWABLE
+    period:
+      unit: MONTH
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+      - bulkEmailApi
+      - smtpRelay
+  emailsPerDaySandbox:
+    description: 'Cuota diaria del entorno de pruebas, por destinatario; es del estado de la cuenta, no del plan. En producción no se publica [DS:16-23, DS:212, DS:214, DS:230]'
+    valueType: NUMERIC
+    defaultValue: 200
+    unit: email
+    type: RENEWABLE
+    period:
+      unit: DAY
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+      - bulkEmailApi
+      - smtpRelay
+  sendRequestsPerSecondSandbox:
+    description: 'Caudal de envío del entorno de pruebas; en producción no se publica [DS:26-32, DS:212, DS:231]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: SEC
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+      - bulkEmailApi
+  otherRequestsPerSecond:
+    description: 'Caudal del resto de operaciones; ámbar, porque el literal enumera nombres de la versión 1 [DS:34-39, DS:218]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: SEC
+      value: 1
+    linkedFeatures:
+      - otherApiOperations
+      - accountApi
+  recipientsPerMessage:
+    description: 'Destinatarios por mensaje, sumando to, cc y bcc [DS:54-58, DS:219]'
+    valueType: NUMERIC
+    defaultValue: 50
+    unit: recipient
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - transactionalEmailApi
+  messageSize:
+    description: 'Tamaño del mensaje con adjuntos tras base64; por encima de 10 MB se limita el ancho de banda [DS:59-62, DS:68-71, DS:220]'
+    valueType: NUMERIC
+    defaultValue: 40
+    unit: MB
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - transactionalEmailApi
+      - bulkEmailApi
+      - smtpRelay
+  apiValidationsPerMonth:
+    description: 'Validaciones por API incluidas al mes, por cuenta y región [FM:50, PC:295]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: validation
+    type: RENEWABLE
+    period:
+      unit: MONTH
+      value: 1
+    linkedFeatures:
+      - emailValidation
+  openIngressEndpoints:
+    description: 'Endpoints de entrada abiertos incluidos, por cuenta y región [FM:54, PC:300]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: endpoint
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - openIngressEndpoint
+plans:
+  aLaCarte:
+    description: 'À la carte, la ausencia de plan: sin cuota fija y cada función a su tarifa [DS:42-46, DS:207]'
+    price: 0
+    unit: month
+    features: {}
+    usageLimits: {}
+  essentials:
+    description: 'Essentials, sin cuota fija; plan de entrada de las cuentas nuevas desde el 2026-07-21 [DS:80-84, DS:207, PC:221]'
+    price: 0
+    unit: month
+    features:
+      sesDeliverability:
+        value: true
+    usageLimits: {}
+  pro:
+    description: 'Pro, cuota fija por cuenta y región [DS:118-122, DS:207-208]'
+    price: 105
+    unit: month
+    features:
+      sesDeliverability:
+        value: true
+      emailValidation:
+        value: true
+      globalDeliverability:
+        value: true
+      managedDedicatedIp:
+        value: true
+    usageLimits:
+      apiValidationsPerMonth:
+        value: 2500
+  enterprise:
+    description: 'Enterprise, cuota fija por cuenta y región [DS:156-160, DS:207-208]'
+    price: 500
+    unit: month
+    features:
+      globalEndpoints:
+        value: true
+      sesDeliverability:
+        value: true
+      emailValidation:
+        value: true
+      openIngressEndpoint:
+        value: true
+      globalDeliverability:
+        value: true
+      managedDedicatedIp:
+        value: true
+    usageLimits:
+      apiValidationsPerMonth:
+        value: 5000
+      openIngressEndpoints:
+        value: 1
+addOns:
+  # El precio por correo va en un add-on por plan, con el primer tramo (0 a 10 millones al mes).
+  # Los otros dos tramos marginales no caben (PC:206-213). Ver el informe para no_admite.md.
+  outboundEmailsALaCarte:
+    description: 'Correo saliente à la carte: 0,10 USD por 1.000 destinatarios [DS:209, FM:34]'
+    availableFor:
+      - aLaCarte
+    price: 0.1
+    unit: 1000 emails
+    usageLimitsExtensions:
+      billedEmailsPerMonth:
+        value: 1000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 100000000
+      quantityStep: 1
+  outboundEmailsEssentials:
+    description: 'Correo saliente en Essentials, primer tramo: 0,16 USD por 1.000 [DS:209, FM:34, PC:202]'
+    availableFor:
+      - essentials
+    price: 0.16
+    unit: 1000 emails
+    usageLimitsExtensions:
+      billedEmailsPerMonth:
+        value: 1000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 10000
+      quantityStep: 1
+  outboundEmailsPro:
+    description: 'Correo saliente en Pro, primer tramo: 0,22 USD por 1.000 [FM:34, PC:204]'
+    availableFor:
+      - pro
+    price: 0.22
+    unit: 1000 emails
+    usageLimitsExtensions:
+      billedEmailsPerMonth:
+        value: 1000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 10000
+      quantityStep: 1
+  outboundEmailsEnterprise:
+    description: 'Correo saliente en Enterprise, primer tramo: 0,23 USD por 1.000 [FM:34, PC:205]'
+    availableFor:
+      - enterprise
+    price: 0.23
+    unit: 1000 emails
+    usageLimitsExtensions:
+      billedEmailsPerMonth:
+        value: 1000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 10000
+      quantityStep: 1
+  extraApiValidations:
+    description: 'Validación por API a 0,01 USD; en Pro y Enterprise, la que pasa del cupo [FM:50, PC:295, PC:317]'
+    availableFor:
+      - aLaCarte
+      - essentials
+      - pro
+      - enterprise
+    price: 0.01
+    unit: validation
+    features:
+      emailValidation:
+        value: true
+    usageLimitsExtensions:
+      apiValidationsPerMonth:
+        value: 1
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 100000000
+      quantityStep: 1
+  extraOpenIngressEndpoint:
+    # La nota 9 da el precio para Essentials y Pro; la tarifa à la carte da el mismo (FM:54).
+    description: 'Endpoint de entrada abierto a 50 USD al mes [FM:54, PC:300]'
+    availableFor:
+      - aLaCarte
+      - essentials
+      - pro
+    price: 50
+    unit: endpoint/month
+    features:
+      openIngressEndpoint:
+        value: true
+    usageLimitsExtensions:
+      openIngressEndpoints:
+        value: 1
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 10
+      quantityStep: 1
+  globalDeliverability:
+    # Solo la tarifa à la carte publica el precio; el comparador marca «Add-on» en Essentials (FM:48).
+    description: 'Entregabilidad global de Virtual Deliverability Manager a 1.250 USD al mes [FM:48, PC:334]'
+    availableFor:
+      - aLaCarte
+      - essentials
+    price: 1250
+    unit: month
+    features:
+      globalDeliverability:
+        value: true
+  standardDedicatedIp:
+    # Solo la tarifa à la carte publica el precio; el comparador marca «Add-on» en los tres planes (FM:44).
+    description: 'IP dedicada estándar a 24,95 USD al mes por IP [FM:44, PC:323]'
+    availableFor:
+      - aLaCarte
+      - essentials
+      - pro
+      - enterprise
+    price: 24.95
+    unit: IP/month
+    features:
+      standardDedicatedIp:
+        value: true
+  # Global Endpoints (0,03 USD por 1.000 correos sobre el precio base, FM:49) no se escribe como
+  # add-on: un add-on que activa una feature no puede a la vez cobrar por correo. Queda como
+  # feature de Enterprise. La IP administrada, Mail Manager, tenants, archivado y adjuntos
+  # tampoco: ver el informe.

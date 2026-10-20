@@ -1,0 +1,85 @@
+{
+ "caso": "C3",
+ "pregunta": "PI-A06",
+ "operacion": "Q1",
+ "descripcion": "Tiempo minimo para que una cuenta sin aprobar envie 100 correos (su cuota mensual entera), k = 1 y k = 2",
+ "api": "mailersend",
+ "servicio": "http://localhost:8003/api/v1/datasheet",
+ "ejecutado": "2026-09-15T13:04:36",
+ "llamadas": [
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": "100",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 110,
+   "respuesta": {
+    "capacity_goal": 100,
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "unapproved_account",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "9min"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": "100",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "2"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 117,
+   "respuesta": {
+    "capacity_goal": 100,
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "unapproved_account",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 2.0,
+          "value": "4min"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

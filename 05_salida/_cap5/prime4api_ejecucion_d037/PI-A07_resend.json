@@ -1,0 +1,43 @@
+{
+ "pregunta": "PI-A07",
+ "operacion": "Q3",
+ "descripcion": "Capacidad acumulada en 7 días con el plan gratuito, k = 1",
+ "api": "resend",
+ "llamadas": [
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "7day",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/emails",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/resend/datasheet.yaml",
+   "http": 200,
+   "ms": 22,
+   "respuesta": {
+    "time": "7day",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/emails",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 710.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

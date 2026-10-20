@@ -1,0 +1,1 @@
+2026-09-17T15:34:52Z	probe_brevo_a_preflight_rechazo.sh	p2_sender_sumidero devolvio 201 en un endpoint de envio con 1 destinatarios: la guarda no se sostiene

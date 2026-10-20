@@ -1,0 +1,43 @@
+{
+ "pregunta": "PI-A07",
+ "operacion": "Q3",
+ "descripcion": "Capacidad acumulada en 7 días con el plan gratuito, k = 1",
+ "api": "postmark",
+ "llamadas": [
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "7day",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 22,
+   "respuesta": {
+    "time": "7day",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 100.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

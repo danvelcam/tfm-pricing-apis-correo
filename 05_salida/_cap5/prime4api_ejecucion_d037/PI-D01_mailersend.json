@@ -1,0 +1,87 @@
+{
+ "pregunta": "PI-D01",
+ "operacion": "Q5",
+ "descripcion": "Qué se agota antes en el primer plan de pago: t_min para agotar la cuota al rate máximo (k = 1) y veredicto para consumir la cuota entera en un mes",
+ "api": "mailersend",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation",
+    "plan_names": [
+     "hobby"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 62,
+   "respuesta": {
+    "results": {
+     "hobby": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "quotas": [
+        {
+         "value": 1000.0,
+         "unit": "requests",
+         "period": "1day"
+        },
+        {
+         "value": 5000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0015,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 5000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation",
+    "plan_names": [
+     "hobby"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 63,
+   "respuesta": {
+    "capacity_goal": 5000,
+    "results": {
+     "hobby": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "41min"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

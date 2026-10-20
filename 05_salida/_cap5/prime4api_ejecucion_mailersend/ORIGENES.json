@@ -1,0 +1,6 @@
+{
+ "mailersend": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003, imagen rgavira123/prime4api del compose de docker/testing), llamadas hechas desde el Chrome del autor (fetch desde el origen localhost:8003, 2026-09-08 19:35 UTC); datasheet_source sin el bloque metadata, que el motor no lee",
+  "fecha": "2026-09-08T19:28:38"
+ }
+}

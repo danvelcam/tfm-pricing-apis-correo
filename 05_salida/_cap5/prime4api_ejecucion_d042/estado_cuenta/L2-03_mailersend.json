@@ -1,0 +1,43 @@
+{
+ "id": "L2-03",
+ "pregunta": "Lo mismo en el lote de Hobby, donde el alias declara max 5 y el endpoint 35000",
+ "api": "mailersend",
+ "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+ "datasheet_sha256": "3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd",
+ "datasheet_sin_tocar": true,
+ "origen": "PRIME4API de SPHERE en local (localhost:8003)",
+ "fecha": "2026-09-15T13:04:32",
+ "llamada": {
+  "endpoint": "POST /api/v1/datasheet/nav/crf-ranges",
+  "params": {},
+  "body": {
+   "plan_names": [
+    "hobby"
+   ],
+   "endpoint_path": "/v1/bulk-email"
+  },
+  "datasheet_source": "<YAML crudo de 03_datos/apis/mailersend/datasheet.yaml, sha256 3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd>",
+  "http": 200,
+  "ms": 231,
+  "respuesta": {
+   "plans": [
+    "hobby"
+   ],
+   "endpoint": "/v1/bulk-email",
+   "crf_ranges": [
+    {
+     "unit": "emails",
+     "min": 1.0,
+     "max": 35000.0,
+     "description": "Hasta 500 objetos de correo por llamada, cada uno con hasta 50 to, 10 cc y 10 bcc; cada destinatario consume una unidad."
+    },
+    {
+     "unit": "MBs",
+     "min": 1.0,
+     "max": 50.0,
+     "description": "Tamaño total del cuerpo JSON de la petición, hasta 50 MB."
+    }
+   ]
+  }
+ }
+}

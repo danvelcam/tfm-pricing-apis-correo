@@ -1,0 +1,18 @@
+{
+ "postmark": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003), reejecucion de A06 con los dos regimenes (D-037)",
+  "fecha": "2026-09-14T19:35:50"
+ },
+ "resend": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003), reejecucion de A06 con los dos regimenes (D-037)",
+  "fecha": "2026-09-14T19:35:50"
+ },
+ "sendgrid": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003), reejecucion de A06 con los dos regimenes (D-037)",
+  "fecha": "2026-09-14T19:35:50"
+ },
+ "mailersend": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003), reejecucion de A06 con los dos regimenes (D-037)",
+  "fecha": "2026-09-14T19:35:51"
+ }
+}

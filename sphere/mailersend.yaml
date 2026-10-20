@@ -1,0 +1,448 @@
+# Pricing2YAML (sintaxis del grupo ISA, la que usa SPHERE) — MailerSend, Email API.
+# Fuente: 03_datos/apis/mailersend/datasheet.yaml (ACM2YAML v0.3, cerrada el 2026-09-08).
+# Cada valor lleva entre corchetes la línea de la Datasheet de la que sale (DS:n).
+# Planes en su primer volumen contratable, como la Datasheet (DS:462-468).
+# Lo que no cabe en esta sintaxis está en no_admite.md (R21), no aquí.
+saasName: MailerSend
+syntaxVersion: '3.0'
+version: '2026-09-08'
+url: https://www.mailersend.com/pricing
+createdAt: '2026-09-08'
+currency: USD
+billing:
+  monthly: 1
+  annual: 0.9 # pago anual un 10 % más barato, misma cuota y sobrecoste [DS:470, DS:476]
+variables: {}
+tags:
+  - Envío
+  - Recursos
+features:
+  transactionalEmailApi:
+    description: 'Envío individual por POST /v1/email [DS:201-219]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  bulkEmailApi:
+    description: 'Envío en lote por POST /v1/bulk-email; desde Hobby [DS:249-275, DS:507]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  smtpRelay:
+    description: 'Canal SMTP; comparte la cuota diaria de peticiones con la API [DS:454, DS:479, DS:485, DS:533]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  replyThreadingFields:
+    description: 'Hilos de respuesta (in_reply_to y references en /v1/email); la página de precios los da desde Free, D17 cierra DISC-16 [DS:511]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Envío
+  customHeaders:
+    description: 'Campos headers y list_unsubscribe en /v1/email; solo Professional y Enterprise [DS:511]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Envío
+  inboundRouting:
+    description: 'Rutas de entrada; el correo entrante consume la cuota de envío [DS:524, DS:535]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: DOMAIN
+    tag: Envío
+  webhooks:
+    description: 'Webhooks de eventos [DS:524]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Recursos
+  sendingDomains:
+    description: 'Dominios de envío [DS:524]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: MANAGEMENT
+    tag: Recursos
+  apiTokens:
+    description: 'Tokens de API [DS:524]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: MANAGEMENT
+    tag: Recursos
+  emailTemplates:
+    description: 'Plantillas [DS:524]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: DOMAIN
+    tag: Recursos
+  teamSeats:
+    description: 'Asientos de usuario; el Free suma un contable [DS:524]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: MANAGEMENT
+    tag: Recursos
+  activityData:
+    description: 'Datos de actividad de los envíos [DS:527]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INFORMATION
+    tag: Recursos
+  apiLogs:
+    description: 'Logs de API y SMTP; solo desde Professional [DS:527-528]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: INFORMATION
+    tag: Recursos
+usageLimits:
+  emailsPerMonth:
+    description: 'Cuota mensual de emails, por destinatario; cuenta también el entrante [DS:16-55, DS:535]'
+    valueType: NUMERIC
+    defaultValue: 500
+    unit: email
+    type: RENEWABLE
+    period:
+      unit: MONTH
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+      - bulkEmailApi
+      - smtpRelay
+      - inboundRouting
+  apiRequestsPerDay:
+    description: 'Cuota diaria de peticiones API y SMTP, con reposición a medianoche UTC [DS:67-97, DS:479-482]'
+    valueType: NUMERIC
+    defaultValue: 100
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: DAY
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+      - bulkEmailApi
+      - smtpRelay
+  generalRequestsPerMinute:
+    description: 'Caudal de los endpoints generales, /* en la Datasheet [DS:100-123, DS:487]'
+    valueType: NUMERIC
+    defaultValue: 60
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: MIN
+      value: 1
+    linkedFeatures:
+      - webhooks
+      - sendingDomains
+      - apiTokens
+      - emailTemplates
+  emailRequestsPerMinute:
+    description: 'Caudal de POST /v1/email con reputación sana [DS:124-147]'
+    valueType: NUMERIC
+    defaultValue: 120
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: MIN
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+  bulkRequestsPerMinute:
+    description: 'Caudal de POST /v1/bulk-email por plan; 0 donde el endpoint no existe [DS:148-165, DS:490-491]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: MIN
+      value: 1
+    linkedFeatures:
+      - bulkEmailApi
+  recipientsPerEmailRequest:
+    description: 'Destinatarios por petición a /v1/email: 50 to, 10 cc y 10 bcc [DS:215-219]'
+    valueType: NUMERIC
+    defaultValue: 70
+    unit: recipient
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - transactionalEmailApi
+  recipientsPerBulkRequest:
+    description: 'Destinatarios por llamada al lote: 500 objetos de hasta 70; 0 donde el endpoint no existe [DS:267-271]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: recipient
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - bulkEmailApi
+  bulkPayloadSize:
+    description: 'Tamaño del cuerpo JSON del lote; 0 donde el endpoint no existe [DS:272-275]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: MB
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - bulkEmailApi
+  smtpConcurrentConnections:
+    description: 'Conexiones SMTP simultáneas [DS:533]'
+    valueType: NUMERIC
+    defaultValue: 5
+    unit: connection
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - smtpRelay
+  maxSmtpUsers:
+    description: 'Usuarios SMTP [DS:524, DS:533]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: user
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - smtpRelay
+  maxSendingDomains:
+    description: 'Dominios de envío [DS:524]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: domain
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - sendingDomains
+  maxApiTokens:
+    description: 'Tokens de API [DS:524]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: token
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - apiTokens
+  maxWebhooks:
+    description: 'Webhooks [DS:524]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: webhook
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - webhooks
+  maxInboundRoutes:
+    description: 'Rutas de entrada [DS:524]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: route
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - inboundRouting
+  maxTemplates:
+    description: 'Plantillas [DS:524]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: template
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - emailTemplates
+  maxSeats:
+    description: 'Asientos de usuario; en Free, 1 más un contable [DS:524]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: user
+    type: NON_RENEWABLE
+    trackable: true
+    linkedFeatures:
+      - teamSeats
+  activityRetentionDays:
+    description: 'Retención de la actividad [DS:527]'
+    valueType: NUMERIC
+    defaultValue: 1
+    unit: day
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - activityData
+  logRetentionDays:
+    description: 'Retención de logs de API y SMTP [DS:527-528]'
+    valueType: NUMERIC
+    defaultValue: 0
+    unit: day
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - apiLogs
+plans:
+  free:
+    description: 'Free; tope duro que pausa el envío al agotarse [DS:192-219, DS:454, DS:458]'
+    price: 0
+    unit: month
+    features:
+      replyThreadingFields:
+        value: true
+    usageLimits: {}
+  hobby:
+    description: 'Hobby [DS:221-275]'
+    price: 7
+    unit: month
+    features:
+      bulkEmailApi:
+        value: true
+      replyThreadingFields:
+        value: true
+    usageLimits:
+      emailsPerMonth:
+        value: 5000
+      apiRequestsPerDay:
+        value: 1000
+      bulkRequestsPerMinute:
+        value: 10
+      recipientsPerBulkRequest:
+        value: 35000
+      bulkPayloadSize:
+        value: 50
+      maxApiTokens:
+        value: 3
+      maxWebhooks:
+        value: 1 # la página de precios da 1 en Hobby; el centro de ayuda, 5 (D17, DISC-05) [DS:524-525]
+      maxTemplates:
+        value: 10
+      maxSeats:
+        value: 5
+  starter:
+    description: 'Starter en su primer volumen, 50.000 emails al mes [DS:277-331, DS:462, DS:465]'
+    price: 35
+    unit: month
+    features:
+      bulkEmailApi:
+        value: true
+      replyThreadingFields:
+        value: true
+    usageLimits:
+      emailsPerMonth:
+        value: 50000
+      apiRequestsPerDay:
+        value: 100000
+      bulkRequestsPerMinute:
+        value: 15
+      recipientsPerBulkRequest:
+        value: 35000
+      bulkPayloadSize:
+        value: 50
+      maxSmtpUsers:
+        value: 50
+      maxSendingDomains:
+        value: 10
+      maxApiTokens:
+        value: 50
+      maxWebhooks:
+        value: 50
+      maxInboundRoutes:
+        value: 50
+      maxTemplates:
+        value: 250
+      maxSeats:
+        value: 5
+      activityRetentionDays:
+        value: 7
+  professional:
+    description: 'Professional en su primer volumen, 50.000 emails al mes [DS:333-387, DS:463, DS:466]'
+    price: 110
+    unit: month
+    features:
+      bulkEmailApi:
+        value: true
+      replyThreadingFields:
+        value: true
+      customHeaders:
+        value: true
+      apiLogs:
+        value: true
+    usageLimits:
+      emailsPerMonth:
+        value: 50000
+      apiRequestsPerDay:
+        value: 500000
+      bulkRequestsPerMinute:
+        value: 30
+      recipientsPerBulkRequest:
+        value: 35000
+      bulkPayloadSize:
+        value: 50
+      smtpConcurrentConnections:
+        value: 50
+      maxSmtpUsers:
+        value: 1000
+      maxSendingDomains:
+        value: 1000
+      maxApiTokens:
+        value: 1000
+      maxWebhooks:
+        value: 5000
+      maxInboundRoutes:
+        value: 100000
+      maxTemplates:
+        value: 5000
+      maxSeats:
+        value: 1000
+      activityRetentionDays:
+        value: 30
+      logRetentionDays:
+        value: 7
+  # Enterprise no se escribe: la Datasheet tampoco lo modela, sin precio ni volumen publicados [DS:582].
+addOns:
+  extraEmailsHobby:
+    description: 'Sobrecoste de Hobby: 1,50 USD por 1.000 emails sobre la cuota [DS:31-33]'
+    availableFor:
+      - hobby
+    price: 1.5
+    unit: 1000 emails
+    usageLimitsExtensions:
+      emailsPerMonth:
+        value: 1000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 100000000
+      quantityStep: 1
+  extraEmailsStarterProfessional:
+    description: 'Sobrecoste del primer volumen de Starter y Professional: 1,30 USD por 1.000 emails [DS:42-44, DS:53-55, DS:467-468]'
+    availableFor:
+      - starter
+      - professional
+    price: 1.3
+    unit: 1000 emails
+    usageLimitsExtensions:
+      emailsPerMonth:
+        value: 1000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 100000000
+      quantityStep: 1
+  extraDomains:
+    description: 'Dominio adicional a 4 USD al mes, hasta 50; desde Starter [DS:530]'
+    availableFor:
+      - starter
+      - professional
+    price: 4
+    unit: domain/month
+    usageLimitsExtensions:
+      maxSendingDomains:
+        value: 1
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 50
+      quantityStep: 1
+  # La IP dedicada (50 USD al mes por IP) no se escribe: la página de precios la da solo en
+  # Enterprise, que no se modela; las otras fuentes son incoherencia del pricing (D17, DISC-04)
+  # [DS:531-532]. La feature dedicatedIp sale con él: la analítica rechaza una feature que ningún
+  # plan ni add-on ofrece. Ver no_admite.md.
+  # La extensión de retención hasta 365 días (DS:529) no se escribe: su precio depende del
+  # volumen contratado y del plazo, y Pricing2YAML da a un add-on un único precio. Ver no_admite.md.

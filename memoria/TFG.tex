@@ -1,0 +1,48 @@
+\documentclass[12pt]{report}
+
+\input{etc/pkgs}
+\input{etc/style}
+
+\lstdefinestyle{literalia}{
+  basicstyle=\small\rmfamily, columns=fullflexible, keepspaces=true,
+  breaklines=true, breakatwhitespace=true, breakindent=0pt, showstringspaces=false,
+  frame=leftline, framerule=0.8pt, xleftmargin=1.2em, framesep=0.8em,
+  moredelim=[is][\bfseries]{**}{**},
+  moredelim=[is][\itshape]{\#\#}{\#\#},
+  moredelim=[is][\ttfamily]{`}{`},
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'\i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1
+           {ñ}{{\~n}}1 {«}{{\guillemotleft}}1 {»}{{\guillemotright}}1
+           {—}{{---}}1 {-}{{-}}1,
+}
+
+\begin{document}
+
+    \pagenumbering{alph}
+    \input{sections/00_portada}
+    \input{sections/00_agradecimientos}
+    \input{sections/00_resumen}
+    \input{sections/00_abstract}
+    
+    \begingroup
+        \hypersetup{linkcolor=black}
+        \tableofcontents
+        \listoffigures
+        \lstlistoflistings
+    \endgroup
+    
+    \clearpage\pagenumbering{arabic}
+    
+    \input{sections/01_introduccion}
+    \input{sections/02_Gestion}
+    \input{sections/03_EstadoDelArte}
+    \input{sections/04_Propuesta}
+    \input{sections/05_Hallazgos}
+    \input{sections/06_EvolucionEsquema}
+    \input{sections/XX_Conclusiones}
+
+    \printbibliography[heading=bibchapter]
+
+    \appendix
+    \input{sections/A0_UsoIA}
+
+\end{document}

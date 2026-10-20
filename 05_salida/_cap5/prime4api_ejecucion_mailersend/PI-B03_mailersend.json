@@ -1,0 +1,86 @@
+{
+ "pregunta": "PI-B03",
+ "operacion": "Q10",
+ "descripcion": "12.000 correos al mes: coste total por plan (sobrecoste frente a subir de plan), planes calculables",
+ "api": "mailersend",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 12000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "plan_names": [
+     "free",
+     "hobby",
+     "starter",
+     "professional"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 18,
+   "respuesta": {
+    "desired_capacity": 12000,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "hobby",
+      "endpoint": "/v1/email",
+      "dimension": "emails",
+      "base_cost": 7,
+      "overage_cost": 10.5,
+      "total_cost": 17.5,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 5940000,
+      "time_to_capacity": "1h39min"
+     },
+     {
+      "plan": "starter",
+      "endpoint": "/v1/email",
+      "dimension": "emails",
+      "base_cost": 35,
+      "overage_cost": 0,
+      "total_cost": 35,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 5940000,
+      "time_to_capacity": "1h39min"
+     },
+     {
+      "plan": "professional",
+      "endpoint": "/v1/email",
+      "dimension": "emails",
+      "base_cost": 110,
+      "overage_cost": 0,
+      "total_cost": 110,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 5940000,
+      "time_to_capacity": "1h39min"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/v1/email",
+      "dimension": "emails",
+      "base_cost": 0,
+      "overage_cost": 0,
+      "total_cost": 0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "id": "L2-07",
+ "pregunta": "¿Cuándo agota la cuota de correos una cuenta sin aprobar del plan free?",
+ "api": "mailersend",
+ "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+ "datasheet_sha256": "3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd",
+ "datasheet_sin_tocar": true,
+ "origen": "PRIME4API de SPHERE en local (localhost:8003)",
+ "fecha": "2026-09-15T13:04:32",
+ "llamada": {
+  "endpoint": "POST /api/v1/datasheet/quota-exhaustion-threshold",
+  "params": {
+   "capacity_unit": "emails"
+  },
+  "body": {
+   "plan_names": [
+    "free"
+   ],
+   "endpoint_path": "/v1/email",
+   "alias": "unapproved_account"
+  },
+  "datasheet_source": "<YAML crudo de 03_datos/apis/mailersend/datasheet.yaml, sha256 3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd>",
+  "http": 200,
+  "ms": 130,
+  "respuesta": {
+   "results": {
+    "free": [
+     {
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "dimensions": {
+       "emails": [
+        {
+         "capacity_request_factor": 1.0,
+         "value": [
+          {
+           "quota": {
+            "value": 500.0,
+            "unit": "emails",
+            "period": "30day"
+           },
+           "exhaustion_threshold": "120day9min"
+          },
+          {
+           "quota": {
+            "value": 100.0,
+            "unit": "emails",
+            "period": "30day"
+           },
+           "exhaustion_threshold": "9min"
+          }
+         ]
+        },
+        {
+         "capacity_request_factor": 2.0,
+         "value": [
+          {
+           "quota": {
+            "value": 500.0,
+            "unit": "emails",
+            "period": "30day"
+           },
+           "exhaustion_threshold": "120day4min"
+          },
+          {
+           "quota": {
+            "value": 100.0,
+            "unit": "emails",
+            "period": "30day"
+           },
+           "exhaustion_threshold": "4min"
+          }
+         ]
+        },
+        {
+         "capacity_request_factor": 2.0,
+         "value": [
+          {
+           "quota": {
+            "value": 500.0,
+            "unit": "emails",
+            "period": "30day"
+           },
+           "exhaustion_threshold": "120day4min"
+          },
+          {
+           "quota": {
+            "value": 100.0,
+            "unit": "emails",
+            "period": "30day"
+           },
+           "exhaustion_threshold": "4min"
+          }
+         ]
+        }
+       ]
+      }
+     }
+    ]
+   }
+  }
+ }
+}

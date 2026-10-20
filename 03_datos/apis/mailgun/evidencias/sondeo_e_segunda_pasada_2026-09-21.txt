@@ -1,0 +1,25 @@
+# Sondeo Mailgun E — segunda pasada
+# Fecha: 2026-09-21
+# Dominio: sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org (sandbox)
+# Presupuesto declarado: 0 envios entregados. Un 2xx de /messages aborta.
+
+═══ E1 · POST /v3/$dominio/templates desde una cuenta Free ═══
+HTTP 200
+cuerpo: {"message":"template has been stored","template":{"name":"sondeo-disc02-1790016807","description":"sondeo DISC-02, se borra a continuacion","createdAt":"Mon, 21 Sep 2026 18:53:28 UTC","id":"01a0c550-e56c-7745-a7e3-2abbead49cdd","domain":"6aaa6271613d5285678999c6","version":{"tag":"initial","template":"<html><body>{{nombre}}</body></html>","engine":"handlebars","mjml":"","createdAt":"Mon, 21 Sep 2026 18:53:28 UTC","comment":"","active":true,"id":"01a0c550-e770-794d-95ca-9e18b6005e74"}}}
+-> la plantilla se creo. Se borra para no dejar estado en la cuenta.
+DELETE HTTP 200 · cuerpo: {"message":"template has been deleted","template":{"name":"sondeo-disc02-1790016807"}}
+
+═══ E2 · profundidad acumulada de GET /v3/$dominio/events ═══
+pagina 1 · HTTP 200 · items 42 · hay enlace next: si
+pagina 2 · HTTP 200 · items 0 · hay enlace next: si
+-> el enlace next existe pero devuelve 0 items: fin real del paginado
+total de eventos recorridos: 42 en 2 paginas
+
+═══ E3 · el contador antes y despues de dos rechazos ═══
+antes: accepted.outgoing=13 delivered.smtp=13
+rechazo 1 · 1.001 destinatarios · HTTP 400 · {"message":"Too many recipients, max is 1000"}
+rechazo 2 · destinatario no autorizado · HTTP 403 · {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+despues: accepted.outgoing=13 delivered.smtp=13
+-> el contador NO se movio: un rechazo previo a la entrega no descuenta
+
+FIN · 2026-09-21 20:53:37 · envios entregados: 0

@@ -1,0 +1,358 @@
+{
+ "sondeo": "brevo-b1-unidad-de-la-cuota",
+ "api": "brevo",
+ "escalon": 3,
+ "paquete": "B",
+ "fecha_utc": "2026-09-17T21:39:45Z",
+ "preguntas": {
+  "unidad_de_la_cuota": "metadata.not_found: 'Unidad de descuento de la cuota mensual'; REVISION.md, escalon 3 con envio real, sondeo 1",
+  "saldo_unico_marketing_transaccional": "F-10 y Q10",
+  "de_propina": [
+   "DISC-14 (que devuelve GET /v3/account)",
+   "DISC-09"
+  ],
+  "retirada_de_esta_pasada": "el otro lado de DISC-14 -- si X-Sib-Sandbox: drop descuenta saldo -- NO se mide aqui. El brazo de sandbox exige reservar 2 destinatarios, y su reserva solo se podia liberar con una lectura de saldo tomada antes de que el contador se mueva, que es ausencia de prueba y no prueba. Sin liberar, sandbox (2) mas envio real (2) son 4 sobre un tope de 3, asi que cabe un brazo y se queda el que mide la unidad. Vuelve como pregunta en la salida"
+ },
+ "presupuesto": {
+  "tope_de_la_pasada": 3,
+  "unidad": "destinatarios de una peticion aceptada",
+  "coste_maximo_declarado_de_este_sondeo": 2,
+  "desglose": "2 de la peticion real, que lleva dos destinatarios de la lista blanca. La cifra sale de la constante COSTE_MAXIMO_ESTE_SONDEO del script, no escrita a mano aqui: dos cifras distintas en el mismo presupuesto es lo que la condicion 2 de D-046 prohibe. El brazo de sandbox, que sumaba otros 2, esta retirado de esta pasada",
+  "envio_es": "UN DESTINATARIO de una peticion ACEPTADA. Solo un 4xx explicito libera la reserva: un 000 de curl, un cuerpo vacio o un 5xx no demuestran rechazo -- la peticion pudo ser aceptada y la respuesta perderse -- y se anotan DUDOSO",
+  "brazo_sandbox": "retirado de esta pasada (ver preguntas.retirada_de_esta_pasada)",
+  "peticion_real_aceptada": true,
+  "destinatarios_alcanzados": 2,
+  "libro": [
+   "2026-09-17T15:34:49Z\tRESERVA\tprobe_brevo_a_preflight_rechazo.sh\tp1_sender_ausente\t1\ttope=3 comprometidos_antes=0 destinatarios=1",
+   "2026-09-17T15:34:50Z\tLIBERA\tprobe_brevo_a_preflight_rechazo.sh\tp1_sender_ausente\t1\thttp=400 rechazo demostrado (4xx): la peticion NO fue aceptada",
+   "2026-09-17T15:34:52Z\tRESERVA\tprobe_brevo_a_preflight_rechazo.sh\tp2_sender_sumidero\t1\ttope=3 comprometidos_antes=0 destinatarios=1",
+   "2026-09-17T15:34:52Z\tGASTO\tprobe_brevo_a_preflight_rechazo.sh\tp2_sender_sumidero\t1\thttp=201 2xx INESPERADO en un endpoint de envio (paquete A): 1 destinatarios",
+   "2026-09-17T21:30:43Z\tRESERVA\tprobe_brevo_b_unidad_cuota.sh\tenvio_real\t2\ttope=3 comprometidos_antes=1 destinatarios=2",
+   "2026-09-17T21:30:47Z\tGASTO\tprobe_brevo_b_unidad_cuota.sh\tenvio_real\t2\thttp=201 2 destinatarios"
+  ]
+ },
+ "veredicto": {
+  "unidad_de_la_cuota": "destinatario",
+  "saldo_unico": "confirmado_parcial",
+  "motivo": "una sola peticion con dos destinatarios descuenta 2: la unidad de la cuota es el destinatario. Confirma la inferencia que el YAML declara como tal",
+  "http_de_las_lecturas_de_cuenta": {
+   "antes": 200,
+   "reposo": 200,
+   "despues_1": 200,
+   "despues_2": 200
+  },
+  "instrumento": "ok",
+  "brazo_sandbox": "RETIRADO de esta pasada: no se ejecuto",
+  "par_de_bisercion": {
+   "consumo_en_reposo_sin_envio": 0,
+   "consumo_sandbox_2_destinatarios": null,
+   "consumo_real_2_destinatarios": 2
+  },
+  "saldo_unico_motivo": "la cuenta expone UNA sola entrada de correo (sendLimit:free) y es la que se movio al enviar un transaccional: el transaccional consume el saldo de la cuenta y no uno propio. Lo que esto NO mide es que la campana salga de esa misma entrada; eso esta publicado en F26 y no se ha medido"
+ },
+ "deltas_por_entrada_saldo_restante": {
+  "reposo": {
+   "sendLimit:free": 0
+  },
+  "sandbox": null,
+  "real": {
+   "sendLimit:free": -2
+  },
+  "lectura": "delta del saldo RESTANTE (negativo = se consumio); el consumo con signo positivo esta en veredicto.par_de_bisercion"
+ },
+ "entradas_de_correo": [
+  "sendLimit:free"
+ ],
+ "disc14_que_devuelve_get_account": {
+  "campos_que_devuelve": [
+   "address",
+   "companyName",
+   "dateTimePreferences",
+   "email",
+   "enterprise",
+   "firstName",
+   "language",
+   "lastName",
+   "organization_id",
+   "plan",
+   "planVerticals",
+   "relay",
+   "user_id"
+  ],
+  "campos_de_limite_o_consumo": [],
+  "lectura": "el blog afirma que este endpoint 'returns your current plan limits and API usage'; la lista de campos de arriba es lo que devuelve de verdad en esta cuenta"
+ },
+ "disc09_ciclo_de_facturacion": [
+  {
+   "entrada": "sendLimit:free",
+   "startDate": null,
+   "endDate": null,
+   "startDate_utc": null,
+   "endDate_utc": null
+  }
+ ],
+ "disc09_periodo_desde_planVerticals": [
+  {
+   "planCategory": "Marketing",
+   "planType": "free",
+   "name": "Free",
+   "status": "active",
+   "startDate": "1789552093",
+   "endDate": "1792144093",
+   "startDate_utc": "2026-09-16T09:48:13Z",
+   "endDate_utc": "2026-10-16T09:48:13Z"
+  }
+ ],
+ "tramos": {
+  "antes": {
+   "tramo": "antes",
+   "utc": "2026-09-17T21:29:30Z",
+   "http": 200,
+   "cabeceras": {
+    "date": "Thu, 17 Sep 2026 21:29:31 GMT",
+    "content-type": "application/json",
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4999",
+    "x-sib-ratelimit-reset": "1830"
+   },
+   "plan": [
+    {
+     "credits": 300,
+     "creditsType": "sendLimit",
+     "type": "free",
+     "startDate": null,
+     "endDate": null,
+     "startDate_utc": null,
+     "endDate_utc": null
+    }
+   ],
+   "planVerticals": [
+    {
+     "planCategory": "Marketing",
+     "planType": "free",
+     "name": "Free",
+     "status": "active",
+     "startDate": "1789552093",
+     "endDate": "1792144093",
+     "startDate_utc": "2026-09-16T09:48:13Z",
+     "endDate_utc": "2026-10-16T09:48:13Z"
+    }
+   ],
+   "campos_presentes": [
+    "address",
+    "companyName",
+    "dateTimePreferences",
+    "email",
+    "enterprise",
+    "firstName",
+    "language",
+    "lastName",
+    "organization_id",
+    "plan",
+    "planVerticals",
+    "relay",
+    "user_id"
+   ],
+   "expone_limites_o_consumo": []
+  },
+  "reposo": {
+   "tramo": "reposo",
+   "utc": "2026-09-17T21:29:44Z",
+   "http": 200,
+   "cabeceras": {
+    "date": "Thu, 17 Sep 2026 21:29:44 GMT",
+    "content-type": "application/json",
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4998",
+    "x-sib-ratelimit-reset": "1816"
+   },
+   "plan": [
+    {
+     "credits": 300,
+     "creditsType": "sendLimit",
+     "type": "free",
+     "startDate": null,
+     "endDate": null,
+     "startDate_utc": null,
+     "endDate_utc": null
+    }
+   ],
+   "planVerticals": [
+    {
+     "planCategory": "Marketing",
+     "planType": "free",
+     "name": "Free",
+     "status": "active",
+     "startDate": "1789552093",
+     "endDate": "1792144093",
+     "startDate_utc": "2026-09-16T09:48:13Z",
+     "endDate_utc": "2026-10-16T09:48:13Z"
+    }
+   ],
+   "campos_presentes": [
+    "address",
+    "companyName",
+    "dateTimePreferences",
+    "email",
+    "enterprise",
+    "firstName",
+    "language",
+    "lastName",
+    "organization_id",
+    "plan",
+    "planVerticals",
+    "relay",
+    "user_id"
+   ],
+   "expone_limites_o_consumo": []
+  },
+  "sandbox_cuenta": null,
+  "sandbox_post": null,
+  "real_post": {
+   "tramo": "real_post",
+   "utc": "2026-09-17T21:30:47Z",
+   "http": 201,
+   "cabeceras": {
+    "date": "Thu, 17 Sep 2026 21:30:47 GMT",
+    "content-type": "application/json",
+    "x-sib-ratelimit-limit": "1000",
+    "x-sib-ratelimit-remaining": "999",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "cuerpo": {
+    "messageId": "<202609172130.70071717055@smtp-relay.mailin.fr>"
+   },
+   "cuerpo_texto": "{\"messageId\":\"<202609172130.70071717055@smtp-relay.mailin.fr>\"}\n",
+   "truncado": false,
+   "bytes_peticion": 392
+  },
+  "despues": [
+   {
+    "tramo": "despues_1",
+    "utc": "2026-09-17T21:33:14Z",
+    "http": 200,
+    "cabeceras": {
+     "date": "Thu, 17 Sep 2026 21:33:14 GMT",
+     "content-type": "application/json",
+     "x-sib-ratelimit-limit": "5000",
+     "x-sib-ratelimit-remaining": "4997",
+     "x-sib-ratelimit-reset": "1606"
+    },
+    "plan": [
+     {
+      "credits": 298,
+      "creditsType": "sendLimit",
+      "type": "free",
+      "startDate": null,
+      "endDate": null,
+      "startDate_utc": null,
+      "endDate_utc": null
+     }
+    ],
+    "planVerticals": [
+     {
+      "planCategory": "Marketing",
+      "planType": "free",
+      "name": "Free",
+      "status": "active",
+      "startDate": "1789552093",
+      "endDate": "1792144093",
+      "startDate_utc": "2026-09-16T09:48:13Z",
+      "endDate_utc": "2026-10-16T09:48:13Z"
+     }
+    ],
+    "campos_presentes": [
+     "address",
+     "companyName",
+     "dateTimePreferences",
+     "email",
+     "enterprise",
+     "firstName",
+     "language",
+     "lastName",
+     "organization_id",
+     "plan",
+     "planVerticals",
+     "relay",
+     "user_id"
+    ],
+    "expone_limites_o_consumo": []
+   },
+   {
+    "tramo": "despues_2",
+    "utc": "2026-09-17T21:39:21Z",
+    "http": 200,
+    "cabeceras": {
+     "date": "Thu, 17 Sep 2026 21:39:21 GMT",
+     "content-type": "application/json",
+     "x-sib-ratelimit-limit": "5000",
+     "x-sib-ratelimit-remaining": "4996",
+     "x-sib-ratelimit-reset": "1239"
+    },
+    "plan": [
+     {
+      "credits": 298,
+      "creditsType": "sendLimit",
+      "type": "free",
+      "startDate": null,
+      "endDate": null,
+      "startDate_utc": null,
+      "endDate_utc": null
+     }
+    ],
+    "planVerticals": [
+     {
+      "planCategory": "Marketing",
+      "planType": "free",
+      "name": "Free",
+      "status": "active",
+      "startDate": "1789552093",
+      "endDate": "1792144093",
+      "startDate_utc": "2026-09-16T09:48:13Z",
+      "endDate_utc": "2026-10-16T09:48:13Z"
+     }
+    ],
+    "campos_presentes": [
+     "address",
+     "companyName",
+     "dateTimePreferences",
+     "email",
+     "enterprise",
+     "firstName",
+     "language",
+     "lastName",
+     "organization_id",
+     "plan",
+     "planVerticals",
+     "relay",
+     "user_id"
+    ],
+    "expone_limites_o_consumo": []
+   }
+  ]
+ },
+ "cuerpos_enviados_sin_direcciones": {
+  "real": {
+   "sender": {
+    "email": "<FROM>",
+    "name": "TFM sondeo"
+   },
+   "to": [
+    {
+     "email": "<DEST1>"
+    },
+    {
+     "email": "<DEST2>"
+    }
+   ],
+   "subject": "TFM Brevo B1 unidad de la cuota [real/20260917213043]",
+   "textContent": "Sondeo del TFM de Pricing Intelligence (escalon 3, paquete B, sondeo 1). Mide si la cuota se descuenta por peticion o por destinatario. No requiere respuesta."
+  }
+ },
+ "notas": [
+  "Los cuerpos de respuesta se guardan ENTEROS (tope 200000 bytes) porque de ahi sale la cita literal; se lee el cuerpo, no el codigo HTTP.",
+  "De GET /v3/account solo se escriben plan[] y los NOMBRES de campo: el resto es identidad del titular.",
+  "Redactado: clave de API (por patron x{keysib,smtpsib}-... y por valor exacto, que un formato nuevo no lo reconoceria el patron) y direcciones. Los messageId entre <...> se conservan a proposito, que son el enlace con el evento de entrega.",
+  "El brazo de sandbox se retiro el 2026-09-17: con el tope de la pasada en 3 destinatarios no cabia sin liberar una reserva sin prueba de que no salio correo."
+ ]
+}

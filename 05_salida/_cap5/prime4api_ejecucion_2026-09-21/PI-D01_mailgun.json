@@ -1,0 +1,78 @@
+{
+ "pregunta": "PI-D01",
+ "operacion": "Q5",
+ "descripcion": "Qué se agota antes en el primer plan de pago: t_min para agotar la cuota al rate máximo (k = 1) y veredicto para consumir la cuota entera en un mes",
+ "api": "mailgun",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 34,
+   "respuesta": {
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "quotas": [
+        {
+         "value": 10000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0018,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 10000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 38,
+   "respuesta": {
+    "capacity_goal": 10000,
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "6s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

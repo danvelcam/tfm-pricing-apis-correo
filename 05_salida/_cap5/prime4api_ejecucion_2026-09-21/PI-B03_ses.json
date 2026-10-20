@@ -1,0 +1,87 @@
+{
+ "pregunta": "PI-B03",
+ "operacion": "Q10",
+ "descripcion": "12.000 correos al mes: coste total por plan (sobrecoste frente a subir de plan), planes calculables",
+ "api": "ses",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 12000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v2/email/outbound-emails",
+    "plan_names": [
+     "a_la_carte",
+     "essentials",
+     "pro",
+     "enterprise"
+    ]
+   },
+   "datasheet": "03_datos/apis/ses/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "desired_capacity": 12000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "a_la_carte",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     },
+     {
+      "plan": "essentials",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     },
+     {
+      "plan": "pro",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "base_cost": 105.0,
+      "overage_cost": 0.0,
+      "total_cost": 105.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     },
+     {
+      "plan": "enterprise",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "base_cost": 500.0,
+      "overage_cost": 0.0,
+      "total_cost": 500.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

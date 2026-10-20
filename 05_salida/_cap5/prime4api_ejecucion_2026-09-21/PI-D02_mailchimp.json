@@ -1,0 +1,62 @@
+{
+ "pregunta": "PI-D02",
+ "operacion": "Q5",
+ "descripcion": "Rates del primer plan de pago y capacidad en 1 mes con la cuota expandida (presupuesto muy alto): el rate limita por encima de R·W·k",
+ "api": "mailchimp",
+ "llamadas": [
+  {
+   "endpoint": "POST /rates",
+   "params": {
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 200,
+   "ms": 22,
+   "respuesta": {
+    "results": {
+     "transactional_email": [
+      {
+       "endpoint": "/messages/send",
+       "alias": "demo",
+       "rates": [
+        {
+         "value": 25.0,
+         "unit": "emails",
+         "period": "1h"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 500,
+   "ms": 21,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ ]
+}

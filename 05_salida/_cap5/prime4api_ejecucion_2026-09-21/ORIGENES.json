@@ -1,0 +1,18 @@
+{
+ "brevo": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003, imagen rgavira123/prime4api, contenedor prime4api-sphere; salud: {'status': 'ok', 'message': 'PRIME4API is alive and ready.'}), 17 llamadas POST hechas con urllib desde la misma maquina el 2026-09-21; datasheet_source = el datasheet.yaml integro (metadata incluida, que el motor no lee); sin filtro de alias",
+  "fecha": "2026-09-21T20:05:08"
+ },
+ "mailgun": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003, imagen rgavira123/prime4api, contenedor prime4api-sphere; salud: {'status': 'ok', 'message': 'PRIME4API is alive and ready.'}), 17 llamadas POST hechas con urllib desde la misma maquina el 2026-09-21; datasheet_source = el datasheet.yaml integro (metadata incluida, que el motor no lee); sin filtro de alias",
+  "fecha": "2026-09-21T20:05:08"
+ },
+ "ses": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003, imagen rgavira123/prime4api, contenedor prime4api-sphere; salud: {'status': 'ok', 'message': 'PRIME4API is alive and ready.'}), 17 llamadas POST hechas con urllib desde la misma maquina el 2026-09-21; datasheet_source = el datasheet.yaml integro (metadata incluida, que el motor no lee); sin filtro de alias, y el eje de instanciacion resuelto por E16 (consejo del 2026-09-21)",
+  "fecha": "2026-09-21T20:11:20"
+ },
+ "mailchimp": {
+  "origen": "PRIME4API de SPHERE en local (localhost:8003, imagen rgavira123/prime4api, contenedor prime4api-sphere; salud: {'status': 'ok', 'message': 'PRIME4API is alive and ready.'}), 17 llamadas POST hechas con urllib desde la misma maquina el 2026-09-21; datasheet_source = el datasheet.yaml integro (metadata incluida, que el motor no lee); sin filtro de alias, y el eje de instanciacion resuelto por E16 (consejo del 2026-09-21)",
+  "fecha": "2026-09-21T20:11:20"
+ }
+}

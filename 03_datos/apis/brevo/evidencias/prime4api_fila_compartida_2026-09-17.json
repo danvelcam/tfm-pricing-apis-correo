@@ -1,0 +1,84 @@
+{
+ "resumen": {
+  "que_comprueba": "Si PRIME4API AGREGA el caudal de la fila compartida de [F6] (POST /v3/smtp/email y GET /v3/smtp/blockedContacts, 1.000 RPS en una sola fila) o lo devuelve por ruta. Es la premisa de Q12 y la condicion L2 de B9.",
+  "comando": "POST http://localhost:8003/api/v1/datasheet/limits  {plan_names: [free]}, sin filtrar endpoint",
+  "fecha_utc": "2026-09-17T20:59:21.943502+00:00",
+  "motor": "prime4api-sphere local, puerto 8003",
+  "datasheet": "03_datos/apis/brevo/datasheet.yaml, sin modificar para la prueba",
+  "veredicto": "NO AGREGA. Cuatro entradas independientes, 1.000 en cada una de las dos rutas y ninguna suma. La afirmacion 'el motor agrega 2.000 por segundo' que el fichero llevaba en su not_found y su provenance es FALSA y queda corregida. Q12 no promociona a friccion: L2 exige que el motor devuelva un valor falso, y no lo devuelve. Lo que si es cierto es que el esquema no puede decir que dos rutas comparten medidor, y que quien sume las dos filas obtiene el doble."
+ },
+ "respuesta_cruda": {
+  "results": {
+   "free": [
+    {
+     "endpoint": "/*",
+     "rates": [
+      {
+       "value": 100.0,
+       "unit": "requests",
+       "period": "1h"
+      }
+     ],
+     "quotas": [
+      {
+       "value": 300.0,
+       "unit": "emails",
+       "period": "1day"
+      }
+     ]
+    },
+    {
+     "endpoint": "/v3/smtp/email",
+     "rates": [
+      {
+       "value": 1000.0,
+       "unit": "requests",
+       "period": "1s"
+      }
+     ],
+     "quotas": [
+      {
+       "value": 300.0,
+       "unit": "emails",
+       "period": "1day"
+      }
+     ]
+    },
+    {
+     "endpoint": "/v3/smtp/emails",
+     "rates": [
+      {
+       "value": 2.0,
+       "unit": "requests",
+       "period": "1s"
+      }
+     ],
+     "quotas": [
+      {
+       "value": 300.0,
+       "unit": "emails",
+       "period": "1day"
+      }
+     ]
+    },
+    {
+     "endpoint": "/v3/smtp/blockedContacts",
+     "rates": [
+      {
+       "value": 1000.0,
+       "unit": "requests",
+       "period": "1s"
+      }
+     ],
+     "quotas": [
+      {
+       "value": 300.0,
+       "unit": "emails",
+       "period": "1day"
+      }
+     ]
+    }
+   ]
+  }
+ }
+}

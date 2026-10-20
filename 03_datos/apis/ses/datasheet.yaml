@@ -1,0 +1,243 @@
+# Datasheet ACM2YAML v0.3 — Amazon SES (Email API v2)
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: amazon-ses                                 # 🟢
+type: api_first                                             # 🟢
+url: https://aws.amazon.com/ses/pricing/                    # 🟢
+syntax_version: 0.3
+date: 2026-09-18
+currency: USD                                               # 🟢
+consumption_units:
+  - emails
+  - requests
+  - MBs
+
+capacity:
+  quota_email_daily_sandbox:
+    value: 200                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: DAY
+    # 🔴 ventana sin declarar: una página la describe deslizante y otra fija (ver metadata.not_found)
+    window_type:
+
+# 🔴 los caudales de una cuenta con acceso de producción no se publican — hueco deliberado (ver metadata.not_found)
+max_power:
+  rate_request_send_sandbox:
+    value: 1                                                # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+  rate_request_other:
+    value: 1                                                # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+plans:
+  a_la_carte:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    endpoints:
+      /*:
+        rate: rate_request_other
+      /v2/email/outbound-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios por mensaje sumando to, cc y bcc, y cada destinatario consume una unidad de la cuota.
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64; por encima de 10 MB el proveedor limita el ancho de banda.
+      /v2/email/outbound-bulk-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64. El número de entradas por llamada no se publica.
+      /v2/email/account:
+        rate: rate_request_other
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta del estado de la cuenta y de sus dos límites vigentes; es la vía documentada para leerlos, porque el proveedor no devuelve ninguna cabecera de caudal.
+
+  essentials:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    endpoints:
+      /*:
+        rate: rate_request_other
+      /v2/email/outbound-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios por mensaje sumando to, cc y bcc, y cada destinatario consume una unidad de la cuota.
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64; por encima de 10 MB el proveedor limita el ancho de banda.
+      /v2/email/outbound-bulk-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64. El número de entradas por llamada no se publica.
+      /v2/email/account:
+        rate: rate_request_other
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta del estado de la cuenta y de sus dos límites vigentes; es la vía documentada para leerlos, porque el proveedor no devuelve ninguna cabecera de caudal.
+
+  pro:
+    price: 105.00                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    endpoints:
+      /*:
+        rate: rate_request_other
+      /v2/email/outbound-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios por mensaje sumando to, cc y bcc, y cada destinatario consume una unidad de la cuota.
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64; por encima de 10 MB el proveedor limita el ancho de banda.
+      /v2/email/outbound-bulk-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64. El número de entradas por llamada no se publica.
+      /v2/email/account:
+        rate: rate_request_other
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta del estado de la cuenta y de sus dos límites vigentes; es la vía documentada para leerlos, porque el proveedor no devuelve ninguna cabecera de caudal.
+
+  enterprise:
+    price: 500.00                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    endpoints:
+      /*:
+        rate: rate_request_other
+      /v2/email/outbound-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: emails
+            min: 1
+            max: 50                                         # 🟢
+            description: Envío individual; hasta 50 destinatarios por mensaje sumando to, cc y bcc, y cada destinatario consume una unidad de la cuota.
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64; por encima de 10 MB el proveedor limita el ancho de banda.
+      /v2/email/outbound-bulk-emails:
+        sandbox:
+          rate: rate_request_send_sandbox
+          quota: quota_email_daily_sandbox
+        workload:
+          - unit: MBs
+            min: 1
+            max: 40                                         # 🟢
+            description: Tamaño del mensaje con adjuntos, tras codificar en base64. El número de entradas por llamada no se publica.
+      /v2/email/account:
+        rate: rate_request_other
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta del estado de la cuenta y de sus dos límites vigentes; es la vía documentada para leerlos, porque el proveedor no devuelve ninguna cabecera de caudal.
+
+metadata:
+  sources_visited:
+    - https://aws.amazon.com/ses/pricing/
+    - https://docs.aws.amazon.com/ses/latest/dg/quotas.html
+    - https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html
+    - https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html
+    - https://docs.aws.amazon.com/ses/latest/dg/regions.html
+    - https://docs.aws.amazon.com/ses/latest/dg/pricing-plans.html
+    - https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html
+    - https://docs.aws.amazon.com/general/latest/gr/ses.html
+    - https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonSES/current/index.json
+
+  data_provenance:
+    - "La lista oficial de planes tiene TRES, y el cuarto del fichero no sale de ella: es la ausencia de plan. Los tres publicados van con columna propia y precio literal —Essentials sin cuota fija, Pro '$105' y Enterprise '$500' en la fila 'Per account per region per month'— y el cuarto se modela a partir del literal que describe no tener plan, 'If you do not have a plan, you are on a la carte pricing', que el proveedor llama a la carta [https://aws.amazon.com/ses/pricing/; https://docs.aws.amazon.com/ses/latest/dg/pricing-plans.html]"
+    - "El plan es del par cuenta y region, no de la cuenta: 'Plans apply for each account and each AWS Region, so you manage your plan separately in each Region where you use Amazon SES' [https://docs.aws.amazon.com/ses/latest/dg/pricing-plans.html]"
+    - "NOTA: el precio por correo NO esta en el fichero, y no es un olvido. El proveedor cobra por destinatario y por tramos marginales —'$0.10 / 1,000 emails' a la carta, y tres tramos por plan que van de '$0.16' a '$0.11' por millar— y v0.3 solo tiene 'overage_cost', que es el precio del exceso sobre una cuota incluida. SES no incluye volumen en ningun plan, asi que no hay cuota de la que colgar ese precio y el campo 'cost_per_request' de v0.2 se elimino en v0.3 [https://aws.amazon.com/ses/pricing/]"
+    - "La unidad real de cobro es el destinatario, no el mensaje: el tarifario maquina de AWS lo declara como 'Charged for each email sent to an external recipient', con unidad 'Count' y precio 0.0001 dolares [https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonSES/current/index.json, version 20260911124507]"
+    - "Los tramos de precio son marginales y no hay sobrecoste: 'Tiered rates are applied marginally - each rate applies only to the emails within that tier, not to your entire volume' [https://aws.amazon.com/ses/pricing/]"
+    - "Los dos limites del fichero son los del entorno de pruebas, que es donde arranca toda cuenta nueva en cada region: 'You can send a maximum of 200 messages per 24-hour period' y 'You can send a maximum of 1 message per second' [https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html]"
+    - "Y son ademas los predeterminados de AWS, no los de esta cuenta: la consola de Service Quotas publica el valor aplicado y el predeterminado en la misma fila, y coinciden —'Sending quota 200 per 24 horas / 200 per 24 horas' y 'Sending rate 1 por segundo / 1 por segundo'—, con capacidad de ajuste a nivel de cuenta [observacion de panel con cuenta propia, 2026-09-18]"
+    - "El estado de la cuenta se declara como alias con el vocabulario del proveedor, sandbox, porque los dos limites pertenecen a ese estado y no al plan. El estado de produccion existe y no publica ninguna cifra: 'this number varies based on your specific use case' [https://docs.aws.amazon.com/ses/latest/dg/quotas.html]"
+    - "El estado es del par cuenta y region, igual que el plan: 'The sandbox status for your account is unique per each AWS Region', y el panel lo confirma con dos regiones de la misma cuenta en estados distintos [https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html; observacion de panel con cuenta propia, 2026-09-18]"
+    - "NOTA: la unidad de la cuota es el destinatario, y esta medido. Cuatro mensajes con cinco destinatarios dejan el contador en cinco: 'SentLast24Hours' pasa de 0.0 a 5.0. Los envios fueron uno a una direccion, otro con la misma direccion en to y en cc, y dos mas de un destinatario. Cinco descarta el mensaje como unidad, que habria dado cuatro, y descarta de paso la deduplicacion. La cabecera de esa misma tabla ya lo decia: 'Quotas are based on the number of recipients, rather than on the number of messages'. Y la nota al pie del plan en la consola lo escribe en corto, '(se cobra por destinatario)'. El campo se queda en emails por dos razones: recipients no esta en la lista de unidades de la guia, y PRIME4API casa cuota y carga comparando esa cadena. Con recipients en la cuota y emails en el workload del envio, la cuota diaria saldria de la curva. El workload ya declara que cada destinatario consume una unidad [https://docs.aws.amazon.com/ses/latest/dg/quotas.html; evidencias/probe_ses_cuota_caudal_2026-09-18_095842.json y evidencias/probe_ses_caudal_lectura_2026-09-18_100218.json, sondeo del 2026-09-18; observacion de panel con cuenta propia, 2026-09-18]"
+    - "NOTA: la ventana de la cuota diaria queda sin declarar porque dos paginas del proveedor la describen distinto: 'This quota is calculated on a rolling time period' frente a 'you will have to wait until the next 24-hour period before you can send more email' [https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html; https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html]"
+    - "El caudal del resto de operaciones va en ambar por el alcance de su literal: 'All actions (except for SendEmail, SendRawEmail, and SendTemplatedEmail) are throttled at one request per second' enumera nombres de la version 1, asi que leido al pie dejaria tambien a una peticion por segundo las operaciones de envio de la version 2, que son las que el fichero modela [https://docs.aws.amazon.com/ses/latest/dg/quotas.html]"
+    - "El tope de 50 destinatarios por mensaje solo aparece en la pagina de cuotas, no en la referencia de la operacion: 'Maximum number of recipients per message - 50 recipients per message', con 'A recipient is any To, CC, or BCC address' [https://docs.aws.amazon.com/ses/latest/dg/quotas.html]"
+    - "El tamano maximo depende del canal y de la version: 'Using the SES v2 API or SMTP - Maximum message size (including attachments)' es '40 MB per message (after base64 encoding)', mientras la version 1 declara '10 MB per message (after base64 encoding)' [https://docs.aws.amazon.com/ses/latest/dg/quotas.html]"
+    - "El techo de configuration sets no es una cuota de consumo y va al provenance por B3: son 10.000 por region. Las dos fuentes oficiales no dicen lo mismo sobre si se puede subir. La guia de cuotas lo publica fijo, 'Maximum number of configuration sets' con valor '10,000' y la columna Adjustable en No. La referencia general publica la misma cifra como ajustable, 'Configuration set count | Each supported Region: 10,000 | Adjustable: Yes', con codigo de cuota L-10E24536. La contradiccion sigue abierta y no toca ningun campo del fichero, porque un limite de recursos no entra en capacity; es la friccion F-11 [https://docs.aws.amazon.com/ses/latest/dg/quotas.html; https://docs.aws.amazon.com/general/latest/gr/ses.html]"
+    - "Las rutas y los errores del envio se leen del contrato maquina archivado: 'POST /v2/email/outbound-emails' y 'POST /v2/email/outbound-bulk-emails', con TooManyRequestsException en 429 y LimitExceededException, SendingPausedException, AccountSuspendedException y MessageRejected en 400 [https://raw.githubusercontent.com/boto/botocore/develop/botocore/data/sesv2/2019-09-27/service-2.json, consultado el 2026-09-18]"
+    - "NOTA: el proveedor no devuelve ninguna cabecera de caudal. Comprobado sobre ese mismo contrato maquina: cero apariciones de ratelimit, rate-limit, retry-after, x-amz-retry y remaining, y la enumeracion de miembros con destino de cabecera sale vacia, asi que las trece excepciones de la version 2 no llevan mas campo que el mensaje. La via documentada para conocer los limites vigentes es preguntar por el endpoint de cuenta [https://raw.githubusercontent.com/boto/botocore/develop/botocore/data/sesv2/2019-09-27/service-2.json]"
+    - "El tipo de producto se declara api_first en verde: el test del campo se aplico entero, documental y de panel, y ninguna de las tres operaciones que lo deciden es exclusiva de la web. Enviar existe en la API —'Sends an email message'— [https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html]"
+    - "Test del type, operacion 2: crear plantillas existe en la API —'Creates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation'— [https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html]"
+    - "Test del type, operacion 3: crear una identidad existe en la API —'Starts the process of verifying an email identity'— [https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html]"
+    - "Test del type, la mitad de panel, recorrida operacion por operacion: la consola ofrece crear identidad y enviar —'Crear identidad' y 'Enviar correo electronico de prueba'—, y NO ofrece crear plantillas: su pagina de plantillas es de solo listado y remite a la API, 'Para crear una plantilla de correo electronico, utilice la operacion de la API CreateEmailTemplate'. Es el caso inverso de la friccion de la credencial que solo se gestiona desde la web: aqui lo exclusivo es de la API y lo dice el propio proveedor en su consola [observacion de panel con cuenta propia, 2026-09-18]"
+
+  not_found:
+    - "Cuota de envio de una cuenta con acceso de produccion: no publicada. La documentacion vigente dice 'this number varies based on your specific use case' y la unica cifra que existe, 50.000 al dia, es de una entrada de blog de 2014 que ademas no menciona regiones ni una vez"
+    - "Caudal de una cuenta con acceso de produccion: no publicado, con la misma formula. El ejemplo de 10 mensajes por segundo que aparece en la pagina de regiones es hipotetico y el propio texto lo presenta como suposicion"
+    - "Techo del producto: no existe maximo publicado ni para la cuota ni para el caudal. Lo mas cercano es el centinela de cuota ilimitada, el valor -1 del campo Max24HourSend, sin condiciones publicadas para alcanzarlo"
+    - "Formula del incremento automatico de limites: solo hay criterios cualitativos, sin porcentaje, sin escalon y sin periodo"
+    - "Precio por correo: existe y esta publicado, pero no cabe en v0.3. Son tres tramos marginales por plan mas el precio a la carta, y el esquema solo admite un precio de exceso sobre una cuota incluida que aqui no existe"
+    - "Numero maximo de entradas por llamada al envio por lotes: la referencia de la operacion no publica el maximo del array"
+    - "Numero de conexiones simultaneas admitidas por el canal SMTP: existe el rechazo '421 Too many concurrent SMTP connections' y ninguna cifra"
+    - "Caudal por operacion de la API v2: no hay tabla por operacion, ni rafaga, ni cubo de fichas. La unica cifra publicada enumera nombres de la version 1"
+    - "Si el envio por lotes esta bajo el tope de una peticion por segundo: no publicado. El fichero ata la ruta del lote al mismo alias de caudal que el envio individual, y esa atadura es inferencia, no literal. La unica cifra publicada exceptua tres nombres de la version 1, 'All actions (except for SendEmail, SendRawEmail, and SendTemplatedEmail) are throttled at one request per second', y SendBulkEmail no esta ni entre los exentos ni entre los capados. La entrada anterior cubre el hueco general; esta nombra la atadura concreta que el fichero da por buena"
+    - "Diferencias numericas reales entre regiones: la tabla de cuotas publica el mismo valor para las 29 regiones con endpoint, y la pagina de regiones afirma que los limites concedidos si difieren, sin un solo ejemplo"
+    - "Capa gratuita de SES: en discrepancia. Las preguntas frecuentes la ofrecen en presente, 3.000 cargos de mensaje al mes durante doce meses, y la entrada de blog del 21 de julio de 2026 la declara retirada para clientes nuevos. La pagina de precios no la menciona"
+    - "Numero maximo de adjuntos por mensaje: solo se publica el tamano total y un tope de 500 partes MIME"
+    - "Ventana de la cuota diaria: sin declarar por discrepancia entre dos paginas del proveedor"
+    - "Que se puede hacer con la lista de supresion de la cuenta en el entorno de pruebas: no publicado. Una pagina la deja habilitar alli y solo exceptua dos operaciones, 'You can enable your account-level suppression list if your account is in the SES sandbox. However, you can't use the PutSuppressedDestination or CreateImportJob operation until your account is removed from the sandbox'. Otra deshabilita el bloque entero, 'For account-level suppression, bulk actions and SES API calls related to suppression list management are disabled'. Para que choquen hace falta que habilitar sea una llamada de API, y eso no lo publica nadie. Las siete operaciones de supresion del contrato maquina caen bajo el comodin de los cuatro planes, que no distingue estado de cuenta, asi que el hueco no mueve ningun valor"

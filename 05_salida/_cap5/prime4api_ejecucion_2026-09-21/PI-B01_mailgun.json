@@ -1,0 +1,158 @@
+{
+ "pregunta": "PI-B01",
+ "operacion": "Q6",
+ "descripcion": "Suscripción más barata para 40.000 correos al mes: primero todos los planes (falla con precio custom o rate vacío), después solo los calculables",
+ "api": "mailgun",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages"
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 34,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "foundation",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 35.0,
+      "overage_cost": 0.0,
+      "total_cost": 35.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 26000.0,
+      "time_to_capacity": "26s"
+     },
+     {
+      "plan": "basic",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 15.0,
+      "overage_cost": 54.0,
+      "total_cost": 69.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 26000.0,
+      "time_to_capacity": "26s"
+     },
+     {
+      "plan": "scale",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 90.0,
+      "overage_cost": 0.0,
+      "total_cost": 90.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 26000.0,
+      "time_to_capacity": "26s"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  },
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "free",
+     "basic",
+     "foundation",
+     "scale"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 35,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "foundation",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 35.0,
+      "overage_cost": 0.0,
+      "total_cost": 35.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 26000.0,
+      "time_to_capacity": "26s"
+     },
+     {
+      "plan": "basic",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 15.0,
+      "overage_cost": 54.0,
+      "total_cost": 69.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 26000.0,
+      "time_to_capacity": "26s"
+     },
+     {
+      "plan": "scale",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 90.0,
+      "overage_cost": 0.0,
+      "total_cost": 90.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 26000.0,
+      "time_to_capacity": "26s"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/v3/{domain_name}/messages",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

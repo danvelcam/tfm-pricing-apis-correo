@@ -1,0 +1,243 @@
+\chapter{Introducción}
+\label{cap:introduccion}
+
+\section{Contexto}
+\label{sec:introduccion:contexto}
+
+Este trabajo se ha realizado en el contexto de las líneas de investigación
+del grupo ISA (Ingeniería del Software Aplicada) de la Universidad de
+Sevilla, y en particular de la línea de \textit{Pricing Intelligence}
+\citep{cavero2026pricingintelligence}.
+
+\subsection{Los dos canales de un servicio SaaS}
+\label{subsec:introduccion:canales}
+
+Un servicio ofrecido bajo el modelo \textit{Software as a Service} (SaaS)
+puede ser consumido a través de distintos canales de interacción. El más
+visible es habitualmente un \textit{frontend} web, orientado a usuarios
+humanos, en el que las condiciones de contratación se publican de forma
+tabular mediante planes, características (\textit{features}) y complementos
+(\textit{add-ons}). Junto a él, el mismo servicio puede exponer una API
+(REST o GraphQL) para que otros sistemas consuman sus capacidades de
+forma programática.
+
+Aunque ambos canales describen aspectos del mismo servicio, cada uno
+utiliza fuentes, estructuras y terminologías distintas. El canal web habla
+de planes y funcionalidades; el canal API habla de \textit{endpoints},
+límites de velocidad (\textit{rates}), cuotas de volumen y reglas de
+consumo.
+La Sección~\ref{sec:estado:acm} precisa estos términos: con la definición del NIST, lo que aquí se llama canal es una interfaz del servicio.
+
+En el dominio del correo electrónico esta dualidad es especialmente
+marcada. Proveedores como SendGrid, Mailgun, Postmark, Resend o Amazon SES
+publican una página de precios orientada a la contratación y, en paralelo,
+una documentación técnica donde residen las condiciones que realmente
+gobiernan el consumo programático. La información determinante para un
+integrador no siempre aparece en la página de precios: cuántas peticiones
+por segundo admite un endpoint, cuántos destinatarios caben en una
+llamada, qué ocurre al superar la cuota. Está
+dispersa entre documentación de desarrollador, artículos de soporte,
+especificaciones OpenAPI y políticas de uso aceptable. El
+Capítulo~\ref{cap:hallazgos} mide, caso por caso, cuánto de esa
+información falta.
+
+\subsection{Pricing Intelligence y su ecosistema}
+\label{subsec:introduccion:pi}
+
+El \textit{Pricing Intelligence} se define como una disciplina dirigida por
+datos cuyo objetivo es transformar la información contenida en los planes
+de precios en conocimiento útil para la toma de decisiones
+\citep{cavero2026pricingintelligence}. Recopilar precios es solo el
+punto de partida. El objetivo es responder de forma automática a preguntas
+como qué plan se ajusta mejor a un patrón de consumo dado, o qué
+diferencias relevantes existen entre dos proveedores.
+
+Alrededor de esta idea, el grupo ha construido un ecosistema de
+herramientas interoperables. Para el canal web, el metamodelo
+\textit{iPricing} y su serialización Pricing2YAML representan los planes
+de un SaaS \citep{garciafernandez2025ipricing}. Sobre ellos operan A-MINT,
+extractor de pricings desde páginas web mediante modelos de lenguaje
+\citep{cavero2025amint}, y PRIME, validador y analizador de los modelos
+resultantes \citep{garciafernandez2025ipricing}. HARVEY, presentado en
+CAiSE 2026, es el orquestador de estas capacidades tras una interfaz
+conversacional \citep{cavero2026pricingintelligence}. Finalmente, SPHERE es el
+\textit{hub} del ecosistema: ahí se publican los artefactos, ahí se ven y
+desde ahí se comparten \citep{sphere}.
+
+La extensión de este ecosistema al canal API es reciente. El Trabajo Fin de
+Máster de Gavira Sánchez \citep{gavira2026tfm}, en coordinación con el de
+Ruiz López \citep{ruizlopez2026tfm}, conceptualiza la capacidad contractual
+de una API en el \textit{API Capacity Model} (ACM) y define ACM2YAML, la
+serialización que da lugar a la \textbf{Datasheet}. La Datasheet es un
+documento orientado a máquinas que reúne en una sola representación la
+información tabular del pricing y la que aparece dispersa en la
+documentación técnica. Sobre ella operan PRIME4API \citep{prime4apirepo},
+motor de análisis de la capacidad, y HARVEY4API \citep{ruizlopez2026tfm},
+el agente que lo consume.
+
+\section{Motivación}
+\label{sec:introduccion:motivacion}
+
+El responsable técnico que debe elegir entre una docena de proveedores
+rara vez encuentra en la página de precios los tres datos de consumo que
+enumera la Sección~\ref{subsec:introduccion:canales}. Se enfrenta, además, a
+documentaciones heterogéneas y a comparativas elaboradas por los propios
+vendedores \citep{mailtrap2026comparativa,mailslurp2026comparativa}. Y le falta de forma sistemática la información que más le
+importa: la que determina si el servicio soportará su patrón de consumo real.
+
+El ecosistema descrito en la sección anterior ofrece el
+instrumental necesario para abordar el problema de forma rigurosa.
+Sin embargo, ese instrumental se ha validado hasta ahora sobre tres
+pricings de dos servicios \citep{gavira2026tfm}, y su versión operativa captura
+dos de las cuatro dimensiones de capacidad del metamodelo que la
+sustenta. Existe, por tanto, una distancia entre lo que el modelo promete
+y lo que se ha demostrado que soporta.
+
+Esa distancia es la que motiva este trabajo, y es también la que determina
+su dificultad. Los motores de análisis ya existen, así que el reto no está
+en la complejidad algorítmica. Está en tres frentes de naturaleza distinta.
+El primero es de reconstrucción. La capacidad contractual de una API real
+rara vez está publicada en un único lugar, y en ocasiones sencillamente no
+está publicada. Documentarla exige localizar, integrar y contrastar fuentes
+heterogéneas y con frecuencia incompletas. El segundo es de modelado. Cada
+servicio que no encaja en el esquema obliga a discernir si es un caso
+particular que puede simplificarse o una carencia real del modelo que debe
+corregirse, y esa distinción no admite automatización. El tercero es de
+coordinación. Este trabajo se construye sobre artefactos que otros
+trabajos desarrollan en paralelo, y cualquier cambio propuesto debe
+verificarse contra el resto del ecosistema.
+
+\section{Objetivos y preguntas de investigación}
+\label{sec:introduccion:objetivos}
+
+Del contexto y la motivación expuestos se deriva el objetivo global de este
+Trabajo Fin de Máster.
+
+\begin{mdframed}[style=US_style]
+\textbf{Objetivo del Trabajo Fin de Máster}\\[.2em]
+Construir un espacio de conocimiento sobre las APIs de correo electrónico
+mediante Datasheets conformes al ACM, y establecer un método de comparación
+sistemática que responda a necesidades funcionales y no funcionales,
+evolucionando el modelo con las carencias que el dominio revele.
+\end{mdframed}
+
+Este objetivo se articula en torno a cuatro preguntas de investigación.
+
+\begin{description}
+  \item[RQ1.] ¿Qué APIs de correo deben incluirse en un análisis
+    representativo del dominio, y bajo qué criterios reproducibles?
+  \item[RQ2.] ¿Es ACM2YAML suficientemente expresivo para representar la
+    capacidad contractual de las APIs de correo? ¿Qué extensiones requiere?
+  \item[RQ3.] ¿Cómo se relacionan los límites de uso y los \textit{rates}
+    en las APIs de correo, y qué implicaciones tiene esa relación para el
+    consumidor?
+  \item[RQ4.] ¿Cómo pueden compararse las APIs de correo de forma
+    sistemática para responder a preguntas de decisión que involucran
+    simultáneamente requisitos funcionales y no funcionales?
+\end{description}
+
+De ellas se derivan los siguientes objetivos específicos.
+
+\begin{description}
+  \item[OBJ-01] \textbf{Selección justificada del dominio.} Definir y
+    aplicar un criterio de inclusión reproducible que determine el conjunto
+    de APIs analizadas, documentando el proceso de forma que un tercero
+    pueda replicarlo.
+  \item[OBJ-02] \textbf{Construcción del catálogo de Datasheets.}
+    Documentar la capacidad contractual de cada API seleccionada conforme
+    a ACM2YAML, con trazabilidad explícita de las fuentes de cada dato.
+  \item[OBJ-03] \textbf{Evolución del esquema.} Identificar las carencias
+    de expresividad que el dominio revele y proponer las extensiones
+    correspondientes, justificando cada una con el caso real que la motiva.
+  \item[OBJ-04] \textbf{Análisis de la capacidad.} Caracterizar cómo se
+    relacionan los límites de uso y los \textit{rates} en el dominio, con la
+    lectura geométrica de la capacidad y las operaciones de análisis de
+    PRIME4API.
+  \item[OBJ-05] \textbf{Método de comparación.} Establecer un catálogo de
+    preguntas de decisión propias del dominio y un procedimiento para
+    responderlas sobre el conjunto de Datasheets.
+\end{description}
+
+El componente de investigación del trabajo reside principalmente en OBJ-03
+y OBJ-04. La construcción del catálogo es condición necesaria, pero es un
+medio. El resultado investigable es lo que la confrontación entre un modelo
+y un dominio real revela sobre las limitaciones del primero, y el
+conocimiento que puede extraerse del segundo una vez formalizado.
+
+\section{Contribuciones}
+\label{sec:introduccion:contribuciones}
+
+El desarrollo de estos objetivos se materializa en cuatro contribuciones.
+
+\begin{description}
+  \item[C-01] \textbf{Catálogo de Datasheets de APIs de correo.} Un
+    conjunto curado y versionado de Datasheets del dominio, con trazabilidad
+    de fuentes y preparado como contribución a SPHERE, reutilizable por el resto de
+    herramientas del ecosistema.
+  \item[C-02] \textbf{Evolución de ACM2YAML.} Una propuesta de extensión del
+    esquema justificada caso a caso, en la que cada elemento nuevo responde
+    a un escenario real que la versión previa no era capaz de representar.
+  \item[C-03] \textbf{Caracterización de la relación entre límites y
+    \textit{rates}.} Un análisis de cómo interactúan ambas dimensiones en el
+    dominio del correo y de sus consecuencias para el consumidor. La
+    relación estaba definida en el modelo, pero no caracterizada sobre un
+    dominio real (Sección~\ref{sec:estado:analisis}).
+  \item[C-04] \textbf{Método de comparación sistemática.} Un catálogo de
+    preguntas de decisión funcionales y no funcionales, junto con el
+    procedimiento para resolverlas sobre las Datasheets.
+\end{description}
+
+Estas contribuciones tienen aplicación académica e industrial. En el
+ámbito aca\-dé\-mi\-co, el catálogo de Datasheets es un banco de pruebas sobre
+un dominio real para las herramientas del ecosistema, que hasta ahora
+se han validado sobre tres pricings de dos servicios \citep{gavira2026tfm}.
+Las extensiones propuestas al esquema revierten directamente sobre el
+modelo. En el ámbito industrial, el instrumento aborda una decisión que
+los equipos de desarrollo toman de forma recurrente y sin base
+comparable. Cabe esperar que el método y el esquema se extiendan a otros
+dominios de APIs más allá del correo electrónico, aunque esa
+extensibilidad queda sin probar (Sección~\ref{sec:conclusiones:externa}).
+
+\section{Estructura de la memoria}
+\label{sec:introduccion:estructura}
+
+El \textbf{Capítulo~\ref{cap:introduccion}} introduce el contexto del
+trabajo, presenta los dos canales de acceso a un SaaS y el ecosistema de
+Pricing Intelligence, formula la motivación y los objetivos, y enumera las
+contribuciones realizadas.
+
+El \textbf{Capítulo 2} describe la metodología seguida y la planificación
+del proyecto, con su estructura de paquetes de trabajo, el presupuesto
+estimado y las desviaciones observadas.
+
+El \textbf{Capítulo 3} revisa el estado del arte en el modelado de pricings
+de SaaS, en el modelado y análisis de la capacidad de APIs, y en las
+herramientas del ecosistema de Pricing Intelligence sobre las que se
+construye este trabajo.
+
+El \textbf{Capítulo 4} presenta el método con el que se construye el
+catálogo (criterio de selección del dominio, ciclo de construcción por
+API, reglas de trazabilidad y confianza) y su calibración sobre un piloto
+real.
+Cierra la RQ1 con la condición que debe cumplir el conjunto de APIs
+del catálogo (Sección~\ref{sec:propuesta:respuesta}).
+
+El \textbf{Capítulo 5} recoge lo que las APIs del catálogo revelan. Reúne
+los hallazgos de cada una, la relación observada entre límites de uso y
+\textit{rates}, y el catálogo de preguntas de Pricing Intelligence con
+el que se comparan de forma sistemática. Las Datasheets completas no se
+reproducen en la memoria. Se conservan, con sus fuentes y evidencias, en
+el repositorio de datos que acompaña al trabajo.
+
+El \textbf{Capítulo 6} formula la evolución del esquema ACM2YAML. Recoge
+el inventario de elementos no soportados levantado sobre las ocho APIs del
+catálogo, aplica
+los criterios de promoción y propone las extensiones que el dominio
+justifica, cada una con el caso real que la motiva.
+
+El \textbf{Capítulo 7} cierra la memoria. Responde a las cuatro preguntas de
+investigación y evalúa las contribuciones frente a los objetivos. Después
+agrupa las amenazas a la validez y describe el paquete de replicación.
+Termina con las líneas de trabajo futuro y con las conclusiones técnicas.
+
+El Anexo~\ref{anx:uso-ia} declara el uso de inteligencia artificial en el trabajo, con la consulta que completó la selección de APIs.

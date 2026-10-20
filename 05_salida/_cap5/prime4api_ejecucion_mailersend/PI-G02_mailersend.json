@@ -1,0 +1,45 @@
+{
+ "pregunta": "PI-G02",
+ "operacion": "Q10",
+ "descripcion": "Coste de un mes de 25.000 correos en el primer plan de pago sin cambiar de plan",
+ "api": "mailersend",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 25000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "plan_names": [
+     "hobby"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 18,
+   "respuesta": {
+    "desired_capacity": 25000,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "hobby",
+      "endpoint": "/v1/email",
+      "dimension": "emails",
+      "base_cost": 7,
+      "overage_cost": 30,
+      "total_cost": 37,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 12480000,
+      "time_to_capacity": "3h28min"
+     }
+    ]
+   }
+  }
+ ]
+}

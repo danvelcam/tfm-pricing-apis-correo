@@ -1,0 +1,39 @@
+{
+ "pregunta": "PI-B05",
+ "operacion": "Q5",
+ "descripcion": "Sostener un pico de 20.000 correos en una hora (demanda con duración), planes calculables, k = 1",
+ "api": "mailchimp",
+ "llamadas": [
+  {
+   "endpoint": "POST /demand-evaluation",
+   "params": {
+    "time_interval": "1hour",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ],
+    "demands": [
+     {
+      "rate": {
+       "value": 5.555555555555555,
+       "unit": "emails",
+       "period": "1s"
+      },
+      "duration": "1h",
+      "label": "pico 20.000 en 1 h"
+     }
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 500,
+   "ms": 22,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ ]
+}

@@ -1,0 +1,265 @@
+# Datasheet ACM2YAML v0.3 — SendGrid (Twilio SendGrid Email API)
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: sendgrid                                   # 🟢
+type: api_first                                             # 🟢
+url: https://www.twilio.com/en-us/products/email-api/pricing  # 🟢
+syntax_version: 0.3
+date: 2026-09-06
+currency: USD                                               # 🟢
+consumption_units:
+  - requests
+  - emails
+  - MBs
+
+capacity:
+  quota_email_daily_free_trial:
+    value: 100                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: DAY
+    window_type: fixed_utc_midnight                         # 🟢
+
+  quota_email_monthly_essentials:
+    value: 50000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+    overage_cost:
+      price: 0.0013                                         # 🟢
+      value: 1
+
+  quota_email_monthly_pro:
+    value: 100000                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+    overage_cost:
+      price: 0.0011                                         # 🟢
+      value: 1
+
+  quota_email_monthly_premier:
+    value: custom                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+
+max_power:
+  rate_request_mailsend_free_trial:
+    value: 10000                                            # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+  rate_request_mailsend_essentials:
+    value: 10000                                            # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+  rate_request_mailsend_pro:
+    value: 10000                                            # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+  rate_request_mailsend_premier:
+    value: 10000                                            # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+plans:
+  free_trial:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_daily_free_trial
+    rate: rate_request_mailsend_free_trial
+    endpoints:
+      /v3/mail/send:
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Hasta 1.000 sobres (personalizations) por petición y 1.000 destinatarios en total entre to, cc y bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 30                                         # 🟢
+            description: Tamaño total del correo, adjuntos incluidos, hasta 30 MiB (31.457.280 bytes) de cuerpo de petición inclusive; un byte más devuelve 413 (verificado empíricamente en sandbox).
+
+  essentials:
+    price: 19.95                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_essentials
+    rate: rate_request_mailsend_essentials
+    endpoints:
+      /v3/mail/send:
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Hasta 1.000 sobres (personalizations) por petición y 1.000 destinatarios en total entre to, cc y bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 30                                         # 🟢
+            description: Tamaño total del correo, adjuntos incluidos, hasta 30 MiB (31.457.280 bytes) de cuerpo de petición inclusive; un byte más devuelve 413 (verificado empíricamente en sandbox).
+
+  pro:
+    price: 89.95                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_pro
+    rate: rate_request_mailsend_pro
+    endpoints:
+      /v3/mail/send:
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Hasta 1.000 sobres (personalizations) por petición y 1.000 destinatarios en total entre to, cc y bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 30                                         # 🟢
+            description: Tamaño total del correo, adjuntos incluidos, hasta 30 MiB (31.457.280 bytes) de cuerpo de petición inclusive; un byte más devuelve 413 (verificado empíricamente en sandbox).
+
+  premier:
+    price: custom                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_premier
+    rate: rate_request_mailsend_premier
+    endpoints:
+      /v3/mail/send:
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Hasta 1.000 sobres (personalizations) por petición y 1.000 destinatarios en total entre to, cc y bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 30                                         # 🟢
+            description: Tamaño total del correo, adjuntos incluidos, hasta 30 MiB (31.457.280 bytes) de cuerpo de petición inclusive; un byte más devuelve 413 (verificado empíricamente en sandbox).
+
+metadata:
+  sources_visited:
+    - https://www.twilio.com/en-us/products/email-api/pricing
+    - https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/rate-limits
+    - https://www.twilio.com/docs/sendgrid/api-reference/mail-send
+    - https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send
+    - https://www.twilio.com/docs/sendgrid/for-developers/sending-email/v3-mail-send-faq
+    - https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations
+    - https://support.sendgrid.com/hc/en-us/articles/35270136965403-Twilio-SendGrid-Trial-Account-Plan
+    - https://support.sendgrid.com/hc/en-us/articles/40779261694875-Twilio-SendGrid-Overage-Rates
+    - https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/responses
+    - https://www.twilio.com/docs/sendgrid/for-developers/sending-email/sandbox-mode
+    - https://www.twilio.com/en-us/changelog/sendgrid-free-plan
+    - https://www.twilio.com/docs/sendgrid/for-developers/sending-email/integrating-with-the-smtp-api
+    - https://www.twilio.com/docs/sendgrid/for-developers/sending-email/building-an-x-smtpapi-header
+    - https://www.twilio.com/docs/sendgrid/api-reference/email-activity/filter-all-messages
+    - https://www.twilio.com/docs/sendgrid/ui/analytics-and-reporting/email-activity-feed
+    - https://www.twilio.com/docs/sendgrid/api-reference/email-address-validation/validate-an-email
+    - https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error
+    - https://www.twilio.com/docs/api/errors/60603
+    - https://app.sendgrid.com/account/products
+    - https://app.sendgrid.com/guide
+    - https://app.sendgrid.com/account/billing/choose_plan
+    - https://app.sendgrid.com/account/products/addons
+    - https://api.sendgrid.com/v3/mail/send
+    - https://api.sendgrid.com/v3/user/credits
+  data_provenance:
+    - "NOTA Test de type (C2/D9, 2026-09-14): las OCHO operaciones comprobadas contra la referencia de API, de ahi el verde, que mide cobertura del test y no el valor; el valor sigue siendo api_first. 1 envio; 2 plantillas, 'POST /v3/templates', sin restriccion publicada sobre las creadas en el editor web; 3 dominios, 'POST /v3/whitelabel/domains'; 4 credenciales con 'POST /v3/api_keys', mas Update API key name and scopes y Delete API keys; 5 webhooks con 'POST /v3/user/webhooks/event/settings', 'This endpoint allows you to create a new Event Webhook.', y sus Update, Delete y Toggle Signature Verification; 6 inbound routing con 'POST /v3/user/webhooks/parse/settings' (Inbound Parse), mas sus Retrieve, Update y Delete; 7 supresiones y rebotes con 'POST /v3/asm/suppressions/global' y 'GET /v3/suppression/bounces' con su Delete; 8 actividad con 'GET /v3/messages' (Email Activity Feed API). El escalon 2 recorrio el panel el mismo dia contra la lista de ocho. Cuatro operaciones estan en los dos lados; la 8 no: con esta cuenta la actividad existe en la web y no en la API, porque el panel da 3 dias en el plan y la API exige comprar el add-on de historico. Es la forma que C2 castiga, pero la 8 no es eliminatoria, asi que el type no cambia, 'To gain access to the Email Activity Feed API, purchase additional email activity history.' [https://www.twilio.com/docs/sendgrid/api-reference/email-activity/filter-all-messages], que es F-08 ya registrada, el endpoint entero detras de un add-on (registro operacion por operacion en la entrada F21 de fuentes.md) [https://www.twilio.com/docs/sendgrid/api-reference/api-keys/create-api-keys, consultado 2026-09-14]"
+    - "El panel da la actividad con tres dias incluidos: 'Retrieve information about every email you have sent in the past 3 days by clicking Search.' y 'Up to 30 days of history is available for purchase.'; la Email Activity Feed API, en cambio, exige comprar el historico. Operacion 8 del test C2, no eliminatoria, y refuerzo de F-08 [observacion de panel con cuenta propia, 2026-09-14]"
+    - "Tamaño máximo de la petición a /v3/mail/send: 31.457.280 bytes (30 MiB exactos) devuelve 200 en sandbox y 31.457.281 devuelve '413 Request Entity Too Large' de nginx antes de la aplicación; el «less than 30MB» documental es en la práctica «hasta 30 MiB inclusive» [verificación empírica en sandbox, evidencias/probe_tamano_30mib_biseccion_2026-09-07.json, 2026-09-07]"
+    - "Prueba gratuita: 'Free trial lets you send 100 emails/day for 60 days', '$0/mo for 60 days', 'No credit card, no commitment.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "La prueba caduca a los 60 días y después la cuenta no envía: 'After the 60 day trial period, email send via any web API or SMTP integration for the account will stop unless an appropriate \"Email API\" plan is chosen before then' [https://support.sendgrid.com/hc/en-us/articles/35270136965403-Twilio-SendGrid-Trial-Account-Plan]"
+    - "Límite diario de la prueba: 'Send up to 100 email messages via web API or SMTP per day' [https://support.sendgrid.com/hc/en-us/articles/35270136965403-Twilio-SendGrid-Trial-Account-Plan]"
+    - "La cuota de la prueba es tope duro, sin sobrecoste: 'The Free Trial plan covers storage of 100 contacts and sending 100 emails each day for 60 days. You can’t exceed these limitations.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Fecha de caducidad observada en la cuenta creada el 2026-09-06: 'Your plan will be downgraded to End Of Trial on November 5, 2026. This change will be reflected on your November invoice.' [https://app.sendgrid.com/account/products, observación de panel con cuenta propia, 2026-09-06]"
+    - "Contador diario de la prueba: '0 emails sent today', '100 left', 'Upgrade your plan to send more than 100 emails/day.'; el panel no muestra hora ni zona horaria de reposición [https://app.sendgrid.com/account/products, observación de panel con cuenta propia, 2026-09-06]"
+    - "Essentials desde $19.95/mes: 'Essentials plan starts at $19.95 per month', 'Send 50,000 - 100,000 emails/mo' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Pro desde $89.95/mes: 'Starting at $89.95/mo', 'Send 100,000 - 2,500,000 emails/mo' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Premier a medida: 'Custom pricing', 'Need to send more? Talk to us for custom, high volume pricing.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "El precio depende del volumen contratado dentro del tier: 'Pricing is determined by monthly email volume and features. Select your email volume below to see which plans are right for you.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Volúmenes contratables y precio de cada uno (selector de volumen): 'Essentials 50k $19.95/mo 50,000 emails/mo', 'Essentials 100k $34.95/mo 100,000 emails/mo', 'Pro 100k $89.95/mo 100,000 emails/mo', 'Pro 300k $249.00/mo 300,000 emails/mo', 'Pro 700k $499.00/mo 700,000 emails/mo', 'Pro 1.5M $799.00/mo 1,500,000 emails/mo', 'Pro 2.5M $1,099.00/mo 2,500,000 emails/mo' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Sobrecoste por email, que baja al subir el volumen contratado: 'Essentials 50K 50,000 $0.0013', 'Essentials 100K 100,000 $0.0009', 'Pro 100K 100,000 $0.0011', 'Pro 300K 300,000 $0.0009', 'Pro 700K 700,000 $0.0008', 'Pro 1.5M 1,500,000 $0.0006', 'Pro 2.5M 2,500,000 $0.0005', 'Premier Custom' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "El sobrecoste se aplica por ciclo de facturación y se factura al siguiente: 'If you send more emails than your email plan allows within a given billing period, you will be charged a small overage fee on a per-email basis. Any overage fees are added to your invoice for the following billing period.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Incoherencia del pricing (D17, DISC-01): el sobrecoste modelado es el de la página de precios (0.0013 en Essentials 50K); el panel lo publica con un decimal más (0.00133) y esas cifras quedan registradas aquí, no modeladas: 'Essentials 50K $19.95/month * Select 50.000 emails/month + $0.00133 per additional email', 'Pro 300K $249.00/month * Select 300.000 emails/month + $0.00091 per additional email', 'Pro 700K $499.00/month * Select 700.000 emails/month + $0.00078 per additional email', 'Pro 1.5 Million $799.00/month * Select 1.500.000 emails/month + $0.00059 per additional email', 'Pro 2.5 Million $1,099.00/month * Select 2.500.000 emails/month + $0.00047 per additional email'; coinciden 'Essentials 100K $34.95/month * Select 100.000 emails/month + $0.0009 per additional email' y 'Pro 100K $89.95/month * Select 100.000 emails/month + $0.0011 per additional email' [https://app.sendgrid.com/account/billing/choose_plan, observación de panel con cuenta propia, 2026-09-06]"
+    - "Sin sobrecoste cuando la cuenta se contrató por un tercero: 'If you created your SendGrid account through Heroku or Google Cloud, your subscription does not allow for overages.' [https://www.twilio.com/en-us/products/email-api/pricing; https://support.sendgrid.com/hc/en-us/articles/40779261694875-Twilio-SendGrid-Overage-Rates]"
+    - "La cuota se consume por destinatario, también si el correo acaba diferido o en spam: 'Every time you send one email to one recipient, it’s deducted as one email credit from your SendGrid Email API plan. This occurs whether the email is ultimately deferred or sent to spam by the inbox provider.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Caudal publicado solo para el envío: 'There are rate limits on how frequently you can call the v3 Mail Send endpoint. You may make up to 10,000 requests per second to the endpoint. Each email you send may include up to 1000 recipients.' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/v3-mail-send-faq]"
+    - "El endpoint de envío está en todos los planes y la cuota del plan se le aplica: 'The v3 Mail Send endpoint is available on all SendGrid pricing plans. The same plan based limitations on the volume of email you may send still apply to the v3 Mail Send endpoint.' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/v3-mail-send-faq]"
+    - "El resto de endpoints tiene un límite fijo cuyo valor no se publica: 'Each endpoint permits a fixed number of requests per refresh period. If you exceed that limit, the API returns an HTTP 429 (Too Many Requests) status code.' [https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/rate-limits]"
+    - "Cabeceras de caudal en cada respuesta: 'X-RateLimit-Limit: 500', 'X-RateLimit-Remaining: 499', 'X-RateLimit-Reset: 1392815263' (valores del ejemplo, no del contrato) [https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/rate-limits]"
+    - "Al agotar el límite: 'When you reach a rate limit, you can no longer make requests against that endpoint for the remainder of the refresh period, and the API returns a 429 response.' [https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/rate-limits]"
+    - "429 documentado como 'Too many requests or rate limit exceeded'; y un bloqueo temporal aparte, 'You are temporarily blocked from sending emails due to repeated bad requests.' (403) [https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/responses]"
+    - "Tope de destinatarios por petición, total y explícito: 'The total number of recipients must be no more than 1,000. This includes all recipients defined within the to, cc, and bcc parameters, across each object that you include in the personalizations array.' [https://www.twilio.com/docs/sendgrid/api-reference/mail-send]"
+    - "Tamaño de la petición: 'The total size of your email, including attachments, must be less than 30MB.' [https://www.twilio.com/docs/sendgrid/api-reference/mail-send]"
+    - "Sobres por petición: 'Each API request has a limit of 1,000 personalization objects. To include more than 1,000, divide the objects across multiple API requests.' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations]"
+    - "Otros topes del cuerpo: 'Total custom_args size may not exceed 10,000 bytes.', categorías 'Max items: 10', 'A send cannot be scheduled more than 72 hours in advance.' [https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send]"
+    - "Ruta y base del endpoint: 'POST/v3/mail/send', 'Base url: https://api.sendgrid.com (for global users and subusers)', 'Base url: https://api.eu.sendgrid.com (for EU regional subusers)' [https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send]"
+    - "La superficie del endpoint depende del plan: 'Regional Email sending in the European Union (EU) is available for Twilio SendGrid Pro plan or above' y la compresión gzip 'is available to some high volume accounts' por solicitud a soporte [https://www.twilio.com/docs/sendgrid/api-reference/mail-send/mail-send]"
+    - "Modo de pruebas sin consumo: 'Sandbox mode is an optional parameter within mail_settings that validates a Mail Send request without delivering the email.', 'No Credits will be consumed.' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/sandbox-mode]"
+    - "IP dedicada incluida en Pro y Premier, una por plan, y ampliable: 'Pro and premier plans include dedicated IPs, with option to purchase more', '*You can purchase additional IPs as an add-on'; no disponible en Free Trial ni Essentials [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Add-on de IP dedicada: 'Additional Dedicated IP Addresses $30/month* each', 'Note: You have 0 dedicated IP included with your plans' [https://app.sendgrid.com/account/products/addons, observación de panel con cuenta propia, 2026-09-06]"
+    - "Add-ons condicionados al plan: 'Upgrade to a paid Email API plan or a paid Marketing Campaigns plan for this add-on.' (créditos de prueba, 'Monthly credit bundles starting at $18/month*'), 'Upgrade to an Email API Pro plan for this add-on.' (validación de direcciones, 'Pricing varies per plan and volume.') [https://app.sendgrid.com/account/products/addons, observación de panel con cuenta propia, 2026-09-06]"
+    - "Paquetes de créditos de prueba: '30 Email Testing credits per month, available for $18.00 USD', '60 Email Testing credits per month, available for $30.00 USD', '500 Email Testing credits per month, available for $200.00 USD', '2,000 Email Testing credits per month, available for $800.00 USD' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Límites de recursos por plan, no de consumo: 'Additional teammates: 1' en Free Trial y Essentials frente a 'Additional teammates: 1,000' en Pro y Premier; webhooks de eventos 'Event Webhook 1 included 2 included 5 included 5 included'; validaciones de direcciones 'Email validation: 2,500' en Pro y 'Email validation: 5,000' en Premier, ninguna en los otros dos [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Historial de actividad por plan: 'Searchable Email Activity 3 days included 3 days included 7 days of history 7 days of history*', con '*Not available to Premier 100M and above' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Créditos de prueba incluidos: la página de precios dice '60 credits/mo (more for purchase)' para Pro y Premier, y por D17 vale 60 en los dos; el panel dice '60 Email Testing Credits' en Pro y '500 Email Testing Credits' en Premier, y el 500 queda como incoherencia del pricing (DISC-02) [https://www.twilio.com/en-us/products/email-api/pricing; https://app.sendgrid.com/account/billing/choose_plan, observación de panel con cuenta propia, 2026-09-06]"
+    - "Funciones que solo existen desde Pro: 'No Subuser Management', 'No Regional Data Residency', 'No Access to Dedicated IPs', 'No Access to Email Validation' en Free y Essentials; 'Subuser Management', 'Regional Data Residency', 'Dedicated IP Included' en Pro y Premier [https://app.sendgrid.com/account/billing/choose_plan, observación de panel con cuenta propia, 2026-09-06]"
+    - "Dos productos contratados por separado bajo la misma cuenta: 'Yes! If you want to use Marketing Campaigns and the Email API, you will need to purchase the email plans separately.' y 'Also note that emails you send via Marketing Campaigns will be counted separately from any emails you send via the SendGrid Email API.' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Contadores independientes de los dos productos en el panel: 'Up to 100 contacts and 100 marketing emails/day', '0 unique contacts stored this month', '0 marketing emails sent today' [https://app.sendgrid.com/account/products, observación de panel con cuenta propia, 2026-09-06]"
+    - "El panel no tiene formulario de envío para el Email API: la guía de integración ofrece 'Use Web API or SMTP' o 'Use Marketing Campaigns', y el único envío desde la interfaz es 'Send a single send' (producto de marketing); la sección Email API del menú se limita a plantillas y guía de integración. type = api_first sobre el producto modelado [https://app.sendgrid.com/guide, observación de panel con cuenta propia, 2026-09-06]"
+    - "El plan Free permanente se retiró en 2025: 'Twilio SendGrid will be retiring its Free Email API and Free Marketing Campaigns plan starting May 27, 2025.' [https://www.twilio.com/en-us/changelog/sendgrid-free-plan]"
+    - "La baja de un plan de pago no vuelve a un plan gratuito: 'At the turn of the month, the plan will be on the \"end of trial\" plan status which will not allow for email send' [https://support.sendgrid.com/hc/en-us/articles/35270136965403-Twilio-SendGrid-Trial-Account-Plan]"
+    - "Sin identidad de remitente verificada no se puede enviar: 'From address doesn’t match Verified Sender Identity' (403) [https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/responses]"
+    - "Canal SMTP con su propio caudal publicado: 'You may send up to 5k messages per SMTP connection.' y 'You may open up to 10k concurrent connections from a single server.' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/integrating-with-the-smtp-api]"
+    - "Por SMTP el tope de destinatarios es diez veces el de la API: 'There is a hard limit of 10,000 addresses in a multiple recipient email. However, the best practice is to split large jobs into separate transactions of approximately 1,000 recipients' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/building-an-x-smtpapi-header]"
+    - "El endpoint de actividad solo existe tras comprar un add-on: 'To gain access to the Email Activity Feed API, purchase additional email activity history.'; con el add-on 'the feed retains events for up to 30 days'; consulta paginada 'This parameter must be greater than 0 and less than or equal to 1000' y 'Combine up to 160 filter conditions per request.' [https://www.twilio.com/docs/sendgrid/api-reference/email-activity/filter-all-messages; https://www.twilio.com/docs/sendgrid/ui/analytics-and-reporting/email-activity-feed]"
+    - "La validación de direcciones solo existe desde Pro: 'Email Address Validation is available to Email API Pro and Premier level accounts only.'; 'There is a limit of 50 sources.' [https://www.twilio.com/docs/sendgrid/api-reference/email-address-validation/validate-an-email]"
+    - "Quinto paquete de créditos de prueba, con errata de precio en la página: '100 Email Testing credits per month, available for $40.000 USD' [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Sustituciones por sobre: 'Limit of 150 substitutions per personalization block.' [https://www.twilio.com/docs/sendgrid/for-developers/sending-email/personalizations]"
+    - "Los dos ejemplos de la página de rate limits usan límites distintos, 'X-RateLimit-Limit: 500' en el 200 y 'X-RateLimit-Limit: 150' en el 429: son ilustrativos, no contractuales [https://www.twilio.com/docs/sendgrid/api-reference/how-to-use-the-sendgrid-v3-api/rate-limits]"
+    - "La prueba limita también el producto de marketing: 'Send up to 100 email messages via Marketing Campaigns per day', 'Store up to 100 contacts (during the 60 day period) within Marketing Campaigns' [https://support.sendgrid.com/hc/en-us/articles/35270136965403-Twilio-SendGrid-Trial-Account-Plan]"
+    - "NOTA (no es un dato): verificación adversarial independiente el 2026-09-06 de las 35 líneas con URL pública: 34 coinciden literalmente con las páginas de ese día y ninguna ha cambiado; la del selector de volumen no es reproducible sin ejecutar el JavaScript de la página, y el panel la corrobora [https://www.twilio.com/en-us/products/email-api/pricing]"
+    - "Tope de destinatarios verificado: 1.000 EN TOTAL por petición, sumando to, cc, bcc y todos los sobres. Con 1.001 en un solo to, con 500+501 en dos sobres y con 500 to + 501 cc la API responde 400 'There is a limit of 1000 total recipients (to + cc + bcc) per mail/send request.'; con 1.000 (en un sobre o en dos de 500) responde 200 [https://api.sendgrid.com/v3/mail/send, verificación empírica en modo sandbox con clave de la cuenta Free Trial, sin consumo, 2026-09-06]"
+    - "Tope de sobres verificado: con 1.001 personalizations de un destinatario la API responde 400 'The personalization block is limited to 1000 personalizations per API request. You have provided 1001 personalizations.' [https://api.sendgrid.com/v3/mail/send, verificación empírica en modo sandbox, 2026-09-06]"
+    - "Caudal medido de los endpoints de lectura: 'x-ratelimit-limit: 600' en /v3/user/profile, /v3/api_keys, /v3/templates, /v3/scopes, /v3/user/credits y /v3/user/account, con la reposición entre 6 y 58 segundos después o en el minuto exacto siguiente (ventana fija de un minuto); en /v3/messages 'x-ratelimit-limit: 6' con 'x-ratelimit-reset: 1' (ventana no determinable con una muestra) [https://api.sendgrid.com/v3/user/profile, verificación empírica con clave de la cuenta Free Trial, 2026-09-06]"
+    - "La respuesta de /v3/mail/send (200 en sandbox y 400 por validación) no lleva cabeceras X-RateLimit: de las cabeceras registradas solo aparece 'date: Sun, 06 Sep 2026 20:46:34 GMT'; el caudal de 10.000 peticiones por segundo de la FAQ no es observable en cabeceras [https://api.sendgrid.com/v3/mail/send, verificación empírica en modo sandbox, 2026-09-06]"
+    - "Contador de la prueba por API: GET /v3/user/credits devuelve 'is_hard_limit: true' y 'overage: 0 remain: 100 reset_frequency: daily total: 100 used: 0'; las fechas de reposición vienen sin hora y desactualizadas, 'last_reset: 2026-09-01' y 'next_reset: 2026-09-02' en una cuenta creada el 2026-09-06 [https://api.sendgrid.com/v3/user/credits, verificación empírica, 2026-09-06]"
+    - "Tipo de cuenta según la API: GET /v3/user/account devuelve 'type: free' y 'reputation: 100' para la prueba de 60 días [https://api.sendgrid.com/v3/user/account, verificación empírica, 2026-09-06]"
+    - "La semántica de x-ratelimit-reset cambia por endpoint: segundos restantes en /v3/user/profile, /v3/api_keys y /v3/scopes ('x-ratelimit-reset: 9', 'x-ratelimit-reset: 58'); marca de tiempo Unix en /v3/templates, /v3/user/credits y /v3/user/account ('x-ratelimit-reset: 1788727620', 'x-ratelimit-reset: 1788727680') [https://api.sendgrid.com/v3/templates, verificación empírica, 2026-09-06]"
+    - "La ventana del límite diario de la prueba es el día UTC: 'If your account is under the Email API Free Trial version plan, please wait until the next day (UTC time) for the credit count to reset.' [https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error]"
+    - "El volumen mensual de los planes de pago se aplica por ciclo de facturación: 'Your SendGrid Email API plan has reached its sending limit for the current billing period.' y 'you can send up to 500,000 requests to our server throughout the month' [https://www.twilio.com/docs/api/errors/60603; https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error]"
+    - "El sobrecoste tiene tope: 'Starting March 26, 2026, a sending limit was applied to accounts under the Email API Essentials and Pro plans, capping their allotment to 10X times the plan. For example, if your account is under the Email API Essentials 50K plan, you can send up to 500,000 requests to our server throughout the month.' [https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error]"
+    - "Las cuentas de reseller tienen otro tope: 'these accounts have an artificial credit limit, that is 2.5X times the plan allotment. For example, if your reseller account is under the Email API Pro 100k plan, the credit limit is set to 250K.' [https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error]"
+    - "Lo que cuenta contra el volumen son las peticiones aceptadas, entregadas o no: 'Keep in mind that Requests = Processed + Dropped.' [https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error]"
+    - "Tras subir de plan, el tope de la prueba sigue hasta que se paga: 'SendGrid is a service that is paid in advance, so if you upgrade, an invoice for the prorated charges will be generated. The credit limits are removed once the payment is confirmed.' [https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error]"
+  not_found:
+    - "Valor numérico del rate limit de los endpoints REST distintos de /v3/mail/send: no publicado (solo las cabeceras X-RateLimit-* y el 429; los valores de los ejemplos son ilustrativos). Medido en seis endpoints de lectura: 600 por minuto; en /v3/messages: 6 por ventana de longitud no determinada. El canal SMTP sí publica el suyo"
+    - "Caudal real de /v3/mail/send: la respuesta no lleva cabeceras X-RateLimit, así que los 10.000 por segundo de la FAQ no se pueden contrastar sin una campaña de carga, que está fuera del encargo"
+    - "Segmentación del caudal de 10.000 peticiones por segundo (por cuenta, por clave de API o por subusuario): no dicha"
+    - "Duración del 'refresh period' de los rate limits: no publicada; solo X-RateLimit-Reset como marca de tiempo"
+    - "Hora exacta de reposición del límite diario de la prueba: la documentación dice 'next day (UTC time)', que fija la zona y el día natural pero no la hora en punto; se toma la medianoche UTC"
+    - "Tope de sobrecoste de Premier: el artículo de soporte solo lo publica para Essentials y Pro (10 veces el plan) y para cuentas de reseller (2,5 veces)"
+    - "Tamaño máximo de mensaje por SMTP: no publicado; los 30 MB están documentados solo para /v3/mail/send e Inbound Parse"
+    - "El tope de 30 MB es estricto ('less than 30MB'); el esquema no distingue menor de menor o igual, por eso el máximo del workload en MBs va en ámbar"
+    - "Umbral del bloqueo temporal por peticiones malformadas repetidas (403): no publicado"
+    - "Precio y volumen del plan Premier: no publicados (contacto con ventas)"
+    - "Precio del add-on de historial de actividad adicional y del add-on de validación de direcciones: no publicados en las páginas consultadas"
+    - "Si la recepción por Inbound Parse consume la cuota de envío: no encontrado"
+    - "Condición para activar la compresión gzip ('some high volume accounts'): no publicada"

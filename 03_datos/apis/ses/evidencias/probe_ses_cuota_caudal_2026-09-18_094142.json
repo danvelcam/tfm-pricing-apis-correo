@@ -1,0 +1,254 @@
+{
+  "sondeo": "ses_cuota_caudal",
+  "fecha_utc": "2026-09-18_094142",
+  "region": "eu-west-1",
+  "presupuesto_envios": 2,
+  "envios_gastados": 2,
+  "lectura": {
+    "contador_partida": 0.0,
+    "contador_tras_rechazos": 0.0,
+    "contador_tras_A": 0.0,
+    "contador_tras_B": 0.0,
+    "delta_rechazos": 0.0,
+    "delta_A": 0.0,
+    "delta_B": 0.0
+  },
+  "pasos": [
+    {
+      "paso": "account.antes",
+      "pregunta": "estado de partida del contador",
+      "respuesta": {
+        "http": 200,
+        "ms": 221,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:32 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "dac84e45-118a-42a2-bd72-72410cbe3d9f"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    },
+    {
+      "paso": "rechazo.1",
+      "pregunta": "DISC-07/08/14: nombre y código del error",
+      "respuesta": {
+        "http": 403,
+        "ms": 238,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:32 GMT",
+          "content-type": "application/json",
+          "content-length": "192",
+          "connection": "close",
+          "x-amzn-requestid": "30b2d3da-4a89-4641-8cab-8ef1c9329844",
+          "x-amzn-errortype": "AccessDeniedException"
+        },
+        "cuerpo": {
+          "Message": "User 'arn:aws:iam::<cuenta-aws-redactada>:user/<principal-redactado>' is not authorized to perform 'ses:SendEmail' on resource 'arn:aws:ses:eu-west-1:<cuenta-aws-redactada>:identity/<direccion-1-redactada>'"
+        }
+      }
+    },
+    {
+      "paso": "rechazo.2",
+      "pregunta": "DISC-07/08/14: nombre y código del error",
+      "respuesta": {
+        "http": 403,
+        "ms": 220,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:33 GMT",
+          "content-type": "application/json",
+          "content-length": "192",
+          "connection": "close",
+          "x-amzn-requestid": "12fb98e0-ed9b-4841-aeb1-9a407ec781f7",
+          "x-amzn-errortype": "AccessDeniedException"
+        },
+        "cuerpo": {
+          "Message": "User 'arn:aws:iam::<cuenta-aws-redactada>:user/<principal-redactado>' is not authorized to perform 'ses:SendEmail' on resource 'arn:aws:ses:eu-west-1:<cuenta-aws-redactada>:identity/<direccion-1-redactada>'"
+        }
+      }
+    },
+    {
+      "paso": "account.tras_rechazos",
+      "pregunta": "F-21: ¿un intento rechazado consume cuota?",
+      "respuesta": {
+        "http": 200,
+        "ms": 222,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:33 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "474ee173-0677-4437-9630-218da9af4c50"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    },
+    {
+      "paso": "envio_A",
+      "pregunta": "DISC-02: un destinatario",
+      "respuesta": {
+        "http": 403,
+        "ms": 219,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:33 GMT",
+          "content-type": "application/json",
+          "content-length": "192",
+          "connection": "close",
+          "x-amzn-requestid": "c96149fb-ce76-4b54-8e92-40bc16669a36",
+          "x-amzn-errortype": "AccessDeniedException"
+        },
+        "cuerpo": {
+          "Message": "User 'arn:aws:iam::<cuenta-aws-redactada>:user/<principal-redactado>' is not authorized to perform 'ses:SendEmail' on resource 'arn:aws:ses:eu-west-1:<cuenta-aws-redactada>:identity/<direccion-1-redactada>'"
+        }
+      }
+    },
+    {
+      "paso": "account.tras_A",
+      "pregunta": "contador tras el envío A",
+      "respuesta": {
+        "http": 200,
+        "ms": 198,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:37 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "80c560c0-00e7-48bb-b889-7f3f04a22f68"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    },
+    {
+      "paso": "envio_B",
+      "pregunta": "DISC-02: dos destinatarios en un mensaje",
+      "respuesta": {
+        "http": 403,
+        "ms": 208,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:37 GMT",
+          "content-type": "application/json",
+          "content-length": "192",
+          "connection": "close",
+          "x-amzn-requestid": "83aa60eb-2a9f-4543-a620-5a593edc6466",
+          "x-amzn-errortype": "AccessDeniedException"
+        },
+        "cuerpo": {
+          "Message": "User 'arn:aws:iam::<cuenta-aws-redactada>:user/<principal-redactado>' is not authorized to perform 'ses:SendEmail' on resource 'arn:aws:ses:eu-west-1:<cuenta-aws-redactada>:identity/<direccion-1-redactada>'"
+        }
+      }
+    },
+    {
+      "paso": "account.tras_B",
+      "pregunta": "contador tras el envío B",
+      "respuesta": {
+        "http": 200,
+        "ms": 182,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:41:42 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "17f3cb4e-60e5-40f2-8b11-6897c9895c35"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    }
+  ]
+}

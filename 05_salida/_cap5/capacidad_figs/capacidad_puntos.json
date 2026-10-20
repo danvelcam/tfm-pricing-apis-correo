@@ -1,0 +1,89 @@
+{
+ "generado_por": "PRIME4API DatasheetEvaluatorService + CapacityCurveService (biblioteca, local)",
+ "renderizador": "app/utils/plotly_renderer.render_capacity_curve_html",
+ "ventana_puntos": "1 month",
+ "paneles": [
+  {
+   "api": "resend",
+   "plan": "pro",
+   "endpoint": "/emails",
+   "k": 1.0,
+   "intervalo_figura": "3 hours",
+   "rate_emails_s": 10.0,
+   "quota": 50000.0,
+   "ventana_s": 2592000,
+   "t_s": [
+    0.0,
+    4999.0,
+    2592000.0
+   ],
+   "capacity": [
+    10.0,
+    50000.0,
+    50000.0
+   ],
+   "t_min_s": 4999.0
+  },
+  {
+   "api": "resend",
+   "plan": "pro",
+   "endpoint": "/emails",
+   "k": 50.0,
+   "intervalo_figura": "5 minutes",
+   "rate_emails_s": 500.0,
+   "quota": 50000.0,
+   "ventana_s": 2592000,
+   "t_s": [
+    0.0,
+    99.0,
+    2592000.0
+   ],
+   "capacity": [
+    500.0,
+    50000.0,
+    50000.0
+   ],
+   "t_min_s": 99.0
+  },
+  {
+   "api": "sendgrid",
+   "plan": "essentials",
+   "endpoint": "/v3/mail/send",
+   "k": 1.0,
+   "intervalo_figura": "15 seconds",
+   "rate_emails_s": 10000.0,
+   "quota": 50000.0,
+   "ventana_s": 2592000,
+   "t_s": [
+    0.0,
+    4.0,
+    2592000.0
+   ],
+   "capacity": [
+    10000.0,
+    50000.0,
+    50000.0
+   ],
+   "t_min_s": 4.0
+  },
+  {
+   "api": "sendgrid",
+   "plan": "essentials",
+   "endpoint": "/v3/mail/send",
+   "k": 1000.0,
+   "intervalo_figura": "5 seconds",
+   "rate_emails_s": 10000000.0,
+   "quota": 50000.0,
+   "ventana_s": 2592000,
+   "t_s": [
+    0.0,
+    2592000.0
+   ],
+   "capacity": [
+    50000.0,
+    50000.0
+   ],
+   "t_min_s": 0.0
+  }
+ ]
+}

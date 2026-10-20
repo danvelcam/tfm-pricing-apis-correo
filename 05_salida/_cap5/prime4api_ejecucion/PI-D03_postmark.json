@@ -1,0 +1,48 @@
+{
+ "pregunta": "PI-D03",
+ "operacion": "Q9",
+ "descripcion": "Umbral de agotamiento de cuota (CRF que iguala cuota y rate) en el primer plan de pago",
+ "api": "postmark",
+ "llamadas": [
+  {
+   "endpoint": "POST /quota-exhaustion-threshold",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": []
+         },
+         {
+          "capacity_request_factor": 26.0,
+          "value": []
+         },
+         {
+          "capacity_request_factor": 50.0,
+          "value": []
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

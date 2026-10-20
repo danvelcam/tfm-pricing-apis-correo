@@ -1,0 +1,156 @@
+# Pricing2YAML (sintaxis del grupo ISA, la que usa SPHERE) — Mailchimp Transactional (Mandrill).
+# Fuente: 03_datos/apis/mailchimp/datasheet.yaml (ACM2YAML v0.3, cerrada el 2026-09-21).
+# Cada valor lleva entre corchetes la línea de la Datasheet de la que sale (DS:n).
+# Un único plan de bloques prepago de 25.000 emails; el plan es un bloque y los bloques
+# siguientes del primer tramo (hasta 20 en total, 20 USD cada uno) son un add-on [DS:152-153].
+# Lo que no cabe en esta sintaxis está en no_admite.md (R21), no aquí.
+saasName: Mailchimp Transactional
+syntaxVersion: '3.0'
+version: '2026-09-21'
+url: https://mailchimp.com/pricing/transactional-email/
+createdAt: '2026-09-21'
+currency: USD
+billing:
+  monthly: 1
+variables: {}
+tags:
+  - Envío
+  - Consulta
+features:
+  transactionalEmailApi:
+    description: 'Envío por POST /messages/send, con todos los destinatarios en el array to [DS:54-66, DS:178]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  templateEmailApi:
+    description: 'Envío con plantilla por POST /messages/send-template [DS:67-79]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  rawEmailApi:
+    description: 'Envío de un documento MIME crudo por POST /messages/send-raw [DS:80-92]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  smtpRelay:
+    description: 'Canal SMTP, hasta 1.000 destinatarios por envío; la Datasheet no lo modela como endpoint [DS:183]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INTEGRATION
+    integrationType: API
+    tag: Envío
+  dedicatedIp:
+    description: 'IP dedicada, solo como add-on [DS:159]'
+    valueType: BOOLEAN
+    defaultValue: false
+    type: DOMAIN
+    tag: Envío
+  messageSearch:
+    description: 'Búsqueda de mensajes recientes por POST /messages/search [DS:93-99]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INFORMATION
+    tag: Consulta
+  messageSearchTimeSeries:
+    description: 'Estadística agregada por hora por POST /messages/search-time-series [DS:100-105]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INFORMATION
+    tag: Consulta
+  messageInfo:
+    description: 'Consulta de un mensaje reciente por POST /messages/info [DS:106-111]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INFORMATION
+    tag: Consulta
+  messageContent:
+    description: 'Contenido completo de un mensaje reciente por POST /messages/content [DS:112-117]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: INFORMATION
+    tag: Consulta
+  rejectsList:
+    description: 'Lista de rechazos por POST /rejects/list, hasta 1.000 resultados por petición [DS:118-123]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: MANAGEMENT
+    tag: Consulta
+  accountInfo:
+    description: 'Estado de la cuenta por POST /users/info: cuota horaria, reputación y cola [DS:124-129]'
+    valueType: BOOLEAN
+    defaultValue: true
+    type: MANAGEMENT
+    tag: Consulta
+usageLimits:
+  emailsPerMonth:
+    description: 'Bloque de 25.000 emails; lo no usado no pasa al mes siguiente y al agotarse se para el envío [DS:16-22, DS:152, DS:155-156]'
+    valueType: NUMERIC
+    defaultValue: 25000
+    unit: email
+    type: RENEWABLE
+    period:
+      unit: MONTH
+      value: 1
+    linkedFeatures:
+      - transactionalEmailApi
+      - templateEmailApi
+      - rawEmailApi
+      - smtpRelay
+  searchRequestsPerMinute:
+    description: 'Caudal propio de la búsqueda de mensajes; 429 al superarlo [DS:39-44, DS:175]'
+    valueType: NUMERIC
+    defaultValue: 20
+    unit: request
+    type: RENEWABLE
+    period:
+      unit: MIN
+      value: 1
+    linkedFeatures:
+      - messageSearch
+  payloadSizePerRequest:
+    description: 'Tamaño del JSON de cada llamada de envío, adjuntos incluidos ya codificados [DS:63-65, DS:168]'
+    valueType: NUMERIC
+    defaultValue: 10
+    unit: MB
+    type: NON_RENEWABLE
+    trackable: false
+    linkedFeatures:
+      - transactionalEmailApi
+      - templateEmailApi
+      - rawEmailApi
+plans:
+  transactionalEmail:
+    description: 'Producto único, sin planes con nombre; se contrata como complemento de una cuenta Mailchimp Standard o Premium. Precio de un bloque en el primer tramo, en ámbar en la Datasheet [DS:47-52, DS:151, DS:153, DS:158]'
+    price: 20
+    unit: month
+    features: {}
+    usageLimits: {}
+addOns:
+  extraBlocksFirstTier:
+    description: 'Bloques adicionales de 25.000 emails a 20 USD hasta completar los 20 bloques del primer tramo [DS:152-153]'
+    availableFor:
+      - transactionalEmail
+    price: 20
+    unit: block/month
+    usageLimitsExtensions:
+      emailsPerMonth:
+        value: 25000
+    subscriptionConstraints:
+      minQuantity: 1
+      maxQuantity: 19
+      quantityStep: 1
+  dedicatedIp:
+    description: 'IP dedicada a 29,95 USD al mes, sin volumen mínimo publicado [DS:159]'
+    availableFor:
+      - transactionalEmail
+    price: 29.95
+    unit: IP/month
+    features:
+      dedicatedIp:
+        value: true

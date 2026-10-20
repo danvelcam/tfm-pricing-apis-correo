@@ -1,0 +1,45 @@
+{
+ "caso": "C6",
+ "pregunta": "PI-A02",
+ "operacion": "rates",
+ "descripcion": "Caudal que el motor atribuye a la cuenta sin aprobar",
+ "api": "mailersend",
+ "servicio": "http://localhost:8003/api/v1/datasheet",
+ "ejecutado": "2026-09-15T13:04:36",
+ "llamadas": [
+  {
+   "endpoint": "POST /rates",
+   "params": {
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 108,
+   "respuesta": {
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "unapproved_account",
+       "rates": [
+        {
+         "value": 10.0,
+         "unit": "requests",
+         "period": "1min"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

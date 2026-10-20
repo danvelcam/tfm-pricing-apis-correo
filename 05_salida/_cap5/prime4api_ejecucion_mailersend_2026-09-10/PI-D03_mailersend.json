@@ -1,0 +1,89 @@
+{
+ "pregunta": "PI-D03",
+ "operacion": "Q9",
+ "descripcion": "Umbral de agotamiento de cuota (CRF que iguala cuota y rate) en el primer plan de pago",
+ "api": "mailersend",
+ "llamadas": [
+  {
+   "endpoint": "POST /quota-exhaustion-threshold",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation",
+    "plan_names": [
+     "hobby"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 325,
+   "respuesta": {
+    "results": {
+     "hobby": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": [
+           {
+            "quota": {
+             "value": 5000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0015,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "41min"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 36.0,
+          "value": [
+           {
+            "quota": {
+             "value": 5000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0015,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "1min"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 70.0,
+          "value": [
+           {
+            "quota": {
+             "value": 5000.0,
+             "unit": "emails",
+             "period": "30day",
+             "overage_cost": {
+              "price": 0.0015,
+              "value": 1.0
+             }
+            },
+            "exhaustion_threshold": "0s"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

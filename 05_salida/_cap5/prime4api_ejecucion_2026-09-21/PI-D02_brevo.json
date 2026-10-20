@@ -1,0 +1,76 @@
+{
+ "pregunta": "PI-D02",
+ "operacion": "Q5",
+ "descripcion": "Rates del primer plan de pago y capacidad en 1 mes con la cuota expandida (presupuesto muy alto): el rate limita por encima de R·W·k",
+ "api": "brevo",
+ "llamadas": [
+  {
+   "endpoint": "POST /rates",
+   "params": {
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "starter"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 51,
+   "respuesta": {
+    "results": {
+     "starter": [
+      {
+       "endpoint": "/v3/smtp/email",
+       "rates": [
+        {
+         "value": 1000.0,
+         "unit": "requests",
+         "period": "1s"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "starter"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 52,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "starter": [
+      {
+       "endpoint": "/v3/smtp/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 6000.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

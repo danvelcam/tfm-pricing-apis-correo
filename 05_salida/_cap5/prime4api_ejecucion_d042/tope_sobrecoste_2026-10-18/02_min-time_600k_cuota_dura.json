@@ -1,0 +1,48 @@
+{
+  "fichero": "02_min-time_600k_cuota_dura.json",
+  "pregunta": "Tiempo minimo para 600.000 correos (por ENCIMA del tope real de 500.000) en Essentials, k=1, sin presupuesto.",
+  "api": "sendgrid",
+  "plan": "essentials",
+  "friccion": "F-16",
+  "condicion": "L2 (D-042)",
+  "servicio": "http://localhost:8003/api/v1/datasheet",
+  "ejecutado": "2026-10-18T21:38:02",
+  "llamada": {
+    "endpoint": "POST /min-time",
+    "url_completa": "http://localhost:8003/api/v1/datasheet/min-time?capacity_goal=600000&capacity_unit=emails&capacity_request_factor=1",
+    "params": {
+      "capacity_goal": "600000",
+      "capacity_unit": "emails",
+      "capacity_request_factor": "1"
+    },
+    "body": {
+      "endpoint_path": "/v3/mail/send",
+      "plan_names": [
+        "essentials"
+      ]
+    },
+    "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+    "nota_body": "El cuerpo real anade `datasheet_source` con el YAML integro de la Datasheet del catalogo, sin modificar."
+  },
+  "http": 200,
+  "ms": 29,
+  "respuesta": {
+    "capacity_goal": 600000,
+    "results": {
+      "essentials": [
+        {
+          "endpoint": "/v3/mail/send",
+          "dimensions": {
+            "emails": [
+              {
+                "capacity_request_factor": 1.0,
+                "value": "330day4s"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  },
+  "datasheet_sha256": "dc265bcad7c60936eab50cfbf6da5df6c6def1febd6c7e62788aad41d143c243"
+}

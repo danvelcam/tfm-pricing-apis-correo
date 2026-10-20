@@ -1,0 +1,120 @@
+{
+ "resumen": {
+  "api": "brevo",
+  "paquete": "A (cero envios)",
+  "sondeo": "429_rps",
+  "fecha_utc": "2026-09-18T19:56:08.622123+00:00",
+  "envios_reales": 0,
+  "peticiones_de_envio": 0,
+  "peticiones": 6,
+  "invariante_cero_envios": "CUMPLIDA",
+  "codigos_de_la_rafaga": [
+   "400",
+   "400",
+   "429"
+  ],
+  "DISC_12": {
+   "alcanzado": true,
+   "peticion_del_rechazo": "f1_rafaga_03",
+   "cuerpo_literal": "",
+   "code_del_cuerpo": null,
+   "retry_after": null,
+   "veredicto": "el cuerpo del 429 trae code=None"
+  },
+  "DISC_13": {
+   "reset_en_el_rechazo": "1",
+   "segundos_hasta_reintento": 1.658,
+   "vuelve_a_pasar": true,
+   "veredicto": "la ventana se repone en 1.66 s: el 'reset: 1' leido en el rechazo son SEGUNDOS, no minutos ni horas"
+  },
+  "bucket_del_429": "las rutas de control siguen pasando: el 429 es de la FILA de GET /v3/smtp/emails y no alcanza ni al prefijo ni a 'All other endpoints'",
+  "control": {
+   "/smtp/templates?limit=1": "200",
+   "/account": "200"
+  },
+  "E_D024": "rechazo alcanzado: el rate de GET /v3/smtp/emails puede adoptarse en VERDE por la ampliacion D-024 de la seccion E"
+ },
+ "casos": {
+  "f1_rafaga_01": {
+   "ruta": "/smtp/emails?limit=1",
+   "metodo": "GET",
+   "http": "400",
+   "epoch": 1789761366.2331388,
+   "cabeceras_caudal": {
+    "date": "Fri, 18 Sep 2026 19:56:06 GMT",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "retry_after": null,
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  },
+  "f1_rafaga_02": {
+   "ruta": "/smtp/emails?limit=1",
+   "metodo": "GET",
+   "http": "400",
+   "epoch": 1789761366.502099,
+   "cabeceras_caudal": {
+    "date": "Fri, 18 Sep 2026 19:56:06 GMT",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "0",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "retry_after": null,
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  },
+  "f1_rafaga_03": {
+   "ruta": "/smtp/emails?limit=1",
+   "metodo": "GET",
+   "http": "429",
+   "epoch": 1789761366.6317291,
+   "cabeceras_caudal": {
+    "date": "Fri, 18 Sep 2026 19:56:06 GMT",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "0",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "retry_after": null,
+   "cuerpo_crudo": ""
+  },
+  "f2_control_01": {
+   "ruta": "/smtp/templates?limit=1",
+   "metodo": "GET",
+   "http": "200",
+   "epoch": 1789761366.8051107,
+   "cabeceras_caudal": {
+    "date": "Fri, 18 Sep 2026 19:56:06 GMT"
+   },
+   "retry_after": null,
+   "cuerpo_crudo": "{}\n"
+  },
+  "f2_control_02": {
+   "ruta": "/account",
+   "metodo": "GET",
+   "http": "200",
+   "epoch": 1789761366.9235954,
+   "cabeceras_caudal": {
+    "date": "Fri, 18 Sep 2026 19:56:07 GMT",
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4999",
+    "x-sib-ratelimit-reset": "233"
+   },
+   "retry_after": null,
+   "cuerpo_crudo": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":300,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "f3_tras_1200ms": {
+   "ruta": "/smtp/emails?limit=1",
+   "metodo": "GET",
+   "http": "400",
+   "epoch": 1789761368.290169,
+   "cabeceras_caudal": {
+    "date": "Fri, 18 Sep 2026 19:56:08 GMT",
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "retry_after": null,
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  }
+ }
+}

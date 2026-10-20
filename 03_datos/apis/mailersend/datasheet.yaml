@@ -1,0 +1,594 @@
+# Datasheet ACM2YAML v0.3 — MailerSend (Email API)
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: mailersend                                 # 🟢
+type: partial_saas                                          # 🟢
+url: https://www.mailersend.com/pricing                     # 🟢
+syntax_version: 0.3
+date: 2026-09-08
+currency: USD                                               # 🟢
+consumption_units:
+  - requests
+  - emails
+  - MBs
+
+capacity:
+  quota_email_monthly_free:
+    value: 500                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+
+  quota_email_monthly_hobby:
+    value: 5000                                             # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+    overage_cost:
+      price: 0.0015                                         # 🟢
+      value: 1
+
+  quota_email_monthly_starter:
+    value: 50000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+    overage_cost:
+      price: 0.0013                                         # 🟢
+      value: 1
+
+  quota_email_monthly_professional:
+    value: 50000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟢
+    overage_cost:
+      price: 0.0013                                         # 🟢
+      value: 1
+
+  quota_email_monthly_unapproved:
+    value: 100                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    # 🔴 reposición de la cuota de la cuenta no aprobada no publicada — hueco
+    # deliberado (ver metadata.not_found)
+    window_type:
+
+  quota_request_daily_free:
+    value: 100                                              # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: DAY
+    window_type: fixed_utc_midnight                         # 🟢
+
+  quota_request_daily_hobby:
+    value: 1000                                             # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: DAY
+    window_type: fixed_utc_midnight                         # 🟢
+
+  quota_request_daily_starter:
+    value: 100000                                           # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: DAY
+    window_type: fixed_utc_midnight                         # 🟢
+
+  quota_request_daily_professional:
+    value: 500000                                           # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: DAY
+    window_type: fixed_utc_midnight                         # 🟢
+
+max_power:
+  rate_request_general_free:
+    value: 60                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_general_hobby:
+    value: 60                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_general_starter:
+    value: 60                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_general_professional:
+    value: 60                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_email_free:
+    value: 120                                              # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_email_hobby:
+    value: 120                                              # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_email_starter:
+    value: 120                                              # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_email_professional:
+    value: 120                                              # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_bulk_hobby:
+    value: 10                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_bulk_starter:
+    value: 15                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_bulk_professional:
+    value: 30                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_email_under_review:
+    value: 10                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_bulk_under_review:
+    value: 1                                                # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_email_unapproved:
+    value: 10                                               # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+  rate_request_bulk_unapproved:
+    value: 1                                                # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+
+plans:
+  free:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_request_daily_free
+    endpoints:
+      /*:
+        rate: rate_request_general_free
+      /v1/email:
+        quota: quota_email_monthly_free
+        healthy_reputation:
+          rate: rate_request_email_free
+        under_review_reputation:
+          rate: rate_request_email_under_review
+        unapproved_account:
+          rate: rate_request_email_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 2                                        # 🟡
+              description: Cuenta sin aprobar; máximo por petición de dos destinatarios sumando to, cc y bcc, que es la mayor combinación que pasa la validación (to 1 más cc 1), frente a los 10 en to, 1 en cc y 1 en bcc que publica la documentación (DISC-18). El tope de dos destinatarios únicos por cuenta es otra dimensión y no se modela; ver metadata.not_found. Medido el 2026-09-14 en la tanda 3, ese cupo de cuenta se agota con direcciones probadas aunque el mensaje no salga, y una vez agotado ni siquiera to 1 más cc 1 pasa, así que este máximo describe el tope de la petición y no lo que la cuenta admite hoy.
+        workload:
+          - unit: emails
+            min: 1
+            max: 70                                         # 🟡
+            description: Envío individual; hasta 50 destinatarios en to más 10 en cc y 10 en bcc, cada destinatario consume una unidad.
+
+  hobby:
+    price: 7.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_request_daily_hobby
+    endpoints:
+      /*:
+        rate: rate_request_general_hobby
+      /v1/email:
+        quota: quota_email_monthly_hobby
+        healthy_reputation:
+          rate: rate_request_email_hobby
+        under_review_reputation:
+          rate: rate_request_email_under_review
+        unapproved_account:
+          rate: rate_request_email_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 2                                        # 🟡
+              description: Cuenta sin aprobar; máximo por petición de dos destinatarios sumando to, cc y bcc, que es la mayor combinación que pasa la validación (to 1 más cc 1), frente a los 10 en to, 1 en cc y 1 en bcc que publica la documentación (DISC-18). El tope de dos destinatarios únicos por cuenta es otra dimensión y no se modela; ver metadata.not_found. Medido el 2026-09-14 en la tanda 3, ese cupo de cuenta se agota con direcciones probadas aunque el mensaje no salga, y una vez agotado ni siquiera to 1 más cc 1 pasa, así que este máximo describe el tope de la petición y no lo que la cuenta admite hoy.
+        workload:
+          - unit: emails
+            min: 1
+            max: 70                                         # 🟡
+            description: Envío individual; hasta 50 destinatarios en to más 10 en cc y 10 en bcc, cada destinatario consume una unidad.
+      /v1/bulk-email:
+        quota: quota_email_monthly_hobby
+        healthy_reputation:
+          rate: rate_request_bulk_hobby
+        under_review_reputation:
+          rate: rate_request_bulk_under_review
+        unapproved_account:
+          rate: rate_request_bulk_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 5                                        # 🟡
+              description: Cuenta sin aprobar; cinco objetos de correo por llamada en vez de 500, y un destinatario en to por objeto (el tope de to medido sin aprobar), de ahí las cinco unidades.
+            - unit: MBs
+              min: 1
+              max: 50                                       # 🟢
+              description: Tamaño total del cuerpo JSON de la petición, hasta 50 MB.
+        workload:
+          - unit: emails
+            min: 1
+            max: 35000                                      # 🟢
+            description: Hasta 500 objetos de correo por llamada, cada uno con hasta 50 to, 10 cc y 10 bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 50                                         # 🟢
+            description: Tamaño total del cuerpo JSON de la petición, hasta 50 MB.
+
+  starter:
+    price: 35.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_request_daily_starter
+    endpoints:
+      /*:
+        rate: rate_request_general_starter
+      /v1/email:
+        quota: quota_email_monthly_starter
+        healthy_reputation:
+          rate: rate_request_email_starter
+        under_review_reputation:
+          rate: rate_request_email_under_review
+        unapproved_account:
+          rate: rate_request_email_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 2                                        # 🟡
+              description: Cuenta sin aprobar; máximo por petición de dos destinatarios sumando to, cc y bcc, que es la mayor combinación que pasa la validación (to 1 más cc 1), frente a los 10 en to, 1 en cc y 1 en bcc que publica la documentación (DISC-18). El tope de dos destinatarios únicos por cuenta es otra dimensión y no se modela; ver metadata.not_found. Medido el 2026-09-14 en la tanda 3, ese cupo de cuenta se agota con direcciones probadas aunque el mensaje no salga, y una vez agotado ni siquiera to 1 más cc 1 pasa, así que este máximo describe el tope de la petición y no lo que la cuenta admite hoy.
+        workload:
+          - unit: emails
+            min: 1
+            max: 70                                         # 🟡
+            description: Envío individual; hasta 50 destinatarios en to más 10 en cc y 10 en bcc, cada destinatario consume una unidad.
+      /v1/bulk-email:
+        quota: quota_email_monthly_starter
+        healthy_reputation:
+          rate: rate_request_bulk_starter
+        under_review_reputation:
+          rate: rate_request_bulk_under_review
+        unapproved_account:
+          rate: rate_request_bulk_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 5                                        # 🟡
+              description: Cuenta sin aprobar; cinco objetos de correo por llamada en vez de 500, y un destinatario en to por objeto (el tope de to medido sin aprobar), de ahí las cinco unidades.
+            - unit: MBs
+              min: 1
+              max: 50                                       # 🟢
+              description: Tamaño total del cuerpo JSON de la petición, hasta 50 MB.
+        workload:
+          - unit: emails
+            min: 1
+            max: 35000                                      # 🟢
+            description: Hasta 500 objetos de correo por llamada, cada uno con hasta 50 to, 10 cc y 10 bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 50                                         # 🟢
+            description: Tamaño total del cuerpo JSON de la petición, hasta 50 MB.
+
+  professional:
+    price: 110.00                                           # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_request_daily_professional
+    endpoints:
+      /*:
+        rate: rate_request_general_professional
+      /v1/email:
+        quota: quota_email_monthly_professional
+        healthy_reputation:
+          rate: rate_request_email_professional
+        under_review_reputation:
+          rate: rate_request_email_under_review
+        unapproved_account:
+          rate: rate_request_email_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 2                                        # 🟡
+              description: Cuenta sin aprobar; máximo por petición de dos destinatarios sumando to, cc y bcc, que es la mayor combinación que pasa la validación (to 1 más cc 1), frente a los 10 en to, 1 en cc y 1 en bcc que publica la documentación (DISC-18). El tope de dos destinatarios únicos por cuenta es otra dimensión y no se modela; ver metadata.not_found. Medido el 2026-09-14 en la tanda 3, ese cupo de cuenta se agota con direcciones probadas aunque el mensaje no salga, y una vez agotado ni siquiera to 1 más cc 1 pasa, así que este máximo describe el tope de la petición y no lo que la cuenta admite hoy.
+        workload:
+          - unit: emails
+            min: 1
+            max: 70                                         # 🟡
+            description: Envío individual; hasta 50 destinatarios en to más 10 en cc y 10 en bcc, cada destinatario consume una unidad.
+      /v1/bulk-email:
+        quota: quota_email_monthly_professional
+        healthy_reputation:
+          rate: rate_request_bulk_professional
+        under_review_reputation:
+          rate: rate_request_bulk_under_review
+        unapproved_account:
+          rate: rate_request_bulk_unapproved
+          quota: quota_email_monthly_unapproved
+          workload:
+            - unit: emails
+              min: 1
+              max: 5                                        # 🟡
+              description: Cuenta sin aprobar; cinco objetos de correo por llamada en vez de 500, y un destinatario en to por objeto (el tope de to medido sin aprobar), de ahí las cinco unidades.
+            - unit: MBs
+              min: 1
+              max: 50                                       # 🟢
+              description: Tamaño total del cuerpo JSON de la petición, hasta 50 MB.
+        workload:
+          - unit: emails
+            min: 1
+            max: 35000                                      # 🟢
+            description: Hasta 500 objetos de correo por llamada, cada uno con hasta 50 to, 10 cc y 10 bcc; cada destinatario consume una unidad.
+          - unit: MBs
+            min: 1
+            max: 50                                         # 🟢
+            description: Tamaño total del cuerpo JSON de la petición, hasta 50 MB.
+
+metadata:
+  sources_visited:
+    - https://www.mailersend.com/pricing
+    - https://www.mailersend.com/help/plans-features-and-limits
+    - https://www.mailersend.com/help/plan-add-ons
+    - https://www.mailersend.com/whats-new/data-retention-add-on
+    - https://www.mailersend.com/features/smtp-relay
+    - https://www.mailersend.com/help/smtp-relay
+    - https://www.mailersend.com/features/inbound-emails
+    - https://www.mailersend.com/help/inbound-route
+    - https://www.mailersend.com/features/dedicated-ip-email
+    - https://www.mailersend.com/help/how-to-request-dedicated-ip
+    - https://www.mailersend.com/features/email-verification-tool
+    - https://www.mailersend.com/features/sms-api
+    - https://www.mailersend.com/features/webhooks
+    - https://www.mailersend.com/compare/sendgrid-alternative
+    - https://www.mailersend.com/compare/mandrill-alternative
+    - https://www.mailersend.com/compare/amazonses-alternative
+    - https://www.mailersend.com/whats-new
+    - https://www.mailersend.com/features
+    - https://www.mailerlite.com/pricing-mailersend
+    - https://developers.mailersend.com/general.html
+    - https://developers.mailersend.com/api/v1/email.html
+    - https://developers.mailersend.com/api/v1/tokens.html
+    - https://developers.mailersend.com/api/v1/domains.html
+    - https://developers.mailersend.com/api/v1/webhooks.html
+    - https://developers.mailersend.com/api/v1/templates.html
+    - https://developers.mailersend.com/api/v1/inbound.html
+    - https://developers.mailersend.com/smtp-relay.html
+    - https://developers.mailersend.com/
+    - https://developers.mailersend.com/sdk.html
+    - https://api.swaggerhub.com/apis/MailerSend/mailersend-api/1.0.0-oas3.1
+    - https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors
+    - https://developers.mailersend.com/api/v1/other-endpoints.html
+    - https://developers.mailersend.com/api/v1/activity.html
+    - https://developers.mailersend.com/api/v1/smtp-users.html
+    - https://raw.githubusercontent.com/mailersend/mailersend-php/master/src/Helpers/GeneralHelpers.php
+    - https://raw.githubusercontent.com/mailersend/mailersend-python/main/README.md
+    - https://www.mailersend.com/help/sandbox-mode-and-the-professional-trial
+    - https://www.mailersend.com/help/getting-started
+    - https://www.mailersend.com/help/how-to-start-sending-emails
+    - https://www.mailersend.com/help/how-to-set-a-billing-limit
+    - https://www.mailersend.com/help/how-to-change-or-cancel-your-plan
+    - https://www.mailersend.com/help/account-reputation-statuses
+    - https://www.mailersend.com/help/api-smtp-logs
+    - https://www.mailersend.com/legal/terms-of-use
+    - https://www.mailersend.com/legal/api-use-policy
+    - https://www.mailersend.com/help/about-mailersends-refund-and-account-policies
+    - https://www.mailersend.com/newsroom/price-and-plans-changes
+    - https://www.mailersend.com/sms-api
+    - https://www.mailersend.com/help/schedule-bulk-emails-with-the-bulk-endpoint
+    - https://www.mailersend.com/help/navigating-the-dashboard
+    - https://www.mailersend.com/help/how-to-create-a-template
+    - https://www.mailersend.com/help/how-to-test-email-sending-in-mailersend
+    - https://app.mailersend.com/dashboard
+    - https://app.mailersend.com/domains
+    - https://app.mailersend.com/api-tokens
+    - https://api.mailersend.com/v1/api-quota
+    - https://api.mailersend.com/v1/email
+    - https://api.mailersend.com/v1/bulk-email
+    - https://api.mailersend.com/v1/domains
+  data_provenance:
+    - "Test de type (C2, D-031): editar una plantilla creada en el panel no es posible por API, 'Only templates created via API' y 'templates created in the MailerSend app return 404'; crear si lo es (POST /v1/templates). Es la operacion eliminatoria 2 del test, de ahi partial_saas. La frase estaba recogida en fuentes.md desde el 2026-09-08 y marcada VERBATIM DUDOSO; el volcado del 14-09 cierra CD-18 y retira la marca. Lo que faltaba no era la evidencia, era conectarla con type, que hasta D-031 se juzgaba con C1, es decir mirando solo el envio [https://developers.mailersend.com/api/v1/email/templates, consultado 2026-09-14]"
+    - "NOTA Test de type (D9, el color mide cobertura): las OCHO operaciones comprobadas, de ahi el verde. 1 envio (/v1/email, /v1/bulk-email); 2 plantillas; 3 dominios ('Add a domain', 'Get DNS Records', 'Get verification status'); 4 rotacion de credenciales (POST/PUT/DELETE /v1/token); 5 webhooks (POST/PUT/DELETE /v1/webhooks); 6 inbound; 7 supresiones, con GET, POST y DELETE sobre blocklist, hard-bounces, spam-complaints y unsubscribes mas on-hold-list, documentadas dentro de la pagina de Recipients y no en una propia; 8 actividad. El verde es de cobertura del test, no del valor: el valor sigue siendo partial_saas porque la operacion 2 falla [https://developers.mailersend.com/api/v1/email/recipients, consultado 2026-09-14]"
+    - "Cuatro planes con precio publicado (Professional, Starter, Hobby y Free, este último a $0) y un Enterprise a medida sin tarjeta en la página de precios: 'If you are sending emails for a large enterprise and have special requirements, we can also provide a custom Enterprise plan.' [https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Free: 'Get started for free — includes:', '500 emails /month', 'Email API and SMTP relay'; y en la FAQ 'This plan lets you send up to 500 emails per month for free!' [https://www.mailersend.com/pricing]"
+    - "El Free exige tarjeta y aprobación previa: 'Once your account is approved, you can subscribe to a Free plan.', 'we just ask that you provide this information to prevent abuse of the platform.' [https://www.mailersend.com/pricing]"
+    - "Cuota mensual y diaria del Free, ambas en emails: 'Once approved, the Free plan allows you to send up to 500 emails a month for free, with a daily limit of 100 emails.' [https://www.mailersend.com/help/plans-features-and-limits]"
+    - "NOTA (no es un dato): el límite diario de 100 emails del Free no se define en capacity. Es la única de las cinco fuentes que lo expresa en emails y las otras cuatro dicen peticiones (DISC-11), y ningún plan puede referenciarlo sin duplicar la cuota diaria de peticiones que ya lleva; el literal se queda en este provenance y el hueco en metadata.not_found (D-029, regla B7)"
+    - "El Free es tope duro y pausa el envío al agotarse: 'If you reach this limit within the 30-day usage period, your sendings will be paused until a new period begins and your email limit is reset.' [https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Sin sobrecoste en los tres estados gratuitos: 'we bill extra emails at a set rate per 1,000 on your next invoice', 'the Free plan, or the Professional trial, none of which allow extra usage' [https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Hobby $7.00 al mes por 5.000 emails: '$7.00 /month', '5,000 emails /month', 'Extra usage $1.50 /1,000 emails', '1,000 daily API requests'; 'The Hobby plan costs $7 per month, or $6.30 per month with an annual plan.' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Sobrecoste de Hobby: 'you can continue to send emails at a metered rate of $1.50 per 1,000 additional emails sent.'; 'For Hobby plans, the price is $1.50 per 1,000 emails' [https://www.mailersend.com/help/plans-features-and-limits; https://www.mailersend.com/help/how-to-set-a-billing-limit]"
+    - "Starter desde $35.00 al mes por 50.000 emails (primer volumen contratable): '$35.00 /month', '50,000 emails /month', 'Extra usage $1.30 /1,000 emails', '100,000 daily API requests'; 'Starter plans start from as little as $35 a month, or $31.50 a month with an annual plan, for an allowance of 50,000 emails per month.' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Professional desde $110.00 al mes por 50.000 emails (primer volumen contratable): '$110.00 /month', '50,000 emails /month', 'Extra usage $1.30 /1,000 emails', '500,000 daily API requests'; 'Professional plans start at $110 a month, or $99 a month with an annual plan, for an allowance of 50,000 emails per month.' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits]"
+    - "El precio de Starter y Professional lo fija un selector de volumen: 'How many emails do you plan to send?', 'You can select your plan size based on the number of emails you expect you’ll need to send.', 'Save money as you send more emails!' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Volúmenes contratables de Starter con pago mensual (selector accionado con el navegador): '$35.00 /month' por '50,000 emails /month', '$68.00 /month' por '100,000 emails /month', '$162.50 /month' por '250,000 emails /month', '$325.00 /month' por '500,000 emails /month', '$600.00 /month' por '1,000,000 emails /month'; en las posiciones 1,5M y 2M la tarjeta Starter repite '$600.00 /month' y '1,000,000 emails /month' [https://www.mailersend.com/pricing]"
+    - "Volúmenes contratables de Professional con pago mensual: '$110.00 /month' por '50,000 emails /month', '$140.00 /month' por '100,000 emails /month', '$275.00 /month' por '250,000 emails /month', '$525.00 /month' por '500,000 emails /month', '$1,000.00 /month' por '1,000,000 emails /month', '$1,350.00 /month' por '1,500,000 emails /month', '$1,600.00 /month' por '2,000,000 emails /month' [https://www.mailersend.com/pricing]"
+    - "El sobrecoste baja con el volumen contratado y difiere entre tiers al mismo volumen: Starter 'Extra usage $1.30 /1,000 emails' (50.000 y 100.000), 'Extra usage $1.10 /1,000 emails' (250.000 y 500.000), 'Extra usage $1.00 /1,000 emails' (1.000.000); Professional 'Extra usage $1.30 /1,000 emails' (50.000 y 100.000), 'Extra usage $1.00 /1,000 emails' (250.000), 'Extra usage $0.80 /1,000 emails' (500.000), 'Extra usage $0.60 /1,000 emails' (1.000.000 y 1.500.000), 'Extra usage $0.50 /1,000 emails' (2.000.000) [https://www.mailersend.com/pricing]"
+    - "El sobrecoste modelado es el del primer volumen, $1.30 por 1.000 (0,0013 por email): 'For example, an $68 subscription includes 100,000 emails on the Starter plan. Any extra email sent above that allowance has a cost of $1.30 for a block of 1,000 emails.'; 'metered rate starting at $1.30 per additional 1,000 emails sent.', 'The price per 1,000 emails decreases the larger your plan size.' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits]"
+    - "El sobrecoste no interrumpe el envío en los planes de pago: 'you can continue sending emails without disruption. These will be charged at an additional low cost per 1,000 emails (applies to all plans).' [https://www.mailersend.com/pricing]"
+    - "Pago anual un 10 % más barato, con la misma cuota y el mismo sobrecoste por volumen: 'Pay yearly', Hobby '$ 6.30 /month' y '$75.60 billed yearly', Starter '$ 31.50 /month' y '$378.00 billed yearly', Professional '$99.00 /month' y '$1,188.00 billed yearly' (posición 50.000) [https://www.mailersend.com/pricing]"
+    - "Incoherencia del pricing (D17, DISC-06 cerrada): el selector de la página de precios ofrece Starter hasta 1.000.000, y ese es el tope; las páginas de feature dan otro: 'Starter plan is available for up to 500,000 emails/month' y 'The Starter plan is available for up to 500,000 emails/month, starting at $35/month'; Professional 'The Professional plan is available for up to 2,000,000 emails/month, starting at $110/month' [https://www.mailersend.com/features/smtp-relay; https://www.mailersend.com/features/webhooks]"
+    - "Ventana de la cuota mensual, primera formulación: 'The number of emails that you send resets every 30 days.' y 'The number of emails that you have sent automatically resets every 30 days.', 'The billing period starts right after you enter your credit card details.' [https://www.mailersend.com/help/plans-features-and-limits; https://www.mailersend.com/pricing]"
+    - "Ventana de la cuota mensual, segunda formulación: 'until your next billing period begins and your limits are reset' [https://www.mailersend.com/help/how-to-set-a-billing-limit]"
+    - "Ventana de la cuota mensual, tercera formulación: 'Your monthly email quota will reset on your next billing day.' [https://www.mailersend.com/help/how-to-change-or-cancel-your-plan]"
+    - "Liquidación del sobrecoste al cierre del ciclo mensual: 'at the end of which you will receive a final charge for any additional emails sent outside of your current plan’s allowance.' [https://www.mailersend.com/pricing]"
+    - "En el plan anual la cuota sigue siendo mensual y el sobrecoste se factura cada mes: 'Yearly plans are billed upon subscription and the subscription stays active until the end of the billing period. Keep in mind, any overcharges will be billed at the end of each month.' [https://www.mailersend.com/help/how-to-change-or-cancel-your-plan]"
+    - "Cambios de plan: 'When you upgrade your plan, changes are applied immediately. When you downgrade your plan, changes are applied at the end of your current billing cycle.' [https://www.mailersend.com/pricing]"
+    - "Tope de gasto configurable por el cliente sobre el sobrecoste: 'set a limit on how many additional emails or SMSes you authorize your account to send', 'If you reach the billing limit, your transactional messages will stop sending until your next billing period begins and your limits are reset.' [https://www.mailersend.com/help/how-to-set-a-billing-limit]"
+    - "Cuota diaria de peticiones común a API y SMTP, con reposición a medianoche UTC: 'MailerSend has a daily request quota for API and SMTP relay services. Every request is counted against the quota and is reset daily at midnight UTC.' [https://developers.mailersend.com/general.html]"
+    - "Cuota diaria por plan en la documentación de desarrollador (sin fila Free): 'Sandbox 100 Professional trial (14 days) 100 Hobby 1000 Starter 100,000 Professional 500,000 Enterprise 500,000'; 'Sandbox and Professional trial accounts have a daily limit of 100 API requests. Hobby plan accounts are limited to 1,000 daily requests. Starter plan accounts can send up to 100,000 daily requests, and Professional or Enterprise plan accounts can send up to 500,000 requests.' [https://developers.mailersend.com/general.html]"
+    - "Cuota diaria por plan con fila Free en el centro de ayuda: 'Trial 100 Free 100 Hobby 1,000 Starter 100,000 Professional 500,000 Enterprise 500,000', 'Every request made counts against your daily quota, which is reset daily at midnight UTC.'; 'Free plan: 100 requests per day', 'Hobby plan: 1,000 requests per day', 'Starter plan: 100,000 requests per day', 'Professional plan: 500,000 requests per day' [https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors; https://www.mailersend.com/help/smtp-relay]"
+    - "La cuota diaria también en la página de precios: 'Daily API requests 500,000 100,000 1,000 100' y 'Our Free plan has a few limits per account: 1 template, 1 domain, 1 user (plus 1 accountant), 1 API token, 1 webhook, and 100 daily requests.' [https://www.mailersend.com/pricing]"
+    - "Al agotar la cuota diaria, 429 con cabeceras propias: 'When the quota is hit, MailerSend will return a 429 HTTP error.', 'x-apiquota-remaining: 0', 'x-apiquota-reset: 2022-03-05T00:00:00Z', 'Your account reached its API daily quota limit. Upgrade to increase it. #MS42901' [https://developers.mailersend.com/general.html]"
+    - "La cuota diaria cuenta peticiones, no correos: 'Every request is counted against the quota' [https://developers.mailersend.com/general.html]"
+    - "Por SMTP la cuota diaria cuenta cada mensaje: 'Daily request quota applies to each individual message sent through our SMTP relay service.' [https://developers.mailersend.com/smtp-relay.html]"
+    - "Endpoint de consulta de la cuota diaria sin consumo: 'GET https://api.mailersend.com/v1/api-quota', 'Requests to this endpoint do not count toward your quota.' [https://developers.mailersend.com/api/v1/other-endpoints.html]"
+    - "Caudal por defecto de la API: 'MailerSend has a default rate limit of 60 requests per minute on general API endpoints.', 'All API requests (excluding email endpoints) 60 requests/minute', 'API requests to POST /v1/email 120 requests/minute', 'API requests to POST /v1/bulk-email 10 requests/minute', 'API requests to GET /v1/activity 10 requests/minute', 'SMTP 120 requests/minute' [https://developers.mailersend.com/general.html]"
+    - "El mensaje de error repite los tres caudales por defecto: 'The default rate limit is 120 requests per minute for /email endpoints, 10 requests per minute for /bulk-email endpoints and 60 requests per minute for all other endpoints.' [https://developers.mailersend.com/general.html]"
+    - "Al superar el caudal, 429 con cabeceras y espera indicada: 'you will receive a 429 error response with a “Too Many Attempts.” message', 'x-ratelimit-limit: 60', 'retry-after: 59', 'x-ratelimit-reset: 1629291024', 'Your account reached its rate limit of 120 requests/min. Please wait before trying again. #MS42903' (el ejemplo mezcla un límite de 60 en la cabecera y 120 en el mensaje: es ilustrativo) [https://developers.mailersend.com/general.html]"
+    - "El caudal del lote depende del plan en la referencia del endpoint: 'API requests per minute 10 for Sandbox and Hobby plan accounts. 15 for Starter plan accounts. 30 for Professional trial and Professional plan accounts. 60 for Enterprise plan accounts.' [https://developers.mailersend.com/api/v1/email.html]"
+    - "El centro de ayuda publica el mismo caudal del lote por plan, y la página general solo el mínimo: 'Free plan: 10 API calls/min Hobby plan: 10 API calls/min Starter plan: 15 API calls/min Professional plan: 30 API calls/min Enterprise plan: 60 API calls/min' frente a 'API requests to POST /v1/bulk-email 10 requests/minute' [https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors; https://developers.mailersend.com/general.html]"
+    - "NOTA (no es un dato): el caudal del lote de Starter y Professional se toma de la referencia del endpoint y del centro de ayuda, 15 y 30 por minuto, y no de la página general, que publica 10 por minuto describiéndolo como valor por defecto ('default rate limit'). Una página que se declara por defecto no contradice una tabla por plan, así que los dos valores van en verde y DISC-08 queda cerrada a favor de la fuente específica (D-028, regla E4)"
+    - "El caudal cambia con el estado de reputación de la cuenta, no con el plan: 'For each MailerSend plan level, there are rate limits specified for different types of requests:', 'API requests to v1/email 120 requests per minute* 10 requests per minute', lote bajo revisión '1 request per minute', general 'All API requests (excluding v1/email) 60 requests per minute 60 requests per minute' [https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors]"
+    - "Un tercer estado con caudal menor y sin cifra: 'Newly upgraded accounts may have a lower rate limit' [https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors]"
+    - "Cuatro estados de reputación, con los propios 429 como disparador: 'Your account has triggered certain thresholds indicative of potential deliverability problems, such as increased error rates (e.g., 403, 422, 429 responses)'; 'Activities from your account have been temporarily halted due to significant concerns regarding sending practices or reputation.' [https://www.mailersend.com/help/account-reputation-statuses]"
+    - "Alcanzar un límite se considera abuso por política: 'Hitting one of these limits is considered an excessively frequent request to MailerSend.' [https://www.mailersend.com/legal/api-use-policy]"
+    - "Dos causas del 429, cuota diaria o caudal: 'Either your account is sending more API or SMTP requests per day than our daily quota limits allow', 'Or your account is sending more API or SMTP requests per minute than our rate limits allow' [https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors]"
+    - "Ruta y respuesta del envío individual: 'POST https://api.mailersend.com/v1/email', 'This endpoint allows you to send an asynchronous email.', respuesta 'Response Code: 202 Accepted' y variante en pausa con 'x-send-paused: true' sin condición publicada [https://developers.mailersend.com/api/v1/email.html]"
+    - "Destinatarios por campo en el envío individual, sin tope total publicado: 'to object[] yes Min 1, max 50', 'cc object[] no Max 10', 'bcc object[] no Max 10' [https://developers.mailersend.com/api/v1/email.html]"
+    - "El tope de destinatarios depende del estado de aprobación de la cuenta: 'Approved accounts can include up to 50 TO, 10 CC and 10 BCC recipients. Unapproved acounts can include up to 10 TO, 1 CC and 1 BCC recipients.' [https://developers.mailersend.com/general.html]"
+    - "Enterprise amplía cc y bcc a 50: 'Free, Hobby, Starter, Professional accounts', 'Enterprise accounts', 'cc object [ ] No Max 10 Max 50', 'bcc object [ ] No Max 10 Max 50', 'Limitations refer to approved accounts. If your account is not approved yet, you may only include one CC and BCC recipient.' [https://www.mailersend.com/help/how-to-start-sending-emails]"
+    - "Varios destinatarios en to producen un solo correo visible para todos: 'specifying multiple “to” recipients in the same request will cause one email to be sent with all recipients visible to each other.' [https://www.mailersend.com/help/how-to-start-sending-emails]"
+    - "El proveedor suma los destinatarios del lote como emails y condiciona los 500 objetos a los tres planes de pago: 'If you’re on a Hobby, Starter or Professional plan, you can include 500 individual email objects in a single request, each containing up to 50 TO recipients, 10 CC, and 10 BCC, for a total of 35,000 emails. Otherwise, you are limited to 5 individual email objects.' [https://www.mailersend.com/help/schedule-bulk-emails-with-the-bulk-endpoint]"
+    - "Ruta y límites del lote: 'POST https://api.mailersend.com/v1/bulk-email', 'Total size of the JSON payload 50MB', 'Number of individual email objects in a single request 5 for Sandbox accounts. 500 for Professional trial, Hobby, Starter, Professional or Enterprise plan accounts.', 'Number of recipients per email object. See Email endpoint.', 'If not mentioned, the limits are the same as for the generic Email API endpoint.' [https://developers.mailersend.com/api/v1/email.html]"
+    - "Rechazo del lote por tamaño: 'MS42229 The number of email objects must not be greater than 500.' [https://developers.mailersend.com/general.html]"
+    - "El lote valida en diferido y responde 202 antes de validar: 'each email validation is done after the request and then the result is stored', 'The bulk email is being processed.', y el estado del lote cuenta destinatarios con 'total_recipients_count' [https://developers.mailersend.com/api/v1/email.html]"
+    - "El lote solo aparece desde Hobby: 'All in Free, plus:', 'Bulk emailing'; Hobby incluye 'Access to the bulk email endpoint'; y existe el error 'MS42216 This feature requires a Hobby plan or higher. Upgrade to use it.' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits; https://developers.mailersend.com/general.html]"
+    - "Topes de tamaño del envío individual, sin tope total de petición: 'Max size of 2 MB. Email represented in a text (text/plain) format.', 'Max size of 25MB. After decoding Base64', 'The attachments.0.content size exceeds the threshold of 25 MB.', 'The attachment file must be less than 25MB in size.' [https://developers.mailersend.com/api/v1/email.html; https://developers.mailersend.com/general.html; https://www.mailersend.com/help/how-to-start-sending-emails]"
+    - "Otros topes del cuerpo: 'subject string yes * Max 998', 'Limit is max 5 tags.', 'min: now, max: now + 72hours' [https://developers.mailersend.com/api/v1/email.html]"
+    - "El SDK oficial replica en cliente los topes del envío individual: 'Recipients list should not contain more than 50 items.', 'Send at may not be more than 72 hours in the future.' y no fija máximo de objetos en el lote [https://raw.githubusercontent.com/mailersend/mailersend-php/master/src/Helpers/GeneralHelpers.php]"
+    - "La superficie del endpoint cambia con el plan: in_reply_to y references 'Please note that this feature is available to paid plan accounts only.'; headers y list_unsubscribe 'Please note that this feature is available to Professional and Enterprise accounts only' [https://developers.mailersend.com/api/v1/email.html]"
+    - "Sin dominio verificado no se envía: 'The from.email domain must be verified in your account to send emails. #MS42207' [https://developers.mailersend.com/general.html]"
+    - "Dos estados gratuitos previos al Free, ninguno en la página de precios: Sandbox '100 emails a month, with a cap of 100 API requests a day', 'You can send to any 2 recipients in Sandbox mode, until your account is approved, after which your 100 monthly emails can go to any recipient.', 'Bulk emailing included'; Professional trial '500 emails a month and 100 API requests a day' [https://www.mailersend.com/help/sandbox-mode-and-the-professional-trial]"
+    - "La prueba caduca a los 14 días y cae al Free, no a cero: 'your account moves to the Free plan.', 'Each customer can activate one Professional trial.'; 'Once your free trial expires, you won’t be charged or automatically upgraded. Instead, you’ll be transferred to the Free plan.', 'including 500 emails/month, 100 API requests/day, and 1 day of Log retention' [https://www.mailersend.com/help/sandbox-mode-and-the-professional-trial; https://www.mailersend.com/pricing]"
+    - "Límites del estado no aprobado y del dominio de prueba, sin cifra propia: 'MS42225 You have reached sandbox account unique recipients limit.', 'MS42222 Your trial domain reached its email quota limit.'; 'Make sure your account has been approved so you can send more than 100 emails per month.' [https://developers.mailersend.com/general.html; https://www.mailersend.com/help/how-to-start-sending-emails]"
+    - "La aprobación de la cuenta es una puerta previa a la capacidad, sin criterios publicados: 'The approval process is usually very quick but can take up to 48 hours' [https://www.mailersend.com/help/getting-started]"
+    - "La baja de un plan de pago lleva al Free o a Sandbox: 'Your account switches over at the end of your current billing period, either to the Free plan or to Sandbox mode, depending on what you chose.' [https://www.mailersend.com/help/how-to-change-or-cancel-your-plan]"
+    - "Cuenta propia en Sandbox: 'You’re in sandbox mode with strict limits and limited features.', contador 'Daily requests 100' con cero consumidas, 'Your test domain is ready! Use it to try out MailerSend’s API and SMTP features.' [https://app.mailersend.com/dashboard, observación de panel con cuenta propia, 2026-09-08]"
+    - "La escalera de precios y el tope de gasto no son observables sin dominio propio aprobado: 'Add your domain to upgrade — To get started, first add your own domain. Once approved, you’ll be able to upgrade and access more features. Add my domain' [https://app.mailersend.com/dashboard, observación de panel con cuenta propia, 2026-09-08]"
+    - "Modal oculto en el panel con el cambio de oferta del Free: 'introducing a fee of $7/month for the Hobby plan, with 5,000 emails', 'You can keep using MailerSend for free to send up to 500 emails/month.' [https://app.mailersend.com/dashboard, observación de panel con cuenta propia, 2026-09-08]"
+    - "El token de API creado desde el panel muestra fecha de caducidad ('Expires at: 30 Sep 2026' para un token creado el 8 Sep 2026; no se comprobó si la caducidad es obligatoria o elegida al crearlo, y la referencia de la API no tiene parámetro de expiración) y el dominio de prueba se borra por inactividad: 'Test domains are automatically deleted if not in use for 30 days.'; inbound y logs bloqueados por plan desde dentro, 'SMTP & API logging is a Professional feature' [https://app.mailersend.com/api-tokens; https://app.mailersend.com/domains, observación de panel con cuenta propia, 2026-09-08]"
+    - "El único envío desde el panel es la prueba de una plantilla, que la API también hace: 'This is where you can configure the options for your template, get the API instructions, send a test email, and create a split test.' [https://www.mailersend.com/help/how-to-create-a-template]"
+    - "Moneda de facturación: botones USD, EUR y GBP en la página de precios; 'Pricing in Euros and British Pounds is for informational purposes only. All billing invoices will be charged in US dollars.' (página de feature que conserva tarjetas de planes con precios de 2024) [https://www.mailersend.com/features/email-verification-tool]"
+    - "Límites de recursos por plan, no de consumo: 'Sending domains | 1 | 1 | 10 | 1,000', 'API tokens | 1 | 3 | 50 | 1,000', 'Webhooks | 1 | 5 | 50 | 5,000', 'Inbound routes | 1 | 1 | 50 | 100,000', 'SMTP users | 1 | 1 | 50 | 1,000', 'Templates | 1 | 10 | 250 | 5,000', 'Sender Identities | - | - | 50 | 5,000', 'User seats | 1 + 1 accountant | 5 | 5 | 1,000' [https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Los mismos recursos en la página de precios, con «ilimitado» que remite a la cifra: 'Sending domains Unlimited* 10 1 1', 'Webhooks Unlimited* 50 1 1', 'Branded templates Unlimited* 250 10 1', 'User seats Unlimited* 5 5 1 user seat + 1 accountant role', '*Learn more about plan limits.' [https://www.mailersend.com/pricing]"
+    - "Recursos de Professional en prosa: '1,000 sending domains', '1,000 API tokens and SMTP users (20 users/domain)', '5,000 webhooks', '100,000 inbound routes (5,000/domain)', '5,000 templates', '1,000 users' [https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Retención de actividad y de logs por plan: 'Email activity data retention 30 days 7 days 1 day 1 day', 'API logs data retention 7 days'; 'Activity retention | 24 hours | 24 hours | 7 days | 30 days', 'Log retention | - | - | - | 7 days' [https://www.mailersend.com/pricing; https://www.mailersend.com/help/plans-features-and-limits]"
+    - "Retención de logs de API y SMTP, solo desde Professional: 'For Professional plans, log retention is 7 days, for Enterprise, 14 days, and for Professional trial accounts, 1 day' [https://www.mailersend.com/help/api-smtp-logs]"
+    - "Add-on de retención con precio por volumen contratado: 'Starter, Professional (excluding the Professional trial), and Enterprise plans can extend their activity data retention period up to 365 days with the add-on. Pricing is on a per-month basis and depends on your email volume.', '50,000 $5 $10 $12.50 $15', '2,500,000 $250 $375 $500 $625' [https://www.mailersend.com/help/plan-add-ons]"
+    - "Add-on de dominios con tope de compra: 'Starter plans and above can purchase up to 50 additional domains through the Domain spaces add-on. Each additional domain costs $4/month.' [https://www.mailersend.com/help/plan-add-ons]"
+    - "IP dedicada solo en Enterprise por D17 (DISC-04 cerrada): manda la página de precios; el centro de ayuda da otro plan mínimo y queda como incoherencia del pricing: 'Dedicated IPs are best suited to high-volume senders, sending at least 100,000 emails per week. The dedicated IP add-on is available to Professional (excluding the Professional trial) and Enterprise plans (Enterprise plans also have 1 dedicated IP included) for $50/month per IP.' (el volumen semanal es una recomendación, no un requisito); 'Dedicated IPs are available for Enterprise accounts that send over 100K emails/week.' [https://www.mailersend.com/help/plan-add-ons; https://www.mailersend.com/pricing]"
+    - "Incoherencia del pricing (D17, DISC-04): las páginas de feature y de solicitud dan otro plan mínimo y un umbral propio frente a la página de precios, que reserva la IP dedicada a Enterprise: 'Transactional email dedicated IPs are available for Starter and above plans'; 'To be eligible for a dedicated IP, your account must meet the following criteria:', 'Send 500,000 or more emails per month.', 'Pricing is $50/month.'; tres páginas oficiales dan tres planes mínimos distintos (Starter, Professional, Enterprise) [https://www.mailersend.com/features/dedicated-ip-email; https://www.mailersend.com/help/how-to-request-dedicated-ip]"
+    - "Canal SMTP con concurrencia por plan y caudal propio: 'The SMTP relay has a limit on the maximum number of concurrent connections. That limit is 5 for Sandbox, Free, Hobby and Starter accounts, and 50 for Professional (including the professional trial) and Enterprise.', 'SMTP relay requests: Up to 120 requests per minute.', 'In total, an account can have up to 1 SMTP user on the Sandbox, Free, or Hobby plan, 50 on Starter, and 1,000 on Professional (including the Professional trial) and Enterprise.' [https://www.mailersend.com/help/smtp-relay]"
+    - "El caudal SMTP descrito sin cifra y por IP en la documentación de desarrollador: 'There are Rate limits applied to SMTP relay based on IP address and these tend to be lower than available through our API', 'SMTP Relay has a single connection transaction limit set at 5.' [https://developers.mailersend.com/smtp-relay.html]"
+    - "El correo entrante consume la cuota de envío: 'Any inbound emails forwarded or posted to your endpoint URL are counted against your monthly usage. One forward is equivalent to one sent email.'; 'Inbound emails are free to receive but are counted towards your monthly usage when forwarded or posted to your endpoint URL.' [https://www.mailersend.com/features/inbound-emails; https://www.mailersend.com/help/inbound-route]"
+    - "Consulta de actividad paginada, con tope de resultados por petición y de profundidad, y acotada por la retención del plan: parámetro limit 'Min: 10, Max: 100' con 'Default: 25'; parámetro page 'Min: 1, Max: 1000' y 'To reach older activity beyond the last page, narrow date_from and date_to'; parámetro date_to 'The allowed timeframe depends on your plan’s data retention limit (1–30 days)'; estados 'deferred and suppressed are available on the Starter plan and above.' [https://developers.mailersend.com/api/v1/activity.html]"
+    - "Otros productos bajo la misma cuenta, fuera del modelo: SMS '100 SMS /month' (Starter) y '150 SMS /month' (Professional); WhatsApp '$0.0050 per message', 'Extra usage: $2.50/1,000'; verificación '$0.01 per credit' [https://www.mailersend.com/pricing]"
+    - "Sobrecoste del SMS, con unidad y precio propios: 'Additional SMS usage on this plan level would be billed as $1.40 per 100 SMS messages.' [https://www.mailersend.com/sms-api]"
+    - "La especificación OpenAPI no declara ningún tope ni el 429: servidor '\"url\":\"{protocol}://{host}/v1\"' y 'MailerSend API Server'; to sin maxItems, cc y bcc ausentes, POST /email con respuesta 200 frente al 202 de la documentación [https://api.swaggerhub.com/apis/MailerSend/mailersend-api/1.0.0-oas3.1]"
+    - "La oferta ha cambiado con fecha: en 2024 'Introducing the Hobby plan (formerly Free/Starter), the Starter plan (formerly Premium), the Professional plan (new), and remaining the same, the Enterprise plan.' y Starter 50.000 '50,000 | $30. Extra emails: $0.90/1,000 | $35 Extra emails: $0.95/1,000' con descuento anual 'This will also give you a 20% discount overall.' [https://www.mailersend.com/newsroom/price-and-plans-changes]"
+    - "Una página de feature conserva hoy los precios anuales y el sobrecoste antiguos: Starter '$28.00 /month', '$336.00 billed yearly', '$0.90 €0.90 £0.90 /1,000 emails'; Professional '$88.00 /month', '$1,056.00 billed yearly'; Hobby '$5.60 /month', '$67.20 billed yearly' [https://www.mailersend.com/features/email-verification-tool]"
+    - "Términos de uso posteriores al modelado previo: 'Last updated on August 31, 2026' [https://www.mailersend.com/legal/terms-of-use]"
+    - "Último cambio de límite fechado: 'The Hobby plan now includes 10 email templates' el 'Aug 24, 2026' [https://www.mailersend.com/whats-new]"
+    - "Descuento para entidades sin ánimo de lucro, no acumulable con el anual: 'nonprofit organizations are eligible to receive a 30% discount', 'This discount is not stackable with the Yearly discounted prices.' [https://www.mailersend.com/pricing]"
+    - "Reposición de la cuota diaria de peticiones medida en la cuenta propia: GET /v1/api-quota devuelve 'quota: 100', 'remaining: 100' y 'reset: 2026-09-10T00:00:00Z' a las 19:02 UTC del 2026-09-09 y 'remaining: 83' a las 19:13 UTC, y las 37 respuestas de las dos ejecuciones del sondeo llevan 'x-apiquota-reset: 2026-09-10T00:00:00Z', la medianoche UTC siguiente [https://api.mailersend.com/v1/api-quota, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09]"
+    - "Regla de descuento de la cuota diaria de peticiones medida en la cuenta propia: cada petición cuenta 1, también las rechazadas. Entre la primera ejecución del sondeo (19:02 UTC, 17 peticiones con respuesta: diez 422 de validación, cinco 429, un 202 del lote y un 200 de GET /v1/domains) y la segunda (19:13 UTC) el contador pasó de 'remaining: 100' a 'remaining: 83'; en la segunda ejecución, de 'x-apiquota-remaining: 83' a 'x-apiquota-remaining: 69' tras otras 14 peticiones de las mismas clases, y la lectura final devolvió 'remaining: 69' [https://api.mailersend.com/v1/api-quota, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09]"
+    - "NOTA (no es un dato): el contador de la cuota diaria que devuelven la cabecera x-apiquota-remaining y GET /v1/api-quota se actualiza con retardo y por lotes, no por petición: en la primera ejecución del sondeo las 18 respuestas llevaron 'x-apiquota-remaining: 100' durante 38 segundos y las 17 peticiones aparecieron descontadas 11 minutos después; en la segunda, el valor 83 se mantuvo en 14 respuestas seguidas y saltó a 69 en la decimoquinta (las catorce anteriores de golpe), y la lectura final, 7 segundos después de la última petición, aún no reflejaba las tres últimas. La documentación dice qué cuenta ('Every request is counted against the quota') pero no que el contador expuesto vaya por detrás; cuánto tarda y qué dispara la actualización no se midió [https://api.mailersend.com/v1/api-quota, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09; https://developers.mailersend.com/general.html]"
+    - "NOTA (no es un dato del plan): en la cuenta Sandbox no aprobada el caudal de POST /v1/email es 10 por minuto y el de POST /v1/bulk-email 1 por minuto, no los 120 y 10 por defecto: cabeceras 'x-ratelimit-limit: 10' (de 'x-ratelimit-remaining: 9' a 'x-ratelimit-remaining: 0' en diez peticiones rechazadas con 422) y 'x-ratelimit-limit: 1'; la undécima petición a /v1/email y la segunda al lote dentro del mismo minuto responden 429 'Your account reached its rate limit of 10 requests/min. Please wait before trying again. #MS42903' y 'Your account reached its rate limit of 1 requests/min. Please wait before trying again. #MS42903'. Son los caudales que el centro de ayuda publica para la reputación bajo revisión, aplicados a una cuenta sin aprobar; las cinco respuestas 429 no traen cabeceras x-ratelimit-* ni retry-after. Desde D-025 la datasheet modela las dos cosas por separado: los 120 y 10 publicados bajo healthy_reputation y estos 10 y 1 medidos bajo unapproved_account [https://api.mailersend.com/v1/email, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09]"
+    - "NOTA (no es un dato): POST /v1/bulk-email existe en Sandbox y acepta un lote de 5 objetos con remitente de dominio no verificado: 202 'The bulk email is being processed.' con bulk_email_id (dos lotes aceptados en dos ejecuciones, a las 19:02 y a las 19:14 UTC), cuando el mismo remitente en POST /v1/email se rechaza en el acto con 422 'The from.email domain must be verified in your account to send emails. #MS42207'; la validación del lote es diferida y el sexto objeto no se pudo probar en ninguna de las dos (429 por el caudal de 1 por minuto) [https://api.mailersend.com/v1/bulk-email, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09]"
+    - "NOTA (no es un dato del plan): topes de destinatarios medidos en la cuenta Sandbox no aprobada, a coste cero (remitente no verificado): to con 10, 11, 50 y 51 direcciones responde 422 'The to recipient limit is exceeded. #MS42205', así que el tope de to sin aprobar es menor que los 10 publicados, y la tanda 2 del 2026-09-10 lo cerró en exactamente 1 porque dos direcciones en to ya responden ese mismo 422; to = 1 con cc = 1 pasa la validación de destinatarios y cc = 2 responde 'The cc recipient limit is exceeded. #MS42205' (tope 1, el publicado); bcc con 10 y 11 responde 'The bcc recipient limit is exceeded. #MS42205' (tope menor que 10, sin acotar); y desde 3 destinatarios únicos entre to, cc y bcc aparece 'You have reached sandbox account unique recipients limit. #MS42225' en el campo to (el límite de 2 destinatarios únicos de Sandbox suma los tres campos). El máximo 70 de /v1/email no se puede medir sin cuenta aprobada [https://api.mailersend.com/v1/email, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09 y 2026-09-10]"
+    - "NOTA (no es un dato): el caudal general aparece en cabecera con el valor publicado: GET /v1/domains responde 200 con 'x-ratelimit-limit: 60' y 'x-ratelimit-remaining: 59'; se registra como cabecera vista en un sondeo de otro propósito y no cambia el semáforo del 60 por minuto, que ya es literal [https://api.mailersend.com/v1/domains, verificación empírica con cuenta Sandbox no aprobada, 2026-09-09]"
+    - "NOTA (no es un dato): verificación independiente el 2026-09-08 de las líneas con URL pública: los precios de plan ($7, $35, $110) tienen literal en prosa del centro de ayuda; las tarjetas mensuales, la escalera de volumen y los precios anuales de la página de precios no son reproducibles sin ejecutar el JavaScript de la página (un lector sin navegador ve las tarjetas vacías o con los valores de 2024), y solo los sostiene el volcado hecho con el navegador [https://www.mailersend.com/pricing]"
+    - "NOTA (no es un dato): el HTML de la página de precios servido sin ejecutar JavaScript conserva los precios anuales de 2024 de la tarjeta Hobby ('$ 5.60 /month', '$67.20 billed yearly', '$1.50 €1.50 £1.50 /1,000 emails', con las tres monedas en el DOM) y no contiene los actuales ('$ 6.30 /month', '$75.60 billed yearly'), que el JavaScript escribe al cargar; leído dos veces con un lector sin JavaScript el 2026-09-08 y contrastado con el volcado del navegador del mismo día. Es la misma oferta obsoleta que la página de feature conserva en sus tarjetas [https://www.mailersend.com/pricing]"
+    - "NOTA (no es un dato): el sondeo empírico en Sandbox (script probe_mailersend_sandbox.sh: cuota diaria por api-quota, pares 50/51, 10/11 y 1/2 de destinatarios, 5/6 objetos del lote, cabeceras x-ratelimit) se ejecutó dos veces el 2026-09-09 con la cuenta Sandbox no aprobada, a las 19:02 UTC (18 casos, evidencias/probe_sandbox_limites_2026-09-09.json; la lectura final de la cuota no llegó a ejecutarse) y a las 19:13 UTC (19 casos, evidencias/probe_sandbox_limites_2026-09-09_tanda1b.json, con la lectura final); la segunda ejecución reproduce los veredictos de la primera en todos los casos y solo añade la lectura del contador de la cuota. Ningún semáforo cambia: la reposición a medianoche UTC de la cuota diaria, su regla de descuento (cada petición cuenta 1) y el 60 por minuto general quedan además medidos; el máximo 70 de /v1/email, el 120 por minuto y los topes 50/10/10 no se pueden medir con una cuenta no aprobada; los casos de tags y subject no se midieron en ninguna de las dos ejecuciones (el caudal de 10 por minuto se agotó antes) [05_salida/_herramientas/probe_mailersend_sandbox.sh, 2026-09-09]"
+    - "Cuota mensual de la cuenta no aprobada, 100 emails, adoptada en el alias unapproved_account: 'The account’s quota has been reached. Make sure your account has been approved so you can send more than 100 emails per month.'; el mismo tope en Sandbox, '100 emails a month, with a cap of 100 API requests a day' [https://www.mailersend.com/help/how-to-start-sending-emails; https://www.mailersend.com/help/sandbox-mode-and-the-professional-trial]"
+    - "Caudal de la reputación bajo revisión, adoptado en el alias under_review_reputation: 'API requests to v1/email 120 requests per minute* 10 requests per minute' y, para el lote, 'Enterprise plan: 60 API calls/min 1 request per minute'; el caudal general no cambia de estado, 'All API requests (excluding v1/email) 60 requests per minute 60 requests per minute', por eso el comodín /* no lleva aliases [https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors]"
+    - "Caudal de la cuenta no aprobada, medido con respuesta de rechazo y adoptado en el alias unapproved_account: 'x-ratelimit-limit: 10' en /v1/email con la undécima petición del minuto en 429, 'Your account reached its rate limit of 10 requests/min. Please wait before trying again. #MS42903', y 'x-ratelimit-limit: 1' en el lote, con el segundo lote del minuto en 429, 'Your account reached its rate limit of 1 requests/min. Please wait before trying again. #MS42903' [https://api.mailersend.com/v1/email; https://api.mailersend.com/v1/bulk-email, sondeo [E1] con cuenta Sandbox no aprobada, tandas 1 y 1b del 2026-09-09]"
+    - "Tope de destinatarios de la cuenta no aprobada, dos únicos sumando los tres campos, medido con respuesta de rechazo: con to 1 y cc 1 la validación de destinatarios pasa, con to 1 y cc 2 responde 'You have reached sandbox account unique recipients limit. #MS42225', y ya con dos direcciones en to responde 'The to recipient limit is exceeded. #MS42205', por debajo de los 10 en to, 1 en cc y 1 en bcc que la documentación publica para las cuentas no aprobadas y que ya cita este provenance, que es DISC-18 [https://api.mailersend.com/v1/email, sondeo [E1] con cuenta Sandbox no aprobada, tandas del 2026-09-09 y del 2026-09-10]"
+    - "Tope del lote en la cuenta no aprobada, cinco objetos, medido con respuesta de rechazo: seis objetos responden 422 'The number of email objects must not be greater than 5. #MS42229' frente a los 500 objetos de los planes de pago que la referencia del endpoint publica y que ya cita este provenance [https://api.mailersend.com/v1/bulk-email, sondeo [E1] con cuenta Sandbox no aprobada, tanda 2 del 2026-09-10]"
+    - "NOTA (no es un dato de plan): todos los valores del alias unapproved_account se midieron en una única cuenta Sandbox no aprobada, en el sondeo [E1] del 2026-09-09 (caudales y destinatarios) y del 2026-09-10 (tope del lote y cota del campo to), y se replican tal cual a los cuatro planes, ninguno de ellos medido. Por eso van todos en ámbar, caudales y cargas por igual: la ampliación de D-024 da verde al dato medido, y el dato medido es el de esa cuenta, no el de los cuatro planes. Aplicar el verde a la carga y el ámbar al caudal sería asimétrico, porque los dos salen del mismo sondeo y los dos alcanzaron la respuesta de rechazo"
+    - "NOTA (no es un dato): la evidencia del alias unapproved_account viene de una cuenta en modo Sandbox y aquí se toma como el estado no aprobado de una cuenta gratuita, que es el que el proveedor publica en la documentación general y en el artículo de primeros envíos (fuentes F20 y F39) y el que no depende del plan. Esa identificación es un supuesto, no una equivalencia publicada: el propio mensaje de rechazo dice sandbox account y fuentes.md línea 993 registra Sandbox, Professional trial y Free como tres estados distintos previos a un plan. Si Sandbox fuera un estado propio, el 10 en to, 1 en cc y 1 en bcc que la documentación publica para la cuenta no aprobada dejaría de estar contradicho por la medición y DISC-18 se caería"
+    - "NOTA (no es un dato): del recuento de verdes de esta datasheet, tres son réplicas del mismo hecho y no evidencia nueva: la carga en MBs (50 MB) que los tres bloques de unapproved_account del lote copian del endpoint. Se copia porque el motor no mezcla la carga del endpoint con la del alias cuando el alias declara la suya, así que sin esa copia el alias perdería la dimensión MBs; el valor es el mismo dato publicado, no una medición del estado"
+    - "NOTA (no es un dato): los valores por estado de la cuenta no dependen del plan, así que sus claves van sin sufijo de plan (rate_request_email_under_review, rate_request_bulk_under_review, rate_request_email_unapproved, rate_request_bulk_unapproved y quota_email_monthly_unapproved) y se referencian desde los siete bloques de endpoint. El esquema v0.3 obliga a repetir esa referencia plan a plan porque no hay forma de declarar un estado una sola vez para toda la datasheet; la repetición se anota aquí y no es un dato distinto por plan (regla D7)"
+  not_found:
+    - "Tope total de destinatarios por petición a /v1/email (to + cc + bcc): no publicado como total; 50, 10 y 10 por campo para cuentas aprobadas, 10, 1 y 1 sin aprobar (fuentes F20 y F39), cc y bcc 50 en Enterprise. El máximo 70 que llevan los bloques de endpoint es la suma aritmética de los tres campos de una cuenta aprobada, y el sondeo del 2026-09-09 no puede medirlo porque la cuenta Sandbox no está aprobada (10, 11, 50 y 51 en to responden MS42205). Los 10, 1 y 1 sin aprobar no se modelan como valor en ninguna parte: desde D-025 la carga de ese estado la lleva el alias unapproved_account y es la medida, dos destinatarios por petición, que es lo que da la única combinación que pasa la validación, to 1 más cc 1; en to solo cabe una dirección, y esa es la contradicción con el 10 publicado, DISC-18"
+    - "Tope de to para cuentas no aprobadas: la documentación publica 10 y la API rechaza 10 direcciones con 'The to recipient limit is exceeded. #MS42205' (2026-09-09, en dos ejecuciones del sondeo); una dirección pasa y la tanda 2 del 2026-09-10 cierra la cota en exactamente 1: dos direcciones en to ya responden ese mismo 422 (casos B2_to_2, B2_to_3, B2_to_5, B2_to_6 y B2_to_9). Lo que queda sin explicar es la contradicción con el 10 publicado, que es DISC-18. Tope de bcc sin aprobar: publicado 1; medido solo que 10 y 11 fallan"
+    - "Tope de destinatarios únicos de la cuenta no aprobada, dos sumando to, cc y bcc: es un tope de cuenta y no de petición, y ningún campo de v0.3 lo recoge. El proveedor lo publica como 'any 2 recipients' en Sandbox y lo devuelve como 'You have reached sandbox account unique recipients limit. #MS42225'; fuentes.md línea 994 ya lo registra como dimensión distinta del workload por petición. Se mide el 2026-09-09 (tres direcciones distintas entre los tres campos ya lo disparan). No confundirlo con el máximo por petición que el alias sí lleva: el alias declara un workload de dos destinatarios por llamada, que es la mayor combinación que pasa la validación, y el tope de cuenta es otra dimensión que sigue sin modelarse. Las dos cifras valen 2 porque la cuenta medida no había gastado ninguno de sus dos destinatarios únicos, no porque sean lo mismo"
+    - "Retardo y granularidad del contador de la cuota diaria de peticiones que exponen la cabecera x-apiquota-remaining y GET /v1/api-quota: no publicados. La regla de descuento sí está publicada y se midió el 2026-09-09 ('Every request is counted against the quota': las 422, las 429 y el 202 del lote cuentan 1 cada una), pero el contador expuesto se actualiza por lotes (17 y 14 peticiones en lo observado) y con retardo (la lectura 7 segundos después de la última petición aún no la reflejaba); cuánto tarda y qué dispara la actualización no se ha medido, así que remaining no sirve para conocer la capacidad restante en el instante de la petición"
+    - "Cabeceras de la respuesta 429 por caudal: la documentación publica retry-after y x-ratelimit-* en el ejemplo, y las diez respuestas 429 archivadas el 2026-09-09 en dos ejecuciones (10 por minuto en /v1/email, 1 por minuto en /v1/bulk-email) solo traen date y x-apiquota-*; no se sabe cuántos segundos hay que esperar salvo por el minuto del mensaje"
+    - "Consumo real del lote frente a la respuesta de la petición: v0.3 no tiene dónde decir que la respuesta que mide el consumo no es la de la petición. El lote acepta con 202 y valida después, así que el código de aceptación no dice cuánta cuota se consume; solo lo dice un GET /v1/bulk-email/{id} posterior. Medido el 2026-09-10, cuando el caso quedó cerrado: los dos lotes de cinco objetos aceptados el 2026-09-09 (bulk_email_id 6aa1ad527e48ed427f18cf4e y 6aa1affd1e3217ac0dd87aa1) responden state completed con total_recipients_count 5, suppressed_recipients_count 0 y validation_errors_count 5, es decir, ningún correo enviado; y el sexto objeto, que en las dos ejecuciones del 2026-09-09 había respondido 429 por el caudal de 1 por minuto, responde 422 MS42229 y fija el tope en cinco objetos, que la datasheet ya modela en el alias unapproved_account. Lo que sigue sin campo en el esquema es ese desfase entre respuesta y consumo, que es la fricción F-04"
+    - "Unidad de la cuota mensual de emails (petición, objeto de correo o destinatario): sin artículo propio; solo la aritmética del lote ('for a total of 35,000 emails' = 500 × 70 destinatarios) y el contador 'total_recipients_count'. Se modela 1 unidad por destinatario"
+    - "Límite diario de 100 emails del Free: publicado por una sola fuente y sin sitio en el modelo. El centro de ayuda es la única que lo expresa en emails y otras cuatro dicen 100 requests, que la datasheet ya modela como cuota diaria de peticiones (DISC-11, abierta); su ventana de reposición tampoco está publicada, porque la única reposición a medianoche UTC es la de la cuota diaria de peticiones. Ningún plan puede referenciar la cuota sin duplicar esa otra, así que desde el 2026-09-14 no se define en capacity: el literal se queda en el provenance y el hueco aquí (D-029, regla B7; fricción F-17)"
+    - "Día y hora de reposición de la cuota mensual de emails: 'resets every 30 days' frente a 'next billing day' (ambas ventanas fijas ligadas al ciclo de facturación; el tipo de ventana es literal, el día exacto no); para el plan anual no se dice; para el Free no hay frase propia de reposición por día de facturación; ninguna fuente describe una ventana deslizante"
+    - "Disponibilidad de /v1/bulk-email en el plan Free: no dicha; la página de precios y el centro de ayuda lo listan desde Hobby y existe el error MS42216, pero el artículo de rate limits publica 'Free plan: 10 API calls/min' para v1/bulk. Endpoint omitido en Free; el sondeo del 2026-09-09 confirma que Sandbox sí tiene el endpoint (202 con 5 objetos, caudal 1 por minuto sin aprobar) y no dice nada de Free"
+    - "Objetos por lote en el Professional trial: 500 según la referencia del endpoint y 5 según el artículo del lote ('Otherwise'); no afecta a los planes comerciales"
+    - "Caudal de /v1/email por plan: no publicado; un único 120 por minuto por defecto para cuentas con reputación sana, 10 por minuto bajo revisión y un caudal menor sin cifra para cuentas recién ascendidas. Los estados Rebuilding y Sending paused no tienen caudal publicado. La datasheet lleva el valor por defecto en todos los planes. Medido el 2026-09-09 en la cuenta Sandbox no aprobada: 10 por minuto en /v1/email y 1 por minuto en /v1/bulk-email con 429 alcanzado, es decir, los caudales publicados para la reputación bajo revisión rigen también para una cuenta sin aprobar; qué estado tiene el 120 por minuto y desde cuándo no se ha medido"
+    - "Umbrales que llevan una cuenta a Under review o Sending paused (tasa de 403/422/429, rebotes, quejas): sin cifra"
+    - "Tipo de ventana del caudal por minuto (fija o deslizante): no dicho; solo retry-after en segundos y x-ratelimit-reset como marca de tiempo"
+    - "Segmentación del caudal y de la cuota diaria (por cuenta, por token, por dominio o por IP): no dicha para la API; el SMTP se limita por IP"
+    - "Tamaño máximo de la petición a /v1/email: no publicado; solo 2 MB de text y html y 25 MB por adjunto decodificado. Número máximo de adjuntos y tamaño de personalization: no publicados"
+    - "Tamaño máximo de mensaje y destinatarios por mensaje SMTP: no publicados; el canal tiene 5 o 50 conexiones concurrentes por plan, 5 transacciones por conexión y un caudal de 120 por minuto que la documentación de desarrollador describe sin cifra y por IP"
+    - "Precio, volumen mensual y sobrecoste de Enterprise: no publicados (contacto); solo 500.000 peticiones al día, 60 lotes por minuto, cc y bcc de 50, 1 IP dedicada incluida, 5.000 dominios y 14 días de logs. Plan no modelado"
+    - "Tope del sobrecoste fijado por el proveedor (como el 10× de otras APIs): no publicado; solo el tope voluntario que configura el cliente"
+    - "Cifra del límite de correos del dominio de prueba (MS42222): no publicada; la cuota de cuenta no aprobada es 100 emails al mes y 2 destinatarios únicos en Sandbox"
+    - "Criterios de aprobación de cuenta: no publicados; solo el plazo 'up to 48 hours'"
+    - "Condición que activa la respuesta 202 con x-send-paused: no dicha; tres pausas distintas comparten la palabra (cuota del Free agotada, tope de gasto alcanzado, estado de reputación Sending paused) y ninguna se documenta como respuesta de la API"
+    - "Si la fecha de caducidad del token de API es obligatoria o la elige el cliente al crearlo: no dicha; la referencia de la API de tokens no tiene parámetro de expiración y el panel muestra 'Expires at' en el token observado"
+    - "El cupo de destinatarios unicos de la cuenta Sandbox, dos segun el centro de ayuda, no cabe en v0.3: no es una cuota consumida por envios sino un cupo que se agota con direcciones PROBADAS, aunque la peticion se rechace y no salga ningun correo (medido en la tanda 3, 2026-09-14). No es consultable (GET /v1/recipients devuelve 0), no se repone y solo lo levanta la aprobacion de la cuenta, que no tiene via en el panel. Fuera de capacity por B3 y B7; friccion F-21"
+    - "El alcance de la asimetria de plantillas: la referencia dice que las creadas en el panel devuelven 404 al actualizarlas por API, pero no dice si eso afecta tambien a enviarlas con template_id ni si hay forma de migrarlas. v0.3 no tiene donde expresar que una operacion cubierta por la API solo alcance a los objetos que ella misma creo (C2, D-031). Test C2 completo desde el 2026-09-14"
+    - "Escalera de precios y fecha de reposición en el panel de la cuenta propia: no observables en Sandbox sin dominio propio aprobado"
+    - "Precio del SMS incluido en Professional y sobrecoste del WhatsApp por plan: fuera del producto modelado; sobrecoste de SMS solo publicado para el plan base"
+    - "Anuncio fechado del paso de Hobby gratuito (3.000 al mes en 2024) a Free de 500 más Hobby de pago: no localizado; ocurrió entre 2024-07-29 y 2026-03-19. Tampoco se localizó anuncio del descuento anual del 20 % al 10 % ni del sobrecoste de $0.95 a $1.30, que solo se acotan entre 2024-07-29 y 2026-09-08, porque el modelado previo del 2026-03-19 aún lleva los valores antiguos"
+    - "Disparador del cambio de estado de reputación y estados sin caudal publicado: un alias de v0.3 solo lleva cifras, así que el criterio que mueve una cuenta de un estado a otro se queda fuera del modelo; el proveedor lo publica solo en cualitativo, 'increased error rates (e.g., 403, 422, 429 responses)', sin umbral ni ventana. Rebuilding, Sending paused y las cuentas recién ascendidas ('Newly upgraded accounts may have a lower rate limit') no tienen cifra publicada y por eso no generan alias (D7)"
+    - "Ventana de reposición de la cuota mensual de 100 emails de la cuenta no aprobada: no publicada. La única frase es que la aprobación permite pasar de esos 100 al mes; ninguna fuente dice cómo se repone el contador, y el ciclo de facturación de los planes de pago no sirve porque una cuenta sin aprobar no lo tiene"

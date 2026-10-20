@@ -1,0 +1,331 @@
+# Catálogo de preguntas de Pricing Intelligence sobre APIs de correo
+# TFM Daniel Vela Camacho · versión 0.1.1 · 2026-09-07 · decisiones D-015 (cap. 5 + artefacto) y D-019 (clase L)
+#
+# Gramática: la de Cavero et al. (CAiSE 2026, tabla 1). Placeholders entre dobles llaves,
+# con sufijo numérico para distinguir instancias: {{SAAS 1}}, {{SAAS 2}}.
+#   SAAS           producto con pricing del que se extrae la respuesta (aquí, una API de correo)
+#   CONFIGURATION  combinación de plan y add-ons que define lo accesible
+#   FEATURE        funcionalidad cuyo acceso regula el pricing
+#   USAGE LIMIT    restricción numérica sobre una feature (cuota, rate, tamaño...)
+#   ACTION         necesidad del usuario en sus propias palabras
+#   PRICE          precio objetivo
+#   YEAR           versión del pricing por fecha
+#
+# `resuelve` dice con qué se responde hoy, de menos a más instrumental:
+#   D   leyendo la Datasheet ACM2YAML v0.3 (lookup, sin cálculo)
+#   P   PRIME4API, con la operación Qn del catálogo de Gavira Sánchez que la ejecuta
+#   H   HARVEY4API (orquestación: varias Datasheets, varias operaciones, lenguaje natural)
+#   L   respondible por lectura de la matriz funcional de la API (`features.md`, D-019),
+#       fuera del esquema v0.3 y sin instrumento: la responde una persona leyendo, no PRIME4API
+#   X   no respondible hoy; `motivo` dice qué falta (campo del esquema, canal, herramienta)
+#
+# `necesita_datasheet` enumera los bloques de la v0.3 implicados; `necesita_fuera` lo que
+# la v0.3 no serializa. `reto_paper` remite a los cinco retos abiertos de Cavero et al.
+# (1 comparación heterogénea · 2 predicción · 3 what-if · 4 coste operativo · 5 suscripciones).
+#
+# Estado: `borrador` hasta que la pregunta se instancie sobre el catálogo y se compruebe.
+# Las P están `comprobada` desde el 2026-09-07: ejecutadas contra PRIME4API como servicio REST en
+# local sobre las tres Datasheets (05_salida/_cap5/prime4api_ejecucion/, CONTRASTE.md), y desde el
+# 2026-09-21 sobre las ocho, con la segunda tanda de Brevo, SES, Mailgun y Mailchimp
+# (05_salida/_cap5/prime4api_ejecucion_2026-09-21/, CONTRASTE.md). El eje de instanciación de las P
+# lo fija E16 de CRITERIOS.md; la clase de la pregunta no se mueve por lo que publique un proveedor
+# (D-041).
+
+version: "0.1.1"
+fecha: 2026-09-07
+fuente_gramatica: cavero2026pricingintelligence
+fuente_operaciones: gavira2026tfm
+
+categorias:
+  A: Lectura de la capacidad contractual de una API
+  B: Selección de suscripción para una necesidad
+  C: Comparación entre APIs
+  D: Relación entre límites de uso y rates (RQ3)
+  E: Necesidades funcionales (canal web; por lectura de la matriz funcional, D-019)
+  F: Evolución y vigencia
+  G: Operación y riesgo
+
+preguntas:
+
+  # ---------- A · lectura de la capacidad ----------
+  - id: PI-A01
+    plantilla: "¿Cuántos correos al mes incluye {{CONFIGURATION}} de {{SAAS}} y qué pasa al superarlos?"
+    ejemplo: "¿Cuántos correos al mes incluye el plan Basic de Postmark y qué pasa al superarlos?"
+    resuelve: D
+    necesita_datasheet: [capacity.quota, plans.overage_cost]
+    nota: "La respuesta tiene dos partes: la cuota y el comportamiento al exceder (sobrecoste, bloqueo o no admitido). En el catálogo las dos se dan."
+    estado: borrador
+
+  - id: PI-A02
+    plantilla: "¿A qué velocidad máxima acepta {{SAAS}} peticiones de {{ACTION}} en {{CONFIGURATION}}?"
+    ejemplo: "¿A qué velocidad máxima acepta Resend envíos en el plan Free?"
+    resuelve: D
+    necesita_datasheet: [max_power]
+    nota: "En el piloto el rate no está publicado. La respuesta correcta es «no publicado», no «sin límite» (P-04 del cap. 6)."
+    estado: borrador
+
+  - id: PI-A03
+    plantilla: "¿Cuántos destinatarios puede llevar una petición de {{ACTION}} en {{SAAS}}, y cuentan uno a uno contra la cuota?"
+    ejemplo: "¿Cuántos destinatarios admite un envío de Postmark y cuentan uno a uno contra la cuota mensual?"
+    resuelve: D
+    necesita_datasheet: [workload]
+    nota: "Es la pregunta del CRF: cada destinatario consume una unidad de cuota aunque sea una sola petición (F-03)."
+    estado: borrador
+
+  - id: PI-A04
+    plantilla: "¿Hay un límite diario además del mensual en {{CONFIGURATION}} de {{SAAS}}?"
+    ejemplo: "¿Hay un límite diario además del mensual en el plan Free de Resend?"
+    resuelve: D
+    necesita_datasheet: [capacity.quota]
+    necesita_fuera: [dos ventanas sobre la misma métrica]
+    nota: "v0.3 admite varias cuotas, pero no declara que dos ventanas actúen sobre la misma métrica. Brevo y Resend lo tienen. Candidata a fricción recurrente."
+    estado: borrador
+
+  - id: PI-A05
+    plantilla: "¿Cuál es el tamaño máximo de un mensaje (adjuntos incluidos) en {{SAAS}}?"
+    ejemplo: "¿Cuál es el tamaño máximo de un mensaje con adjuntos en Postmark?"
+    resuelve: D
+    necesita_datasheet: [workload, capacity]
+    nota: "Es un límite por petición sobre una métrica distinta (MB). En el piloto se modeló como workload acotado por otra métrica (F-06)."
+    estado: borrador
+
+  - id: PI-A06
+    plantilla: "¿Cuánto tiempo mínimo necesita {{CONFIGURATION}} de {{SAAS}} para enviar {{USAGE LIMIT}} correos?"
+    ejemplo: "¿Cuánto tiempo mínimo necesita el plan Pro de Postmark para enviar 100.000 correos?"
+    resuelve: P
+    operacion: Q1
+    necesita_datasheet: [max_power, capacity.quota, workload]
+    nota: "Sin rate publicado la operación no tiene entrada. Es el primer punto donde el hueco de la Datasheet se convierte en pregunta sin respuesta."
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-A07
+    plantilla: "¿Cuánta capacidad acumula {{CONFIGURATION}} de {{SAAS}} en una ventana de {{USAGE LIMIT}}?"
+    ejemplo: "¿Cuántos correos puede haber enviado el plan Free de Resend al cabo de una semana?"
+    resuelve: P
+    operacion: Q3
+    necesita_datasheet: [max_power, capacity.quota]
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-A08
+    plantilla: "¿Cuántas peticiones simultáneas admite {{SAAS}} en {{CONFIGURATION}}?"
+    ejemplo: "¿Cuántas peticiones simultáneas admite la API de Postmark?"
+    resuelve: X
+    motivo: "La concurrencia es una de las dos dimensiones del ACM que v0.3 no serializa. Además ningún proveedor del catálogo la publica hasta ahora."
+    necesita_fuera: [concurrencia]
+    estado: borrador
+
+  # ---------- B · selección de suscripción ----------
+  - id: PI-B01
+    plantilla: "¿Cuál es la suscripción más barata de {{SAAS}} para enviar {{USAGE LIMIT}} correos al mes?"
+    ejemplo: "¿Cuál es la suscripción más barata de Postmark para 40.000 correos al mes?"
+    resuelve: P
+    operacion: Q6
+    necesita_datasheet: [plans, capacity.quota, plans.overage_cost]
+    nota: "Con sobrecoste variable por volumen (F-02) la respuesta depende de si se contrata más volumen o se paga exceso. P-01 del cap. 6 existe para poder contestarla."
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-B02
+    plantilla: "Con {{PRICE}} al mes, ¿cuántos correos puedo enviar como máximo con {{SAAS}}?"
+    ejemplo: "Con 50 dólares al mes, ¿cuántos correos puedo enviar como máximo con Postmark?"
+    resuelve: P
+    operacion: Q7
+    necesita_datasheet: [plans, capacity.quota, plans.overage_cost]
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-B03
+    plantilla: "Si mi volumen es {{USAGE LIMIT}} al mes, ¿me sale más barato el sobrecoste o el siguiente plan de {{SAAS}}?"
+    ejemplo: "Con 12.000 correos al mes, ¿me sale más barato el sobrecoste del plan Basic de Postmark o el siguiente tier?"
+    resuelve: P
+    operacion: Q10
+    necesita_datasheet: [plans, plans.overage_cost, capacity.quota]
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-B04
+    plantilla: "¿Puedo empezar gratis en {{SAAS}} y qué me limita el plan gratuito respecto a {{ACTION}}?"
+    ejemplo: "¿Puedo empezar gratis en Resend y qué limita el plan Free para enviar desde mi dominio?"
+    resuelve: D
+    necesita_datasheet: [plans, capacity.quota, max_power]
+    necesita_fuera: [features del plan]
+    nota: "La parte de cuota y rate sale de la Datasheet. La parte de features (dominios, retención) es del canal web."
+    estado: borrador
+
+  - id: PI-B05
+    plantilla: "¿Qué plan de {{SAAS}} necesito para sostener un pico de {{USAGE LIMIT}} correos en {{USAGE LIMIT 2}}?"
+    ejemplo: "¿Qué plan de Postmark necesito para sostener 20.000 correos en una hora?"
+    resuelve: P
+    operacion: Q5
+    necesita_datasheet: [max_power, capacity.quota, plans]
+    nota: "Depende del rate publicado. Cuando el rate no varía por plan (o no existe), la pregunta se reduce a cuota."
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  # ---------- C · comparación entre APIs ----------
+  - id: PI-C01
+    plantilla: "Para {{USAGE LIMIT}} correos al mes, ¿qué sale más barato, {{SAAS 1}} o {{SAAS 2}}?"
+    ejemplo: "Para 50.000 correos al mes, ¿qué sale más barato, Postmark o Resend?"
+    resuelve: H
+    operacion: "Q6 sobre cada Datasheet + comparación"
+    necesita_datasheet: [plans, capacity.quota, plans.overage_cost]
+    reto_paper: 1
+    nota: "Es el reto 1 del paper (comparación entre pricings heterogéneos). PRIME4API responde por API; la comparación la hace el agente."
+    estado: borrador
+
+  - id: PI-C02
+    plantilla: "¿Qué API de correo entre {{SAAS 1}}, {{SAAS 2}} y {{SAAS 3}} ofrece más capacidad por euro en el primer tier de pago?"
+    ejemplo: "¿Qué API entre Postmark, Resend y SendGrid ofrece más correos por dólar en su primer plan de pago?"
+    resuelve: H
+    necesita_datasheet: [plans, capacity.quota]
+    reto_paper: 1
+    estado: borrador
+
+  - id: PI-C03
+    plantilla: "¿Qué API de correo publica su rate y cuál no?"
+    ejemplo: "De las ocho del catálogo, ¿cuáles publican el rate de la API de envío?"
+    resuelve: D
+    necesita_datasheet: [max_power, metadata.not_found]
+    nota: "Es una pregunta sobre el catálogo entero, no sobre una API. Solo se puede responder si el esquema distingue «no publicado» de «sin límite» (P-04)."
+    estado: borrador
+
+  - id: PI-C04
+    plantilla: "¿Qué API de correo me deja enviar más rápido {{USAGE LIMIT}} correos, {{SAAS 1}} o {{SAAS 2}}?"
+    ejemplo: "¿Qué API me deja enviar antes 100.000 correos, Mailgun o SES?"
+    resuelve: H
+    operacion: "Q1 sobre cada Datasheet + comparación"
+    necesita_datasheet: [max_power, workload]
+    reto_paper: 1
+    nota: "Ejercita la curva de capacidad que H4A está incorporando; el tutor sugirió reflejar estas respuestas visualmente."
+    estado: borrador
+
+  - id: PI-C05
+    plantilla: "¿En qué se parecen y en qué se diferencian los pricings de {{SAAS 1}} y {{SAAS 2}} para {{ACTION}}?"
+    ejemplo: "¿En qué se diferencian Postmark y Resend para correo transaccional de una startup?"
+    resuelve: X
+    motivo: "Es literalmente la pregunta de ejemplo del reto 1 del paper: requiere una operación de diff entre pricings que el motor no tiene."
+    reto_paper: 1
+    estado: borrador
+
+  # ---------- D · límites y rates (RQ3) ----------
+  - id: PI-D01
+    plantilla: "En {{CONFIGURATION}} de {{SAAS}}, ¿qué se agota antes, la cuota mensual o la velocidad?"
+    ejemplo: "En el plan Free de Resend, ¿qué me para antes, los 3.000 correos al mes o el rate por segundo?"
+    resuelve: P
+    operacion: Q5
+    necesita_datasheet: [max_power, capacity.quota]
+    nota: "La pregunta central de C-03. Solo tiene sentido cuando existen las dos dimensiones."
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-D02
+    plantilla: "¿A partir de qué volumen mensual el rate de {{SAAS}} deja de ser el límite efectivo?"
+    ejemplo: "¿A partir de qué volumen mensual el rate de Mailgun deja de ser el cuello de botella?"
+    resuelve: P
+    operacion: Q5
+    necesita_datasheet: [max_power, capacity.quota]
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-D03
+    plantilla: "Si {{SAAS}} cobra por correo y limita por petición, ¿cuántos destinatarios por petición igualan los dos límites?"
+    ejemplo: "En Postmark, ¿cuántos destinatarios por petición hacen que la cuota de correos y el límite de peticiones se agoten a la vez?"
+    resuelve: P
+    operacion: Q9
+    necesita_datasheet: [workload, capacity.quota, max_power]
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-D04
+    plantilla: "¿Sube el rate de {{SAAS}} al subir de plan, o es el mismo en todos?"
+    ejemplo: "¿Sube el rate de SendGrid al pasar de Essentials a Pro?"
+    resuelve: D
+    necesita_datasheet: [max_power, plans]
+    nota: "Hallazgo esperable del catálogo: en varios proveedores el rate no depende del plan (o no se publica) y solo escala la cuota."
+    estado: borrador
+
+  - id: PI-D05
+    plantilla: "¿Crecen los límites de {{SAAS}} con el uso (reputación) o son fijos por plan?"
+    ejemplo: "¿Los límites de envío de SES crecen con la reputación de la cuenta o son fijos?"
+    resuelve: D
+    necesita_datasheet: [max_power, plans, aliases de estado]
+    nota: "Era X hasta D-041 (2026-09-15), con el motivo «un límite por cuenta no tiene sitio en el esquema». La Datasheet de MailerSend lo desmiente desde D-025: los aliases de estado declaran el caudal de cada estado de reputación con su cifra (120 y 10 peticiones por minuto en el envío individual), así que la pregunta se responde leyendo. Lo que el esquema no declara es el disparador del cambio de estado, y eso es carencia tratada en el capítulo 6 (F-18, P-06). Que Postmark, Resend y SendGrid no la respondan es que no publican estados, no que falte sitio donde escribirlos."
+    reto_paper: 2
+    estado: borrador
+
+  - id: PI-D06
+    plantilla: "¿Qué ocurre en {{SAAS}} al superar el rate: rechazo, cola o degradación?"
+    ejemplo: "¿Qué devuelve Postmark al superar el rate: un 429, una cola o nada?"
+    resuelve: X
+    motivo: "El comportamiento al exceder no es una dimensión del ACM. Está en la documentación y en los sondeos (escalón 3), no en la Datasheet."
+    necesita_fuera: [comportamiento al exceder]
+    estado: borrador
+
+  # ---------- E · necesidades funcionales ----------
+  - id: PI-E01
+    plantilla: "¿Incluye {{CONFIGURATION}} de {{SAAS}} {{FEATURE}}?"
+    ejemplo: "¿Incluye el plan Free de Postmark webhooks de entrega?"
+    resuelve: L
+    motivo: "Las features son del canal web (Pricing2YAML/iPricing), fuera de D-001. Desde D-019 se responde leyendo la matriz funcional por plan (features.md), capturada con las mismas fuentes que la Datasheet; con instrumento la respondería A-MINT/PRIME sobre el iPricing."
+    necesita_fuera: [matriz funcional (features.md), iPricing]
+    nota: "Instanciada sobre las tres APIs el 2026-09-07: Postmark no declara webhooks en Free (solo 'All Event Webhooks' en Pro y Platform), Resend Free 1 endpoint, SendGrid Trial 1 Event Webhook."
+    estado: comprobada por lectura
+
+  - id: PI-E02
+    plantilla: "¿Qué API de correo entre {{SAAS 1}} y {{SAAS 2}} me da {{FEATURE}} al menor precio para {{USAGE LIMIT}} correos al mes?"
+    ejemplo: "¿Qué API me da IP dedicada al menor precio para 200.000 correos al mes?"
+    resuelve: L
+    motivo: "Mezcla feature (canal web) y capacidad (canal API). Desde D-019 la parte de feature se lee en features.md y la de capacidad en la Datasheet; la composición la hace una persona. Es el caso que justifica el vínculo iPricing–Datasheet del trabajo futuro (D-001)."
+    necesita_datasheet: [plans.price, capacity.quota, overage_cost]
+    necesita_fuera: [matriz funcional (features.md), vínculo entre canales]
+    nota: "Instanciada el 2026-09-07: Postmark no elegible (exige 300.000 al mes); Resend Scale 200.000 (160 USD) + IP (30 USD) = 190 USD; SendGrid Pro 100K (89.95 USD) + 100.000 de sobrecoste a 0.0011 = 199.95 USD, o Pro 300K 249 USD. Gana Resend por 9.95 USD."
+    reto_paper: 1
+    estado: comprobada por lectura
+
+  - id: PI-E03
+    plantilla: "¿Cuánto tiempo conserva {{SAAS}} los registros de envío en {{CONFIGURATION}}?"
+    ejemplo: "¿Cuántos días conserva Resend los logs en el plan Free?"
+    resuelve: X
+    motivo: "La retención es un límite de uso que no es de consumo (no se gasta). v0.3 no lo modela; Resend lo publicaba por plan (F-09). La matriz funcional (features.md) recoge el valor por plan, pero la pregunta se queda en X porque su sitio es el esquema, no la matriz (D-019)."
+    necesita_fuera: [límites no consumibles]
+    nota: "Valores leídos el 2026-09-07 en features.md: Postmark 45 días (7-365 con add-on), Resend 30 en Free, Pro y Scale, SendGrid 3 / 3 / 7 / 7."
+    estado: borrador
+
+  # ---------- F · evolución y vigencia ----------
+  - id: PI-F01
+    plantilla: "¿Ha cambiado el pricing de {{SAAS}} desde {{YEAR}} en cuota o en rate?"
+    ejemplo: "¿Ha cambiado Resend su rate desde febrero de 2026?"
+    resuelve: D
+    necesita_datasheet: [date, metadata]
+    nota: "Respondible solo si hay dos Datasheets fechadas. En Resend las hay (repo, 2026-02-24, y este trabajo, 2026-09-01): el rate pasó de 2 a 10 peticiones por segundo."
+    reto_paper: 2
+    estado: borrador
+
+  - id: PI-F02
+    plantilla: "¿Qué parte de la Datasheet de {{SAAS}} sigue vigente hoy?"
+    ejemplo: "¿Qué parte de la Datasheet de Resend del repositorio sigue siendo cierta?"
+    resuelve: X
+    motivo: "F-09: una Datasheet no dice qué parte sigue vigente. Requiere reverificación fuente a fuente."
+    reto_paper: 2
+    estado: borrador
+
+  # ---------- G · operación y riesgo ----------
+  - id: PI-G01
+    plantilla: "Si mi tráfico crece un {{USAGE LIMIT}} % al mes, ¿cuándo tendré que cambiar de plan en {{SAAS}}?"
+    ejemplo: "Si mi tráfico crece un 20 % al mes, ¿cuándo me quedaré corto en el plan Basic de Postmark?"
+    resuelve: H
+    operacion: "Q6 iterada"
+    necesita_datasheet: [plans, capacity.quota]
+    reto_paper: 3
+    nota: "Es un what-if sobre la demanda, no sobre el pricing. Se puede simular fuera del motor con varias llamadas."
+    estado: borrador
+
+  - id: PI-G02
+    plantilla: "¿Cuánto me costaría un mes de {{USAGE LIMIT}} correos en {{SAAS}} si no cambio de plan?"
+    ejemplo: "¿Cuánto me costaría un mes de 25.000 correos en el plan Basic de Postmark sin cambiar de plan?"
+    resuelve: P
+    operacion: Q10
+    necesita_datasheet: [plans.overage_cost, capacity.quota]
+    estado: comprobada sobre las 8 APIs (PRIME4API en local, 2026-09-07 y 2026-09-21; 05_salida/_cap5/prime4api_ejecucion/ y prime4api_ejecucion_2026-09-21/)
+
+  - id: PI-G03
+    plantilla: "¿Puedo contratar más volumen en {{SAAS}} sin cambiar de plan, y a qué precio?"
+    ejemplo: "¿Puedo contratar 50.000 correos en el plan Basic de Postmark y cuánto cuesta cada tramo?"
+    resuelve: D
+    necesita_datasheet: [plans]
+    necesita_fuera: [volumen contratado por tramo]
+    nota: "En v0.3 no cabe: es exactamente P-01 del cap. 6 (la cuota declara volúmenes contratados)."
+    estado: borrador

@@ -1,0 +1,250 @@
+{
+ "resumen": {
+  "api": "brevo",
+  "paquete": "A (cero envios)",
+  "sondeo": "unidad_reset",
+  "fecha_utc": "2026-09-18T19:52:54Z",
+  "envios_reales": 0,
+  "unidad_de_envios_reales": "destinatarios de las peticiones ACEPTADAS (2xx), que es la unidad con la que el libro de cuentas reserva y gasta. Calculado, no declarado",
+  "peticiones": 9,
+  "peticiones_de_envio": 0,
+  "invariante_cero_envios": "CUMPLIDA",
+  "analisis_por_endpoint": {
+   "/smtp/emails?limit=1": {
+    "limit": 2.0,
+    "reset_por_muestra": [
+     "1",
+     "1",
+     "1"
+    ],
+    "remaining_por_muestra": [
+     1.0,
+     1.0,
+     1.0
+    ],
+    "date_por_muestra": [
+     "Fri, 18 Sep 2026 19:52:54 GMT",
+     "Fri, 18 Sep 2026 19:53:03 GMT",
+     "Fri, 18 Sep 2026 19:53:24 GMT"
+    ],
+    "pares": [
+     {
+      "de_ronda": 1,
+      "a_ronda": 2,
+      "delta_t_s": 8.643,
+      "reset_antes": 1.0,
+      "reset_despues": 1.0,
+      "delta_reset": 0.0
+     },
+     {
+      "de_ronda": 2,
+      "a_ronda": 3,
+      "delta_t_s": 21.593,
+      "reset_antes": 1.0,
+      "reset_despues": 1.0,
+      "delta_reset": 0.0
+     }
+    ],
+    "veredicto_unidad": "reset NO decrece con el tiempo: no es una cuenta atras, o la ventana se reinicia entre muestras (mirar 'reset_por_muestra' y 'limit')",
+    "a_que_ventana_se_refiere": "reset cabe en una ventana de 1 s: apunta a que la cabecera describe la ventana por SEGUNDO del endpoint"
+   },
+   "/smtp/templates?limit=1": {
+    "limit": null,
+    "reset_por_muestra": [
+     null,
+     null,
+     null
+    ],
+    "remaining_por_muestra": [
+     null,
+     null,
+     null
+    ],
+    "date_por_muestra": [
+     "Fri, 18 Sep 2026 19:52:55 GMT",
+     "Fri, 18 Sep 2026 19:53:04 GMT",
+     "Fri, 18 Sep 2026 19:53:26 GMT"
+    ],
+    "pares": [],
+    "veredicto_unidad": "no medible: menos de dos muestras con reset legible",
+    "a_que_ventana_se_refiere": null
+   },
+   "/senders": {
+    "limit": null,
+    "reset_por_muestra": [
+     null,
+     null,
+     null
+    ],
+    "remaining_por_muestra": [
+     null,
+     null,
+     null
+    ],
+    "date_por_muestra": [
+     "Fri, 18 Sep 2026 19:52:57 GMT",
+     "Fri, 18 Sep 2026 19:53:05 GMT",
+     "Fri, 18 Sep 2026 19:53:27 GMT"
+    ],
+    "pares": [],
+    "veredicto_unidad": "no medible: menos de dos muestras con reset legible",
+    "a_que_ventana_se_refiere": null
+   }
+  },
+  "veredicto_DISC_13": {
+   "/smtp/emails?limit=1": "reset NO decrece con el tiempo: no es una cuenta atras, o la ventana se reinicia entre muestras (mirar 'reset_por_muestra' y 'limit')",
+   "/smtp/templates?limit=1": "no medible: menos de dos muestras con reset legible",
+   "/senders": "no medible: menos de dos muestras con reset legible"
+  },
+  "lo_que_esto_NO_demuestra": "La unidad medida es la de ESTA cuenta y estos endpoints el dia del sondeo. Y si los tres endpoints dan unidades distintas, la contradiccion de DISC-13 no se cierra: se confirma que 'the granularity unit' [F7] significa que la unidad depende del endpoint, que es un hallazgo mayor que la propia discrepancia."
+ },
+ "casos": [
+  {
+   "caso": "r1_smtp_emails",
+   "endpoint": "/smtp/emails?limit=1",
+   "descripcion": "fila propia con DOS ventanas declaradas: 7.200 RPH y 2 RPS [F6]",
+   "ronda": 1,
+   "epoch_local": 1789761174.6364775,
+   "http": 400,
+   "limit": 2.0,
+   "remaining": 1.0,
+   "reset": 1.0,
+   "reset_crudo": "1",
+   "date": "Fri, 18 Sep 2026 19:52:54 GMT",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  },
+  {
+   "caso": "r1_smtp_templates",
+   "endpoint": "/smtp/templates?limit=1",
+   "descripcion": "prefijo /v3/smtp/{...}, declarado SOLO en RPH (300) [F6]",
+   "ronda": 1,
+   "epoch_local": 1789761175.8128223,
+   "http": 200,
+   "limit": null,
+   "remaining": null,
+   "reset": null,
+   "reset_crudo": null,
+   "date": "Fri, 18 Sep 2026 19:52:55 GMT",
+   "cabeceras_caudal": {},
+   "cuerpo_crudo": "{}\n"
+  },
+  {
+   "caso": "r1_senders",
+   "endpoint": "/senders",
+   "descripcion": "All other endpoints, declarado SOLO en RPH (100) [F6]",
+   "ronda": 1,
+   "epoch_local": 1789761177.0053258,
+   "http": 200,
+   "limit": null,
+   "remaining": null,
+   "reset": null,
+   "reset_crudo": null,
+   "date": "Fri, 18 Sep 2026 19:52:57 GMT",
+   "cabeceras_caudal": {},
+   "cuerpo_crudo": "{\"senders\":[{\"id\":1,\"name\":\"Universidad de Sevilla\",\"email\":\"<FROM_REDACTADO>\",\"active\":true,\"ips\":[]}]}"
+  },
+  {
+   "caso": "r2_smtp_emails",
+   "endpoint": "/smtp/emails?limit=1",
+   "descripcion": "fila propia con DOS ventanas declaradas: 7.200 RPH y 2 RPS [F6]",
+   "ronda": 2,
+   "epoch_local": 1789761183.2798557,
+   "http": 400,
+   "limit": 2.0,
+   "remaining": 1.0,
+   "reset": 1.0,
+   "reset_crudo": "1",
+   "date": "Fri, 18 Sep 2026 19:53:03 GMT",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  },
+  {
+   "caso": "r2_smtp_templates",
+   "endpoint": "/smtp/templates?limit=1",
+   "descripcion": "prefijo /v3/smtp/{...}, declarado SOLO en RPH (300) [F6]",
+   "ronda": 2,
+   "epoch_local": 1789761184.438662,
+   "http": 200,
+   "limit": null,
+   "remaining": null,
+   "reset": null,
+   "reset_crudo": null,
+   "date": "Fri, 18 Sep 2026 19:53:04 GMT",
+   "cabeceras_caudal": {},
+   "cuerpo_crudo": "{}\n"
+  },
+  {
+   "caso": "r2_senders",
+   "endpoint": "/senders",
+   "descripcion": "All other endpoints, declarado SOLO en RPH (100) [F6]",
+   "ronda": 2,
+   "epoch_local": 1789761185.5931115,
+   "http": 200,
+   "limit": null,
+   "remaining": null,
+   "reset": null,
+   "reset_crudo": null,
+   "date": "Fri, 18 Sep 2026 19:53:05 GMT",
+   "cabeceras_caudal": {},
+   "cuerpo_crudo": "{\"senders\":[{\"id\":1,\"name\":\"Universidad de Sevilla\",\"email\":\"<FROM_REDACTADO>\",\"active\":true,\"ips\":[]}]}"
+  },
+  {
+   "caso": "r3_smtp_emails",
+   "endpoint": "/smtp/emails?limit=1",
+   "descripcion": "fila propia con DOS ventanas declaradas: 7.200 RPH y 2 RPS [F6]",
+   "ronda": 3,
+   "epoch_local": 1789761204.872754,
+   "http": 400,
+   "limit": 2.0,
+   "remaining": 1.0,
+   "reset": 1.0,
+   "reset_crudo": "1",
+   "date": "Fri, 18 Sep 2026 19:53:24 GMT",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  },
+  {
+   "caso": "r3_smtp_templates",
+   "endpoint": "/smtp/templates?limit=1",
+   "descripcion": "prefijo /v3/smtp/{...}, declarado SOLO en RPH (300) [F6]",
+   "ronda": 3,
+   "epoch_local": 1789761206.0069828,
+   "http": 200,
+   "limit": null,
+   "remaining": null,
+   "reset": null,
+   "reset_crudo": null,
+   "date": "Fri, 18 Sep 2026 19:53:26 GMT",
+   "cabeceras_caudal": {},
+   "cuerpo_crudo": "{}\n"
+  },
+  {
+   "caso": "r3_senders",
+   "endpoint": "/senders",
+   "descripcion": "All other endpoints, declarado SOLO en RPH (100) [F6]",
+   "ronda": 3,
+   "epoch_local": 1789761207.146328,
+   "http": 200,
+   "limit": null,
+   "remaining": null,
+   "reset": null,
+   "reset_crudo": null,
+   "date": "Fri, 18 Sep 2026 19:53:27 GMT",
+   "cabeceras_caudal": {},
+   "cuerpo_crudo": "{\"senders\":[{\"id\":1,\"name\":\"Universidad de Sevilla\",\"email\":\"<FROM_REDACTADO>\",\"active\":true,\"ips\":[]}]}"
+  }
+ ]
+}

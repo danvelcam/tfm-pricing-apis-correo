@@ -1,0 +1,158 @@
+{
+ "pregunta": "PI-B01",
+ "operacion": "Q6",
+ "descripcion": "Suscripción más barata para 40.000 correos al mes: primero todos los planes (falla con precio custom o rate vacío), después solo los calculables",
+ "api": "postmark",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/email"
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 101,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "platform",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 18.0,
+      "overage_cost": 36.0,
+      "total_cost": 54.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 7000.0,
+      "time_to_capacity": "7s"
+     },
+     {
+      "plan": "pro",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 16.5,
+      "overage_cost": 39.0,
+      "total_cost": 55.5,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 7000.0,
+      "time_to_capacity": "7s"
+     },
+     {
+      "plan": "basic",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 15.0,
+      "overage_cost": 54.0,
+      "total_cost": 69.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 7000.0,
+      "time_to_capacity": "7s"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  },
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "free",
+     "basic",
+     "pro",
+     "platform"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 66,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "platform",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 18.0,
+      "overage_cost": 36.0,
+      "total_cost": 54.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 7000.0,
+      "time_to_capacity": "7s"
+     },
+     {
+      "plan": "pro",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 16.5,
+      "overage_cost": 39.0,
+      "total_cost": 55.5,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 7000.0,
+      "time_to_capacity": "7s"
+     },
+     {
+      "plan": "basic",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 15.0,
+      "overage_cost": 54.0,
+      "total_cost": 69.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 7000.0,
+      "time_to_capacity": "7s"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

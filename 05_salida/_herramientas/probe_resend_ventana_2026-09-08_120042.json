@@ -1,0 +1,21 @@
+[
+  {
+    "caso": "envio_1_correo",
+    "instante_utc": "2026-09-08T12:00:42Z",
+    "http": 200,
+    "cuerpo": {
+      "id": "5b8d3ee6-597d-4220-b1fb-6e3d7835c561"
+    },
+    "cabeceras": {
+      "date": "Tue, 08 Sep 2026 12:00:43 GMT",
+      "ratelimit-limit": "10",
+      "ratelimit-policy": "10;w=1",
+      "ratelimit-remaining": "9",
+      "ratelimit-reset": "1"
+    },
+    "lecturas_panel_utc": {
+      "L1_debe_seguir_en_1": "2026-09-09T11:50Z",
+      "L2_debe_estar_en_0_si_rolling": "2026-09-09T12:10Z"
+    }
+  }
+]

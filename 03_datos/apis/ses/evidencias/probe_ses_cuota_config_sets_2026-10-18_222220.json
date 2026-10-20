@@ -1,0 +1,24 @@
+{
+  "sondeo": "ses_cuota_config_sets",
+  "region": "eu-west-1",
+  "presupuesto_envios": 0,
+  "envios_gastados": 0,
+  "quota_code": "L-10E24536",
+  "fecha_utc": "2026-10-18T20:22:20+00:00",
+  "lecturas": {
+    "GetServiceQuota": {
+      "http": 400,
+      "cuerpo": {
+        "__type": "AccessDeniedException",
+        "Message": "User: arn:aws:iam::111122223333:user/tfm-solo-lectura is not authorized to perform: servicequotas:GetServiceQuota on resource: arn:aws:servicequotas:eu-west-1:111122223333:ses/L-10E24536 because no identity-based policy allows the servicequotas:GetServiceQuota action"
+      }
+    },
+    "GetAWSDefaultServiceQuota": {
+      "http": 400,
+      "cuerpo": {
+        "__type": "AccessDeniedException",
+        "Message": "User: arn:aws:iam::111122223333:user/tfm-solo-lectura is not authorized to perform: servicequotas:GetAWSDefaultServiceQuota because no identity-based policy allows the servicequotas:GetAWSDefaultServiceQuota action"
+      }
+    }
+  }
+}

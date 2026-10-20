@@ -1,0 +1,51 @@
+{
+ "resumen": {
+  "api": "brevo",
+  "sondeo": "caudal_solo_lectura",
+  "fecha_utc": "2026-09-17T20:50:01.442278+00:00",
+  "envios_reales": 0,
+  "peticiones": 4,
+  "limit_por_caso": {
+   "m01_get_smtp_emails": "2",
+   "m02_get_smtp_templates": null,
+   "m05_get_account": "5000",
+   "m06_get_senders": null
+  },
+  "veredicto_disc17": "DISC-17 sin decidir: falta la cabecera en alguno del par (emails='2', templates=None)",
+  "senders_existe": "200"
+ },
+ "casos": {
+  "m01_get_smtp_emails": {
+   "metodo": "GET",
+   "http": "400",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "2",
+    "x-sib-ratelimit-remaining": "1",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "cuerpo_recortado": "{\"code\":\"missing_parameter\",\"message\":\"Please pass atleast one of the following filters: email, messageId, templateId\"}"
+  },
+  "m02_get_smtp_templates": {
+   "metodo": "GET",
+   "http": "200",
+   "cabeceras_caudal": {},
+   "cuerpo_recortado": "{}\n"
+  },
+  "m05_get_account": {
+   "metodo": "GET",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4999",
+    "x-sib-ratelimit-reset": "601"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":300,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "m06_get_senders": {
+   "metodo": "GET",
+   "http": "200",
+   "cabeceras_caudal": {},
+   "cuerpo_recortado": "{\"senders\":[{\"id\":1,\"name\":\"Universidad de Sevilla\",\"email\":\"<CORREO_REDACTADO>\",\"active\":true,\"ips\":[]}]}"
+  }
+ }
+}

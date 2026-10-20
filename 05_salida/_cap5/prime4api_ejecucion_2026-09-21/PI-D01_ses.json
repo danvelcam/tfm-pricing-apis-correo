@@ -1,0 +1,76 @@
+{
+ "pregunta": "PI-D01",
+ "operacion": "Q5",
+ "descripcion": "Qué se agota antes en el primer plan de pago: t_min para agotar la cuota al rate máximo (k = 1) y veredicto para consumir la cuota entera en un mes",
+ "api": "ses",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v2/email/outbound-emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/ses/datasheet.yaml",
+   "http": 200,
+   "ms": 22,
+   "respuesta": {
+    "results": {
+     "pro": [
+      {
+       "endpoint": "/v2/email/outbound-emails",
+       "alias": "sandbox",
+       "quotas": [
+        {
+         "value": 200.0,
+         "unit": "emails",
+         "period": "1day"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 200,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v2/email/outbound-emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/ses/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "capacity_goal": 200,
+    "results": {
+     "pro": [
+      {
+       "endpoint": "/v2/email/outbound-emails",
+       "alias": "sandbox",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "3min19s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

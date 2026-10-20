@@ -1,0 +1,49 @@
+{
+  "fichero": "09_quotas_presupuesto_amplio.json",
+  "pregunta": "Cuota de Essentials expandida por un presupuesto que no limita (1e9): la cifra que el motor cree contratable con sobrecoste.",
+  "api": "sendgrid",
+  "plan": "essentials",
+  "friccion": "F-16",
+  "condicion": "L2 (D-042)",
+  "servicio": "http://localhost:8003/api/v1/datasheet",
+  "ejecutado": "2026-10-18T21:38:02",
+  "llamada": {
+    "endpoint": "POST /quotas",
+    "url_completa": "http://localhost:8003/api/v1/datasheet/quotas?capacity_unit=emails&max_budget=1000000000.0",
+    "params": {
+      "capacity_unit": "emails",
+      "max_budget": "1000000000.0"
+    },
+    "body": {
+      "endpoint_path": "/v3/mail/send",
+      "plan_names": [
+        "essentials"
+      ]
+    },
+    "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+    "nota_body": "El cuerpo real anade `datasheet_source` con el YAML integro de la Datasheet del catalogo, sin modificar."
+  },
+  "http": 200,
+  "ms": 30,
+  "respuesta": {
+    "results": {
+      "essentials": [
+        {
+          "endpoint": "/v3/mail/send",
+          "quotas": [
+            {
+              "value": 50000.0,
+              "unit": "emails",
+              "period": "30day",
+              "overage_cost": {
+                "price": 0.0013,
+                "value": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "datasheet_sha256": "dc265bcad7c60936eab50cfbf6da5df6c6def1febd6c7e62788aad41d143c243"
+}

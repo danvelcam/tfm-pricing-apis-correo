@@ -1,0 +1,88 @@
+{
+ "pregunta": "PI-B01",
+ "operacion": "Q6",
+ "descripcion": "Suscripción más barata para 40.000 correos al mes: primero todos los planes (falla con precio custom o rate vacío), después solo los calculables",
+ "api": "resend",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/emails"
+   },
+   "datasheet": "03_datos/apis/resend/datasheet.yaml",
+   "http": 500,
+   "ms": 23,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  },
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 40000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/emails",
+    "plan_names": [
+     "free",
+     "pro",
+     "scale"
+    ]
+   },
+   "datasheet": "03_datos/apis/resend/datasheet.yaml",
+   "http": 200,
+   "ms": 43,
+   "respuesta": {
+    "desired_capacity": 40000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "pro",
+      "endpoint": "/emails",
+      "dimension": "emails",
+      "base_cost": 20.0,
+      "overage_cost": 0.0,
+      "total_cost": 20.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 3999000.0,
+      "time_to_capacity": "1h6min39s"
+     },
+     {
+      "plan": "scale",
+      "endpoint": "/emails",
+      "dimension": "emails",
+      "base_cost": 90.0,
+      "overage_cost": 0.0,
+      "total_cost": 90.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 3999000.0,
+      "time_to_capacity": "1h6min39s"
+     },
+     {
+      "plan": "free",
+      "endpoint": "/emails",
+      "dimension": "emails",
+      "base_cost": 0.0,
+      "overage_cost": 0.0,
+      "total_cost": 0.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

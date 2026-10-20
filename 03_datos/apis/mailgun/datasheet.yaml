@@ -1,0 +1,380 @@
+# Datasheet ACM2YAML v0.3 — Mailgun
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: mailgun                                    # 🟢
+type: api_first                                             # 🟡
+url: https://www.mailgun.com/pricing/                       # 🟢
+syntax_version: 0.3
+date: 2026-09-21
+currency: USD                                               # 🟢
+consumption_units:
+  - requests
+  - emails
+  - MBs
+  - MiBs
+
+capacity:
+  quota_email_daily_free:
+    value: 100                                              # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: DAY
+    # 🔴 ancla del reinicio diario no publicada — hueco deliberado (ver metadata.not_found)
+    window_type:
+
+  quota_email_monthly_free:
+    value: 3000                                             # 🟡
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    # 🔴 ancla del reinicio mensual no publicada — hueco deliberado (ver metadata.not_found)
+    window_type:
+
+  quota_email_monthly_basic:
+    value: 10000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0018                                         # 🟢
+      value: 1
+
+  quota_email_monthly_foundation:
+    value: 50000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0013                                         # 🟢
+      value: 1
+
+  quota_email_monthly_scale:
+    value: 100000                                           # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+    overage_cost:
+      price: 0.0011                                         # 🟢
+      value: 1
+
+max_power:
+  rate_request_api:
+    value: 1500                                             # 🟡
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+
+  rate_request_send:
+    value: 80000                                            # 🟡
+    unit: requests
+    period:
+      value: 10                                             # 🟡
+      unit: SECOND
+
+plans:
+  free:
+    price: 0.00                                             # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_free
+    rate: rate_request_api
+    endpoints:
+      /v3/{domain_name}/messages:
+        quota: quota_email_daily_free
+        rate: rate_request_send
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Envío individual o por lotes; hasta 1.000 destinatarios por petición, y cada destinatario consume una unidad de la cuota.
+          - unit: MiBs
+            min: 1
+            max: 52                                         # 🟡
+            description: Tamaño de la petición entera, cuerpo más adjuntos; el máximo entero de MiB que la API acepta, redondeado a la baja desde el tope real.
+      /v3/{domain_name}/events:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de eventos; hasta 300 entradas por petición.
+      /v4/domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de un dominio de envío por petición.
+      /v3/{domain_name}/templates:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+      /v3/{domain_name}/bounces/import:
+        workload:
+          - unit: MBs
+            min: 1
+            max: 25                                         # 🟢
+            description: Importación masiva de rebotes; el fichero CSV no puede pasar de 25 MB.
+      /v5/accounts/limit/custom/monthly:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Fija, consulta o borra el tope de envío mensual que el titular se impone a sí mismo.
+
+  basic:
+    price: 15.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_basic
+    rate: rate_request_api
+    endpoints:
+      /v3/{domain_name}/messages:
+        rate: rate_request_send
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Envío individual o por lotes; hasta 1.000 destinatarios por petición, y cada destinatario consume una unidad de la cuota.
+          - unit: MiBs
+            min: 1
+            max: 52                                         # 🟡
+            description: Tamaño de la petición entera, cuerpo más adjuntos; el máximo entero de MiB que la API acepta, redondeado a la baja desde el tope real.
+      /v3/{domain_name}/events:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de eventos; hasta 300 entradas por petición.
+      /v4/domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de un dominio de envío por petición.
+      /v3/{domain_name}/templates:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+      /v3/{domain_name}/bounces/import:
+        workload:
+          - unit: MBs
+            min: 1
+            max: 25                                         # 🟢
+            description: Importación masiva de rebotes; el fichero CSV no puede pasar de 25 MB.
+      /v5/accounts/limit/custom/monthly:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Fija, consulta o borra el tope de envío mensual que el titular se impone a sí mismo.
+
+  foundation:
+    price: 35.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_foundation
+    rate: rate_request_api
+    endpoints:
+      /v3/{domain_name}/messages:
+        rate: rate_request_send
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Envío individual o por lotes; hasta 1.000 destinatarios por petición, y cada destinatario consume una unidad de la cuota.
+          - unit: MiBs
+            min: 1
+            max: 52                                         # 🟡
+            description: Tamaño de la petición entera, cuerpo más adjuntos; el máximo entero de MiB que la API acepta, redondeado a la baja desde el tope real.
+      /v3/{domain_name}/events:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de eventos; hasta 300 entradas por petición.
+      /v4/domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de un dominio de envío por petición.
+      /v3/{domain_name}/templates:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+      /v3/{domain_name}/bounces/import:
+        workload:
+          - unit: MBs
+            min: 1
+            max: 25                                         # 🟢
+            description: Importación masiva de rebotes; el fichero CSV no puede pasar de 25 MB.
+      /v5/accounts/limit/custom/monthly:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Fija, consulta o borra el tope de envío mensual que el titular se impone a sí mismo.
+
+  scale:
+    price: 90.00                                            # 🟢
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_monthly_scale
+    rate: rate_request_api
+    endpoints:
+      /v3/{domain_name}/messages:
+        rate: rate_request_send
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000                                       # 🟢
+            description: Envío individual o por lotes; hasta 1.000 destinatarios por petición, y cada destinatario consume una unidad de la cuota.
+          - unit: MiBs
+            min: 1
+            max: 52                                         # 🟡
+            description: Tamaño de la petición entera, cuerpo más adjuntos; el máximo entero de MiB que la API acepta, redondeado a la baja desde el tope real.
+      /v3/{domain_name}/events:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de eventos; hasta 300 entradas por petición.
+      /v4/domains:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de un dominio de envío por petición.
+      /v3/{domain_name}/templates:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+      /v3/{domain_name}/bounces/import:
+        workload:
+          - unit: MBs
+            min: 1
+            max: 25                                         # 🟢
+            description: Importación masiva de rebotes; el fichero CSV no puede pasar de 25 MB.
+      /v5/accounts/limit/custom/monthly:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Fija, consulta o borra el tope de envío mensual que el titular se impone a sí mismo.
+
+metadata:
+  sources_visited:
+    - https://www.mailgun.com/pricing/
+    - https://www.mailgun.com/ai-info/
+    - https://www.mailgun.com/legal/aup/
+    - https://www.mailgun.com/legal/aup-old/
+    - https://www.mailgun.com/legal/terms/
+    - https://www.mailgun.com/releases/
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domains/post-v4-domains
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domain-templates/post-v3--domain-name--templates
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/messages/post-v3--domain-name--messages
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/custom-message-limit
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/events/get-v3-domain_name-events
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/bounces
+    - https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/limits
+    - https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/batch-sending
+    - https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-templates
+    - https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-http
+    - https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-smtp
+    - https://documentation.mailgun.com/docs/mailgun/user-manual/webhooks/configuring-webhooks
+    - https://documentation.mailgun.com/docs/mailgun/faq/sending
+    - https://documentation.mailgun.com/docs/mailgun/faq/deliver-rep
+    - https://documentation.mailgun.com/docs/inboxready/api-reference/optimize/mailgun/metrics/rate-limits-and-quotas
+    - https://documentation.mailgun.com/_spec/docs/mailgun/api-reference/send/mailgun.json
+    - https://app.mailgun.com/billing?tab=plans
+  data_provenance:
+    - "Cuatro tarjetas de plan: Free '$0/mo', Basic 'Starting at' '$15/mo', Foundation 'Free for 1 month, then' '$35/mo' y Scale 'Free for 1 month, then' '$90/mo' [https://www.mailgun.com/pricing/]"
+    - "Volumen incluido por tarjeta: Free '100 emails/day included', Basic '10,000 emails/mo included', Foundation '50,000 emails/mo included', Scale '100,000 emails/mo included' [https://www.mailgun.com/pricing/]"
+    - "Sobrecoste publicado en la tarjeta: Basic 'from $1.80 / 1,000 emails', Foundation 'from $1.30 / 1,000 emails', Scale 'from $1.10 / 1,000 emails'; el plan Free no publica ninguno [https://www.mailgun.com/pricing/]"
+    - "NOTA Escalera de volumen: la página de precios lleva un selector, 'How many emails do you want to send per month?', con las posiciones '10,000 50,000 100,000 250,000 500,000 750,000 1,000,000 2,500,000 More', y el bloque de datos que el selector lee publica precio y volumen por posición. Free '100' y Basic '10,000' no se mueven en ninguna posición. Foundation va de $35 con 50.000 correos a $75 con 100.000. Scale va de $90 con 100.000 a $215 con 250.000, $400 con 500.000, $550 con 750.000, $700 con 1.000.000 y $1,250 con 2.500.000. El fichero modela el tramo mínimo de cada tarjeta [https://www.mailgun.com/pricing/]"
+    - "NOTA Escalera del sobrecoste, del mismo bloque de datos: Basic tiene un solo tramo, 'Basic 10k $1.80'; Foundation 'Foundation 50k $1.30' y 'Foundation 100k $1.10'; Scale 'Scale 100k $1.10', 'Scale 250k $0.90', 'Scale 500k $0.75', 'Scale 750k $0.60', 'Scale 1M $0.50' y 'Scale 2.5M $0.40'. El fichero lleva el del tramo mínimo de cada tarjeta, normalizado a precio por un correo [https://www.mailgun.com/pricing/]"
+    - "NOTA Las tarjetas de Foundation y de Scale anuncian 'Free for 1 month, then' antes del precio: el mes gratuito es promoción de captación y no altera el precio de lista que declara el fichero [https://www.mailgun.com/pricing/]"
+    - "NOTA La misma página sirve la lista en tres divisas, USD, EUR y GBP, fijadas por el proveedor a un cambio casi constante: Foundation vale $35, €32 y £28 en su tramo mínimo. El fichero declara la lista en dólares [https://www.mailgun.com/pricing/]"
+    - "El plan de empresa no tiene fila ni tarjeta propia, solo 'Need more? Get in touch with our team to tailor an Enterprise experience to fit your needs.' con el botón 'Request a quote', así que queda fuera de los planes modelados [https://www.mailgun.com/pricing/]"
+    - "Plan Free de la cuenta propia: 'Your current plan' 'Free' '$0' '/ month' '3000 emails per month' '1 day of log retention' '24/7 ticket support', con el contador 'Emails sent this month' en '0 / 3000'. El soporte del plan Free es el de la página de precios, 'Ticket support', por D17; el '24/7' del panel queda como incoherencia del pricing [observación de panel con cuenta propia, 2026-09-21]"
+    - "NOTA El volumen del plan Free se publica en dos periodos distintos y ninguna fuente dice si son el mismo tope leído dos veces o dos topes concurrentes: '100 emails/day included' en la página de precios y '3000 emails per month' en el panel. Se declaran las dos magnitudes por separado, cada una con su fuente. La diaria va en verde por D17, porque es literal de la página de precios; la mensual solo la publica el panel y sigue en ámbar por D1. DISC-03 queda acotada, no cerrada [https://www.mailgun.com/pricing/; observación de panel con cuenta propia, 2026-09-21]"
+    - "El bullet del plan Basic dice 'No daily email limit', que es la única frase de la página que trata el tope diario como propio de otro plan [https://www.mailgun.com/pricing/]"
+    - "NOTA Ancla del reinicio de las cuotas del plan Free: el panel no publica ninguna. Lo único fechado es 'Autopay on the 1st of each month', que habla del cobro y no del contador, así que el tipo de ventana se queda sin valor [observación de panel con cuenta propia, 2026-09-21]"
+    - "Caudal publicado: 'Yes. Mailgun has request limits per API call: 1,500 API requests per second per client IP', '1,500 SMTP requests per second per client IP' y 'There are no concurrent connection or simultaneous request limits.' [https://www.mailgun.com/ai-info/]"
+    - "NOTA Esa página devuelve 403 a las herramientas de descarga y exige render; se transcribió con navegador el 2026-09-21, y de ahí sale la cita literal. El valor entra en ámbar porque el proveedor lo acota por IP de cliente y el esquema no tiene dimensión para eso: la cifra del fichero es el techo de una IP, no el de la cuenta ni el del plan [https://www.mailgun.com/ai-info/]"
+    - "NOTA El caudal del canal SMTP, 1.500 peticiones por segundo y por IP de cliente, no se declara: el esquema solo admite caudales colgados de un endpoint HTTP y el canal SMTP no lo es [https://www.mailgun.com/ai-info/]"
+    - "La documentación de la API describe el mecanismo y no publica ningún umbral: 'Mailgun APIs include the following headers to indicate rate limiting state for the current API being called: X-RateLimit-Limit... X-RateLimit-Remaining... X-RateLimit-Reset...' y 'Time windows may vary by API depending on resource usage.' [https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview]"
+    - "El manual reconoce el límite sin cifrarlo: 'Mailgun does have rate limits in place to protect our system. In the unlikely case you encounter them and need them raised, please reach out to our support team.' [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-http]"
+    - "Caudal medido sobre el envío: un POST aceptado devuelve 'x-ratelimit-limit: 80000' y 'x-recipient-limit: 2000000' con el mismo 'x-ratelimit-reset'; doce envíos repartidos en dos tandas comparten exactamente dos valores de reset, la ventana dura 9,85 y 9,87 segundos, se ancla en la primera petición de la tanda y el contador vuelve entero al tope al superarla [verificación empírica de caudal sobre dominio sandbox, 2026-09-21]"
+    - "NOTA El caudal del envío se adopta en ámbar: el sondeo confirmó límite, ventana y reposición, pero no alcanzó el rechazo por exceso de caudal. El periodo declarado, diez segundos, redondea la ventana medida de 9,85 a 9,87 segundos [verificación empírica de caudal sobre dominio sandbox, 2026-09-21]"
+    - "NOTA Las cabeceras de caudal solo aparecen en un POST aceptado: un GET devuelve 200 sin ninguna, y un POST rechazado por permisos tampoco las trae. En Mailgun el caudal no se lee sin gastar un envío [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "NOTA El segundo contador de esa misma ventana, 'x-recipient-limit: 2000000' destinatarios con el mismo instante de reposición que el de peticiones, no se declara: el esquema admite un solo caudal por nodo [verificación empírica de caudal sobre dominio sandbox, 2026-09-21]"
+    - "NOTA El caudal medido se obtuvo desde una cuenta del plan Free y ninguna fuente atribuye caudales por plan, así que la misma clave se referencia desde los cuatro [verificación empírica de caudal sobre dominio sandbox, 2026-09-21; https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview]"
+    - "NOTA: lectura sostenida sin rechazo, y por eso sin literal que citar. 1.570 peticiones GET repartidas en seis tandas, sin ningún rechazo por caudal. El techo alcanzado, 303 peticiones por segundo, es del cliente y no de la API, así que el sondeo no confirma ni refuta las 1.500 por segundo que el proveedor publica [verificación empírica de caudal de lectura, 2026-09-21]"
+    - "Máximo de destinatarios por petición, publicado y medido: 'Maximum 1,000 recipients per batch.' y 'The maximum number of recipients allowed for batch is 1,000'; la petición 1001 devuelve 400 con 'Too many recipients, max is 1000' [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/messages/post-v3--domain-name--messages; https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/batch-sending; verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "NOTA Ese recuento se aplica antes que los permisos: con 1.001 destinatarios el 400 por número gana al 403 por cuenta no autorizada, y por eso la cifra se pudo medir desde una cuenta que no puede enviar a nadie [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "Tamaño publicado por mensaje: 'The maximum message size Mailgun supports is 25MB', 'Compressing message bodies does *not* bypass the above limit. This limit is enforced on the *uncompressed* body', 'The maximum size is 25 MB per message on Mailgun.' y 'an individual email message not exceeding the per-message size limit (including attachments) of 25MB or it may be permanently lost.' [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-http; https://www.mailgun.com/ai-info/; https://www.mailgun.com/legal/terms/]"
+    - "Ese tope publicado no se aplica: adjuntos de 30, 35, 40, 45 y 48 MB atraviesan la comprobación de tamaño y solo son rechazados después por los permisos de la cuenta; con 52 MB llega el 413 'request size exceeds 52.4MiB limit'. El único tope que la API aplica en el borde es de 52,4 MiB y es de la petición entera, no del mensaje [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "NOTA El tope de tamaño se declara como 52 MiB y no como los 52,4 MiB del literal: el esquema tipa el máximo de un workload como entero, así que la cifra baja al entero inmediato inferior, que es el mayor tamaño entero que la API acepta. El valor entra en ámbar por el redondeo y la cifra exacta queda en esta nota [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "Paginación de la consulta de eventos, medida con el rango en el propio error: 'limit=300' devuelve 200 y 'limit=301' devuelve 400 con 'Invalid parameter: limit=[\"301\"], Number out of range [1, 300]'; la referencia publica el mismo tope, 'The number of entries to return (300 max)' [verificación empírica sobre dominio sandbox, 2026-09-21; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/events/get-v3-domain_name-events]"
+    - "Tope de los parámetros de opciones, publicado y medido: 'Send options (parameters starting with o:, h:, v:, or t:) are limited to 16KB total'; 16 kB pasan la comprobación y 17 kB devuelven 400 con 'Send options (parameters starting with o:, h:, or v:) are limited to 16 kB total' [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/messages/post-v3--domain-name--messages; verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "Importación masiva de rebotes: 'The CSV file must be 25MB or under' [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/bounces]"
+    - "Plantillas: 'Mailgun caps usage of account-level templates to 100 templates and 40 versions per template.' Es tope de recurso, no de volumen de envío, así que no entra en las cuotas [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-templates]"
+    - "Tope de envío que el titular se impone: 'The custom message limit imposes a hard limit on how many messages your account can send during a calendar month.', con 'The timeframe for which the limit applies - m for months, d for days, h for hours'. Lo fija, lo consulta y lo borra el propio titular con una llamada, sin coste y sin aprobación del proveedor, así que el endpoint se modela sin cuota ni caudal asociados y la cifra no entra en la capacidad comparable [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/custom-message-limit]"
+    - "Restricción del plan Free, medida: un envío a una dirección cualquiera devuelve 403 con 'Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients.' El texto nombra la cuenta Free, no el dominio de pruebas [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "NOTA Test del tipo de producto: el envío se opera por API, y también el alta de plantilla con 'POST /v3/{domain_name}/templates' y el alta de dominio con 'Creates a domain for sending emails'. Quedan sin cita la edición de una plantilla ya creada y el disparo de la verificación DNS de un dominio ya creado, cuyas páginas de referencia devolvieron 404. El valor api_first se sostiene porque ninguna operación consta como exclusiva del panel, y el color mide que el test no se recorrió entero [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domain-templates/post-v3--domain-name--templates; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domains/post-v4-domains]"
+    - "Base de la API por región: 'https://api.mailgun.net/' en Estados Unidos y 'https://api.eu.mailgun.net/' en la Unión Europea; el panel de la cuenta confirma 'Base URL' 'https://api.mailgun.net' [https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview; observación de panel con cuenta propia, 2026-09-21]"
+    - "Retención de mensajes en el plan Free, confirmada en la cuenta: 'Message retention is unavailable for your plan. Upgrade to start storing message bodies (MIMES) for later retrieval...' Es política de retención, no cuota [observación de panel con cuenta propia, 2026-09-21]"
+    - "Límites de recurso publicados, que no son cuotas de volumen: 'The default limit is 1,000 domains per Mailgun account.', 'Each event type is configured individually and can contain up to 3 URLs per event type.', '2 API keys' en Free y en Basic, y 'Free plans are limited to 1 user per account.' [https://www.mailgun.com/ai-info/; https://documentation.mailgun.com/docs/mailgun/user-manual/webhooks/configuring-webhooks; https://www.mailgun.com/pricing/]"
+    - "Umbrales de la política de uso aceptable, que el proveedor no aplica de forma automática: rebotes hasta el 5 %, quejas por correo no deseado hasta el 0,08 %, bajas hasta el 1,4 % y bloqueos por debajo del 20 %, con 'The determination of whether and to what extent a customer's act or omission and is in violation of this AUP will be made at our sole discretion.' y 'Sinch Email reserves the right to update the parameters of the acceptable sending threshold without prior notice.' [https://www.mailgun.com/legal/aup/]"
+    - "Canal SMTP: 'Mailgun SMTP servers listen on ports 25, 465, 587, and 2525. Port 465 requires a TLS connection.' y 'Depending on your billing plan, you can schedule messages up to 3 or 7 days in advance.', sin decir qué plan lleva cada horizonte [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-smtp]"
+    - "Arranque de una cuenta nueva, descrito sin ninguna cifra: el proveedor 'gradually increases sending rates' y 'automatically queues your email and sends them at rates that makes the ESPs happy, increasing those rates as your sending reputation grows' [https://documentation.mailgun.com/docs/mailgun/faq/sending; https://documentation.mailgun.com/docs/mailgun/faq/deliver-rep]"
+    - "NOTA El proveedor vende bajo la misma cuenta dos productos más, que quedan fuera de lo modelado: el panel los muestra como 'Mailgun Optimize' y 'Mailgun Inspect', los dos en 'No subscription', y con espacio propio en la aplicación. El caudal que Optimize publica, 'API calls are subject to a rate limit of 500 requests every 10 seconds', no se traslada al producto transaccional: ninguna fuente declara contador ni credencial compartidos [observación de panel con cuenta propia, 2026-09-21; https://documentation.mailgun.com/docs/inboxready/api-reference/optimize/mailgun/metrics/rate-limits-and-quotas]"
+    - "La matriz comparativa de la página de precios marca 'Email Templates' incluido en las cuatro columnas: Free, Basic, Foundation y Scale [https://www.mailgun.com/pricing/]"
+    - "Endpoint de plantillas, medido en el plan Free: 'POST /v3/{domain_name}/templates' devolvió 'template has been stored', y el propio sondeo la borró después sin dejar estado en la cuenta [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "NOTA La cuenta disponible es de plan Free; Basic no se ha contratado. Ningún literal distingue las dos columnas —los bullets de venta de Free y de Basic no mencionan plantillas, igual los dos—, así que la confirmación en el plan más restringido alcanza también a Basic: no hay lectura donde el plan superior, más caro, careciera de un endpoint que el inferior ya tiene [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "El contador de envíos no baja con un rechazo previo a la entrega: 'accepted.outgoing=13 delivered.smtp=13' antes y después de un 400 por exceder los 1.000 destinatarios por lote y un 403 por destinatario no autorizado [verificación empírica sobre dominio sandbox, 2026-09-21]"
+    - "NOTA La profundidad acumulada de la paginación de eventos, más allá del tope de 300 por petición, no se pudo medir por falta de volumen y no por falta de intento: 'limit=300' devolvió 42 eventos, y la página siguiente, siguiendo 'paging.next', devolvió 0 items con el enlace 'next' todavía presente. La retención de un día del plan Free no deja material para tropezar con un tope acumulado [verificación empírica sobre dominio sandbox, 2026-09-21]"
+  not_found:
+    - "Umbral numérico del caudal por cuenta o por plan: no publicado. La documentación de la API solo describe el 429 y las cabeceras de estado, y declara que las ventanas varían por API; la única cifra publicada acota por IP de cliente y no por cuenta"
+    - "Caudal del canal SMTP: publicado como 1.500 peticiones por segundo y por IP de cliente, pero sin nodo donde colgarlo. El esquema solo admite caudales sobre endpoints HTTP, así que el dato vive en el provenance y no en el fichero modelado"
+    - "Segundo contador del envío: la misma ventana devuelve un tope de 2.000.000 de destinatarios junto al de 80.000 peticiones, con el mismo instante de reposición. El esquema admite un solo caudal por nodo y el de destinatarios se queda fuera"
+    - "Tipo de ventana del caudal del envío: la ventana dura entre 9,85 y 9,87 segundos y nace con la primera petición, no en un instante del calendario. Ninguno de los tres tipos de ventana que admite el esquema la describe, y el periodo declarado es un redondeo a diez segundos"
+    - "Relación entre el tope diario de 100 correos de la página pública y los 3.000 mensuales del panel: ninguna fuente dice si la cifra diaria compone la mensual o si son dos topes concurrentes. Las dos se declaran por separado"
+    - "Tope fraccionario de tamaño de petición: el borde de la API rechaza en 52,4 MiB y el esquema tipa el máximo de un workload como entero. Los cuatro planes declaran 52 MiB, el entero inmediato inferior, y los 0,4 MiB de diferencia no tienen dónde declararse"
+    - "Ancla del reinicio de las cuotas del plan Free: no publicada. El panel solo fecha el cobro, 'Autopay on the 1st of each month', y no muestra ningún contador diario junto al mensual"
+    - "Si el caudal varía por plan: no mencionado en ninguna fuente. El valor declarado se midió sobre una cuenta del plan Free"
+    - "Máximo de destinatarios entre los campos de destino en el envío individual, fuera del envío por lotes: no publicado. Las 1.000 direcciones publicadas y medidas son las del lote"
+    - "Tamaño por mensaje: el proveedor publica 25 MB en tres páginas distintas y no lo aplica. Un adjunto de 48 MB atraviesa la comprobación de tamaño y el único rechazo por tamaño llega a 52,4 MiB de petición entera"
+    - "Tope agregado de 16 kB de los parámetros de opciones: suma tres familias de parámetros distintas y se expresa en peso. El esquema no tiene forma para un límite que agrega familias ni para uno cuya unidad es el tamaño"
+    - "Tope de envío mensual que el titular se impone: lo fija, lo sube y lo borra él mismo con una llamada, sin coste y sin aprobación del proveedor, así que no es capacidad comparable entre proveedores y no entra en las cuotas"
+    - "Tope de envío por hora para cuentas nuevas: el artículo de soporte que lo cuantificaría devuelve 403 a las herramientas de descarga y no se ha renderizado con navegador. No se registra ninguna cifra"
+    - "Duración y etapas del arranque de una cuenta nueva: no publicadas. Las dos páginas que lo tratan describen el mecanismo y no dan ni cifras ni plazos"
+    - "Lista de destinatarios autorizados del dominio de pruebas: ni el panel la muestra como pantalla propia ni la documentación publica cuántos admite. Lo único medido es el rechazo"
+    - "Precio y condiciones del plan de empresa: no publicados, solo un botón de petición de presupuesto"
+    - "Tope acumulado de la paginación de eventos, más allá del límite de 300 por petición: no medible con esta cuenta. La retención del plan Free es de un día y solo hay 42 eventos, así que ninguna llamada llega a tropezar con un tope de profundidad, si existe"
+    - "Número de rutas de entrada de correo en los planes Foundation y Scale, y número de usuarios del plan Basic: no publicados. La página solo dice 'Full access to inbound routing' y excluye a Basic de los usuarios sin coste sin dar cifra"
+    - "Plan 'Growth', citado en la sección de preguntas frecuentes de la página de precios: no aparece ni en la tabla de precios ni en el bloque de datos que sirve las tarjetas"
+    - "Qué campo distingue el horizonte de programación de 3 o 7 días entre planes: no publicado. La página da los dos valores sin atribuirlos"
+    - "Contenido del fichero de especificación de la API: su existencia está confirmada, pero no se ha descargado ni inspeccionado en esta pasada"

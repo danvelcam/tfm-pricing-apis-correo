@@ -1,0 +1,199 @@
+{
+ "pregunta": "PI-B02",
+ "operacion": "Q7",
+ "descripcion": "Máximo de correos al mes con 50 USD: cuota expandida por presupuesto (/quotas con max_budget) y capacidad al mes con esa cuota, planes calculables",
+ "api": "mailersend",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation",
+    "plan_names": [
+     "free",
+     "hobby",
+     "starter",
+     "professional"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 61,
+   "respuesta": {
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "quotas": [
+        {
+         "value": 100.0,
+         "unit": "requests",
+         "period": "1day"
+        },
+        {
+         "value": 500.0,
+         "unit": "emails",
+         "period": "30day"
+        }
+       ]
+      }
+     ],
+     "hobby": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "quotas": [
+        {
+         "value": 1000.0,
+         "unit": "requests",
+         "period": "1day"
+        },
+        {
+         "value": 5000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0015,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "starter": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "quotas": [
+        {
+         "value": 100000.0,
+         "unit": "requests",
+         "period": "1day"
+        },
+        {
+         "value": 50000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0013,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "professional": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "quotas": [
+        {
+         "value": 500000.0,
+         "unit": "requests",
+         "period": "1day"
+        },
+        {
+         "value": 50000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0013,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "healthy_reputation",
+    "plan_names": [
+     "free",
+     "hobby",
+     "starter",
+     "professional"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 61,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 620.0
+         }
+        ]
+       }
+      }
+     ],
+     "hobby": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 33786.66666666667
+         }
+        ]
+       }
+      }
+     ],
+     "starter": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 61658.46153846154
+         }
+        ]
+       }
+      }
+     ],
+     "professional": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "healthy_reputation",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 50120.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

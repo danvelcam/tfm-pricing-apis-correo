@@ -1,0 +1,12 @@
+==========================================================================
+ANTES — endpoint enumerado SIN rate
+  professional /v3/inbound/events  limits   
+    {"professional": ["endpoint='/v3/inbound/events' alias=None result=[Quota(value=150000.0, unit='emails', period=1 month, overage_cost=None)]"]}
+  professional /v3/inbound/events  min_time 
+    {"professional": ["endpoint='/v3/inbound/events' alias=None result=[]"]}
+==========================================================================
+DESPUÉS — con rate: rate_request_other_general
+  professional /v3/inbound/events  limits   
+    {"professional": ["endpoint='/v3/inbound/events' alias=None result=[Rate(value=100.0, unit='requests', period=1 h), Quota(value=150000.0, unit='emails', period=1 month, overage_cost=None)]"]}
+  professional /v3/inbound/events  min_time 
+    {"professional": ["endpoint='/v3/inbound/events' alias=None result=[DimensionResult(dimension='requests', workload_factor=1.0, value='9h'), DimensionResult(dimension='requests', workload_factor=1.0, value='9h')]"]}

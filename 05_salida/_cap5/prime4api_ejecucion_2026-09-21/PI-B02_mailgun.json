@@ -1,0 +1,174 @@
+{
+ "pregunta": "PI-B02",
+ "operacion": "Q7",
+ "descripcion": "Máximo de correos al mes con 50 USD: cuota expandida por presupuesto (/quotas con max_budget) y capacidad al mes con esa cuota, planes calculables",
+ "api": "mailgun",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "free",
+     "basic",
+     "foundation",
+     "scale"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 37,
+   "respuesta": {
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "quotas": [
+        {
+         "value": 3000.0,
+         "unit": "emails",
+         "period": "30day"
+        },
+        {
+         "value": 100.0,
+         "unit": "emails",
+         "period": "1day"
+        }
+       ]
+      }
+     ],
+     "basic": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "quotas": [
+        {
+         "value": 10000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0018,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "foundation": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "quotas": [
+        {
+         "value": 50000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0013,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "scale": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "quotas": [
+        {
+         "value": 100000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0011,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "free",
+     "basic",
+     "foundation",
+     "scale"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 35,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 3100.0
+         }
+        ]
+       }
+      }
+     ],
+     "basic": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 30944.444444444445
+         }
+        ]
+       }
+      }
+     ],
+     "foundation": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 63038.46153846154
+         }
+        ]
+       }
+      }
+     ],
+     "scale": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 101500.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

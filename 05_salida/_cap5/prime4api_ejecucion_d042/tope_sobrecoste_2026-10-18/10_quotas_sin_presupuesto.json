@@ -1,0 +1,48 @@
+{
+  "fichero": "10_quotas_sin_presupuesto.json",
+  "pregunta": "Cuota nominal de Essentials, sin presupuesto (control: lo que la Datasheet declara como volumen).",
+  "api": "sendgrid",
+  "plan": "essentials",
+  "friccion": "F-16",
+  "condicion": "L2 (D-042)",
+  "servicio": "http://localhost:8003/api/v1/datasheet",
+  "ejecutado": "2026-10-18T21:38:02",
+  "llamada": {
+    "endpoint": "POST /quotas",
+    "url_completa": "http://localhost:8003/api/v1/datasheet/quotas?capacity_unit=emails",
+    "params": {
+      "capacity_unit": "emails"
+    },
+    "body": {
+      "endpoint_path": "/v3/mail/send",
+      "plan_names": [
+        "essentials"
+      ]
+    },
+    "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+    "nota_body": "El cuerpo real anade `datasheet_source` con el YAML integro de la Datasheet del catalogo, sin modificar."
+  },
+  "http": 200,
+  "ms": 29,
+  "respuesta": {
+    "results": {
+      "essentials": [
+        {
+          "endpoint": "/v3/mail/send",
+          "quotas": [
+            {
+              "value": 50000.0,
+              "unit": "emails",
+              "period": "30day",
+              "overage_cost": {
+                "price": 0.0013,
+                "value": 1.0
+              }
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "datasheet_sha256": "dc265bcad7c60936eab50cfbf6da5df6c6def1febd6c7e62788aad41d143c243"
+}

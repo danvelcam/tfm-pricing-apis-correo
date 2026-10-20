@@ -1,0 +1,45 @@
+{
+ "pregunta": "PI-G02",
+ "operacion": "Q10",
+ "descripcion": "Coste de un mes de 25.000 correos en el primer plan de pago sin cambiar de plan",
+ "api": "ses",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 25000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v2/email/outbound-emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/ses/datasheet.yaml",
+   "http": 200,
+   "ms": 22,
+   "respuesta": {
+    "desired_capacity": 25000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "pro",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "base_cost": 105.0,
+      "overage_cost": 0.0,
+      "total_cost": 105.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": true,
+      "unreachable_reason": "rate_limit"
+     }
+    ]
+   }
+  }
+ ]
+}

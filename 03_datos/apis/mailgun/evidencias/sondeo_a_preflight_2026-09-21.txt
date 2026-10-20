@@ -1,0 +1,38 @@
+# Sondeo Mailgun A — rechazos previos a la entrega
+# Fecha: 2026-09-21
+# Dominio: sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org (sandbox)
+# Destinatario de todas las pruebas: sondeo@example.invalid (RFC 2606, no resuelve)
+# Presupuesto declarado: 0 envios entregados. Un 2xx aborta.
+
+═══ T1 · POST /v3/$dominio/messages con un destinatario no autorizado ═══
+HTTP 403
+{"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+
+═══ T2 · numero de destinatarios por peticion ═══
+n=100  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+n=500  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+n=1000  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+n=1001  → HTTP 400  {"message":"Too many recipients, max is 1000"}
+n=2000  → HTTP 400  {"message":"Too many recipients, max is 1000"}
+
+═══ T3 · tamano del mensaje ═══
+adjunto=10MB  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+adjunto=25MB  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+adjunto=26MB  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+adjunto=30MB  → HTTP 403  {"message":"Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients."}
+adjunto=50MB  → HTTP 413  {"message":"request size exceeds 52.4MiB limit"}
+
+═══ T4 · cabeceras de GET /v4/domains (D6: se registra, no se adopta) ═══
+HTTP/2 200 
+access-control-allow-credentials: true
+access-control-allow-origin: *
+cache-control: no-store
+content-type: application/json; charset=utf-8
+date: Mon, 21 Sep 2026 17:40:37 GMT
+strict-transport-security: max-age=63072000; includeSubDomains
+x-mailgun-key-id: 44ec4598-c6accad8
+x-xss-protection: 1; mode=block
+content-length: 454
+
+
+FIN. Envios entregados: 0.

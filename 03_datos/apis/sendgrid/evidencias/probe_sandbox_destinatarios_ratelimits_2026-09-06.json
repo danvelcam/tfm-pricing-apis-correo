@@ -1,0 +1,238 @@
+[
+  {
+    "caso": "B0_sanity_1_destinatario",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 200,
+    "cuerpo": "",
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:34 GMT",
+      "x-message-id": "5JWoDC_5R_ebWP7SNjnZ7w"
+    }
+  },
+  {
+    "caso": "B1_1sobre_to_1000",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 200,
+    "cuerpo": "",
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:36 GMT",
+      "x-message-id": "5uQNb-QATjCVxT_N0wSLeA"
+    }
+  },
+  {
+    "caso": "B2_1sobre_to_1001",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 400,
+    "cuerpo": {
+      "errors": [
+        {
+          "message": "There is a limit of 1000 total recipients (to + cc + bcc) per mail/send request.",
+          "field": "personalizations",
+          "help": "http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.recipient-errors"
+        }
+      ]
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:39 GMT"
+    }
+  },
+  {
+    "caso": "B3_2sobres_500_y_500_total_1000",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 200,
+    "cuerpo": "",
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:42 GMT",
+      "x-message-id": "vXqO_txxQ4mnIagQ4gWrsw"
+    }
+  },
+  {
+    "caso": "B4_2sobres_500_y_501_total_1001",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 400,
+    "cuerpo": {
+      "errors": [
+        {
+          "message": "There is a limit of 1000 total recipients (to + cc + bcc) per mail/send request.",
+          "field": "personalizations",
+          "help": "http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.recipient-errors"
+        }
+      ]
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:44 GMT"
+    }
+  },
+  {
+    "caso": "B5_1sobre_to_500_cc_501_total_1001",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 400,
+    "cuerpo": {
+      "errors": [
+        {
+          "message": "There is a limit of 1000 total recipients (to + cc + bcc) per mail/send request.",
+          "field": "personalizations",
+          "help": "http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.recipient-errors"
+        }
+      ]
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:47 GMT"
+    }
+  },
+  {
+    "caso": "B6_1001sobres_de_1",
+    "metodo": "POST",
+    "ruta": "/v3/mail/send",
+    "http": 400,
+    "cuerpo": {
+      "errors": [
+        {
+          "message": "The personalization block is limited to 1000 personalizations per API request. You have provided 1001 personalizations. Please consider splitting this into multiple requests and resending your request.",
+          "field": "personalizations",
+          "help": "http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#-Personalizations-Errors"
+        },
+        {
+          "message": "There is a limit of 1000 total recipients (to + cc + bcc) per mail/send request.",
+          "field": "personalizations",
+          "help": "http://sendgrid.com/docs/API_Reference/Web_API_v3/Mail/errors.html#message.recipient-errors"
+        }
+      ]
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:49 GMT"
+    }
+  },
+  {
+    "caso": "C1_GET_user_profile",
+    "metodo": "GET",
+    "ruta": "/v3/user/profile",
+    "http": 200,
+    "cuerpo": {
+      "type": "user",
+      "userid": "REDACTADO"
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:51 GMT",
+      "x-ratelimit-remaining": "599",
+      "x-ratelimit-reset": "9",
+      "x-ratelimit-limit": "600"
+    }
+  },
+  {
+    "caso": "C2_GET_api_keys",
+    "metodo": "GET",
+    "ruta": "/v3/api_keys",
+    "http": 200,
+    "cuerpo": {
+      "result": [
+        {
+          "name": "TFM",
+          "api_key_id": "REDACTADO"
+        }
+      ]
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:54 GMT",
+      "x-ratelimit-remaining": "599",
+      "x-ratelimit-reset": "6",
+      "x-ratelimit-limit": "600"
+    }
+  },
+  {
+    "caso": "C3_GET_templates",
+    "metodo": "GET",
+    "ruta": "/v3/templates?generations=dynamic&page_size=1",
+    "http": 200,
+    "cuerpo": {
+      "result": [],
+      "_metadata": {
+        "self": "https://api.sendgrid.com/v3/templates?page_token=nyxnEbDw1HDEi7TXNt1V132o8FEZvNLj_8794GNal3s_Jl_D&generations=dynamic",
+        "count": 0
+      }
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:56 GMT",
+      "x-amzn-remapped-date": "Sun, 06 Sep 2026 20:46:56 GMT",
+      "x-ratelimit-remaining": "599",
+      "x-ratelimit-limit": "600",
+      "x-ratelimit-reset": "1788727620"
+    }
+  },
+  {
+    "caso": "C4_GET_messages",
+    "metodo": "GET",
+    "ruta": "/v3/messages?limit=1",
+    "http": 200,
+    "cuerpo": {
+      "messages": []
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:46:59 GMT",
+      "x-ratelimit-remaining": "5",
+      "x-ratelimit-reset": "1",
+      "x-ratelimit-limit": "6"
+    }
+  },
+  {
+    "caso": "C5_GET_scopes",
+    "metodo": "GET",
+    "ruta": "/v3/scopes",
+    "http": 200,
+    "cuerpo": {
+      "scopes_count": 210,
+      "nota": "lista de 210 scopes omitida en la evidencia"
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:47:02 GMT",
+      "x-ratelimit-remaining": "599",
+      "x-ratelimit-reset": "58",
+      "x-ratelimit-limit": "600"
+    }
+  },
+  {
+    "caso": "D1_GET_user_credits",
+    "metodo": "GET",
+    "ruta": "/v3/user/credits",
+    "http": 200,
+    "cuerpo": {
+      "is_hard_limit": true,
+      "last_reset": "2026-09-01",
+      "next_reset": "2026-09-02",
+      "overage": 0,
+      "remain": 100,
+      "reset_frequency": "daily",
+      "total": 100,
+      "used": 0
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:47:04 GMT",
+      "x-ratelimit-remaining": "599",
+      "x-ratelimit-limit": "600",
+      "x-ratelimit-reset": "1788727680"
+    }
+  },
+  {
+    "caso": "D2_GET_user_account",
+    "metodo": "GET",
+    "ruta": "/v3/user/account",
+    "http": 200,
+    "cuerpo": {
+      "is_reseller_customer": false,
+      "reputation": 100,
+      "type": "free"
+    },
+    "cabeceras": {
+      "date": "Sun, 06 Sep 2026 20:47:07 GMT",
+      "x-ratelimit-remaining": "599",
+      "x-ratelimit-limit": "600",
+      "x-ratelimit-reset": "1788727680"
+    }
+  }
+]

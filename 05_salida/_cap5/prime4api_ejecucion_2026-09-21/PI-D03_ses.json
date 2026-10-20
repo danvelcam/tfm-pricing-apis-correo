@@ -1,0 +1,76 @@
+{
+ "pregunta": "PI-D03",
+ "operacion": "Q9",
+ "descripcion": "Umbral de agotamiento de cuota (CRF que iguala cuota y rate) en el primer plan de pago",
+ "api": "ses",
+ "llamadas": [
+  {
+   "endpoint": "POST /quota-exhaustion-threshold",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v2/email/outbound-emails",
+    "plan_names": [
+     "pro"
+    ]
+   },
+   "datasheet": "03_datos/apis/ses/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "results": {
+     "pro": [
+      {
+       "endpoint": "/v2/email/outbound-emails",
+       "alias": "sandbox",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": [
+           {
+            "quota": {
+             "value": 200.0,
+             "unit": "emails",
+             "period": "1day"
+            },
+            "exhaustion_threshold": "3min19s"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 26.0,
+          "value": [
+           {
+            "quota": {
+             "value": 200.0,
+             "unit": "emails",
+             "period": "1day"
+            },
+            "exhaustion_threshold": "7s"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 50.0,
+          "value": [
+           {
+            "quota": {
+             "value": 200.0,
+             "unit": "emails",
+             "period": "1day"
+            },
+            "exhaustion_threshold": "3s"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

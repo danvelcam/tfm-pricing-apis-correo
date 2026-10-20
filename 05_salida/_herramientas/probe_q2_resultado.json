@@ -1,0 +1,20 @@
+﻿[
+    {
+        "test":  "A_51_en_To (esperado: error por campo)",
+        "http":  422,
+        "ErrorCode":  null,
+        "Message":  "Error en el servidor remoto: (422) Unprocessable Entity."
+    },
+    {
+        "test":  "B_50_en_To (esperado: aceptada)",
+        "http":  200,
+        "ErrorCode":  0,
+        "Message":  "Test job accepted"
+    },
+    {
+        "test":  "C_50_To+50_Cc+50_Bcc (150 total)",
+        "http":  422,
+        "ErrorCode":  null,
+        "Message":  "Error en el servidor remoto: (422) Unprocessable Entity."
+    }
+]

@@ -1,0 +1,40 @@
+{
+ "time_interval": "1 month",
+ "curve_type": "inflection",
+ "series": [
+  {
+   "plan": "hobby",
+   "endpoint": "/v1/email",
+   "alias": "healthy_reputation",
+   "dimension": "emails",
+   "workload_unit": "emails",
+   "capacity_request_factor": 70.0,
+   "rates": [
+    {
+     "value": 8400.0,
+     "unit": "emails",
+     "period": "1min"
+    }
+   ],
+   "quotas": [
+    {
+     "value": 5000.0,
+     "unit": "emails",
+     "period": "30day",
+     "overage_cost": {
+      "price": 0.0015,
+      "value": 1.0
+     }
+    }
+   ],
+   "t_ms": [
+    0.0,
+    2592000000.0
+   ],
+   "capacity": [
+    5000.0,
+    5000.0
+   ]
+  }
+ ]
+}

@@ -1,0 +1,150 @@
+{
+ "pregunta": "PI-A06",
+ "operacion": "Q1",
+ "descripcion": "Tiempo mínimo para enviar 100.000 correos con el primer plan de pago, k = 1 y k máximo, con la cuota dura y con presupuesto que no limita",
+ "api": "postmark",
+ "llamadas": [
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 25,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "270day1s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "50"
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 27,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 50.0,
+          "value": "270day"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "19s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "50",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 50.0,
+          "value": "0s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

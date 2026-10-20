@@ -1,0 +1,84 @@
+{
+ "resumen": {
+  "api": "brevo",
+  "paquete": "A (cero envios)",
+  "sondeo": "preflight_rechazo",
+  "fecha_utc": "2026-09-17T15:34:49.883056829Z",
+  "envios_reales": 0,
+  "peticiones": 2,
+  "casos_omitidos_por_presupuesto_o_sin_vara": [],
+  "pares_no_medibles": [],
+  "peticiones_aceptadas_2xx": [
+   "p2_sender_sumidero"
+  ],
+  "invariante_cero_envios": "ROTA",
+  "abortado_en": "p2_sender_sumidero",
+  "http_por_caso": {
+   "p1_sender_ausente": 400,
+   "p2_sender_sumidero": 201
+  },
+  "error_por_caso": {
+   "p1_sender_ausente": [
+    "missing_parameter",
+    "sender is missing"
+   ],
+   "p2_sender_sumidero": [
+    null,
+    null
+   ]
+  },
+  "precedencia": [],
+  "pares_utiles": [],
+  "guarda_recomendada": null,
+  "veredicto": "sin datos: no hay ningun par control/tope completo, asi que no se elige guarda. Con el tope de la pasada en destinatarios, los casos de tope de este sondeo (2.001 y 100 destinatarios) no caben, asi que la PRECEDENCIA no se mide y probe_brevo_a_destinatarios.sh / probe_brevo_a_tamano.sh abortaran al no encontrar guarda recomendada. Lo que este sondeo SI deja medido es la invariante: si sus casos de un destinatario fueron rechazados, ninguna peticion con guarda es aceptada. Mirar 'pares_no_medibles', 'abortado_en' y 'http_por_caso'",
+  "rechaza_el_sumidero_por_si_solo": "NO MEDIDO. El caso que lo media (p9_sumidero_solo) se quito del paquete A el 2026-09-17: podia devolver 2xx, y entonces gastaba un credito y generaba un rebote dentro de un paquete que declara cero envios y que no lleva libro de cuentas, asi que el tope de la pasada no lo veria. Medirlo es paquete B, con reserva en el libro y presupuesto declarado en 1. La pregunta vuelve en la salida.",
+  "guardas_candidatas": [
+   "sender_sumidero",
+   "sender_ausente"
+  ],
+  "por_que_no_esta_contenido_ausente": "'contenido_ausente' quita el contenido pero MANTIENE el remitente del sumidero, asi que lleva DOS defectos y su mensaje mide la precedencia entre ellos, no la de la guarda. Para tener un solo defecto habria que mandarlo con el remitente verificado, y esa peticion PUEDE ser aceptada: es el mismo riesgo que tumbo a p9_sumidero_solo. Se mide el par (no cuesta nada) pero no se ofrece como guarda.",
+  "lectura_de_los_huecos": "Un par cuyo mensaje de tope es IGUAL al del control no demuestra que no haya tope: demuestra que esa guarda se valida antes. No se convierte en dato."
+ },
+ "casos": [
+  {
+   "caso": "p1_sender_ausente",
+   "metodo": "POST",
+   "ruta": "/v3/smtp/email",
+   "descripcion": "caso de preflight p1_sender_ausente",
+   "inicio_utc": "2026-09-17T15:34:49.883056829Z",
+   "fin_utc": "2026-09-17T15:34:50.074828820Z",
+   "bytes_peticion": 196,
+   "http": 400,
+   "error_code": "missing_parameter",
+   "error_message": "sender is missing",
+   "cuerpo_crudo": "{\"code\":\"missing_parameter\",\"message\":\"sender is missing\"}\n",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "1000",
+    "x-sib-ratelimit-remaining": "999",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "date": "Thu, 17 Sep 2026 15:34:49 GMT",
+   "retry_after": null
+  },
+  {
+   "caso": "p2_sender_sumidero",
+   "metodo": "POST",
+   "ruta": "/v3/smtp/email",
+   "descripcion": "caso de preflight p2_sender_sumidero",
+   "inicio_utc": "2026-09-17T15:34:52.316397037Z",
+   "fin_utc": "2026-09-17T15:34:52.495406604Z",
+   "bytes_peticion": 274,
+   "http": 201,
+   "error_code": null,
+   "error_message": null,
+   "cuerpo_crudo": "{\"messageId\":\"<202609171534.72501669544@smtp-relay.mailin.fr>\"}\n",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "1000",
+    "x-sib-ratelimit-remaining": "999",
+    "x-sib-ratelimit-reset": "1"
+   },
+   "date": "Thu, 17 Sep 2026 15:34:52 GMT",
+   "retry_after": null
+  }
+ ]
+}

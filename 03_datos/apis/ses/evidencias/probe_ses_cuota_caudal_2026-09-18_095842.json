@@ -1,0 +1,252 @@
+{
+  "sondeo": "ses_cuota_caudal",
+  "fecha_utc": "2026-09-18_095842",
+  "region": "eu-west-1",
+  "presupuesto_envios": 2,
+  "envios_gastados": 2,
+  "lectura": {
+    "contador_partida": 0.0,
+    "contador_tras_rechazos": 0.0,
+    "contador_tras_A": 0.0,
+    "contador_tras_B": 0.0,
+    "delta_rechazos": 0.0,
+    "delta_A": 0.0,
+    "delta_B": 0.0
+  },
+  "pasos": [
+    {
+      "paso": "account.antes",
+      "pregunta": "estado de partida del contador",
+      "respuesta": {
+        "http": 200,
+        "ms": 229,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:32 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "5c3eb74e-eb0c-4188-a9af-87d5fd7dee69"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    },
+    {
+      "paso": "rechazo.1",
+      "pregunta": "DISC-07/08/14: nombre y código del error",
+      "respuesta": {
+        "http": 403,
+        "ms": 204,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:32 GMT",
+          "content-type": "application/json",
+          "content-length": "194",
+          "connection": "close",
+          "x-amzn-requestid": "60e41d51-f3ff-4fc6-a59c-8a6d2dcec9b4",
+          "x-amzn-errortype": "AccessDeniedException"
+        },
+        "cuerpo": {
+          "Message": "User 'arn:aws:iam::<cuenta-aws-redactada>:user/<principal-redactado>' is not authorized to perform 'ses:SendEmail' on resource 'arn:aws:ses:eu-west-1:<cuenta-aws-redactada>:identity/sondeo@example.invalid'"
+        }
+      }
+    },
+    {
+      "paso": "rechazo.2",
+      "pregunta": "DISC-07/08/14: nombre y código del error",
+      "respuesta": {
+        "http": 403,
+        "ms": 206,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:33 GMT",
+          "content-type": "application/json",
+          "content-length": "194",
+          "connection": "close",
+          "x-amzn-requestid": "10026ec6-a540-4c83-90d4-875477e8de51",
+          "x-amzn-errortype": "AccessDeniedException"
+        },
+        "cuerpo": {
+          "Message": "User 'arn:aws:iam::<cuenta-aws-redactada>:user/<principal-redactado>' is not authorized to perform 'ses:SendEmail' on resource 'arn:aws:ses:eu-west-1:<cuenta-aws-redactada>:identity/sondeo@example.invalid'"
+        }
+      }
+    },
+    {
+      "paso": "account.tras_rechazos",
+      "pregunta": "F-21: ¿un intento rechazado consume cuota?",
+      "respuesta": {
+        "http": 200,
+        "ms": 195,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:33 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "deca928f-8d30-4ec5-8d74-95e8bc79e20f"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    },
+    {
+      "paso": "envio_A",
+      "pregunta": "DISC-02: un destinatario",
+      "respuesta": {
+        "http": 200,
+        "ms": 257,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:33 GMT",
+          "content-type": "application/json",
+          "content-length": "76",
+          "connection": "close",
+          "x-amzn-requestid": "d2a17e72-2124-4b9b-b73c-27eef05ba670"
+        },
+        "cuerpo": {
+          "MessageId": "010201a0b3f41697-0614508d-848c-42c5-a21c-9e8b6aeb7d53-000000"
+        }
+      }
+    },
+    {
+      "paso": "account.tras_A",
+      "pregunta": "contador tras el envío A",
+      "respuesta": {
+        "http": 200,
+        "ms": 168,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:37 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "f8b08284-fe50-4604-bd10-18d1110228a3"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    },
+    {
+      "paso": "envio_B",
+      "pregunta": "DISC-02: dos destinatarios en un mensaje",
+      "respuesta": {
+        "http": 200,
+        "ms": 278,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:37 GMT",
+          "content-type": "application/json",
+          "content-length": "76",
+          "connection": "close",
+          "x-amzn-requestid": "2a85d8bd-7d2e-47ad-bca8-767eedd5e269"
+        },
+        "cuerpo": {
+          "MessageId": "010201a0b3f427f4-d4a80eda-c4cc-4676-aa5c-c85832d09e2a-000000"
+        }
+      }
+    },
+    {
+      "paso": "account.tras_B",
+      "pregunta": "contador tras el envío B",
+      "respuesta": {
+        "http": 200,
+        "ms": 176,
+        "cabeceras": {
+          "date": "Fri, 18 Sep 2026 09:58:42 GMT",
+          "content-type": "application/json",
+          "content-length": "421",
+          "connection": "close",
+          "x-amzn-requestid": "08492279-4e6b-4243-9cc4-3b491d7c4e8e"
+        },
+        "cuerpo": {
+          "DedicatedIpAutoWarmupEnabled": true,
+          "DeliveryAttributes": null,
+          "Details": null,
+          "EnforcementStatus": "HEALTHY",
+          "PricingAttributes": {
+            "CurrentPlan": "ESSENTIALS",
+            "NextPlan": null
+          },
+          "ProductionAccessEnabled": false,
+          "SendQuota": {
+            "Max24HourSend": 200.0,
+            "MaxSendRate": 1.0,
+            "SentLast24Hours": 0.0
+          },
+          "SendingEnabled": true,
+          "SuppressionAttributes": {
+            "SuppressedReasons": [
+              "BOUNCE",
+              "COMPLAINT"
+            ],
+            "ValidationAttributes": null
+          },
+          "VdmAttributes": null
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "sondeo": "resend_ventana_cabeceras",
+  "presupuesto_envios": 3,
+  "envios_gastados": 2,
+  "inicio_utc": "2026-10-18T20:31:33+00:00",
+  "calendario_horas": [
+    0,
+    4,
+    24.083333333333332
+  ],
+  "envios": [
+    {
+      "envio": "E1",
+      "utc": "2026-10-18T20:31:33+00:00",
+      "http": 200,
+      "cabeceras": {
+        "ratelimit-limit": "10",
+        "ratelimit-policy": "10;w=1",
+        "ratelimit-remaining": "9",
+        "ratelimit-reset": "1",
+        "x-resend-daily-quota": "0",
+        "x-resend-monthly-quota": "0"
+      },
+      "cuerpo": {
+        "id": "01a150b6-6843-7e9b-853b-7fa87eaff34c"
+      }
+    },
+    {
+      "envio": "E2",
+      "utc": "2026-10-19T00:31:33+00:00",
+      "http": 200,
+      "cabeceras": {
+        "ratelimit-limit": "10",
+        "ratelimit-policy": "10;w=1",
+        "ratelimit-remaining": "9",
+        "ratelimit-reset": "1",
+        "x-resend-daily-quota": "0",
+        "x-resend-monthly-quota": "1"
+      },
+      "cuerpo": {
+        "id": "01a15192-22c1-74a6-9e75-62af3b421693"
+      }
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+ "caso": "C8",
+ "pregunta": "PI-D01",
+ "operacion": "Q5",
+ "descripcion": "Umbral de agotamiento de cuota de la cuenta sin aprobar: que se agota antes, la cuota o el caudal",
+ "api": "mailersend",
+ "servicio": "http://localhost:8003/api/v1/datasheet",
+ "ejecutado": "2026-09-15T13:04:37",
+ "llamadas": [
+  {
+   "endpoint": "POST /quota-exhaustion-threshold",
+   "params": {
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 110,
+   "respuesta": {
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "unapproved_account",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": [
+           {
+            "quota": {
+             "value": 500.0,
+             "unit": "emails",
+             "period": "30day"
+            },
+            "exhaustion_threshold": "120day9min"
+           },
+           {
+            "quota": {
+             "value": 100.0,
+             "unit": "emails",
+             "period": "30day"
+            },
+            "exhaustion_threshold": "9min"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 2.0,
+          "value": [
+           {
+            "quota": {
+             "value": 500.0,
+             "unit": "emails",
+             "period": "30day"
+            },
+            "exhaustion_threshold": "120day4min"
+           },
+           {
+            "quota": {
+             "value": 100.0,
+             "unit": "emails",
+             "period": "30day"
+            },
+            "exhaustion_threshold": "4min"
+           }
+          ]
+         },
+         {
+          "capacity_request_factor": 2.0,
+          "value": [
+           {
+            "quota": {
+             "value": 500.0,
+             "unit": "emails",
+             "period": "30day"
+            },
+            "exhaustion_threshold": "120day4min"
+           },
+           {
+            "quota": {
+             "value": 100.0,
+             "unit": "emails",
+             "period": "30day"
+            },
+            "exhaustion_threshold": "4min"
+           }
+          ]
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

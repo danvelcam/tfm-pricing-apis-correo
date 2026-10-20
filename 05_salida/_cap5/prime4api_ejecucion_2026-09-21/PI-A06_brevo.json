@@ -1,0 +1,150 @@
+{
+ "pregunta": "PI-A06",
+ "operacion": "Q1",
+ "descripcion": "Tiempo mínimo para enviar 100.000 correos con el primer plan de pago, k = 1 y k máximo, con la cuota dura y con presupuesto que no limita",
+ "api": "brevo",
+ "llamadas": [
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "starter"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 70,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "starter": [
+      {
+       "endpoint": "/v3/smtp/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "570day4s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "2000"
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "starter"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 52,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "starter": [
+      {
+       "endpoint": "/v3/smtp/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 2000.0,
+          "value": "570day"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "starter"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 57,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "starter": [
+      {
+       "endpoint": "/v3/smtp/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": "570day4s"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /min-time",
+   "params": {
+    "capacity_goal": 100000,
+    "capacity_unit": "emails",
+    "capacity_request_factor": "2000",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/v3/smtp/email",
+    "plan_names": [
+     "starter"
+    ]
+   },
+   "datasheet": "03_datos/apis/brevo/datasheet.yaml",
+   "http": 200,
+   "ms": 53,
+   "respuesta": {
+    "capacity_goal": 100000,
+    "results": {
+     "starter": [
+      {
+       "endpoint": "/v3/smtp/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 2000.0,
+          "value": "570day"
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

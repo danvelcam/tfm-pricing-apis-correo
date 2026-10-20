@@ -1,0 +1,81 @@
+{
+ "pregunta": "PI-D02",
+ "operacion": "Q5",
+ "descripcion": "Rates del primer plan de pago y capacidad en 1 mes con la cuota expandida (presupuesto muy alto): el rate limita por encima de R·W·k",
+ "api": "mailgun",
+ "llamadas": [
+  {
+   "endpoint": "POST /rates",
+   "params": {
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 35,
+   "respuesta": {
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "rates": [
+        {
+         "value": 1500.0,
+         "unit": "requests",
+         "period": "1s"
+        },
+        {
+         "value": 80000.0,
+         "unit": "requests",
+         "period": "10s"
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 1000000000.0
+   },
+   "body": {
+    "endpoint_path": "/v3/{domain_name}/messages",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailgun/datasheet.yaml",
+   "http": 200,
+   "ms": 34,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "basic": [
+      {
+       "endpoint": "/v3/{domain_name}/messages",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 3888001500.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

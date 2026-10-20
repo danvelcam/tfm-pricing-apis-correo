@@ -1,0 +1,397 @@
+[
+{
+  "caso": "A2_api_quota_inicio",
+  "nota": "presupuesto del dia antes de gastar (la tanda necesita 12); NO mide el descuento: el contador se actualiza por lotes y con retardo (DISC-17 resuelta, O-11)",
+  "metodo": "GET",
+  "ruta": "/v1/api-quota",
+  "http": 200,
+  "cuerpo": {
+    "quota": 100,
+    "remaining": 66,
+    "reset": "2026-09-11T00:00:00Z"
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:08 GMT",
+    "x-apiquota-remaining": "66",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "B2_to_2",
+  "nota": "to=2: 2 destinatarios unicos (tope Sandbox); debe pasar la validacion de to",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The to recipient limit is exceeded. #MS42205 (and 1 more error)",
+    "errors": {
+      "to": [
+        "The to recipient limit is exceeded. #MS42205"
+      ],
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:15 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "9",
+    "x-apiquota-remaining": "66",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "B2_to_3",
+  "nota": "to=3: 3 unicos; MS42225 o MS42205 en to (DISC-18)",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The to recipient limit is exceeded. #MS42205 (and 1 more error)",
+    "errors": {
+      "to": [
+        "The to recipient limit is exceeded. #MS42205"
+      ],
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:22 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "8",
+    "x-apiquota-remaining": "99",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "B2_to_5",
+  "nota": "to=5: acotar el tope de to sin aprobar (DISC-18)",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The to recipient limit is exceeded. #MS42205 (and 1 more error)",
+    "errors": {
+      "to": [
+        "The to recipient limit is exceeded. #MS42205"
+      ],
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:29 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "7",
+    "x-apiquota-remaining": "99",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "B2_to_6",
+  "nota": "to=6: acotar el tope de to sin aprobar (DISC-18)",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The to recipient limit is exceeded. #MS42205 (and 1 more error)",
+    "errors": {
+      "to": [
+        "The to recipient limit is exceeded. #MS42205"
+      ],
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:37 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "6",
+    "x-apiquota-remaining": "99",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "B2_to_9",
+  "nota": "to=9: ultimo valor por debajo de los 10 documentados",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The to recipient limit is exceeded. #MS42205 (and 1 more error)",
+    "errors": {
+      "to": [
+        "The to recipient limit is exceeded. #MS42205"
+      ],
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:44 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "5",
+    "x-apiquota-remaining": "99",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "C2_bulk_status_t1",
+  "nota": "estado y validation_errors del lote de 5 aceptado con 202 en la tanda 1, 19:02 UTC (F-04: no debe haber enviado nada)",
+  "metodo": "GET",
+  "ruta": "/v1/bulk-email/6aa1ad527e48ed427f18cf4e",
+  "http": 200,
+  "cuerpo": {
+    "data": {
+      "id": "6aa1ad527e48ed427f18cf4e",
+      "state": "completed",
+      "total_recipients_count": 5,
+      "suppressed_recipients_count": 0,
+      "suppressed_recipients": null,
+      "validation_errors_count": 5,
+      "validation_errors": {
+        "message.0": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.1": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.2": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.3": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.4": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        }
+      },
+      "messages_id": null,
+      "created_at": "2026-09-09T19:02:42.000000Z",
+      "updated_at": "2026-09-09T19:02:43.000000Z"
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:51 GMT",
+    "x-ratelimit-limit": "60",
+    "x-ratelimit-remaining": "59",
+    "x-apiquota-remaining": "99",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "C2_bulk_status_t1b",
+  "nota": "estado y validation_errors del lote de 5 aceptado con 202 en la tanda 1b, 19:14 UTC (F-04: no debe haber enviado nada)",
+  "metodo": "GET",
+  "ruta": "/v1/bulk-email/6aa1affd1e3217ac0dd87aa1",
+  "http": 200,
+  "cuerpo": {
+    "data": {
+      "id": "6aa1affd1e3217ac0dd87aa1",
+      "state": "completed",
+      "total_recipients_count": 5,
+      "suppressed_recipients_count": 0,
+      "suppressed_recipients": null,
+      "validation_errors_count": 5,
+      "validation_errors": {
+        "message.0": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.1": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.2": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.3": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        },
+        "message.4": {
+          "to": [
+            "You have reached sandbox account unique recipients limit. #MS42225"
+          ],
+          "from.email": [
+            "The from.email domain must be verified in your account to send emails. #MS42207"
+          ]
+        }
+      },
+      "messages_id": null,
+      "created_at": "2026-09-09T19:14:05.000000Z",
+      "updated_at": "2026-09-09T19:14:05.000000Z"
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:24:58 GMT",
+    "x-ratelimit-limit": "60",
+    "x-ratelimit-remaining": "58",
+    "x-apiquota-remaining": "99",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "C2_bulk_6",
+  "nota": "6 objetos: tope Sandbox documentado 5; debe devolver MS42229 o similar (o 202 si valida en diferido)",
+  "metodo": "POST",
+  "ruta": "/v1/bulk-email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The number of email objects must not be greater than 5. #MS42229",
+    "errors": {
+      "data": [
+        "The number of email objects must not be greater than 5. #MS42229"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:26:07 GMT",
+    "x-ratelimit-limit": "1",
+    "x-ratelimit-remaining": "0",
+    "x-apiquota-remaining": "93",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "T2_tags_5",
+  "nota": "tags=5: tope documentado",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The from.email domain must be verified in your account to send emails. #MS42207",
+    "errors": {
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:26:14 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "9",
+    "x-apiquota-remaining": "93",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "T2_tags_6",
+  "nota": "tags=6: debe fallar",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The from.email domain must be verified in your account to send emails. #MS42207 (and 1 more error)",
+    "errors": {
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ],
+      "tags": [
+        "The tags must not have more than 5 items."
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:26:21 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "8",
+    "x-apiquota-remaining": "93",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "T2_subject_998",
+  "nota": "subject 998: tope documentado",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The from.email domain must be verified in your account to send emails. #MS42207",
+    "errors": {
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:26:28 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "7",
+    "x-apiquota-remaining": "90",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+},
+{
+  "caso": "T2_subject_999",
+  "nota": "subject 999: debe fallar",
+  "metodo": "POST",
+  "ruta": "/v1/email",
+  "http": 422,
+  "cuerpo": {
+    "message": "The from.email domain must be verified in your account to send emails. #MS42207 (and 1 more error)",
+    "errors": {
+      "from.email": [
+        "The from.email domain must be verified in your account to send emails. #MS42207"
+      ],
+      "subject": [
+        "The subject must not be greater than 998 characters."
+      ]
+    }
+  },
+  "cabeceras": {
+    "date": "Thu, 10 Sep 2026 11:26:36 GMT",
+    "x-ratelimit-limit": "10",
+    "x-ratelimit-remaining": "6",
+    "x-apiquota-remaining": "90",
+    "x-apiquota-reset": "2026-09-11T00:00:00Z"
+  }
+}]

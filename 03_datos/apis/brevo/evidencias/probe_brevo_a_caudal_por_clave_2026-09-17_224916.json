@@ -1,0 +1,101 @@
+{
+ "resumen": {
+  "api": "brevo",
+  "sondeo": "caudal_por_clave",
+  "pregunta": "Q-A4 / hueco 8",
+  "fecha_utc": "2026-09-17T22:49:30.501503+00:00",
+  "envios_reales": 0,
+  "peticiones": 6,
+  "remaining_por_caso": {
+   "k1_a": 4999,
+   "k1_b": 4998,
+   "k1_c": 4997,
+   "k1_d": 4995,
+   "k2_a": 4996,
+   "k2_b": 4994
+  },
+  "limit_por_caso": {
+   "k1_a": 5000,
+   "k1_b": 5000,
+   "k1_c": 5000,
+   "k1_d": 5000,
+   "k2_a": 5000,
+   "k2_b": 5000
+  },
+  "veredicto": "POR CUENTA: la clave 2 continua la serie de la clave 1 (k1_c=4997, k2_a=4996, k1_d=4995): un solo cubo"
+ },
+ "casos": {
+  "k1_a": {
+   "metodo": "GET",
+   "ruta": "/account",
+   "clave": "1",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4999",
+    "x-sib-ratelimit-reset": "643"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":298,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "k1_b": {
+   "metodo": "GET",
+   "ruta": "/account",
+   "clave": "1",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4998",
+    "x-sib-ratelimit-reset": "641"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":298,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "k1_c": {
+   "metodo": "GET",
+   "ruta": "/account",
+   "clave": "1",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4997",
+    "x-sib-ratelimit-reset": "639"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":298,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "k1_d": {
+   "metodo": "GET",
+   "ruta": "/account",
+   "clave": "1",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4995",
+    "x-sib-ratelimit-reset": "634"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":298,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "k2_a": {
+   "metodo": "GET",
+   "ruta": "/account",
+   "clave": "2",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4996",
+    "x-sib-ratelimit-reset": "637"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":298,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  },
+  "k2_b": {
+   "metodo": "GET",
+   "ruta": "/account",
+   "clave": "2",
+   "http": "200",
+   "cabeceras_caudal": {
+    "x-sib-ratelimit-limit": "5000",
+    "x-sib-ratelimit-remaining": "4994",
+    "x-sib-ratelimit-reset": "632"
+   },
+   "cuerpo_recortado": "{\"organization_id\":\"<REDACTADO>\",\"user_id\":0,\"enterprise\":false,\"relay\":{\"enabled\":true,\"data\":{\"userName\":\"<REDACTADO>\",\"relay\":\"smtp-relay.brevo.com\",\"port\":587}},\"email\":\"<CORREO_REDACTADO>\",\"firstName\":\"<REDACTADO>\",\"lastName\":\"<REDACTADO>\",\"companyName\":\"<REDACTADO>\",\"address\":\"<REDACTADO>\",\"dateTimePreferences\":{\"timezone\":\"Europe\\/Madrid\",\"timeFormat\":\"24\",\"dateFormat\":\"dd-mm-yyyy\"},\"language\":\"en\",\"plan\":[{\"type\":\"free\",\"credits\":298,\"creditsType\":\"sendLimit\"}],\"planVerticals\":[{\"planCategory\":\"Marketing\",\"planType\":\"free\",\"name\":\"Free\",\"status\":\"active\",\"startDate\":\"1789552093\",\"endDate\":\"1792144093\",\"users\":{\"purchasedSeats\":\"1\",\"usedSeats\":\"1\"}}]}"
+  }
+ }
+}

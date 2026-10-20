@@ -1,0 +1,169 @@
+{
+ "pregunta": "PI-B02",
+ "operacion": "Q7",
+ "descripcion": "Máximo de correos al mes con 50 USD: cuota expandida por presupuesto (/quotas con max_budget) y capacidad al mes con esa cuota, planes calculables",
+ "api": "postmark",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "free",
+     "basic",
+     "pro",
+     "platform"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "results": {
+     "free": [
+      {
+       "endpoint": "/email",
+       "quotas": [
+        {
+         "value": 100.0,
+         "unit": "emails",
+         "period": "30day"
+        }
+       ]
+      }
+     ],
+     "basic": [
+      {
+       "endpoint": "/email",
+       "quotas": [
+        {
+         "value": 10000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0018,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "pro": [
+      {
+       "endpoint": "/email",
+       "quotas": [
+        {
+         "value": 10000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0013,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "platform": [
+      {
+       "endpoint": "/email",
+       "quotas": [
+        {
+         "value": 10000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0012,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "free",
+     "basic",
+     "pro",
+     "platform"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 23,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 200.0
+         }
+        ]
+       }
+      }
+     ],
+     "basic": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 34444.444444444445
+         }
+        ]
+       }
+      }
+     ],
+     "pro": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 40769.230769230766
+         }
+        ]
+       }
+      }
+     ],
+     "platform": [
+      {
+       "endpoint": "/email",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 41666.66666666667
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

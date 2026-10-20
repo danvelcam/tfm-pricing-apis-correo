@@ -1,0 +1,208 @@
+# Datasheet ACM2YAML v0.3 — Mailchimp Transactional (Mandrill)
+# Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
+
+associated_saas: mailchimp-transactional                    # 🟢
+type: api_first                                             # 🟢
+url: https://mailchimp.com/pricing/transactional-email/     # 🟢
+syntax_version: 0.3
+date: 2026-09-21
+currency: USD                                               # 🟢
+consumption_units:
+  - emails
+  - requests
+  - MBs
+
+capacity:
+  quota_email_block:
+    value: 25000                                            # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    window_type: fixed_billing_cycle                        # 🟡
+
+  quota_email_demo:
+    value: 500                                              # 🟢
+    unit: emails
+    # 🔴 franquicia sin ventana declarada: el proveedor dice que no caduca ni se renueva, y v0.3 no tiene forma para eso (ver metadata.not_found)
+    period:
+    window_type:
+
+max_power:
+  rate_email_hourly_demo:
+    value: 25                                               # 🟢
+    unit: emails
+    period:
+      value: 1
+      unit: HOUR
+
+  rate_request_search:
+    value: 20                                               # 🟢
+    unit: requests
+    period:
+      value: 1
+      unit: MIN
+
+plans:
+  transactional_email:
+    price: 20.00                                            # 🟡
+    period:
+      value: 1
+      unit: MONTH
+    quota: quota_email_block
+    endpoints:
+      /messages/send:
+        demo:
+          rate: rate_email_hourly_demo
+          quota: quota_email_demo
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Envío a los destinatarios del array to; sin tope publicado, y 5.000 en una sola llamada se aceptaron al medirlo.
+          - unit: MBs
+            min: 1
+            max: 10                                         # 🟢
+            description: Tamaño del JSON de cada llamada a la API, adjuntos incluidos ya codificados.
+      /messages/send-template:
+        demo:
+          rate: rate_email_hourly_demo
+          quota: quota_email_demo
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Envío con plantilla; la página del endpoint no publica ningún tope propio de destinatarios.
+          - unit: MBs
+            min: 1
+            max: 10                                         # 🟢
+            description: Tamaño del JSON de cada llamada a la API, adjuntos incluidos ya codificados.
+      /messages/send-raw:
+        demo:
+          rate: rate_email_hourly_demo
+          quota: quota_email_demo
+        workload:
+          - unit: emails
+            min: 1
+            max:                                            # 🔴
+            description: Envío de un documento MIME crudo, tal cual saldría por SMTP.
+          - unit: MBs
+            min: 1
+            max: 10                                         # 🟢
+            description: Tamaño del JSON de cada llamada a la API, adjuntos incluidos ya codificados.
+      /messages/search:
+        rate: rate_request_search
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Búsqueda en los mensajes recientes; sin rango de fechas devuelve los últimos siete días.
+      /messages/search-time-series:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Búsqueda en los mensajes recientes que devuelve estadística agregada por hora.
+      /messages/info:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de un mensaje reciente por identificador.
+      /messages/content:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta del contenido completo de un mensaje reciente.
+      /rejects/list:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta de la lista de rechazos; devuelve hasta 1.000 resultados por petición.
+      /users/info:
+        workload:
+          - unit: requests
+            min: 1
+            max: 1
+            description: Consulta del estado de la cuenta; devuelve la cuota horaria vigente, la reputación y el tamaño de la cola.
+
+metadata:
+  sources_visited:
+    - https://mailchimp.com/developer/transactional/
+    - https://mailchimp.com/pricing/transactional-email/
+    - https://mailchimp.com/developer/transactional/docs/outbound-email/
+    - https://mailchimp.com/developer/transactional/docs/fundamentals/
+    - https://mailchimp.com/developer/transactional/docs/reputation-rejections/
+    - https://mailchimp.com/developer/transactional/docs/authentication-delivery/
+    - https://mailchimp.com/developer/transactional/api/messages/
+    - https://mailchimp.com/developer/transactional/api/messages/send-using-message-template/
+    - https://mailchimp.com/developer/transactional/api/messages/search-messages-by-date/
+    - https://mailchimp.com/developer/transactional/api/rejects/list-denylisted-emails/
+    - https://mailchimp.com/developer/release-notes/message-search-rate-limit-now-enforced/
+    - https://mailchimp.com/developer/release-notes/
+    - https://mailchimp.com/help/transactional-email-demo/
+    - https://mailchimp.com/help/how-throttling-improves-deliverability/
+    - https://mailchimp.com/legal/acceptable_use/
+    - https://mailchimp.com/legal/terms/
+    - https://raw.githubusercontent.com/mailchimp/mailchimp-client-lib-codegen/main/spec/transactional.openapi.json
+  data_provenance:
+    - "NOTA: el producto no tiene planes con nombre y la ausencia no tiene literal que citar. la página de precios no publica filas ni tarjetas, solo una tabla de tramos de volumen del mismo producto, así que plans lleva una entrada única [https://mailchimp.com/pricing/transactional-email/]"
+    - "Unidad de venta: 'Cada bloque es un crédito por 25,000 correos electrónicos' [https://mailchimp.com/pricing/transactional-email/]"
+    - "NOTA escalera de precio degresivo, seis tramos, precio por bloque de 25.000 correos: '1 - 20 bloques | 1 - 500k emails | $20/bloque · 21 - 40 bloques | 500k - 1M emails | $18/bloque · 41 - 80 bloques | 1M - 2M emails | $16/bloque · 81 - 120 bloques | 2M - 3M emails | $14/bloque · 121 - 160 bloques | 3M - 4M emails | $12/bloque · 161+ bloques | 4M+ emails | $10/bloque'. El precio del plan recoge el tramo de entrada, $20 por bloque, y por eso va en ámbar: el literal es un precio por unidad prepagada y el campo es el precio del plan [https://mailchimp.com/pricing/transactional-email/]"
+    - "Por encima de 161 bloques no hay cifra publicada: 'Nuestros precios se adaptan a las necesidades de gran volumen con tarifas por bloque más bajas para volúmenes más altos. Contáctanos para obtener más información sobre nuestros precios para grandes volúmenes.' [https://mailchimp.com/pricing/transactional-email/]"
+    - "No hay sobrecoste por unidad excedida: el modelo es prepago y agotar el bloque para el envío — 'el sistema dejará de enviar correos electrónicos cuando se te acaben los bloques'—, con auto-compra opcional, 'Configura tu cuenta para que compre automáticamente bloques de correo electrónico al llegar a tu límite predefinido.' [https://mailchimp.com/pricing/transactional-email/]"
+    - "La ventana del bloque se infiere de que el saldo no se arrastra: 'Los correos electrónicos no utilizados de un bloque no se transfieren de un mes a otro'; ninguna fuente declara el día de reinicio [https://mailchimp.com/pricing/transactional-email/]"
+    - "El descuento del 50 % para 1.000.000 o más correos durante los doce primeros meses es promoción temporal con requisitos de elegibilidad, no precio de lista, y por eso no entra en el precio del plan: 'El plan Essentials no es elegible para el Correo Electrónico Transaccional.' [https://mailchimp.com/pricing/transactional-email/]"
+    - "El transaccional es complemento de una cuenta de pago, no producto suelto: 'El correo electrónico transaccional está disponible como complemento de los planes Standard y Premium de Mailchimp, o del plan mensual heredado.' El coste de esa cuenta base no es capacidad y no se modela [https://mailchimp.com/pricing/transactional-email/]"
+    - "Add-on de IP dedicada: 'Agrega una IP exclusiva por $29.95 al mes (opcional)', sin requisito de volumen mínimo publicado [https://mailchimp.com/pricing/transactional-email/]"
+    - "Cuota horaria de la cuenta de prueba, 25 envíos, con tres superficies que dan el mismo número y ninguna discrepancia: 'Demo accounts are limited to a fixed hourly quota of 25 emails' y 'You can send up to 25 emails in an hour' en la documentación, 'Email sends this hour — 0 of 25' en el panel, y 'hourly_quota': 25 en la respuesta de la API [https://mailchimp.com/developer/transactional/docs/reputation-rejections/; https://mailchimp.com/help/transactional-email-demo/; observación de panel con cuenta propia, 2026-09-21; POST /users/info con clave de la cuenta de prueba, 2026-09-21]"
+    - "NOTA el tope horario se modela como caudal y no como cuota porque contiene la velocidad sin rechazar: lo que lo excede se encola, 'If you exceed your quota, unsent messages will be placed in the backlog', frente a agotar el bloque, que detiene el envío. El bloque es lo que se consume; la hora es a qué ritmo se consume [https://mailchimp.com/developer/transactional/docs/outbound-email/]"
+    - "NOTA el alias de estado demo se repite en los tres endpoints de envío porque el tope es de la cuenta y no del endpoint, y v0.3 solo admite aliases dentro de un endpoint [https://mailchimp.com/developer/transactional/docs/outbound-email/]"
+    - "La cuenta de prueba trae 500 correos de franquicia que no caducan ni se renuevan: 'You can send up to 500 transactional emails to any email address on your verified domain' y 'The emails included with the demo do not expire or renew'; el panel lo escribe como 'Free trial sends — 0 of 500' [https://mailchimp.com/help/transactional-email-demo/; observación de panel con cuenta propia, 2026-09-21]"
+    - "NOTA retención de la cuenta demo, límite de recurso y no cuota (B3/B4), fuera de capacity: 'Your transactional email history is stored for only 30 days. After that, you will not be able to see the contents of the transactional emails or to whom the emails were sent.' [https://mailchimp.com/help/transactional-email-demo/]"
+    - "Para cuentas de pago no hay cifra de cuota horaria: depende de reputación y de volumen histórico, 'an account that sends 1 million messages per week and an account that sends 100 messages per week could both have excellent reputations, but their hourly quotas will be very different' [https://mailchimp.com/developer/transactional/docs/reputation-rejections/]"
+    - "El panel publica el mecanismo del tope horario con cuenta propia: 'your account will have a reputation (Excellent, Good or Poor) that is used, in part, to determine your hourly quota'; la cuenta recién creada estaba en 'Reputation: Unknown', que la API codifica como 'reputation': 0 [observación de panel con cuenta propia, 2026-09-21; POST /users/info, 2026-09-21]"
+    - "El proveedor reserva capacidad para el correo crítico: 'Mailchimp Transactional reserves an extra 5% of your hourly quota so more critical emails, such as password resets or order confirmations, can send without delay' [https://mailchimp.com/developer/transactional/docs/outbound-email/; https://mailchimp.com/help/how-throttling-improves-deliverability/]"
+    - "Destinatarios por llamada: 'Via the API, there's no recipient limitation, but the JSON provided per API call must be less than 10MB'; el tope efectivo es de payload, no un entero de destinatarios [https://mailchimp.com/developer/transactional/docs/outbound-email/]"
+    - "Medido contra la API: 5.000 destinatarios en una sola llamada a /messages/send se aceptan con HTTP 200 y el cuerpo devuelve '\"status\":\"queued\"' una vez por destinatario, sin ningún rechazo por número. Mailgun, en el mismo catálogo, rechaza la petición 1.001 [sondeo con cuenta propia y destinatarios en example.invalid, 2026-09-21]"
+    - "Medido contra la API: hasta diez destinatarios la llamada devuelve 'status': 'rejected' con 'reject_reason': 'unsigned', y a partir de once devuelve 'status': 'queued' con 'queued_reason': 'multiple-recipients' sin decir si enviará. El umbral está entre 10 y 11, exacto, y es de observabilidad, no de capacidad: por encima de diez el proveedor deja de responder en la llamada [sondeo con cuenta propia y destinatarios en example.invalid, 2026-09-21]"
+    - "Medido contra la API: cualquier adjunto difiere la evaluación con 'queued_reason': 'attachments', desde 5 MB hasta 30 MB de adjunto (40 MB de cuerpo JSON), sin que ninguna respuesta devuelva umbral. El tope de tamaño no es medible por rechazo en esta API [sondeo con cuenta propia y destinatarios en example.invalid, 2026-09-21]"
+    - "NOTA el mismo sondeo probó hasta ~40 MB de cuerpo JSON por llamada, cuatro veces por encima del tope de <10MB que publica [F4], y ninguna respuesta rechazó por tamaño. El campo se queda en verde: el literal oficial manda y un sondeo no lo baja (D6), pero la medición queda escrita contra el campo que toca, no solo contra el tope de 25 MB de mensaje, que es otro campo [sondeo con cuenta propia y destinatarios en example.invalid, 2026-09-21]"
+    - "NOTA lo que costó el sondeo: los contadores del proveedor al cerrarlo dan 'sent': 0, 'hard_bounces': 0 y 'complaints': 0, así que ningún correo salió, pero sí se generaron unos 7.600 destinatarios en cola en las tandas lanzadas a mano después de que la guarda parase, y esa cola drena hacia rechazos porque la cuenta no tiene dominio verificado. En esta API la vía de coste cero solo existe con diez destinatarios o menos y sin adjuntos [sondeo con cuenta propia, 2026-09-21]"
+    - "Tamaño del mensaje frente a tamaño de la llamada, en la misma página y sin ser excluyentes: 'the JSON provided per API call must be less than 10MB' mide el payload de la petición y 'the total message size cannot exceed 25MB. There is no specific limit for individual attachments, just the total size of the message' mide el mensaje entregado. Un mensaje de 25 MB en base64 no cabe en una llamada de 10 MB; se anota como fricción y solo el tope de llamada entra en el esquema [https://mailchimp.com/developer/transactional/docs/outbound-email/]"
+    - "Único rate con cifra en toda la documentación, y es de un endpoint y no del plan: 'If you exceed the limit of 20 searches per minute, we'll now return a 429 Too Many Requests response code. You can retry your request 60 seconds after you sent the first of the original 20 requests', repetido en la página del propio endpoint, 'This method may be called up to 20 times per minute.' [https://mailchimp.com/developer/release-notes/message-search-rate-limit-now-enforced/; https://mailchimp.com/developer/transactional/api/messages/search-messages-by-date/]"
+    - "La tabla oficial de errores no incluye ni 429 ni 403: solo tres variantes de 401, cuatro de 404 y un 405. El exceso de envío no se rechaza, se encola — 'Hourly quota exhausted - You've sent all the emails your hourly quota allows. We'll begin processing the backlog in the next hour.' [https://mailchimp.com/developer/transactional/docs/fundamentals/; https://mailchimp.com/developer/transactional/docs/outbound-email/]"
+    - "El modo de pruebas tiene su propio tope, con dos anclas de reinicio en la misma frase que no coinciden: 'Note that you're limited to 10,000 test mode messages per day. This limit resets at midnight, or if they hit the limit, 24 hours after that limit is hit.' No se modela mientras la contradicción siga viva [https://mailchimp.com/developer/transactional/docs/fundamentals/]"
+    - "NOTA: no existe endpoint de envío por lotes, y la ausencia no tiene literal que citar. el envío múltiple ocurre dentro de una sola llamada a /messages/send mediante el array to [https://mailchimp.com/developer/transactional/api/messages/]"
+    - "Sin dominio verificado no sale nada: 'Mailchimp Transactional won't send any email from unverified domains or domains without a valid DMARC policy and DKIM records'; es requisito de configuración, no cuota, y es la razón de que el sondeo devolviera 'unsigned' en cada mensaje [https://mailchimp.com/developer/transactional/docs/authentication-delivery/]"
+    - "El envío masivo por este producto está prohibido por política y no acotado por una cifra: 'Enviar correos electrónicos masivos, es decir, correos electrónicos dirigidos a varias personas con el mismo contenido, a través de Transactional (antes conocido como Mandrill)', con la consecuencia de 'we may charge you at the equivalent Paid Marketing Plan rate or cancel your account' [https://mailchimp.com/legal/acceptable_use/; https://mailchimp.com/legal/terms/]"
+    - "La cuenta de prueba recibe hasta 100 correos entrantes al día — 'receive up to 100 inbound emails per day'—, tope que ningún endpoint de la API puede referenciar porque la recepción no es una llamada, así que no se define en capacity [https://mailchimp.com/help/transactional-email-demo/]"
+    - "Recursos que el panel expone y que no son capacidad: las claves de API llevan columnas 'Expires' y 'Remaining', las dos vacías en esta cuenta, y los dominios de envío se dan de alta sin tope de número publicado, 'No sending domains yet' [observación de panel con cuenta propia, 2026-09-21]"
+    - "Vía SMTP el tope sí es un entero y difiere del de la API: 'Via SMTP, you can send to up to 1,000 recipients at a time. If you're sending messages to more recipients, simultaneous and subsequent connections are permitted.' SMTP no es endpoint de la API y no se modela [https://mailchimp.com/developer/transactional/docs/outbound-email/]"
+    - "NOTA Test de type (C2/D9, completo el 2026-09-21): el color mide cobertura del test, no el valor, y el test ya está entero. Las tres operaciones que deciden el type están publicadas en la referencia de API del propio dominio del proveedor, no solo en el contrato máquina de GitHub: (1) enviar, 'Send a new transactional message through the Transactional API.' en /messages/send; (2) crear o editar plantilla, 'Add a new template.' en /templates/add y 'Update the code for an existing template. If null is provided for any fields, the values will remain unchanged.' en /templates/update; (3) dar de alta y verificar dominio, 'Adds a sender domain to your account. Sender domains are added automatically as you send, but you can use this call to add them ahead of time.' en /senders/add-domain y 'Sends a verification email in order to verify ownership of a domain.' en /senders/verify-domain. Las tres viven en el dominio propio del proveedor, así que el veredicto ya no depende del fichero de GitHub ni de su oficialidad discutida. El panel confirma además que crear plantilla no es exclusiva de la web: la pantalla de plantillas dice 'You can add a template below, use Mandrill's API or from your attached Mailchimp account.' [https://mailchimp.com/developer/transactional/api/, consultada el 2026-09-21; observación de panel con cuenta propia, 2026-09-21]"
+    - "El punto de entrada de la API, que no es campo de v0.3: 'servers': [{'url': 'https://mandrillapp.com/api/1.4', 'description': 'Mailchimp Transactional API v1.4'}] [https://raw.githubusercontent.com/mailchimp/mailchimp-client-lib-codegen/main/spec/transactional.openapi.json]"
+  not_found:
+    - "Cifra de la cuota horaria para cuentas de pago: no publicada en ninguna página oficial. Solo se documenta el mecanismo —reputación más volumen histórico— y la cifra fija de la cuenta de prueba, 25 a la hora"
+    - "Ancla de reinicio de la cuota horaria de producción: no declarada. Solo consta que el backlog se reprocesa en la hora siguiente, sin decir si la ventana es deslizante o fija"
+    - "Día de reinicio del bloque de 25.000 correos: no publicado. Que el saldo no se arrastre de un mes a otro es lo único que se dice, y de ahí sale el ciclo de facturación en ámbar"
+    - "Rate de peticiones de la API REST general (req/s o req/min): no publicado. El único endpoint con rate propio es la búsqueda de mensajes, 20 por minuto"
+    - "Límite de concurrencia de la API REST: no publicado"
+    - "Cabeceras de rate limit (X-RateLimit-*, Retry-After o nombre propio): no encontradas en ninguna página oficial revisada"
+    - "Códigos 429 y 403 en la tabla oficial de errores: ausentes los dos. El exceso de envío se modela como cola y no como rechazo HTTP"
+    - "Tope de destinatarios por llamada a /messages/send: no publicado y no medible por rechazo. 5.000 destinatarios se aceptaron en una sola llamada el 2026-09-21, sin cota superior alcanzada"
+    - "Tamaño máximo de mensaje comprobado por rechazo: no medible en esta API. Cualquier adjunto difiere la evaluación a un proceso asíncrono, y hasta 30 MB de adjunto la respuesta no devuelve ningún umbral; el literal de 25 MB por mensaje queda sin confirmar contra la API"
+    - "Forma de esquema para una franquicia que no caduca ni se renueva: v0.3 exige periodo en toda cuota y los 500 correos de la cuenta de prueba no tienen ninguno, así que la entrada se queda sin periodo ni tipo de ventana"
+    - "Enlace de la cuota de 100 correos entrantes al día de la cuenta de prueba: ningún endpoint la puede referenciar, porque recibir un correo no es una llamada a la API. Queda fuera de capacity con su cita en el provenance"
+    - "Si el precio del tramo alcanzado es marginal o plano sobre todos los bloques del mes: no aclarado en ninguna página ni pregunta frecuente revisada"
+    - "Precio por bloque por encima de 161 bloques, es decir más de 4 millones de correos al mes: no publicado, la página remite a contacto comercial"
+    - "Tabla de precio anual del transaccional: no existe, solo precio mensual por bloque"
+    - "Países elegibles para el descuento del 50 %: no enumerados"
+    - "Consumo compuesto por destinatario, es decir si N destinatarios en el array to gastan N unidades del bloque o una por llamada: no verificable. El artículo del proveedor que lo trataría devolvió HTTP 403 en esta pasada"
+    - "Umbral oficial de destinatarios que fuerza el envío asíncrono: sin cita oficial. Medido el 2026-09-21 entre 10 y 11, exacto, con la evaluación diferida a partir de once"
+    - "Especificación OpenAPI servida desde el dominio del producto: no localizada, y la referencia oficial de la API tampoco la enlaza ni la menciona. El fichero de GitHub del proveedor sí puede citarse como especificación oficial (organización mailchimp); lo que no consta es que el proveedor la sirva desde su propio dominio"
+    - "Días de retención de la actividad y de los logs para una cuenta de pago: ninguna fuente revisada publica un número. La cuenta demo sí publica una cifra, treinta días, que no se traslada sin más a la cuenta de pago"
+    - "Tope de número de dominios de envío, de webhooks y de usuarios: no publicados"
+    - "Periodo de calentamiento obligatorio para cuentas nuevas con topes progresivos: no encontrado. Solo hay calentamiento opcional de IP dedicada"
+    - "Umbral numérico de suspensión automática por volumen: no publicado. Solo consta la condición de uso indebido, que es política"

@@ -1,0 +1,32 @@
+[
+{
+  "caso": "sandbox_29MiB",
+  "bytes_json": 30408956,
+  "instante_utc": "2026-09-07T22:04:11Z",
+  "http": 200,
+  "cuerpo": "",
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 22:04:12 GMT",
+    "x-message-id": "7vk7HMyxT0-TjPlor4kqfw"
+  }
+},
+{
+  "caso": "sandbox_30MiB",
+  "bytes_json": 31457532,
+  "instante_utc": "2026-09-07T22:04:16Z",
+  "http": 413,
+  "cuerpo": "<html>\n<head><title>413 Request Entity Too Large</title></head>\n<body>\n<center><h1>413 Request Entity Too Large</h1></center>\n<hr><center>nginx</center>\n</body>\n</html>\n",
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 22:04:16 GMT"
+  }
+},
+{
+  "caso": "sandbox_31MiB",
+  "bytes_json": 32506108,
+  "instante_utc": "2026-09-07T22:04:19Z",
+  "http": 413,
+  "cuerpo": "<html>\n<head><title>413 Request Entity Too Large</title></head>\n<body>\n<center><h1>413 Request Entity Too Large</h1></center>\n<hr><center>nginx</center>\n</body>\n</html>\n",
+  "cabeceras": {
+    "date": "Mon, 07 Sep 2026 22:04:20 GMT"
+  }
+}]

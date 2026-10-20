@@ -1,0 +1,756 @@
+{
+ "superficie_de_consulta": {
+  "campos_de_la_peticion": [
+   "datasheet_source",
+   "plan_names",
+   "endpoint_path",
+   "alias",
+   "operation",
+   "operation_params"
+  ],
+  "aliases_del_fichero": [
+   "general",
+   "advanced",
+   "extended"
+  ],
+  "endpoints_del_fichero": [
+   "/*",
+   "/v3/smtp/email",
+   "/v3/smtp/emails",
+   "/v3/smtp/blockedContacts",
+   "/v3/inbound/events"
+  ],
+  "comodin_declarado": {
+   "respondio": true,
+   "por_plan": {
+    "free": [
+     {
+      "endpoint": "/*",
+      "alias": "None",
+      "result": "[{'value': 100.0, 'unit': 'requests', 'period': '1h'}, {'value': 300.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+     }
+    ]
+   }
+  }
+ },
+ "fecha_utc": "2026-09-18T20:27:18.736728+00:00",
+ "motor": "PRIME4API (clon de la guía en ~/.cache/atf/prime4api)",
+ "demandas_en_correos": [
+  1.0,
+  100000.0,
+  10000000.0
+ ],
+ "F-23": {
+  "endpoints_declarados": [
+   "/*",
+   "/v3/smtp/email",
+   "/v3/smtp/emails",
+   "/v3/smtp/blockedContacts",
+   "/v3/inbound/events"
+  ],
+  "consultas": [
+   {
+    "ruta": "/v3/smtp/statistics/events",
+    "papel": "caso: ruta real del prefijo de 300 RPH, no declarable",
+    "plan": "free",
+    "respondio": false,
+    "error": "KeyError: \"Endpoint '/v3/smtp/statistics/events' not found in plan 'free'. Valid endpoints are: ['/*', '/v3/smtp/email', '/v3/smtp/emails', '/v3/smtp/blockedContacts']\""
+   },
+   {
+    "ruta": "/v3/smtp/emails",
+    "papel": "control: ruta con fila propia, sí declarada",
+    "plan": "free",
+    "respondio": true,
+    "por_plan": {
+     "free": [
+      {
+       "endpoint": "/v3/smtp/emails",
+       "alias": "None",
+       "result": "[{'value': 2.0, 'unit': 'requests', 'period': '1s'}, {'value': 300.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+      }
+     ]
+    }
+   }
+  ]
+ },
+ "F-24": {
+  "caso_brevo_free": {
+   "free": {
+    "respondio": true,
+    "por_plan": {
+     "free": [
+      {
+       "endpoint": "/*",
+       "alias": "None",
+       "result": "[{'value': 300.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+      },
+      {
+       "endpoint": "/v3/smtp/email",
+       "alias": "None",
+       "result": "[{'value': 300.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+      },
+      {
+       "endpoint": "/v3/smtp/emails",
+       "alias": "None",
+       "result": "[{'value': 300.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+      },
+      {
+       "endpoint": "/v3/smtp/blockedContacts",
+       "alias": "None",
+       "result": "[{'value': 300.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+      }
+     ]
+    }
+   }
+  },
+  "control_sendgrid": {
+   "free_trial": {
+    "respondio": true,
+    "por_plan": {
+     "free_trial": [
+      {
+       "endpoint": "/v3/mail/send",
+       "alias": "None",
+       "result": "[{'value': 100.0, 'unit': 'emails', 'period': '1day', 'overage_cost': None}]"
+      }
+     ]
+    }
+   },
+   "essentials": {
+    "respondio": true,
+    "por_plan": {
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "alias": "None",
+       "result": "[{'value': 50000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.00133, 'value': 1.0}}]"
+      }
+     ]
+    }
+   },
+   "pro": {
+    "respondio": true,
+    "por_plan": {
+     "pro": [
+      {
+       "endpoint": "/v3/mail/send",
+       "alias": "None",
+       "result": "[{'value': 100000.0, 'unit': 'emails', 'period': '30day', 'overage_cost': {'price': 0.0011, 'value': 1.0}}]"
+      }
+     ]
+    }
+   },
+   "premier": {
+    "respondio": false,
+    "error": "ValueError: could not convert string to float: 'custom'"
+   }
+  }
+ },
+ "F-25": {
+  "caso_brevo_envio": {
+   "free": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "starter": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "standard": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "None",
+      "workload_unit": "MBs"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "professional": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "general",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "MBs"
+     },
+     {
+      "endpoint": "/v3/smtp/email",
+      "alias": "advanced",
+      "workload_unit": "MBs"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "enterprise": {
+    "error": "ValueError: could not convert string to float: 'custom'"
+   }
+  },
+  "control_resend_lote": {
+   "free": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "pro": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "scale": {
+    "escenarios_del_endpoint": [
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     },
+     {
+      "endpoint": "/emails/batch",
+      "alias": "None",
+      "workload_unit": "emails"
+     }
+    ],
+    "claves_disponibles": [
+     "alias",
+     "crf",
+     "dimension",
+     "endpoint",
+     "plan",
+     "quotas",
+     "rates",
+     "workload_unit"
+    ]
+   },
+   "enterprise": {
+    "error": "TypeError: float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ },
+ "F-27": {
+  "caso_brevo": [
+   {
+    "plan": "free",
+    "precio_plan": 0.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 0,
+    "coste_por_demanda": {
+     "1": 0.0,
+     "100000": 0.0,
+     "10000000": 0.0
+    },
+    "plano": true
+   },
+   {
+    "plan": "starter",
+    "precio_plan": 9.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 0,
+    "coste_por_demanda": {
+     "1": 9.0,
+     "100000": 9.0,
+     "10000000": 9.0
+    },
+    "plano": true
+   },
+   {
+    "plan": "standard",
+    "precio_plan": 18.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 0,
+    "coste_por_demanda": {
+     "1": 18.0,
+     "100000": 18.0,
+     "10000000": 18.0
+    },
+    "plano": true
+   },
+   {
+    "plan": "professional",
+    "precio_plan": 499.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 0,
+    "coste_por_demanda": {
+     "1": 499.0,
+     "100000": 499.0,
+     "10000000": 499.0
+    },
+    "plano": true
+   },
+   {
+    "plan": "enterprise",
+    "error": "ValueError: could not convert string to float: 'custom'",
+    "nota": "DV-03 si el mensaje es el del literal 'custom'"
+   }
+  ],
+  "control_mailersend": [
+   {
+    "plan": "free",
+    "precio_plan": 0.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 0,
+    "coste_por_demanda": {
+     "1": 0.0,
+     "100000": 0.0,
+     "10000000": 0.0
+    },
+    "plano": true
+   },
+   {
+    "plan": "hobby",
+    "precio_plan": 7.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 18,
+    "coste_por_demanda": {
+     "1": 7.0,
+     "100000": 149.5,
+     "10000000": 14999.5
+    },
+    "plano": false
+   },
+   {
+    "plan": "starter",
+    "precio_plan": 35.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 18,
+    "coste_por_demanda": {
+     "1": 35.0,
+     "100000": 100.0,
+     "10000000": 12970.0
+    },
+    "plano": false
+   },
+   {
+    "plan": "professional",
+    "precio_plan": 110.0,
+    "moneda": "USD",
+    "cuotas_elasticas": 18,
+    "coste_por_demanda": {
+     "1": 110.0,
+     "100000": 175.0,
+     "10000000": 13045.0
+    },
+    "plano": false
+   }
+  ]
+ }
+}

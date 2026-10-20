@@ -1,0 +1,85 @@
+{
+ "caso": "C2",
+ "pregunta": "PI-A07",
+ "operacion": "Q3",
+ "descripcion": "Capacidad acumulada en un dia por una cuenta sin aprobar, k = 1 y k = 2",
+ "api": "mailersend",
+ "servicio": "http://localhost:8003/api/v1/datasheet",
+ "ejecutado": "2026-09-15T13:04:36",
+ "llamadas": [
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1day",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 124,
+   "respuesta": {
+    "time": "1day",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "unapproved_account",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 100.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1day",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "2"
+   },
+   "body": {
+    "endpoint_path": "/v1/email",
+    "alias": "unapproved_account",
+    "plan_names": [
+     "free"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+   "http": 200,
+   "ms": 113,
+   "respuesta": {
+    "time": "1day",
+    "results": {
+     "free": [
+      {
+       "endpoint": "/v1/email",
+       "alias": "unapproved_account",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 2.0,
+          "value": 100.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

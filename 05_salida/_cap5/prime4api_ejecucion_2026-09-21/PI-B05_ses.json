@@ -1,0 +1,112 @@
+{
+ "pregunta": "PI-B05",
+ "operacion": "Q5",
+ "descripcion": "Sostener un pico de 20.000 correos en una hora (demanda con duración), planes calculables, k = 1",
+ "api": "ses",
+ "llamadas": [
+  {
+   "endpoint": "POST /demand-evaluation",
+   "params": {
+    "time_interval": "1hour",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1"
+   },
+   "body": {
+    "endpoint_path": "/v2/email/outbound-emails",
+    "plan_names": [
+     "a_la_carte",
+     "essentials",
+     "pro",
+     "enterprise"
+    ],
+    "demands": [
+     {
+      "rate": {
+       "value": 5.555555555555555,
+       "unit": "emails",
+       "period": "1s"
+      },
+      "duration": "1h",
+      "label": "pico 20.000 en 1 h"
+     }
+    ]
+   },
+   "datasheet": "03_datos/apis/ses/datasheet.yaml",
+   "http": 200,
+   "ms": 25,
+   "respuesta": {
+    "time_interval": "1hour",
+    "results": [
+     {
+      "plan": "a_la_carte",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "verdicts": {
+       "pico 20.000 en 1 h": {
+        "verdict": "NO",
+        "reason": "rate_exceeded",
+        "detail": {
+         "first_violation_at_ms": 0,
+         "plan_capacity": 1.0,
+         "demand_capacity": 5.56
+        }
+       }
+      }
+     },
+     {
+      "plan": "essentials",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "verdicts": {
+       "pico 20.000 en 1 h": {
+        "verdict": "NO",
+        "reason": "rate_exceeded",
+        "detail": {
+         "first_violation_at_ms": 0,
+         "plan_capacity": 1.0,
+         "demand_capacity": 5.56
+        }
+       }
+      }
+     },
+     {
+      "plan": "pro",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "verdicts": {
+       "pico 20.000 en 1 h": {
+        "verdict": "NO",
+        "reason": "rate_exceeded",
+        "detail": {
+         "first_violation_at_ms": 0,
+         "plan_capacity": 1.0,
+         "demand_capacity": 5.56
+        }
+       }
+      }
+     },
+     {
+      "plan": "enterprise",
+      "endpoint": "/v2/email/outbound-emails",
+      "alias": "sandbox",
+      "dimension": "emails",
+      "verdicts": {
+       "pico 20.000 en 1 h": {
+        "verdict": "NO",
+        "reason": "rate_exceeded",
+        "detail": {
+         "first_violation_at_ms": 0,
+         "plan_capacity": 1.0,
+         "demand_capacity": 5.56
+        }
+       }
+      }
+     }
+    ]
+   }
+  }
+ ]
+}

@@ -1,0 +1,41 @@
+{
+ "time_interval": "1 month",
+ "curve_type": "inflection",
+ "series": [
+  {
+   "plan": "pro",
+   "endpoint": "/emails",
+   "dimension": "emails",
+   "workload_unit": "emails",
+   "capacity_request_factor": 50.0,
+   "rates": [
+    {
+     "value": 500.0,
+     "unit": "emails",
+     "period": "1s"
+    }
+   ],
+   "quotas": [
+    {
+     "value": 50000.0,
+     "unit": "emails",
+     "period": "30day",
+     "overage_cost": {
+      "price": 0.0009,
+      "value": 1.0
+     }
+    }
+   ],
+   "t_ms": [
+    0.0,
+    99000.0,
+    2592000000.0
+   ],
+   "capacity": [
+    500.0,
+    50000.0,
+    50000.0
+   ]
+  }
+ ]
+}

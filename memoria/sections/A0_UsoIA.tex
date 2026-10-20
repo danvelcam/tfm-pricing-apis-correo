@@ -1,0 +1,138 @@
+\chapter{Uso de inteligencia artificial}
+\label{anx:uso-ia}
+
+Este anexo declara el uso de inteligencia artificial en el trabajo.
+La primera sección describe su alcance, y la segunda reproduce íntegra la consulta con la que se completó la selección de APIs (Sección~\ref{sec:propuesta:seleccion}).
+
+\section{Alcance del uso}
+
+El trabajo se ha hecho con Claude, de Anthropic, en sus entornos Cowork y Claude Code, con la suscripción que imputa la Sección~\ref{sec:metodologia:presupuesto}.
+Además de la consulta de la selección, el asistente interviene en seis tareas.
+
+\begin{description}
+  \item[Construcción de las Datasheets.] Un agente lee las fuentes y construye cada Datasheet aplicando el libro de criterios del catálogo.
+    Otro agente, que solo ve la Datasheet terminada, vuelve a abrir cada URL citada y contrasta los datos uno a uno.
+    Un dato entra en el catálogo solo si los dos lo leyeron igual, y además pasa comprobaciones automáticas de formato y de citas contra la página archivada.
+  \item[Criterios no previstos.] Las dudas de modelado que el libro de criterios no resuelve las delibera un consejo de agentes.
+    Cada veredicto se escribe como regla nueva del libro, y solo llega al autor el empate que el consejo no resuelve.
+  \item[Sondeos empíricos.] Desde el 16 de septiembre de 2026 los ejecutan los agentes, con envíos limitados a tres direcciones del autor.
+    Antes los ejecutaba el autor.
+  \item[Análisis.] El recuento de recurrencia de las fricciones y las ejecuciones sobre PRIME4API los preparan agentes, con los resultados versionados.
+  \item[Herramientas.] Los programas del repositorio, como el validador de formato, la verificación de citas o el cálculo de horas del Capítulo~\ref{cap:metodologia}, se programaron con el asistente y tienen pruebas automáticas.
+  \item[Redacción.] El asistente redacta borradores de la memoria y de los documentos de trabajo con el registro del autor, medido sobre su Trabajo Fin de Grado.
+    Los revisan otros agentes: uno por capítulo lee como un tribunal, un verificador adversarial contrasta cada hallazgo y un modelo auxiliar vota con él qué arreglos se aplican.
+\end{description}
+
+El autor fija el alcance, las preguntas de investigación, el índice, los criterios de selección y todo lo que afecta a la relación con los tutores.
+Decide también lo que los agentes no resuelven y lee el documento completo antes de la entrega.
+
+\section{La consulta de la selección}
+
+Esta sección registra la consulta a un modelo de lenguaje con la que se completó la selección de APIs del catálogo.
+Reproduce el prompt y la respuesta tal como se registraron, sin corregir su contenido.
+Lo que la construcción de las Datasheets corrigió después se indica al final de la sección.
+
+La Tabla~\ref{tab:uso-ia:ficha} recoge las condiciones de la consulta que constan en el registro, y también las que no constan.
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|p{4.2cm}|p{9.4cm}|}
+\hline
+\raggedright \textbf{Campo} & \raggedright \textbf{Valor} \tabularnewline
+\hline
+\raggedright Fecha & \raggedright 1 de septiembre de 2026 \tabularnewline
+\hline
+\raggedright Modelo & \raggedright \texttt{claude-fable-5-1}, de Anthropic \tabularnewline
+\hline
+\raggedright Entorno & \raggedright La sesión de trabajo del proyecto, a petición del autor \tabularnewline
+\hline
+\raggedright Criterios & \raggedright Fijados por el autor antes de la consulta e incluidos en el prompt \tabularnewline
+\hline
+\raggedright Catálogo previo & \raggedright Postmark, Resend, SendGrid y MailerSend, que el prompt excluye \tabularnewline
+\hline
+\raggedright Respuesta pedida & \raggedright Cuatro APIs seleccionadas y cuatro de reserva, ordenadas, y para cada una el tipo de modelo de precios, lo que aporta y el riesgo principal, sin inventar cifras \tabularnewline
+\hline
+\raggedright No consta en el registro & \raggedright La hora, el prompt de sistema, los parámetros de generación, el número de intentos y la transcripción de la sesión \tabularnewline
+\hline
+\end{tabular}
+\caption{Ficha de la consulta, según el registro de la selección.}
+\label{tab:uso-ia:ficha}
+\end{table}
+
+La transcripción conserva la negrita y la cursiva del original, igual que los términos en letra de código.
+Solo cambia el marcado: los encabezados de la respuesta pasan a negrita, y su tabla final se reproduce como Tabla~\ref{tab:uso-ia:cobertura}.
+
+\section{Prompt literal}
+
+\begin{lstlisting}[style=literalia]
+Actúa como analista de APIs SaaS. Necesito seleccionar cuatro APIs de correo electrónico transaccional para completar un catálogo de ocho, destinado a un Trabajo Fin de Máster sobre Pricing Intelligence que modela la **capacidad contractual** de cada API (cuotas, rates, volumen contratado, sobrecoste) en Datasheets ACM2YAML v0.3 y las analiza con PRIME4API. Ya están en el catálogo: Postmark, Resend, SendGrid y MailerSend. Excluye esas cuatro.
+
+Criterios, por orden de peso:
+1. **Diversidad del modelo de precios.** El catálogo debe cubrir formas distintas de cobrar: planes por volumen mensual, pago por uso puro, producto vendido como añadido de otro, y planes con límite diario además del mensual. Prioriza las que añadan una forma que aún no esté cubierta.
+2. **Documentación pública y sin registro** de precios y de límites (rate limits, tamaños máximos, destinatarios por petición). Sin esto la datasheet no se puede construir con trazabilidad.
+3. **Adopción real** en producción, para que la comparación tenga interés práctico.
+4. **Rasgo diferenciador** para el análisis de la relación entre límites de uso y rates: rate publicado por endpoint, caudal negociado no publicado, límite diario, etc.
+5. **Diversidad geográfica y de tamaño de proveedor**, con al menos una europea.
+
+Devuelve exactamente cuatro APIs seleccionadas y cuatro de reserva, ordenadas, y para cada una: modelo de precios (tipo), qué aporta al catálogo que las demás no, y el riesgo principal para construir su datasheet. No inventes cifras: describe el tipo de modelo, no los precios; los precios se verificarán contra la documentación al construir cada datasheet.
+\end{lstlisting}
+
+\section{Respuesta íntegra}
+
+\begin{lstlisting}[style=literalia]
+**Seleccionadas**
+
+1. **Amazon SES** — ##Pago por uso puro, sin planes ni cuotas mensuales.## Es la única forma de cobro que el catálogo no cubre todavía y la que más tensiona el esquema: no hay «volumen contratado», el coste es lineal y los límites (cuota de envío diaria y tasa máxima por segundo) se asignan por cuenta y crecen con la reputación. Adopción máxima en producción. Riesgo: los límites son por cuenta y no por plan, así que la datasheet tendrá que documentar el valor inicial publicado y el mecanismo de ampliación.
+2. **Mailgun** — ##Planes por volumen mensual con rate limits publicados por endpoint y sobrecoste por exceso.## Aporta el caso limpio de rate documentado, que es justo la relación límite-rate que el trabajo quiere caracterizar, y es la candidata natural al sondeo empírico. Riesgo: el catálogo de planes ha cambiado varias veces; hay que fijar fecha de captura.
+3. **Brevo** (antes Sendinblue) — ##Planes por volumen mensual con límite diario en el plan gratuito.## Añade la combinación cuota diaria + cuota mensual, que obliga a modelar dos ventanas de tiempo sobre la misma métrica. Europea (Francia). Riesgo: el producto mezcla marketing y transaccional; hay que acotar la datasheet a la API transaccional, como se hizo con Resend (Q1).
+4. **Mailchimp Transactional (Mandrill)** — ##Producto vendido como añadido de otro:## solo se contrata con un plan de pago de Mailchimp y se cobra por bloques de envíos. Es una forma de cobro que ninguna otra del catálogo tiene y que pone a prueba el campo `type` (D-003) y la noción de volumen contratado. Riesgo: la dependencia del plan base complica el cálculo del coste total.
+
+**Reserva, por orden**
+
+5. **Mailjet** — planes por volumen con rate documentado; europea; mismo grupo que Mailgun (Sinch), por lo que aporta menos diversidad que Brevo.
+6. **Zoho ZeptoMail** — cobro por créditos prepagados, otra forma de pago por uso.
+7. **SparkPost** (Bird) — planes por volumen, muy documentada; menos adopción reciente.
+8. **SMTP2GO** — planes por volumen con límites diarios, proveedor pequeño; útil como caso de diversidad de tamaño si cae alguna de las anteriores.
+
+**Cobertura de modelos de precio resultante (8 APIs)**
+\end{lstlisting}
+
+\begin{table}[H]
+\centering
+\small
+\begin{tabular}{|p{6.4cm}|p{7.2cm}|}
+\hline
+\textbf{Modelo de precios} & \textbf{APIs} \\
+\hline
+Planes por volumen mensual & Postmark, SendGrid, MailerSend, Mailgun \\
+\hline
+Planes por volumen con caudal negociado no publicado & Resend \\
+\hline
+Planes por volumen con límite diario adicional & Brevo \\
+\hline
+Pago por uso puro & Amazon SES \\
+\hline
+Añadido de otro producto, por bloques & Mailchimp Transactional \\
+\hline
+\end{tabular}
+\caption{Tabla incluida en la respuesta de la consulta, reproducida literalmente.}
+\label{tab:uso-ia:cobertura}
+\end{table}
+
+La consulta se hizo en la sesión de trabajo del proyecto (Tabla~\ref{tab:uso-ia:ficha}), y la respuesta usa ese contexto: menciona, con sus identificadores internos, dos decisiones previas que el prompt no recoge.
+Una acota Resend a su producto transaccional, y la otra fija el criterio del campo \texttt{type}.
+
+\section{Cómo se aplicó}
+
+La selección no cambió después de la consulta: ninguna API de la reserva sustituyó a una del catálogo (Apartado~\ref{sec:propuesta:reserva}).
+La respuesta no da precios ni límites con cifra, así que ninguno de los que recoge el catálogo procede de ella.
+Cada uno sale de la documentación del proveedor, de su panel o de un sondeo, en la ventana de toma de datos (Apartado~\ref{sec:propuesta:ventana}).
+La construcción corrigió tres afirmaciones de la respuesta (sobre Amazon SES, Mailgun y Brevo), y la Sección~\ref{sec:propuesta:respuesta} las detalla.
+
+El 16 de octubre de 2026 se hizo una segunda consulta, ajena a la selección.
+En ella se preguntó cómo se generalizaría cada uno de los doce elementos no soportados que el criterio no promovía o dejaba en suspenso en esa fecha, y la Sección~\ref{sec:propuesta:conformidad} resume su respuesta.
+La respondió Claude Opus 5.5, en una sesión a la que solo se le permitió leer un fichero, sin usar la web.
+Ese fichero describe cada caso sin su veredicto.
+El prompt, esa entrada y la respuesta íntegra están en el repositorio del trabajo.
+La respuesta no cambia ningún dato del catálogo ni ningún veredicto del Capítulo~\ref{cap:evolucion}.

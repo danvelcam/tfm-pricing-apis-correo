@@ -1,0 +1,25 @@
+# Sondeo Mailgun C — la ventana del caudal
+# Fecha: 2026-09-21
+# Presupuesto declarado: 12 envios, todos al destinatario que devolvio la guarda.
+# Las cabeceras se registran; la regla D6 decide si se adoptan, y este script no.
+
+── Tanda 1: cinco peticiones seguidas ──
+T1-1     t=17:48:37.879 HTTP 200  ratelimit 79999/80000 reset=1790012927731  recipient 1999999/2000000
+T1-2     t=17:48:38.484 HTTP 200  ratelimit 79998/80000 reset=1790012927731  recipient 1999998/2000000
+T1-3     t=17:48:39.086 HTTP 200  ratelimit 79997/80000 reset=1790012927731  recipient 1999997/2000000
+T1-4     t=17:48:39.690 HTTP 200  ratelimit 79996/80000 reset=1790012927731  recipient 1999996/2000000
+T1-5     t=17:48:40.271 HTTP 200  ratelimit 79995/80000 reset=1790012927731  recipient 1999995/2000000
+
+── Pausa de 15 s (por encima del reset observado en el sondeo B) ──
+── Tanda 2: una peticion ──
+T2-1     t=17:48:55.836 HTTP 200  ratelimit 79999/80000 reset=1790012945706  recipient 1999999/2000000
+
+── Tanda 3: seis peticiones seguidas ──
+T3-1     t=17:48:56.431 HTTP 200  ratelimit 79998/80000 reset=1790012945706  recipient 1999998/2000000
+T3-2     t=17:48:57.052 HTTP 200  ratelimit 79997/80000 reset=1790012945706  recipient 1999997/2000000
+T3-3     t=17:48:57.639 HTTP 200  ratelimit 79996/80000 reset=1790012945706  recipient 1999996/2000000
+T3-4     t=17:48:58.224 HTTP 200  ratelimit 79995/80000 reset=1790012945706  recipient 1999995/2000000
+T3-5     t=17:48:59.054 HTTP 200  ratelimit 79994/80000 reset=1790012945706  recipient 1999994/2000000
+T3-6     t=17:48:59.609 HTTP 200  ratelimit 79993/80000 reset=1790012945706  recipient 1999993/2000000
+
+FIN. Envios gastados: 12 de un presupuesto de 12.

@@ -1,0 +1,95 @@
+Validación de los ocho pricings: resend, mailersend, sendgrid, brevo, mailchimp, mailgun, postmark y ses (R27)
+Fecha: 2026-10-18T20:36:45Z (antes: 2026-10-16T10:50:22Z con resend y mailersend; 2026-10-18T17:26:50Z con los cuatro primeros tras D17)
+
+POR QUÉ SE REPITE
+- La colección pasa de cuatro a ocho ficheros. mailchimp.yaml, mailgun.yaml, postmark.yaml y ses.yaml
+  no se habían validado aquí.
+- Antes de validar se repasó la fidelidad de los ocho. Cada valor numérico (precios, cuotas, caudales,
+  topes por petición, add-ons) se comparó con su datasheet.yaml, con D17 aplicada (D-068).
+  - mailchimp, mailgun, postmark y ses: todos los valores coinciden con la Datasheet. Los precios de
+    SES por correo (0,10 / 0,16 / 0,22 / 0,23 USD por 1.000) coinciden además con features.md y con
+    el volcado de la página de precios del 2026-09-18.
+  - sendgrid y brevo: siguen con los valores de D17 de la tanda anterior (1,3 USD por 1.000 en
+    Essentials 50K, DISC-01; 12,00 USD por asiento, DISC-08). El resto coincide.
+  - Las DISC cerradas o acotadas por D17 que no cambian el YAML: SendGrid DISC-02 (Premier, que no
+    se escribe) y DISC-03 (plantillas, sin feature); Mailgun DISC-03 (100 al día y 3.000 al mes) y la
+    del soporte «24/7», que el YAML no cifra; SES y Brevo, campos sin valor en v0.3.
+  - No hay ningún valor que corregir. Ningún fichero cambia en esta pasada.
+
+QUÉ SE HA USADO
+- pricing4ts 0.10.4: la versión que fija el package.json de SPHERE (^0.10.4) y la que trae instalada
+  la imagen del servidor de SPHERE (testing-server:latest, /usr/src/server/node_modules/pricing4ts).
+- Paso 1, parser: retrievePricingFromPath, la misma llamada con la que SPHERE lee un fichero subido
+  (api/src/services/PricingService.ts y PricingCollectionService.ts:164). Node local, sin red.
+- Paso 2, analítica: new PricingService(pricing).getAnalytics(), la que SPHERE calcula al subir
+  (PricingCollectionService.ts:165-188). Necesita MiniZinc; el sistema no lo tiene y la imagen del
+  servidor de SPHERE sí (MiniZinc 2.6.4), así que se corrió dentro de esa imagen con --network none.
+
+QUÉ NO SE HA HECHO
+- No se ha levantado la pila de SPHERE ni se ha subido nada, ni en local ni en sphere.score.us.es.
+  La validación es la del parser y la analítica de SPHERE, no la de su interfaz: la prueba de subida
+  real queda para el autor (subir.md).
+- subir.md sigue hablando de dos ficheros y no se ha tocado en esta tanda.
+
+PASO 1 — parser (node, pricing4ts 0.10.4 local)
+$ node validar.js resend.yaml mailersend.yaml sendgrid.yaml brevo.yaml mailchimp.yaml mailgun.yaml postmark.yaml ses.yaml
+OK resend.yaml: saasName=Resend syntaxVersion=3.0 version=2026-09-01 features=9 usageLimits=8 plans=free,pro,scale addOns=extraEmailsPayAsYouGo,extraDomains,dedicatedIp,singleSignOn
+OK mailersend.yaml: saasName=MailerSend syntaxVersion=3.0 version=2026-09-08 features=13 usageLimits=18 plans=free,hobby,starter,professional addOns=extraEmailsHobby,extraEmailsStarterProfessional,extraDomains
+OK sendgrid.yaml: saasName=SendGrid syntaxVersion=3.0 version=2026-09-06 features=11 usageLimits=15 plans=freeTrial,essentials,pro addOns=overageEssentials,overagePro,extraDedicatedIp,emailTestingCredits30
+OK brevo.yaml: saasName=Brevo syntaxVersion=3.0 version=2026-09-16 features=10 usageLimits=9 plans=free,starter,standard,professional addOns=extraSeats,dedicatedIp
+OK mailchimp.yaml: saasName=Mailchimp Transactional syntaxVersion=3.0 version=2026-09-21 features=11 usageLimits=3 plans=transactionalEmail addOns=extraBlocksFirstTier,dedicatedIp
+OK mailgun.yaml: saasName=Mailgun syntaxVersion=3.0 version=2026-09-21 features=18 usageLimits=14 plans=free,basic,foundation,scale addOns=extraEmailsBasic,extraEmailsFoundation,extraEmailsScale,extraDedicatedIp
+OK postmark.yaml: saasName=Postmark syntaxVersion=3.0 version=2026-08-03 features=17 usageLimits=13 plans=free,basic,pro,platform addOns=extraEmailsBasic,extraEmailsPro,extraEmailsPlatform,dedicatedIp
+OK ses.yaml: saasName=Amazon SES syntaxVersion=3.0 version=2026-09-18 features=12 usageLimits=8 plans=aLaCarte,essentials,pro,enterprise addOns=outboundEmailsALaCarte,outboundEmailsEssentials,outboundEmailsPro,outboundEmailsEnterprise,extraApiValidations,extraOpenIngressEndpoint,globalDeliverability,standardDedicatedIp
+
+PASO 2 — analítica MiniZinc (imagen testing-server:latest de SPHERE)
+$ docker run --rm --network none -v <dir>:/w:ro --entrypoint node testing-server:latest /w/analitica.js /w/<fichero>.yaml   (una vez por fichero)
+OK resend.yaml analytics: {"numberOfFeatures":9,"numberOfInformationFeatures":1,"numberOfIntegrationFeatures":4,"numberOfIntegrationApiFeatures":3,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":1,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":2,"numberOfAutomationFeatures":1,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":1,"numberOfManagementFeatures":1,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":8,"numberOfRenewableUsageLimits":3,"numberOfNonRenewableUsageLimits":5,"numberOfPlans":3,"numberOfFreePlans":1,"numberOfPaidPlans":2,"numberOfAddOns":4,"numberOfReplacementAddons":4,"numberOfExtensionAddons":0,"configurationSpaceSize":21,"minSubscriptionPrice":0,"maxSubscriptionPrice":290}
+OK mailersend.yaml analytics: {"numberOfFeatures":13,"numberOfInformationFeatures":2,"numberOfIntegrationFeatures":4,"numberOfIntegrationApiFeatures":4,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":0,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":4,"numberOfAutomationFeatures":0,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":0,"numberOfManagementFeatures":3,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":18,"numberOfRenewableUsageLimits":5,"numberOfNonRenewableUsageLimits":13,"numberOfPlans":4,"numberOfFreePlans":1,"numberOfPaidPlans":3,"numberOfAddOns":3,"numberOfReplacementAddons":3,"numberOfExtensionAddons":0,"configurationSpaceSize":11,"minSubscriptionPrice":0,"maxSubscriptionPrice":115.3}
+OK sendgrid.yaml analytics: {"numberOfFeatures":11,"numberOfInformationFeatures":1,"numberOfIntegrationFeatures":4,"numberOfIntegrationApiFeatures":4,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":0,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":4,"numberOfAutomationFeatures":0,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":0,"numberOfManagementFeatures":2,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":15,"numberOfRenewableUsageLimits":4,"numberOfNonRenewableUsageLimits":11,"numberOfPlans":3,"numberOfFreePlans":1,"numberOfPaidPlans":2,"numberOfAddOns":4,"numberOfReplacementAddons":4,"numberOfExtensionAddons":0,"configurationSpaceSize":13,"minSubscriptionPrice":0,"maxSubscriptionPrice":139.05}
+OK brevo.yaml analytics: {"numberOfFeatures":10,"numberOfInformationFeatures":2,"numberOfIntegrationFeatures":5,"numberOfIntegrationApiFeatures":5,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":0,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":2,"numberOfAutomationFeatures":0,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":0,"numberOfManagementFeatures":1,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":9,"numberOfRenewableUsageLimits":5,"numberOfNonRenewableUsageLimits":4,"numberOfPlans":4,"numberOfFreePlans":1,"numberOfPaidPlans":3,"numberOfAddOns":2,"numberOfReplacementAddons":2,"numberOfExtensionAddons":0,"configurationSpaceSize":6,"minSubscriptionPrice":0,"maxSubscriptionPrice":750}
+OK mailchimp.yaml analytics: {"numberOfFeatures":11,"numberOfInformationFeatures":4,"numberOfIntegrationFeatures":4,"numberOfIntegrationApiFeatures":4,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":0,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":1,"numberOfAutomationFeatures":0,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":0,"numberOfManagementFeatures":2,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":3,"numberOfRenewableUsageLimits":2,"numberOfNonRenewableUsageLimits":1,"numberOfPlans":1,"numberOfFreePlans":0,"numberOfPaidPlans":1,"numberOfAddOns":2,"numberOfReplacementAddons":2,"numberOfExtensionAddons":0,"configurationSpaceSize":4,"minSubscriptionPrice":20,"maxSubscriptionPrice":69.95}
+OK mailgun.yaml analytics: {"numberOfFeatures":18,"numberOfInformationFeatures":3,"numberOfIntegrationFeatures":4,"numberOfIntegrationApiFeatures":3,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":1,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":5,"numberOfAutomationFeatures":1,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":1,"numberOfManagementFeatures":4,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":1,"numberOfPaymentFeatures":0,"numberOfUsageLimits":14,"numberOfRenewableUsageLimits":4,"numberOfNonRenewableUsageLimits":10,"numberOfPlans":4,"numberOfFreePlans":1,"numberOfPaidPlans":3,"numberOfAddOns":4,"numberOfReplacementAddons":4,"numberOfExtensionAddons":0,"configurationSpaceSize":11,"minSubscriptionPrice":0,"maxSubscriptionPrice":150.1}
+OK postmark.yaml analytics: {"numberOfFeatures":17,"numberOfInformationFeatures":3,"numberOfIntegrationFeatures":7,"numberOfIntegrationApiFeatures":7,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":0,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":3,"numberOfAutomationFeatures":0,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":0,"numberOfManagementFeatures":4,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":13,"numberOfRenewableUsageLimits":2,"numberOfNonRenewableUsageLimits":11,"numberOfPlans":4,"numberOfFreePlans":1,"numberOfPaidPlans":3,"numberOfAddOns":4,"numberOfReplacementAddons":4,"numberOfExtensionAddons":0,"configurationSpaceSize":11,"minSubscriptionPrice":0,"maxSubscriptionPrice":69.2}
+OK ses.yaml analytics: {"numberOfFeatures":12,"numberOfInformationFeatures":3,"numberOfIntegrationFeatures":4,"numberOfIntegrationApiFeatures":4,"numberOfIntegrationExtensionFeatures":0,"numberOfIntegrationIdentityProviderFeatures":0,"numberOfIntegrationWebSaaSFeatures":0,"numberOfIntegrationMarketplaceFeatures":0,"numberOfIntegrationExternalDeviceFeatures":0,"numberOfDomainFeatures":4,"numberOfAutomationFeatures":0,"numberOfBotAutomationFeatures":0,"numberOfFilteringAutomationFeatures":0,"numberOfTrackingAutomationFeatures":0,"numberOfTaskAutomationFeatures":0,"numberOfManagementFeatures":1,"numberOfGuaranteeFeatures":0,"numberOfSupportFeatures":0,"numberOfPaymentFeatures":0,"numberOfUsageLimits":8,"numberOfRenewableUsageLimits":5,"numberOfNonRenewableUsageLimits":3,"numberOfPlans":4,"numberOfFreePlans":2,"numberOfPaidPlans":2,"numberOfAddOns":8,"numberOfReplacementAddons":8,"numberOfExtensionAddons":0,"configurationSpaceSize":88,"minSubscriptionPrice":0,"maxSubscriptionPrice":1325.12}
+
+INCIDENCIAS DURANTE LA VALIDACIÓN
+- En esta pasada no hay ninguna: los ocho pasan el parser y la analítica sin tocar nada.
+- Las de pasadas anteriores siguen valiendo como aviso:
+  - docUrl en features INTEGRATION: el parser lo ignora con aviso (solo vale en GUARANTEE). Se quitó.
+  - MailerSend, primera pasada de la analítica: 'If a usage limit has a value > 0 in a plan, at least
+    one of its linked features must be available for such plan'. Los límites del lote valían 35000 y
+    50 en Free, que no tiene el endpoint. Se pusieron a 0 por defecto y con valor desde Hobby. El
+    parser no lo detecta; solo la analítica. Una subida que pase el parser puede fallar en la analítica.
+  - MailerSend, 2026-10-18: al quitar el add-on dedicatedIp, la analítica rechazó el fichero con
+    'There should not be dead features within the pricing'. La feature dedicatedIp ya no la ofrecía
+    ningún plan ni add-on. Se quitó también. Otra vez lo detecta la analítica y no el parser.
+
+LECTURA DE LA ANALÍTICA
+- maxSubscriptionPrice suma el plan más caro y una unidad de cada add-on compatible. Cada add-on cuenta
+  una vez: el sobrecoste de un mes real no aparece (no_admite.md, L7). Con los ocho:
+  - MailerSend 115,3 = Professional 110 + un paquete de 1.000 emails 1,3 + un dominio 4.
+  - Mailchimp 69,95 = plan 20 + un bloque de 25.000 a 20 + una IP a 29,95. El tope de 19 bloques no
+    pesa: la analítica toma uno.
+  - Mailgun 150,1 = Scale 90 + un bloque de sobrecoste a 1,1 + una IP a 59.
+  - Postmark 69,2 = Platform 18 + un bloque de sobrecoste a 1,2 + una IP a 50.
+  - SES 1325,12 = Essentials 0 + 0,16 por 1.000 correos + una validación 0,01 + un endpoint de entrada
+    50 + entregabilidad global 1250 + una IP 24,95. El máximo sale de Essentials y no de Enterprise
+    (500), porque Enterprise ya incluye lo que en Essentials es add-on.
+- SES sale con dos planes gratuitos (à la carte y Essentials) y Mailchimp con ninguno. En SES el plan
+  no lleva cuota: todo el coste está en los add-ons por correo (no_admite.md, L17). En Mailchimp no hay
+  plan sin pago y la demo no tiene forma de plan (L13).
+- SES tiene el espacio de configuración más grande, 88, con ocho add-ons. El siguiente es Resend, 21.
+- Los add-ons de cada fichero salen como 'Replacement' y ninguno como 'Extension', aunque los de emails
+  y dominios usan usageLimitsExtensions para ampliar un límite. No se ha investigado por qué; no afecta
+  a la validez.
+
+HUELLAS (sha256 de los ficheros validados)
+3fe7156ff7b290866fd28ab84591d24abca47549acee6ec9fb2c404c307aff86  resend.yaml
+0653e864ce54bc70d65178bf7a0b17b06df365a308849e9560b1792092825cb0  mailersend.yaml
+ce6477fbd719fef55af482a8a368727049e397dad9961cf9adeea659e2f4b9f7  sendgrid.yaml
+b109785a60bd13f2033e027eb746aa5aeaae764a9a3b37d524a12b24519ac903  brevo.yaml
+d1c18979d875babd12cb2c09ce65ff8f136ca957c718c121424584e4d9f67fbf  mailchimp.yaml
+3da68d218f471fbb4ec83076e968fb3f164a99f58550fda4e8b1a879159ee4ac  mailgun.yaml
+86c31d9409f59873c5eb23550dbc7e5e2b714b47e973da8f615aa6c76f22df2b  postmark.yaml
+dcd8af26394f3ab3e8ff5a2afaac4adf3e08e86f7df8f887e79e4dce20560fcd  ses.yaml

@@ -1,0 +1,58 @@
+{
+ "id": "L2-04",
+ "pregunta": "¿Qué límites tiene /v1/email en el plan free para una cuenta sin aprobar?",
+ "api": "mailersend",
+ "datasheet": "03_datos/apis/mailersend/datasheet.yaml",
+ "datasheet_sha256": "3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd",
+ "datasheet_sin_tocar": true,
+ "origen": "PRIME4API de SPHERE en local (localhost:8003)",
+ "fecha": "2026-09-15T13:04:32",
+ "llamada": {
+  "endpoint": "POST /api/v1/datasheet/limits",
+  "params": {},
+  "body": {
+   "plan_names": [
+    "free"
+   ],
+   "endpoint_path": "/v1/email",
+   "alias": "unapproved_account"
+  },
+  "datasheet_source": "<YAML crudo de 03_datos/apis/mailersend/datasheet.yaml, sha256 3dff58bf0d8be28bd66de9a5b669f07d5afdc4624c8da141ccdd32626b9227bd>",
+  "http": 200,
+  "ms": 116,
+  "respuesta": {
+   "results": {
+    "free": [
+     {
+      "endpoint": "/v1/email",
+      "alias": "unapproved_account",
+      "rates": [
+       {
+        "value": 10.0,
+        "unit": "requests",
+        "period": "1min"
+       }
+      ],
+      "quotas": [
+       {
+        "value": 100.0,
+        "unit": "requests",
+        "period": "1day"
+       },
+       {
+        "value": 500.0,
+        "unit": "emails",
+        "period": "30day"
+       },
+       {
+        "value": 100.0,
+        "unit": "emails",
+        "period": "30day"
+       }
+      ]
+     }
+    ]
+   }
+  }
+ }
+}

@@ -1,0 +1,45 @@
+{
+ "pregunta": "PI-G02",
+ "operacion": "Q10",
+ "descripcion": "Coste de un mes de 25.000 correos en el primer plan de pago sin cambiar de plan",
+ "api": "postmark",
+ "llamadas": [
+  {
+   "endpoint": "POST /budget/recommendation",
+   "params": {
+    "desired_capacity": 25000,
+    "capacity_unit": "emails"
+   },
+   "body": {
+    "endpoint_path": "/email",
+    "plan_names": [
+     "basic"
+    ]
+   },
+   "datasheet": "03_datos/apis/postmark/datasheet.yaml",
+   "http": 200,
+   "ms": 21,
+   "respuesta": {
+    "desired_capacity": 25000.0,
+    "capacity_unit": "emails",
+    "exclude_plan_price": false,
+    "currency": "USD",
+    "results": [
+     {
+      "plan": "basic",
+      "endpoint": "/email",
+      "dimension": "emails",
+      "base_cost": 15.0,
+      "overage_cost": 27.0,
+      "total_cost": 42.0,
+      "currency": "USD",
+      "affordable": true,
+      "unreachable": false,
+      "time_to_capacity_ms": 0.0,
+      "time_to_capacity": "0s"
+     }
+    ]
+   }
+  }
+ ]
+}

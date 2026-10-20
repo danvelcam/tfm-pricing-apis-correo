@@ -1,0 +1,8 @@
+El HTML devuelto por POST /api/v1/datasheet/capacity-curves/chart/inflection del PRIME4API de SPHERE en local
+(localhost:8003, 2026-09-08 ~19:40 UTC, pedido desde el Chrome del autor) no se archivo integro: el filtro de salida de la
+herramienta de navegador bloqueaba el texto. Se extrajo en el propio navegador, con la misma expresion regular de
+gen_fig_capacidad.py extraer, la figura Plotly (data + layout): <title> = 'Inflection Point Capacity Curve — 1 minute'; layout.template identico al de
+resend_pro_k1 (sha256 canonico 6f6fb9e9e869... en los dos), resto del layout y data en png/mailersend_hobby_k70.json. Los puntos sobre
+30 dias (POST .../data/inflection, time_interval '1 month') estan integros en mailersend_hobby_k70_data.json.
+
+2026-09-14 (D-035): el HTML ya esta archivado, por la misma via que el de k = 1: mailersend_hobby_k70.html.

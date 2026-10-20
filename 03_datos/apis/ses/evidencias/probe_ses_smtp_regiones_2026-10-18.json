@@ -1,0 +1,45 @@
+{
+  "fecha_utc": "2026-10-18T20:20:28+00:00",
+  "proposito": "DISC-16: existencia del endpoint SMTP por region (DNS + banner en 587, sin autenticar ni enviar)",
+  "regiones": {
+    "eu-south-1": {
+      "host": "email-smtp.eu-south-1.amazonaws.com",
+      "error": "gaierror: [Errno -5] No address associated with hostname"
+    },
+    "us-west-1": {
+      "host": "email-smtp.us-west-1.amazonaws.com",
+      "dns": [
+        "50.18.243.214",
+        "54.176.126.9"
+      ],
+      "banner": "220 email-smtp.amazonaws.com ESMTP SimpleEmailService-d-BWA98GEOL ni8gz96x1O9sQq5jvbPo"
+    },
+    "ap-northeast-3": {
+      "host": "email-smtp.ap-northeast-3.amazonaws.com",
+      "dns": [
+        "13.208.232.106",
+        "13.208.61.131",
+        "13.208.86.180"
+      ],
+      "banner": "220 email-smtp.amazonaws.com ESMTP SimpleEmailService-d-E8YBVN5SK DYmHgHvNNWu9Bv69UfEV"
+    },
+    "eu-west-3": {
+      "host": "email-smtp.eu-west-3.amazonaws.com",
+      "dns": [
+        "15.236.217.177",
+        "15.236.68.209",
+        "15.237.2.166"
+      ],
+      "banner": "220 email-smtp.amazonaws.com ESMTP SimpleEmailService-d-6ED72DN0K TT4nUo6nsPj2OkuFEcJA"
+    },
+    "us-east-1": {
+      "host": "email-smtp.us-east-1.amazonaws.com",
+      "dns": [
+        "3.224.1.122",
+        "52.206.145.59",
+        "54.157.237.25"
+      ],
+      "banner": "220 email-smtp.amazonaws.com ESMTP SimpleEmailService-d-FPALK5NBM 4jmgsjf8rqziNyNLULEa"
+    }
+  }
+}

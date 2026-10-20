@@ -1,0 +1,67 @@
+{
+ "pregunta": "PI-B02",
+ "operacion": "Q7",
+ "descripcion": "Máximo de correos al mes con 50 USD: cuota expandida por presupuesto (/quotas con max_budget) y capacidad al mes con esa cuota, planes calculables",
+ "api": "mailchimp",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "params": {
+    "capacity_unit": "emails",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 200,
+   "ms": 24,
+   "respuesta": {
+    "results": {
+     "transactional_email": [
+      {
+       "endpoint": "/messages/send",
+       "alias": "demo",
+       "quotas": [
+        {
+         "value": 25000.0,
+         "unit": "emails",
+         "period": "30day"
+        },
+        {
+         "value": 500.0,
+         "unit": "emails",
+         "period": ""
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "params": {
+    "time": "1month",
+    "capacity_unit": "emails",
+    "capacity_request_factor": "1",
+    "max_budget": 50
+   },
+   "body": {
+    "endpoint_path": "/messages/send",
+    "plan_names": [
+     "transactional_email"
+    ]
+   },
+   "datasheet": "03_datos/apis/mailchimp/datasheet.yaml",
+   "http": 500,
+   "ms": 22,
+   "respuesta": {
+    "detail": "float() argument must be a string or a real number, not 'NoneType'"
+   }
+  }
+ ]
+}
