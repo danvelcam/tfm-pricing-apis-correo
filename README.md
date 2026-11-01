@@ -24,7 +24,7 @@ PRIME4API y las herramientas que las reproducen. La memoria está en `memoria/`,
 | `DECISIONES.md` | Las decisiones del trabajo que citan los ficheros (D-nnn), con fecha |
 | `PAGINAS.md` | Las copias de páginas de los proveedores que no se publican, con su huella |
 
-Las rutas son las que cita la memoria en la tabla del paquete de replicación, en las Conclusiones.
+Las rutas son las mismas que cita la memoria.
 
 ## Reproducir la verificación
 
