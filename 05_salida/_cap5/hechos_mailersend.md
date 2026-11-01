@@ -312,3 +312,12 @@ Numeración de `fuentes.md`. Solo se listan las abiertas (o reencuadradas y no c
 3. **Una petición vale 1 o 35.000 según qué contador la mire.** Un `POST /v1/bulk-email` de `"500 individual email objects … for a total of 35,000 emails"` consume 1 de la cuota diaria de peticiones (`"Every request is counted against the quota"`) y hasta 35.000 de la cuota mensual; por SMTP `"Daily request quota applies to each individual message"`. El proveedor escribe la multiplicación del lote y calla el total del envío simple (`"Min 1, max 50"` + `"Max 10"` + `"Max 10"`, 70 en 🟡). → MS-63, MS-64, MS-36, MS-59 (F-03, F-15).
 4. **El tope diario del Free tiene una cifra y dos unidades.** El centro de ayuda dice `"with a daily limit of 100 emails"`; cuatro fuentes dicen `100 requests` (`"Free plan: 100 requests per day"`, `"100 daily requests"`). La Datasheet lleva la cuota en emails definida y sin referenciar desde ningún plan, con valor 🟡 y ventana 🔴, y la fricción F-17 en suspenso hasta que `GET /v1/api-quota` con cuenta Free lo resuelva. → MS-28, MS-35, MS-115 (DISC-11, Q5).
 5. **La escalera de precios no es legible sin navegador y el panel la esconde detrás de un dominio aprobado.** El selector `"How many emails do you plan to send?"` reescribe las tarjetas por JavaScript (`WebFetch` ve `"$ /month"`); Starter se detiene en `"$600.00 /month"` · `"1,000,000 emails /month"` cuando dos páginas de feature dicen `"up to 500,000 emails/month"`; el sobrecoste baja por peldaño y difiere entre tiers al mismo volumen (`"$1.10"` frente a `"$1.00"` en 250K); y en la cuenta propia `/billing` redirige al dashboard con `"Add your domain to upgrade"`. → MS-18, MS-19, MS-22, MS-80, MS-140 (F-02, F-08, DISC-06).
+
+## Corrección del 2026-10-31 (MS-15 y DISC-03)
+
+MS-15 se leyó con `WebFetch`, que no ejecuta JavaScript. Con navegador, la página de feature da hoy
+los mismos precios que /pricing (`"$ 6.30 /month"`, `"$75.60 billed yearly"`, `"$31.50 /month"`).
+Los importes del 20 % (`"$5.60 /month"`, `"$67.20 billed yearly"`) están en el HTML sin JavaScript de
+las dos páginas. DISC-03 sigue como hecho, pero su causa es el modo de lectura de los agentes y no una
+contradicción que vea el cliente. El capítulo 4 lo cuenta así desde la revisión del autor del 2026-10-31.
+Evidencia: `03_datos/apis/mailersend/evidencias/paginas/2026-10-31/LEEME.md`.

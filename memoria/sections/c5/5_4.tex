@@ -1,0 +1,116 @@
+\section{Defectos de contrato}
+\label{sec:esquema:contrato}\label{sec:evolucion:contrato}
+
+La Tabla~\ref{tab:verificacion} (Sección~\ref{sec:propuesta:prime4api}) recoge lo que ocurre al ingerir las ocho Datasheets en PRIME4API, y sus errores tienen tres causas.
+Dos son defectos de contrato, es decir, formas que la guía de ACM2YAML admite y que el motor no procesa.
+Son un campo declarado y vacío en Postmark, Resend y Mailchimp Transactional, y un precio que existe y no es público en Resend, SendGrid y Brevo.
+
+La tercera causa es el fallo del propio motor al calcular la curva acumulada de MailerSend y Amazon SES, que mezcla unidades de tiempo (Sección~\ref{sec:propuesta:prime4api}), y no produce propuesta de esquema porque ningún valor de esas Datasheets lo causa.
+Mailgun termina con el mismo mensaje, pero su causa no está confirmada.
+La forma de \texttt{workload} es un caso distinto, porque ninguna Datasheet del catálogo usa la variante con la que falla el motor.
+La guía de ACM2YAML y una Datasheet de ejemplo de su repositorio escriben el campo de dos formas distintas, y se resuelve corrigiendo la guía.
+
+\subsection{La forma de \texttt{workload}: mapa o lista}
+\label{subsec:evolucion:dv01}
+
+La guía del esquema documenta \texttt{workload} como un mapa \citep{apisconsumptionmodel}.
+Una Datasheet de ejemplo del mismo repositorio lo serializa como una lista, y el TFM de Gavira Sánchez usa también la lista en sus extractos y en el anexo de SendGrid \citep{gavira2026tfm}.
+PRIME4API tolera las dos formas en las operaciones de cálculo y solo acepta la lista en las de navegación, que recorren la estructura del documento.
+Una Datasheet escrita según la guía produce entonces números correctos y falla cuando la recorren el agente conversacional HARVEY4API o la plataforma SPHERE.
+
+La forma correcta es la lista, porque la exige el modelo de consumo.
+Un mapa solo puede declarar una métrica por \textit{endpoint}, y Gavira Sánchez sostiene que un \textit{endpoint} que consume varias métricas a la vez tiene que declararlas por separado \citep{gavira2026tfm}.
+Las ocho Datasheets del catálogo usan la lista.
+La propuesta es una rectificación: corregir la guía para que documente la lista.
+De forma opcional, el motor puede convertir el mapa en lista al leerlo, para que los ficheros escritos con la redacción actual de la guía sigan siendo navegables.
+
+\subsection{P-04. Distinguir «sin límite» de «límite no publicado»}
+\label{subsec:evolucion:p04}
+
+\paragraph{El caso.}
+Resend no publica el \textit{rate} de su plan Enterprise, y su Datasheet deja presente y vacío el campo que lo declara.
+Ese campo vacío dice que el límite existe y que su valor no se conoce.
+En Postmark y en Mailchimp Transactional la misma forma dice lo contrario: el proveedor no pone tope en la unidad del campo.
+Si solo lee el campo vacío, PRIME4API no puede distinguir el caso de Resend del de Postmark, y P-04 propone cerrar esa ambigüedad.
+
+En Postmark y en Mailchimp Transactional la cota que se publica está en otra métrica, los bytes de la llamada, que es la carencia que cubre P-03 (Apartado~\ref{subsec:evolucion:p02}).
+Postmark no pone tope de destinatarios en \texttt{/email/bulk} y lo acota por el tamaño de la petición, 50 MB.
+Mailchimp niega por escrito el tope de destinatarios en su API, «there's no recipient limitation», y limita el JSON de cada llamada a menos de 10 MB\footnote{\url{https://mailchimp.com/developer/transactional/docs/outbound-email/}, consultada el 21 de septiembre de 2026.}.
+En el sondeo de Mailchimp, una llamada con 5.000 destinatarios devolvió HTTP 200 sin rechazo.
+
+P-04 se promueve por dos vías, y cada una se refiere a un hecho distinto.
+La primera es la recurrencia de F-01, un \textit{rate} que existe y no tiene cifra publicada, que cuenta en Postmark, Amazon SES, Mailchimp Transactional y Mailgun (Tabla~\ref{tab:recurrencia}).
+En Mailchimp ese \textit{rate} es la cuota horaria de la cuenta de pago, que el proveedor no cifra, y no el tope de destinatarios.
+La segunda es la traza: el campo vacío hace fallar al motor en tres Datasheets, aunque solo en Resend es un \textit{rate}.
+En Postmark y en Mailchimp es un tope de destinatarios.
+Lo que P-04 generaliza es lo que muestra la traza, un campo vacío que el motor no distingue de la ausencia de límite.
+
+\paragraph{La traza.}
+PRIME4API convierte a número el valor de esos campos sin comprobar si está vacío, y falla con un error de conversión de tipo.
+En Postmark caen por esta causa diez comprobaciones: la consulta por rangos del factor de consumo por petición, tres curvas de capacidad (una es la acumulada), la curva de coste, la recomendación de plan y cuatro operaciones de cálculo.
+Esas cuatro dan el tiempo mínimo para alcanzar una capacidad, la capacidad acumulada en un instante, el instante en que se agota la cuota y la espera tras agotarla.
+En Resend el mismo error aparece en cinco comprobaciones, y otras ocho fallan por el precio que existe y no es público, el valor \texttt{custom} del plan Enterprise.
+
+Como el fichero de Resend contiene los dos defectos, se generaron dos variantes, cada una con un solo defecto corregido.
+Con el campo vacío relleno, la herramienta de verificación de este trabajo da trece errores, todos por el precio no público.
+Con el precio no público sustituido por números, da doce, todos por el campo vacío\footnote{Las tres versiones del fichero (la original y las dos variantes) y su salida están en \texttt{03\_datos/\allowbreak apis/\allowbreak resend/\allowbreak evidencias/\allowbreak control\_motor\_causas\_2026-09-23/}.}.
+Cada comprobación informa solo del primer error que encuentra.
+Por eso, con los dos defectos a la vez, el campo vacío aparece en cinco y el precio no público en ocho, aunque cualquiera de los dos basta por sí solo para hacer fallar doce o trece.
+
+En una tanda aparte de diecisiete llamadas a la API del motor con la Datasheet de Mailchimp Transactional, catorce responden HTTP 500 con el mismo error de conversión, y solo contestan las tres consultas que no calculan tiempo.
+Si el campo vacío del tope se rellena en el documento ya cargado por el motor, sin tocar el fichero, el error pasa a ser una división por cero.
+Esa segunda caída la causa otro campo vacío, el periodo de la franquicia de la cuenta de prueba, 500 correos gratuitos que no caducan ni se renuevan (F-33).
+Con los dos campos rellenos, la misma llamada devuelve HTTP 200.
+La herramienta de verificación de este trabajo, con sus propias comprobaciones, da a Mailchimp diez errores con el mismo mensaje que a Postmark.
+
+\paragraph{Por qué el esquema no ofrece salida.}
+ACM2YAML v0.3 deja dos alternativas, y las dos tienen coste.
+Omitir el campo hace que la Datasheet afirme implícitamente que no hay límite.
+En Resend, donde el límite existe, la omisión produciría una respuesta optimista y falsa.
+En Postmark y en Mailchimp coincidiría con lo que dice el proveedor, pero PRIME4API no distinguiría esa omisión de la que haría Resend con un límite que existe.
+Declarar el campo vacío, la otra alternativa, deja sin responder operaciones enteras del motor: diez comprobaciones en Postmark, cinco en Resend y catorce de diecisiete llamadas en Mailchimp.
+
+La Datasheet de Amazon SES elige la omisión para el caudal de una cuenta con acceso de producción: no lo declara y anota la ausencia en su registro \texttt{not\_found}.
+Ese registro, que usan las ocho Datasheets, dice qué falta en el documento, pero no en qué campo, y una marca junto al propio campo dejaría esa anotación donde el motor la puede leer.
+
+\paragraph{Propuesta.}
+Se propone una marca explícita de valor no publicado junto al campo.
+El esquema declara la marca y el motor la respeta: omite esa dimensión y sigue evaluando el resto en lugar de abandonar el documento.
+Con la marca, el límite sin cifra de Resend y la ausencia de tope de Postmark y Mailchimp dejan de escribirse igual.
+Resend la lleva en su caudal de Enterprise.
+Postmark y Mailchimp pueden omitir el campo, y la omisión dice lo mismo que su fuente: no hay tope de destinatarios.
+La cota en bytes ya la declara la Datasheet de Mailchimp como un \texttt{workload} aparte, y la de Postmark necesita P-03.
+
+La misma distinción alcanza al periodo de una cuota, el segundo campo vacío de Mailchimp.
+Ahí, igual que en su tope de destinatarios, no falta una cifra, porque la franquicia de 500 correos de la cuenta de prueba no caduca ni se renueva (Sección~\ref{sec:propuesta:catalogo}).
+La marca queda para los valores que existen y no se publican, y la cuota sin periodo es otro elemento, F-33.
+
+\subsection{P-05. Declarar un plan cuyo precio existe y no es público}
+\label{subsec:evolucion:p05}
+
+\paragraph{El caso.}
+Resend no publica el precio ni la cuota de su plan Enterprise, y la Datasheet escribe en los dos campos el valor \texttt{custom}.
+Es lo que publica el proveedor, y es la forma que la guía documenta para un valor negociable \citep{apisconsumptionmodel}.
+
+\paragraph{La traza.}
+PRIME4API intenta convertir la cadena \texttt{custom} a número y falla.
+El fallo no se queda en el plan Enterprise.
+La evaluación recorre todos los planes del documento, así que ese único valor impide evaluar también los planes Free, Pro y Scale, que tienen precio publicado.
+Con ese error fallan las tres consultas de \textit{rates}, cuotas y límites, las cuatro operaciones de cálculo y la consulta del precio del plan Enterprise, que son ocho de los trece errores de la Datasheet de Resend.
+Con el campo vacío relleno, los trece pasan a esta causa (Apartado~\ref{subsec:evolucion:p04}).
+SendGrid y Brevo reproducen el fallo con trece errores cada una, todos con el mismo mensaje: la cadena \texttt{custom} no se puede convertir a número.
+
+\paragraph{Por qué importa.}
+En siete de las ocho APIs del catálogo hay al menos un precio que el proveedor no publica, y la excepción es Amazon SES.
+En Postmark, Resend, SendGrid, MailerSend, Brevo y Mailgun es un plan a medida, y en Mailchimp Transactional es el precio por encima de cuatro millones de correos al mes.
+Resend, SendGrid y Brevo escriben ese plan con \texttt{custom}, como admite la guía, y el motor falla en las tres.
+Postmark, MailerSend y Mailgun lo dejan fuera de sus planes.
+
+\paragraph{Propuesta.}
+Se proponen dos cambios separables.
+En el esquema, una forma explícita de declarar un plan que tiene precio aunque no lo publique, en sustitución de la cadena \texttt{custom} que el motor no sabe leer.
+En el motor, aislar el fallo por plan, de modo que un plan no evaluable devuelva su error y los demás se sigan calculando.
+El segundo cambio no depende del primero, y por sí solo recupera tres de los cuatro planes de la Datasheet de Resend.
+
+Las dos propuestas de esta sección se han medido solo contra PRIME4API.
+Otro motor podría tolerar el campo vacío o la cadena \texttt{custom} sin que el esquema cambiara.

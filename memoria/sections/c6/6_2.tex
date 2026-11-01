@@ -1,0 +1,183 @@
+\section{Lo que publica cada proveedor}\label{sec:limites:publicado}
+
+Las Tablas~\ref{tab:limites-rates} y~\ref{tab:limites-rates-b} dan, plan a plan, la cuota $Q$ y el \textit{rate} $R$ que declara cada Datasheet, con el semáforo de confianza del Apartado~\ref{sec:propuesta:semaforo}.
+Un dato va en verde si es literal del proveedor o lo fijó un panel con cuenta propia o un sondeo, en ámbar si exige una lectura que la fuente no hace literal o si dos fuentes oficiales chocan, y en rojo si el proveedor no lo publica.
+Con esos pares las tablas calculan el cociente $R \cdot W / Q$ y el tiempo $t_{\min}$ que tarda el \textit{rate} en agotar la cuota, definidos en la Sección~\ref{sec:limites:geometrica}.
+Cada cifra tiene su respaldo en el registro de procedencia de su Datasheet, que guarda para cada valor la URL, la fecha de acceso y la cita literal de la fuente.
+
+Cada proveedor reparte sus términos de consumo, el precio y la información de cómo, cuándo, cuánto y dónde se consume, entre varias páginas: la de precios, la de límites de la API, la guía del relé SMTP o unas preguntas frecuentes.
+Los párrafos siguientes recogen los casos en que la fuente de la cifra cambia el cálculo, como el \textit{rate} de Postmark, que solo da la cabecera de la respuesta, o el de MailerSend, que baja con la cuenta en revisión.
+
+\textbf{Una cifra que solo se lee en una cabecera y otra que no se puede observar.}
+En Postmark el \textit{rate} de la API REST no está publicado, y la documentación describe el error 429 «Rate Limit Exceeded» sin dar el umbral \citep{postmarkapi}.
+La cifra sale de la propia API: los cuatro \textit{endpoints} de envío probados devuelven \texttt{ratelimit-\allowbreak limit:~5000} y \texttt{x-ratelimit-\allowbreak limit-second:~5000}, tanto en la respuesta aceptada (200) como en la rechazada por datos no válidos (422).
+Que el límite sea por segundo es una lectura del nombre de la cabecera, no un literal del proveedor.
+Un sondeo de 200 peticiones no llegó al 429, y la Datasheet adopta 5.000 peticiones por segundo en ámbar para los cuatro planes, aunque solo se observó en la cuenta gratuita.
+
+SendGrid está en el caso opuesto, con una cifra publicada que no se puede observar.
+Da 10.000 peticiones por segundo para \texttt{/v3/mail/send} una sola vez, en las preguntas frecuentes del \textit{endpoint} y sin plan ni ámbito\footnote{\url{https://www.twilio.com/docs/sendgrid/for-developers/sending-email/v3-mail-send-faq}. La cita literal está en el \textit{provenance} de \texttt{03\_datos/apis/sendgrid/datasheet.yaml}.}.
+La Datasheet la pone en verde porque es un literal del proveedor.
+No hay con qué contrastarla: el envío en modo \textit{sandbox} no devuelve cabeceras \texttt{x-ratelimit-*}.
+Ese modo es una opción de la petición que la valida sin entregar el correo, y no tiene que ver con el entorno de pruebas de Amazon SES.
+
+\textbf{Un \textit{rate} que cambia con el estado de la cuenta.}
+MailerSend ata su \textit{rate} por minuto a la categoría del \textit{endpoint} y al estado de la cuenta \citep{mailersenddocs}.
+Con la reputación sana, \texttt{/v1/email} admite 120 peticiones por minuto en los cuatro planes, es decir, $R = 2$, y \texttt{/v1/bulk-email} entre 10 y 30 según el plan.
+Con la cuenta bajo revisión, \texttt{/v1/email} baja a 10 peticiones por minuto y \texttt{/v1/bulk-email} a 1.
+El sondeo del Apartado~\ref{subsec:evolucion:p06} midió esos 10 en una cuenta sin aprobar, que es un estado de la suscripción distinto de la revisión por reputación para la que el proveedor publica la cifra.
+Las 120 peticiones por minuto están publicadas, pero no observadas.
+
+Cada plan de MailerSend tiene además una cuota diaria de peticiones, común a las dos interfaces de envío, la API REST y el relé SMTP.
+Va de 100 peticiones en Free a 500.000 en Professional.
+Esa cuota no entra en la Ecuación~\eqref{eq:limites-rates} porque cuenta peticiones y no correos, y la Tabla~\ref{tab:limites-rates} la anota aparte.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.5pt}
+\begin{tabular}{|l|r|r|r|c|p{3.2cm}|}
+\hline
+\textbf{API · plan} & \textbf{$R \cdot W$} & \textbf{$Q$} & \textbf{$R \cdot W / Q$} & \textbf{$t_{\min}$ ($k{=}1$ / $k$ máx)} & \textbf{Datos en ámbar o rojo} \\
+\hline
+Postmark · Free & $1{,}296 \cdot 10^{10}$ & 100 & 129.600.000 & 0,02 s / 0,0004 s & \textit{rate} medido, no publicado \semambar{} \\
+\hline
+Postmark · Basic & $1{,}296 \cdot 10^{10}$ & 10.000 & 1.296.000 & 2 s / 0,04 s & \textit{rate} \semambar{}, cuota y ventana \semambar{} \\
+\hline
+Resend · Free (día) & 864.000 & 100 & 8.640 & 10 s / 0,2 s & ventana diaria \semambar{} \\
+\hline
+Resend · Free (mes) & 25.920.000 & 3.000 & 8.640 & 300 s / 6 s & ventana mensual \semambar{} \\
+\hline
+Resend · Pro & 25.920.000 & 50.000 & 518,4 & 83,3 min / 100 s & \textit{rate} por defecto \\
+\hline
+Resend · Scale & 25.920.000 & 100.000 & 259,2 & 2,78 h / 200 s & \textit{rate} por defecto \\
+\hline
+Resend · Scale 2,5M & 25.920.000 & 2.500.000 & 10,37 & 69,4 h / 83,3 min & volumen contratado no recogido \\
+\hline
+Resend · Enterprise & n.c. & Custom & n.c. & n.c. & \textit{rate} \semrojo{} \\
+\hline
+SendGrid · Trial (día) & 864.000.000 & 100 & 8.640.000 & 0,01 s / 1 petición & \textit{rate} no observable \\
+\hline
+SendGrid · Essentials 50K & $2{,}592 \cdot 10^{10}$ & 50.000 & 518.400 & 5 s / 0,005 s & \textit{rate} no observable \\
+\hline
+SendGrid · Pro 100K & $2{,}592 \cdot 10^{10}$ & 100.000 & 259.200 & 10 s / 0,01 s & \textit{rate} no observable \\
+\hline
+SendGrid · Pro 2,5M & $2{,}592 \cdot 10^{10}$ & 2.500.000 & 10.368 & 250 s / 0,25 s & volumen contratado no recogido \\
+\hline
+SendGrid · Premier & $2{,}592 \cdot 10^{10}$ & Custom & n.c. & n.c. & cuota \textit{custom}, ventana \semambar{} \\
+\hline
+MailerSend · Free & 5.184.000 & 500 & 10.368 & 250 s / 4 s & ventana \semambar{}, $k$ \semambar{}, \textit{rate} sin observar. Diaria de 100 pet.: 4 d 50 s ($k{=}1$) \\
+\hline
+MailerSend · Hobby & 5.184.000 & 5.000 & 1.036,8 & 41,7 min / 36 s & $k$ \semambar{}. Diaria de 1.000 pet.: 4 d 8 min ($k{=}1$) \\
+\hline
+MailerSend · Starter & 5.184.000 & 50.000 & 103,7 & 6,94 h / 6 min & $k$ \semambar{}, lote de 15/min \semverde{} \\
+\hline
+MailerSend · Starter 1M & 5.184.000 & 1.000.000 & 5,18 & 5,8 d / 2 h & volumen contratado no recogido. Diaria de 100.000 pet.: 10 d ($k{=}1$) \\
+\hline
+MailerSend · Professional 2M & 5.184.000 & 2.000.000 & 2,59 & 11,6 d / 4 h & volumen contratado no recogido \\
+\hline
+MailerSend · Starter 1M, rev. & 432.000 & 1.000.000 & 0,43 & $>$ 30 d / 24 h & \textit{rate} de 10/min medido en la cuenta sin aprobar, volumen contratado no recogido \\
+\hline
+\end{tabular}
+\caption[Relación entre \textit{rate} y cuota en Postmark, Resend, SendGrid y MailerSend]{Relación entre \textit{rate} y cuota en Postmark, Resend, SendGrid y MailerSend. $R \cdot W$ va en peticiones por ventana y $Q$ en correos, con un mes de 30 días. $t_{\min}$ se da con $k = 1$ y con el $k$ máximo de cada API: 50 en Postmark y Resend, 1.000 en SendGrid y 70 en MailerSend, este en ámbar. Cuando la cuota se agota en unas pocas peticiones con el $k$ máximo, $t_{\min}$ se da en número de peticiones en lugar de en segundos. La fila «rev.» usa el \textit{rate} de una cuenta de MailerSend bajo revisión. Un volumen contratado «no recogido» lo publica el proveedor y la Datasheet no lo recoge (Apartado~\ref{subsec:evolucion:p01}). Postmark Pro y Platform tienen la misma cuota y el mismo \textit{rate} que Basic, y se omiten. n.c.: no calculable.}
+\label{tab:limites-rates}
+\end{table}
+
+\textbf{Categorías de \textit{rate} sin plan asignado.}
+Brevo da tres cifras para el mismo \texttt{POST /v3/smtp/email}, un \textit{endpoint} de la API REST pese a su nombre: 1.000 peticiones por segundo en la categoría General, 2.000 en Advanced y 6.000 en Extended \citep{brevodocs}.
+La página no cierra qué plan cae en cada una, porque una viñeta reserva Advanced a Professional y Enterprise, y el distintivo «Available in» que encabeza la tabla de Advanced enumera los cinco planes, Free incluido.
+Los tres valores van en ámbar, y la Tabla~\ref{tab:limites-rates-b} calcula Professional con la cota inferior, la de General, y Enterprise con la superior, la de Extended.
+
+La guía de envío por lotes da otra cifra para el mismo \textit{endpoint}, «Execute the \textit{endpoint} up to 6000 times per hour», 600 veces menos que los 3.600.000 por hora de la categoría General.
+La contradicción sigue abierta, y la tabla calcula con la página de categorías.
+
+\textbf{Cifras que solo valen para el entorno de pruebas.}
+En Amazon SES las cifras publicadas son las del entorno de pruebas, que es un estado de la cuenta y no un plan: un correo por segundo, 200 correos cada 24 horas y 50 destinatarios por mensaje \citep{sesdocs}.
+Para la cuenta de producción, la página de límites escribe que «this number varies based on your specific use case», y la referencia de la API reserva en \texttt{Max24HourSend} el valor $-1$ para una cuota ilimitada, sin decir qué cuenta lo recibe.
+Por eso los cuatro planes que la Datasheet toma de la página de precios \citep{sespricing} reciben la cuota y el \textit{rate} del entorno de pruebas.
+
+Hay dos límites de SES que la Datasheet no pudo modelar con ACM2YAML v0.3.
+El primero es el tiempo que SES pide esperar tras un rechazo por limitación, que no tiene campo en el esquema.
+La página de errores de la cuota de envío da «up to 10 minutes», y la de problemas del relé SMTP, para las peticiones SMTP rechazadas, una serie de esperas de 5, 10 y 30 segundos seguida de 20 minutos.
+La primera página cubre también los rechazos SMTP, así que las dos indicaciones chocan.
+
+El segundo es la petición por segundo que la página de límites aplicaba, cuando se consultó, a todas las operaciones salvo SendEmail, SendRawEmail y SendTemplatedEmail, tres nombres de la versión 1 de la API.
+La Datasheet modela la versión 2, y el esquema no podía acotar esa cifra a sus operaciones porque la página no decía cuáles cubría: el envío por lotes no estaba ni entre las exentas ni entre las limitadas.
+Un sondeo contra \texttt{GET /v2/email/account} aceptó más de cinco veces ese valor sin fijar el umbral (Apartado~\ref{sec:propuesta:casos}).
+Desde finales de octubre de 2026 la página exime SendEmail y SendBulkEmail, y con ese texto la cifra ya se puede acotar.
+
+\textbf{Una cifra publicada y otra medida, con ámbitos distintos.}
+Mailgun publica una sola cifra de \textit{rate} para su API REST, «1,500 API requests per second per client IP», en las preguntas frecuentes de su sitio comercial y no en la documentación de desarrollador\footnote{\url{https://www.mailgun.com/ai-info/}. La cita literal está en el \textit{provenance} de \texttt{03\_datos/apis/mailgun/datasheet.yaml}.}.
+Leída al pie de la letra es un tope por IP de cliente, un ámbito que el esquema no sabe declarar, y la Datasheet la pone en ámbar como caudal del plan.
+
+Lo medido es otro contador, el de la cabecera del envío aceptado: \texttt{x-ratelimit-limit: 80000}, 80.000 peticiones por ventana.
+La ventana la abre la primera petición, y dos mediciones de su duración dieron 9,85 y 9,87 segundos.
+La misma respuesta trae \texttt{x-recipient-limit: 2000000}, un contador que limita los destinatarios y no las peticiones.
+Es el segundo \textit{rate}, $R_d$, que la Sección~\ref{sec:limites:geometrica} admite junto al de peticiones, y no está en la Datasheet porque el esquema admite un solo \textit{rate} por nodo, sea un plan o un \textit{endpoint}.
+
+La Tabla~\ref{tab:limites-rates-b} calcula con $R = 8.000$ peticiones por segundo, una cifra que no publica Mailgun ni trae la cabecera: es el cociente de esas 80.000 peticiones entre los diez segundos a los que la Datasheet redondea la ventana.
+La Datasheet declara las 1.500 peticiones por segundo en el plan y el contador de 80.000 en el \textit{endpoint} de envío.
+PRIME4API, que suma los límites del plan a los del \textit{endpoint}, aplica las dos cifras a la vez y calcula con la más baja, las 1.500.
+
+La cuota del plan Free de Mailgun tiene dos cifras: la página de precios da 100 correos al día \citep{mailgunpricing} y el panel de la cuenta muestra 3.000 al mes.
+Ninguna de las dos fuentes dice si son dos topes simultáneos, y la tabla calcula con ambos.
+
+\textbf{Un caudal en correos por hora.}
+Mailchimp Transactional no publica \textit{rate} en peticiones para el envío, y ni sus páginas ni el sondeo dan cabeceras de \textit{rate} \citep{mailchimpdocs}.
+El envío de la cuenta de prueba lo gobierna «a fixed hourly quota of 25 emails», y los correos que pasan de ese tope no se rechazan: entran en una cola que se procesa en la hora siguiente.
+La Datasheet interpreta ese tope como un \textit{rate} de 25 correos por hora.
+La franquicia de 500 correos de esa cuenta no tiene ventana, y en la cuenta de pago la cuota es un bloque de 25.000 correos \citep{mailchimppricing}, con un \textit{rate} que depende de la reputación y no tiene cifra publicada.
+
+\begin{table}[H]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2.3pt}
+\begin{tabular}{|l|r|r|r|c|p{2.7cm}|}
+\hline
+\textbf{API · plan} & \textbf{$R \cdot W$} & \textbf{$Q$} & \textbf{$R \cdot W / Q$} & \textbf{$t_{\min}$ ($k{=}1$ / $k$ máx)} & \textbf{Datos en ámbar o rojo} \\
+\hline
+Brevo · Free (día) & 86.400.000 & 300 & 288.000 & 0,3 s / $<$ 1 pet. & \textit{rate} \semambar{}, hora del reinicio diario \semrojo{} \\
+\hline
+Brevo · Starter & $2{,}592 \cdot 10^{9}$ & 5.000 & 518.400 & 5 s / 3 pet. & \textit{rate} \semambar{}, $k$ \semambar{}, 99 destinatarios con adjunto \\
+\hline
+Brevo · Standard & $2{,}592 \cdot 10^{9}$ & 5.000 & 518.400 & 5 s / 3 pet. & ídem Starter, misma cuota y distinto precio \\
+\hline
+Brevo · Professional & $2{,}592 \cdot 10^{9}$ & 150.000 & 17.280 & 150 s / 75 pet. & categoría Advanced sin atribuir \semambar{} \\
+\hline
+Brevo · Professional 10M & $2{,}592 \cdot 10^{9}$ & 10.000.000 & 259,2 & 2 h 47 min / 5.000 pet. & volumen contratado no recogido \\
+\hline
+Brevo · Enterprise & $1{,}5552 \cdot 10^{10}$ & Custom & n.c. & n.c. & categoría Extended \semambar{} \\
+\hline
+SES · pruebas & 86.400 & 200 & 432 & 200 s / 4 s & ventana de la cuota \semrojo{}, no es cuota de plan \\
+\hline
+SES · producción & n.c. & no publicada & n.c. & n.c. & cuota \semrojo{} y \textit{rate} \semrojo{} \\
+\hline
+Mailgun · Free (día) & 691.200.000 & 100 & 6.912.000 & 0,0125 s / $<$ 1 pet. & una o dos cuotas, sin decidir \semambar{}, hora de reposición \semrojo{} \\
+\hline
+Mailgun · Free (mes) & $2{,}0736 \cdot 10^{10}$ & 3.000 & 6.912.000 & 0,375 s / $<$ 1 pet. & ídem, la diaria por 30 da la mensual \\
+\hline
+Mailgun · Basic & $2{,}0736 \cdot 10^{10}$ & 10.000 & 2.073.600 & 1,25 s / 0,05 s & ventana del \textit{rate} fuera del esquema \semambar{} \\
+\hline
+Mailgun · Foundation & $2{,}0736 \cdot 10^{10}$ & 50.000 & 414.720 & 6,25 s / 0,25 s & ídem, \textit{rate} no atribuido por plan \semambar{} \\
+\hline
+Mailgun · Scale & $2{,}0736 \cdot 10^{10}$ & 100.000 & 207.360 & 12,5 s / 0,5 s & ídem \\
+\hline
+Mailgun · Scale 2,5M & $2{,}0736 \cdot 10^{10}$ & 2.500.000 & 8.294,4 & 312,5 s / 12,5 s & volumen contratado no recogido \\
+\hline
+Mailchimp · prueba & en correos/h & 500 & no formable & 20 h (cualquier $k$) & cuota sin ventana \semrojo{}, $k$ sin tope \semrojo{} \\
+\hline
+Mailchimp · bloque de pago & sin cifra & 25.000 & no formable & n.c. & \textit{rate} sin publicar, ventana del bloque \semambar{} \\
+\hline
+\end{tabular}
+\caption[Relación entre \textit{rate} y cuota en Brevo, Amazon SES, Mailgun y Mailchimp]{Relación entre \textit{rate} y cuota en Brevo, Amazon SES, Mailgun y Mailchimp, con las convenciones de la Tabla~\ref{tab:limites-rates}. El $k$ máximo vale 2.000 en Brevo (en ámbar), 50 en SES y 1.000 en Mailgun. El \textit{rate} de Mailgun es el de la cabecera del envío, 80.000 peticiones en una ventana medida de unos diez segundos. Su $R = 8.000$ es el cociente de esas 80.000 peticiones entre los diez segundos a los que la Datasheet redondea la ventana, y no una cifra publicada. Su $t_{\min}$ con $k$ máximo lo gobierna el contador de 2.000.000 de destinatarios sobre la misma ventana. Las dos filas de SES son estados de la cuenta y valen para los cuatro planes. Con adjunto, Brevo baja el tope a 99 destinatarios por petición. Mailchimp declara su \textit{rate} en correos por hora, y por eso no tiene $R \cdot W$. n.c.: no calculable.}
+\label{tab:limites-rates-b}
+\end{table}
+
+\textbf{La especificación formal dice menos que la prosa.}
+La especificación formal de una API es su descripción legible por máquina: un fichero OpenAPI o Swagger que enumera cada ruta con sus parámetros y sus respuestas.
+La de SendGrid, en el repositorio \texttt{twilio/sendgrid-oai}, no menciona los \textit{rates} ni el tope de \texttt{to}, y el tope de 1.000 destinatarios por petición, que suma \texttt{to}, \texttt{cc} y \texttt{bcc}, solo aparece en la referencia en prosa \citep{sendgriddocs}.
+La de MailerSend, publicada en SwaggerHub, tampoco declara el tope de \texttt{to} ni la respuesta 429 \citep{mailersenddocs}.
+La de Brevo, una definición Swagger de 207 rutas, no menciona el \textit{rate} ni una vez \citep{brevodocs}.
+
+Amazon SES publica sus límites en cuatro documentos: la página de límites, la referencia de la operación de envío, la especificación formal de la versión 2 y la guía del relé SMTP \citep{sesdocs}.
+En una tabla de doce límites por esos cuatro documentos, de la cuota diaria a la espera tras el rechazo, quedan vacías 32 de las 48 celdas, y la columna de la especificación formal lo está entera.
+Una Datasheet construida solo desde la especificación formal recogería menos límites que la construida desde la prosa en esas cuatro APIs, y la comparación no se hizo en las otras cuatro.

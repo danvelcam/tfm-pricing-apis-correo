@@ -125,7 +125,7 @@ usageLimits:
       - templateEmailApi
       - rawEmailApi
 plans:
-  transactionalEmail:
+  transactional:
     description: 'Producto único, sin planes con nombre; se contrata como complemento de una cuenta Mailchimp Standard o Premium. Precio de un bloque en el primer tramo, en ámbar en la Datasheet [DS:47-52, DS:151, DS:153, DS:158]'
     price: 20
     unit: month
@@ -135,7 +135,7 @@ addOns:
   extraBlocksFirstTier:
     description: 'Bloques adicionales de 25.000 emails a 20 USD hasta completar los 20 bloques del primer tramo [DS:152-153]'
     availableFor:
-      - transactionalEmail
+      - transactional
     price: 20
     unit: block/month
     usageLimitsExtensions:
@@ -148,7 +148,7 @@ addOns:
   dedicatedIp:
     description: 'IP dedicada a 29,95 USD al mes, sin volumen mínimo publicado [DS:159]'
     availableFor:
-      - transactionalEmail
+      - transactional
     price: 29.95
     unit: IP/month
     features:

@@ -1,74 +1,43 @@
 \chapter*{Abstract}
-Email APIs have become the component a modern application uses to send
-email. Providers such
-as SendGrid, Resend, Mailgun, and Amazon SES offer services that
-enable transactional and marketing email delivery through programmatic
-interfaces. However, choosing the most suitable API for a given project
-is a poorly informed decision. How many requests per second an
-endpoint admits, how many recipients fit into a single call, or
-what happens once a quota is exceeded are figures that rarely appear on
-the pricing page. They are spread across developer documentation,
-support articles, and acceptable-use policies, when they appear at all.
-The comparisons that are easy to find are written by the providers
-themselves.
+A transactional email service usually has two interfaces: the REST API and the SMTP relay,
+which accepts email through the standard protocol for sending email. The service's
+consumption terms are the price and the information on how, when, how much, and where it is
+consumed. Each interface can have limits of its own: on MailerSend's Starter plan,
+the SMTP relay accepts up to five concurrent connections. Finding out which provider can handle what an
+application needs to send means gathering the terms of each interface by hand, and those terms
+are not compared systematically.
 
-This situation makes objective and systematic comparison between APIs
-difficult. Take a team that needs to send 100,000 emails a month in bursts of
-1,000 requests per minute, with webhook support and batch sending. It
-has no way of finding out which provider meets all of that at once. Standards such as OpenAPI exist for the
-functional description of REST APIs. An API's consumption conditions, by
-contrast, lack an established equivalent that captures them in a
-structured, comparable, and machine-readable manner.
+Pricing Intelligence is the line of research that turns the information in pricing plans into
+knowledge for choosing a plan or a provider. Within that line, two Master's Theses from the
+ISA research group provide the API Capacity Model (ACM), which describes how much consumption
+each plan allows and over what period. They also define the Datasheet, a document that machines
+can read, with an API's price and limits, written in their YAML schema, ACM2YAML. From a
+Datasheet, their PRIME4API engine computes the cheapest plan for a volume or the minimum time to send
+it.
 
-This work is framed within \textit{Pricing Intelligence}, the research
-line that aims to turn the information contained in pricing plans into
-knowledge that supports decision-making. Within that line, previous work
-by the group has conceptualised the contractual capacity of APIs through
-the \textit{API Capacity Model} (ACM) and its ACM2YAML serialisation.
-From it comes the \textit{Datasheet}: a machine-oriented document that
-brings together in a single representation the information that is
-scattered. The tools of the ecosystem operate on it: PRIME4API as the
-capacity analysis engine, HARVEY4API as the query interface, and SPHERE
-as the publication hub. These artefacts, however, have so far been validated
-against three pricings of two services \citep{gavira2026tfm}, and their
-operational version captures two of the four dimensions of the metamodel.
+The goal of this Master's Thesis is to take that toolset to a real domain, at scale. The work
+builds a catalogue of Datasheets for the REST API of eight transactional email services. Every
+value in the catalogue carries its source and date. The catalogue has been proposed as a
+contribution to SPHERE, the group's platform for publishing
+pricing plans.
 
-The goal of this Master's Thesis is to take that instrumentation to a
-real domain and at scale. To this end, a catalogue of Datasheets is built
-for a representative set of email APIs, rigorously documented from each
-provider's official technical documentation and with explicit source
-traceability. Confronting the model with the domain also makes it
-possible to identify and correct its expressiveness gaps.
+The catalogue is built by an agentic process designed and supervised by the author. AI agents
+write each API's Datasheet with the price and limits they extract from the sources. Other agents review each Datasheet,
+and the author resolves what remains open.
 
-The contribution of this work is fourfold. First, it delivers a curated,
-versioned catalogue of Datasheets for the email domain, prepared as a
-contribution to SPHERE and reusable by the rest of the ecosystem. Second, it proposes an
-evolution of the ACM2YAML schema justified case by case: every extension
-responds to a real-world scenario that the previous version was unable to
-represent. Third, it characterises how usage limits and rates interact
-within the domain: when the rate keeps the quota from ever being
-exhausted, when the quota runs out before the rate is even felt, and what
-that costs the consumer. The relationship was already defined in the
-model, but not characterised on a real domain. It is analysed through the
-geometric interpretation of capacity and the analysis operations provided by PRIME4API. Fourth, it establishes a
-systematic comparison method that answers decision questions such as
-\textit{``which API is most suitable if my requirements are X?''}. The method weighs functional and non-functional
-requirements in the same query.
+Sending usually has two limits: a quota (the maximum volume over a period, such as a month)
+and a rate (the requests the API accepts per second or per minute). In six of the
+eight APIs, as long as the account is approved, the rate allows the whole quota to be sent
+before its period ends, so sending is planned around the quota. The account status (under
+review, in testing or by reputation) changes those limits in six APIs, only partly the same ones, and
+none publishes the threshold that triggers it.
 
-The brief set three sources for selecting the APIs. They were those
-analysed in a previous master's thesis from the same programme, those already modelled
-within the ecosystem, and a documented query to a language model. The
-first could not be used, because that thesis arrived after the selection
-had been made. The other two, plus the pilot of the method, yield the
-eight APIs of the catalogue.
-
-The results show that formally structuring knowledge about email APIs
-makes visible differences between providers that conventional comparisons
-do not reveal. They also show that a significant part of these services'
-contractual capacity is never published: this marks the limit of what can
-be known from documentation and leaves the rest to empirical measurement.
-Both the instrument and the method are expected to extend to API domains
-beyond email, although that extensibility remains untested.
+The study of the eight APIs shows what ACM2YAML cannot express in its fields, such as a plan
+sold in several volumes, each with its own price, or the caps of the SMTP relay. Schema
+extensions are proposed to cover part of this, each with the real case behind it. This work
+establishes a comparison method that answers which APIs support a sending pattern and what it
+costs in each one, and applies it to an example: an application that sends 100,000 emails
+a month.
 
 \vspace{.5cm}
 \noindent\textbf{Keywords:} Pricing Intelligence, email APIs, API datasheets, API capacity, rate limits, usage quotas, systematic API comparison, ACM2YAML, non-functional properties, service selection

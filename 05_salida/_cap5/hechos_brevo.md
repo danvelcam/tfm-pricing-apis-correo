@@ -282,3 +282,31 @@ del recolector sin texto entrecomillado del proveedor:
 - [F23] — índice `llms.txt`: cita ya volcada como observación (URL que anuncia una spec y devuelve índice HTML), sin hecho de capacidad/precio propio.
 - [E1]-cabecera del script (defecto de instrumento, no hecho del proveedor).
 - «Fuentes buscadas y NO encontradas» #16 (tope de adjunto por API, ya cubierto por BR-146).
+
+## Corrección del 2026-10-31 (verificador independiente)
+
+El 31-10 un verificador reabrió cada URL del `datasheet.yaml`. El informe íntegro está en
+`03_datos/apis/brevo/evidencias/verificador_adversarial_2026-10-31.md`. Ningún valor cambia y
+ningún semáforo se mueve: siguen 19 🟢 · 17 🟡 · 1 🔴.
+
+- **BR-39 y BR-40, cambios del proveedor (E3).** El artículo de planes se reescribió entre el
+  volcado del 2026-09-21 y el 31-10:
+  - el asiento de marketing pasa a `"Standard plan: $12 per month for each seat"`, igual que la
+    página de precios, y cae una de las tres incoherencias de DISC-08; el logo (9 frente a 12) y
+    Sales Advanced (64 frente a 65) siguen;
+  - desaparecen `"One credit equals one email sent to one contact."` y la frase de las funciones
+    de Starter que dan los créditos. Las dos estaban en Wayback el 2026-10-05.
+  - Las líneas del YAML llevan su relectura fechada.
+- **BR-33.** El Starter lo dice hoy con otras palabras: `"The Starter plan includes no daily
+  sending limit"`.
+- **BR-128 y DISC-03.** La NOTA del YAML seguía diciendo que la guía de lotes contradice el
+  2.000. DISC-03 había cerrado el 2026-09-21 por E5 (1), con la misma lista que hoy. La NOTA se ha
+  corregido. El 2.000 sigue en 🟡 por D1, porque no se publica si gobierna una petición sin
+  versiones (BR-163).
+- **BR-82 a BR-84.** La página de límites publica RPS y RPH a la vez en catorce filas, siete del
+  tramo General y siete del Advanced, y no en diez. La proporción RPH = RPS × 3.600 se cumple en
+  las catorce (corregido en la NOTA del YAML, en [F6] y en O-15).
+- **[F20], atribución.** La NOTA del 202 citaba `https://developers.brevo.com/openapi`, que da
+  404. La URL buena es `/openapi/email-api.json`, la misma que ya registraba [F20].
+
+Volcados: `03_datos/apis/brevo/evidencias/paginas/2026-10-31/LEEME.md`.

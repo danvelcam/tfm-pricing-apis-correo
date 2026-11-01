@@ -4,108 +4,419 @@
 \section{Contexto}
 \label{sec:introduccion:contexto}
 
-Este trabajo se ha realizado en el contexto de las líneas de investigación
+Este trabajo se ha realizado en el contexto de dos líneas de investigación
 del grupo ISA (Ingeniería del Software Aplicada) de la Universidad de
-Sevilla, y en particular de la línea de \textit{Pricing Intelligence}
-\citep{cavero2026pricingintelligence}.
+Sevilla. La primera es el \textit{Pricing Intelligence}, una disciplina
+dirigida por datos que convierte la información de los planes de precios en
+conocimiento para decidir \citep{cavero2026pricingintelligence}. La segunda
+es el análisis de la capacidad de las APIs (interfaces de programación de
+aplicaciones) \citep{ruizcortes2025cajanegra}.
+De las dos nace una línea que extiende el \textit{Pricing Intelligence} a las
+APIs, en la que se enmarcan los Trabajos Fin de Máster de Ramón Gavira
+Sánchez \citep{gavira2026tfm} y de Daniel Ruiz López \citep{ruizlopez2026tfm}. Este trabajo
+se apoya en los dos y construye un catálogo de ocho Datasheets de APIs de
+correo, documentos legibles por máquina con el precio y los límites de cada
+API.
 
-\subsection{Los dos canales de un servicio SaaS}
+\subsection{Canales, interfaces y términos de consumo}
 \label{subsec:introduccion:canales}
 
-Un servicio ofrecido bajo el modelo \textit{Software as a Service} (SaaS)
-puede ser consumido a través de distintos canales de interacción. El más
-visible es habitualmente un \textit{frontend} web, orientado a usuarios
-humanos, en el que las condiciones de contratación se publican de forma
-tabular mediante planes, características (\textit{features}) y complementos
-(\textit{add-ons}). Junto a él, el mismo servicio puede exponer una API
-(REST o GraphQL) para que otros sistemas consuman sus capacidades de
-forma programática.
+Un servicio SaaS (\textit{Software as a Service}) es software que opera el
+proveedor y que el cliente usa a través de la red, sin instalarlo. Puede
+consumirse por varios canales de interacción. El canal web es para personas,
+y en él se publica el pricing en forma de tablas. El pricing es la estructura
+de planes, características (\textit{features}) y complementos
+(\textit{add-ons}) con la que el proveedor regula el acceso a su servicio
+\citep{garciafernandez2025ipricing}. Un plan es la oferta que se contrata, una
+\textit{feature} es una funcionalidad del servicio y un \textit{add-on} es un
+complemento que se suma al plan. El canal API sirve para que otros sistemas
+usen el servicio de forma programática.
 
-Aunque ambos canales describen aspectos del mismo servicio, cada uno
-utiliza fuentes, estructuras y terminologías distintas. El canal web habla
-de planes y funcionalidades; el canal API habla de \textit{endpoints},
-límites de velocidad (\textit{rates}), cuotas de volumen y reglas de
-consumo.
-La Sección~\ref{sec:estado:acm} precisa estos términos: con la definición del NIST, lo que aquí se llama canal es una interfaz del servicio.
+En esta memoria, el canal es el modo de interacción, como el canal web o el
+canal API, y la interfaz es el punto concreto de acceso. El NIST
+(\textit{National Institute of Standards and Technology}) de Estados Unidos
+define la interfaz como la frontera común entre sistemas o módulos
+independientes en la que tienen lugar las interacciones \citep{nist80053r5}.
+El canal API de un servicio de correo suele tener dos
+interfaces: la API REST y el relé SMTP. El relé SMTP es un servidor del
+proveedor que recibe el correo por SMTP, el protocolo estándar de envío de
+correo \citep{rfc5321}, y lo entrega a sus destinatarios.
 
-En el dominio del correo electrónico esta dualidad es especialmente
-marcada. Proveedores como SendGrid, Mailgun, Postmark, Resend o Amazon SES
-publican una página de precios orientada a la contratación y, en paralelo,
-una documentación técnica donde residen las condiciones que realmente
-gobiernan el consumo programático. La información determinante para un
-integrador no siempre aparece en la página de precios: cuántas peticiones
-por segundo admite un endpoint, cuántos destinatarios caben en una
-llamada, qué ocurre al superar la cuota. Está
-dispersa entre documentación de desarrollador, artículos de soporte,
-especificaciones OpenAPI y políticas de uso aceptable. El
-Capítulo~\ref{cap:hallazgos} mide, caso por caso, cuánto de esa
-información falta.
+El dominio de este trabajo es el correo transaccional. Postmark, uno de los
+proveedores del catálogo, lo define como el mensaje individual que el
+destinatario espera recibir y que suele desencadenar el propio usuario, como
+el restablecimiento de contraseña o el recibo de compra
+\citep{postmarktransaccional}. Lo distingue del correo de \textit{marketing},
+el mismo contenido para muchos destinatarios sin que lo desencadene ningún
+evento. Más detalles en la Sección~\ref{sec:estado:correo}. Las ocho APIs del catálogo son las de Postmark, Resend, SendGrid,
+MailerSend, Amazon SES, Mailgun, Brevo y Mailchimp Transactional. Algunos de
+estos proveedores, como Resend, venden también un producto de
+\textit{marketing} en la misma cuenta, y el catálogo modela en cada API solo
+el producto transaccional.
+
+El servicio de MailerSend, otro de los ocho del catálogo, tiene tres
+interfaces, como muestra la Figura~\ref{fig:introduccion:mailersend}. El panel
+web es donde una persona opera la cuenta: da de alta dominios, crea plantillas
+y consulta la actividad. La API REST se usa con peticiones HTTP a sus
+\textit{endpoints}. Un \textit{endpoint} es una operación de la API,
+identificada por un método y una ruta HTTP, como \texttt{POST /v1/email}, que
+envía un correo. El relé SMTP solo recibe correo para enviarlo.
+
+\begin{figure}[tbp]
+\centering
+\begingroup\hyphenpenalty=10000\relax
+\begin{tikzpicture}[
+  font=\footnotesize,
+  quien/.style={draw, rounded corners=2pt, align=center, text width=19mm, minimum height=9mm, inner sep=3pt},
+  interfaz/.style={draw, rounded corners=2pt, align=center, text width=33mm, minimum height=9mm, inner sep=3pt},
+  servicio/.style={draw, rounded corners=2pt, align=center, text width=42mm, minimum height=9mm, inner sep=3pt},
+  cabecera/.style={font=\footnotesize\bfseries, align=center, anchor=south},
+  grupo/.style={font=\scriptsize\itshape, anchor=north west, inner sep=2pt}
+]
+\node[cabecera, text width=24mm] at (1.15,1.15) {Consumidor};
+\node[cabecera, text width=48mm] at (5.7,1.15) {Canal e interfaz};
+\node[cabecera, text width=56mm] at (12.0,1.15) {Servicio de correo transaccional de MailerSend};
+\node[quien] (persona) at (1.15,-0.15) {\textbf{Persona}\\ opera la cuenta};
+\node[quien] (app) at (1.15,-3.45) {\textbf{Aplicación}\\ envía correo};
+\draw[dashed, rounded corners=3pt] (3.3,0.95) rectangle (8.1,-0.95);
+\node[grupo] at (3.3,0.95) {Canal web};
+\node[interfaz] (panel) at (5.7,-0.2) {\textbf{Panel web}};
+\draw[dashed, rounded corners=3pt] (3.3,-1.45) rectangle (8.1,-5.15);
+\node[grupo] at (3.3,-1.45) {Canal API};
+\node[interfaz] (api) at (5.7,-2.6) {\textbf{API REST}\\ peticiones HTTP a sus \textit{endpoints}};
+\node[interfaz] (rele) at (5.7,-4.3) {\textbf{Relé SMTP}\\ recibe correo por SMTP};
+\draw[dashed, rounded corners=3pt] (9.2,0.95) rectangle (14.8,-5.15);
+\node[servicio] (gestion) at (12.0,-1.25) {\textbf{Gestión de la cuenta}\\ plantillas, dominios, \textit{webhooks}, correo entrante y actividad};
+\node[servicio] (envio) at (12.0,-3.45) {\textbf{Envío de correo}};
+\draw[-stealth] (persona.east) -- (panel.west);
+\draw[-stealth] (app.east) -- (api.west);
+\draw[-stealth] (app.east) -- (rele.west);
+\draw[-stealth] (panel.east) -- ([yshift=2.5mm]gestion.west);
+\draw[-stealth] (api.east) -- ([yshift=-2.5mm]gestion.west);
+\draw[-stealth] ([yshift=-1.5mm]api.east) -- ([yshift=1.5mm]envio.west);
+\draw[-stealth] (rele.east) -- ([yshift=-1.5mm]envio.west);
+\end{tikzpicture}
+\endgroup
+\caption[Canales e interfaces del servicio de MailerSend]{Canales e interfaces del servicio de correo transaccional de MailerSend. Una persona usa el panel web, en el canal web, y una aplicación usa la API REST o el relé SMTP, en el canal API. La API REST llega al envío y a la gestión de la cuenta, y el relé SMTP solo al envío. Elaboración propia a partir de la documentación de MailerSend \citep{mailersendapi,mailersendsmtpdocs}.}
+\label{fig:introduccion:mailersend}
+\end{figure}
+
+Las dos interfaces del canal API se parecen en que dan acceso al mismo
+servicio de envío y se contratan en el mismo plan. MailerSend incluye «Email
+API and SMTP relay» desde su plan gratuito \citep{mailersendpricing}, y el
+panel de Postmark, visto con una cuenta propia el 3 de agosto de 2026, muestra
+«SMTP \& REST API» en su plan Basic.
+
+Las dos interfaces se diferencian en las funciones que dan. La API REST de
+MailerSend, además de enviar, tiene operaciones sobre plantillas, dominios,
+correo entrante, actividad y \textit{webhooks}, los avisos que el proveedor envía al sistema
+del cliente cuando ocurre un evento, como una entrega o un rebote, que es un
+correo devuelto sin entregar \citep{mailersendapi}. El relé de MailerSend no
+admite la personalización avanzada ni las plantillas, que solo da la API
+\citep{mailersendsmtpdocs}. El envío en lote, es decir, varios correos
+distintos en una sola petición, tampoco está siempre en las dos interfaces.
+En Brevo, el relé no lo admite y la API sí \citep{brevosmtp}.
+
+Los «términos de consumo» de un servicio son el precio y la información de cómo,
+cuándo, cuánto y dónde se consume, e incluyen el pricing. En el plan Starter
+de MailerSend, el precio es de 35 USD al mes, y el volumen incluido, 50.000
+correos al mes, dice cuánto se puede consumir \citep{mailersendpricing}. La
+hora a la que vuelve a cero el contador diario de peticiones, medianoche UTC,
+dice cuándo \citep{mailersenddocs}. Que Brevo solo admita el envío en lote por
+la API dice cómo y dónde.
+
+Los apuntes de Fundamentos de Ingeniería del Software para Sistemas Cloud,
+una asignatura de este máster, llaman términos de consumo a las condiciones
+del proveedor que afectan a la velocidad y a la capacidad de consumo de su
+API \citep{fisapuntes}.
+Gavira Sánchez usa
+«pricing» en un sentido amplio, que incluye las limitaciones de capacidad
+\citep{gavira2026tfm}. Esta memoria reserva «pricing» para la estructura de
+planes, \textit{features} y \textit{add-ons}, y llama términos de consumo al
+conjunto.
+
+Un límite de uso fija el máximo de un nivel de uso medible, como los correos
+enviados al mes, los dominios de la cuenta o los días que se conservan los
+registros. Puede renovarse cada periodo o no. La cuota es un límite de uso
+renovable: el volumen máximo acumulable en un periodo. Al pasar de la cuota,
+el proveedor puede cortar el envío o cobrar un sobrecoste por cada unidad de
+más. El plan Essentials 50K de SendGrid, por ejemplo, incluye 50.000 correos
+al mes y cobra 0,0013 USD por cada correo de más \citep{sendgridpricing}.
+
+El \textit{rate} no es un límite de uso: fija la velocidad máxima de consumo,
+en peticiones por unidad de tiempo. Esta memoria lo llama también caudal.
+Antonio Ruiz-Cortés y Miguel Ruiz-López leen la cuota y el \textit{rate} de
+forma geométrica \citep{ruizcortes2025cajanegra}. En una gráfica de las
+peticiones acumuladas frente al tiempo, el \textit{rate} es una recta que sube
+y la cuota, una recta horizontal. Los dos operan a la vez, y la capacidad
+efectiva, lo que se puede consumir sin pasar ninguno de los dos, es lo que
+queda por debajo de ambas rectas.
+
+Cada interfaz de un mismo servicio tiene términos de consumo propios. En el
+plan Starter de MailerSend, el relé SMTP acepta como máximo
+cinco conexiones simultáneas \citep{mailersendsmtp}. La API tiene un
+\textit{endpoint} de envío en lote, \texttt{POST /v1/bulk-email}, que admite
+500 correos distintos por llamada \citep{mailersendbulk}. Cada correo lleva
+hasta 50 destinatarios directos, 10 en copia y 10 en copia oculta, así que una
+llamada llega a 35.000 destinatarios. En Starter, el \textit{rate} de ese
+\textit{endpoint} es de 15 llamadas por minuto \citep{mailersendemailapi}.
+
+Las conexiones simultáneas y los destinatarios por llamada no son ni cuota ni
+\textit{rate}. Gavira Sánchez llama dimensión de capacidad a cada aspecto del
+consumo que el proveedor limita por separado, y su modelo distingue cuatro: el
+volumen (las cuotas), la frecuencia (los \textit{rates}), las peticiones
+concurrentes y los resultados por petición, que acotan la información que
+devuelve una sola llamada \citep{gavira2026tfm}. Las conexiones simultáneas
+del relé son peticiones concurrentes.
+
+Los destinatarios por llamada no son una dimensión de capacidad: dicen cuántos
+correos gasta una llamada, y para Gavira Sánchez eso es una regla de consumo y
+no una restricción de capacidad \citep{gavira2026tfm}. La llama CRF
+(\textit{Consumption Request Factor}): la regla que dice cuánto gasta una
+petición de cada límite. En una API de correo, una misma
+llamada gasta una petición y, a la vez, tantos correos de la cuota mensual
+como destinatarios incluya \citep{gavira2026tfm}.
+
+Las dos interfaces de MailerSend comparten la cuota diaria de 100.000
+peticiones del plan Starter \citep{mailersenddocs}, pero no con el mismo CRF.
+Por la API cuenta cada petición, así que una llamada de lote cuenta una. Por el
+relé cuenta cada mensaje \citep{mailersendsmtpdocs}, así que 500 correos
+enviados por el relé gastan 500 peticiones de la cuota.
 
 \subsection{Pricing Intelligence y su ecosistema}
 \label{subsec:introduccion:pi}
 
-El \textit{Pricing Intelligence} se define como una disciplina dirigida por
-datos cuyo objetivo es transformar la información contenida en los planes
-de precios en conocimiento útil para la toma de decisiones
-\citep{cavero2026pricingintelligence}. Recopilar precios es solo el
-punto de partida. El objetivo es responder de forma automática a preguntas
-como qué plan se ajusta mejor a un patrón de consumo dado, o qué
-diferencias relevantes existen entre dos proveedores.
+El \textit{Pricing Intelligence} reúne herramientas, métodos y procesos para
+convertir los datos de los pricings en información, y la información en
+conocimiento para quien decide, sea una persona o un agente automático
+\citep{cavero2026pricingintelligence}. Hace con los pricings lo que la
+\textit{Business Intelligence} hace con los datos de una empresa. Cavero et al.
+lo proponen porque varios trabajos independientes, como los de análisis
+automático de pricings, avanzaban por separado
+\citep{cavero2026pricingintelligence}. Lo llevan a la práctica con HARVEY, el
+agente conversacional del grupo, que traduce preguntas en lenguaje natural a
+llamadas a las herramientas de análisis de pricings del grupo y responde con
+sus resultados.
 
-Alrededor de esta idea, el grupo ha construido un ecosistema de
-herramientas interoperables. Para el canal web, el metamodelo
-\textit{iPricing} y su serialización Pricing2YAML representan los planes
-de un SaaS \citep{garciafernandez2025ipricing}. Sobre ellos operan A-MINT,
-extractor de pricings desde páginas web mediante modelos de lenguaje
-\citep{cavero2025amint}, y PRIME, validador y analizador de los modelos
-resultantes \citep{garciafernandez2025ipricing}. HARVEY, presentado en
-CAiSE 2026, es el orquestador de estas capacidades tras una interfaz
-conversacional \citep{cavero2026pricingintelligence}. Finalmente, SPHERE es el
-\textit{hub} del ecosistema: ahí se publican los artefactos, ahí se ven y
-desde ahí se comparten \citep{sphere}.
+Gavira Sánchez explica el \textit{Pricing Intelligence} con tres conceptos, que
+resume la Figura~\ref{fig:introduccion:pi} \citep{gavira2026tfm}. El espacio de
+consultas (\textit{Query Space}) es el conjunto de preguntas que se pueden
+formular sobre los pricings y que las herramientas de \textit{Pricing
+Intelligence} son capaces de resolver. La base de conocimiento
+(\textit{Knowledge Base}) es la información representada explícitamente,
+como planes, cuotas, \textit{rates} y precios. El espacio de conocimiento
+(\textit{Knowledge Space}) es el conjunto de respuestas a esas preguntas que
+se obtienen automáticamente a partir de esa base, así que depende de los
+otros dos.
 
-La extensión de este ecosistema al canal API es reciente. El Trabajo Fin de
-Máster de Gavira Sánchez \citep{gavira2026tfm}, en coordinación con el de
-Ruiz López \citep{ruizlopez2026tfm}, conceptualiza la capacidad contractual
-de una API en el \textit{API Capacity Model} (ACM) y define ACM2YAML, la
-serialización que da lugar a la \textbf{Datasheet}. La Datasheet es un
-documento orientado a máquinas que reúne en una sola representación la
-información tabular del pricing y la que aparece dispersa en la
-documentación técnica. Sobre ella operan PRIME4API \citep{prime4apirepo},
-motor de análisis de la capacidad, y HARVEY4API \citep{ruizlopez2026tfm},
-el agente que lo consume.
+\begin{figure}[!htbp]
+\centering
+\includegraphics[width=\textwidth]{fig/gavira2026_conceptos_pi.png}
+\caption[Conceptos fundamentales de \textit{Pricing Intelligence}]{Conceptos fundamentales de \textit{Pricing Intelligence}: espacio de consultas, base de conocimiento y espacio de conocimiento. Reproducida del Trabajo Fin de Máster de Gavira Sánchez \citep{gavira2026tfm}, Figura 1.4.}
+\label{fig:introduccion:pi}
+\end{figure}
+
+Dos preguntas de correo lo ilustran. La primera, cuánto tiempo mínimo
+necesita el plan Essentials 50K de SendGrid para enviar 100.000 correos, está
+en el espacio de conocimiento: su respuesta sale de la cuota, el
+\textit{rate} y el sobrecoste del plan, que recoge la Datasheet de SendGrid.
+La segunda, cuántas peticiones simultáneas admite la API de Postmark, está en
+el espacio de consultas pero no en el de conocimiento. Las Datasheets, que
+forman la base de conocimiento de este trabajo, no tienen campo para la
+concurrencia.
+
+Cavero et al. llaman tarea de \textit{Pricing Intelligence} a la necesidad de
+quien decide sobre un pricing, formulada como una pregunta en lenguaje natural
+\citep{cavero2026pricingintelligence}. Un ejemplo suyo: qué plan y qué
+complementos se ajustan mejor al uso previsto al menor coste. Este trabajo
+llama pregunta de decisión a una tarea de ese tipo cuando la plantea quien va a
+contratar una API de correo, como qué API y qué plan cubren 100.000 correos al
+mes al menor coste. Las dos del párrafo anterior, la de SendGrid y la de
+Postmark, también lo son: las necesita quien está valorando ese plan o esa API.
+
+El catálogo de preguntas de decisión de este trabajo tiene 32, escritas como
+plantillas: preguntas con huecos, como el proveedor o el volumen, que se
+rellenan para cada caso. Los huecos son los mismos que usan Cavero et al.
+\citep{cavero2026pricingintelligence}. Las diez preguntas de análisis de
+Gavira Sánchez razonan sobre los planes de una sola API \citep{gavira2026tfm}.
+Algunas preguntas de decisión hacen los mismos cálculos, como la de SendGrid,
+y otras comparan varias APIs o preguntan por \textit{features}, como los
+\textit{webhooks}.
+
+Para el canal web, el grupo representa el pricing de un SaaS con el metamodelo
+\textit{iPricing} de García-Fernández et al., que lo describe como planes,
+complementos y \textit{features} con sus límites de uso
+\citep{garciafernandez2025ipricing}. Un pricing en iPricing se escribe en
+YAML, un formato de texto legible por máquina, con la serialización
+Pricing2YAML. iPricing es uno de los activos en los que se apoya HARVEY
+\citep{gavira2026tfm}. No representa \textit{endpoints}, \textit{rates} por
+ventana de tiempo ni el CRF, y Gavira Sánchez concluye que canales distintos
+necesitan modelos distintos \citep{gavira2026tfm}.
+
+El ecosistema del grupo para el canal API parte del \textit{API Capacity
+Model} (ACM), el modelo de la capacidad contractual de una API que
+conceptualiza Gavira Sánchez \citep{gavira2026tfm} y cuya autoría comparte Ruiz
+López \citep{ruizlopez2026tfm}. La capacidad contractual es lo que el proveedor
+se compromete a dejar consumir según sus términos, y no la capacidad de la
+infraestructura que lo sirve. El ACM la describe con las cuatro dimensiones de
+capacidad y el CRF presentados en la Sección~\ref{subsec:introduccion:canales},
+y la capacidad efectiva de la lectura geométrica se calcula sobre ella.
+
+ACM2YAML es el esquema con el que el ACM se escribe en YAML: fija qué campos
+lleva el fichero y cómo se anidan. Cada fichero conforme a ese esquema es una
+Datasheet \citep{gavira2026tfm}. La Datasheet se organiza por plan y, dentro
+de cada plan, por \textit{endpoint}. Tiene un bloque para las cuotas
+(\texttt{capacity}), cada una con su sobrecoste (\texttt{overage\_cost}), y
+otro para los \textit{rates} (\texttt{max\_power}). Declara en
+\texttt{workload} el CRF de cada \textit{endpoint}: las unidades que gasta una
+petición, entre un mínimo y un máximo, como de 1 a 1.000 correos en el envío
+de SendGrid. Cada valor del catálogo lleva su fuente en el registro de
+procedencia (\textit{provenance}), que la guía de ACM2YAML prevé en parte. El
+Extracto de código~\ref{lst:introduccion:sendgrid} muestra un fragmento real.
+
+Los topes propios del relé no tienen campo en la Datasheet y quedan en el
+registro de procedencia. Las cinco conexiones simultáneas del relé de
+MailerSend no lo tienen porque el esquema no recoge la concurrencia. El
+\textit{rate} del relé de Mailgun, 1.500 peticiones por segundo por IP de
+cliente\footnote{\url{https://www.mailgun.com/ai-info/}, preguntas frecuentes
+del sitio comercial de Mailgun.}, no lo tiene porque el esquema cuelga de un
+\textit{endpoint} HTTP cada \textit{rate} propio de una interfaz, y el relé no
+tiene ninguno. Por eso el catálogo modela la API REST de cada servicio.
+
+PRIME4API es el motor de análisis de la capacidad de Gavira Sánchez
+\citep{prime4apirepo}. Rehace como API REST la biblioteca Pricing4API, cuyo
+primer prototipo hizo Ruiz López \citep{pricing4api}, y responde leyendo la
+Datasheet. Calcula, por ejemplo, el tiempo mínimo para enviar un volumen, el
+plan más barato que lo cubre o lo que cuesta pasar de la cuota.
+
+Gavira Sánchez acompaña el motor de diez preguntas de análisis, como cuál de
+dos cuotas de un plan se agota antes. Las respondió con PRIME4API sobre tres
+pricings de dos servicios, SendGrid en dos versiones y la API de datos
+bibliográficos DBLP, y esas respuestas son la referencia con la que se valida
+el ecosistema \citep{gavira2026tfm}.
+
+HARVEY4API es el agente conversacional de Ruiz López para el canal API
+\citep{ruizlopez2026tfm}. Publica las operaciones de PRIME4API como
+herramientas a través del
+\textit{Model Context Protocol} (MCP), el protocolo con el que un modelo de
+lenguaje llama a herramientas externas \citep{mcp}, y responde en lenguaje
+natural.
+
+SPHERE es la plataforma web del grupo que reúne pricings en colecciones y da
+acceso a las demás herramientas \citep{sphere}. Se extendió a las Datasheets a
+partir de los requisitos de Gavira Sánchez y Ruiz López \citep{gavira2026tfm},
+y una colección puede llevar, para cada API, su Datasheet y su pricing en
+Pricing2YAML. Más detalles en la Sección~\ref{sec:estado:sphere}.
+
+\subsection{Un ejemplo: 100.000 correos al mes}
+\label{subsec:introduccion:ejemplo}
+
+Una aplicación tiene que enviar 100.000 correos al mes, con ráfagas de 1.000
+peticiones por minuto, \textit{webhooks} de eventos y envío en lote. Quien la
+desarrolla quiere saber qué API y qué plan lo cubren al menor coste.
+
+Cada condición se lee en un sitio distinto. El volumen y el coste salen de la
+cuota, el precio y el sobrecoste del plan. La ráfaga se compara con el
+\textit{rate} de envío, y el lote, con el tope de correos por petición
+(\texttt{workload}) del \textit{endpoint} de envío. Los \textit{webhooks} son
+una \textit{feature} que la Datasheet no recoge. Se leen en una matriz de
+\textit{features}, una tabla por API que dice qué \textit{features} trae cada
+plan y que se guarda junto a su Datasheet. El Extracto de
+código~\ref{lst:introduccion:sendgrid} muestra dónde se leen en la Datasheet
+de SendGrid el volumen, la ráfaga y el lote.
+
+\begin{lstlisting}[style=datasheetyaml,float=tbp,caption={Fragmento de la Datasheet de SendGrid del catálogo: la cuota mensual del plan Essentials 50K con su sobrecoste, el \textit{rate} de envío, que la Datasheet declara en el plan, y el plan, con su precio en USD al mes y el tope de correos por petición. Las líneas \texttt{\# ...} marcan lo que se omite.},label={lst:introduccion:sendgrid}]
+capacity:
+  quota_email_monthly_essentials:
+    value: 50000
+    unit: emails
+    period:
+      value: 1
+      unit: MONTH
+    # ...
+    overage_cost:
+      price: 0.0013
+      value: 1
+max_power:
+  rate_request_mailsend_essentials:
+    value: 10000
+    unit: requests
+    period:
+      value: 1
+      unit: SECOND
+plans:
+  essentials:
+    price: 19.95
+    # ...
+    quota: quota_email_monthly_essentials
+    rate: rate_request_mailsend_essentials
+    endpoints:
+      /v3/mail/send:
+        workload:
+          - unit: emails
+            min: 1
+            max: 1000
+            # ...
+\end{lstlisting}
+
+Para el tiempo mínimo de enviar los 100.000 correos con el plan Essentials
+50K de SendGrid, que incluye 50.000 y admite 10.000 peticiones por segundo,
+PRIME4API \citep{prime4apirepo} da dos respuestas según qué ocurra al pasar de
+la cuota. Con un destinatario por petición y un presupuesto que cubre el
+sobrecoste, da 9 segundos: diez ráfagas de 10.000 peticiones, la primera en el
+instante cero. Si la cuota corta el envío, da 30 días y 4 segundos, porque la
+mitad de los correos espera a que la cuota se renueve. Con 1.000
+destinatarios por petición, da menos de un segundo con sobrecoste (el motor
+responde 0 segundos) y 30 días con corte. El caso entero, planteado sobre las
+ocho APIs y con las cuatro condiciones, está en el
+Capítulo~\ref{cap:comparacion}.
 
 \section{Motivación}
 \label{sec:introduccion:motivacion}
 
-El responsable técnico que debe elegir entre una docena de proveedores
-rara vez encuentra en la página de precios los tres datos de consumo que
-enumera la Sección~\ref{subsec:introduccion:canales}. Se enfrenta, además, a
-documentaciones heterogéneas y a comparativas elaboradas por los propios
-vendedores \citep{mailtrap2026comparativa,mailslurp2026comparativa}. Y le falta de forma sistemática la información que más le
-importa: la que determina si el servicio soportará su patrón de consumo real.
+El responsable técnico que elige proveedor de correo rara vez encuentra juntos
+en la página de precios tres de los elementos principales que caracterizan el
+consumo de una API: el \textit{rate} de cada \textit{endpoint}, los
+destinatarios que caben en una llamada y lo que ocurre al superar la cuota. Le
+falta la información que dice si el servicio admite su patrón de
+consumo real, es decir, cuántos correos envía su aplicación al mes, en qué
+ráfagas y con cuántos destinatarios por llamada, como en el caso de los
+100.000 correos. Para saberlo tiene que reunir a mano los términos de consumo
+de cada interfaz, y esos términos no se comparan de forma sistemática.
 
-El ecosistema descrito en la sección anterior ofrece el
-instrumental necesario para abordar el problema de forma rigurosa.
-Sin embargo, ese instrumental se ha validado hasta ahora sobre tres
-pricings de dos servicios \citep{gavira2026tfm}, y su versión operativa captura
-dos de las cuatro dimensiones de capacidad del metamodelo que la
-sustenta. Existe, por tanto, una distancia entre lo que el modelo promete
-y lo que se ha demostrado que soporta.
+Los términos de consumo de un mismo servicio están repartidos entre varias
+páginas, a veces no se publican, como la concurrencia de la API de Postmark,
+y a veces se contradicen. El catálogo de este trabajo registra 82
+divergencias entre fuentes. Las comparativas del sector no resuelven esa
+dispersión: las publican empresas de correo como Mailtrap o MailSlurp, que
+recomiendan su propio producto. La de Mailtrap da sin fuente los topes de destinatarios por
+llamada \citep{mailtrap2026comparativa}, y la de MailSlurp no da datos de
+ningún proveedor \citep{mailslurp2026comparativa}.
 
-Esa distancia es la que motiva este trabajo, y es también la que determina
-su dificultad. Los motores de análisis ya existen, así que el reto no está
-en la complejidad algorítmica. Está en tres frentes de naturaleza distinta.
-El primero es de reconstrucción. La capacidad contractual de una API real
-rara vez está publicada en un único lugar, y en ocasiones sencillamente no
-está publicada. Documentarla exige localizar, integrar y contrastar fuentes
-heterogéneas y con frecuencia incompletas. El segundo es de modelado. Cada
-servicio que no encaja en el esquema obliga a discernir si es un caso
-particular que puede simplificarse o una carencia real del modelo que debe
-corregirse, y esa distinción no admite automatización. El tercero es de
-coordinación. Este trabajo se construye sobre artefactos que otros
-trabajos desarrollan en paralelo, y cualquier cambio propuesto debe
-verificarse contra el resto del ecosistema.
+Con el ecosistema descrito en la sección anterior se puede escribir la
+capacidad contractual de una API en una Datasheet y analizarla, pero se ha
+probado poco. Las diez preguntas de análisis de Gavira Sánchez se
+respondieron sobre tres pricings de dos servicios, y el diseño de ACM2YAML se
+probó con cuatro APIs, dos de ellas de correo. La versión en uso, ACM2YAML
+v0.3, que Gavira Sánchez llama versión operativa parcial, recoge dos de las
+cuatro dimensiones de capacidad, el volumen y la frecuencia, y deja fuera la
+concurrencia y los resultados por petición \citep{gavira2026tfm}.
+
+La distancia entre las cuatro dimensiones del ACM y las dos que escribe
+ACM2YAML v0.3, probadas sobre pocos casos, motiva este trabajo y explica
+también su dificultad. Las herramientas de análisis, el motor PRIME4API y el
+agente HARVEY4API, ya existen. Lo que falta tiene tres partes. La primera es
+de reconstrucción: obtener la capacidad contractual de cada API de sus
+términos de consumo, repartidos entre páginas, y contrastar cada dato con otra
+fuente. La segunda es de modelado. Cada servicio que no encaja en el esquema obliga a
+decidir si es un caso particular que puede simplificarse o una carencia del
+modelo que debe corregirse, y esa decisión exige un juicio sobre el dominio.
+
+La tercera parte es de coordinación. Este trabajo se construye sobre
+artefactos que desarrollan en paralelo los trabajos de Gavira Sánchez y Ruiz
+López, como ACM2YAML, PRIME4API y HARVEY4API. Cualquier cambio propuesto al esquema debe
+verificarse contra las herramientas que consumen la Datasheet, empezando por
+PRIME4API.
 
 \section{Objetivos y preguntas de investigación}
 \label{sec:introduccion:objetivos}
@@ -116,12 +427,12 @@ Trabajo Fin de Máster.
 \begin{mdframed}[style=US_style]
 \textbf{Objetivo del Trabajo Fin de Máster}\\[.2em]
 Construir un espacio de conocimiento sobre las APIs de correo electrónico
-mediante Datasheets conformes al ACM, y establecer un método de comparación
+mediante Datasheets conformes al modelo ACM, y establecer un método de comparación
 sistemática que responda a necesidades funcionales y no funcionales,
-evolucionando el modelo con las carencias que el dominio revele.
+evolucionando el modelo con las carencias que revele el estudio del dominio.
 \end{mdframed}
 
-Este objetivo se articula en torno a cuatro preguntas de investigación.
+De este objetivo salen cuatro preguntas de investigación.
 
 \begin{description}
   \item[RQ1.] ¿Qué APIs de correo deben incluirse en un análisis
@@ -136,18 +447,30 @@ Este objetivo se articula en torno a cuatro preguntas de investigación.
     simultáneamente requisitos funcionales y no funcionales?
 \end{description}
 
-De ellas se derivan los siguientes objetivos específicos.
+En la RQ1, representativo significa que el conjunto cubre cuatro formas de
+cobro (planes por volumen mensual, pago por uso, producto vendido como añadido
+de otro y planes con límite diario además del mensual) y que sus APIs
+difieren en los rasgos de sus límites, como un \textit{rate} publicado por
+\textit{endpoint} o un caudal negociado no publicado. No significa que sea una
+muestra estadística del mercado. La selección se completó con una consulta a
+un modelo de lenguaje, registrada en el Anexo~\ref{anx:uso-ia}. Lo
+reproducible son los criterios y ese registro: repetir la consulta no
+garantiza las mismas APIs.
+
+De las cuatro preguntas se derivan los cinco primeros objetivos específicos. El sexto no deriva de ninguna pregunta. Lleva el resultado a SPHERE, porque ahí el catálogo deja de ser un conjunto de ficheros de este trabajo y pasa a formar parte de la línea de investigación.
 
 \begin{description}
   \item[OBJ-01] \textbf{Selección justificada del dominio.} Definir y
     aplicar un criterio de inclusión reproducible que determine el conjunto
     de APIs analizadas, documentando el proceso de forma que un tercero
     pueda replicarlo.
-  \item[OBJ-02] \textbf{Construcción del catálogo de Datasheets.}
-    Documentar la capacidad contractual de cada API seleccionada conforme
-    a ACM2YAML, con trazabilidad explícita de las fuentes de cada dato.
+  \item[OBJ-02] \textbf{Construcción del catálogo de Datasheets.} Recoger
+    de forma sistemática los términos de consumo que publica cada
+    proveedor, con su versión y su fecha. A partir de ellos, documentar la
+    capacidad contractual de cada API conforme a ACM2YAML, con trazabilidad
+    explícita de las fuentes de cada dato.
   \item[OBJ-03] \textbf{Evolución del esquema.} Identificar las carencias
-    de expresividad que el dominio revele y proponer las extensiones
+    de expresividad que revele el estudio del dominio y proponer las extensiones
     correspondientes, justificando cada una con el caso real que la motiva.
   \item[OBJ-04] \textbf{Análisis de la capacidad.} Caracterizar cómo se
     relacionan los límites de uso y los \textit{rates} en el dominio, con la
@@ -156,88 +479,129 @@ De ellas se derivan los siguientes objetivos específicos.
   \item[OBJ-05] \textbf{Método de comparación.} Establecer un catálogo de
     preguntas de decisión propias del dominio y un procedimiento para
     responderlas sobre el conjunto de Datasheets.
+  \item[OBJ-06] \textbf{Contribución a SPHERE.} Llevar el pricing de cada
+    API del catálogo a Pricing2YAML, el formato que consume SPHERE,
+    documentar lo que la plataforma no admite y proponer cómo mostrar sus
+    términos de consumo.
 \end{description}
 
-El componente de investigación del trabajo reside principalmente en OBJ-03
-y OBJ-04. La construcción del catálogo es condición necesaria, pero es un
-medio. El resultado investigable es lo que la confrontación entre un modelo
-y un dominio real revela sobre las limitaciones del primero, y el
-conocimiento que puede extraerse del segundo una vez formalizado.
+El componente de investigación está sobre todo en OBJ-03 y OBJ-04: lo que el
+estudio de un dominio real revela sobre las carencias de expresividad de un
+modelo, y lo que se aprende del dominio una vez formalizado. El catálogo es el
+medio para llegar a ello.
 
 \section{Contribuciones}
 \label{sec:introduccion:contribuciones}
 
-El desarrollo de estos objetivos se materializa en cuatro contribuciones.
+Estos objetivos llevan a cuatro contribuciones.
 
 \begin{description}
   \item[C-01] \textbf{Catálogo de Datasheets de APIs de correo.} Un
-    conjunto curado y versionado de Datasheets del dominio, con trazabilidad
-    de fuentes y preparado como contribución a SPHERE, reutilizable por el resto de
-    herramientas del ecosistema.
+    conjunto curado y versionado de Datasheets del dominio, construido sobre
+    los términos de consumo que publica cada proveedor. Lleva trazabilidad
+    de fuentes, está preparado como contribución a SPHERE y lo pueden
+    reutilizar las demás herramientas del ecosistema.
   \item[C-02] \textbf{Evolución de ACM2YAML.} Una propuesta de extensión del
     esquema justificada caso a caso, en la que cada elemento nuevo responde
     a un escenario real que la versión previa no era capaz de representar.
   \item[C-03] \textbf{Caracterización de la relación entre límites y
-    \textit{rates}.} Un análisis de cómo interactúan ambas dimensiones en el
-    dominio del correo y de sus consecuencias para el consumidor. La
-    relación estaba definida en el modelo, pero no caracterizada sobre un
-    dominio real (Sección~\ref{sec:estado:analisis}).
+    \textit{rates}.} Un análisis de cómo se relacionan la cuota y el \textit{rate} en el
+    dominio del correo y de sus consecuencias para el consumidor. El ACM,
+    que conceptualiza Gavira Sánchez en su Trabajo Fin de Máster, define
+    la relación \citep{gavira2026tfm}, pero no la caracteriza sobre el
+    conjunto de APIs de un dominio.
   \item[C-04] \textbf{Método de comparación sistemática.} Un catálogo de
     preguntas de decisión funcionales y no funcionales, junto con el
-    procedimiento para resolverlas sobre las Datasheets.
+    procedimiento para resolverlas: las no funcionales sobre las
+    Datasheets y las funcionales sobre una matriz de \textit{features} por
+    plan que queda fuera del YAML.
 \end{description}
 
-Estas contribuciones tienen aplicación académica e industrial. En el
-ámbito aca\-dé\-mi\-co, el catálogo de Datasheets es un banco de pruebas sobre
-un dominio real para las herramientas del ecosistema, que hasta ahora
-se han validado sobre tres pricings de dos servicios \citep{gavira2026tfm}.
-Las extensiones propuestas al esquema revierten directamente sobre el
-modelo. En el ámbito industrial, el instrumento aborda una decisión que
-los equipos de desarrollo toman de forma recurrente y sin base
-comparable. Cabe esperar que el método y el esquema se extiendan a otros
-dominios de APIs más allá del correo electrónico, aunque esa
-extensibilidad queda sin probar (Sección~\ref{sec:conclusiones:externa}).
+Las cuatro contribuciones se apoyan en un método de ingeniería del software
+agéntica con supervisión humana (\textit{human in the loop}). Para cada tarea
+diseñamos \textit{skills} (conjuntos de instrucciones empaquetadas que un
+modelo de lenguaje sigue), agentes (modelos de lenguaje que ejecutan una
+tarea con herramientas) y flujos de trabajo que recogen, modelan y
+verifican los datos de cada API. Después revisamos lo que el proceso deja abierto
+y lo aceptamos o lo corregimos. Las \textit{skills} del ciclo de construcción de cada Datasheet, como la que recoge en bruto los términos de consumo de cada proveedor, son de este trabajo.
+
+En el ámbito académico, el catálogo sirve a quienes desarrollan ACM2YAML, PRIME4API y SPHERE: les da ocho APIs reales sobre las que probar las herramientas, y cada carencia que aparece en ellas vuelve al esquema como extensión. En el ámbito industrial, sirve a los equipos de desarrollo que eligen un proveedor de correo: pueden comparar límites de uso y \textit{rates} con una misma estructura, en lugar de reunirlos a mano de las páginas de cada proveedor. Queda sin probar si las extensiones propuestas y el método de comparación sirven en otros dominios de APIs.
 
 \section{Estructura de la memoria}
 \label{sec:introduccion:estructura}
 
-El \textbf{Capítulo~\ref{cap:introduccion}} introduce el contexto del
-trabajo, presenta los dos canales de acceso a un SaaS y el ecosistema de
-Pricing Intelligence, formula la motivación y los objetivos, y enumera las
-contribuciones realizadas.
+La memoria tiene ocho capítulos y un anexo, y se organiza del siguiente modo.
+Del Capítulo~\ref{cap:catalogo} al~\ref{cap:comparacion}, cada capítulo responde
+a una pregunta de investigación, en el orden de las RQ, y cierra con su respuesta.
 
-El \textbf{Capítulo 2} describe la metodología seguida y la planificación
-del proyecto, con su estructura de paquetes de trabajo, el presupuesto
-estimado y las desviaciones observadas.
+En primer lugar, el \textbf{Capítulo~\ref{cap:introduccion}} presenta las
+interfaces de un servicio de correo y sus términos de consumo, el
+\textit{Pricing Intelligence} y su ecosistema, el caso de los 100.000 correos
+al mes y la motivación del trabajo. Formula el objetivo, las cuatro preguntas
+de investigación y los seis objetivos específicos, y enumera las cuatro
+contribuciones.
 
-El \textbf{Capítulo 3} revisa el estado del arte en el modelado de pricings
-de SaaS, en el modelado y análisis de la capacidad de APIs, y en las
-herramientas del ecosistema de Pricing Intelligence sobre las que se
-construye este trabajo.
+A continuación, el \textbf{Capítulo~\ref{cap:metodologia}} describe la
+metodología, basada en el proceso DSRM (\textit{Design Science Research
+Methodology}) de Peffers et al., un proceso de
+investigación en ciencia del diseño que ordena el trabajo en seis actividades
+\citep{peffers2007dsrm}. Expone también el método agéntico con su supervisión
+humana y la planificación del proyecto: paquetes de trabajo, cronograma,
+presupuesto y desviaciones respecto a lo previsto.
 
-El \textbf{Capítulo 4} presenta el método con el que se construye el
-catálogo (criterio de selección del dominio, ciclo de construcción por
-API, reglas de trazabilidad y confianza) y su calibración sobre un piloto
-real.
-Cierra la RQ1 con la condición que debe cumplir el conjunto de APIs
-del catálogo (Sección~\ref{sec:propuesta:respuesta}).
+El \textbf{Capítulo~\ref{cap:estadoDelArte}} revisa el modelado y análisis de
+pricings de SaaS y de la capacidad de las APIs, y presenta el ecosistema SPHERE.
+Separa lo que ya ofrecían el ACM, las Datasheets, PRIME4API y SPHERE de lo que
+aporta este trabajo. Termina con el dominio de las APIs de correo y los cuatro huecos que
+aborda el trabajo, uno por contribución.
 
-El \textbf{Capítulo 5} recoge lo que las APIs del catálogo revelan. Reúne
-los hallazgos de cada una, la relación observada entre límites de uso y
-\textit{rates}, y el catálogo de preguntas de Pricing Intelligence con
-el que se comparan de forma sistemática. Las Datasheets completas no se
-reproducen en la memoria. Se conservan, con sus fuentes y evidencias, en
-el repositorio de datos que acompaña al trabajo.
+El \textbf{Capítulo~\ref{cap:catalogo}} construye el catálogo de ocho Datasheets y
+responde a la RQ1 (OBJ-01). El catálogo responde al OBJ-02 y es el medio para
+las RQ2 a RQ4. Su salida hacia SPHERE responde al OBJ-06, que no deriva de
+ninguna RQ. El capítulo fija el criterio de selección de las APIs y el ciclo
+de construcción de cada Datasheet, con la escalera de validación por la que
+pasan los datos que ninguna fuente da de forma literal o en los que dos
+fuentes chocan. Sus cuatro peldaños son el contraste con otra
+fuente, la observación del panel con una cuenta propia, el sondeo, que comprueba un
+límite con peticiones controladas contra la API real, y la medición formal.
 
-El \textbf{Capítulo 6} formula la evolución del esquema ACM2YAML. Recoge
-el inventario de elementos no soportados levantado sobre las ocho APIs del
-catálogo, aplica
-los criterios de promoción y propone las extensiones que el dominio
-justifica, cada una con el caso real que la motiva.
+El mismo capítulo comprueba si las ocho Datasheets superan el validador de
+formato de este trabajo, que revisa los tipos de cada campo y las referencias
+entre bloques, y si PRIME4API puede consumirlas.
 
-El \textbf{Capítulo 7} cierra la memoria. Responde a las cuatro preguntas de
-investigación y evalúa las contribuciones frente a los objetivos. Después
-agrupa las amenazas a la validez y describe el paquete de replicación.
-Termina con las líneas de trabajo futuro y con las conclusiones técnicas.
+El \textbf{Capítulo~\ref{cap:evolucion}} responde a la RQ2 (OBJ-03). Inventaría
+los 35 hechos del dominio que ACM2YAML v0.3 no puede expresar o que
+PRIME4API no consume, y cuenta en cuántas de las ocho APIs aparece cada uno. De
+ese inventario salen ocho propuestas de extensión del esquema, y la novena, del
+fallo de PRIME4API ante el precio \texttt{custom}, sin cifra publicada, del
+plan Enterprise de Resend.
+Cada una lleva el caso real que la motiva, como los seis volúmenes contratados que Postmark vende
+dentro de un mismo plan.
 
-El Anexo~\ref{anx:uso-ia} declara el uso de inteligencia artificial en el trabajo, con la consulta que completó la selección de APIs.
+El \textbf{Capítulo~\ref{cap:limites}} responde a la RQ3 (OBJ-04). Combina el
+\textit{rate}, la cuota, el periodo de la cuota y los destinatarios por
+petición en una curva de capacidad: el máximo de peticiones que se pueden
+hacer desde el inicio hasta cada instante sin pasar la cuota ni el
+\textit{rate}. Calcula, plan a plan, cuántas veces cabe la cuota en lo que el
+\textit{rate} admite durante ese periodo. Ese cálculo a mano se contrasta con
+las respuestas de PRIME4API.
+
+El \textbf{Capítulo~\ref{cap:comparacion}} responde a la RQ4 (OBJ-05). Presenta
+un catálogo de 32 plantillas de pregunta de decisión y el procedimiento que las
+responde sobre las Datasheets, y mide su cobertura, la proporción de preguntas
+que se pueden responder. El procedimiento se aplica
+al caso de los 100.000 correos al mes de la
+Sección~\ref{subsec:introduccion:ejemplo}, y el capítulo termina con la
+comparación funcional de los planes.
+
+Por último, el \textbf{Capítulo~\ref{cap:conclusiones}} reúne en una tabla la
+respuesta a cada pregunta de investigación y el estado de cada objetivo y de
+cada contribución. Después agrupa las amenazas a la validez en cuatro ejes,
+extrae las lecciones del método agéntico y plantea el trabajo futuro.
+
+El Anexo~\ref{anx:uso-ia} declara el uso de inteligencia artificial en el trabajo
+y recoge la consulta a un modelo de lenguaje que completó la selección de
+las APIs del catálogo. Las
+Datasheets, sus fuentes y sus evidencias no se reproducen enteras en la memoria. Se
+entregan junto a ella en el repositorio de datos del
+trabajo\footnote{\url{https://github.com/danvelcam/tfm-pricing-apis-correo}.}.

@@ -1,0 +1,91 @@
+\section{Objetivos y contribuciones}\label{sec:conclusiones:evaluacion}
+
+La Tabla~\ref{tab:conclusiones:evaluacion} da el estado de cada objetivo específico y de la contribución que le corresponde, con los epígrafes de la memoria que lo sostienen.
+OBJ-03 y OBJ-04 se justifican primero, porque el Capítulo~\ref{cap:introduccion} sitúa en ellos el componente de investigación.
+
+\begin{table}[tbp]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.0cm}|c|c|>{\raggedright\arraybackslash}p{2.0cm}|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}p{3.0cm}|}
+\hline
+\textbf{Objetivo} & \textbf{RQ} & \textbf{Contrib.} & \textbf{Estado del objetivo} & \textbf{Estado de la contribución} & \textbf{Epígrafes que lo sostienen} \\
+\hline
+OBJ-01. Selección justificada del dominio & RQ1 & C-01 & cumplido en parte & cumplida en parte & \ref{sec:propuesta:seleccion}, \ref{sec:propuesta:respuesta} \\
+\hline
+OBJ-02. Construcción del catálogo de Datasheets & RQ2 a RQ4 & C-01 & cumplido & cumplida en parte & \ref{sec:propuesta:trazabilidad}, \ref{sec:propuesta:prime4api}, \ref{sec:esquema:contrato} \\
+\hline
+OBJ-03. Evolución del esquema & RQ2 & C-02 & cumplido en parte & cumplida & \ref{sec:esquema:inventario}, \ref{sec:esquema:fuera}, \ref{sec:esquema:respuesta} \\
+\hline
+OBJ-04. Análisis de la capacidad & RQ3 & C-03 & cumplido & cumplida & \ref{sec:limites:geometrica}, \ref{sec:limites:catalogo}, \ref{sec:limites:respuesta} \\
+\hline
+OBJ-05. Método de comparación & RQ4 & C-04 & cumplido & cumplida & \ref{sec:comparacion:catalogo}, \ref{sec:comparacion:procedimiento}, \ref{sec:comparacion:respuesta} \\
+\hline
+OBJ-06. Contribución a SPHERE & ninguna & C-01 & cumplido & cumplida en parte & \ref{sec:propuesta:sphere} \\
+\hline
+\end{tabular}
+\caption[Estado de cada objetivo específico y de la contribución que le corresponde]{Estado de cada objetivo específico y de la contribución que le corresponde. RQ: la pregunta de investigación a la que sirve el objetivo. C-01: catálogo de Datasheets de APIs de correo. C-02: evolución de ACM2YAML. C-03: caracterización de la relación entre límites y \textit{rates}. C-04: método de comparación sistemática. OBJ-02 sirve de medio a RQ2, RQ3 y RQ4, porque el catálogo es la condición para responderlas. C-01 aparece tres veces porque responde a OBJ-01, OBJ-02 y OBJ-06. OBJ-06 no deriva de ninguna RQ.}
+\label{tab:conclusiones:evaluacion}
+\end{table}
+
+\textbf{Evolución del esquema (OBJ-03 y C-02).}
+De los 35 elementos no soportados que reúne el inventario de las ocho APIs, 24 superan el criterio de promoción: aparecen en dos APIs o más, o una ejecución de PRIME4API muestra su efecto sobre la Datasheet (Sección~\ref{sec:esquema:inventario}).
+Hay nueve propuestas de extensión.
+Ocho responden a elementos promovidos, como P-01, los seis volúmenes contratados que Postmark vende dentro de un mismo plan.
+La novena, P-05, el plan con precio que existe y no es público, sale del fallo del motor ante el precio \texttt{custom} del plan Enterprise de Resend.
+
+Los otros 16 elementos promovidos no tienen propuesta.
+Doce solo tienen una forma esbozada que no se ha contrastado con la guía de ACM2YAML (Tabla~\ref{tab:sinforma}).
+Los cuatro restantes quedan fuera de las propuestas por otras razones, como los \textit{add-ons} de IP dedicada, que el esquema deja al canal web (Sección~\ref{sec:esquema:fuera}).
+OBJ-03 queda cumplido en parte, porque pide la extensión de cada carencia identificada y esos doce promovidos no la tienen fijada.
+
+C-02 se cumple: cada una de las siete propuestas que amplían lo que ACM2YAML v0.3 puede expresar responde a un caso real que el esquema no representa, como el tope con que SendGrid limita el envío mensual a diez veces el volumen contratado, sobrecoste incluido.
+Las otras dos quedan fuera del enunciado de C-02: P-04, la marca de valor no publicado junto al campo, y P-05.
+ACM2YAML v0.3 admite esos valores, y es PRIME4API el que falla al leerlos.
+
+\textbf{Análisis de la capacidad (OBJ-04 y C-03).}
+La cuota es la restricción activa en Postmark, Resend, SendGrid, MailerSend, Brevo y Mailgun, seis de las ocho APIs (Sección~\ref{sec:limites:respuesta}).
+La curva de capacidad $C(t)$ que dibuja PRIME4API (Figura~\ref{fig:capacidad}) da el máximo de correos que se pueden enviar desde el inicio de la ventana hasta cada instante sin pasar ningún límite.
+Su codo es el instante en que deja de mandar el \textit{rate} y empieza a mandar la cuota, y con un destinatario por petición llega a los 83 minutos en Resend Pro y a los 41 en MailerSend Hobby.
+Dos límites del catálogo no caben en esa curva: los dos contadores de Mailgun sobre la misma ventana y la franquicia sin ventana de Mailchimp Transactional, API en la que manda el caudal.
+
+OBJ-04 y C-03 se cumplen sobre una base estrecha.
+Solo en esas seis APIs la Datasheet da cifra al \textit{rate} y a la cuota de un mismo plan, y los valores medidos en MailerSend, Amazon SES y Mailchimp Transactional salen de cuentas sin aprobar o en pruebas, no del plan contratado.
+
+\textbf{Método de comparación (OBJ-05 y C-04).}
+El catálogo de preguntas reúne 32 preguntas de decisión, y el procedimiento que instancia cada una sobre cada API se ha aplicado a las ocho (Sección~\ref{sec:comparacion:procedimiento}).
+OBJ-05 y C-04 se cumplen con tres salvedades.
+La primera es que las cuatro preguntas que piden HARVEY4API cuentan como respondibles por la especificación de HARVEY4API que recoge Ruiz López \citep{ruizlopez2026tfm}, y solo se contrastaron con las respuestas que dio el modelo de lenguaje Claude Opus 5.5 al leer las Datasheets.
+
+La segunda salvedad es que las diez respuestas de Mailchimp Transactional que resuelve una operación de PRIME4API están calculadas a mano.
+El motor devuelve HTTP 500 en 14 llamadas por dos campos vacíos que el esquema admite: el tope de destinatarios y el periodo de la franquicia de la cuenta de prueba.
+La tercera salvedad es que una de las tres preguntas funcionales, la retención de los registros de envío, pide un campo que ACM2YAML v0.3 no tiene.
+Las otras dos se responden leyendo la matriz de \textit{features} por plan.
+
+\textbf{Catálogo, selección y SPHERE (C-01 frente a OBJ-01, OBJ-02 y OBJ-06).}
+OBJ-02, la construcción del catálogo, se cumple.
+Los términos de consumo de cada proveedor quedan recogidos con su URL y su fecha de acceso, y cada valor de las ocho Datasheets lleva la cita literal que lo sostiene (Sección~\ref{sec:propuesta:trazabilidad}).
+En Postmark no se archivaron las páginas que cita su Datasheet, y su versión se conserva solo como URL y fecha de acceso.
+
+OBJ-01, la selección del dominio, se cumple en parte.
+El protocolo parte de tres fuentes de inclusión: las APIs del trabajo de Noguerol Tirado \citep{noguerol2025tfm}, las ya modeladas en el ecosistema y una consulta a un modelo de lenguaje (Sección~\ref{sec:propuesta:fuentes}).
+La primera no aportó ninguna API, porque se tuvo acceso a la memoria de Noguerol Tirado cuando la selección ya estaba cerrada.
+La consulta presentaba Amazon SES como pago por uso puro, cuando ya publicaba planes, y repetirla no garantiza las mismas APIs (Sección~\ref{sec:propuesta:respuesta}).
+Postmark, el piloto con el que se probó y se ajustó el método, no entra por ninguna de las tres fuentes.
+
+OBJ-06, la contribución a SPHERE \citep{sphere}, se cumple.
+Los ocho pricings en Pricing2YAML pasan el analizador de pricing4ts 0.10.4, la versión que usa la plataforma, y cada una de las 20 limitaciones del formato tiene su caso real.
+Pricing2YAML no distingue un caudal de una cuota: en Resend Free, el caudal de 10 peticiones por segundo y la cuota de 3.000 correos al mes se escriben igual, como un límite renovable con su periodo, y la analítica de SPHERE los cuenta igual (Sección~\ref{sec:propuesta:sphere}).
+La maqueta de la colección en SPHERE propone cómo mostrar los términos de consumo en la ficha de cada API.
+
+C-01 se cumple en parte por tres razones.
+La primera es que la colección está cargada en SPHERE desde el 27 de octubre de 2026, pero es privada hasta el depósito.
+La segunda es que ninguna Datasheet supera todas las comprobaciones que se le hacen al ingerirla en PRIME4API (Tabla~\ref{tab:verificacion}).
+La tercera es que HARVEY4API, la otra herramienta del ecosistema que debería reutilizar las Datasheets, no se ha ejecutado.
+
+En cinco de las ocho Datasheets, las comprobaciones fallan por un valor ausente o por un precio no público.
+En Postmark queda vacío el tope de destinatarios, que el proveedor no pone, y en Mailchimp Transactional ese mismo tope y el periodo de la franquicia de la cuenta de prueba.
+Fallan diez comprobaciones en cada una, y cinco en Resend, que no publica el \textit{rate} de su plan Enterprise.
+Un precio que existe y no es público invalida trece comprobaciones en SendGrid, trece en Brevo y ocho en Resend.
+MailerSend, Amazon SES y Mailgun solo fallan la comprobación de la curva de capacidad acumulada, con el mismo mensaje de error.
+En MailerSend y Amazon SES el fallo es del motor, y en Mailgun no se ha aislado su causa.

@@ -1,0 +1,190 @@
+\section{Inventario}\label{sec:esquema:inventario}\label{sec:evolucion:inventario}
+
+El piloto con Postmark dejó ocho elementos no soportados por ACM2YAML v0.3, los de la Tabla~\ref{tab:fricciones}.
+Las siete APIs siguientes abrieron treinta números, de F-09 a F-38, y tres se retiraron o se absorbieron en otros (F-17, F-19 y F-20), así que el inventario cierra con treinta y cinco.
+La Tabla~\ref{tab:recurrencia} recoge cada uno con el número de APIs en que aparece, si promueve a candidato de extensión y por qué vía, y la propuesta que produce cuando la hay.
+
+El criterio de promoción de la Sección~\ref{sec:esquema:metodo} pide dos APIs o más o, en una sola, la traza con sus tres condiciones (L1 a L3).
+Con ese criterio promueven veinticuatro de los treinta y cinco elementos, veintiuno por recurrencia y tres por traza.
+Los otros once aparecen en una sola API y les falta L2, L3 o las dos.
+Si en una API el elemento se sospecha pero no se ha comprobado, esa API no suma.
+Al comprobarse solo puede sumar, así que cada recuento de la Tabla~\ref{tab:recurrencia} es un mínimo.
+
+La mayoría de los recurrentes aparece en cuatro APIs o más: trece de veintiuno.
+F-06 y F-07 aparecen en las ocho APIs: el primero es un \texttt{workload} (el campo que declara, con un mínimo y un máximo, cuánto consume una petición) acotado por una métrica distinta de la suya, y el segundo, los \textit{add-ons} que modifican la capacidad.
+F-05, la dimensión \textit{Results Per Request} que v0.3 no serializa, aparece en siete.
+En el otro extremo, F-12 (la recepción consume la cuota de envío) y F-14 (el plan caduca) cumplen el umbral con dos APIs justas.
+Lo mismo ocurre con F-34 (dos topes de tamaño sobre la misma llamada) y F-37 (un tope de capacidad que fija el cliente).
+
+\begin{table}[tbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{0.85}
+\begin{tabular}{|c|>{\raggedright\arraybackslash}p{0.61\textwidth}|c|c|c|}
+\hline
+\textbf{Id} & \textbf{Elemento} & \textbf{APIs} & \textbf{Vía} & \textbf{Prop.} \\
+\hline
+F-01 & Un \textit{rate} que existe y cuyo valor no se publica & 4/8 & recurr. y traza & P-04 \\
+\hline
+F-02 & Volumen contratado con precio y sobrecoste propios & 5/8 & recurr. & P-01 \\
+\hline
+F-03 & Consumo multiplicativo entre dimensiones anidadas & 3/8 & recurr. & P-02 \\
+\hline
+F-04 & Restricciones declaradas que el proveedor admite no aplicar o que la respuesta no refleja & 4/8 & recurr. & discus. \\
+\hline
+F-05 & \textit{Results Per Request} documentada y no serializable & 7/8 & recurr. & --- \\
+\hline
+F-06 & \texttt{workload} acotado por una métrica distinta de la suya & 8/8 & recurr. & P-03 \\
+\hline
+F-07 & \textit{Add-ons} que modifican dimensiones de capacidad & 8/8 & recurr. & --- \\
+\hline
+F-08 & Los \textit{endpoints} disponibles cambian con el \textit{tier} & 4/8 & recurr. & --- \\
+\hline
+F-09 & El documento caduca entero, y sus datos caducan uno a uno & 5/8 & recurr. & --- \\
+\hline
+F-10 & Dos productos de precio con unidades de consumo distintas & 3/8 & recurr. & --- \\
+\hline
+F-11 & Límites de recursos por plan, que no son consumo & 6/8 & recurr. & --- \\
+\hline
+F-12 & La recepción consume la cuota de envío & 2/8 & recurr. & --- \\
+\hline
+F-13 & El sobrecoste es opcional y no existe en el plan gratuito & 5/8 & recurr. & --- \\
+\hline
+F-14 & El plan tiene fecha de caducidad & 2/8 & recurr. & --- \\
+\hline
+F-15 & Dos interfaces con topes propios sobre la misma cuota & 5/8 & recurr. & --- \\
+\hline
+F-16 & El sobrecoste tiene un tope que impone el proveedor & 1/8 & traza & P-07 \\
+\hline
+F-18 & La capacidad depende del estado de la suscripción o de la reputación, no del plan & 6/8 & recurr. & P-06 \\
+\hline
+F-21 & Un cupo de destinatarios distintos que se gasta al probar & 1/8 & traza & P-08 \\
+\hline
+F-22 & Una credencial que solo se gestiona desde la web & 4/8 & recurr. & --- \\
+\hline
+F-23 & Un comodín de prefijo con excepción & 1/8 & L3 & --- \\
+\hline
+F-24 & Una cuota superada que retiene hasta un número fijo de envíos y deja de entregar los siguientes & 1/8 & traza & P-09 \\
+\hline
+F-25 & Un \textit{endpoint}, dos modos de envío y una carga que depende de otro campo & 1/8 & L3 & --- \\
+\hline
+F-26 & Un precio que depende de la geografía y una sola divisa en el fichero & 3/8 & recurr. & --- \\
+\hline
+F-27 & Un exceso que cambia el plan en vez de pagarse por unidad, disparado por otra dimensión & 1/8 & L2 & --- \\
+\hline
+F-28 & Una lista de IP autorizadas decide si la llamada entra & 3/8 & recurr. & --- \\
+\hline
+F-29 & Un precio por unidad sin cuota incluida de la que colgarlo & 1/8 & L3 & --- \\
+\hline
+F-30 & Precio por tramos marginales sobre el mismo consumo & 1/8 & L2 y L3 & --- \\
+\hline
+F-31 & La unidad de gobierno es el par cuenta $\times$ región & 1/8 & L2 & --- \\
+\hline
+F-32 & Precio unitario degresivo sin planes que lo sostengan & 1/8 & L2 & --- \\
+\hline
+F-33 & Una franquicia que no caduca ni se renueva: la cuota sin ventana & 1/8 & L2 & --- \\
+\hline
+F-34 & Dos topes de tamaño sobre la misma llamada, uno del mensaje y otro de la petición & 2/8 & recurr. & --- \\
+\hline
+F-35 & El literal de un tope trae una cifra fraccionaria y el máximo de un \texttt{workload} es entero & 1/8 & L2 y L3 & --- \\
+\hline
+F-36 & Dos contadores sobre la misma ventana, y un solo caudal por nodo & 1/8 & L2 & --- \\
+\hline
+F-37 & Un tope de capacidad que fija el cliente, no el proveedor & 2/8 & recurr. & --- \\
+\hline
+F-38 & Dos cuotas concurrentes de la misma unidad & 1/8 & L2 & --- \\
+\hline
+\end{tabular}
+\caption[Inventario de elementos no soportados sobre las ocho APIs del catálogo]{Inventario de elementos no soportados sobre las ocho APIs del catálogo. APIs: en cuántas de las ocho aparece el elemento entero, sumando la variante que cumple el enunciado con otro mecanismo. Vía, recurr.: dos APIs o más. traza: una sola API con las tres condiciones cumplidas (Sección~\ref{sec:esquema:metodo}). En los once no promovidos, la columna Vía indica la condición de la traza que no se cumple: L2, la consecuencia ejecutada sobre PRIME4API con caso de control, o L3, que ningún mecanismo de la guía cubra la carencia ni la explique un defecto conocido del motor. Prop., discus.: promovido que se discute sin formular extensión. Los números que faltan corresponden a elementos retirados o absorbidos por otros. La matriz completa, con la marca de cada API y su fuente, está en \texttt{03\_datos/\allowbreak RECURRENCIA\_2026-09-23.md} del repositorio del trabajo.}
+\label{tab:recurrencia}
+\end{table}
+
+La Tabla~\ref{tab:propuestas} dice de dónde sale cada propuesta.
+De las nueve, ocho salen de un elemento promovido.
+Cinco entran por recurrencia.
+Una de ellas, P-04, sale de F-01, el \textit{rate} sin valor publicado, y tiene también la traza del campo vacío en tres Datasheets.
+Las otras cuatro salen de F-02 (el volumen contratado con precio propio), F-03 (el consumo multiplicativo), F-06 (el \texttt{workload} acotado por otra métrica) y F-18 (la capacidad que depende de la suscripción o de la reputación).
+
+Tres entran por traza, y en las tres PRIME4API da un resultado que el proveedor contradice.
+En F-16, el tope que SendGrid impone al sobrecoste, el motor promete un volumen que SendGrid rechaza.
+En F-21, el cupo de destinatarios distintos de MailerSend, el motor declara alcanzable en cero segundos un objetivo que la medición no consiguió enviar.
+En F-24, la cuota superada de Brevo que retiene un número fijo de envíos, el motor la trata como un corte estricto: al llegar a la cifra no se envía nada más.
+Brevo, en cambio, publica esa cuota con una cola de reintento.
+
+La novena, P-05 (el plan con precio que existe y no es público), no tiene fila en el inventario.
+Su carencia apareció al evaluar la Datasheet de Resend con PRIME4API, que deja de evaluar el documento entero cuando el precio de un plan lleva el valor \texttt{custom}.
+Se anotó, como la forma de \texttt{workload} de la Sección~\ref{sec:esquema:contrato}, entre las discrepancias de la guía con PRIME4API, y no entre los elementos no soportados, así que no tiene número F-nn.
+Los otros dieciséis promovidos no llevan número de propuesta.
+
+\begin{table}[tbp]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|l|>{\raggedright\arraybackslash}p{0.30\textwidth}|c|c|l|l|}
+\hline
+\textbf{Propuesta} & \textbf{Qué pide} & \textbf{Elemento} & \textbf{APIs} & \textbf{Vía} & \textbf{Clase} \\
+\hline
+P-01 & Volúmenes contratados en la cuota, con precio y sobrecoste propios & F-02 & 5/8 & recurr. & expresividad \\
+\hline
+P-02 & Consumo de una petición como producto de dimensiones anidadas & F-03 & 3/8 & recurr. & expresividad \\
+\hline
+P-03 & Tope de una carga expresado en otra métrica & F-06 & 8/8 & recurr. & expresividad \\
+\hline
+P-04 & Marca de valor no publicado junto al campo & F-01 & 4/8 & recurr. y traza & contrato \\
+\hline
+P-05 & Plan con precio que existe y no es público & --- & --- & motor & contrato \\
+\hline
+P-06 & Estado de la suscripción y reputación, declarados una vez y con su disparador & F-18 & 6/8 & recurr. & expresividad \\
+\hline
+P-07 & Tope del sobrecoste & F-16 & 1/8 & traza & expresividad \\
+\hline
+P-08 & Cuota de entidades distintas, sin periodo y con ámbito de cuenta & F-21 & 1/8 & traza & expresividad \\
+\hline
+P-09 & Comportamiento de la cuota al superarse & F-24 & 1/8 & traza & expresividad \\
+\hline
+Rectif. & Forma de lista de \texttt{workload} en la guía & --- & --- & --- & guía \\
+\hline
+\end{tabular}
+\caption[Propuestas del capítulo y su origen]{Propuestas del capítulo y su origen. Elemento: el elemento no soportado del inventario del que sale cada propuesta. APIs: su recuento sobre las ocho del catálogo. Vía, recurr.: la carencia aparece en dos APIs o más. traza: una sola API con las tres condiciones de la Sección~\ref{sec:esquema:metodo}. motor: PRIME4API falla al leer una forma que la guía admite. Clase: expresividad, si el dominio dice algo que v0.3 no puede escribir, o contrato, si v0.3 lo admite y el motor no lo consume. En P-04 los dos apoyos no se refieren al mismo hecho: la recurrencia es la de F-01, un \textit{rate} sin cifra, y la traza es la del campo vacío en Postmark, Resend y Mailchimp Transactional, que solo en Resend es un \textit{rate}. P-05 no sale de ningún elemento del inventario, y el criterio de promoción no se le aplica. La última fila rectifica la guía y no extiende el esquema.}
+\label{tab:propuestas}
+\end{table}
+
+Al pasar de las cuatro primeras APIs (Postmark, Resend, SendGrid y MailerSend) a las ocho, ningún elemento que promovía deja de hacerlo, y dos que no promovían pasan a hacerlo.
+F-18, la capacidad que depende de la suscripción o de la reputación, aparece ahora en seis APIs, porque en Postmark y en Resend se comprobó al revisar las ocho.
+F-22, la credencial que solo se gestiona desde la web, aparece en cuatro.
+Entre ellas cuenta Amazon SES, donde esa credencial se gestiona en IAM, el servicio de identidades de AWS, fuera de la API de correo, una variante que cumple el enunciado con otro mecanismo y por eso suma.
+
+Dos reglas fijan cómo se cuenta.
+La primera es que una aparición parcial no suma.
+Una variante suma si llega por otro mecanismo al mismo efecto sobre quien integra la API, como la credencial de Amazon SES gestionada en IAM.
+No suma si cumple solo una parte del enunciado, como el volumen contratado de Brevo, que no lleva sobrecoste.
+
+F-01 aparece en las ocho APIs, pero solo cuenta en las cuatro que admiten que el límite existe y no le dan cifra.
+Postmark describe el error \texttt{429} sin umbral \citep{postmarkapi}, y Amazon SES escribe que su caudal de envío «varies based on your specific use case» \citep{sesdocs}.
+Mailchimp no cifra la cuota horaria de la cuenta de pago\footnote{Registro de procedencia de la cuota horaria en \texttt{03\_datos/\allowbreak apis/\allowbreak mailchimp/\allowbreak datasheet.yaml} del repositorio del trabajo, que remite a \url{https://mailchimp.com/developer/transactional/docs/reputation-rejections/}.}.
+Mailgun solo publica, en sus preguntas frecuentes, un caudal de 1.500 peticiones por segundo por IP de cliente, y deja sin cifra el de la cuenta\footnote{\url{https://www.mailgun.com/ai-info/}. La cita literal está en el registro de procedencia de \texttt{03\_datos/apis/mailgun/datasheet.yaml}.}.
+
+En las otras cuatro, Resend, SendGrid, MailerSend y Brevo, una cifra cubre una parte del límite y deja otra sin cubrir.
+Brevo, por ejemplo, cifra los \textit{endpoints} de su API REST y no su relé SMTP.
+Contar esas cuatro como plenas habría subido el recuento de F-01 de cuatro a ocho con situaciones que no son la misma.
+
+La segunda regla afecta a F-08, los \textit{endpoints} que cambian con el \textit{tier}.
+El registro de cada API lo enuncia como el plan real que combina \textit{tier} y volumen contratado, pero el volumen contratado ya lo cubre F-02, y en F-08 solo cuenta la superficie de la API.
+Solo cuenta que el plan cambie los \textit{endpoints} disponibles, como el envío por lotes, que la Datasheet de MailerSend omite de su plan gratuito.
+Los límites de recursos por plan se cuentan aparte, como F-11.
+Con esa regla, F-08 aparece en Postmark, SendGrid, MailerSend y Brevo.
+F-08 no produce propuesta, porque v0.3 ya admite esa forma: un \textit{endpoint} que un plan no ofrece se omite de ese plan.
+Promueve igualmente, porque la recurrencia cuenta en cuántas APIs aparece el patrón y no comprueba si el esquema ya lo expresa.
+
+En treinta y una combinaciones de elemento y API la aparición no está verificada.
+En cuatro filas bastaría con confirmar una sola de esas combinaciones para cambiar la vía.
+F-31 (los límites que rigen por cuenta y región), F-35 (el tope fraccionario frente al máximo entero) y F-36 (dos contadores sobre la misma ventana) pasarían a recurrentes, y F-16 pasaría de la traza a la recurrencia.
+En las demás filas con apariciones sin verificar la vía no cambia, porque ya promueven por recurrencia.
+
+F-38, dos cuotas concurrentes de la misma unidad, cuenta en Resend y pasaría también a recurrente si se confirma que Mailgun aplica las dos a la vez.
+Esa combinación no cuenta entre las treinta y una: está en suspenso, porque Mailgun publica cada cuota en una página distinta y ninguna de las dos dice si se aplican a la vez.
+
+F-37 es el caso más frágil.
+Aparece entero en Mailgun y promueve gracias a Brevo, cuya solución Corporate deja a la cuenta maestra fijar cuántos correos puede enviar cada una de sus subcuentas, una variante que cumple el enunciado con otro mecanismo.
+Si esas variantes no se contaran, F-37 se quedaría solo en Mailgun.

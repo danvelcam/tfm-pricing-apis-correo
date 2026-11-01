@@ -1,0 +1,3509 @@
+{
+  "schema_version": "0.1",
+  "generator": {
+    "skill": "recogida-terminos-consumo",
+    "skill_version": "0.1"
+  },
+  "api": "postmark",
+  "run": {
+    "generated_at": "2026-10-23T15:00:43Z",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+    "intervalo_s": 0.4,
+    "peticiones": 147
+  },
+  "paginas": [
+    {
+      "id": "P-001",
+      "url": "https://postmarkapp.com/",
+      "url_final": "https://postmarkapp.com/",
+      "titulo": "Postmark: Fast, Reliable Email Delivery Service | SMTP | API",
+      "fecha_captura": "2026-10-23T15:00:43Z",
+      "sha256": "e36daa2a4f70b8b1c967144775d96154b4327e877d6c66025bb3e2c3c53ccc4a",
+      "bytes": 96565,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api"
+      ],
+      "fichero_texto": "postmark/e36daa2a4f70b8b1.html"
+    },
+    {
+      "id": "P-002",
+      "url": "https://postmarkapp.com/api-explorer",
+      "url_final": "https://postmarkapp.com/api-explorer",
+      "titulo": "Postmark API Explorer | Postmark",
+      "fecha_captura": "2026-10-23T15:00:43Z",
+      "sha256": "8a422130104c6977f26f246676567c75e0bdf26193d225414a4c8457b21397bc",
+      "bytes": 47446,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "semilla",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api"
+      ],
+      "fichero_texto": "postmark/8a422130104c6977.html"
+    },
+    {
+      "id": "P-003",
+      "url": "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+      "url_final": "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+      "titulo": "Introducing the Postmark API Explorer | Postmark",
+      "fecha_captura": "2026-10-23T15:00:44Z",
+      "sha256": "23e1f056052924c12001708c91bde4425a4dadc091f06e1d5f1430ab6a374aaa",
+      "bytes": 100605,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/23e1f056052924c1.html"
+    },
+    {
+      "id": "P-004",
+      "url": "https://postmarkapp.com/bulk-api",
+      "url_final": "https://postmarkapp.com/bulk-api",
+      "titulo": "Bulk Email API for developers | Send at scale | Postmark | Postmark",
+      "fecha_captura": "2026-10-23T15:00:44Z",
+      "sha256": "4a73e02a5472b1a0b4d614850d9083aed763e53424f334a4c4d1089901c2cea1",
+      "bytes": 113914,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "semilla"
+      ],
+      "fichero_texto": "postmark/4a73e02a5472b1a0.html"
+    },
+    {
+      "id": "P-005",
+      "url": "https://postmarkapp.com/coming-soon-custom-retention-times",
+      "url_final": "https://postmarkapp.com/coming-soon-custom-retention-times",
+      "titulo": "Coming soon: Custom activity retention times | Postmark",
+      "fecha_captura": "2026-10-23T15:00:44Z",
+      "sha256": "a462fb7ad5656ad8e0deaae7bc2f3cd59f2b5e3b92f4764b0de531d506c30752",
+      "bytes": 48910,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/a462fb7ad5656ad8.html"
+    },
+    {
+      "id": "P-006",
+      "url": "https://postmarkapp.com/dedicated-ips",
+      "url_final": "https://postmarkapp.com/dedicated-ips",
+      "titulo": "Postmark Dedicated IPs",
+      "fecha_captura": "2026-10-23T15:00:45Z",
+      "sha256": "89b36362268af0e31961fb2d820d8480edbc33124aa69c71a53eaa8671b32ee6",
+      "bytes": 56987,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/pricing"
+      ],
+      "fichero_texto": "postmark/89b36362268af0e3.html"
+    },
+    {
+      "id": "P-007",
+      "url": "https://postmarkapp.com/developer/api/bulk-email",
+      "url_final": "https://postmarkapp.com/developer/api/bulk-email",
+      "titulo": "Bulk Email | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:45Z",
+      "sha256": "f7f4363cc615b8e1c11db81b67c62f4bb20bbfbd8033914d7200ef5abc94947d",
+      "bytes": 106827,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/bulk-api",
+        "semilla",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api"
+      ],
+      "fichero_texto": "postmark/f7f4363cc615b8e1.html"
+    },
+    {
+      "id": "P-008",
+      "url": "https://postmarkapp.com/developer/api/email-api",
+      "url_final": "https://postmarkapp.com/developer/api/email-api",
+      "titulo": "Email API | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:46Z",
+      "sha256": "754e27d081a904be8b79c723f2d491ee105c487d5ce03234ac5f11b74e79cdbb",
+      "bytes": 94232,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "semilla",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview"
+      ],
+      "fichero_texto": "postmark/754e27d081a904be.html"
+    },
+    {
+      "id": "P-009",
+      "url": "https://postmarkapp.com/developer/api/messages-api",
+      "url_final": "https://postmarkapp.com/developer/api/messages-api",
+      "titulo": "Messages API | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:46Z",
+      "sha256": "e757c61b2b2566af3cd4718002fdca11a96684873bd95813aed0819b55262832",
+      "bytes": 155447,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "semilla",
+        "https://postmarkapp.com/developer/api/overview"
+      ],
+      "fichero_texto": "postmark/e757c61b2b2566af.html"
+    },
+    {
+      "id": "P-010",
+      "url": "https://postmarkapp.com/developer/api/overview",
+      "url_final": "https://postmarkapp.com/developer/api/overview",
+      "titulo": "Overview | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:46Z",
+      "sha256": "6c72fb699e204e3e7c11df89d3030764526af1524afb5f669df590e2ba3ac14d",
+      "bytes": 105104,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "semilla"
+      ],
+      "fichero_texto": "postmark/6c72fb699e204e3e.html"
+    },
+    {
+      "id": "P-011",
+      "url": "https://postmarkapp.com/developer/api/templates-api",
+      "url_final": "https://postmarkapp.com/developer/api/templates-api",
+      "titulo": "Templates API | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:47Z",
+      "sha256": "9946ec86990ab58e4ec8dfd86a617b5ec1d8694cb21ca544d9f8c55953ad219b",
+      "bytes": 143567,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "semilla"
+      ],
+      "fichero_texto": "postmark/9946ec86990ab58e.html"
+    },
+    {
+      "id": "P-012",
+      "url": "https://postmarkapp.com/developer/api/webhooks-api",
+      "url_final": "https://postmarkapp.com/developer/api/webhooks-api",
+      "titulo": "Webhooks API | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:47Z",
+      "sha256": "45031a5a18dec65e4c667155bff9f11963da44dcfe82800505dbed1652c19cf7",
+      "bytes": 138134,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "semilla",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/45031a5a18dec65e.html"
+    },
+    {
+      "id": "P-013",
+      "url": "https://postmarkapp.com/developer/user-guide/sandbox-mode",
+      "url_final": "https://postmarkapp.com/developer/user-guide/sandbox-mode",
+      "titulo": "Sandbox mode | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:48Z",
+      "sha256": "568393e836c85e835a3af152cf06392e21922f6c74785853c5debba2499700c6",
+      "bytes": 73561,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/568393e836c85e83.html"
+    },
+    {
+      "id": "P-014",
+      "url": "https://postmarkapp.com/developer/user-guide/sandbox-mode/generate-fake-bounces",
+      "url_final": "https://postmarkapp.com/developer/user-guide/sandbox-mode/generate-fake-bounces",
+      "titulo": "Generate fake bounces | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:48Z",
+      "sha256": "0073950d1041293d969c01413c346c318937866e8dcc1d475c92005d6a4f42c5",
+      "bytes": 78323,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/0073950d1041293d.html"
+    },
+    {
+      "id": "P-015",
+      "url": "https://postmarkapp.com/developer/user-guide/sandbox-mode/server-sandbox-mode",
+      "url_final": "https://postmarkapp.com/developer/user-guide/sandbox-mode/server-sandbox-mode",
+      "titulo": "Server sandbox mode | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:48Z",
+      "sha256": "aa93cd29b798d2902ae796e782350f3e77325bfe5514fe9b249b99504b1fd8a6",
+      "bytes": 75352,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/aa93cd29b798d290.html"
+    },
+    {
+      "id": "P-016",
+      "url": "https://postmarkapp.com/developer/user-guide/send-email-with-api",
+      "url_final": "https://postmarkapp.com/developer/user-guide/send-email-with-api",
+      "titulo": "Sending email with API | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:49Z",
+      "sha256": "2b23df633eafb0a23d576b250c76328de0729ecb032ba673ea706fea9100943f",
+      "bytes": 95684,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/2b23df633eafb0a2.html"
+    },
+    {
+      "id": "P-017",
+      "url": "https://postmarkapp.com/developer/user-guide/send-email-with-api/batch-emails",
+      "url_final": "https://postmarkapp.com/developer/user-guide/send-email-with-api/batch-emails",
+      "titulo": "Send batch emails | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:49Z",
+      "sha256": "cd1c6000f733df6d61cbefac92ac0a9acd81734f39221647989c81450b2f7047",
+      "bytes": 78753,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "sitemap:https://postmarkapp.com/sitemap.xml",
+        "llms.txt:https://postmarkapp.com/llms.txt"
+      ],
+      "fichero_texto": "postmark/cd1c6000f733df6d.html"
+    },
+    {
+      "id": "P-018",
+      "url": "https://postmarkapp.com/developer/user-guide/send-email-with-api/send-a-single-email",
+      "url_final": "https://postmarkapp.com/developer/user-guide/send-email-with-api/send-a-single-email",
+      "titulo": "Send a single email | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:50Z",
+      "sha256": "ed504ac140fdafc9697e4d48ee3a91a23723fb16a71b5559e63e4bc7d8972657",
+      "bytes": 88344,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ed504ac140fdafc9.html"
+    },
+    {
+      "id": "P-019",
+      "url": "https://postmarkapp.com/developer/user-guide/send-email-with-smtp",
+      "url_final": "https://postmarkapp.com/developer/user-guide/send-email-with-smtp",
+      "titulo": "Sending email with SMTP | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:50Z",
+      "sha256": "e8cc0917b63fe1788056bc2931653507fc2c6fefae0397cc82bf3f2921855b66",
+      "bytes": 86513,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/e8cc0917b63fe178.html"
+    },
+    {
+      "id": "P-020",
+      "url": "https://postmarkapp.com/developer/webhooks/bounce-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/bounce-webhook",
+      "titulo": "Bounce webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:50Z",
+      "sha256": "6bcb52bb7c80415c4da37d2c156593b1d0e60d8f02c267d5bc2617625f70cb05",
+      "bytes": 87342,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/6bcb52bb7c80415c.html"
+    },
+    {
+      "id": "P-021",
+      "url": "https://postmarkapp.com/developer/webhooks/click-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/click-webhook",
+      "titulo": "Click webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:51Z",
+      "sha256": "0bd7ce51cb6d10b7c005507b7efb707a82aee1a615f7dd41d80635f476c8550f",
+      "bytes": 82660,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/0bd7ce51cb6d10b7.html"
+    },
+    {
+      "id": "P-022",
+      "url": "https://postmarkapp.com/developer/webhooks/delivery-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/delivery-webhook",
+      "titulo": "Delivery webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:51Z",
+      "sha256": "1fe7425b3da6f7fbdd475b6fc1848dab8ba7d51e9d536da415820b36a7f82347",
+      "bytes": 83142,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/1fe7425b3da6f7fb.html"
+    },
+    {
+      "id": "P-023",
+      "url": "https://postmarkapp.com/developer/webhooks/inbound-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/inbound-webhook",
+      "titulo": "Inbound webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:52Z",
+      "sha256": "295fe13cf79f0630247e96e81bbc3d1b75f952a6913a060240d8ec83a5cd9bc0",
+      "bytes": 85662,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/295fe13cf79f0630.html"
+    },
+    {
+      "id": "P-024",
+      "url": "https://postmarkapp.com/developer/webhooks/open-tracking-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/open-tracking-webhook",
+      "titulo": "Open tracking webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:52Z",
+      "sha256": "77a8069bba6e1c93fdb143a24897688b3d76345113263c319b9bf603febf120f",
+      "bytes": 81841,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/77a8069bba6e1c93.html"
+    },
+    {
+      "id": "P-025",
+      "url": "https://postmarkapp.com/developer/webhooks/smtp-api-error",
+      "url_final": "https://postmarkapp.com/developer/webhooks/smtp-api-error",
+      "titulo": "SMTP API Error | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:52Z",
+      "sha256": "0c65a121192c689ab60305e4b509783f35be9d61f9619d0410895434fab2e25b",
+      "bytes": 77622,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "webhooks",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/0c65a121192c689a.html"
+    },
+    {
+      "id": "P-026",
+      "url": "https://postmarkapp.com/developer/webhooks/spam-complaint-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/spam-complaint-webhook",
+      "titulo": "Spam complaint webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:53Z",
+      "sha256": "7218cb5ca5bf60a9cf6a99d392f464dd41ec5897f8638c2d5b3e179035690290",
+      "bytes": 80518,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/7218cb5ca5bf60a9.html"
+    },
+    {
+      "id": "P-027",
+      "url": "https://postmarkapp.com/developer/webhooks/subscription-change-webhook",
+      "url_final": "https://postmarkapp.com/developer/webhooks/subscription-change-webhook",
+      "titulo": "Subscription change webhook | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:53Z",
+      "sha256": "19823b504223f055fbc6e175faa95752b89d32371b1876673ade6554a3a9cd7c",
+      "bytes": 80125,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "precios",
+      "temas": [
+        "precios",
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/19823b504223f055.html"
+    },
+    {
+      "id": "P-028",
+      "url": "https://postmarkapp.com/developer/webhooks/webhooks-overview",
+      "url_final": "https://postmarkapp.com/developer/webhooks/webhooks-overview",
+      "titulo": "Webhooks overview | Postmark Developer Documentation",
+      "fecha_captura": "2026-10-23T15:00:54Z",
+      "sha256": "b1ca9031e98d461c487172312cb59a9bb3512bbe761adc555fe7577f5ffec6d8",
+      "bytes": 90020,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/email-api",
+        "https://postmarkapp.com/developer/api/messages-api",
+        "https://postmarkapp.com/developer/api/overview",
+        "https://postmarkapp.com/developer/api/templates-api"
+      ],
+      "fichero_texto": "postmark/b1ca9031e98d461c.html"
+    },
+    {
+      "id": "P-029",
+      "url": "https://postmarkapp.com/dpa",
+      "url_final": "https://postmarkapp.com/dpa",
+      "titulo": "Data Processing Addendum | Postmark",
+      "fecha_captura": "2026-10-23T15:00:54Z",
+      "sha256": "316d57762796c75fa3ae29de607a15134899fc7f3a4311e35a40178a2ebec1b9",
+      "bytes": 159945,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/316d57762796c75f.html"
+    },
+    {
+      "id": "P-030",
+      "url": "https://postmarkapp.com/email-analytics",
+      "url_final": "https://postmarkapp.com/email-analytics",
+      "titulo": "45 Days of Email Activity and Content Previews | Postmark",
+      "fecha_captura": "2026-10-23T15:00:54Z",
+      "sha256": "9e894b9fcd081d3d482c75540bcb271b50b3b48cd27423028696fe0ec98341a7",
+      "bytes": 62439,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email"
+      ],
+      "fichero_texto": "postmark/9e894b9fcd081d3d.html"
+    },
+    {
+      "id": "P-031",
+      "url": "https://postmarkapp.com/email-api",
+      "url_final": "https://postmarkapp.com/email-api",
+      "titulo": "Powerful & Reliable Email API Service | Postmark",
+      "fecha_captura": "2026-10-23T15:00:55Z",
+      "sha256": "5ed2d5905ddb814d2999df628d71a2e9611e57799f1ebcddd9396ce53c9edb69",
+      "bytes": 70534,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email"
+      ],
+      "fichero_texto": "postmark/5ed2d5905ddb814d.html"
+    },
+    {
+      "id": "P-032",
+      "url": "https://postmarkapp.com/email-webhooks",
+      "url_final": "https://postmarkapp.com/email-webhooks",
+      "titulo": "Webhooks | Postmark",
+      "fecha_captura": "2026-10-23T15:00:55Z",
+      "sha256": "6e5c31a42be3308105c014196173987a15602ddd7dd8d3b7a60fd9b592e7247e",
+      "bytes": 63762,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/pricing"
+      ],
+      "fichero_texto": "postmark/6e5c31a42be33081.html"
+    },
+    {
+      "id": "P-033",
+      "url": "https://postmarkapp.com/guides/everything-you-need-to-know-about-smtp",
+      "url_final": "https://postmarkapp.com/guides/everything-you-need-to-know-about-smtp",
+      "titulo": "Everything you need to know about SMTP (Simple Mail Transfer Protocol) | Postmark",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "e6b0056100f8188f52c9c5cf120a172d387c9eb8da5d8b34e1e7c0541f33ae55",
+      "bytes": 82708,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/e6b0056100f8188f.html"
+    },
+    {
+      "id": "P-034",
+      "url": "https://postmarkapp.com/guides/how-to-improve-domain-reputation-for-better-email-deliverability",
+      "url_final": "https://postmarkapp.com/guides/how-to-improve-domain-reputation-for-better-email-deliverability",
+      "titulo": "How to improve domain reputation for better email deliverability | Postmark",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "ea79f7d4cf523e6fb41c40104effcd9b28b7dcb0e3646061a8a59cbc8c167e9e",
+      "bytes": 93802,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ea79f7d4cf523e6f.html"
+    },
+    {
+      "id": "P-035",
+      "url": "https://postmarkapp.com/guides/how-to-warm-up-a-domain",
+      "url_final": "https://postmarkapp.com/guides/how-to-warm-up-a-domain",
+      "titulo": "How to warm up email/domain for sending email | Postmark",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "17f25285a326d287570d714b1e46638b5d4e579df7e2fd60312ec7cc15d2d266",
+      "bytes": 74748,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/17f25285a326d287.html"
+    },
+    {
+      "id": "P-036",
+      "url": "https://postmarkapp.com/guides/trial-expiration-email-best-practices",
+      "url_final": "https://postmarkapp.com/guides/trial-expiration-email-best-practices",
+      "titulo": "Trial expiration email best practices | Postmark",
+      "fecha_captura": "2026-10-23T15:00:57Z",
+      "sha256": "a44fc46ec25f69a60692168a014b49eebe3ebbd4299f11793727e261208ae8e2",
+      "bytes": 80938,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/a44fc46ec25f69a6.html"
+    },
+    {
+      "id": "P-037",
+      "url": "https://postmarkapp.com/integrations/gravity-smtp-for-wordpress",
+      "url_final": "https://postmarkapp.com/integrations/gravity-smtp-for-wordpress",
+      "titulo": "Integrate Postmark and Gravity SMTP for WordPress | Postmark",
+      "fecha_captura": "2026-10-23T15:00:57Z",
+      "sha256": "4497e5df928605fb4b3e59cc1554c4ed756923e75f77067c1bc35e092b329ce4",
+      "bytes": 55995,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/4497e5df928605fb.html"
+    },
+    {
+      "id": "P-038",
+      "url": "https://postmarkapp.com/integrations/wp-mail-smtp",
+      "url_final": "https://postmarkapp.com/integrations/wp-mail-smtp",
+      "titulo": "Integrate Postmark and WP Mail SMTP | Postmark",
+      "fecha_captura": "2026-10-23T15:00:58Z",
+      "sha256": "543996f9401612ab978cf1cd1468945490288a584f7c1abaf497fb82a8e4867c",
+      "bytes": 54023,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/543996f9401612ab.html"
+    },
+    {
+      "id": "P-039",
+      "url": "https://postmarkapp.com/manual",
+      "url_final": "https://postmarkapp.com/manual",
+      "titulo": "Postmark Manual",
+      "fecha_captura": "2026-10-23T15:00:58Z",
+      "sha256": "19ea2191ea4435c76431f60db293ace446199f345c2fc362a12725bd6b8a4e9d",
+      "bytes": 254734,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email"
+      ],
+      "fichero_texto": "postmark/19ea2191ea4435c7.html"
+    },
+    {
+      "id": "P-040",
+      "url": "https://postmarkapp.com/pricing",
+      "url_final": "https://postmarkapp.com/pricing",
+      "titulo": "Postmark Pricing and Free Trial",
+      "fecha_captura": "2026-10-23T15:00:58Z",
+      "sha256": "da11e40fa04144944b6319873e81fdbbf7c3da22af880e7468f47f67c439ccab",
+      "bytes": 228113,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email"
+      ],
+      "fichero_texto": "postmark/da11e40fa0414494.html"
+    },
+    {
+      "id": "P-041",
+      "url": "https://postmarkapp.com/pricing.txt",
+      "url_final": "https://postmarkapp.com/pricing.txt",
+      "titulo": "Postmark Pricing",
+      "fecha_captura": "2026-10-23T15:00:59Z",
+      "sha256": "dd4f9c51a5866cd82dd203d7585867562a9aba7af893fa58ed6814c9851706c9",
+      "bytes": 6466,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml",
+        "llms.txt:https://postmarkapp.com/llms.txt"
+      ],
+      "fichero_texto": "postmark/dd4f9c51a5866cd8.txt"
+    },
+    {
+      "id": "P-042",
+      "url": "https://postmarkapp.com/send-email",
+      "url_final": "https://postmarkapp.com/send-email",
+      "titulo": "Postmark is for Developers",
+      "fecha_captura": "2026-10-23T15:00:59Z",
+      "sha256": "53d06f6910f698f76415b699009ab953c1d467aea2b3922feb6acde7e4d0ec12",
+      "bytes": 51656,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/pricing"
+      ],
+      "fichero_texto": "postmark/53d06f6910f698f7.html"
+    },
+    {
+      "id": "P-043",
+      "url": "https://postmarkapp.com/send-email/java",
+      "url_final": "https://postmarkapp.com/send-email/java",
+      "titulo": "Send emails with Java",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "f72d7c2743d15c53c5f197666fe1432b9fa0ed8aab6cbb1381342fc498b2c375",
+      "bytes": 64611,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/f72d7c2743d15c53.html"
+    },
+    {
+      "id": "P-044",
+      "url": "https://postmarkapp.com/send-email/net",
+      "url_final": "https://postmarkapp.com/send-email/net",
+      "titulo": "Send emails with .NET",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "5fd3ea51056d74992838e4d155badb0ec475f6a7091a1c00b8655249bbaf1c02",
+      "bytes": 63806,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/5fd3ea51056d7499.html"
+    },
+    {
+      "id": "P-045",
+      "url": "https://postmarkapp.com/send-email/node",
+      "url_final": "https://postmarkapp.com/send-email/node",
+      "titulo": "Send emails with Node.js",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "1ef364f0caa641750db874a942745f0c6db404941a3c0025fb628ca9fcec53bb",
+      "bytes": 63108,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/1ef364f0caa64175.html"
+    },
+    {
+      "id": "P-046",
+      "url": "https://postmarkapp.com/send-email/php",
+      "url_final": "https://postmarkapp.com/send-email/php",
+      "titulo": "Send emails with PHP",
+      "fecha_captura": "2026-10-23T15:01:01Z",
+      "sha256": "0a70f39993ece472867001840fe3586babe8d30c23bf6329763c222c314ac3d3",
+      "bytes": 70127,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/0a70f39993ece472.html"
+    },
+    {
+      "id": "P-047",
+      "url": "https://postmarkapp.com/send-email/python",
+      "url_final": "https://postmarkapp.com/send-email/python",
+      "titulo": "Send emails with Python",
+      "fecha_captura": "2026-10-23T15:01:01Z",
+      "sha256": "41041b65b7f4a634ae7506416b26ec0327bf7530e9f52988ef91b94b60495fc0",
+      "bytes": 82903,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/41041b65b7f4a634.html"
+    },
+    {
+      "id": "P-048",
+      "url": "https://postmarkapp.com/send-email/rails",
+      "url_final": "https://postmarkapp.com/send-email/rails",
+      "titulo": "Send emails with Ruby on Rails",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "6c4bb9b101d1edc6331fdb798e7900ee937c4921257e46f90a8177e6f8185a8f",
+      "bytes": 63537,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/6c4bb9b101d1edc6.html"
+    },
+    {
+      "id": "P-049",
+      "url": "https://postmarkapp.com/send-email/ruby",
+      "url_final": "https://postmarkapp.com/send-email/ruby",
+      "titulo": "Send emails with Ruby",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "01612894fd22c267eefd18e080a7c065edb7eb593f3435f9cc2075dff449a9d8",
+      "bytes": 63547,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/01612894fd22c267.html"
+    },
+    {
+      "id": "P-050",
+      "url": "https://postmarkapp.com/send-email/wordpress",
+      "url_final": "https://postmarkapp.com/send-email/wordpress",
+      "titulo": "Send emails from WordPress",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "d89ecf548627e17d7ea5a1520b27123118636b2e2a7031898812fa0310f32236",
+      "bytes": 63224,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d89ecf548627e17d.html"
+    },
+    {
+      "id": "P-051",
+      "url": "https://postmarkapp.com/smtp-service",
+      "url_final": "https://postmarkapp.com/smtp-service",
+      "titulo": "SMTP Service | Postmark",
+      "fecha_captura": "2026-10-23T15:01:03Z",
+      "sha256": "d0090a0dfa03d236c7dc74ee1f3651e3cffb4222f4b04a07e30d55ad1cb5b526",
+      "bytes": 61244,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email"
+      ],
+      "fichero_texto": "postmark/d0090a0dfa03d236.html"
+    },
+    {
+      "id": "P-052",
+      "url": "https://postmarkapp.com/support/account-billing",
+      "url_final": "https://postmarkapp.com/support/account-billing",
+      "titulo": "Account & Billing | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:03Z",
+      "sha256": "f0f5f3ecb9b5c01a9d8351ce77c9b527bdb5281e6ea40671b39aba8f10c02c2c",
+      "bytes": 58988,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/f0f5f3ecb9b5c01a.html"
+    },
+    {
+      "id": "P-053",
+      "url": "https://postmarkapp.com/support/article/1019-use-postmark-to-send-emails-from-craft",
+      "url_final": "https://postmarkapp.com/support/article/1019-use-postmark-to-send-emails-from-craft",
+      "titulo": "Use Postmark to Send Emails from Craft CMS | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "846f90da336713b8695a3734abff95ee3af15ccc641e8c59b6ae2304b6c619a6",
+      "bytes": 56430,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/846f90da336713b8.html"
+    },
+    {
+      "id": "P-054",
+      "url": "https://postmarkapp.com/support/article/1022-create-and-send-emails-from-a-google-sheet-with-zapier-and-postmark",
+      "url_final": "https://postmarkapp.com/support/article/1022-create-and-send-emails-from-a-google-sheet-with-zapier-and-postmark",
+      "titulo": "Create and Send Emails from a Google Sheet with Zapier and Postmark | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "eaa8b9218afd788de08ff020ab5d57990d22b13c219d91deb3fba208341e2ecd",
+      "bytes": 55357,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/eaa8b9218afd788d.html"
+    },
+    {
+      "id": "P-055",
+      "url": "https://postmarkapp.com/support/article/1026-resolving-aws-port-25-throttling",
+      "url_final": "https://postmarkapp.com/support/article/1026-resolving-aws-port-25-throttling",
+      "titulo": "Resolving AWS Port 25 Throttling | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "83eca30272f78f12256e6a8c043900d80bb473f641e387d9f6232300685b334d",
+      "bytes": 54120,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/83eca30272f78f12.html"
+    },
+    {
+      "id": "P-056",
+      "url": "https://postmarkapp.com/support/article/1032-configure-whm-for-postmark-smtp-sending-using-exim-configuration-manager",
+      "url_final": "https://postmarkapp.com/support/article/1032-configure-whm-for-postmark-smtp-sending-using-exim-configuration-manager",
+      "titulo": "Configure WHM for Postmark SMTP Sending using Exim Configuration Manager | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:05Z",
+      "sha256": "56fb49abbd6d4c3cd09825fd6b50959592d35e0f5348ef5a67fcc4f3513e43d5",
+      "bytes": 54320,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/56fb49abbd6d4c3c.html"
+    },
+    {
+      "id": "P-057",
+      "url": "https://postmarkapp.com/support/article/1038-does-postmark-have-monthly-plans-pricing",
+      "url_final": "https://postmarkapp.com/support/article/1038-does-postmark-have-monthly-plans-pricing",
+      "titulo": "Does Postmark Have Monthly Plans/Pricing? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:05Z",
+      "sha256": "ab224a1b3784c474e28c1db4e4c5cd5aa14f5fdb20d6378cabf56821c1c2c6cb",
+      "bytes": 51093,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ab224a1b3784c474.html"
+    },
+    {
+      "id": "P-058",
+      "url": "https://postmarkapp.com/support/article/1040-how-to-send-from-outlook-using-smtp",
+      "url_final": "https://postmarkapp.com/support/article/1040-how-to-send-from-outlook-using-smtp",
+      "titulo": "How to Send from Outlook Using SMTP | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "2e73847a3db6984f23c6842066b863cb20bff114efd2fa7fec5295e2ee0b002b",
+      "bytes": 53379,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/2e73847a3db6984f.html"
+    },
+    {
+      "id": "P-059",
+      "url": "https://postmarkapp.com/support/article/1056-what-are-the-attachment-and-email-size-limits",
+      "url_final": "https://postmarkapp.com/support/article/1056-what-are-the-attachment-and-email-size-limits",
+      "titulo": "What are the Attachment and Email Size Limits? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "6e0a3e039b5689bbb707d34fc58dc9c923bec8480c0d817181f20fc7eb169c61",
+      "bytes": 53109,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/developer/api/bulk-email",
+        "https://postmarkapp.com/developer/api/overview",
+        "semilla",
+        "https://postmarkapp.com/support/article/how-long-are-inbound-and-outbound-messages-stored-in-activity"
+      ],
+      "fichero_texto": "postmark/6e0a3e039b5689bb.html"
+    },
+    {
+      "id": "P-060",
+      "url": "https://postmarkapp.com/support/article/1067-how-do-i-enable-delivery-webhooks",
+      "url_final": "https://postmarkapp.com/support/article/1067-how-do-i-enable-delivery-webhooks",
+      "titulo": "How do I enable delivery webhooks? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "232b77c9bb31ae21f6df8266e38114b60628e9e6da819f03e176f369af3698cb",
+      "bytes": 54398,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/232b77c9bb31ae21.html"
+    },
+    {
+      "id": "P-061",
+      "url": "https://postmarkapp.com/support/article/1085-how-do-i-transition-from-the-heroku-add-on-to-a-stand-alone-account",
+      "url_final": "https://postmarkapp.com/support/article/1085-how-do-i-transition-from-the-heroku-add-on-to-a-stand-alone-account",
+      "titulo": "How do I transition from the Heroku add-on to a stand alone account? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:07Z",
+      "sha256": "42af521f669c7cc90628e1343cd4b2d47ddbb3f24756727ebd4c7eba7c6cab39",
+      "bytes": 60495,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/42af521f669c7cc9.html"
+    },
+    {
+      "id": "P-062",
+      "url": "https://postmarkapp.com/support/article/1099-why-doesnt-the-attachment-content-of-my-inbound-message-show-up-in-activity",
+      "url_final": "https://postmarkapp.com/support/article/1099-why-doesnt-the-attachment-content-of-my-inbound-message-show-up-in-activity",
+      "titulo": "Why doesn’t the attachment content of my inbound message show up in Activity? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:07Z",
+      "sha256": "733d32532d0e00e67b8677402f1b3e7e013990b21e20f10ad89c094affcb2a61",
+      "bytes": 50386,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/733d32532d0e00e6.html"
+    },
+    {
+      "id": "P-063",
+      "url": "https://postmarkapp.com/support/article/1107-how-does-monthly-pricing-work",
+      "url_final": "https://postmarkapp.com/support/article/1107-how-does-monthly-pricing-work",
+      "titulo": "How does Monthly Pricing work? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "b3cdbdf7c0299c8b8ee6023437bda558db8d5105e0aa88ec847187e64e090712",
+      "bytes": 56120,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/pricing",
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/b3cdbdf7c0299c8b.html"
+    },
+    {
+      "id": "P-064",
+      "url": "https://postmarkapp.com/support/article/1108-how-do-i-switch-from-a-credits-based-account-to-a-monthly-plan",
+      "url_final": "https://postmarkapp.com/support/article/1108-how-do-i-switch-from-a-credits-based-account-to-a-monthly-plan",
+      "titulo": "How do I switch from a Credits based account to a Monthly Plan? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "b1fb85aa88a75f489e76545004dda049f18d5ebc3eb3fac85a20fd9ab4b63b3d",
+      "bytes": 52713,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/b1fb85aa88a75f48.html"
+    },
+    {
+      "id": "P-065",
+      "url": "https://postmarkapp.com/support/article/1114-what-are-smtp-codes-and-how-can-i-troubleshoot-them",
+      "url_final": "https://postmarkapp.com/support/article/1114-what-are-smtp-codes-and-how-can-i-troubleshoot-them",
+      "titulo": "What are SMTP codes and how can I troubleshoot them? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "9dd0fbefc13df32e44a11979fe46976ed036d7aee124f2249569ed39e30a8026",
+      "bytes": 53523,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/9dd0fbefc13df32e.html"
+    },
+    {
+      "id": "P-066",
+      "url": "https://postmarkapp.com/support/article/1115-how-do-modular-webhooks-work",
+      "url_final": "https://postmarkapp.com/support/article/1115-how-do-modular-webhooks-work",
+      "titulo": "How do modular webhooks work? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:09Z",
+      "sha256": "39960b27c4f49fc9a3b745b129219dbbe0061b3eb5aab305767768ee2f047140",
+      "bytes": 54953,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/39960b27c4f49fc9.html"
+    },
+    {
+      "id": "P-067",
+      "url": "https://postmarkapp.com/support/article/1126-can-you-resend-emails",
+      "url_final": "https://postmarkapp.com/support/article/1126-can-you-resend-emails",
+      "titulo": "Can you resend emails? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:09Z",
+      "sha256": "8f913c09bf8219fe0dc55f29e822ab057614c8681610082bc753b04e7fde747e",
+      "bytes": 50187,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/support/article/1056-what-are-the-attachment-and-email-size-limits",
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/8f913c09bf8219fe.html"
+    },
+    {
+      "id": "P-068",
+      "url": "https://postmarkapp.com/support/article/1127-using-zapier-webhooks-to-notify-senders-of-bounces",
+      "url_final": "https://postmarkapp.com/support/article/1127-using-zapier-webhooks-to-notify-senders-of-bounces",
+      "titulo": "Using Zapier Webhooks to Notify Senders of Bounces | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "027b510e97774252da57abca3d63737b1f60f9e1d4e533b0a454e8bf86f30bea",
+      "bytes": 58128,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/027b510e97774252.html"
+    },
+    {
+      "id": "P-069",
+      "url": "https://postmarkapp.com/support/article/1133-what-happens-if-my-dedicated-ip-gets-blacklisted",
+      "url_final": "https://postmarkapp.com/support/article/1133-what-happens-if-my-dedicated-ip-gets-blacklisted",
+      "titulo": "What happens if my dedicated IP gets blacklisted? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "73a355963911d5541016cc90f92882109993d8560fd9da9b084b0e530a3daa94",
+      "bytes": 50748,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/73a355963911d554.html"
+    },
+    {
+      "id": "P-070",
+      "url": "https://postmarkapp.com/support/article/1135-dedicated-ip-volume-requirements",
+      "url_final": "https://postmarkapp.com/support/article/1135-dedicated-ip-volume-requirements",
+      "titulo": "I don’t meet the volume requirements, but can I have a dedicated IP for deliverability to a specific receiver? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "e550b16b9edfcda703d935a5285b46c47ba4b79776ba0421f60a0b14b8581166",
+      "bytes": 50622,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/e550b16b9edfcda7.html"
+    },
+    {
+      "id": "P-071",
+      "url": "https://postmarkapp.com/support/article/1136-why-can-t-i-have-a-pre-warmed-dedicated-ip",
+      "url_final": "https://postmarkapp.com/support/article/1136-why-can-t-i-have-a-pre-warmed-dedicated-ip",
+      "titulo": "Why can’t I have a pre-warmed dedicated IP? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "b5944c9bdba9e48355f9ac2fff7d0130eb74f5d014f21c7dd7e58e4cf48758af",
+      "bytes": 50858,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/b5944c9bdba9e483.html"
+    },
+    {
+      "id": "P-072",
+      "url": "https://postmarkapp.com/support/article/1149-why-are-my-messages-sent-using-smtp-splitting-the-cc-bcc-recipients-into-a-separate-message",
+      "url_final": "https://postmarkapp.com/support/article/1149-why-are-my-messages-sent-using-smtp-splitting-the-cc-bcc-recipients-into-a-separate-message",
+      "titulo": "Why are my messages sent using SMTP splitting the Cc/Bcc recipients into a separate message? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "fa72491603749054aede6eccd0061af8d01ad2027526f5a105d6aec0b778101a",
+      "bytes": 49221,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/fa72491603749054.html"
+    },
+    {
+      "id": "P-073",
+      "url": "https://postmarkapp.com/support/article/1168-postmarks-gdpr-compliance",
+      "url_final": "https://postmarkapp.com/support/article/1168-postmarks-gdpr-compliance",
+      "titulo": "Postmark’s GDPR Compliance | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "12f00d64f00af5224803460afe0d8906beaf37dc870281fe1f07d8761917cdb1",
+      "bytes": 49250,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/12f00d64f00af522.html"
+    },
+    {
+      "id": "P-074",
+      "url": "https://postmarkapp.com/support/article/1179-what-does-a-cors-error-mean",
+      "url_final": "https://postmarkapp.com/support/article/1179-what-does-a-cors-error-mean",
+      "titulo": "What does a CORS error mean? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "bb76e9f35e2df20eb5d77b380c1f369897a226c8257f7999886e06d8071d1f60",
+      "bytes": 48182,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/bb76e9f35e2df20e.html"
+    },
+    {
+      "id": "P-075",
+      "url": "https://postmarkapp.com/support/article/1182-do-you-accept-invoice-or-ach-billing",
+      "url_final": "https://postmarkapp.com/support/article/1182-do-you-accept-invoice-or-ach-billing",
+      "titulo": "Do you accept Invoice or ACH Billing? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "a608bfb2bce0ff68b253db32b9767d0739e17a0220fdef13cc2485af1bb1864e",
+      "bytes": 48204,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/a608bfb2bce0ff68.html"
+    },
+    {
+      "id": "P-076",
+      "url": "https://postmarkapp.com/support/article/1209-is-there-a-limit-to-how-many-servers-or-users-that-i-can-have",
+      "url_final": "https://postmarkapp.com/support/article/1209-is-there-a-limit-to-how-many-servers-or-users-that-i-can-have",
+      "titulo": "Is there a limit to how many servers or users that I can have? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "ebb08422b8fd2604920bbea4244882900d5f4ddb27628c15d8d61dbbd9b40418",
+      "bytes": 51309,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ebb08422b8fd2604.html"
+    },
+    {
+      "id": "P-077",
+      "url": "https://postmarkapp.com/support/article/1256-what-is-a-sandboxed-message",
+      "url_final": "https://postmarkapp.com/support/article/1256-what-is-a-sandboxed-message",
+      "titulo": "What is a Sandboxed Message? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "ca25c8d1f886cba67999f30a0b3f7b3429d840ced5198271a84ea982e793ea57",
+      "bytes": 48675,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ca25c8d1f886cba6.html"
+    },
+    {
+      "id": "P-078",
+      "url": "https://postmarkapp.com/support/article/1285-pricing-billing-faq",
+      "url_final": "https://postmarkapp.com/support/article/1285-pricing-billing-faq",
+      "titulo": "Pricing & Billing FAQ | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "aea96a690ae015d41ba949c603bfd1826dce676574ba647d6341adf44d853b52",
+      "bytes": 55757,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/aea96a690ae015d4.html"
+    },
+    {
+      "id": "P-079",
+      "url": "https://postmarkapp.com/support/article/1287-postmark-is-retiring-credits",
+      "url_final": "https://postmarkapp.com/support/article/1287-postmark-is-retiring-credits",
+      "titulo": "Postmark retired credits on July 5, 2023 | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "74403710cd5daf457253f1417abedd814e73c16a69c1a0f40903153ff9fe4c99",
+      "bytes": 59844,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/74403710cd5daf45.html"
+    },
+    {
+      "id": "P-080",
+      "url": "https://postmarkapp.com/support/article/1289-how-does-the-retention-add-on-work",
+      "url_final": "https://postmarkapp.com/support/article/how-does-the-retention-add-on-work",
+      "titulo": "How does the Retention Add-on work? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "ac41400720d67bd1feb69c2af59d329ea952f612c7c1940bd0f30e7a576cc428",
+      "bytes": 52680,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/support/article/how-long-are-inbound-and-outbound-messages-stored-in-activity"
+      ],
+      "fichero_texto": "postmark/ac41400720d67bd1.html"
+    },
+    {
+      "id": "P-081",
+      "url": "https://postmarkapp.com/support/article/1291-legacy-pricing",
+      "url_final": "https://postmarkapp.com/support/article/1291-legacy-pricing",
+      "titulo": "What is a 'Legacy' plan at Postmark? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "88d278eaa6770b669c33d5d4623b3495d7102e2c8cdf34fd041db60e69011366",
+      "bytes": 52284,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/88d278eaa6770b66.html"
+    },
+    {
+      "id": "P-082",
+      "url": "https://postmarkapp.com/support/article/1295-how-to-pause-your-monthly-billing",
+      "url_final": "https://postmarkapp.com/support/article/1295-how-to-pause-your-monthly-billing",
+      "titulo": "How to pause your monthly billing | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "5e9040412b51f5338bcb078034428507352fadd96bba5018094558a5668b3a96",
+      "bytes": 51200,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/5e9040412b51f533.html"
+    },
+    {
+      "id": "P-083",
+      "url": "https://postmarkapp.com/support/article/1296-receiving-a-sudden-415-or-1122-error-message",
+      "url_final": "https://postmarkapp.com/support/article/1296-receiving-a-sudden-415-or-1122-error-message",
+      "titulo": "Receiving a sudden 415, 403, 422, or 1122 error message | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "af5cfa127979486e78907ccf165c014ddc4a86cdb27debefc180549bf847c019",
+      "bytes": 48582,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/af5cfa127979486e.html"
+    },
+    {
+      "id": "P-084",
+      "url": "https://postmarkapp.com/support/article/1311-the-early-access-program-for-the-new-bulk-api",
+      "url_final": "https://postmarkapp.com/support/article/1311-the-early-access-program-for-the-new-bulk-api",
+      "titulo": "What is the early access program for the new Bulk API ? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "7a698c497673094a2ca76cc728700490109de9e354411159dcccc48b2be0b5f5",
+      "bytes": 55431,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/7a698c497673094a.html"
+    },
+    {
+      "id": "P-085",
+      "url": "https://postmarkapp.com/support/article/779-responsible-disclosure-policy",
+      "url_final": "https://postmarkapp.com/support/article/779-responsible-disclosure-policy",
+      "titulo": "Responsible Disclosure Policy | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "8243d84588d49992bfa7401c28c3f8a98dfe5c46e38a1b970db639360c42a048",
+      "bytes": 65998,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/8243d84588d49992.html"
+    },
+    {
+      "id": "P-086",
+      "url": "https://postmarkapp.com/support/article/807-using-the-zapier-postmark-send-email-action",
+      "url_final": "https://postmarkapp.com/support/article/807-using-the-zapier-postmark-send-email-action",
+      "titulo": "Using the Zapier Postmark Send Email Action | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "d791c964ed6657b5c0fab6ba9cb93e84111a92d65c313252740e2ebe3e2f154e",
+      "bytes": 51501,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d791c964ed6657b5.html"
+    },
+    {
+      "id": "P-087",
+      "url": "https://postmarkapp.com/support/article/811-what-are-the-smtp-details-api-tokens-i-should-be-using",
+      "url_final": "https://postmarkapp.com/support/article/811-what-are-the-smtp-details-api-tokens-i-should-be-using",
+      "titulo": "What are the SMTP details / API Tokens I should be using? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "ccf891958658f4269c99e3eee30fe9a71d95f1239fbf79cee176ee29aef040c9",
+      "bytes": 52970,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/support/article/1056-what-are-the-attachment-and-email-size-limits",
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ccf891958658f426.html"
+    },
+    {
+      "id": "P-088",
+      "url": "https://postmarkapp.com/support/article/870-what-are-inbound-error-messages",
+      "url_final": "https://postmarkapp.com/support/article/870-what-are-inbound-error-messages",
+      "titulo": "What are Inbound Error Messages | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "cd37d7588a6425ad870cf61641b31b2da47d51ed4fe46a1df21d8794e66e71f3",
+      "bytes": 53123,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/cd37d7588a6425ad.html"
+    },
+    {
+      "id": "P-089",
+      "url": "https://postmarkapp.com/support/article/936-what-happens-when-credits-run-out",
+      "url_final": "https://postmarkapp.com/support/article/936-what-happens-when-credits-run-out",
+      "titulo": "What happens when credits run out? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "39fbf515d637a0a103875d74015a789234d9b3d299f554be5103524d8df8478b",
+      "bytes": 53388,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/39fbf515d637a0a1.html"
+    },
+    {
+      "id": "P-090",
+      "url": "https://postmarkapp.com/support/article/billing-annual-plans",
+      "url_final": "https://postmarkapp.com/support/article/billing-annual-plans",
+      "titulo": "Billing – Annual Plans | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "7d4d279ee271ec22bbf0ac426230f630289666d14ce8814005b9451caece93e4",
+      "bytes": 49023,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/7d4d279ee271ec22.html"
+    },
+    {
+      "id": "P-091",
+      "url": "https://postmarkapp.com/support/article/can-a-customer-delete-or-update-an-existing-credit-card",
+      "url_final": "https://postmarkapp.com/support/article/can-a-customer-delete-or-update-an-existing-credit-card",
+      "titulo": "Can a Customer Delete or Update an Existing Credit Card? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "f1923752cac7dddbcdbd091f95559b0ccb106c632b67e35ded24e9e47cfca325",
+      "bytes": 54808,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/f1923752cac7dddb.html"
+    },
+    {
+      "id": "P-092",
+      "url": "https://postmarkapp.com/support/article/can-a-customer-switch-back-to-a-credits-plan",
+      "url_final": "https://postmarkapp.com/support/article/can-a-customer-switch-back-to-a-credits-plan",
+      "titulo": "Can a Customer Switch Back to a Credits Plan? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "ab70aeba7905af55209d05bce1a701cbfee5aac2a3e73c1dd99fe453c9a6b907",
+      "bytes": 52161,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ab70aeba7905af55.html"
+    },
+    {
+      "id": "P-093",
+      "url": "https://postmarkapp.com/support/article/can-i-change-my-billing-date",
+      "url_final": "https://postmarkapp.com/support/article/can-i-change-my-billing-date",
+      "titulo": "Can I Change My Billing Date? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "d57c0fabb757f73f1cd97b9eacb13f85e0619240bb41535c9d198c2d8ed564bb",
+      "bytes": 51207,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d57c0fabb757f73f.html"
+    },
+    {
+      "id": "P-094",
+      "url": "https://postmarkapp.com/support/article/can-i-send-bulk-emails",
+      "url_final": "https://postmarkapp.com/support/article/can-i-send-bulk-emails",
+      "titulo": "Can I send bulk emails? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "1107a80a34c2ba390e4f1ce41c96638691149fa332acab58949d4cf82865e138",
+      "bytes": 52928,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/1107a80a34c2ba39.html"
+    },
+    {
+      "id": "P-095",
+      "url": "https://postmarkapp.com/support/article/can-i-setup-reverse-dns-with-a-dedicated-ip-3",
+      "url_final": "https://postmarkapp.com/support/article/can-i-setup-reverse-dns-with-a-dedicated-ip-3",
+      "titulo": "Can I setup reverse DNS with a dedicated IP? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "a503961df684b23c496fa0380e36105f4a971ca22dda3bd3388393a8ebf4a55c",
+      "bytes": 48181,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/a503961df684b23c.html"
+    },
+    {
+      "id": "P-096",
+      "url": "https://postmarkapp.com/support/article/can-i-whitelabel-messages-without-a-dedicated-ip-3",
+      "url_final": "https://postmarkapp.com/support/article/can-i-whitelabel-messages-without-a-dedicated-ip-3",
+      "titulo": "Can I whitelabel messages without a dedicated IP? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "8cfb77d2fb2920e69a6d12ba8062d067ba1be61dbbb566f8a742389286e64267",
+      "bytes": 48514,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/8cfb77d2fb2920e6.html"
+    },
+    {
+      "id": "P-097",
+      "url": "https://postmarkapp.com/support/article/changes-to-postmarks-pricing-in-2023",
+      "url_final": "https://postmarkapp.com/support/article/changes-to-postmarks-pricing-in-2023",
+      "titulo": "Changes to Postmark’s pricing in 2023 | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "f31262c30999fa94555137f0cabf38306ce7a65f39d61449c8e79599f35a7287",
+      "bytes": 55077,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/f31262c30999fa94.html"
+    },
+    {
+      "id": "P-098",
+      "url": "https://postmarkapp.com/support/article/common-smtp-connection-errors",
+      "url_final": "https://postmarkapp.com/support/article/common-smtp-connection-errors",
+      "titulo": "Common SMTP Connection Errors | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "957bf37f5ced91c8308463c93c6eb26ab6964e6ed837ef27c8aed0b8616d1239",
+      "bytes": 55954,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/957bf37f5ced91c8.html"
+    },
+    {
+      "id": "P-099",
+      "url": "https://postmarkapp.com/support/article/do-we-have-rate-limits-for-smtp",
+      "url_final": "https://postmarkapp.com/support/article/do-we-have-rate-limits-for-smtp",
+      "titulo": "Do we have rate-limits for SMTP? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "0f60c4ba7e0b9d0fad3031dda2e7601726e6ee7996ee51a963743e0b342fbccb",
+      "bytes": 52649,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/0f60c4ba7e0b9d0f.html"
+    },
+    {
+      "id": "P-100",
+      "url": "https://postmarkapp.com/support/article/do-we-offer-annual-plans",
+      "url_final": "https://postmarkapp.com/support/article/do-we-offer-annual-plans",
+      "titulo": "Do We Offer Annual Plans | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "34a113293acf181fbf2dc7fb4ff40271bb3c3aad8677c6b24aa31767f9e479c7",
+      "bytes": 67363,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/34a113293acf181f.html"
+    },
+    {
+      "id": "P-101",
+      "url": "https://postmarkapp.com/support/article/does-postmark-have-a-daily-send-limit",
+      "url_final": "https://postmarkapp.com/support/article/does-postmark-have-a-daily-send-limit",
+      "titulo": "Does Postmark have a daily send limit? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "c5fbfc52a06c7b11354ecc93cfef07e7e8b79ffbb6f416526ba1e106e8d89691",
+      "bytes": 49727,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/c5fbfc52a06c7b11.html"
+    },
+    {
+      "id": "P-102",
+      "url": "https://postmarkapp.com/support/article/does-postmark-offer-annual-billing-plans",
+      "url_final": "https://postmarkapp.com/support/article/does-postmark-offer-annual-billing-plans",
+      "titulo": "Does Postmark offer annual billing plans? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "b7f26664986b147138f5a1936bbf4184cfe3948d54dc8eb9f10ce7dbff8ac02d",
+      "bytes": 49746,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/b7f26664986b1471.html"
+    },
+    {
+      "id": "P-103",
+      "url": "https://postmarkapp.com/support/article/how-do-refunds-and-cancellations-work-3",
+      "url_final": "https://postmarkapp.com/support/article/how-do-refunds-and-cancellations-work-3",
+      "titulo": "How do refunds and cancellations work? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "5352c789ad532aa702c517040f75578832b03503ee79145fa53d404c6b68bcd6",
+      "bytes": 48339,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/5352c789ad532aa7.html"
+    },
+    {
+      "id": "P-104",
+      "url": "https://postmarkapp.com/support/article/how-do-we-handle-high-volume-monthly-plan-pricing-requests-3",
+      "url_final": "https://postmarkapp.com/support/article/how-do-we-handle-high-volume-monthly-plan-pricing-requests-3",
+      "titulo": "How Do We Handle High Volume Monthly Plan Pricing Requests? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "d6d2fea283d1290d6c1bacbd410b7868ec0958233c4034b2b03d48873416b00c",
+      "bytes": 53710,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d6d2fea283d1290d.html"
+    },
+    {
+      "id": "P-105",
+      "url": "https://postmarkapp.com/support/article/how-does-the-retention-add-on-work",
+      "url_final": "https://postmarkapp.com/support/article/how-does-the-retention-add-on-work",
+      "titulo": "How does the Retention Add-on work? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "ac41400720d67bd1feb69c2af59d329ea952f612c7c1940bd0f30e7a576cc428",
+      "bytes": 52680,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ac41400720d67bd1.html"
+    },
+    {
+      "id": "P-106",
+      "url": "https://postmarkapp.com/support/article/how-does-upgrading-a-monthly-plan-work",
+      "url_final": "https://postmarkapp.com/support/article/how-does-upgrading-a-monthly-plan-work",
+      "titulo": "How Does Upgrading a Monthly Plan Work? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "2bae3808d1ceea9fe0745365b10021c898df1170edb2dff1b642b1b94ed950c7",
+      "bytes": 63733,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/2bae3808d1ceea9f.html"
+    },
+    {
+      "id": "P-107",
+      "url": "https://postmarkapp.com/support/article/how-long-are-inbound-and-outbound-messages-stored-in-activity",
+      "url_final": "https://postmarkapp.com/support/article/how-long-are-inbound-and-outbound-messages-stored-in-activity",
+      "titulo": "How long are Inbound and Outbound messages stored in activity? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "9b778608b7d6ecb2a980cbc9cf059a47e3fc4b3d609d2e4d52a5ba49c7cbd3ef",
+      "bytes": 50250,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/9b778608b7d6ecb2.html"
+    },
+    {
+      "id": "P-108",
+      "url": "https://postmarkapp.com/support/article/how-to-fix-dmarc-policy-bounces",
+      "url_final": "https://postmarkapp.com/support/article/how-to-fix-dmarc-policy-bounces",
+      "titulo": "How to fix DMARC Policy Bounces? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "47977f9fc264864fd6c6deadac5855cb441281ef1f060d1d66af0e25fb4aefcc",
+      "bytes": 50612,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/47977f9fc264864f.html"
+    },
+    {
+      "id": "P-109",
+      "url": "https://postmarkapp.com/support/article/how-to-send-test-messages-via-smtp",
+      "url_final": "https://postmarkapp.com/support/article/how-to-send-test-messages-via-smtp",
+      "titulo": "How to send test messages via SMTP | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "a3e2addec6b41704795839274db9047efdca271c58f5c59bfbdea8a2788b08ef",
+      "bytes": 66217,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/a3e2addec6b41704.html"
+    },
+    {
+      "id": "P-110",
+      "url": "https://postmarkapp.com/support/article/how-to-set-up-a-bounce-webhook",
+      "url_final": "https://postmarkapp.com/support/article/how-to-set-up-a-bounce-webhook",
+      "titulo": "How to Set Up a Bounce Webhook | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "c76d542bd5742b7a4ee6bdcd538ef81c2d21e3eb7dd85a4f7c4ce7fc2f7a3941",
+      "bytes": 53059,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/c76d542bd5742b7a.html"
+    },
+    {
+      "id": "P-111",
+      "url": "https://postmarkapp.com/support/article/how-to-test-smtp-errors",
+      "url_final": "https://postmarkapp.com/support/article/how-to-test-smtp-errors",
+      "titulo": "How to test SMTP Errors | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "d4346a1de9f3dec6582406104edc26cdf1807b955bac77957adfafbdcc5d27bc",
+      "bytes": 58740,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d4346a1de9f3dec6.html"
+    },
+    {
+      "id": "P-112",
+      "url": "https://postmarkapp.com/support/article/how-to-troubleshoot-smtp-connection-issues",
+      "url_final": "https://postmarkapp.com/support/article/how-to-troubleshoot-smtp-connection-issues",
+      "titulo": "How to Troubleshoot SMTP Connection Issues | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "e5cd51c45c57ed18a63ea246cf75567ce6cfcba77d16e6d653106d29828d2ffe",
+      "bytes": 53459,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/e5cd51c45c57ed18.html"
+    },
+    {
+      "id": "P-113",
+      "url": "https://postmarkapp.com/support/article/im-trying-to-send-emails-but-keep-getting-this-error-in-my-activity-or-from-the-api-sender-signature-not-defined-for-from-address-3",
+      "url_final": "https://postmarkapp.com/support/article/im-trying-to-send-emails-but-keep-getting-this-error-in-my-activity-or-from-the-api-sender-signature-not-defined-for-from-address-3",
+      "titulo": "I'm trying to send emails but keep getting this error in my Activity or from the API: Sender Signature not defined for From address. | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "b8a2024448bf1fe3f35a9f716372bda4372e776270dd1471c9a2eb345d39386a",
+      "bytes": 49797,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado",
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/b8a2024448bf1fe3.html"
+    },
+    {
+      "id": "P-114",
+      "url": "https://postmarkapp.com/support/article/integrating-postmark-with-supabase-via-smtp",
+      "url_final": "https://postmarkapp.com/support/article/integrating-postmark-with-supabase-via-smtp",
+      "titulo": "Integrating Postmark with Supabase via SMTP | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "57378f60a7f0bf1e6e08f589b037cf6e9f75ba9cb99d4e158dd0d2bc0c4fe42d",
+      "bytes": 56353,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/57378f60a7f0bf1e.html"
+    },
+    {
+      "id": "P-115",
+      "url": "https://postmarkapp.com/support/article/managing-billing-invoices",
+      "url_final": "https://postmarkapp.com/support/article/managing-billing-invoices",
+      "titulo": "Managing Billing & Invoices | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "84983814fce75608a89cef735b136728936070917d961826565926832cd84ed8",
+      "bytes": 51346,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/84983814fce75608.html"
+    },
+    {
+      "id": "P-116",
+      "url": "https://postmarkapp.com/support/article/resolving-spf-too-many-dns-lookups-errors",
+      "url_final": "https://postmarkapp.com/support/article/resolving-spf-too-many-dns-lookups-errors",
+      "titulo": "Resolving SPF \"Too Many DNS Lookups\" Errors | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "96c7768e7887c00cfd5c8def54d0a796d1cfeeb5e0f526a80295bb1e05d8e011",
+      "bytes": 54892,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/96c7768e7887c00c.html"
+    },
+    {
+      "id": "P-117",
+      "url": "https://postmarkapp.com/support/article/subject-line-and-from-address-character-limits",
+      "url_final": "https://postmarkapp.com/support/article/subject-line-and-from-address-character-limits",
+      "titulo": "Subject line and From address character limits | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "29e4cec0ec47211546570867fd4fa61d172aab6b2bfae4c9964bf45f9ab00f81",
+      "bytes": 49333,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/29e4cec0ec472115.html"
+    },
+    {
+      "id": "P-118",
+      "url": "https://postmarkapp.com/support/article/troubleshooting-422-unprocessable-entity-errors",
+      "url_final": "https://postmarkapp.com/support/article/troubleshooting-422-unprocessable-entity-errors",
+      "titulo": "Troubleshooting 422 Unprocessable Entity Errors | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "c292c4452a2483a306dc3c007d297128d98f57dbfed4aa0f428d598769789618",
+      "bytes": 56125,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/c292c4452a2483a3.html"
+    },
+    {
+      "id": "P-119",
+      "url": "https://postmarkapp.com/support/article/understanding-inbound-webhook-retries-in-postmark",
+      "url_final": "https://postmarkapp.com/support/article/understanding-inbound-webhook-retries-in-postmark",
+      "titulo": "Understanding Inbound Webhook Retries in Postmark | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "d897e4f377b1d54a4818c16b0b7325805eff8bb057525748d14906a491c72b1b",
+      "bytes": 53711,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d897e4f377b1d54a.html"
+    },
+    {
+      "id": "P-120",
+      "url": "https://postmarkapp.com/support/article/what-are-webhooks-explained",
+      "url_final": "https://postmarkapp.com/support/article/what-are-webhooks-explained",
+      "titulo": "What Are Webhooks? (Explained) | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "f8f207f3ea4dc52656eddf8726f29d5777486408225a3301e6fe0a93a693b1d1",
+      "bytes": 72012,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/f8f207f3ea4dc526.html"
+    },
+    {
+      "id": "P-121",
+      "url": "https://postmarkapp.com/support/article/why-is-my-credit-card-declined-3",
+      "url_final": "https://postmarkapp.com/support/article/why-is-my-credit-card-declined-3",
+      "titulo": "Why is my credit card declined? | Postmark Support Center",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "de89fc63a3df822082130a51fce393203bdc936a518ee9ad6a3a25474db6f01d",
+      "bytes": 50822,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/de89fc63a3df8220.html"
+    },
+    {
+      "id": "P-122",
+      "url": "https://postmarkapp.com/terms-of-service",
+      "url_final": "https://postmarkapp.com/terms-of-service",
+      "titulo": "Terms of Service | Postmark",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "89bfaed4e439351c27fbd3d873999841fe1dcb22f104e667bc138eb6e9f90c63",
+      "bytes": 120428,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://postmarkapp.com/",
+        "https://postmarkapp.com/api-explorer",
+        "https://postmarkapp.com/blog/introducing-the-postmark-api-explorer",
+        "https://postmarkapp.com/bulk-api",
+        "https://postmarkapp.com/developer/api/bulk-email"
+      ],
+      "fichero_texto": "postmark/89bfaed4e439351c.html"
+    },
+    {
+      "id": "P-123",
+      "url": "https://postmarkapp.com/terms-of-service-dmarc",
+      "url_final": "https://postmarkapp.com/terms-of-service-dmarc",
+      "titulo": "Terms of Service - DMARC | Postmark",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "edc9b5ecdfd6faf8208bf9ec3b73b0122a2ddaacfa53acd89dfb7c7ccf532a50",
+      "bytes": 61670,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/edc9b5ecdfd6faf8.html"
+    },
+    {
+      "id": "P-124",
+      "url": "https://postmarkapp.com/terms-of-service-spamcheck",
+      "url_final": "https://postmarkapp.com/terms-of-service-spamcheck",
+      "titulo": "Terms of Service - SpamCheck | Postmark",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "c6a2ef9febcd9d6bdf3e329744e88692c342d7544d6995c01ed63558221d3236",
+      "bytes": 61441,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/c6a2ef9febcd9d6b.html"
+    },
+    {
+      "id": "P-125",
+      "url": "https://postmarkapp.com/updates/2fa-is-now-available-on-the-free-developer-plan",
+      "url_final": "https://postmarkapp.com/updates/2fa-is-now-available-on-the-free-developer-plan",
+      "titulo": "2FA is now available on the free Developer plan | Postmark",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "5868de9762490b449a7cca4ee12b4c66a251333692b9aa1439cb9a94ef96d7c7",
+      "bytes": 48278,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/5868de9762490b44.html"
+    },
+    {
+      "id": "P-126",
+      "url": "https://postmarkapp.com/updates/additional-smtp-endpoint-ips-added",
+      "url_final": "https://postmarkapp.com/updates/additional-smtp-endpoint-ips-added",
+      "titulo": "Additional SMTP Endpoint IPs Added | Postmark",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "8572b14c7a662dd86996597990608d20b180ffcada534f58a74b8b921dc23292",
+      "bytes": 47471,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/8572b14c7a662dd8.html"
+    },
+    {
+      "id": "P-127",
+      "url": "https://postmarkapp.com/updates/announcing-lower-pricing-and-monthly-plans",
+      "url_final": "https://postmarkapp.com/updates/announcing-lower-pricing-and-monthly-plans",
+      "titulo": "New lower pricing and monthly plans | Postmark",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "0827585c0e62946c3172f298b986571a0e8c84733ba392555a5b74552d6a65af",
+      "bytes": 47243,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/0827585c0e62946c.html"
+    },
+    {
+      "id": "P-128",
+      "url": "https://postmarkapp.com/updates/api-update-modular-webhook-management",
+      "url_final": "https://postmarkapp.com/updates/api-update-modular-webhook-management",
+      "titulo": "API update: Modular Webhook management | Postmark",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "36fd8fd2a3afe795459465faf5fff18d2773f4a8a89ecce50b00b2523b75921f",
+      "bytes": 49326,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/36fd8fd2a3afe795.html"
+    },
+    {
+      "id": "P-129",
+      "url": "https://postmarkapp.com/updates/changes-to-email-api-validation-action-may-be-required",
+      "url_final": "https://postmarkapp.com/updates/changes-to-email-api-validation-action-may-be-required",
+      "titulo": "Changes to Email API validation – Action may be required | Postmark",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "0cb04e674e4a9adccec0a0973f5ac1132a51b0c9c03c63a47c709ee23e559e5f",
+      "bytes": 55973,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/0cb04e674e4a9adc.html"
+    },
+    {
+      "id": "P-130",
+      "url": "https://postmarkapp.com/updates/important-changes-to-the-way-we-handle-headers-when-sending-with-smtp",
+      "url_final": "https://postmarkapp.com/updates/important-changes-to-the-way-we-handle-headers-when-sending-with-smtp",
+      "titulo": "Important changes to the way we handle headers when sending with SMTP | Postmark",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "da020d79d0f38d9ff44e6f2cadce0e1aefc7fe671ff335e2d2d2d9781208fd05",
+      "bytes": 48736,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/da020d79d0f38d9f.html"
+    },
+    {
+      "id": "P-131",
+      "url": "https://postmarkapp.com/updates/introducing-sandbox-mode-a-safe-environment-for-email-testing",
+      "url_final": "https://postmarkapp.com/updates/introducing-sandbox-mode-a-safe-environment-for-email-testing",
+      "titulo": "Introducing Sandbox Mode, a safe environment for email testing | Postmark",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "7ebf7c86a8ed8b464004667f14a89b273c7127cde9bf9297d2caf7666a80da4d",
+      "bytes": 49099,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/7ebf7c86a8ed8b46.html"
+    },
+    {
+      "id": "P-132",
+      "url": "https://postmarkapp.com/updates/introducing-smtp-tokens-expanded-support-for-using-broadcast-message-streams-via-smtp",
+      "url_final": "https://postmarkapp.com/updates/introducing-smtp-tokens-expanded-support-for-using-broadcast-message-streams-via-smtp",
+      "titulo": "Introducing SMTP Tokens: Expanded support for using Broadcast Message Streams via SMTP | Postmark",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "e5f8a7d75b046063ace3e90aa1f3913316e9e154efd4c439c1723e2681171665",
+      "bytes": 48599,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/e5f8a7d75b046063.html"
+    },
+    {
+      "id": "P-133",
+      "url": "https://postmarkapp.com/updates/introducing-the-retention-add-on",
+      "url_final": "https://postmarkapp.com/updates/introducing-the-retention-add-on",
+      "titulo": "Introducing the Retention Add-on | Postmark",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "8e832683d410f612ea0291415cb9298ad37a1b8a8f2ef58b2471fd2f1b7c1969",
+      "bytes": 48728,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/8e832683d410f612.html"
+    },
+    {
+      "id": "P-134",
+      "url": "https://postmarkapp.com/updates/modular-webhooks",
+      "url_final": "https://postmarkapp.com/updates/modular-webhooks",
+      "titulo": "Modular webhooks | Postmark",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "d4678d4d10eadaf71631e33a6dd005f1e615da1cce095d19c970b510c4c6a77d",
+      "bytes": 47170,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d4678d4d10eadaf7.html"
+    },
+    {
+      "id": "P-135",
+      "url": "https://postmarkapp.com/updates/new-ip-for-webhooks-action-may-be-required",
+      "url_final": "https://postmarkapp.com/updates/new-ip-for-webhooks-action-may-be-required",
+      "titulo": "New IP for webhooks: action may be required | Postmark",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "fbc59aa246f6b4bdee73d81888a3c9dc5db5944d10517e6c1787979bbdfc2015",
+      "bytes": 47894,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/fbc59aa246f6b4bd.html"
+    },
+    {
+      "id": "P-136",
+      "url": "https://postmarkapp.com/updates/our-webhooks-now-verify-themselves-and-tell-you-when-somethings-wrong",
+      "url_final": "https://postmarkapp.com/updates/our-webhooks-now-verify-themselves-and-tell-you-when-somethings-wrong",
+      "titulo": "Postmark Webhooks now verify themselves (and tell you when something's wrong) | Postmark",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "5d1ee26d9aa2f715ab1ae21be84929bc1616aedb1618ce48fe4e86297c5ba578",
+      "bytes": 50504,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/5d1ee26d9aa2f715.html"
+    },
+    {
+      "id": "P-137",
+      "url": "https://postmarkapp.com/updates/postmark-skills-teach-ai-coding-agents-how-to-send-email",
+      "url_final": "https://postmarkapp.com/updates/postmark-skills-teach-ai-coding-agents-how-to-send-email",
+      "titulo": "Postmark Skills: Teach AI coding agents how to send email | Postmark",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "d059356cd1a872dff99c48fa896433a5cf69a41bc2dfaeb43633b857602e42a7",
+      "bytes": 50502,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/d059356cd1a872df.html"
+    },
+    {
+      "id": "P-138",
+      "url": "https://postmarkapp.com/updates/pro-and-platform-tier-features-now-accessible-to-lower-volume-plans",
+      "url_final": "https://postmarkapp.com/updates/pro-and-platform-tier-features-now-accessible-to-lower-volume-plans",
+      "titulo": "Pro and Platform tier features now accessible to lower-volume plans | Postmark",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "28529e91409749cc616b139059a0960e3147cb0d543712f8d9ab18cb4c7513e5",
+      "bytes": 51289,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/28529e91409749cc.html"
+    },
+    {
+      "id": "P-139",
+      "url": "https://postmarkapp.com/updates/restrict-email-sending-api-with-ip-allowlisting",
+      "url_final": "https://postmarkapp.com/updates/restrict-email-sending-api-with-ip-allowlisting",
+      "titulo": "Secure API sending to trusted IPs with Allowlisting | Postmark",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "4982baa772dac4b91a613041c7f3cbb888d335161d635012743445aff3dc5dbd",
+      "bytes": 49745,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/4982baa772dac4b9.html"
+    },
+    {
+      "id": "P-140",
+      "url": "https://postmarkapp.com/updates/security-upgrades-to-smtp-sending-action-may-be-required",
+      "url_final": "https://postmarkapp.com/updates/security-upgrades-to-smtp-sending-action-may-be-required",
+      "titulo": "Security upgrades to SMTP sending — action may be required | Postmark",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "920ec0e676a4f018fa43087d2b5406a7b161259f69f2e1d5f9857f327859aebd",
+      "bytes": 51319,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/920ec0e676a4f018.html"
+    },
+    {
+      "id": "P-141",
+      "url": "https://postmarkapp.com/updates/send-bulk-email-at-scale",
+      "url_final": "https://postmarkapp.com/updates/send-bulk-email-at-scale",
+      "titulo": "Send bulk email at scale | Postmark",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "ecf1fae7615e4ddc545aac070b778456b93bc186a32ac0a0d65c094b0a8d635b",
+      "bytes": 49458,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/ecf1fae7615e4ddc.html"
+    },
+    {
+      "id": "P-142",
+      "url": "https://postmarkapp.com/updates/send-transactional-emails-from-activecampaign-with-the-new-postmark-app",
+      "url_final": "https://postmarkapp.com/updates/send-transactional-emails-from-activecampaign-with-the-new-postmark-app",
+      "titulo": "Send transactional emails from ActiveCampaign with the new Postmark App | Postmark",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "e7efb7b0295a700b71a9a137635f0104307656a386855398d295a5da6c986527",
+      "bytes": 47945,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/e7efb7b0295a700b.html"
+    },
+    {
+      "id": "P-143",
+      "url": "https://postmarkapp.com/updates/smtp-encryption-changes",
+      "url_final": "https://postmarkapp.com/updates/smtp-encryption-changes",
+      "titulo": "Starting March 7th our SMTP outbound servers will only support encrypted connections using TLS | Postmark",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "be2c58577b4a61cceea78fa76f7b34b471c880f0f439f39c382cc6d0080a4681",
+      "bytes": 50025,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/be2c58577b4a61cc.html"
+    },
+    {
+      "id": "P-144",
+      "url": "https://postmarkapp.com/updates/upcoming-changes-to-attachment-validation-action-may-be-required",
+      "url_final": "https://postmarkapp.com/updates/upcoming-changes-to-attachment-validation-action-may-be-required",
+      "titulo": "Upcoming changes to attachment validation — action may be required | Postmark",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "b50e3e2543bb337eaa9be41d53358c8d314ed83d4c36b749e705cc784808aa6f",
+      "bytes": 50620,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/b50e3e2543bb337e.html"
+    },
+    {
+      "id": "P-145",
+      "url": "https://postmarkapp.com/updates/upcoming-changes-to-bounce-message-retention",
+      "url_final": "https://postmarkapp.com/updates/upcoming-changes-to-bounce-message-retention",
+      "titulo": "Upcoming Changes to Bounce Message Retention | Postmark",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "3a7f54cdd6cdae9d06243a50099935e5bddb96024468016b46efba5d15b54a9e",
+      "bytes": 50859,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/3a7f54cdd6cdae9d.html"
+    },
+    {
+      "id": "P-146",
+      "url": "https://postmarkapp.com/updates/webhook-for-delivery-events",
+      "url_final": "https://postmarkapp.com/updates/webhook-for-delivery-events",
+      "titulo": "Webhook for delivery events | Postmark",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "db92e22f30a69513786e52e16684bc5df928625ed701fa78e50efab771c901f5",
+      "bytes": 47575,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://postmarkapp.com/sitemap.xml"
+      ],
+      "fichero_texto": "postmark/db92e22f30a69513.html"
+    }
+  ],
+  "resumen": {
+    "incluidas": 146,
+    "capturadas": 146,
+    "fallidas": 0,
+    "con_aviso": 0
+  }
+}

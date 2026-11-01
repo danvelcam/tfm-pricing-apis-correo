@@ -135,10 +135,11 @@ capacidad de *consulta* no se modela; queda en el provenance.
 destinatarios, así que el workload lleva **dos entradas** (`emails` y `MBs`), que es
 justo lo que la forma de lista (B5, DV-01) permite y la de mapa no.
 
-**Un matiz.** La cota es **estricta** (`"less than"`), y el esquema no distingue `<` de
-`≤`. Por eso el máximo en MBs va en ámbar. Y el verificador tiene razón en que `min: 1`
-no sale de ninguna fuente: es la convención del catálogo para «al menos algo», no un
-dato.
+**Un matiz.** La cota publicada es **estricta** (`"less than"`), y el esquema no distingue
+`<` de `≤`. El sondeo [E2] del 2026-09-07 lo resolvió midiendo: una petición de 31.457.280
+bytes (30 MiB) pasa y una de 31.457.281 recibe un 413 del proxy. El tope real es `≤ 30 MiB`,
+así que el máximo en MBs va en verde. Y el verificador tiene razón en que `min: 1` no sale
+de ninguna fuente: es la convención del catálogo para «al menos algo», no un dato.
 
 ---
 
@@ -264,22 +265,33 @@ recurrente (`recurring: false`), lo que ya cubriría las pruebas de tiempo limit
 
 ## F-15 · Dos canales, dos workloads para la misma cuota — NUEVA
 
-**Qué pasa.** El mismo plan se consume por API REST y por SMTP, y las dos vías
-descuentan la misma cuota (*"Send up to 100 email messages via web API or SMTP per day"*
-[F7]). Pero el tope de destinatarios por mensaje es **1.000 por la API** [F3] y **10.000
-por SMTP** (*"hard limit of 10,000 addresses in a multiple recipient email"* [F14]). Y el
-canal SMTP tiene su propio caudal, de concurrencia: *"5k messages per SMTP connection"*,
-*"10k concurrent connections from a single server"* [F13].
+**Qué pasa.** El mismo plan se consume por la API REST y por el relé SMTP, y las dos
+interfaces descuentan la misma cuota (*"Send up to 100 email messages via web API or SMTP
+per day"* [F7]). La API acota cada petición: 1.000 destinatarios en total entre `to`, `cc`
+y `bcc` [F3], comprobado en [E1], y 30 MiB, medido en [E2]. El relé tiene dos topes que la
+API no publica, uno por conexión y otro de concurrencia: *"You may send up to 5k messages per
+SMTP connection."* y *"You may open up to 10k concurrent connections from a single
+server."* [F13]. Para un mensaje sin la cabecera X-SMTPAPI, las páginas de SMTP consultadas
+no publican tope de destinatarios, y para ningún mensaje publican tamaño máximo.
+
+**Corrección del 2026-10-31.** Hasta esa fecha este apartado daba al relé 10.000
+destinatarios por mensaje, diez veces la API, con [F14]. Ese tope es de la cabecera
+X-SMTPAPI: la página lo enumera entre lo que hay que vigilar al usar la cabecera
+(*"However, there are several things to keep in mind when using the header."*) y no lo dice
+de cualquier mensaje del relé. Un mensaje sin la cabecera no tiene tope de destinatarios
+publicado en las páginas de SMTP consultadas, así que la comparación de destinatarios entre
+las dos interfaces sale del caso.
 
 **Qué hace v0.3.** Modela `endpoints`. SMTP no es un endpoint: no tiene ruta ni método.
 O se le inventa una ruta ficticia (`smtp://`) —que rompe la conformidad estricta— o se
 deja fuera, que es lo que hace esta datasheet, con el dato en el provenance.
 
-**Consecuencia.** La datasheet dice que un envío a 5.000 destinatarios necesita cinco
-peticiones. Por SMTP necesita una. La capacidad efectiva por unidad de trabajo del
-cliente depende del canal, y el modelo solo ve uno. Además, el límite SMTP es de
+**Consecuencia.** La datasheet dice que 5.000 correos de un destinatario cada uno
+necesitan al menos cinco peticiones a `/v3/mail/send`. Por el relé caben en una sola
+conexión, que admite 5.000 mensajes. La unidad de trabajo depende de la interfaz, y el
+modelo solo ve una. Además, el tope de 10.000 conexiones simultáneas es de
 **concurrencia**, la dimensión que v0.3 declara fuera de alcance (F-05 la deja a un lado
-para RPR; esta la deja para conexiones).
+para RPR, y esta, para conexiones).
 
 **Propuesta.** Permitir «canales» además de endpoints (`channels: {smtp: {workload,
 rate}}`), o al menos que un endpoint pueda declarar `protocol`. Y reabrir la dimensión de
@@ -290,6 +302,22 @@ publicada que hoy no tiene sitio.
 «canal alternativo; no cambia la capacidad» en la familia no capacitaria. En SendGrid **sí
 la cambia**. Cuando se revisite Resend habrá que comprobar si su SMTP tiene topes propios;
 si los tiene, F-15 recurre.
+
+**Recuento tras la corrección (2026-10-31).** El caso sigue contando. La fila arbitrada de
+F-15 (`05_salida/_herramientas/workflows/revision_externa/unidades/w1/filas/F-15.md`, una de
+las entradas de `03_datos/RECURRENCIA_2026-09-23.md`) da una celda por plena si se cumplen
+dos condiciones: que una interfaz sin ruta gaste la misma cuota y que publique un tope
+propio, de workload o de caudal, que el fichero no puede escribir. SendGrid cumple las dos
+sin los 10.000 destinatarios: la cuota común es la de [F7] y los topes propios son los dos
+de [F13]. El precedente más cercano es Mailgun: su celda es plena solo por un tope propio
+del relé (*"1,500 SMTP requests per second per client IP"*, `mailgun/fuentes.md` [F15]), sin
+comparar destinatarios entre interfaces, que es la forma que le queda a SendGrid sin los
+10.000. MailerSend cuenta con el mismo criterio, y su relé tampoco publica destinatarios
+ni tamaño por mensaje: su celda se apoya en la concurrencia, en las cinco transacciones por
+conexión y en que el relé descuenta la cuota diaria por mensaje. La diferencia es que la
+concurrencia de MailerSend cambia con el plan (5 o 50 conexiones) y la de SendGrid se
+publica como una sola cifra, sin distinguir planes. La celda de SendGrid sigue en ✅ y el
+recuento del inventario no cambia.
 
 ---
 
@@ -332,7 +360,7 @@ knowledge base de Resend) antes de dar F-16 por única de SendGrid.
 | Entregabilidad | Panel: `"Reputation 100%"` en la barra lateral; *"Delivery Optimization Tools"* en todos los planes [F12] | Resultado observado, no contratado |
 | Reputación / warm-up | *"Automated, dedicated IP warm up"* en la tabla de características [F1]; bloqueo temporal 403 *"due to repeated bad requests"* [F9] sin umbral | Afecta al techo real de envío sin cifra publicada |
 | IP dedicada | Incluida en Pro y Premier, $30/mes cada IP extra [F1][F12] | Cubierto como F-07 |
-| Canal SMTP | `smtp.sendgrid.net`, misma cuota, **topes propios** [F13][F14] | **Ya no es solo alternativo: F-15** |
+| Canal SMTP | `smtp.sendgrid.net`, misma cuota, **topes propios** [F13] | **Ya no es solo alternativo: F-15** |
 | Identidad de remitente | Sin identidad verificada, 403 *"From address doesn't match Verified Sender Identity"* [F9]; el panel lo exige antes del primer envío [F12] | Precondición de uso, no capacidad |
 
 ## Observaciones sobre el propio repositorio y la especificación del proveedor

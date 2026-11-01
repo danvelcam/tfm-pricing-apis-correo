@@ -162,6 +162,10 @@ conexión, 10.000 conexiones concurrentes) [F13][F14]. **Aplicado:** no se inven
 endpoint `smtp://` (regla B1, conformidad estricta); va al provenance y a **F-15**. Si
 quieres verlo dentro del YAML, es una extensión que hay que proponer antes.
 
+*2026-10-31:* los 10.000 destinatarios son de la cabecera X-SMTPAPI, no del relé. El relé
+publica 5.000 mensajes por conexión y 10.000 conexiones concurrentes [F13]. F-15 se
+sostiene con esos dos topes.
+
 ### Q6 · `max: 30` MBs en ámbar y `min: 1` sin fuente
 
 *"less than 30MB"* es estricto y el esquema no distingue `<` de `≤`; por eso 🟡. El `min: 1`
@@ -218,7 +222,8 @@ su propio lector y contrastó cita a cita.
     100K coincide en las dos fuentes, Essentials 50K no (Q1). *(Desde el 2026-10-18,
     `0.0013` 🟢 por D17.)*
 - **Lo que el constructor no vio**, incorporado en la misma tanda: límites SMTP [F13],
-  10.000 destinatarios por SMTP [F14] (→ **F-15**), Email Activity Feed API tras add-on
+  10.000 destinatarios por SMTP [F14] (→ **F-15**; *2026-10-31:* son de la cabecera
+  X-SMTPAPI, no del relé), Email Activity Feed API tras add-on
   [F15][F16], validación solo Pro/Premier y 50 fuentes [F17], quinto paquete de créditos
   con errata `"$40.000 USD"`, 150 sustituciones por sobre, el ejemplo 429 con
   `X-RateLimit-Limit: 150`, y la especificación OpenAPI con `to` sin `maxItems` (→ O-06).

@@ -2061,3 +2061,10 @@ del 2026-09-09.
 | DISC-D1 / D2 / D3 | DISC-08 / 09 / 10 | — |
 | DISC-S1 / S2 / S3 / S4 / S5 | DISC-11 / 05 / 12 / 04 / 13 | — |
 | DISC-H1 / H2 / H3 / H4 | DISC-03 / 14 / 15 / 16 | — |
+
+> **Corrección del 2026-10-31 (página de feature [F11]).** Con navegador, [F11] da hoy los mismos
+> precios que /pricing (`"$ 6.30 /month"`, `"$75.60 billed yearly"`). El bloque «desactualizado» de
+> 2024 está en el HTML que el servidor envía antes de ejecutar JavaScript, en [F11] y en [F1], y la
+> lectura de [F11] de la tanda 1 se hizo con `WebFetch`, sin JavaScript. DISC-03 la produce el modo de
+> lectura, no una página del proveedor que se contradiga para el cliente.
+> Evidencia: `evidencias/paginas/2026-10-31/LEEME.md`.

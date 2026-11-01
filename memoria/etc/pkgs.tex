@@ -1,14 +1,27 @@
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
 \usepackage{multicol}
 \usepackage{xcolor}
 \usepackage{subfigure}
-\usepackage[spanish,es-tabla]{babel}
+\setcounter{lotdepth}{1}
+\makeatletter
+\renewcommand{\@pnumwidth}{2.2em}
+\renewcommand{\@tocrmarg}{3.2em}
+\makeatother
+\usepackage[spanish,es-tabla,es-nodecimaldot]{babel}
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{float}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.75}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{needspace}
 \usepackage[bookmarks,breaklinks,colorlinks=true,allcolors=blue]{hyperref}
 \usepackage{listings}
-\usepackage{inconsolata}
+\usepackage[varqu]{inconsolata}
 \usepackage{eso-pic}
 \usepackage[framemethod=tikz]{mdframed}
 
@@ -17,10 +30,13 @@
 \usepackage{parskip}
 \usepackage[official]{eurosym}
 \usepackage{csquotes}
+\hyphenation{Data-sheet Data-sheets Mailer-Send Send-Grid Mail-chimp Mail-gun Post-mark}
 
 \usepackage[backend=biber,style=ieee,natbib=true]{biblatex}
 \addbibresource{bibliografia.bib}
 \setcounter{biburlnumpenalty}{9000}
-\setcounter{biburllcpenalty}{7000}
+\setcounter{biburllcpenalty}{9000}
+\setlength{\biburlbigskip}{0mu}
+\DefineBibliographyStrings{spanish}{jourser={serie}, urlseen={Visitado}, url={Dirección}, artno={art.}}
 \setcounter{biburlucpenalty}{8000}
 \defbibheading{bibchapter}[\bibname]{\chapter{#1}}

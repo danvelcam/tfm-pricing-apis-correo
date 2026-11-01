@@ -1,0 +1,1367 @@
+{
+  "schema_version": "0.1",
+  "generator": {
+    "skill": "recogida-terminos-consumo",
+    "skill_version": "0.1"
+  },
+  "api": "mailchimp",
+  "run": {
+    "generated_at": "2026-10-23T15:00:56Z",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+    "intervalo_s": 0.4,
+    "peticiones": 64
+  },
+  "paginas": [
+    {
+      "id": "P-001",
+      "url": "https://mailchimp.com/developer/release-notes/",
+      "url_final": "https://mailchimp.com/developer/release-notes.md",
+      "titulo": "Changelog",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "dba004bccdc32ed9a47b28f6a3836f65cad0c1cab94d20ec858f2cf39708312f",
+      "bytes": 13675,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Blog y novedades",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://mailchimp.com/developer/release-notes/message-search-rate-limit-now-enforced/",
+        "https://mailchimp.com/en/pricing/transactional-email/",
+        "https://mailchimp.com/help/how-throttling-improves-deliverability/",
+        "https://mailchimp.com/help/transactional-email-demo/"
+      ],
+      "fichero_texto": "mailchimp/dba004bccdc32ed9.md"
+    },
+    {
+      "id": "P-002",
+      "url": "https://mailchimp.com/developer/release-notes/message-search-rate-limit-now-enforced/",
+      "url_final": "https://mailchimp.com/developer/release-notes/message-search-rate-limit-now-enforced.md",
+      "titulo": "Page Not Found",
+      "fecha_captura": "2026-10-23T15:00:57Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "fallida",
+      "error": "soft_404",
+      "aviso": null,
+      "interfaz": "Blog y novedades",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-003",
+      "url": "https://mailchimp.com/developer/transactional/",
+      "url_final": "https://mailchimp.com/developer/transactional.md",
+      "titulo": "Essential email and SMS messages, delivered every time | Mailchimp Developer",
+      "fecha_captura": "2026-10-23T15:00:58Z",
+      "sha256": "2ce4395c95ccd51a2fdeccb997f2f525754b0d208870b25c2d1c067db8196bd4",
+      "bytes": 3343,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://mailchimp.com/en/pricing/transactional-email/",
+        "https://mailchimp.com/pricing/transactional-email/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/2ce4395c95ccd51a.md"
+    },
+    {
+      "id": "P-004",
+      "url": "https://mailchimp.com/developer/transactional/api/",
+      "url_final": "https://mailchimp.com/developer/transactional/api/allowlist/allowlists-add.md",
+      "titulo": "Add email to allowlist",
+      "fecha_captura": "2026-10-23T15:00:59Z",
+      "sha256": "f7f752ab3c7532ded65ffe8d4249cec5500fe714d85f2bf36ae251401900408c",
+      "bytes": 6484,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/f7f752ab3c7532de.md"
+    },
+    {
+      "id": "P-005",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-cancel-warmup",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-cancel-warmup.md",
+      "titulo": "Cancel IP warmup process",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "baa9b3b086d0b876be7f17e4a40adeef9ec0e126934b814070f8ad78a6449635",
+      "bytes": 5907,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/baa9b3b086d0b876.md"
+    },
+    {
+      "id": "P-006",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-check-custom-dns",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-check-custom-dns.md",
+      "titulo": "Test custom DNS configuration",
+      "fecha_captura": "2026-10-23T15:01:01Z",
+      "sha256": "129d178bf88000b01c5c8618d21cf89ad251d998399cc5ef2b381e623618b229",
+      "bytes": 6256,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/129d178bf88000b0.md"
+    },
+    {
+      "id": "P-007",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-create-pool",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-create-pool.md",
+      "titulo": "Create dedicated IP pool",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "15efc231d43bd43a77fa599a21a2777121ac5e1ae41b29a09e9dcf8223b173a3",
+      "bytes": 5801,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/15efc231d43bd43a.md"
+    },
+    {
+      "id": "P-008",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-delete",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-delete.md",
+      "titulo": "Delete dedicated IP",
+      "fecha_captura": "2026-10-23T15:01:03Z",
+      "sha256": "6d39bf45aa339bdd91b5f3528e2ab280a27d051f4672605f196fd73c766e668a",
+      "bytes": 5404,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/6d39bf45aa339bdd.md"
+    },
+    {
+      "id": "P-009",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-delete-pool",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-delete-pool.md",
+      "titulo": "Delete dedicated IP pool",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "fc57c76987aa9021cb0cead2b7e89c41cf5f1240a7c4acbf7a24fe0aac4a5709",
+      "bytes": 6140,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/fc57c76987aa9021.md"
+    },
+    {
+      "id": "P-010",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-info",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-info.md",
+      "titulo": "Get dedicated IP information",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "ee9fbb4bd5012d4af80be108f1d1fa3a6cf55bbc1b00ce9a006a1e079c91e8ae",
+      "bytes": 5517,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/ee9fbb4bd5012d4a.md"
+    },
+    {
+      "id": "P-011",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-list",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-list.md",
+      "titulo": "List dedicated IPs",
+      "fecha_captura": "2026-10-23T15:01:05Z",
+      "sha256": "b6cabc807aad24546512c730bcf2ff9b2f3f6d6cbbc4bb33dcf102677eace185",
+      "bytes": 6692,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/b6cabc807aad2454.md"
+    },
+    {
+      "id": "P-012",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-list-pools",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-list-pools.md",
+      "titulo": "List dedicated IP pools",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "75ac909fdf0d55b119894d59daae490f7efed33f35927f15f7d2bd1f93984fc6",
+      "bytes": 7259,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/75ac909fdf0d55b1.md"
+    },
+    {
+      "id": "P-013",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-pool-info",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-pool-info.md",
+      "titulo": "Get pool information",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "a425eff754196e1c6b613ce0f45ee213e9b5094f80d920718386b96f0cd73a8c",
+      "bytes": 5999,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/a425eff754196e1c.md"
+    },
+    {
+      "id": "P-014",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-provision",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-provision.md",
+      "titulo": "Request dedicated IP provisioning",
+      "fecha_captura": "2026-10-23T15:01:09Z",
+      "sha256": "901e5f7e6e9ed0cb7472f116baae567bf7701a65af8f7627bb05d9ed095b7ce4",
+      "bytes": 6586,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/901e5f7e6e9ed0cb.md"
+    },
+    {
+      "id": "P-015",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-set-custom-dns",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-set-custom-dns.md",
+      "titulo": "Configure custom DNS for IP",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "54ce9d1096bac3323df5db1fe80b4e1ab2283b219c2d522ebb463ebc87b87a05",
+      "bytes": 6592,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/54ce9d1096bac332.md"
+    },
+    {
+      "id": "P-016",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-set-pool",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-set-pool.md",
+      "titulo": "Move IP to different pool",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "9ef82807294f015732632d0577f36e593bd3fbc6c74429572987021f0cec0fe6",
+      "bytes": 6852,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/9ef82807294f0157.md"
+    },
+    {
+      "id": "P-017",
+      "url": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-start-warmup",
+      "url_final": "https://mailchimp.com/developer/transactional/api/dedicated-ips/ips-start-warmup.md",
+      "titulo": "Start IP warmup process",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "50bac000ef2d60711f0d7f6369301f21f37081004666f7acbcf2e4f96f810ac2",
+      "bytes": 6145,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/50bac000ef2d6071.md"
+    },
+    {
+      "id": "P-018",
+      "url": "https://mailchimp.com/developer/transactional/api/messages/",
+      "url_final": "https://mailchimp.com/developer/transactional/api/messages/send.md",
+      "titulo": "Send a message",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "19e7fc34d69ced19a2411350510efb155f4eb79302e9cf67a00745df7d780525",
+      "bytes": 15681,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/19e7fc34d69ced19.md"
+    },
+    {
+      "id": "P-019",
+      "url": "https://mailchimp.com/developer/transactional/api/messages/search-messages-by-date/",
+      "url_final": "https://mailchimp.com/developer/transactional/api/messages/search-messages-by-date.md",
+      "titulo": "Page Not Found",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "fallida",
+      "error": "soft_404",
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-020",
+      "url": "https://mailchimp.com/developer/transactional/api/messages/send-using-message-template/",
+      "url_final": "https://mailchimp.com/developer/transactional/api/messages/send-using-message-template.md",
+      "titulo": "Page Not Found",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "fallida",
+      "error": "soft_404",
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-021",
+      "url": "https://mailchimp.com/developer/transactional/api/rejects/list-denylisted-emails/",
+      "url_final": "https://mailchimp.com/developer/transactional/api/rejects/list-denylisted-emails.md",
+      "titulo": "Page Not Found",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "fallida",
+      "error": "soft_404",
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-022",
+      "url": "https://mailchimp.com/developer/transactional/api/webhooks/add",
+      "url_final": "https://mailchimp.com/developer/transactional/api/webhooks/add.md",
+      "titulo": "Add a new webhook",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "82dbd8e9004f28b9ecbaf3a4a7f85d1e4b40f145d8ee0809cfcac31e0f6668f3",
+      "bytes": 7860,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/82dbd8e9004f28b9.md"
+    },
+    {
+      "id": "P-023",
+      "url": "https://mailchimp.com/developer/transactional/api/webhooks/delete",
+      "url_final": "https://mailchimp.com/developer/transactional/api/webhooks/delete.md",
+      "titulo": "Delete an existing webhook",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "236c5b9697cbc530c0123c8432ca3920bfb41feca3f2cd3f8c84f638d68bc7a2",
+      "bytes": 5918,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/236c5b9697cbc530.md"
+    },
+    {
+      "id": "P-024",
+      "url": "https://mailchimp.com/developer/transactional/api/webhooks/info",
+      "url_final": "https://mailchimp.com/developer/transactional/api/webhooks/info.md",
+      "titulo": "Get webhook information",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "cda029128dc2eabcfea4762a19c1341acbdf74f3d88a0952a214cd48d20c035a",
+      "bytes": 5898,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/cda029128dc2eabc.md"
+    },
+    {
+      "id": "P-025",
+      "url": "https://mailchimp.com/developer/transactional/api/webhooks/list",
+      "url_final": "https://mailchimp.com/developer/transactional/api/webhooks/list.md",
+      "titulo": "Get the list of all webhooks",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "08a9dcaf56bddca38217d84afc2a8a946295983631d82171b3164205d77e526d",
+      "bytes": 6433,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/08a9dcaf56bddca3.md"
+    },
+    {
+      "id": "P-026",
+      "url": "https://mailchimp.com/developer/transactional/api/webhooks/update",
+      "url_final": "https://mailchimp.com/developer/transactional/api/webhooks/update.md",
+      "titulo": "Update an existing webhook",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "311701da5908df432d2a7ce94475e4703fce81ed8ccb1ce85603bb3b1755dbe7",
+      "bytes": 8349,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/311701da5908df43.md"
+    },
+    {
+      "id": "P-027",
+      "url": "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/authentication-delivery.md",
+      "titulo": "Authentication and Delivery",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "5fe556db804b09a815a5d6a20955597edc0cf4f69f4b372b1c4fb0930a3e1e88",
+      "bytes": 24204,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "https://mailchimp.com/developer/transactional/docs/reputation-rejections/",
+        "https://mailchimp.com/help/transactional-email-demo/"
+      ],
+      "fichero_texto": "mailchimp/5fe556db804b09a8.md"
+    },
+    {
+      "id": "P-028",
+      "url": "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/fundamentals.md",
+      "titulo": "Fundamentals",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "88e769f152f9f496d8678504dcdae11bbad8010d354e80997bc6a43992f53838",
+      "bytes": 22428,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "semilla",
+        "https://mailchimp.com/developer/transactional/docs/reputation-rejections/",
+        "https://mailchimp.com/help/transactional-email-demo/"
+      ],
+      "fichero_texto": "mailchimp/88e769f152f9f496.md"
+    },
+    {
+      "id": "P-029",
+      "url": "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/outbound-email.md",
+      "titulo": "Outbound Email",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "c604c14174e1c9c9faf3bfd8f4abcceea4840fdf0edc502d671199cd7747763a",
+      "bytes": 17798,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "semilla",
+        "https://mailchimp.com/developer/transactional/docs/reputation-rejections/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/c604c14174e1c9c9.md"
+    },
+    {
+      "id": "P-030",
+      "url": "https://mailchimp.com/developer/transactional/docs/reputation-rejections/",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/reputation-rejections.md",
+      "titulo": "Reputation and Rejections",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "8227fa15a33378ecb97f8ef3aa6366c4a80218c8f5d72fb43ff5a7f950fc4d22",
+      "bytes": 25265,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "semilla"
+      ],
+      "fichero_texto": "mailchimp/8227fa15a33378ec.md"
+    },
+    {
+      "id": "P-031",
+      "url": "https://mailchimp.com/developer/transactional/docs/smtp-integration",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/smtp-integration.md",
+      "titulo": "SMTP Integration",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "80bcc3645c7be64b234669ae83d196dfd7bda697a6d03e552bed60cd52e5ea0f",
+      "bytes": 17396,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/",
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml"
+      ],
+      "fichero_texto": "mailchimp/80bcc3645c7be64b.md"
+    },
+    {
+      "id": "P-032",
+      "url": "https://mailchimp.com/developer/transactional/docs/subaccounts",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/subaccounts.md",
+      "titulo": "Subaccounts",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "9368f9afb652fb34f1e25e8ba1480e90627a4c07e635c7cc0c9e0731d41cc188",
+      "bytes": 7248,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/reputation-rejections/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/9368f9afb652fb34.md"
+    },
+    {
+      "id": "P-033",
+      "url": "https://mailchimp.com/developer/transactional/docs/tags-metadata",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/tags-metadata.md",
+      "titulo": "Tags and Metadata",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "389e3d6964f5e99147485ecdcdd7306dcfe20d779ff59adc3eb8280d5f1ebd79",
+      "bytes": 11220,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/389e3d6964f5e991.md"
+    },
+    {
+      "id": "P-034",
+      "url": "https://mailchimp.com/developer/transactional/docs/webhooks",
+      "url_final": "https://mailchimp.com/developer/transactional/docs/webhooks.md",
+      "titulo": "Webhooks",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "add06b4c148dcc7a78d8dc3aa633e34c803aceaef67a4e1703b4f3d40b2b91e3",
+      "bytes": 12154,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "https://mailchimp.com/developer/transactional/docs/reputation-rejections/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml"
+      ],
+      "fichero_texto": "mailchimp/add06b4c148dcc7a.md"
+    },
+    {
+      "id": "P-035",
+      "url": "https://mailchimp.com/developer/transactional/guides/send-first-email",
+      "url_final": "https://mailchimp.com/developer/transactional/guides/send-first-email.md",
+      "titulo": "Send Your First Transactional Email",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "416ca80a6cdc32c2fb15714c7171e58af400d2c137d3cbffabd96f95892e1971",
+      "bytes": 9775,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/",
+        "https://mailchimp.com/developer/transactional/docs/authentication-delivery/",
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml"
+      ],
+      "fichero_texto": "mailchimp/416ca80a6cdc32c2.md"
+    },
+    {
+      "id": "P-036",
+      "url": "https://mailchimp.com/developer/transactional/guides/track-respond-activity-webhooks",
+      "url_final": "https://mailchimp.com/developer/transactional/guides/track-respond-activity-webhooks.md",
+      "titulo": "Track and Respond to Email Activity with Webhooks",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "7e5a26c5785834b2ccb2e38cd041f732814741dda547e780921fe7afb2c6ce79",
+      "bytes": 16328,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/",
+        "sitemap:https://mailchimp.com/developer/sitemap.xml",
+        "llms.txt:https://mailchimp.com/developer/transactional/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/7e5a26c5785834b2.md"
+    },
+    {
+      "id": "P-037",
+      "url": "https://mailchimp.com/en/pricing/transactional-email/",
+      "url_final": "https://mailchimp.com/en/pricing/transactional-email/",
+      "titulo": "Pricing: Mailchimp Transactional Email | Mandrill | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "eaab43d59c5c98063e53cefba135433130aae9920caa88c2580501908482b470",
+      "bytes": 265545,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailchimp/eaab43d59c5c9806.html"
+    },
+    {
+      "id": "P-038",
+      "url": "https://mailchimp.com/help/about-mandrill/",
+      "url_final": "https://mailchimp.com/help/about-mandrill/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-039",
+      "url": "https://mailchimp.com/help/how-throttling-improves-deliverability/",
+      "url_final": "https://mailchimp.com/en/help/how-throttling-improves-deliverability/",
+      "titulo": "How Throttling Improves Deliverability | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "ad47fceaa464f0a3a2630992a7dd01929881035ee9e5322244259c372200c6df",
+      "bytes": 237946,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailchimp/ad47fceaa464f0a3.html"
+    },
+    {
+      "id": "P-040",
+      "url": "https://mailchimp.com/help/transactional-email-demo/",
+      "url_final": "https://mailchimp.com/help/transactional-email-demo/",
+      "titulo": "Transactional Email Demo | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "e68e3bb58b6f27ec300cffe357325f0c811db9f49b021b5843190f68fb4e9a26",
+      "bytes": 236673,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "https://mailchimp.com/en/pricing/transactional-email/",
+        "semilla"
+      ],
+      "fichero_texto": "mailchimp/e68e3bb58b6f27ec.html"
+    },
+    {
+      "id": "P-041",
+      "url": "https://mailchimp.com/legal/",
+      "url_final": "https://mailchimp.com/en/legal/",
+      "titulo": "Mailchimp's Legal Policies | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "57faa9fded4aaef199af8b7f37ff4379ce1a11db5b65309557a3b2950d31751b",
+      "bytes": 215575,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/en/pricing/transactional-email/",
+        "https://mailchimp.com/help/transactional-email-demo/",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/57faa9fded4aaef1.html"
+    },
+    {
+      "id": "P-042",
+      "url": "https://mailchimp.com/legal/acceptable_use/",
+      "url_final": "https://mailchimp.com/en/legal/acceptable_use/",
+      "titulo": "Mailchimp's Acceptable Use Policy | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "9c71833b3020cfc5f6485a6389132fcd68ad9832d5c1187fd9ccf6607f2800ff",
+      "bytes": 222258,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Legal",
+      "motivo": "semilla",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/fundamentals/",
+        "semilla",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/9c71833b3020cfc5.html"
+    },
+    {
+      "id": "P-043",
+      "url": "https://mailchimp.com/legal/additional-terms/",
+      "url_final": "https://mailchimp.com/en/legal/additional-terms/",
+      "titulo": "Mailchimp's Additional Terms (Preview) | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "0c083fbce3fac71059cbb45981c5b7dcf9bdce0157f9492b02cc8556bad08660",
+      "bytes": 338601,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/docs/reputation-rejections/"
+      ],
+      "fichero_texto": "mailchimp/0c083fbce3fac710.html"
+    },
+    {
+      "id": "P-044",
+      "url": "https://mailchimp.com/legal/controller-controller-scc-2021/",
+      "url_final": "https://mailchimp.com/legal/controller-controller-scc-2021/",
+      "titulo": "Mailchimp's Controller to Controller Clauses | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "7648c45dfb816802451fc292af142cab4115ae4a66c2ba571c403d2270bd97e9",
+      "bytes": 257554,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/7648c45dfb816802.html"
+    },
+    {
+      "id": "P-045",
+      "url": "https://mailchimp.com/legal/controller-processor-scc-2021/",
+      "url_final": "https://mailchimp.com/legal/controller-processor-scc-2021/",
+      "titulo": "Controller to Processor Clauses (2021) | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "0f84bde24871c700c01bfe9ff37715d22898be6b6c233aa49b40b95ad622cf13",
+      "bytes": 254218,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/0f84bde24871c700.html"
+    },
+    {
+      "id": "P-046",
+      "url": "https://mailchimp.com/legal/crm-automations/",
+      "url_final": "https://mailchimp.com/legal/crm-automations/",
+      "titulo": "Mailchimp's CRM Beta Terms | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "ff2485efce54d32e4e56d3b7e47b359298e504c6feb6f91510f54ce6a7f5f73f",
+      "bytes": 223159,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/ff2485efce54d32e.html"
+    },
+    {
+      "id": "P-047",
+      "url": "https://mailchimp.com/legal/data-processing-addendum/",
+      "url_final": "https://mailchimp.com/en/legal/data-processing-addendum/",
+      "titulo": "Mailchimp Data Processing Addendum Preview | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "f296c0ffc15af91ec35e818912970ef1cdc80ab824258b42705e8aed528bc461",
+      "bytes": 258417,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/f296c0ffc15af91e.html"
+    },
+    {
+      "id": "P-048",
+      "url": "https://mailchimp.com/legal/dsar-requests/",
+      "url_final": "https://mailchimp.com/legal/dsar-requests/",
+      "titulo": "About Data Subject Access Reports | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "579355e04ef7ad174b34eceb83cf963635bda85c8fcc08f0c4c4cc8eb0e29203",
+      "bytes": 210651,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/579355e04ef7ad17.html"
+    },
+    {
+      "id": "P-049",
+      "url": "https://mailchimp.com/legal/mailchimp-mobile-sdk-license-agreement/",
+      "url_final": "https://mailchimp.com/legal/mailchimp-mobile-sdk-license-agreement/",
+      "titulo": "Mailchimp Mobile Software Development Kit License Agreement | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "58e9ff67c0a1674e3a3da7181a5a7cb629fccb1d1f90724f2de3f38fc1ce680e",
+      "bytes": 219023,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/58e9ff67c0a1674e.html"
+    },
+    {
+      "id": "P-050",
+      "url": "https://mailchimp.com/legal/p2b/",
+      "url_final": "https://mailchimp.com/legal/p2b/",
+      "titulo": "EU P2B Complaint Form | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "8a4ae15364975f8d1c60821c5103234c24de1675b382ffd98e5419ce95987151",
+      "bytes": 208631,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/8a4ae15364975f8d.html"
+    },
+    {
+      "id": "P-051",
+      "url": "https://mailchimp.com/legal/processor-processor-scc-2021/",
+      "url_final": "https://mailchimp.com/legal/processor-processor-scc-2021/",
+      "titulo": "Mailchimp Processor to Processor Clauses 2010 | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "adcdc4d421e6e3b3ce02ea66133fa8503a49fc9a768f28d55061f8e953cc12cc",
+      "bytes": 255721,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/adcdc4d421e6e3b3.html"
+    },
+    {
+      "id": "P-052",
+      "url": "https://mailchimp.com/legal/subprocessors/",
+      "url_final": "https://mailchimp.com/legal/subprocessors/",
+      "titulo": "Mailchimp sub-processors | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "4254aa7ef13854334ae8c80b9a0600b87d2281ddf6412d2b343c88be7dd38ded",
+      "bytes": 213767,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/4254aa7ef1385433.html"
+    },
+    {
+      "id": "P-053",
+      "url": "https://mailchimp.com/legal/terms-preview/",
+      "url_final": "https://mailchimp.com/legal/terms-preview/",
+      "titulo": "Mailchimp’s Standard Terms of Use | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "db72a0d960e032a792a0dd39939c0535110173781b2dd31d59b92d2b4e7a57d9",
+      "bytes": 286552,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/db72a0d960e032a7.html"
+    },
+    {
+      "id": "P-054",
+      "url": "https://mailchimp.com/legal/terms/",
+      "url_final": "https://mailchimp.com/en/legal/terms/",
+      "titulo": "Mailchimp’s Standard Terms of Use | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "465e313e66f2ee21c8288949dcfe18a0e719300cfc528f6284316fe32e85d9e4",
+      "bytes": 308554,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Legal",
+      "motivo": "semilla",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/en/pricing/transactional-email/",
+        "https://mailchimp.com/help/transactional-email-demo/",
+        "semilla",
+        "llms.txt:https://mailchimp.com/llms.txt"
+      ],
+      "fichero_texto": "mailchimp/465e313e66f2ee21.html"
+    },
+    {
+      "id": "P-055",
+      "url": "https://mailchimp.com/legal/third-party-software-licenses/",
+      "url_final": "https://mailchimp.com/legal/third-party-software-licenses/",
+      "titulo": "Third‑Party Software Licenses | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "e93e4cfeb3c43a1b6a3d795904fea4c7af27188000e0270ab7ba77c285c9a3d8",
+      "bytes": 209599,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://mailchimp.com/main.xml"
+      ],
+      "fichero_texto": "mailchimp/e93e4cfeb3c43a1b.html"
+    },
+    {
+      "id": "P-056",
+      "url": "https://mailchimp.com/pricing/transactional-email/",
+      "url_final": "https://mailchimp.com/en/pricing/transactional-email/",
+      "titulo": "Pricing: Mailchimp Transactional Email | Mandrill | Mailchimp",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "b25028bb54649e4e744268e2efcb98beefa2a29fc943e8bc2cf3403d1c871f0b",
+      "bytes": 265544,
+      "content_type": "text/html; charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "via_prefijo_en",
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://mailchimp.com/developer/transactional/",
+        "https://mailchimp.com/developer/transactional/docs/outbound-email/",
+        "https://mailchimp.com/en/pricing/transactional-email/",
+        "semilla"
+      ],
+      "fichero_texto": "mailchimp/b25028bb54649e4e.html"
+    }
+  ],
+  "resumen": {
+    "incluidas": 56,
+    "capturadas": 51,
+    "fallidas": 5,
+    "con_aviso": 7
+  }
+}

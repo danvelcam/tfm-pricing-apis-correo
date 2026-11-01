@@ -815,3 +815,35 @@ lo que es: el volcado de un instrumento defectuoso.
 - **DV-03 reaparece** con el plan Enterprise, exactamente como en SendGrid. No se toca: la
   regla **A3** obliga a incluirlo porque tiene tarjeta y precio literal en la lista oficial,
   y el 13 ERR es del motor, no del modelado (`fricciones.md`, O-17).
+
+## Informe del verificador adversarial (D-013) — 2026-10-31
+
+Un agente independiente, con acceso solo al `datasheet.yaml`, leyó cada URL dos veces, sin y con
+JavaScript, y fechó con Wayback lo que no encontró.
+
+- **Resultado: 73 entradas con URL, 56 coinciden.** Ningún valor modelado queda refutado y ningún
+  semáforo se mueve: **19 🟢 · 17 🟡 · 1 🔴**.
+- **Cambios del proveedor (aplicados como relecturas fechadas, E3).** El artículo de planes de la
+  ayuda se reescribió después del 2026-10-05.
+  - El asiento de marketing pasa de 9 a 12 USD y cae esa parte de la incoherencia de DISC-08.
+    Quedan el logo y Sales Advanced.
+  - Desaparecen la equivalencia de un crédito por destinatario y la frase de las funciones de
+    Starter.
+  - Las líneas del YAML conservan la cita antigua con sus dos fechas.
+- **La guía de lotes y el 2.000 (aplicado).** El verificador leyó como cambio que la guía publique
+  `"Maximum 2000 total recipients per API request"`. No lo es: ya estaba en el volcado del
+  2026-09-21, y por eso DISC-03 cerró ese día. Lo que estaba mal era la NOTA del YAML, que seguía
+  diciendo que la guía contradice el tope. Ya está corregida. El 2.000 sigue en 🟡 por D1, por el
+  alcance sin versiones (BR-163), y no por una contradicción.
+- **Errores del dato sin efecto en valores (aplicados).**
+  - **Línea 347:** son catorce filas con RPS y RPH, no diez. Se corrige también en [F6] y en O-15.
+  - **Línea 364:** la URL de la NOTA del 202 pasa a `/openapi/email-api.json`.
+- **Sin aplicar, fuera de la lista aprobada:** línea 353, línea 401 y los 1.000 USD de
+  Enterprise que da la API pública de precios. Están en el informe.
+- **`verificar_citas.py`.**
+  - Da `F-09` en las tres relecturas fechadas.
+  - Da un `CAMBIO` falso en los topes de las consultas: el literal es de la referencia
+    renderizada y el script lo busca en el JSON. Está explicado en el `LEEME` de los volcados.
+
+Informe íntegro: `evidencias/verificador_adversarial_2026-10-31.md`. Volcados:
+`evidencias/paginas/2026-10-31/`.

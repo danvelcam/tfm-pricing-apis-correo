@@ -1,0 +1,107 @@
+schema_version: "2.3"
+generator:
+  platform: "Claude"
+  provider: "Anthropic"
+  model: "claude-opus-5-5"
+  skill: "saas-interface-channel-analyzer"
+  skill_version: "3.0"
+generated_at: "2026-10-16T12:57:37+02:00"
+evidence_checked_at: "2026-10-16T12:58:57+02:00"
+input:
+  resolver_skill_version: "1.1"
+  resolver_generated_at: "2026-10-16T12:55:40+02:00"
+  query: "Twilio SendGrid Email API"
+  resolved_as: autonomous_service
+outcome: analyzed
+outcome_reason: null
+service:
+  name: "Twilio SendGrid Email API"
+  classification: autonomous_service
+  provider: "Twilio Inc."
+  base_services: []
+  conditional_on_resolver: false
+scope:
+  index_pages:
+    - { kind: docs_home, source: s1 }
+    - { kind: developer_portal, source: null }
+    - { kind: help_center, source: s7 }
+    - { kind: integrations, source: null }
+  index_entries:
+    - { entry: "For Developers", page: s1, disposition: covered, service: null }
+    - { entry: "SendGrid API Reference", page: s1, disposition: covered, service: null }
+    - { entry: "User Interface Documentation", page: s1, disposition: covered, service: null }
+    - { entry: ["Email concepts", "SendGrid Onboarding Guides", "Data Residency", "Glossary"], page: s1, disposition: not_access, service: null }
+    - { entry: "API Docs", page: s7, disposition: covered, service: null }
+    - { entry: ["Product Guides", "Expert Services", "Troubleshooting"], page: s7, disposition: not_access, service: null }
+  attribution_pages_used: 0
+sources:
+  - { id: s1, url: "https://www.twilio.com/docs/sendgrid" }
+  - { id: s2, url: "https://www.twilio.com/docs/sendgrid/api-reference" }
+  - { id: s3, url: "https://www.twilio.com/docs/sendgrid/for-developers/sending-email/integrating-with-the-smtp-api" }
+  - { id: s4, url: "https://www.twilio.com/docs/sendgrid/for-developers/tracking-events/event" }
+  - { id: s5, url: "https://www.twilio.com/docs/sendgrid/for-developers/parsing-email/setting-up-the-inbound-parse-webhook" }
+  - { id: s6, url: "https://www.twilio.com/docs/sendgrid/ui" }
+  - { id: s7, url: "https://support.sendgrid.com/hc/en-us" }
+interfaces:
+  - name: "SendGrid UI"
+    channel: Interactive
+    technology: "Web app (SendGrid UI, also called App or Console)"
+    rationale: "Actions are expressed by manipulating views and controls of a persistent web representation of account state."
+    mechanisms: ["Web app"]
+    requires: ["Twilio SendGrid Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s6, excerpt: "You can do almost anything at SendGrid using APIs, but some features are available only in the UI." }
+      - { source: s6, excerpt: "The SendGrid UI is also known as the web-based interface, App, or Console." }
+  - name: "Web API v3"
+    channel: Programmatic
+    technology: "REST HTTP API with API keys"
+    rationale: "The consumer explicitly invokes provider-defined operations through structured HTTP requests."
+    mechanisms: ["SendGrid API Reference", "Mail Send API"]
+    requires: ["Twilio SendGrid Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s1, excerpt: "Get started with the Twilio SendGrid Mail Send API and the open-source SDKs." }
+      - { source: s2, excerpt: "Create an Event Webhook" }
+  - name: "SMTP Relay"
+    channel: Programmatic
+    technology: "SMTP submission to smtp.sendgrid.net"
+    rationale: "The consumer submits messages through SMTP commands, a structured protocol invoked explicitly."
+    mechanisms: ["SMTP Service", "SMTP relay"]
+    requires: ["Twilio SendGrid Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s3, excerpt: "Set the server host in your email client or application to smtp.sendgrid.net." }
+      - { source: s3, excerpt: "Set your password to the API key generated in step one." }
+  - name: "Event Webhook"
+    channel: Event
+    technology: "HTTP webhook to consumer endpoint"
+    rationale: "The service initiates delivery of delivery, engagement and account events to an endpoint the consumer configures."
+    mechanisms: ["Event Webhook"]
+    requires: ["Twilio SendGrid Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "Twilio tracks three types of events: delivery, engagement, and account." }
+      - { source: s4, excerpt: "To secure the Event Webhook data, use the Signed Event Webhook, OAuth 2.0, or both." }
+  - name: "Inbound Parse Webhook"
+    channel: Event
+    technology: "MX records plus HTTP POST webhook"
+    rationale: "When mail arrives, the service parses it and initiates delivery of the parsed data to a URL the consumer chooses."
+    mechanisms: ["Inbound Parse webhook", "Inbound email"]
+    requires: ["Twilio SendGrid Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s5, excerpt: "The Inbound Parse webhook parses the contents and attachments for incoming email to a email server, then send that data to a URL of your choice." }
+pending: []
+excluded:
+  - { mechanism: "Integrations", reason: other_service, service: "Marketing Campaigns", detail: "Third-party integrations documented as a Marketing Campaigns feature" }
+  - { mechanism: "SDKs", reason: not_an_interface, service: null, detail: "Client libraries over the Web API" }
+  - { mechanism: ["Mobile app", "Desktop app", "Terminal client"], reason: not_found, service: null, detail: "Not listed on the docs home or the UI documentation index" }
+  - { mechanism: "Outbound email notifications", reason: not_found, service: null, detail: "Not seen on the inspected docs and UI pages" }
+summary:
+  interfaces: 5
+  channels: [Interactive, Event, Programmatic]
+  multi_interface: true
+  multi_channel: true
+  verdict_provisional: false
+notes: []

@@ -1,0 +1,68 @@
+\section{Cómo una carencia llega a propuesta}
+\label{sec:esquema:metodo}\label{sec:propuesta:conformidad}\label{sec:evolucion:metodo}\label{sec:evolucion:clases}
+
+Las ocho Datasheets del catálogo se escriben contra la guía de ACM2YAML v0.3, el documento que describe el esquema con ejemplos, sin inventar campos \citep{apisconsumptionmodel}.
+Las dos formas que quedan fuera de la guía, la unidad \texttt{MBs} de los topes de tamaño y el registro \texttt{not\_found} de lo que el proveedor no publica, ya se describieron junto al consumo del catálogo por PRIME4API (Sección~\ref{sec:propuesta:prime4api}).
+Escribir sin campos propios tiene una ventaja: el catálogo sirve aunque no se acepte ninguna extensión, porque PRIME4API lo lee tal cual, con los fallos que recoge la Tabla~\ref{tab:verificacion}.
+
+Cuando un proveedor publica algo que el esquema no puede representar, no se añade a la Datasheet ningún campo propio.
+El hecho se registra como «elemento no soportado»: un hecho del dominio que ACM2YAML v0.3 no puede expresar, como los seis volúmenes contratados de Postmark, o que expresa de una forma que PRIME4API, el motor de referencia, no consume.
+Cada elemento lleva un número F-nn, el caso real que lo motiva, la consecuencia para el análisis y, cuando lo hay, un esbozo de resolución.
+En el repositorio de datos estos registros se llaman «fricciones» (fichero \texttt{fricciones.md}), y de ahí viene la F del número.
+
+Un elemento no soportado se promueve, es decir, pasa a candidato de extensión del esquema, por una de dos vías.
+La primera es la recurrencia: el elemento reaparece en al menos dos APIs del catálogo.
+Que Postmark venda seis volúmenes contratados para su cuota mensual podría ser una rareza suya, y verlo en un segundo proveedor indica que pertenece al dominio.
+
+La segunda vía es la traza, que admite una sola API si se cumplen a la vez tres condiciones.
+La condición L1 pide que el hecho esté citado con su literal o medido en un sondeo, con la evidencia archivada en el repositorio.
+La condición L2 pide la consecuencia ejecutada sobre el motor: con la Datasheet sin manipular, PRIME4API devuelve un valor erróneo o deja sin responder lo que respondería si el esquema pudiera expresar el hecho.
+Pide además un caso de control: la misma operación del motor responde bien cuando el dato cabe en el esquema.
+La condición L3 pide que ningún mecanismo existente de la guía cubra la carencia y que no la explique un defecto ya conocido del motor, lo que descarta una mala lectura de la guía.
+
+Quedar promovido no equivale a ser propuesta de extensión.
+Solo lleva número de propuesta, P-nn, el elemento promovido cuya forma de extensión se ha comprobado contra los campos que define la guía.
+La propuesta P-05 es la excepción: no sale de ningún elemento no soportado y trata el plan cuyo precio existe pero no se publica.
+
+Un elemento que aparece en una sola API y no deja traza sobre el motor no se añade al esquema, aunque esté bien documentado.
+Queda en el inventario sin promover, y su fila anota la condición que no cumple.
+El criterio mide la generalidad dentro del catálogo, y no se ha comprobado si los once elementos no promovidos (Sección~\ref{sec:esquema:inventario}) aparecen en APIs de fuera del catálogo.
+
+La recurrencia muestra que una carencia pertenece al dominio, pero no que la forma elegida para sortearla funcione.
+Esa segunda comprobación exige una herramienta que lea la Datasheet y diga si la forma elegida se procesa.
+Ninguno de los repositorios del ecosistema, ni el de la guía ni los de PRIME4API y SPHERE, incluye un esquema JSON, un analizador estático o una integración continua que compruebe un fichero \texttt{datasheet.yaml}.
+PRIME4API es un motor de cálculo y no un validador: lee los campos del YAML sin comprobarlos antes, y sus esquemas describen las peticiones de su propia API REST \citep{prime4apirepo}.
+El repositorio de la guía aporta la norma y los ejemplos, pero no un comprobador \citep{apisconsumptionmodel}.
+
+Gavira Sánchez describe así el editor de Datasheets de SPHERE: «Cada cambio en el documento se valida contra la sintaxis del modelo» \citep{gavira2026tfm}.
+En el repositorio de SPHERE, en su versión del 10 de junio de 2026, la página de subida exige la extensión \texttt{.yaml} o \texttt{.yml} y lee el YAML solo para sacar su nombre y su versión, y el editor comprueba que el YAML se pueda leer.
+En ese código no se ha encontrado una validación contra los campos del modelo.
+Qué comprueba el editor en la versión desplegada de la plataforma \citep{sphere} no se ha verificado.
+
+Por eso la conformidad se establece por uso: una herramienta de este trabajo ingiere cada Datasheet en PRIME4API y la somete a diecisiete comprobaciones fijas y a una más por cada plan (Sección~\ref{sec:propuesta:prime4api}).
+Cada propuesta declara así dos cosas separadas: en cuántas APIs del catálogo aparece la carencia y si hay traza de ejecución que muestre su efecto sobre el motor.
+La primera es un argumento sobre el dominio, y la segunda, sobre el esquema.
+
+Los elementos no soportados se reparten en dos clases, y cada una se prueba de forma distinta.
+Una «carencia de expresividad» aparece cuando el proveedor publica algo que el esquema no tiene dónde poner.
+Postmark vende seis volúmenes contratados para su cuota mensual, cada uno con su precio y su sobrecoste.
+Una cuota de v0.3 solo tiene un \texttt{value} escalar y un \texttt{overage\_cost} único, así que no hay campo donde escribir la lista.
+Esta carencia se detecta al modelar, porque el fichero no admite el dato.
+
+Un «defecto de contrato» aparece cuando el esquema sí ofrece una forma, la Datasheet la usa bien y PRIME4API falla al leerla: se rompe el contrato implícito por el que el motor lee todo lo que la guía admite.
+La guía admite dejar vacío un valor cuando no hay cifra que escribir.
+En Postmark y en Mailchimp Transactional queda vacío el tope de destinatarios, que la fuente no pone, y en Resend el \textit{rate} del plan Enterprise, que existe y no se publica.
+El motor convierte ese valor a número sin comprobar si está vacío, y la Datasheet, aun siendo conforme, deja sin responder diez comprobaciones en Postmark y en Mailchimp Transactional (Tabla~\ref{tab:verificacion}).
+Este defecto solo se detecta al ejecutar el motor sobre el fichero, porque al modelar la Datasheet se escribe sin resistencia.
+
+La primera consecuencia de la distinción está en la vía de promoción.
+La recurrencia muestra que la carencia pertenece al dominio.
+La traza muestra que el motor da un resultado erróneo o deja sin responder la operación, y esa prueba vale en una sola API para cualquiera de las dos clases.
+Un defecto de contrato se descubre ejecutando el motor, así que llega ya con esa ejecución.
+Una carencia de expresividad sin traza, como los volúmenes de Postmark, necesita aparecer en una segunda API.
+
+La clase de carencia decide también dónde se arregla y en qué repositorio se comunica.
+Los volúmenes de Postmark solo caben si cambia el esquema y la cuota admite una lista de volúmenes.
+El campo vacío admite el arreglo en el esquema, en el motor o en los dos, y cada propuesta dice en cuál.
+El cambio de la cuota se comunica en el repositorio de la guía, y la comprobación del campo vacío, en el del motor.
+La separación se ha obtenido sobre un solo esquema, ACM2YAML v0.3, y un solo motor, PRIME4API, por lo que no se afirma que valga fuera de ese caso.

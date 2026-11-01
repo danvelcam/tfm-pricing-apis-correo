@@ -1,0 +1,53 @@
+\section{Respuesta a la RQ2}\label{sec:esquema:respuesta}\label{sec:evolucion:respuesta}
+
+La RQ2 pregunta si ACM2YAML es suficientemente expresivo para representar la capacidad contractual de las APIs de correo, y qué extensiones requiere.
+Con las ocho APIs del catálogo, la respuesta a la primera mitad es que no.
+Las ocho Datasheets se escriben sin campos propios, pero dejan en prosa del registro de procedencia, que ninguna herramienta lee, datos como los volúmenes contratados de Postmark, Resend y Mailgun o el tope del sobrecoste de SendGrid.
+En tres casos, el tope de SendGrid, el cupo de destinatarios de MailerSend y la cola de Brevo, PRIME4API devuelve un resultado que el proveedor contradice.
+
+La respuesta a la segunda mitad son las nueve propuestas de la Tabla~\ref{tab:propuestas}: siete amplían lo que el esquema expresa y dos corrigen formas que la guía admite y PRIME4API no lee.
+Ocho de ellas salen de un inventario de treinta y cinco elementos no soportados, y la novena, P-05, del fallo del motor ante un plan cuyo precio no es público.
+A ellas se suma una rectificación de la guía de ACM2YAML: la guía documenta \texttt{workload} como un mapa, y una Datasheet de ejemplo de su propio repositorio lo escribe como lista (Apartado~\ref{subsec:evolucion:dv01}).
+
+Gavira Sánchez declara que ACM2YAML v0.3 captura dos de las cuatro dimensiones de capacidad del metamodelo, el volumen (las cuotas) y la frecuencia (los \textit{rates}), y deja fuera las peticiones concurrentes y los resultados por petición \citep{gavira2026tfm}.
+Los resultados por petición (\textit{Results Per Request}) están documentados en siete APIs del catálogo, y Gavira Sánchez ya recoge su serialización como línea futura \citep{gavira2026tfm}.
+Las peticiones concurrentes aparecen en el catálogo en los topes del relé SMTP que reúne F-15: SendGrid admite hasta 10.000 conexiones simultáneas desde un mismo servidor, y MailerSend, cinco en sus planes Free, Hobby y Starter.
+Las dos cifras quedan en el registro de procedencia.
+
+Tres propuestas tratan lo que v0.3 sí recoge pero declara con un único valor escalar: la cifra de la cuota y el consumo de cada petición.
+Postmark vende seis volúmenes contratados dentro de un mismo plan, donde el esquema admite una sola cifra de cuota (P-01, Apartado~\ref{subsec:evolucion:p01}).
+
+Las otras dos tratan el consumo de cada petición.
+Una llamada al lote de Resend admite hasta cien mensajes con hasta cincuenta destinatarios cada uno y consume hasta el producto de las dos cifras, 5.000 correos.
+El esquema, en cambio, describe el consumo de una petición con una sola terna de unidad, mínimo y máximo (P-02).
+El tope de \texttt{/email/bulk} de Postmark es un tamaño, 50 MB por petición, y el esquema solo admite acotar una petición en su propia unidad, que es el correo (P-03).
+Los dos casos se detallan en el Apartado~\ref{subsec:evolucion:p02}.
+
+La capacidad depende además del estado de la suscripción y de la reputación de la cuenta.
+Cuando MailerSend pone una cuenta bajo revisión, su envío baja de 120 a 10 peticiones por minuto sin cambiar de plan, y ese eje aparece en seis de las ocho APIs (P-06, Apartado~\ref{subsec:evolucion:p06}).
+La guía permite declarar dentro de cada \textit{endpoint} un alias por estado, con la cifra de cada uno, pero obliga a repetirlo en todos los \textit{endpoints}.
+Tampoco tiene campo para el disparador que cambia el estado, como la aprobación de la cuenta en MailerSend o su revisión por reputación.
+
+Otras dos propuestas tratan lo que ocurre al superar la cuota.
+SendGrid limita el envío mensual a diez veces el volumen contratado, sobrecoste incluido, y el esquema no tiene campo para ese tope (P-07, Apartado~\ref{subsec:evolucion:p07}).
+Brevo retiene hasta 1.000 correos por encima de la cuota diaria y deja de entregar los siguientes (P-09, Apartado~\ref{subsec:evolucion:p09}).
+F-13, el sobrecoste opcional que no existe en el plan gratuito, se refiere también al exceso sobre la cuota en cinco APIs, y su forma queda esbozada en la Tabla~\ref{tab:sinforma}.
+
+Al margen del exceso sobre la cuota, la cuenta de MailerSend sin aprobar solo puede enviar a dos direcciones distintas, con un cupo que no se repone (P-08, Apartado~\ref{subsec:evolucion:p08}).
+P-07, P-08 y P-09 aparecen en una sola API cada una.
+Se promueven porque PRIME4API devuelve sobre la Datasheet sin manipular un resultado que el proveedor contradice, y la misma operación responde bien en un caso de control en que el límite le llega escrito, en la Datasheet o en la consulta.
+
+Las dos propuestas restantes son de contrato: el esquema admite el valor que describe al proveedor y PRIME4API falla al leerlo.
+En el plan Enterprise de Resend, un límite vacío no dice si no se publica o si no existe, y el motor falla al convertirlo a número (P-04, Apartado~\ref{subsec:evolucion:p04}).
+El mismo plan lleva el precio \texttt{custom}, que la guía admite y que impide al motor evaluar el documento entero (P-05, Apartado~\ref{subsec:evolucion:p05}).
+
+Además de las nueve propuestas, la Tabla~\ref{tab:sinforma} recoge doce elementos que aparecen en dos APIs o más y cuya forma está esbozada sin contrastarla con la guía.
+Otros cuatro elementos promovidos quedan fuera de las propuestas (Sección~\ref{sec:esquema:fuera}): los resultados por petición, los \textit{add-ons}, los límites que la respuesta no refleja y la superficie de la API que cambia con el plan.
+Los \textit{add-ons}, como la IP dedicada, aparecen en las ocho APIs, pero el esquema los deja al canal web y el catálogo solo modela la API REST, una de las interfaces del canal API.
+
+Tampoco hay propuesta para los límites que el proveedor declara y que la respuesta HTTP no refleja.
+MailerSend acepta con un \texttt{202} un lote que después rechaza, y Mailchimp Transactional responde con \texttt{200} a una llamada de unos 40 MB cuando declara un tope de 10 MB.
+Estos casos plantean qué cuenta como capacidad contractual, y esa cuestión no la resuelve ningún campo nuevo.
+La superficie de la API que cambia con el plan ya cabe en v0.3, porque un \textit{endpoint} que un plan no ofrece se omite de ese plan.
+
+Las nueve propuestas y los dieciséis elementos promovidos sin propuesta valen para un dominio y un motor: la recurrencia se cuenta solo en las ocho APIs de correo transaccional, y las Datasheets solo se han evaluado con PRIME4API.

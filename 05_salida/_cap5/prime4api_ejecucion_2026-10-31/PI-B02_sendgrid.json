@@ -1,0 +1,128 @@
+{
+ "pregunta": "PI-B02",
+ "operacion": "Q7",
+ "api": "sendgrid",
+ "fecha": "2026-10-31",
+ "motivo": "Reejecución sobre la versión vigente de la Datasheet (sobrecoste de Essentials 0,0013 de la página de precios, D17/DISC-01); la de prime4api_ejecucion/ usó la anterior (0,00133 del panel) y dio 82.593,98",
+ "motor": "PRIME4API de SPHERE en local (localhost:8003)",
+ "datasheet": "03_datos/apis/sendgrid/datasheet.yaml",
+ "datasheet_sha256": "dc265bcad7c60936eab50cfbf6da5df6c6def1febd6c7e62788aad41d143c243",
+ "llamadas": [
+  {
+   "endpoint": "POST /quotas",
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "free_trial",
+     "essentials",
+     "pro"
+    ]
+   },
+   "http": 200,
+   "respuesta": {
+    "results": {
+     "free_trial": [
+      {
+       "endpoint": "/v3/mail/send",
+       "quotas": [
+        {
+         "value": 100.0,
+         "unit": "emails",
+         "period": "1day"
+        }
+       ]
+      }
+     ],
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "quotas": [
+        {
+         "value": 50000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0013,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ],
+     "pro": [
+      {
+       "endpoint": "/v3/mail/send",
+       "quotas": [
+        {
+         "value": 100000.0,
+         "unit": "emails",
+         "period": "30day",
+         "overage_cost": {
+          "price": 0.0011,
+          "value": 1.0
+         }
+        }
+       ]
+      }
+     ]
+    }
+   }
+  },
+  {
+   "endpoint": "POST /capacity-at",
+   "body": {
+    "endpoint_path": "/v3/mail/send",
+    "plan_names": [
+     "free_trial",
+     "essentials",
+     "pro"
+    ]
+   },
+   "http": 200,
+   "respuesta": {
+    "time": "1month",
+    "results": {
+     "free_trial": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 3100.0
+         }
+        ]
+       }
+      }
+     ],
+     "essentials": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 83115.38461538462
+         }
+        ]
+       }
+      }
+     ],
+     "pro": [
+      {
+       "endpoint": "/v3/mail/send",
+       "dimensions": {
+        "emails": [
+         {
+          "capacity_request_factor": 1.0,
+          "value": 110000.0
+         }
+        ]
+       }
+      }
+     ]
+    }
+   }
+  }
+ ]
+}

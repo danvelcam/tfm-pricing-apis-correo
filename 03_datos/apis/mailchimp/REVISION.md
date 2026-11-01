@@ -115,3 +115,28 @@ conversión de un valor nulo: `TypeError: float() argument must be a string or a
 not 'NoneType'`. Es el defecto de P-04 del Capítulo 6. PRIME4API en `8e6011c` (la caché no se
 ha actualizado desde el clon). Salida en `evidencias/verificar_prime4api_2026-09-24.txt`. Es la
 primera ejecución archivada de la herramienta sobre esta Datasheet.
+
+## Informe del verificador adversarial (D-013) — 2026-10-31
+
+Un agente independiente, con acceso solo al `datasheet.yaml`, leyó cada URL dos veces, sin y con
+JavaScript, y fechó con Wayback lo que no encontró.
+
+- **Resultado: 35 entradas, 17 coinciden.** No se refutó ningún valor modelado ni cambió ningún
+  semáforo: **11 🟢 · 2 🟡 · 4 🔴**.
+- **Fuente reapuntada (aplicado).** El único caudal con cifra, 20 búsquedas por minuto, perdió sus
+  dos URL con la migración de octubre. Sigue literal en el índice de notas de versión ([F17]),
+  entrada `"Apr 10, 2023"`, y la línea lleva su relectura fechada (E3).
+- **Errores del dato sin efecto en valores (aplicados).**
+  - Por encima de 161 bloques sí hay precio, 10 USD por bloque.
+  - El umbral asíncrono (más de 10 destinatarios) estaba publicado.
+  - La retención de la cuenta de pago (30 días de contenido) estaba publicada.
+  - La segunda fuente del 5 % no lo dice.
+  - La cita inglesa de los términos era una retrotraducción.
+  - Las tres entradas de `not_found` que se refutan se conservan corregidas.
+- **Cambio del proveedor (aplicado).** Desde octubre sirve la especificación OpenAPI en su dominio.
+  Se anota en DISC-01, que estaba disuelta y sigue igual.
+- **Sin aplicar, fuera de la lista aprobada:** líneas 157, 176, 184, 190 y 193, detalles de cita
+  recogidos en el informe.
+
+Informe íntegro: `evidencias/verificador_adversarial_2026-10-31.md`. Volcados:
+`evidencias/paginas/2026-10-31/`.

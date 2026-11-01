@@ -121,7 +121,7 @@ limitación. Las columnas de MailerSend y Resend salen de los casos de R21, más
 - **Extensión propuesta.** Valores reservados `unlimited` y `not_applicable` en los límites
   `NUMERIC`, y la misma comprobación de coherencia en el parser y en la analítica.
 - **En las otras APIs.** El centinela vuelve en la cuota mensual de la prueba de SendGrid y en la
-  diaria de sus planes de pago (`sendgrid.yaml:94`, `:252`). También en el valor por defecto de Brevo
+  diaria de sus planes de pago (`sendgrid.yaml:94`, `:243`). También en el valor por defecto de Brevo
   (`brevo.yaml:101`) y en el Basic de Mailgun (`mailgun.yaml:291`, DS:322). Platform de Postmark
   lleva seis (`postmark.yaml:317-323`, DS:297). SES usa su propio centinela, -1 en `Max24HourSend`
   (DS:232). Mailchimp no pone tope de destinatarios (DS:168) y su máximo está en rojo (DS:61).
@@ -135,7 +135,7 @@ limitación. Las columnas de MailerSend y Resend salen de los casos de R21, más
 - **Extensión propuesta.** Un valor reservado `custom` en los límites numéricos, distinto de
   `unlimited`, que la analítica excluya del espacio de configuración.
 - **En las otras APIs.** MailerSend tiene un Enterprise a medida sin precio publicado (DS:453). Ese
-  plan tampoco se escribió en SendGrid (Premier, DS:262; `sendgrid.yaml:287`), Brevo (DS:246;
+  plan tampoco se escribió en SendGrid (Premier, DS:262; `sendgrid.yaml:278`), Brevo (DS:246;
   `brevo.yaml:228`) ni Mailgun (DS:319; `mailgun.yaml:348`). Mailchimp pide contacto por encima de
   161 bloques (DS:154). La cuota de producción de SES «varía» según la cuenta (DS:230).
 
@@ -151,7 +151,7 @@ limitación. Las columnas de MailerSend y Resend salen de los casos de R21, más
   (`validacion.txt`), cifra que no corresponde a ningún mes real.
 - **Extensión propuesta.** Un bloque `overage` en el plan con el límite al que se aplica, el precio y
   el tramo (`per: 1000`), facturado sobre el consumo real.
-- **En las otras APIs.** SendGrid cobra el exceso de Essentials y Pro (DS:198; `sendgrid.yaml:289`) y
+- **En las otras APIs.** SendGrid cobra el exceso de Essentials y Pro (DS:198; `sendgrid.yaml:280`) y
   lo corta en diez veces la cuota del plan (DS:248). Mailgun y Postmark tienen el mismo esquema
   (Mailgun DS:316, `mailgun.yaml:350`; Postmark DS:276, `postmark.yaml:325`). En Mailchimp el bloque
   se paga antes, así que el add-on sí encaja (DS:155). Brevo no publica sobrecoste (DS:383). SES no
@@ -198,7 +198,7 @@ limitación. Las columnas de MailerSend y Resend salen de los casos de R21, más
 - **Extensión propuesta.** Precio de add-on como tabla indexada por un límite del plan, o fórmulas
   que puedan leer los valores del plan contratado.
 - **En las otras APIs.** SendGrid vende 30, 60 o 500 créditos de prueba al mes por 18, 30 o 200 USD
-  (DS:219; `sendgrid.yaml:331`). Postmark publica la retención y el DMARC como «Starts at», sin la
+  (DS:219; `sendgrid.yaml:322`). Postmark publica la retención y el DMARC como «Starts at», sin la
   escala (DS:278; `postmark.yaml:374`). Los créditos prepago de Brevo cambian el plan al comprarlos
   (DS:386-387; `brevo.yaml:254`). SES dejó sin escribir la IP administrada, cuyo precio va por tramos
   de volumen (`ses.yaml:361-364`).
@@ -324,7 +324,7 @@ limitación. Las columnas de MailerSend y Resend salen de los casos de R21, más
   14 días y cae al Free (DS:514). Foundation y Scale de Mailgun anuncian un primer mes gratis antes del precio
   (DS:317). La capa
   gratuita de SES duraba doce meses y una fuente posterior la da por retirada (DS:240).
-- **Limitación.** `freeTrial` es un número de días en el plan (`sendgrid.yaml:237`), sin destino al
+- **Limitación.** `freeTrial` es un número de días en el plan (`sendgrid.yaml:228`), sin destino al
   caducar. Un precio promocional con fecha no tiene sitio, ni el plan al que se pasa después.
 - **Extensión propuesta.** Un bloque `term` en el plan o en el precio, con duración y plan de
   destino, que la analítica separe del precio estable.

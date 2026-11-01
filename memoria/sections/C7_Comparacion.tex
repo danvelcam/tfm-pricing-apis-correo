@@ -1,0 +1,25 @@
+\chapter{Comparación sistemática}
+\label{cap:comparacion}
+
+Este capítulo responde a la RQ4: cómo pueden compararse las APIs de correo de forma sistemática para responder a preguntas de decisión que involucran simultáneamente requisitos funcionales y no funcionales.
+La pregunta del ejemplo de la Sección~\ref{subsec:introduccion:ejemplo} es una de ellas.
+Una aplicación necesita enviar 100.000 correos al mes, con ráfagas de 1.000 peticiones por minuto, \textit{webhooks} de eventos y envío en lote, y la pregunta es qué API y qué plan lo cubren al menor coste.
+Para responderla hay que cruzar cuatro datos en cada una de las ocho APIs.
+El precio con la cuota del plan, el caudal del \textit{endpoint} de envío y el tamaño máximo del lote están en la Datasheet, pero los \textit{webhooks} no, porque ACM2YAML v0.3 no modela funcionalidades.
+
+El método que responde a preguntas como esta es la contribución C-04 (Sección~\ref{sec:introduccion:contribuciones}): un catálogo de preguntas de decisión propias del dominio y un procedimiento que las responde sobre las Datasheets.
+Las preguntas de capacidad se calculan con PRIME4API, el motor de análisis de la capacidad de Gavira Sánchez \citep{gavira2026tfm}, y se contrastan con un cálculo a mano.
+Las funcionales se leen en la matriz de \textit{features}, la tabla de funcionalidades por plan que acompaña a cada Datasheet.
+
+El capítulo se organiza del siguiente modo.
+En primer lugar, la Sección~\ref{sec:comparacion:catalogo} presenta las 32 preguntas del catálogo y la clase que dice con qué se responde cada una.
+A continuación, la Sección~\ref{sec:comparacion:procedimiento} aplica el procedimiento a las ocho Datasheets y mide la cobertura, y la Sección~\ref{sec:comparacion:harvey} trata las cuatro preguntas que piden HARVEY4API.
+Después, la Sección~\ref{sec:comparacion:caso} responde con el catálogo al caso de los 100.000 correos, y la Sección~\ref{sec:comparacion:funcional} compara las funcionalidades de cada plan.
+Por último, la Sección~\ref{sec:comparacion:respuesta} responde a la RQ4.
+
+\input{sections/c7/7_1}
+\input{sections/c7/7_2}
+\input{sections/c7/7_3}
+\input{sections/c7/7_4}
+\input{sections/c7/7_5}
+\input{sections/c7/7_6}

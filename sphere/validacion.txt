@@ -93,3 +93,36 @@ d1c18979d875babd12cb2c09ce65ff8f136ca957c718c121424584e4d9f67fbf  mailchimp.yaml
 3da68d218f471fbb4ec83076e968fb3f164a99f58550fda4e8b1a879159ee4ac  mailgun.yaml
 86c31d9409f59873c5eb23550dbc7e5e2b714b47e973da8f615aa6c76f22df2b  postmark.yaml
 dcd8af26394f3ab3e8ff5a2afaac4adf3e08e86f7df8f887e79e4dce20560fcd  ses.yaml
+
+REVALIDACIÓN DE MAILCHIMP (2026-10-27)
+- Cambio: la clave del único plan pasa de transactionalEmail a transactional, y los dos add-ons que lo
+  citan en availableFor la siguen. SPHERE pinta la cabecera del plan con la clave en mayúsculas sin
+  partirla, y salía «TRANSACTIONALEMAIL». Ningún valor cambia.
+- Parser y analítica de pricing4ts 0.10.4, dentro de la imagen testing-server:latest con --network none:
+  OK parser: plans=transactional addOns=extraBlocksFirstTier,dedicatedIp
+  OK analytics: plans=1 configSpace=4 min=20 max=69.95   (igual que antes)
+- Huella nueva, que sustituye a la de arriba:
+24717caa6279666945cbe6c0c4a179b1e1fa2c9ab944f0c2c30a51a2fc501816  mailchimp.yaml
+
+REVALIDACIÓN DE SES, MAILGUN Y SENDGRID (2026-10-31)
+- Cambios. SES: la descripción de otherRequestsPerSecond (verde desde que la página exime SendEmail y
+  SendBulkEmail). Mailgun: la descripción de maxTemplates (40 versiones por plantilla). SendGrid: sale
+  el límite de 10.000 destinatarios por SMTP, que es de la cabecera X-SMTPAPI y no del relé, y que
+  ningún plan usaba. Ningún valor de precio ni de plan cambia.
+- Los tres pasan a version 2026-10-31, porque SPHERE no admite dos versiones con la misma fecha.
+- Mismo método que arriba: pricing4ts 0.10.4 dentro de testing-server:latest, con --network none.
+
+OK ses.yaml: saasName=Amazon SES version=2026-10-31 features=12 usageLimits=8 plans=aLaCarte,essentials,pro,enterprise
+OK ses.yaml analytics: {"numberOfUsageLimits":8,"numberOfRenewableUsageLimits":5,"numberOfNonRenewableUsageLimits":3,"numberOfPlans":4,"numberOfFreePlans":2,"numberOfAddOns":8,"configurationSpaceSize":88,"minSubscriptionPrice":0,"maxSubscriptionPrice":1325.12}
+OK mailgun.yaml: saasName=Mailgun version=2026-10-31 features=18 usageLimits=14 plans=free,basic,foundation,scale
+OK mailgun.yaml analytics: {"numberOfUsageLimits":14,"numberOfRenewableUsageLimits":4,"numberOfNonRenewableUsageLimits":10,"numberOfPlans":4,"numberOfFreePlans":1,"numberOfAddOns":4,"configurationSpaceSize":11,"minSubscriptionPrice":0,"maxSubscriptionPrice":150.1}
+OK sendgrid.yaml: saasName=SendGrid version=2026-10-31 features=11 usageLimits=14 plans=freeTrial,essentials,pro
+OK sendgrid.yaml analytics: {"numberOfUsageLimits":14,"numberOfRenewableUsageLimits":4,"numberOfNonRenewableUsageLimits":10,"numberOfPlans":3,"numberOfFreePlans":1,"numberOfAddOns":4,"configurationSpaceSize":13,"minSubscriptionPrice":0,"maxSubscriptionPrice":139.05}
+
+- SES y Mailgun salen igual que antes. SendGrid pasa de 15 límites a 14 y de 11 no renovables a 10;
+  planes, espacio de configuración y precios no cambian.
+
+HUELLAS (2026-10-31)
+e1ae82df78fece875daffe5a57eda6c68107d4c837e4de020f547750e3bbd9e5  ses.yaml
+5895120fba1037e587da5949b3c15684f5251f8f24b04e21d100e03e46467372  mailgun.yaml
+6d090267c016901dd2773b1ac911f9cc6fd5cb042b67c893448ebf81a78c6be3  sendgrid.yaml

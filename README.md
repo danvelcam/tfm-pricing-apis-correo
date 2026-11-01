@@ -19,7 +19,7 @@ PRIME4API y las herramientas que las reproducen. La memoria está en `memoria/`,
 | `03_datos/*.md` | Criterios de modelado, consulta de selección de las APIs, recuento de recurrencia y discrepancias con la guía v0.3 |
 | `05_salida/_cap5/` | Hechos por API, análisis comparativo, ejecuciones de PRIME4API y curvas de capacidad |
 | `05_salida/_herramientas/` | Herramientas de verificación, ejecución y figuras, sondeos por API y sus pruebas |
-| `sphere/` | La contribución preparada para SPHERE: las ocho APIs en Pricing2YAML, lo que el formato no admite y la maqueta de la colección con las versiones anteriores de cada pricing (`coleccion.html`) |
+| `sphere/` | La contribución preparada para SPHERE: las ocho APIs en Pricing2YAML, lo que el formato no admite y la maqueta de la colección con las versiones anteriores de cada pricing (`coleccion.html`, que se ve en <https://danvelcam.github.io/tfm-pricing-apis-correo/sphere/coleccion.html>) |
 | `memoria/` | Fuentes LaTeX de la memoria y PDF |
 | `DECISIONES.md` | Las decisiones del trabajo que citan los ficheros (D-nnn), con fecha |
 | `PAGINAS.md` | Las copias de páginas de los proveedores que no se publican, con su huella |

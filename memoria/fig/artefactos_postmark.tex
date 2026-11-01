@@ -1,0 +1,89 @@
+\setlength{\parskip}{0pt}%
+\lstdefinestyle{artefactopm}{
+  basicstyle=\ttfamily\fontsize{8}{9}\selectfont, columns=fixed, basewidth=0.5em, numbers=none,
+  showstringspaces=false, upquote=true, breaklines=true, breakatwhitespace=true,
+  postbreak=\mbox{\textcolor{gray}{$\hookrightarrow$}\space},
+  aboveskip=0pt, belowskip=0pt, xleftmargin=0pt, xrightmargin=0pt, frame=none,
+  escapeinside={(*}{*)},
+  literate={á}{{\'a}}1 {é}{{\'e}}1 {í}{{\'\i}}1 {ó}{{\'o}}1 {ú}{{\'u}}1 {ñ}{{\~n}}1
+           {Á}{{\'A}}1 {É}{{\'E}}1 {Í}{{\'I}}1 {Ó}{{\'O}}1 {Ú}{{\'U}}1
+           {·}{{\textperiodcentered}}1 {—}{{\textemdash}}1 {×}{{$\times$}}1,
+}%
+\mdfdefinestyle{artefactopm}{
+  linewidth=0.5pt, linecolor=gray!70, leftmargin=0pt, rightmargin=0pt,
+  innerleftmargin=5pt, innerrightmargin=5pt, innertopmargin=2pt, innerbottommargin=3pt,
+  skipabove=0pt, skipbelow=3.5pt,
+  frametitlerule=true, frametitlerulewidth=0.5pt, frametitlerulecolor=gray!70,
+  frametitlebackgroundcolor=gray!12, frametitlefont=\normalfont\footnotesize,
+  frametitleaboveskip=2pt, frametitlebelowskip=1.5pt, innerlinewidth=0pt,
+}%
+\providecommand*{\artcorte}{\textcolor{gray}{\textnormal{[\ldots]}}}%
+\providecommand*{\artok}{\tikz[baseline=-0.25ex,x=1ex,y=1ex]\draw[sem_verde,line width=0.8pt,line cap=round,line join=round](0,0.45)--(0.35,0.1)--(0.95,0.9);}%
+\providecommand*{\arttitulo}[3]{\textbf{#1\enspace #2}\hfill\texttt{03\_datos/\allowbreak apis/\allowbreak postmark/\allowbreak #3}}%
+\begin{mdframed}[style=artefactopm,frametitle={\arttitulo{1}{Datasheet}{datasheet.yaml}}]
+\begin{lstlisting}[style=datasheetyaml, style=artefactopm]
+capacity:
+  (*\artcorte*)
+  quota_email_included_basic:
+    value: 10000                                            # (*\semambar*)
+    (*\artcorte*)
+    overage_cost:
+      price: 0.0018                                         # (*\semverde*)
+      value: 1
+(*\artcorte*)
+plans:
+  (*\artcorte*)
+  basic:
+    price: 15.00                                            # (*\semverde*)
+    (*\artcorte*)
+    quota: quota_email_included_basic
+    rate: rate_request_rest
+\end{lstlisting}
+\end{mdframed}
+\begin{mdframed}[style=artefactopm,frametitle={\arttitulo{2}{Registro de fuentes}{fuentes.md}}]
+\begin{lstlisting}[style=artefactopm]
+## [F1] Página de pricing
+
+- **URL:** https://postmarkapp.com/pricing
+- **Fecha de acceso:** 2026-08-03 (re-verificada; primera visita 2026-08-02)
+- **Citas literales:**
+  (*\artcorte*)
+  - Basic — `"$15.00/mo"`, `"Starting at 10,000 emails/month"`,
+    `"Extra emails @ $1.80 / 1,000"`
+\end{lstlisting}
+\end{mdframed}
+\begin{mdframed}[style=artefactopm,frametitle={\arttitulo{3}{Registro de elementos no soportados}{fricciones.md}}]
+\begin{lstlisting}[style=artefactopm]
+## F-02 · Cuotas por escalón, no por valor único — y con overage por escalón
+
+**Qué pasa.** Los tres planes de pago dicen *"Starting at 10,000 emails/month"* [F1].
+El panel [F11] revela la estructura completa: una escalera de volumen (10k/$15 ·
+50k/$55 · 125k/$115 · 300k/$245 · 700k/$455 · 1,5M/$775) en la que **el propio
+overage depende del escalón** ($1.80/1.000 hasta 125k, $1.70/1.000 desde 300k), y
+(*\artcorte*)
+**Qué hace v0.3.** Una cuota tiene un `value` escalar y un `overage_cost` único. Ni
+la escalera ni el overage-por-escalón caben.
+(*\artcorte*)
+**Propuesta.** Permitir que una cuota declare escalones (`tiers`) con precio y
+overage propios por escalón, más un escalón `custom` para el tramo negociado.
+\end{lstlisting}
+\end{mdframed}
+\begin{mdframed}[style=artefactopm,frametitle={\arttitulo{4}{Acta de revisión}{REVISION.md}}]
+\begin{lstlisting}[style=artefactopm]
+### Q9 · Proyección del producto tier × volumen en `plans` (F-08) — (*\artok*) DECIDIDA (*\artcorte*)
+El panel [F11] revela que Basic/Pro/Platform son **tiers funcionales** y el volumen
+va aparte, en escalera. La datasheet mantiene la proyección "3 planes = 3 tiers, con
+la cuota del escalón mínimo" y documenta la escalera en provenance/F-02. Alternativa
+descartada: enumerar las ~18 combinaciones tier×escalón como planes. (*\artcorte*)
+\end{lstlisting}
+\end{mdframed}
+\begin{mdframed}[style=artefactopm,frametitle={\arttitulo{5}{Matriz de \textit{features} por plan}{features.md}}]
+\begin{lstlisting}[style=artefactopm]
+## Features por plan
+
+| Feature | Free | Basic | Pro | Platform | Fuente · escalón |
+|---|---|---|---|---|---|
+(*\artcorte*)
+| Usuarios | — | `"Up to 4 users"` | `"Up to 6 users"` | `"Unlimited users"` | [F11] panel |
+\end{lstlisting}
+\end{mdframed}

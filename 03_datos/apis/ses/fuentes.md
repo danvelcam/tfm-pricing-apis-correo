@@ -46,6 +46,7 @@ no describe el producto, y eso es carril del autor.
   - `"Maximum number of tenants"` → `"10,000"` · Adjustable: Yes
   - `"Maximum number of dedicated IP pools (inclusive of both managed and standard IP pools)"` → `"50"` · No
   - **Caudal de las operaciones que no son de envío:** `"All actions (except for SendEmail, SendRawEmail, and SendTemplatedEmail) are throttled at one request per second."` · Adjustable: **No** *(ver DISC-05)*
+  - **Releída el 2026-10-31 (verificador):** la frase es otra. `"All actions (except for SendEmail and SendBulkEmail) are throttled at one request per second."` y `"In the SES API v1, the actions that are excluded from this limit are SendEmail, SendRawEmail, SendTemplatedEmail, and SendBulkTemplatedEmail."` La captura de Wayback `20261023032108` trae todavía la de arriba, así que el proveedor la cambió entre el 23 y el 31 de octubre (E3, F-09). En la misma tabla, `"Maximum number of configuration sets"` pasa a Adjustable **Yes** (ya en la captura del 23-10) y `"Maximum number of identities that you can verify"` también, entre el 23 y el 31. Volcados en `evidencias/paginas/2026-10-31/`.
   - `"MIME parts"` → `"500"` · No
   - Por cuenta y no por región: `"Maximum number of receipt rule sets per AWS account"` → `"40"` · `"Maximum number of IP address filters per AWS account"` → `"100"` *(ver DISC-06)*
 
@@ -234,6 +235,7 @@ no describe el producto, y eso es carril del autor.
 - **Citas literales por operación del test C2:**
   - `CreateEmailTemplate`: `"Creates an email template. Email templates enable you to send personalized email to one or more destinations in a single API operation."`
   - `CreateEmailIdentity`: `"Starts the process of verifying an email identity... When you verify a domain without specifying the DkimSigningAttributes object, this operation provides a set of DKIM tokens... This verification method is known as Easy DKIM."`
+  - **Atribución corregida el 2026-10-31 (verificador, E6 segunda cláusula).** Esta página solo lista los nombres de las acciones, hoy y en la captura de Wayback `20260922105350`. Las dos descripciones de arriba están en la página de cada operación: `https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailTemplate.html` y `https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailIdentity.html`, leídas con `curl` el 31-10 y volcadas en `evidencias/paginas/2026-10-31/`. La de plantillas añade `"You can execute this operation no more than once per second"`. El `data_provenance` cita ya esas dos URL; el `type` no cambia.
   - `CreateConfigurationSetEventDestination`: `"Create an event destination. Events include message sends, deliveries, opens, clicks, bounces, and complaints."`, con destinos `CloudWatchDestination`, `EventBridgeDestination`, `KinesisFirehoseDestination`, `PinpointDestination` y `SnsDestination`
   - `PutSuppressedDestination`: `"Adds an email address to the suppression list for your account or for a specific tenant."`
   - `BatchGetMetricData`: `"Retrieves batches of metric data collected based on your sending activity."` · `GetMessageInsights`: `"Provides information about a specific message..."`
@@ -563,7 +565,7 @@ no describe el producto, y eso es carril del autor.
 
 # Discrepancias
 
-**Veinte**, y conviene decir desde el principio lo que las hace distintas de las de las cinco
+**Veintiuna**, y conviene decir desde el principio lo que las hace distintas de las de las cinco
 APIs anteriores: **casi todas son de AWS contra AWS**. No son un proveedor cuya página de
 precios no cuadra con su centro de ayuda, sino una documentación de producto que se
 contradice con su propia referencia de API, y las dos con el contrato máquina que genera los
@@ -573,7 +575,7 @@ nunca eligiendo.
 **El efecto es de cada entrada, no de la sección.** Por eso cada `DISC-nn` lo declara dentro,
 en una línea `Efecto declarado:` con dos campos: si la contradicción es **excluyente** por
 **D11**, y qué le hace al color del campo afectado (**E6**). Una cabecera que prometiera 🟡
-para las veinte mentiría en cuanto se abre el fichero. Hay entradas que no son excluyentes,
+para las veintiuna mentiría en cuanto se abre el fichero. Hay entradas que no son excluyentes,
 hay ámbar y rojo que ponen **D1** y **D3** y no D11, y hay campos que no existen en el
 `datasheet.yaml`. **Dos cierran**, DISC-02 y DISC-15, con el supuesto, la fecha y la prueba
 escritos dentro de su entrada; las demás siguen abiertas, y las que la medición estrecha lo
@@ -620,6 +622,7 @@ dicen dentro.
 - **Acotada y no cerrada (E5 · 2026-09-18 · [E4] y [E5]).** El tope publicado no es el que se aplica. [E5] hizo **doce peticiones secuenciales a 5,7 por segundo contra `GET /v2/email/account`, sin un solo rechazo**, y esa operación es una de «todas las demás acciones» que el literal de [F1] capa a una por segundo. [E4] hizo **dos envíos en 0,52 s con `MaxSendRate: 1.0` publicado**, los dos aceptados. El techo real **no se busca**: es medición formal y no está en el encargo.
 - **Efecto en la datasheet:** decide si el catálogo declara un `rate` para el resto de endpoints o si el 1 por segundo es el mismo dato contado dos veces. Como el lado B nunca fue literal, **D11 no fundó este ámbar**: el 🟡 de `max_power.rate_request_other` lo sostiene **D1**, por ambigüedad del alcance, que es lo que ya dice su provenance.
 - **Efecto declarado:** no excluyente, porque el lado B es inferencia y no literal · sin efecto sobre el color, que lo pone D1
+- **Releída el 2026-10-31 (verificador, E3).** El literal de A ya no está en [F1]: la página exceptúa hoy `"SendEmail and SendBulkEmail"` y pone aparte la lista de la v1. La lectura de A, que dejaba capados el `SendEmail` de v2 y `SendBulkEmail`, no tiene ya texto que la sostenga, y el alcance que D1 echaba en falta está publicado: `max_power.rate_request_other` sube a 🟢. La captura del 23-10 aún traía el texto antiguo, así que es cambio del proveedor y no error del registro. Lo que acotaron [E4] y [E5] sigue igual: el tope publicado no es el que se aplica. La entrada queda **acotada**, ahora solo por esa medida.
 
 ### DISC-06 · El eje: ¿cuenta o región?
 
@@ -722,6 +725,26 @@ Dos recomendaciones incompatibles, las dos oficiales:
 - **Cierre (E5, midiendo · 2026-10-18).** Los dos lados están archivados: `evidencias/paginas/gr_ses_2026-10-18.html` mantiene a Milán entre las diez sin SMTP y su tabla da endpoint a `us-west-1`, `ap-northeast-3` y `eu-west-3`; `evidencias/paginas/smtp-credentials_2026-10-18.html` mantiene el script con 15 regiones, `eu-south-1` dentro y esas tres fuera. Lo dirime la red: `email-smtp.eu-south-1.amazonaws.com` no resuelve, y las otras tres responden en el 587 con `220 email-smtp.amazonaws.com ESMTP SimpleEmailService`, sin autenticar ni enviar (`evidencias/probe_ses_smtp_regiones_2026-10-18.json`). **Manda el lado A** en los cuatro puntos. El script se equivoca en los dos sentidos, y su propia salvedad lo cubre.
 - **Efecto en la datasheet:** ninguno. La disponibilidad de SMTP por región no tiene campo en v0.3.
 - **Efecto declarado:** excluyente · campo sin valor
+
+### DISC-21 · La unidad del caudal del entorno de pruebas: ¿mensajes o destinatarios?
+
+*Abierta el 2026-10-31 por el verificador independiente; consejo del mismo día. Va aquí y no
+detrás de DISC-20 porque es de caudal, no de precio.*
+
+- **A — mensajes.** [F2]: `"You can send a maximum of 1 message per second."` · [F3]: `"When your account is in the Amazon SES sandbox, you can only send 200 messages per 24-hour period, and your maximum sending rate is one message per second."` · [F8], campo `MaxSendRate`: `"This value is also called your maximum sending rate or your maximum TPS (transactions per second) rate."`
+- **B — destinatarios.** [F1], fila de la tabla cuya cabecera es `"Quotas are based on the number of recipients, rather than on the number of messages."`: `"If your account is in the sandbox, you can send 1 email per second."` Por **D12** el lado es la fila con su cabecera. [F37] (2012): `"if your send rate quota is one message per second, and you send a message to five recipients at once, Amazon SES lets you do that. For the next five seconds, though, Amazon will return errors for all send attempts."`
+- **Ninguna fuente cuenta este caudal en peticiones.** «Request» solo aparece para el resto de operaciones (DISC-05). El panel tampoco: [F38] da `"Tasa máxima de envío"` → `"1 correo electrónico por segundo"`. La frase de [F3] del lado A dice también «200 messages» de la cuota, y la cuota está medida en destinatarios (DISC-02). Eso inclina hacia B, pero es analogía y no medida.
+- **Rama de E7: F2, porque la escalera no permite medir.** Los impedimentos:
+  1. No hay contador de caudal que leer. La API no devuelve cabeceras de caudal, y `SentLast24Hours` cuenta la cuota, no el caudal.
+  2. El tope admite ráfagas sin cifra (`"You can exceed this quota for short bursts, but not for sustained periods of time."`, [F3]), y [E4] pasó dos envíos en 0,52 s. Un sondeo corto no ve el tope.
+  3. Con los tres buzones de la lista blanca de D-046 y 200 destinatarios al día, un «sin rechazo» lo predicen las dos lecturas. No separa nada.
+  4. Solo el simulador de buzones separa las dos lecturas por construcción: `"Emails that you send to the mailbox simulator are limited by your account's maximum sending rate, but they don't affect your daily sending quota."` (`send-an-email-from-console.html`, archivada en `evidencias/paginas/2026-10-31/`). Su dirección **no está en la lista blanca de D-046**, y [F43] dice que cada mensaje se factura. Abrirla es carril rojo y le toca al autor. El diseño tiene dos pasos: primero se busca el techo real con mensajes de un destinatario, que es la medición formal que DISC-05 dejó fuera del encargo, y luego se envían mensajes de 50 destinatarios a una décima de ese ritmo. Si los rechaza, cuenta destinatarios.
+- **Lo que no se hace: `unit: emails`.** Cambiaría un valor y dejaría sin tope el envío por lotes en PRIME4API. Medido el 2026-10-31 en local (:8003, `capacity-at`, plan `a_la_carte`, alias `sandbox`): `/v2/email/outbound-bulk-emails` solo declara carga en `MBs`, y el motor descarta sin aviso el límite cuya unidad no está en su carga (`{"value":[]}`). El error de dejarlo en `requests` sí está acotado por la cuota diaria. En un minuto, con mensajes de 1, 26 y 50 destinatarios, el motor da 61, 200 y 200 correos; en `emails` daría 61 en los tres casos. A partir de una hora, las dos lecturas dan 200.
+- **Efecto en la datasheet:** `unit: requests` se queda, por la regla **B18** (consejo 2026-10-31, 5 a 0). El `value: 1` de `max_power.rate_request_send_sandbox` baja de 🟢 a 🟡, votado 5 a 0 en segunda ronda. El provenance lo explica en la línea de los dos límites del entorno de pruebas, la misma que cita el pricing de SPHERE, y `not_found` lleva una entrada.
+- **Efecto declarado:** excluyente (un mensaje de cinco destinatarios gasta una unidad o cinco) · 🟡 en el `value` del caudal: lo pone D11, y sin D11 lo pondría D1, porque la unidad declarada no la dice ninguna fuente (D13). La rama F2 de E7 lo deja en ámbar documentado.
+- **Cierre:** solo midiendo (E5, E7), con el diseño del punto 4 si el autor autoriza el simulador. Mientras tanto la entrada nombra su impedimento y la rama aplicada, que es lo que E7 pide para que no bloquee el cierre de la Datasheet.
+- **Cerrada sin medir el 2026-10-31, por decisión del autor** («esto lo vamos a cerrar»; «no es momento a dos días de entregar»).
+  No se abre el simulador de buzones. La unidad declarada (`requests`) y el 🟡 del caudal quedan como están. Ver D-094.
 
 ---
 

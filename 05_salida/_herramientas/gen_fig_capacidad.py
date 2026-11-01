@@ -38,6 +38,11 @@ tocarla. `png` la rasteriza; como el servicio deja
     docker run --rm -v "$PWD":/w -w /w python:3.12-slim sh -c 'pip install -q plotly==5.24.1 kaleido==0.2.1 && \
         python3 05_salida/_herramientas/gen_fig_capacidad.py png 05_salida/_cap5/capacidad_figs/sphere/png/ 02_overleaf/proyecto/fig/'
 
+Fase «png_es» (2026-10-25, revisión del PDF): la misma rasterización con rótulos en español y
+letra legible al tamaño impreso, a ficheros con fecha junto a los anteriores (ver `rotulos_es`).
+    docker run --rm -v "$PWD":/w -w /w python:3.12-slim sh -c 'pip install -q plotly==5.24.1 kaleido==0.2.1 && \
+        python3 05_salida/_herramientas/gen_fig_capacidad.py png_es 05_salida/_cap5/capacidad_figs/sphere/png/ 02_overleaf/proyecto/fig/ 2026-10-25'
+
 Alias de estado (D-025, 2026-09-10): una Datasheet con aliases devuelve una curva por alias,
 así que el panel dice cuál dibuja. Por defecto `healthy_reputation` (constante `ALIAS`), el
 estado nominal y el de la Figura 5.1; `--alias NOMBRE` lo cambia en `dump` y en `servicio`, y
@@ -213,6 +218,57 @@ def png(indir, figdir, solo=()):
         print("escrito", out)
 
 
+# Revisión del PDF (2026-10-25, A7 y M3): los rótulos del motor salen en inglés y con letra de
+# 12 px sobre un lienzo de 1000 px, que en la página mide unos 3 pt. `png_es` exporta los mismos
+# paneles con los rótulos en español y la letra a tamaño de lectura. Solo toca el `layout`
+# (textos, tamaños, separadores y márgenes); las trazas salen tal como las dibujó el motor.
+ROTULOS_ES = {"Capacity": "Capacidad", "Time (h)": "Tiempo (h)", "Time (min)": "Tiempo (min)",
+              "Time (s)": "Tiempo (s)", "Time (day)": "Tiempo (días)"}
+# Ancho y alto de exportación en px por panel: el de la Figura 5.1 entra a 0,42\textwidth y la
+# escalera a 0,72\textwidth. Con LETRA_ES px sobre ese ancho la letra impresa ronda los 8 pt.
+# Los ocho paneles van a 520 × 245 para que la Figura 5.1 quepa en una página con su pie.
+ANCHO_ES = {"mailersend_hobby_k1_peticiones": (900, 400)}
+ANCHO_ES_DEFECTO, LETRA_ES = (520, 245), 23
+
+
+def rotulos_es(layout, letra=LETRA_ES):
+    """Devuelve una copia del layout (dict) con rótulos en español y letra de `letra` px."""
+    out = json.loads(json.dumps(layout))
+    for eje in ("xaxis", "yaxis"):
+        t = out.setdefault(eje, {}).setdefault("title", {})
+        t["text"] = ROTULOS_ES.get(t.get("text"), t.get("text"))
+        t["font"] = {"size": letra}
+        out[eje]["tickfont"] = {"size": letra}
+    out["yaxis"]["ticksuffix"] = " "    # separa los números del eje y del 0 del eje x
+    out["yaxis"]["tickformat"] = ",d"  # 5.000 y 50.000, con punto de miles (revisión del PDF, R1)
+    titulo = out.get("title") or {}
+    if titulo.get("text", "").startswith("CRF = "):
+        crf = float(titulo["text"][6:])
+        titulo["text"] = "CRF = " + (f"{crf:,.0f}".replace(",", ".") if crf.is_integer() else str(crf).replace(".", ","))
+    titulo["font"] = {"size": letra}
+    out["title"] = titulo
+    out["font"] = {"size": letra}
+    out["separators"] = ",."
+    out["margin"] = {"t": int(letra * 2.2), "b": int(letra * 2.8), "l": int(letra * 5.2), "r": int(letra * 0.8)}
+    return out
+
+
+def png_es(indir, figdir, fecha, solo=()):
+    """Como `png`, con `rotulos_es`, a `capacidad_<nombre>_<fecha>.png` junto a la anterior."""
+    import plotly.io as pio
+    for *_, nombre in PANELES:
+        if solo and nombre not in solo:
+            continue
+        with io.open(os.path.join(indir, nombre + ".json"), encoding="utf-8") as f:
+            d = json.load(f)
+        d["layout"] = rotulos_es(d["layout"])
+        fig = pio.from_json(json.dumps(d))
+        out = os.path.join(figdir, f"capacidad_{nombre}_{fecha}.png")
+        ancho, alto = ANCHO_ES.get(nombre, ANCHO_ES_DEFECTO)
+        fig.write_image(out, width=ancho, height=alto, scale=3)
+        print("escrito", out)
+
+
 def _trazas(html):
     import re
     m = re.search(r"Plotly\.newPlot\(\s*[^,]+,\s*(\[.*?\])\s*,\s*\{", html, re.S)
@@ -318,5 +374,7 @@ if __name__ == "__main__":
         extraer(sys.argv[2])
     elif sys.argv[1] == "png":
         png(sys.argv[2], sys.argv[3], tuple(sys.argv[4:]))
+    elif sys.argv[1] == "png_es":
+        png_es(sys.argv[2], sys.argv[3], sys.argv[4], tuple(sys.argv[5:]))
     else:
         print(__doc__)

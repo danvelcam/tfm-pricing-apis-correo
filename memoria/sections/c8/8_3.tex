@@ -1,0 +1,112 @@
+\section{Amenazas a la validez}\label{sec:conclusiones:amenazas}
+
+Esta sección agrupa por eje de validez las limitaciones que declaran los Capítulos~\ref{cap:catalogo} a~\ref{cap:comparacion}, cada una con su caso, su mitigación cuando la hay y lo que queda abierto.
+
+\subsection{Validez de constructo}\label{sec:conclusiones:constructo}
+
+La validez de constructo pregunta si lo medido es lo que se dice medir.
+El sondeo de MailerSend midió el estado de la cuenta y no el plan: la cuenta sin aprobar admitió 10 peticiones por minuto frente a las 120 que el proveedor publica para una cuenta sana.
+El sondeo de Amazon SES corrió en el entorno de pruebas (\textit{sandbox}) y el de Mailchimp Transactional en su cuenta de prueba.
+Las tres Datasheets declaran el estado medido.
+Medir en producción exige que el proveedor apruebe la cuenta, como en la salida del \textit{sandbox} de Amazon SES, o pagar un plan.
+
+El \textit{rate} de Postmark y el de Mailgun salen de la cabecera de respuesta de una cuenta gratuita, sin provocar el código \texttt{429} con que la API rechaza el exceso, y la Datasheet los extiende a todos los planes.
+En Postmark no lo provocaron 200 peticiones, y en Mailgun harían falta 80.000 en unos diez segundos.
+Lo mitiga que las dos cifras vayan en ámbar, el color del semáforo para un valor interpretado y no literal.
+
+SendGrid publica sus 10.000 peticiones por segundo en unas preguntas frecuentes y su envío no devuelve cabeceras de \textit{rate}, así que la cifra va en verde por ser literal, pero ningún sondeo la ha observado.
+Queda abierta en las tres APIs una medición bajo carga, por ejemplo con el banco de pruebas de límites de uso de API-TaskForce, el grupo que publica la guía de ACM2YAML \citep{datasheetusagetesting}.
+
+La curva de capacidad necesita la ventana de cada límite y lo que descuenta cada envío.
+La ventana de la cuota, el periodo tras el que su contador vuelve a cero, está en rojo, el color del semáforo para un dato no publicado, en Mailgun, Brevo, Amazon SES y Mailchimp Transactional, y en ámbar en las otras cuatro.
+Ninguna de las ocho declara la ventana del \textit{rate}, y los dos sondeos que la acotaron, en Brevo y Mailgun, no fijaron si es fija o deslizante.
+Que cada destinatario descuente un correo de la cuota consta en Resend, SendGrid, Brevo y Amazon SES, y en Postmark, MailerSend, Mailgun y Mailchimp Transactional queda sin medir.
+Esos huecos los marca el semáforo API a API, de modo que ninguno pasa por publicado sin serlo.
+
+La cita literal de cada valor solo se contrasta de forma mecánica si se archivó la página, y de Postmark no se archivó ninguna de las que cita su Datasheet.
+Lo mitigan la URL y la fecha de acceso de cada valor.
+
+El ecosistema no tiene validador oficial de Datasheets, y la conformidad se comprueba con el validador de formato de este trabajo y con la ingestión en PRIME4API.
+Los defectos de contrato, valores que ACM2YAML v0.3 admite y PRIME4API no sabe leer, los confirma un motor ajeno.
+En cambio, las cuatro carencias que se promueven solo por recurrencia descansan en la lectura que este trabajo hace de la guía de ACM2YAML: los volúmenes contratados (P-01), el consumo de un lote de mensajes con varios destinatarios (P-02), el tope de una petición en otra unidad (P-03) y el estado de la suscripción (P-06).
+
+P-06, el estado de la suscripción, muestra el riesgo de esa lectura.
+La guía documenta alias de estado, bloques que dentro de un \textit{endpoint} dan a un estado de la cuenta sus propias cifras, con MailerSend como ejemplo, y la Datasheet de MailerSend añade uno para la cuenta sin aprobar.
+En un alias, la guía solo documenta el \textit{rate} y la cuota, pero el código de referencia también lee un tope por petición.
+El tope de dos destinatarios por petición medido en esa cuenta cabe, por tanto, en el esquema, y lo que falta es documentarlo en la guía.
+P-06 sigue siendo una extensión porque el esquema no permite declarar el disparador del estado ni declarar el estado una sola vez para toda la Datasheet.
+
+A cada pregunta se le asigna el instrumento que la responde, sea la Datasheet, PRIME4API o HARVEY4API, sabiendo ya lo que ofrece cada uno, y eso puede inflar la proporción de preguntas respondibles.
+Por eso el 78~\% de preguntas respondibles, 25 de las 32 del catálogo de preguntas, no se compara de forma directa con el 54~\% que Cavero et al.\ obtienen sobre 56 plantillas con herramientas que ya existían \citep{cavero2026pricingintelligence} (Sección~\ref{sec:comparacion:catalogo}).
+Lo mitiga que las preguntas sigan la gramática de plantillas de Cavero et al., de modo que pueden incorporarse a su banco de preguntas y medirse con sus herramientas.
+
+El catálogo de preguntas se cerró en 32 sin un criterio de saturación fijado de antemano, aunque al pasar de tres APIs a ocho no ganó ninguna.
+
+\subsection{Validez interna}\label{sec:conclusiones:interna}
+
+La validez interna pregunta si los resultados dependen de las Datasheets o del montaje con que se obtienen.
+El script que verifica las Datasheets contra PRIME4API clona el motor sin fijar la revisión, y un cambio del motor puede mover los errores de la Tabla~\ref{tab:verificacion} sin tocar la Datasheet.
+Seis de las ocho ejecuciones registran la revisión \texttt{8e6011c} del repositorio de PRIME4API y pueden repetirse contra ella, y las de Brevo y Amazon SES no la registran.
+
+El método de sondeo tiene tres puntos débiles.
+En MailerSend, el \textit{endpoint} de cuota servía el saldo del día anterior once horas después de la reposición (Sección~\ref{sec:limites:catalogo}), así que el saldo que registra el sondeo al terminar puede ser el de la víspera.
+En Brevo, el sondeo lee la cifra en el error con que el proveedor rechaza un destinatario imposible de entregar, pero con la cabecera de modo \textit{sandbox}, que solo valida el formato, el envío devolvió \texttt{201}.
+Lo cubren un sondeo previo que comprueba que el proveedor rechaza la petición y un tope de envíos que cuenta como real cada petición aceptada.
+En Mailchimp Transactional, desde once destinatarios o con un adjunto de 5~MB, el envío queda en cola, y por encima de ese umbral el sondeo no mide.
+
+PRIME4API corrió en local con la misma imagen de contenedor que despliega SPHERE, y no en el despliegue público que cita Gavira Sánchez \citep{gavira2026tfm}, así que sus respuestas no se han contrastado contra ese servicio.
+Las diez respuestas de Mailchimp Transactional que se calcularon a mano por el HTTP 500 del motor (Sección~\ref{sec:conclusiones:evaluacion}) no tienen confirmación de PRIME4API.
+
+Los valores modelados dependen también de qué fuente se toma cuando dos discrepan.
+La regla que da preferencia a la página de precios vale para las 37 divergencias, de las 82 registradas, en que esa página es uno de los lados.
+Aun en ellas deja sin resolver las siete en que la página se contradice a sí misma, cuyo valor queda en ámbar.
+Las 45 restantes enfrentan fuentes distintas de la página de precios: en la mayoría, dos fuentes del mismo proveedor, como su referencia de la API y su centro de ayuda, y en las demás, una de ellas frente a un sondeo o a un tercero.
+Las ordenan otras reglas de modelado, como la que da preferencia al valor medido.
+Dieciséis de esas 45 siguen abiertas, con las dos fuentes en el registro de procedencia.
+
+Las Datasheets y el recuento de recurrencia los construye un agente de inteligencia artificial, que podría dar por leído un dato que la fuente no contiene.
+Lo mitiga que el agente que construye no sea el que verifica, y queda abierto medir cuántos valores corrigió esa revisión (Sección~\ref{sec:conclusiones:lecciones}).
+
+\subsection{Validez externa}\label{sec:conclusiones:externa}
+
+La validez externa pregunta hasta dónde valen los resultados fuera del catálogo y de su ventana de toma de datos.
+La respuesta negativa a la RQ2, si ACM2YAML v0.3 basta para representar las APIs de correo, no depende de la muestra, porque basta un caso que v0.3 no represente, como los seis volúmenes contratados de Postmark.
+
+Sí depende de la muestra qué propuestas se promueven al esquema.
+El tope de una petición medido en una unidad distinta de la suya, como los 50~MB de carga de \texttt{/email/bulk} en Postmark (P-03), aparece en las ocho APIs.
+En cambio, tres propuestas descansan en una sola API: el tope del sobrecoste de SendGrid (P-07), el cupo de destinatarios de la cuenta sin aprobar de MailerSend (P-08) y la cola de Brevo por encima de la cuota (P-09).
+Se promueven porque PRIME4API da en ellas un resultado que el proveedor contradice.
+Al pasar de cuatro APIs a ocho ninguna propuesta perdió su apoyo.
+Queda abierto repetir el inventario en otro dominio, comprobando cada propuesta con el caso que la motiva.
+
+La marca de valor no publicado (P-04) y el plan con precio no público (P-05) se han medido contra un único motor, PRIME4API.
+Claude Opus 5.5, con el que se contrastaron las preguntas de HARVEY4API, lee el YAML como texto y no cuenta como segundo motor.
+
+En la relación entre límites de uso y \textit{rates} (RQ3), que la cuota sea la restricción activa se explica por las unidades, y por eso cabe esperarlo fuera del catálogo: frente a una cuota mensual o diaria, un \textit{rate} por segundo o por minuto deja pasar en la ventana de la cuota mucho más volumen.
+Lo que sí depende de la muestra son las excepciones, como el \textit{rate} reducido de la cuenta sin aprobar de MailerSend (Sección~\ref{sec:conclusiones:constructo}) o la discrepancia de Mailgun.
+Mailgun publica 1.500 peticiones por segundo por IP de cliente, y la cabecera del envío devuelve un límite de 80.000 peticiones en una ventana medida de unos diez segundos.
+Que el \textit{rate} del envío individual no cambie con el plan vale en Resend, SendGrid y MailerSend, y Brevo lo contradice.
+
+Las cuatro formas de cobro que el catálogo cubre (volumen mensual, pago por uso, producto añadido y límite diario) salen del primer criterio de selección, cubrir formas de cobro distintas (Sección~\ref{sec:propuesta:criterios}), y no de un censo del sector.
+Entre las APIs de reserva de la selección, Zoho ZeptoMail cobra con créditos prepagados, una variante que el catálogo no incluye.
+
+El catálogo modela solo el producto transaccional, el de los mensajes individuales que suele desencadenar el propio usuario, y sus conclusiones no se trasladan al de \textit{marketing}, que Resend factura por contactos y no por correos.
+
+La oferta cambia con el tiempo: el repositorio de ACM2YAML conserva una Datasheet de MailerSend con precios que difieren de los publicados cinco meses después \citep{apisconsumptionmodel}.
+Cada valor lleva su fecha de acceso, y falta un procedimiento que diga cuándo reverificar.
+
+\subsection{Validez de conclusión}\label{sec:conclusiones:conclusion}
+
+La validez de conclusión pregunta si los recuentos que sostienen las conclusiones están bien hechos.
+La Tabla~\ref{tab:recurrencia} deja 31 combinaciones de elemento y API sin verificar y una en suspenso, las dos cuotas de Mailgun que ninguna página dice si se aplican a la vez.
+Una aparición sin verificar no se cuenta, así que verificarla solo puede añadir APIs y cada recuento es un mínimo.
+Bastaría confirmar una aparición más en cada uno para que pasaran a recurrentes tres elementos no promovidos: la región como unidad de gobierno, el tope fraccionario y los dos contadores sobre una misma ventana.
+Ninguna promoción se retiraría\footnote{El detalle por fila está en \texttt{03\_datos/\allowbreak RECURRENCIA\_\allowbreak 2026-09-23.md}, en el repositorio del trabajo.}.
+
+En Postmark, una respuesta «no publicado» cuenta como respondida en la pregunta del \textit{rate} máximo y no en la del límite diario ni en la de si el \textit{rate} sube con el plan.
+Aplicar el mismo criterio a las tres movería una o dos de sus 18 respuestas.
+La cobertura cuenta igual el ámbar que el verde, y el ámbar lo llevan 13 de las 18 respuestas de Postmark y 12 de las 20 de Mailgun, frente a 1 de 22 en Resend.
+
+El mes se toma de 30 días.
+Con 28, el menor cociente entre \textit{rate} y cuota de una cuenta sana, el de MailerSend Professional 2M, un volumen que la Datasheet no recoge, baja de 2,59 a 2,42.
+Ninguna restricción activa cambia con la longitud del mes.

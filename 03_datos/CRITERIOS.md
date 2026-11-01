@@ -9,7 +9,7 @@ declara en la regla:
 
 - **el autor**, con su marca `*(D-nnn)*` de siempre. Es el único origen válido para la
   **sección A**, alcance y selección, que es carril rojo.
-- **El consejo**, en las secciones **B…G**, con la marca `*(consejo aaaa-mm-dd)*` y el caso
+- **El consejo**, en las secciones **B…H**, con la marca `*(consejo aaaa-mm-dd)*` y el caso
   que la originó. Antes de D-047 lo que el libro no cubría se le preguntaba al autor por
   tandas; ahora lo resuelve el consejo y su veredicto entra aquí como regla. El
   procedimiento está en `docs/08-mandato.md` §La cadena de decisión.
@@ -175,7 +175,7 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   convierte en planes ni en cuotas. La datasheet declara **un único plan representativo**:
   `price` = el coste de una unidad prepagada en el tramo de entrada, con el `period` de
   facturación publicado, en **🟡** porque el literal es un precio por unidad y el campo es el
-  precio del plan, y ese mapeo lleva inferencia (D13); `quota` = una `capacity` con el tamaño
+  precio del plan, y ese mapeo lleva interpretación (D13); `quota` = una `capacity` con el tamaño
   de la unidad, en 🟢 si es literal; y **sin `overage_cost`**, porque agotar la unidad
   prepagada no es exceso tarificado (B6 no aplica). La escalera completa va al provenance como
   `NOTA` con su cita, y a `metadata.not_found` van el tramo sin cifra publicada y el mecanismo
@@ -284,6 +284,30 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   *Si resulta equivocada:* se repone la fila de F-17 en suspenso y se vuelve a 36 elementos en
   los mismos pasajes que tocó la retirada. *(caso MailerSend DISC-11, consejo 2026-10-18)*
 
+- **B18 · La unidad de un límite es la que el motor puede casar en cada nodo que lo referencia,
+  y la que publica el proveedor, si es otra, se documenta.** Un proveedor puede contar un
+  caudal o una cuota en una unidad de carga (correos, destinatarios). Si algún endpoint que
+  referencia ese límite no declara `workload` en esa unidad, el límite se queda en `requests`.
+  PRIME4API descarta sin aviso, nodo a nodo, el límite cuya unidad no está en su `workload`.
+  Cambiar la unidad dejaría ese endpoint sin tope, y nadie lo vería: es el error que B16 no
+  admite. Si todos los nodos que lo referencian declaran esa carga, se declara la unidad
+  publicada, como Mailchimp `rate_email_hourly_demo` en `emails`. En los dos casos la unidad
+  publicada va al provenance, con su literal y su efecto en la curva, y la
+  diferencia va a `metadata.not_found`. Si dos literales discrepan sobre qué cuenta el límite,
+  se abre `DISC-nn` (D11, D12) y manda E7. La regla no salva el color. Si ninguna fuente dice
+  la unidad declarada, la cifra no mapea sin interpretación y va en 🟡 por D1 (D13). La marca
+  va en la línea de la cifra, porque `unit` no lleva marca (E15).
+
+  **El caso.** SES `rate_request_send_sandbox` declara 1 por segundo en `requests`. [F2] y [F3]
+  lo cuentan en mensajes, [F1] en destinatarios, y ninguna fuente en peticiones. En `emails`,
+  el envío por lotes, con `workload` solo en `MBs`, se queda sin límite en PRIME4API (medido el
+  2026-10-31: `{"value":[]}`). El consejo votó 5 a 0 dejar `requests` con la explicación en el provenance, `not_found`
+  y DISC-21 por la rama F2 de E7, y descartó `emails` porque cambiaba un valor y rompía el lote.
+  El color se votó 5 a 0 en segunda ronda, a 🟡. El 🟢 de la cuota con DISC-02 abierta, que dos
+  asientos daban por precedente, es de e46637c, anterior a E7 (cc90013), y no obliga.
+  *Si resulta equivocada:* se retiran la explicación del provenance, la entrada de `not_found` y DISC-21, y el 1
+  vuelve a 🟢. Ningún valor del YAML había cambiado. *(caso SES DISC-21, consejo 2026-10-31)*
+
 ## C. `type`
 - **C1 · Se juzga sobre el producto modelado.** `api_first` si toda la funcionalidad de
   envío del producto modelado es programática; `partial_saas` si el panel envía algo
@@ -305,14 +329,18 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   *(Q6 MailerSend, D-031, 2026-09-14)*
 
 ## D. Semáforo
-- **D1 · Verde** = literal en fuente oficial. **Ámbar** = inferido o ambiguo. **Rojo** =
-  no publicado (es un hallazgo).
+- **D1 · Verde** = valor respaldado: literal en la fuente de verdad sin validar, o fijado por
+  panel con cuenta propia o por sondeo (D4, D5). **Ámbar** = interpretado: hay texto, pero el
+  valor exige una lectura que la fuente no hace literal, o dos literales oficiales chocan
+  (D11). **Rojo** = no publicado (es un hallazgo). El color mide respaldo, no procedencia: la
+  procedencia la fija D18. *(D-075, 2026-10-23; antes: «Verde = literal en fuente oficial.
+  Ámbar = inferido o ambiguo»)*
 - **D2 · Rate por defecto único.** Si el proveedor publica un solo rate «por equipo/
   cuenta» sin condicionarlo al plan, ese valor va en **verde** en todos los planes que
   no lo contradigan; el caudal negociado (Enterprise, *trusted senders*) va en **rojo**
   y a `not_found`. *(Q3)*
 - **D3 · Ventana de una cuota.** Solo verde si la fuente dice literalmente cómo se
-  reinicia. «wait until 24 hours» → `rolling` en ámbar. Ciclo de facturación inferido
+  reinicia. «wait until 24 hours» → `rolling` en ámbar. Ciclo de facturación interpretado
   → `fixed_billing_cycle` en ámbar. Nada → sin valor y aviso justificado.
 - **D5 · Precisión: manda el panel** *(acotada por D17 desde el 2026-10-18)*. Si el panel
   con cuenta propia publica el mismo dato con más decimales que **otra fuente que no sea la
@@ -386,7 +414,7 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   `max: 70` sigue 🟡 y sube a 🟢 en cuanto el sondeo de Q9 confirme que «emails» son
   destinatarios. *(Q8 MailerSend, D-032, 2026-09-14)*
 - **D11 · Un literal que otro literal oficial contradice va en 🟡.** D1 da verde al literal en
-  fuente oficial y ámbar a lo inferido o ambiguo, y no dice cuál de las dos cláusulas manda
+  fuente oficial y ámbar a lo interpretado o ambiguo, y no dice cuál de las dos cláusulas manda
   cuando el proveedor publica **dos cifras incompatibles para el mismo campo**. Manda el ámbar,
   mientras la `DISC-nn` siga abierta. El color mide el respaldo del dato, no si alguien lo
   escribió, y un campo con dos cifras publicadas es justo donde hay que gastar la revisión. La
@@ -429,7 +457,7 @@ lectura y la bitácora permite revertir la clase entera con su huella.
 
   **Una entrada no está lista mientras un lado no tenga su unidad registrada**, y tampoco si
   la cita lleva elipsis. Una entrada no lista no decide nada: ni cierra la discrepancia ni
-  mueve el color, que se queda donde estaba. Un lado que sea inferencia, resumen o ausencia
+  mueve el color, que se queda donde estaba. Un lado que sea interpretación, resumen o ausencia
   comprobada no es literal y no dispara D11: el lado B de SES DISC-05 presupone lo que
   afirma. Registrar lo que falta es obligatorio cuando la entrada gobierna un campo del
   esquema o una celda declarada de `features.md`; en lo demás la entrada espera marcada. Si
@@ -455,8 +483,8 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   **D1** sobre lo único que queda registrado.
 
   **Entrar en D1 no es entrar en verde.** D1 da verde al literal en fuente oficial y ámbar a
-  lo inferido o ambiguo, y la ambigüedad no depende de que la cita sea clara: depende de que
-  **mapee sin inferencia al campo del esquema**. Un literal que sobrevive intacto puede seguir
+  lo interpretado o ambiguo, y la ambigüedad no depende de que la cita sea clara: depende de que
+  **mapee sin interpretación al campo del esquema**. Un literal que sobrevive intacto puede seguir
   topando con D1 por otro motivo —unidad, alcance, punto de medida, denominador—, y ese choque
   no lo resuelve esta regla. Lo resuelve D1 aplicado al campo, con su propia evidencia. Cada
   campo que sale de D11 por esta vía **se reevalúa entero**: no asciende por defecto.
@@ -466,7 +494,7 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   E5 (1) —[F5] acota el adjunto y no el correo entero, y no era el segundo lado—, el campo sale
   de D11. Y **se queda en 🟡**, ahora por D1: el README de v0.3 define `workload` por petición
   y [F27] acota por correo, en un endpoint que admite lote de 2.000, así que el mapeo es
-  inferencia; y la base de medida —decodificado o base64, MB decimal o MiB, validación o
+  interpretación; y la base de medida —decodificado o base64, MB decimal o MiB, validación o
   entrega— no está medida. El consejo escribió esta regla con el color de su propio caso
   puesto en verde, y lo corrigió al medir la premisa.
 
@@ -493,13 +521,13 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   **Ausencia plana.** El bloque del plan no menciona la feature y ningún otro plan de la misma
   tabla lo enmarca como incorporación respecto a ese plan. Es la «ausencia comprobada» de D12:
   no es literal, no dispara D11. El literal superviviente gobierna la celda por D1 —verde si
-  mapea sin inferencia— y la omisión se escribe como `NOTA` en el provenance, nunca como «—»
+  mapea sin interpretación— y la omisión se escribe como `NOTA` en el provenance, nunca como «—»
   ni como discrepancia viva.
 
   **Ausencia enmarcada.** Un plan superior de la misma tabla enumera la feature bajo un
   encabezado que apunta al plan inferior: `"Everything on <plan> plus…"`, `"Additional to
   <plan>…"` o equivalente. Esa frase es un literal **sobre el plan inferior**, dicho por la
-  propia fuente sobre sí misma, y no es la inferencia desde otro plan que G2 prohíbe. Entra en
+  propia fuente sobre sí misma, y no es la suposición desde otro plan que G2 prohíbe. Entra en
   la unidad del lado por D12 —la frase apunta a la anterior, así que la anterior entra— y
   cuenta como segundo lado de D11: el campo se queda en 🟡 y la `DISC-nn` sigue abierta hasta
   medir o disolver por E5. La entrada de `fuentes.md` debe transcribir esa frase dentro de la
@@ -611,6 +639,44 @@ lectura y la bitácora permite revertir la clase entera con su huella.
     efecto está en `05_salida/reunion_tutor_2026-10-15/divergencias.md`.
 
   *(D-068, 2026-10-18; acta del 2026-10-15 F13/T7)*
+
+- **D18 · Procedencia del dato, eje aparte del color.** Cada valor tiene una de cinco
+  procedencias. **Publicado**: literal de la página del fabricante. **Interpretado**: hay
+  texto y el modelador decide qué significa. **Calculado**: función reproducible de valores
+  publicados o medidos; se guardan fórmula y entradas, no el resultado (B1). **Medido**:
+  sondeo o panel con cuenta propia, citado en `data_provenance`. **Inferido por agente**:
+  conclusión que ninguna fuente afirma ni ninguna fórmula devuelve, producida por un LLM o una
+  skill; cita sus fuentes de partida, la skill y su versión. El color lo siguen decidiendo las
+  reglas de §D, con dos topes: lo inferido por agente no pasa de 🟡 hasta que lo respalde un
+  valor publicado o medido, y lo calculado toma el peor color de sus entradas. En las
+  Datasheets cerradas la procedencia no se escribe en el YAML: se deduce de `data_provenance`
+  y se muestra en la maqueta.
+
+  - **Con D17.** D17 decide qué valor entra en el YAML cuando la página de precios choca con
+    otra fuente. D18 no lo cambia: para Antonio el pricing es una página más del árbol de
+    fuentes y sus incoherencias se analizan, y eso es lo que D17 ya hace al anotar el otro
+    valor como incoherencia del pricing. Son compatibles.
+  - **En las ocho Datasheets no hay ningún valor inferido por agente.** Los ámbar son
+    interpretaciones del modelador sobre un texto citado. La clase tiene casos en la maqueta:
+    tipo, propósito y modelo de pricing de cada interfaz, salidos de las skills de Daniel Ruiz.
+  - **Derivado es el paraguas de interpretado, calculado e inferido por agente**: todo lo que
+    no está tal cual en una fuente ni se ha medido. Publicado y medido no son derivados. En la
+    maqueta, lo derivado sale de la pestaña Pricing y va a la sección «Derivado». En este libro
+    y en la memoria, «inferencia» se reserva para lo inferido por agente: la lectura del
+    modelador es interpretación, y lo que se saca de una medida o de dos literales se dice
+    «se deduce». *(D-078, 2026-10-23)*
+
+  *(D-075, 2026-10-23; reunión con Antonio, 3:05–3:24 y 33:29–36:05)*
+
+- **D19 · Un mercado de APIs es otra vía de contratar el servicio.** *Caso:* RapidAPI,
+  comprobación del 23-10 sobre las ocho APIs (`05_salida/reunion_tutor_2026-10-23/verificaciones/rapidapi_ocho.md`).
+  Una lista de RapidAPI, o de otro mercado, que da acceso al servicio de un proveedor es otra
+  vía de contratar ese servicio, con sus propias condiciones. No se clasifica en oficial o de
+  terceros. Sus valores no entran en la Datasheet del proveedor directo ni cuentan como fuente
+  suya. Si algún día se modela, va como pricing aparte de esa vía, y se anota si la lista pide
+  además la clave del proveedor. *Si resulta equivocada:* solo cambian la nota de la
+  comprobación y la frase de trabajo futuro; ninguna Datasheet depende de esto.
+  *(El autor, 2026-10-23; D-081)*
 
 ## E. Trazabilidad
   **Ampliación (D-024, 2026-09-07):** un sondeo diseñado para medir caudal que confirme el
@@ -1179,6 +1245,25 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   se dan de alta las 25 filas en el `fricciones.md` de cada API citando su columna y su fila
   arbitrada, y la cabecera vuelve a declarar los tableros como fuente única.
 
+- **E26 · Una cita de alcance respalda el objeto que nombra, no a su hermano.** A veces una
+  fuente da la misma cifra a dos objetos parecidos (plantillas de cuenta y de dominio, API v1 y
+  v2) y el fichero modela solo uno. La cifra y su alcance se citan entonces de la frase que
+  nombra el objeto modelado. Si esa frase toma la cifra de otra («same limit», «these quotas»),
+  se citan las dos juntas: es el antecedente de D12 fuera de las `DISC-nn`, porque lo que se
+  afirma es el alcance. No abre discrepancia, porque las frases hablan de objetos distintos. El
+  producto por número de instancias (100 por dominio, por N dominios) no se escribe como dato,
+  porque la fuente no lo publica. Y antes de escribir en `fuentes.md` que un alcance «no tiene
+  cita», se lee entero el párrafo de la cita que ya se tiene.
+
+  **El caso.** Mailgun modela `/v3/{domain_name}/templates`, el endpoint de plantillas de
+  dominio, y describía el tope «en la cuenta» con la frase de las plantillas de cuenta, que
+  viven en `/v4/templates`. La frase siguiente da el mismo tope por dominio de envío,
+  `"Domain-scoped templates have same limit set on a per sending domain basis."`, y ya estaba
+  en la captura de Wayback del 2026-06-12. [F9] y MG-136 daban ese alcance por no citado.
+  Votación 5 a 0. *Si resulta equivocada:* se repone «en la cuenta» en las cuatro `description`
+  y la cita de una sola frase. No se movió ningún valor. *(caso Mailgun [F9], consejo
+  2026-10-31)*
+
 ## F. Escalera de validación
 - **F1 · Escalón 2 (panel) en todas las APIs** (simetría, decisión 2026-08-05). El alta
   la hace el autor; la observación la hace el agente en modo lectura, con capturas
@@ -1233,7 +1318,7 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   desde la página de precios y el panel, con las mismas fuentes `[Fn]` de `fuentes.md`.
   Presupuesto: media hora por API. *(D-019)*
 - **G2 · Celda = valor literal + fuente + escalón.** Lo que la fuente no dice se deja
-  vacío («—»), nunca se infiere de otro plan ni de otra API. Un add-on se anota con su
+  vacío («—»), nunca se supone a partir de otro plan ni de otra API. Un add-on se anota con su
   precio y su condición (plan mínimo, volumen). *(D-019; regla 1 del pipeline)*
 - **G3 · La matriz no entra en el YAML** (B1). Responde a las preguntas de clase **L** del
   catálogo (PI-E01, PI-E02): «respondible por lectura de la matriz funcional, fuera del
@@ -1276,3 +1361,35 @@ lectura y la bitácora permite revertir la clase entera con su huella.
   *Si resulta equivocada:* las figuras están fuera de la memoria (R19 es rojo) y salen de un
   CSV con un script. Se cambia la escala, se vuelve a puntuar y se regeneran. Nada más
   depende de ellas. *(caso kiviat R28/R17, consejo 2026-10-18)*
+
+## H. Maqueta de la colección
+
+- **H1 · Propósito y coste de una interfaz de la maqueta van por separado.**
+  *Caso:* reunión del 23-10, preguntas 1, 2 y 5 del guion sin plantear a Antonio. La Web UI,
+  el correo entrante y las 17 interfaces pendientes de SES.
+
+  1. El propósito sale del tipo de interfaz, con la tabla de la maqueta. API REST, SMTP e
+     integración no-code son Consumo. Web UI y asistente del panel son Administrativa.
+     Webhook, flujo de eventos y correo entrante son Integración. CLI y servidor MCP son
+     Consumo y administración. La tabla es una propuesta del TFM y no sale de las skills de
+     Daniel Ruiz.
+  2. Una Web UI pasa a Consumo y administración solo si una cita dice que su panel envía
+     correo que gasta la cuota del plan. Un correo de prueba no basta mientras no conste que
+     gasta cuota. La excepción se anota en esa interfaz y la tabla no cambia.
+  3. El coste se rellena aparte del propósito. Si la datasheet tiene evidencia de que una
+     interfaz de Integración gasta cuota o tiene límite propio, se muestra ese valor con su
+     fuente. Sin evidencia se escribe «sin verificar», no «sin cargo propio».
+  4. Una interfaz que el analizador de Daniel Ruiz deja en `pending` no se dibuja como
+     interfaz. El servicio muestra «N confirmadas de M» y una lista plegada con el nombre y el
+     motivo de cada pendiente.
+  5. Si el TFM no está de acuerdo con la salida de las skills, la corrige en la maqueta, la
+     marca como reclasificación del TFM y se la manda a Daniel Ruiz como feedback. Las skills
+     no se tocan.
+  6. Una interfaz de un producto de marketing sigue en el árbol, marcada «fuera de alcance
+     (marketing)», porque el alcance es el servicio transaccional (sección A).
+
+  SendGrid «Inbound Parse Webhook» y Mailgun «Inbound routing» también reciben correo, pero
+  van como Webhook y como Flujo de eventos; el caso no las incluyó y no se mueven.
+  *Si resulta equivocada:* se cambia la tabla de la maqueta y los valores de coste de esas
+  interfaces. Ninguna datasheet ni la memoria dependen de esto. Anticipada, no validada por
+  Antonio: se le confirma en el correo que envía el autor. *(D-076; consejo 2026-10-23)*

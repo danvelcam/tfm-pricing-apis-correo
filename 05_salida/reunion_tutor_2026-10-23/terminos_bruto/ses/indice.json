@@ -1,0 +1,2530 @@
+{
+  "schema_version": "0.1",
+  "generator": {
+    "skill": "recogida-terminos-consumo",
+    "skill_version": "0.1"
+  },
+  "api": "ses",
+  "run": {
+    "generated_at": "2026-10-23T15:01:15Z",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+    "intervalo_s": 0.4,
+    "peticiones": 104
+  },
+  "paginas": [
+    {
+      "id": "P-001",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/all-about-ses-daily-quota/",
+      "url_final": "https://aws.amazon.com/blogs/messaging-and-targeting/all-about-ses-daily-quota/",
+      "titulo": "All about SES daily quota | AWS Messaging Blog x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "41e9db67208b0e307a50672dfe18b3cc01270c64420e549474518959695dbcb2",
+      "bytes": 1493582,
+      "content_type": "text/html;charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/41e9db67208b0e30.html"
+    },
+    {
+      "id": "P-002",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/",
+      "url_final": "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/",
+      "titulo": "How to handle a \"Throttling – Maximum sending rate exceeded\" error | AWS Messaging Blog x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "4a9654231b17e25237a58c48cb500000edfd6b78682cabe42c9e41f59ceeaf78",
+      "bytes": 1504919,
+      "content_type": "text/html;charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/4a9654231b17e252.html"
+    },
+    {
+      "id": "P-003",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/increase-email-sending-success-rates-with-amazon-simple-email-services-ses-new-virtual-deliverability-manager/",
+      "url_final": "https://aws.amazon.com/blogs/messaging-and-targeting/increase-email-sending-success-rates-with-amazon-simple-email-services-ses-new-virtual-deliverability-manager/",
+      "titulo": "Increase email sending success rates with Amazon Simple Email Services (SES) new Virtual Deliverability Manager | AWS Messaging Blog x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "450cb5edda68a36ceba8af51971a220b1a7735316c65000fe16ab19db2d7552e",
+      "bytes": 1497819,
+      "content_type": "text/html;charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/450cb5edda68a36c.html"
+    },
+    {
+      "id": "P-004",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/introducing-amazon-simple-email-service-ses-pricing-plans/",
+      "url_final": "https://aws.amazon.com/blogs/messaging-and-targeting/introducing-amazon-simple-email-service-ses-pricing-plans/",
+      "titulo": "Introducing Amazon Simple Email Service (SES) pricing plans | AWS Messaging Blog x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "db56a7a61f4447fcf3658d7c409363bb63ef4082cbdbfbcb758f1748a006f196",
+      "bytes": 1495720,
+      "content_type": "text/html;charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/db56a7a61f4447fc.html"
+    },
+    {
+      "id": "P-005",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/tag/error-handling/",
+      "url_final": null,
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": null,
+      "estado": "fallida",
+      "error": "robots",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-006",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/tag/limit/",
+      "url_final": null,
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": null,
+      "estado": "fallida",
+      "error": "robots",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/what-happens-when-you-reach-your-sending-limits/"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-007",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/tag/quota/",
+      "url_final": null,
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": null,
+      "estado": "fallida",
+      "error": "robots",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/all-about-ses-daily-quota/",
+        "https://aws.amazon.com/blogs/messaging-and-targeting/what-happens-when-you-reach-your-sending-limits/"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-008",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/tag/rate-limiting/",
+      "url_final": null,
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": null,
+      "estado": "fallida",
+      "error": "robots",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-009",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/tag/throttle/",
+      "url_final": null,
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": null,
+      "estado": "fallida",
+      "error": "robots",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/what-happens-when-you-reach-your-sending-limits/"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-010",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/tag/throttling/",
+      "url_final": null,
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": null,
+      "estado": "fallida",
+      "error": "robots",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-011",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/the-amazon-ses-free-tier/",
+      "url_final": "https://aws.amazon.com/blogs/messaging-and-targeting/the-amazon-ses-free-tier/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-012",
+      "url": "https://aws.amazon.com/blogs/messaging-and-targeting/what-happens-when-you-reach-your-sending-limits/",
+      "url_final": "https://aws.amazon.com/blogs/messaging-and-targeting/what-happens-when-you-reach-your-sending-limits/",
+      "titulo": "What Happens When You Reach Your Sending Limits? | AWS Messaging Blog x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "d1a311bc36bb449b6159e3c5453074bf5e9e4e4a280b160e8c9a140f9e408d47",
+      "bytes": 1498740,
+      "content_type": "text/html;charset=UTF-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/d1a311bc36bb449b.html"
+    },
+    {
+      "id": "P-013",
+      "url": "https://aws.amazon.com/ses/faqs/",
+      "url_final": "https://aws.amazon.com/ses/faqs/",
+      "titulo": "Amazon Simple Email Service FAQs | Cloud Email Service | Amazon Web Services x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "824865f2f96c9c8c06e218f25575251c3aeeaf2a212047c837a48470ae42c509",
+      "bytes": 445869,
+      "content_type": "text/html;charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://aws.amazon.com/ses/pricing/",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html",
+        "sitemap:https://aws.amazon.com/sitemaps/sitemap_marketing/"
+      ],
+      "fichero_texto": "ses/824865f2f96c9c8c.html"
+    },
+    {
+      "id": "P-014",
+      "url": "https://aws.amazon.com/ses/pricing/",
+      "url_final": "https://aws.amazon.com/ses/pricing/",
+      "titulo": "Pricing x facebook linkedin instagram twitch youtube podcasts email California Consumer Privacy Act (CCPA) Opt-Out Icon",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "5a36c525503a582dfacd86dfbac44a39cd283ad2145f839c8b552ecfcf62bfe9",
+      "bytes": 355609,
+      "content_type": "text/html;charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/introducing-amazon-simple-email-service-ses-pricing-plans/",
+        "https://aws.amazon.com/ses/faqs/",
+        "semilla",
+        "https://docs.aws.amazon.com/ses/latest/dg/pricing-plans.html"
+      ],
+      "fichero_texto": "ses/5a36c525503a582d.html"
+    },
+    {
+      "id": "P-015",
+      "url": "https://docs.aws.amazon.com/general/latest/gr/ses.html",
+      "url_final": "https://docs.aws.amazon.com/general/latest/gr/ses.html",
+      "titulo": "Amazon Simple Email Service endpoints and quotas",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "39e9ee87054ff23b31c8b370f32cc043642bef8b50583824cd6dca27bcaf86cd",
+      "bytes": 18237,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html"
+      ],
+      "fichero_texto": "ses/39e9ee87054ff23b.md"
+    },
+    {
+      "id": "P-016",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_BulkEmailEntryResult.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_BulkEmailEntryResult.html",
+      "titulo": "BulkEmailEntryResult",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "ac8a6a866b1d48608324bb4e0c7b190799974eaa574b8ab7fb5d2408a946bd85",
+      "bytes": 3426,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/ac8a6a866b1d4860.md"
+    },
+    {
+      "id": "P-017",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailIdentityPolicy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_CreateEmailIdentityPolicy.html",
+      "titulo": "CreateEmailIdentityPolicy",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "1273b5db908abe82d8dd59a2a2e66dc35accf4c30a279940a61fa455bef34f85",
+      "bytes": 4523,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/1273b5db908abe82.md"
+    },
+    {
+      "id": "P-018",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteEmailIdentityPolicy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_DeleteEmailIdentityPolicy.html",
+      "titulo": "DeleteEmailIdentityPolicy",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "06fb8c8b06c7574a3f7866519596095d530e71af69632dbecc8882bfc142398b",
+      "bytes": 3837,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/06fb8c8b06c7574a.md"
+    },
+    {
+      "id": "P-019",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetAccount.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetAccount.html",
+      "titulo": "GetAccount",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "e4ef99adb8321bbe05502ebcfab8298d3371028b320df4c1acdcf30ef3cc547e",
+      "bytes": 6774,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/e4ef99adb8321bbe.md"
+    },
+    {
+      "id": "P-020",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetEmailIdentityPolicies",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetEmailIdentityPolicies.html",
+      "titulo": "GetEmailIdentityPolicies",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "65a7ae3c647d0fea0f2f5eb6768f47e3823ac0454f890cf0de7c4b5a9bf07a82",
+      "bytes": 3914,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/65a7ae3c647d0fea.md"
+    },
+    {
+      "id": "P-021",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetReputationEntity",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetReputationEntity.html",
+      "titulo": "GetReputationEntity",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "9bbd589a764608b053c96dd6ad988dfc97942157b573cf86c2562f9bbaf45941",
+      "bytes": 4492,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/9bbd589a764608b0.md"
+    },
+    {
+      "id": "P-022",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListReputationEntities",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_ListReputationEntities.html",
+      "titulo": "ListReputationEntities",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "67c4fa379ab597330aa53975a5c4613d2f2dea1260df9ebe39ccdb0ecfee136a",
+      "bytes": 5477,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/67c4fa379ab59733.md"
+    },
+    {
+      "id": "P-023",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html",
+      "titulo": "Actions",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "3bf479c7b81c4449d1bfd7d3e6554626aba01c6037e30159e38e1b29031c1b87",
+      "bytes": 7441,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/3bf479c7b81c4449.md"
+    },
+    {
+      "id": "P-024",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutAccountDedicatedIpWarmupAttributes",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutAccountDedicatedIpWarmupAttributes.html",
+      "titulo": "PutAccountDedicatedIpWarmupAttributes",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "651940d43919b5ec19bbda3ff2f982e123a288d830e5924eed743ab99937323e",
+      "bytes": 3288,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/651940d43919b5ec.md"
+    },
+    {
+      "id": "P-025",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetReputationOptions",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutConfigurationSetReputationOptions.html",
+      "titulo": "PutConfigurationSetReputationOptions",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "39b4fc4d4cffddb0b3fc48b6e7b17528154a1340f2f0af813bd925aaed336912",
+      "bytes": 3643,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/39b4fc4d4cffddb0.md"
+    },
+    {
+      "id": "P-026",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutDedicatedIpWarmupAttributes",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_PutDedicatedIpWarmupAttributes.html",
+      "titulo": "PutDedicatedIpWarmupAttributes",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "24224c9082d22a8973bc7e0e2af5e1dfbf7e528faf4a15ca98069e359fc14da0",
+      "bytes": 3233,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/24224c9082d22a89.md"
+    },
+    {
+      "id": "P-027",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendBulkEmail.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendBulkEmail.html",
+      "titulo": "SendBulkEmail",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "eca2beef220d8bc8cb5654e95927d55f536b17fdcc490ce7ae7dbd68b5c2fe63",
+      "bytes": 10842,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html"
+      ],
+      "fichero_texto": "ses/eca2beef220d8bc8.md"
+    },
+    {
+      "id": "P-028",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html",
+      "titulo": "SendEmail",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "2cdccefa15567d4941898f1e97fc5c796dab0e573662a9f5fa6523ed777409ef",
+      "bytes": 12358,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/sending-email-list-management.html"
+      ],
+      "fichero_texto": "ses/2cdccefa15567d49.md"
+    },
+    {
+      "id": "P-029",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendQuota.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendQuota.html",
+      "titulo": "SendQuota",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "5465e28dc3f82bc38a2a4c96849e42341b1dae35c9c64b9e565636e42670cd35",
+      "bytes": 1484,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/5465e28dc3f82bc3.md"
+    },
+    {
+      "id": "P-030",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateEmailIdentityPolicy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateEmailIdentityPolicy.html",
+      "titulo": "UpdateEmailIdentityPolicy",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "d6c4a19945aea76715a4aec2abdc5f9787e291c0694db37a2afda57a3b2ab19b",
+      "bytes": 4378,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/d6c4a19945aea767.md"
+    },
+    {
+      "id": "P-031",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateReputationEntityCustomerManagedStatus",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateReputationEntityCustomerManagedStatus.html",
+      "titulo": "UpdateReputationEntityCustomerManagedStatus",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "693153df7537d9566bab50acb5b87db08ef0807a6f62332cd5e57d170b0706a7",
+      "bytes": 5084,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/693153df7537d956.md"
+    },
+    {
+      "id": "P-032",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateReputationEntityPolicy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_UpdateReputationEntityPolicy.html",
+      "titulo": "UpdateReputationEntityPolicy",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "cc3fc6a46dedd919de3a825aab6351a090c3e73b4c9d4a4470fd3ad7021baef2",
+      "bytes": 4160,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos",
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_Operations.html"
+      ],
+      "fichero_texto": "ses/cc3fc6a46dedd919.md"
+    },
+    {
+      "id": "P-033",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/CommonErrors",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/CommonErrors.html",
+      "titulo": "Common Error Types",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "4f2afe808b7c434427e80b4f449dc7e25830d817fa74e6da2ae8a7abff5ccf60",
+      "bytes": 3778,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_GetAccount.html",
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendBulkEmail.html",
+        "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html"
+      ],
+      "fichero_texto": "ses/4f2afe808b7c4344.md"
+    },
+    {
+      "id": "P-034",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/CommonErrors.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference-V2/CommonErrors.html",
+      "titulo": "Common Error Types",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "4f2afe808b7c434427e80b4f449dc7e25830d817fa74e6da2ae8a7abff5ccf60",
+      "bytes": 3778,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/4f2afe808b7c4344.md"
+    },
+    {
+      "id": "P-035",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_DeleteIdentityPolicy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_DeleteIdentityPolicy.html",
+      "titulo": "DeleteIdentityPolicy",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "13e24d6c376146b0ffe83df6c0a7cc01a203c17eec8344ffb3b3abc4159f5dce",
+      "bytes": 2889,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/13e24d6c376146b0.md"
+    },
+    {
+      "id": "P-036",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_GetIdentityPolicies",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_GetIdentityPolicies.html",
+      "titulo": "GetIdentityPolicies",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "1aee4d067d4645b31a8c69d6a13bb288ecf58326ee239f05f36c6737868cf092",
+      "bytes": 3481,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/1aee4d067d4645b3.md"
+    },
+    {
+      "id": "P-037",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_ListIdentityPolicies",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_ListIdentityPolicies.html",
+      "titulo": "ListIdentityPolicies",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "4b565029f4959261965ebfb8d40a6e71666fa087f584e4761f85555fd98a188d",
+      "bytes": 3091,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/4b565029f4959261.md"
+    },
+    {
+      "id": "P-038",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html",
+      "titulo": "Actions",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "e3899f8bd7b96c0f44ed4d7bdc1aad166e75e8e93a4fcd3ab35350c4efc41b40",
+      "bytes": 4613,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/e3899f8bd7b96c0f.md"
+    },
+    {
+      "id": "P-039",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_PutIdentityPolicy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_PutIdentityPolicy.html",
+      "titulo": "PutIdentityPolicy",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "f30258470817ec0bd9c5c9bc6caadb63d7e09ed9992a60f79d4cd943653a1959",
+      "bytes": 3359,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/f30258470817ec0b.md"
+    },
+    {
+      "id": "P-040",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_SendEmail.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_SendEmail.html",
+      "titulo": "SendEmail",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "5dfc5d43bd9aa0badaa599574e346d9c23cf30ecef57df65a6a31f904b7f0208",
+      "bytes": 9639,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/5dfc5d43bd9aa0ba.md"
+    },
+    {
+      "id": "P-041",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/API_UpdateConfigurationSetReputationMetricsEnabled",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/API_UpdateConfigurationSetReputationMetricsEnabled.html",
+      "titulo": "UpdateConfigurationSetReputationMetricsEnabled",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "dcb89a986209844c272db6eac99b147234eb7a46ed6d111513ec4299e26b12d5",
+      "bytes": 3007,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/dcb89a986209844c.md"
+    },
+    {
+      "id": "P-042",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/CommonErrors",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/CommonErrors.html",
+      "titulo": "Common Error Types",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "b153eb14c84adca02781802fab47f1914874a242b888ab08242d3624dabc35c7",
+      "bytes": 4328,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_SendEmail.html"
+      ],
+      "fichero_texto": "ses/b153eb14c84adca0.md"
+    },
+    {
+      "id": "P-043",
+      "url": "https://docs.aws.amazon.com/ses/latest/APIReference/CommonErrors.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/APIReference/CommonErrors.html",
+      "titulo": "Common Error Types",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "b153eb14c84adca02781802fab47f1914874a242b888ab08242d3624dabc35c7",
+      "bytes": 4328,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/",
+        "semilla"
+      ],
+      "fichero_texto": "ses/b153eb14c84adca0.md"
+    },
+    {
+      "id": "P-044",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/QueryInterface.Responses.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/Welcome.html",
+      "titulo": "What is Amazon SES?",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "5061a3b945bcf306eb454737d6e10289220dc46422c7a725dfa46b60863ae9b5",
+      "bytes": 3823,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/"
+      ],
+      "fichero_texto": "ses/5061a3b945bcf306.md"
+    },
+    {
+      "id": "P-045",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/SMTP.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/Welcome.html",
+      "titulo": "What is Amazon SES?",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "5061a3b945bcf306eb454737d6e10289220dc46422c7a725dfa46b60863ae9b5",
+      "bytes": 3823,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/blogs/messaging-and-targeting/how-to-handle-a-throttling-maximum-sending-rate-exceeded-error/"
+      ],
+      "fichero_texto": "ses/5061a3b945bcf306.md"
+    },
+    {
+      "id": "P-046",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/dedicated-ip-pools.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/dedicated-ip-pools.html",
+      "titulo": "Creating standard dedicated IP pools for dedicated IPs (standard)",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "0c5879cb532280b194ced1bf3b574359f8fd59b8588d5196b3996256a1dd29f1",
+      "bytes": 3781,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/0c5879cb532280b1.md"
+    },
+    {
+      "id": "P-047",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/mailbox-simulator.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/Welcome.html",
+      "titulo": "What is Amazon SES?",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "5061a3b945bcf306eb454737d6e10289220dc46422c7a725dfa46b60863ae9b5",
+      "bytes": 3823,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/5061a3b945bcf306.md"
+    },
+    {
+      "id": "P-048",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/request-production-access.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html",
+      "titulo": "Request production access (Moving out of the Amazon SES sandbox)",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "0bcc03cc4826737d2b03e542519e95475f0cc374de8d160276ad0fb7ffc87321",
+      "bytes": 7096,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/0bcc03cc4826737d.md"
+    },
+    {
+      "id": "P-049",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/send-email-smtp.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-smtp.html",
+      "titulo": "Using the Amazon SES SMTP interface to send email",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "53ff5a76f0841e117d0b1abe56a0d65e04c330cd0c630874f03f1b914742657c",
+      "bytes": 4131,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/53ff5a76f0841e11.md"
+    },
+    {
+      "id": "P-050",
+      "url": "https://docs.aws.amazon.com/ses/latest/DeveloperGuide/smtp-credentials.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html",
+      "titulo": "Obtaining Amazon SES SMTP credentials",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "fe1c89f20cf419ec3ab1972fecfda7cf1514477cbb5ff9b2d612d6dd64545445",
+      "bytes": 14379,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/fe1c89f20cf419ec.md"
+    },
+    {
+      "id": "P-051",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html",
+      "titulo": "Creating and verifying identities in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "a69e03b2a6efb5978a8be54c2ac2711375674f55db55ba2f6077b401618c4ce7",
+      "bytes": 48815,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_SendEmail.html",
+        "semilla"
+      ],
+      "fichero_texto": "ses/a69e03b2a6efb597.md"
+    },
+    {
+      "id": "P-052",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/dedicated-ip-warming.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/dedicated-ip-warming.html",
+      "titulo": "Warming up dedicated IP addresses (standard)",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "9bdf938c391dec2ff15a17a98fae402f76638697ab299f7113c93fb649a18be8",
+      "bytes": 7104,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/9bdf938c391dec2f.md"
+    },
+    {
+      "id": "P-053",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/dedicated-ip.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/dedicated-ip.html",
+      "titulo": "Dedicated IP addresses for Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "f7b3c56f14176c5b8a81cefc9d1286881237b4ce01c56b17afefac56382d2554",
+      "bytes": 10211,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://aws.amazon.com/ses/faqs/"
+      ],
+      "fichero_texto": "ses/f7b3c56f14176c5b.md"
+    },
+    {
+      "id": "P-054",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/eb-addons",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/eb-addons.html",
+      "titulo": "Email Add Ons",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "355092b6b76e4bbf37404a42ed63a5c3ee4697b88e6a5bc3dbd9b86c320e1180",
+      "bytes": 5071,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/eb.html"
+      ],
+      "fichero_texto": "ses/355092b6b76e4bbf.md"
+    },
+    {
+      "id": "P-055",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/eb-filters",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/eb-filters.html",
+      "titulo": "Traffic policies and policy statements",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "f8ff730b70c1bf7ce297fa3058c4526f69b37a880f6e040b22f86c64f163e632",
+      "bytes": 7828,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/eb-getting-started.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/eb.html"
+      ],
+      "fichero_texto": "ses/f8ff730b70c1bf7c.md"
+    },
+    {
+      "id": "P-056",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/eb-getting-started.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/eb-getting-started.html",
+      "titulo": "Getting started with Mail Manager",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "212da25f35c988c867078475c7912c6a4c2536a1f0ac9ce8eac200888a2818cf",
+      "bytes": 3473,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/212da25f35c988c8.md"
+    },
+    {
+      "id": "P-057",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/eb-policies",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/eb-policies.html",
+      "titulo": "Permission policies for Mail Manager",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "0afee1315ae01a2573d31ec3666328d1a0802fd8cabdabb36ef89250b76e4787",
+      "bytes": 19970,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/eb.html"
+      ],
+      "fichero_texto": "ses/0afee1315ae01a25.md"
+    },
+    {
+      "id": "P-058",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/eb-relay",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/eb-relay.html",
+      "titulo": "SMTP relay",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "1daf4d3dc043877860900bfb40c92dd14f242c7e8a92dc797a1bd0b439ce9146",
+      "bytes": 15216,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/eb.html"
+      ],
+      "fichero_texto": "ses/1daf4d3dc0438778.md"
+    },
+    {
+      "id": "P-059",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/eb.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/eb.html",
+      "titulo": "Mail Manager for Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "34296bd2b88a0a630f08d6160139e483557ebd667a8f49e01a13c5b2f724d136",
+      "bytes": 3196,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/34296bd2b88a0a63.md"
+    },
+    {
+      "id": "P-060",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+      "titulo": "Managing your Amazon SES sending limits",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "f42bc7b8676dd43108d65565a50da7260048b1789ebdbda2b79b27b036e78de2",
+      "bytes": 3977,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/f42bc7b8676dd431.md"
+    },
+    {
+      "id": "P-061",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-errors",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-errors.html",
+      "titulo": "Errors related to the sending quotas for your Amazon SES account",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "53ad9327939b9ae889848f31c95bfffaa84ac2d1c1c1b8d7670856eb238a2413",
+      "bytes": 2019,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html"
+      ],
+      "fichero_texto": "ses/53ad9327939b9ae8.md"
+    },
+    {
+      "id": "P-062",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-errors.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-errors.html",
+      "titulo": "Errors related to the sending quotas for your Amazon SES account",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "53ad9327939b9ae889848f31c95bfffaa84ac2d1c1c1b8d7670856eb238a2413",
+      "bytes": 2019,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/53ad9327939b9ae8.md"
+    },
+    {
+      "id": "P-063",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-monitor",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-monitor.html",
+      "titulo": "Monitoring your Amazon SES sending quotas",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "5ee2b6a6dd63c86365b6f956272543eeb04fb1416ff79aad865ddcc5d7dfe89a",
+      "bytes": 2210,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/5ee2b6a6dd63c863.md"
+    },
+    {
+      "id": "P-064",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-monitor.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-monitor.html",
+      "titulo": "Monitoring your Amazon SES sending quotas",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "5ee2b6a6dd63c86365b6f956272543eeb04fb1416ff79aad865ddcc5d7dfe89a",
+      "bytes": 2210,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/5ee2b6a6dd63c863.md"
+    },
+    {
+      "id": "P-065",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-request-increase",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-request-increase.html",
+      "titulo": "Increasing your Amazon SES sending quotas",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "bbeab91dba67eb265cef91bc1119f734ee0089d190130902a5e01d69a219fd8c",
+      "bytes": 3570,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-monitor.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/quotas.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/bbeab91dba67eb26.md"
+    },
+    {
+      "id": "P-066",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-request-increase.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas-request-increase.html",
+      "titulo": "Increasing your Amazon SES sending quotas",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "bbeab91dba67eb265cef91bc1119f734ee0089d190130902a5e01d69a219fd8c",
+      "bytes": 3570,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/bbeab91dba67eb26.md"
+    },
+    {
+      "id": "P-067",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+      "titulo": "Managing your Amazon SES sending limits",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "f42bc7b8676dd43108d65565a50da7260048b1789ebdbda2b79b27b036e78de2",
+      "bytes": 3977,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_SendEmail.html",
+        "semilla"
+      ],
+      "fichero_texto": "ses/f42bc7b8676dd431.md"
+    },
+    {
+      "id": "P-068",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/monitor-using-event-publishing",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/monitor-using-event-publishing.html",
+      "titulo": "Monitor email sending using Amazon SES event publishing",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "e301bf8262c6787cdafa3b41c3f9ce1084c5d2062b681ed335e2a4bce8c54e33",
+      "bytes": 9877,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/e301bf8262c6787c.md"
+    },
+    {
+      "id": "P-069",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/pricing-plans.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/pricing-plans.html",
+      "titulo": "Pricing plans",
+      "fecha_captura": "2026-10-23T15:01:42Z",
+      "sha256": "ed7e80037191708c5b3e52de0cff529838e4ff9b084e8347f77705f73621860b",
+      "bytes": 3469,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/ed7e80037191708c.md"
+    },
+    {
+      "id": "P-070",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/quotas",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/quotas.html",
+      "titulo": "Service quotas in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:42Z",
+      "sha256": "5d2ab47b5212bf654269a08186850f15234d2c75e9be99682e63da455dc586e8",
+      "bytes": 7397,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/5d2ab47b5212bf65.md"
+    },
+    {
+      "id": "P-071",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/quotas.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/quotas.html",
+      "titulo": "Service quotas in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:43Z",
+      "sha256": "5d2ab47b5212bf654269a08186850f15234d2c75e9be99682e63da455dc586e8",
+      "bytes": 7397,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/general/latest/gr/ses.html",
+        "semilla"
+      ],
+      "fichero_texto": "ses/5d2ab47b5212bf65.md"
+    },
+    {
+      "id": "P-072",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+      "titulo": "Regions and Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:43Z",
+      "sha256": "caf907306c905bf4c50b0a5f316c6f6742b9544596db10e96fc94f767e4e941f",
+      "bytes": 10518,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/caf907306c905bf4.md"
+    },
+    {
+      "id": "P-073",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/reputation-dashboard-dg",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/reputation-dashboard-dg.html",
+      "titulo": "Using reputation metrics to track bounce and complaint rates",
+      "fecha_captura": "2026-10-23T15:01:43Z",
+      "sha256": "f7bcc4bae6f3ebd9150154de9703b520368a4f9c5ea5619e5cf8c54803728a53",
+      "bytes": 4162,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html"
+      ],
+      "fichero_texto": "ses/f7bcc4bae6f3ebd9.md"
+    },
+    {
+      "id": "P-074",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/request-production-access",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html",
+      "titulo": "Request production access (Moving out of the Amazon SES sandbox)",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "0bcc03cc4826737d2b03e542519e95475f0cc374de8d160276ad0fb7ffc87321",
+      "bytes": 7096,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/manage-sending-quotas.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/sending-email-suppression-list.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/0bcc03cc4826737d.md"
+    },
+    {
+      "id": "P-075",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/request-production-access.html",
+      "titulo": "Request production access (Moving out of the Amazon SES sandbox)",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "0bcc03cc4826737d2b03e542519e95475f0cc374de8d160276ad0fb7ffc87321",
+      "bytes": 7096,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/0bcc03cc4826737d.md"
+    },
+    {
+      "id": "P-076",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html",
+      "titulo": "Sending test emails in Amazon SES with the simulator",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "7ed1ee103fa6657f8bebc02b10e03729b2c9d3d5ad3e4c2b2c23fb8145c88986",
+      "bytes": 10963,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/7ed1ee103fa6657f.md"
+    },
+    {
+      "id": "P-077",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim.html",
+      "titulo": "Authenticating Email with DKIM in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:45Z",
+      "sha256": "29ac7cfd7f7176b13141d5fc1fa3fa283700a53e1da52c90693b942b7e09e150",
+      "bytes": 6888,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html"
+      ],
+      "fichero_texto": "ses/29ac7cfd7f7176b1.md"
+    },
+    {
+      "id": "P-078",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-bring-your-own",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-bring-your-own.html",
+      "titulo": "Provide your own DKIM authentication token (BYODKIM) in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "f7b3dec48060f3474345c9a792e185b7ec00bc7b4c59e7a6e5589562e19a7f65",
+      "bytes": 15365,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html"
+      ],
+      "fichero_texto": "ses/f7b3dec48060f347.md"
+    },
+    {
+      "id": "P-079",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-deed",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-deed.html",
+      "titulo": "Using Deterministic Easy DKIM (DEED) in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "0bfadaf9c9d617d9c4ccde0d896470cd51e6cc9c5900ee2232b0c2354147b5b1",
+      "bytes": 9302,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html"
+      ],
+      "fichero_texto": "ses/0bfadaf9c9d617d9.md"
+    },
+    {
+      "id": "P-080",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-easy",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-easy.html",
+      "titulo": "Easy DKIM in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "5c05647220c0a549658cf59744a203cd774d742f1c08c84f43e159dc0f38fbd6",
+      "bytes": 5776,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html"
+      ],
+      "fichero_texto": "ses/5c05647220c0a549.md"
+    },
+    {
+      "id": "P-081",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-easy-managing",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-authentication-dkim-easy-managing.html",
+      "titulo": "Managing Easy DKIM and BYODKIM",
+      "fecha_captura": "2026-10-23T15:01:47Z",
+      "sha256": "9d411ade111270390adafb4d4a90ae5a0446e22bb33607ae7d61d9f393465a70",
+      "bytes": 12813,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html"
+      ],
+      "fichero_texto": "ses/9d411ade11127039.md"
+    },
+    {
+      "id": "P-082",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-concepts-credentials",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-concepts-credentials.html",
+      "titulo": "Types of Amazon SES credentials",
+      "fecha_captura": "2026-10-23T15:01:47Z",
+      "sha256": "f203f8cdd82584f7ecae0ea3601cd30bbab45e32d9c8b1f1759def5263078440",
+      "bytes": 3452,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/f203f8cdd82584f7.md"
+    },
+    {
+      "id": "P-083",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-concepts-process",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-concepts-process.html",
+      "titulo": "How email sending works in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "9abbabd6638346635396796ea66d4e6d514dc7b6a02b46dbc4d8cd7b2d533a1c",
+      "bytes": 8864,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/sending-email-suppression-list.html"
+      ],
+      "fichero_texto": "ses/9abbabd663834663.md"
+    },
+    {
+      "id": "P-084",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html",
+      "titulo": "Sending raw email using the Amazon SES API v2",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "27e8e366e8af91980826fd5ec18b3ecb0a8815035779d25cb84e034f6443c38d",
+      "bytes": 22227,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/send-an-email-from-console.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/27e8e366e8af9198.md"
+    },
+    {
+      "id": "P-085",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-raw.html",
+      "titulo": "Sending raw email using the Amazon SES API v2",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "27e8e366e8af91980826fd5ec18b3ecb0a8815035779d25cb84e034f6443c38d",
+      "bytes": 22227,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/APIReference/API_SendEmail.html"
+      ],
+      "fichero_texto": "ses/27e8e366e8af9198.md"
+    },
+    {
+      "id": "P-086",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-set-up-vpc-endpoints",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-set-up-vpc-endpoints.html",
+      "titulo": "Setting up VPC endpoints with Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "b0947bd8309128d9927c93dd2bf493f6341b2973e275a865f2dc47f676eda5ee",
+      "bytes": 8339,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html"
+      ],
+      "fichero_texto": "ses/b0947bd8309128d9.md"
+    },
+    {
+      "id": "P-087",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-smtp",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-smtp.html",
+      "titulo": "Using the Amazon SES SMTP interface to send email",
+      "fecha_captura": "2026-10-23T15:01:49Z",
+      "sha256": "53ff5a76f0841e117d0b1abe56a0d65e04c330cd0c630874f03f1b914742657c",
+      "bytes": 4131,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/quotas.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/53ff5a76f0841e11.md"
+    },
+    {
+      "id": "P-088",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-email-smtp-client-command-line",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-email-smtp-client-command-line.html",
+      "titulo": "Testing your connection to the Amazon SES SMTP interface using the command line",
+      "fecha_captura": "2026-10-23T15:01:49Z",
+      "sha256": "2786c327a09e2483f24c8b7b9ce8f1895ed981c935095863c1b8e01c2c0d4073",
+      "bytes": 13979,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/2786c327a09e2483.md"
+    },
+    {
+      "id": "P-089",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/send-personalized-email-api.html",
+      "titulo": "Using templates to send personalized email with the Amazon SES API",
+      "fecha_captura": "2026-10-23T15:01:50Z",
+      "sha256": "e7d4be5303b3a9aa33fac3608c734066ca39ecdc15c277282049a13f95e56934",
+      "bytes": 22999,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/e7d4be5303b3a9aa.md"
+    },
+    {
+      "id": "P-090",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-list-management.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-list-management.html",
+      "titulo": "Using list management",
+      "fecha_captura": "2026-10-23T15:01:50Z",
+      "sha256": "d135863de10e757847e8e5f79ca6dfa644928586206497f705d752cb7d9dbb81",
+      "bytes": 16275,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/d135863de10e7578.md"
+    },
+    {
+      "id": "P-091",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-subscription-management",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-subscription-management.html",
+      "titulo": "Using subscription management",
+      "fecha_captura": "2026-10-23T15:01:50Z",
+      "sha256": "ee36df5eddd79b11a303280679f5e98879a6f1b1b397e5db4a44a66e3f668b82",
+      "bytes": 6748,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/sending-email-list-management.html"
+      ],
+      "fichero_texto": "ses/ee36df5eddd79b11.md"
+    },
+    {
+      "id": "P-092",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-suppression-list",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-suppression-list.html",
+      "titulo": "Using the Amazon SES account-level suppression list",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "09c7600156add966b06a6cc1bbb5d31d3b8baa593500cacec5558590f3d47ff8",
+      "bytes": 38333,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/sending-email-list-management.html"
+      ],
+      "fichero_texto": "ses/09c7600156add966.md"
+    },
+    {
+      "id": "P-093",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-suppression-list.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/sending-email-suppression-list.html",
+      "titulo": "Using the Amazon SES account-level suppression list",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "09c7600156add966b06a6cc1bbb5d31d3b8baa593500cacec5558590f3d47ff8",
+      "bytes": 38333,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/09c7600156add966.md"
+    },
+    {
+      "id": "P-094",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html",
+      "titulo": "Connecting to an Amazon SES SMTP endpoint",
+      "fecha_captura": "2026-10-23T15:01:52Z",
+      "sha256": "54ca2ae3d071dbdf9b4501e07ce73c2cc85e42a67fc199945debb21a87b1bf2c",
+      "bytes": 2733,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/54ca2ae3d071dbdf.md"
+    },
+    {
+      "id": "P-095",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html",
+      "titulo": "Connecting to an Amazon SES SMTP endpoint",
+      "fecha_captura": "2026-10-23T15:01:52Z",
+      "sha256": "54ca2ae3d071dbdf9b4501e07ce73c2cc85e42a67fc199945debb21a87b1bf2c",
+      "bytes": 2733,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/54ca2ae3d071dbdf.md"
+    },
+    {
+      "id": "P-096",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html",
+      "titulo": "Obtaining Amazon SES SMTP credentials",
+      "fecha_captura": "2026-10-23T15:01:52Z",
+      "sha256": "fe1c89f20cf419ec3ab1972fecfda7cf1514477cbb5ff9b2d612d6dd64545445",
+      "bytes": 14379,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/fe1c89f20cf419ec.md"
+    },
+    {
+      "id": "P-097",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/smtp-credentials.html",
+      "titulo": "Obtaining Amazon SES SMTP credentials",
+      "fecha_captura": "2026-10-23T15:01:53Z",
+      "sha256": "fe1c89f20cf419ec3ab1972fecfda7cf1514477cbb5ff9b2d612d6dd64545445",
+      "bytes": 14379,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/fe1c89f20cf419ec.md"
+    },
+    {
+      "id": "P-098",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html",
+      "titulo": "Amazon SES email sending errors",
+      "fecha_captura": "2026-10-23T15:01:53Z",
+      "sha256": "3e2e20fd11518064760c0e98529d4798220114cb4498ac536cbd5dfae0d47495",
+      "bytes": 7595,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/3e2e20fd11518064.md"
+    },
+    {
+      "id": "P-099",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html",
+      "titulo": "Amazon SES SMTP issues",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "712b090d809c717019fe343a42ab628ce137458acfa39375ba9f703343063d76",
+      "bytes": 11653,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/smtp-connect.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html"
+      ],
+      "fichero_texto": "ses/712b090d809c7170.md"
+    },
+    {
+      "id": "P-100",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html",
+      "titulo": "Amazon SES SMTP issues",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "712b090d809c717019fe343a42ab628ce137458acfa39375ba9f703343063d76",
+      "bytes": 11653,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/712b090d809c7170.md"
+    },
+    {
+      "id": "P-101",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/vdm.html",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/vdm.html",
+      "titulo": "Virtual Deliverability Manager for Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "f517a45dde80be5ba4f38ce27acc954f182b388403ee2b774808a154f51bc1a2",
+      "bytes": 1619,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/f517a45dde80be5b.md"
+    },
+    {
+      "id": "P-102",
+      "url": "https://docs.aws.amazon.com/ses/latest/dg/verify-addresses-and-domains",
+      "url_final": "https://docs.aws.amazon.com/ses/latest/dg/verify-addresses-and-domains.html",
+      "titulo": "Verified identities in Amazon SES",
+      "fecha_captura": "2026-10-23T15:01:55Z",
+      "sha256": "a7294d8aa1c2c9f91b3a9b4878a2c7ca44e4f29b1f5a31526205ea078bca411f",
+      "bytes": 1526,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/ses/latest/dg/creating-identities.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/regions.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-error-messages.html",
+        "https://docs.aws.amazon.com/ses/latest/dg/troubleshoot-smtp.html"
+      ],
+      "fichero_texto": "ses/a7294d8aa1c2c9f9.md"
+    },
+    {
+      "id": "P-103",
+      "url": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_CreateTrafficPolicy",
+      "url_final": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_CreateTrafficPolicy.html",
+      "titulo": "CreateTrafficPolicy",
+      "fecha_captura": "2026-10-23T15:01:56Z",
+      "sha256": "17b93805283132e8c0b553641a4b99b8cebdcf5e0c2a27a0c8a6a5c7d76b40d5",
+      "bytes": 5346,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/17b93805283132e8.md"
+    },
+    {
+      "id": "P-104",
+      "url": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_DeleteTrafficPolicy",
+      "url_final": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_DeleteTrafficPolicy.html",
+      "titulo": "DeleteTrafficPolicy",
+      "fecha_captura": "2026-10-23T15:01:56Z",
+      "sha256": "1d6676a09ea659728f49da07800f26bc3116a8dbcec6f39d69e2916346cc37f5",
+      "bytes": 2828,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/1d6676a09ea65972.md"
+    },
+    {
+      "id": "P-105",
+      "url": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_GetTrafficPolicy",
+      "url_final": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_GetTrafficPolicy.html",
+      "titulo": "GetTrafficPolicy",
+      "fecha_captura": "2026-10-23T15:01:56Z",
+      "sha256": "25f271c562e9fe5e3f41ad2369fb8857f2ea76b3c234003b0076f03125b5a0b9",
+      "bytes": 5152,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/25f271c562e9fe5e.md"
+    },
+    {
+      "id": "P-106",
+      "url": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_ListTrafficPolicies",
+      "url_final": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_ListTrafficPolicies.html",
+      "titulo": "ListTrafficPolicies",
+      "fecha_captura": "2026-10-23T15:01:57Z",
+      "sha256": "7b7a8a051d41860039080f5bd5cf6e3d5e3b506d9523aece594e8c5a0094a42e",
+      "bytes": 3981,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/7b7a8a051d418600.md"
+    },
+    {
+      "id": "P-107",
+      "url": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html",
+      "url_final": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html",
+      "titulo": "Actions",
+      "fecha_captura": "2026-10-23T15:01:57Z",
+      "sha256": "fcf2b6fbd8d85084f577db0dae9e2ff6a22732bc40d62d5e035b977f685e4c31",
+      "bytes": 3135,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "ses/fcf2b6fbd8d85084.md"
+    },
+    {
+      "id": "P-108",
+      "url": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_UpdateTrafficPolicy",
+      "url_final": "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_UpdateTrafficPolicy.html",
+      "titulo": "UpdateTrafficPolicy",
+      "fecha_captura": "2026-10-23T15:01:57Z",
+      "sha256": "db0f56e402ba18e969975d2f18db3c712f214e74bc672a298a58618fbbc58468",
+      "bytes": 4435,
+      "content_type": "text/markdown",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/API_Operations.html"
+      ],
+      "fichero_texto": "ses/db0f56e402ba18e9.md"
+    }
+  ],
+  "resumen": {
+    "incluidas": 108,
+    "capturadas": 101,
+    "fallidas": 7,
+    "con_aviso": 0
+  }
+}

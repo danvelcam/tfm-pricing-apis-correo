@@ -1,0 +1,215 @@
+schema_version: "2.3"
+
+generator:
+  platform: "Claude"
+  provider: "Anthropic"
+  model: "claude-opus-5-5"
+  skill: "saas-interface-channel-analyzer"
+  skill_version: "3.0"
+
+generated_at: "2026-10-15T23:02:05+02:00"
+evidence_checked_at: "2026-10-15T23:04:25+02:00"
+
+input:
+  resolver_skill_version: "1.1"
+  resolver_generated_at: "2026-10-15T22:54:40+02:00"
+  query: "Resend"
+  resolved_as: autonomous_service
+
+outcome: analyzed
+outcome_reason: null
+
+service:
+  name: "Email API"
+  classification: autonomous_service
+  provider: "Resend"
+  base_services: []
+  conditional_on_resolver: false
+
+scope:
+  index_pages:
+    - { kind: docs_home, source: s1 }
+    - { kind: developer_portal, source: s2 }
+    - { kind: help_center, source: s3 }
+    - { kind: integrations, source: s4 }
+  index_entries:
+    - { entry: ["Introduction", "Email types", "AI onboarding", "SDKs", "CLI", "MCP Server", "Integrations", "Sending", "Receiving", "Templates", "Logs", "Webhooks"], page: s1, disposition: covered, service: null }
+    - { entry: ["Create API key", "Add domain", "Examples", "Domains", "Settings", "API keys"], page: s1, disposition: not_access, service: null }
+    - { entry: "Broadcasts", page: s1, disposition: other_service, service: "Broadcasts" }
+    - { entry: "Automations", page: s1, disposition: other_service, service: "Automations" }
+    - { entry: ["Emails", "Domains API", "API Keys API", "Templates API", "Webhooks API", "Logs API", "Suppressions API", "OAuth"], page: s2, disposition: covered, service: null }
+    - { entry: ["Broadcasts API", "Contacts API", "Segments API", "Topics API", "Contact Properties API"], page: s2, disposition: other_service, service: "Broadcasts" }
+    - { entry: ["Automations API", "Events API"], page: s2, disposition: other_service, service: "Automations" }
+    - { entry: "Inboxes API", page: s2, disposition: other_service, service: "Inboxes" }
+    - { entry: ["Domains & Verification", "DNS Guides", "Deliverability", "Sending guides", "Troubleshooting"], page: s3, disposition: not_access, service: null }
+    - { entry: "Tutorials", page: s3, disposition: covered, service: null }
+    - { entry: ["Coding agents", "AI", "No-code", "Notifications", "Content Management Systems", "Developer tools"], page: s4, disposition: covered, service: null }
+    - { entry: "Build your own integration", page: s4, disposition: not_access, service: null }
+  attribution_pages_used: 0
+
+sources:
+  - { id: s1, url: "https://resend.com/docs/introduction" }
+  - { id: s2, url: "https://resend.com/docs/api-reference/introduction.md" }
+  - { id: s3, url: "https://resend.com/docs/knowledge-base/introduction.md" }
+  - { id: s4, url: "https://resend.com/docs/integrations.md" }
+  - { id: s5, url: "https://resend.com/docs/email-types.md" }
+  - { id: s6, url: "https://resend.com/docs/send-with-smtp.md" }
+  - { id: s7, url: "https://resend.com/docs/cli.md" }
+  - { id: s8, url: "https://resend.com/docs/mcp-server.md" }
+  - { id: s9, url: "https://resend.com/docs/webhooks/introduction.md" }
+  - { id: s10, url: "https://resend.com/docs/dashboard/receiving/introduction.md" }
+  - { id: s11, url: "https://resend.com/pricing.md" }
+  - { id: s12, url: "https://resend.com/docs/knowledge-base/n8n-integration.md" }
+
+interfaces:
+  - name: "Resend Dashboard"
+    channel: Interactive
+    technology: "Web application at resend.com, in the browser"
+    rationale: "The consumer acts by manipulating views, forms and editors of a persistent, navigable representation of emails, domains, logs and templates."
+    mechanisms: ["Web dashboard", "Template editor", "Emails and Logs pages", "In-app documentation"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s5, excerpt: "All of these email features and activities are also available through a user-friendly Dashboard and through AI tooling for agents." }
+
+  - name: "Resend MCP Server"
+    channel: Agentic
+    technology: "Remote MCP server at mcp.resend.com over Streamable HTTP, with OAuth or an API key as Bearer token; installed through the Resend plugin in coding agents"
+    rationale: "The contract exposes semantically described tools that an agent discovers and selects by goal."
+    mechanisms: ["Remote MCP server", "Resend plugin for coding agents (Cursor, Claude, Claude Code, Codex, Antigravity, Devin, Gemini, GitHub Copilot, OpenCode, Zed, Warp, Hermes, OpenClaw, Grok Bot)"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s5, excerpt: "Resend also provides an MCP server, agent skills, and more to work with your preferred AI builder and tooling." }
+      - { source: s8, excerpt: "Among other benefits, it provides LLMs tools to act on your behalf." }
+
+  - name: "Resend assistant"
+    channel: Conversational
+    technology: "Natural-language assistant inside the Resend web dashboard"
+    rationale: "Actions are expressed as natural-language messages that the service interprets to draft emails or answer questions."
+    mechanisms: ["AI assistant in the dashboard"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s11, excerpt: "Drafting an email or an automation through the Resend assistant in the dashboard" }
+      - { source: s11, excerpt: "Asking the Resend assistant questions is also free." }
+
+  - name: "Webhooks"
+    channel: Event
+    technology: "HTTPS POST requests with JSON payloads to a consumer endpoint, signed, with retries and replays"
+    rationale: "The service initiates delivery when subscribed email, domain or contact events occur, to an endpoint the consumer controls."
+    mechanisms: ["Webhooks", "email.received inbound notification"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s9, excerpt: "Resend provides webhooks, which are real-time HTTPS requests that tell your application an event occurred, such as an email delivery notification or subscription status update." }
+
+  - name: "REST API"
+    channel: Programmatic
+    technology: "HTTPS REST API at api.resend.com with Bearer authentication"
+    rationale: "The consumer explicitly invokes provider-defined operations through structured HTTP requests."
+    mechanisms: ["REST API", "Batch Email API", "Receiving API"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s5, excerpt: "With a Resend Transactional Plan, you can send transactional emails from your application using the Resend API, the Resend CLI, or with SMTP." }
+      - { source: s2, excerpt: "The Resend API is built on REST principles." }
+
+  - name: "SMTP relay"
+    channel: Programmatic
+    technology: "SMTP submission at smtp.resend.com on ports 25, 465, 587, 2465 and 2587, with SMTP authentication using an API key as password"
+    rationale: "The consumer explicitly submits messages through the structured SMTP command protocol, with its own host and authentication."
+    mechanisms: ["SMTP relay"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s6, excerpt: "Learn how to integrate Resend via SMTP." }
+      - { source: s11, excerpt: "Send emails at scale through a reliable SMTP server." }
+
+  - name: "Resend CLI"
+    channel: Programmatic
+    technology: "Command-line tool for macOS, Linux and Windows (install script, npm, Homebrew, PowerShell)"
+    rationale: "The consumer invokes provider-defined commands with flags; prompts only collect missing parameters of the command being invoked."
+    mechanisms: ["Resend CLI", "resend webhooks listen", "resend emails receiving listen"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s7, excerpt: "It covers the full API surface and is built for humans, AI agents, and CI/CD pipelines." }
+      - { source: s7, excerpt: "Send an email. Provide all options via flags for scripting, or let the CLI prompt interactively for missing fields." }
+
+  - name: "Inbound email"
+    channel: Programmatic
+    technology: "Inbound SMTP through MX records on a verified domain or the Resend-managed resend.app subdomain"
+    rationale: "Each message received at the domain is taken literally and turned into a received-email record with parsed content and attachments, not interpreted as a request."
+    mechanisms: ["Inbound email", "Resend-managed receiving subdomain"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s10, excerpt: "Once you add the MX record to your custom domain, you will receive emails through Resend for any address at that domain." }
+
+  - name: "Resend node for n8n"
+    channel: Programmatic
+    technology: "Official n8n community node (n8n-nodes-resend) published by Resend for the n8n workflow platform"
+    rationale: "The consumer explicitly invokes provider-defined operations configured as nodes in an n8n workflow."
+    mechanisms: ["n8n node"]
+    requires: ["Email API"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "The official Resend node (n8n-nodes-resend) provides full coverage of the Resend API." }
+
+pending: []
+
+excluded:
+  - mechanism: ["Official SDKs", "API keys", "OAuth 2.1 client flow", "Resend skills", "React Email", "Chat SDK adapter", "Webhook Ingester"]
+    reason: not_an_interface
+    service: null
+    detail: "Client libraries, authentication methods and customization artifacts"
+  - mechanism: "Local MCP server"
+    reason: another_deployment
+    service: null
+    detail: "Same MCP contract run by the consumer from the open-source repository"
+  - mechanism: ["Zapier", "Pipedream", "Activepieces", "Make.com", "Monkedo", "Lindy", "BuildShip", "viaSocket", "Stacksync", "Post SMTP", "Softr", "Attio", "Gravity Forms", "Email Element", "v0", "Lovable", "Anything", "Wildcard", "mcp.run", "Rocket", "Base44", "Leap.new", "Parsley", "Pica", "camelAI", "Courier", "Novu", "Knock", "Engagespot", "Dittofeed", "Suprsend", "Payload CMS", "Strapi CMS", "Raycast", "Convex", "Inngest", "Upstash", "Encore", "Trigger.dev", "Infisical", "Fastgen", "Medusa", "OpenMeter", "Invopop", "Tinybird", "PostHog", "Coolify", "Courrier", "Auth0", "Kinde", "Pulsetic", "brin", "Playrunner", "Appwrite", "Eve", "OpenClaw Gateway"]
+    reason: third_party
+    service: null
+    detail: "Integrations built and documented by third parties on their own platforms"
+  - mechanism: ["Vercel Marketplace", "Stripe Projects", "Laravel Cloud", "Billing settings", "Support"]
+    reason: provider_relationship
+    service: null
+    detail: "Account provisioning, billing and support"
+  - mechanism: ["Broadcast editor", "Contacts and Segments pages"]
+    reason: other_service
+    service: "Broadcasts"
+    detail: "Sections of the shared dashboard for the marketing service"
+  - mechanism: "Automations workflow builder"
+    reason: other_service
+    service: "Automations"
+    detail: "Section of the shared dashboard"
+  - mechanism: "Inboxes"
+    reason: other_service
+    service: "Inboxes"
+    detail: "Agent and team inboxes reached through the shared API, MCP and dashboard"
+  - mechanism: "Data export emails"
+    reason: part_of_client
+    service: null
+    detail: "Download link sent after an export started in the dashboard"
+  - mechanism: ["Mobile app", "Desktop app"]
+    reason: not_found
+    service: null
+    detail: "Documentation index, help center and integrations page checked; no first-party mobile or desktop client"
+  - mechanism: "Terminal TUI"
+    reason: not_found
+    service: null
+    detail: "The CLI documentation describes commands and flags only, with parameter prompts"
+  - mechanism: "Outbound email notifications"
+    reason: not_found
+    service: null
+    detail: "No subscribable email notification of account activity found; event notifications go through webhooks"
+
+summary:
+  interfaces: 9
+  channels: [Interactive, Agentic, Conversational, Event, Programmatic]
+  multi_interface: true
+  multi_channel: true
+  verdict_provisional: false
+
+notes: []

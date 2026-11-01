@@ -6,7 +6,7 @@
 # Lo que no cabe en esta sintaxis está en no_admite.md (R21), no aquí.
 saasName: Mailgun
 syntaxVersion: '3.0'
-version: '2026-09-21'
+version: '2026-10-31'
 url: https://www.mailgun.com/pricing/
 createdAt: '2026-09-21'
 currency: USD
@@ -219,7 +219,7 @@ usageLimits:
     linkedFeatures:
       - bounceImport
   maxTemplates:
-    description: 'Plantillas de la cuenta, con 40 versiones cada una [DS:121, DS:343]'
+    description: 'Plantillas de cada dominio de envío, con 40 versiones cada una [DS:121, DS:343]'
     valueType: NUMERIC
     defaultValue: 100
     unit: template

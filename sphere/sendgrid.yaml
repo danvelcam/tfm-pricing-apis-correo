@@ -6,7 +6,7 @@
 # Lo que no cabe en esta sintaxis está en no_admite.md (R21), no aquí.
 saasName: SendGrid
 syntaxVersion: '3.0'
-version: '2026-09-06'
+version: '2026-10-31'
 url: https://www.twilio.com/en-us/products/email-api/pricing
 createdAt: '2026-09-06'
 currency: USD
@@ -25,7 +25,7 @@ features:
     integrationType: API
     tag: Envío
   smtpRelay:
-    description: 'Canal SMTP; la prueba lo cuenta en la misma cuota diaria que la API [DS:189, DS:230-231]'
+    description: 'Canal SMTP; la prueba lo cuenta en la misma cuota diaria que la API [DS:189, DS:230]'
     valueType: BOOLEAN
     defaultValue: true
     type: INTEGRATION
@@ -145,7 +145,7 @@ usageLimits:
     description: 'Tamaño de la petición con adjuntos; 30 MiB inclusive, medido en sandbox [DS:95-98, DS:186, DS:210]'
     valueType: NUMERIC
     defaultValue: 30
-    unit: MB
+    unit: MiB
     type: NON_RENEWABLE
     trackable: false
     linkedFeatures:
@@ -164,15 +164,6 @@ usageLimits:
     valueType: NUMERIC
     defaultValue: 10000
     unit: connection
-    type: NON_RENEWABLE
-    trackable: false
-    linkedFeatures:
-      - smtpRelay
-  smtpRecipientsPerMessage:
-    description: 'Destinatarios por mensaje SMTP, diez veces el tope de la API [DS:231]'
-    valueType: NUMERIC
-    defaultValue: 10000
-    unit: recipient
     type: NON_RENEWABLE
     trackable: false
     linkedFeatures:

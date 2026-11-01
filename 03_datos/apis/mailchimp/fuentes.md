@@ -99,7 +99,9 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
     o más correos electrónicos (40 o más bloques) durante los primeros 12 (doce) meses de
     servicio [...] El plan Essentials no es elegible para el Correo Electrónico
     Transaccional."`
-  - Precios por volumen alto sin cifra (>161 bloques): `"Nuestros precios se adaptan a las
+  - Precio negociado por debajo de $10 para más de 161 bloques *(etiqueta corregida el
+    2026-10-31: decía «sin cifra (>161 bloques)», y la fila `"161+ bloques | 4M+ emails |
+    $10/bloque"` de arriba sí da precio)*: `"Nuestros precios se adaptan a las
     necesidades de gran volumen con tarifas por bloque más bajas para volúmenes más altos.
     Contáctanos para obtener más información sobre nuestros precios para grandes
     volúmenes."`
@@ -145,6 +147,10 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
   - Encolado asíncrono (umbral no fijado en esta frase — ver «no encontradas»): `"We queue
     these messages to process asynchronously, and will send them as soon as possible,
     usually within seconds."`
+  - **Corregido el 2026-10-31 (verificador).** El umbral sí está en la página, en la lista que
+    precede a esa frase: `"These cases include: Emails sent with attachments Emails with more
+    than 10 recipients"`. Ya estaba en la captura de Wayback del 2026-03-12, así que es un
+    defecto del registro y no un cambio de la oferta. Coincide con lo medido el 2026-09-21.
 - **Observación crítica.** El tope de payload (<10MB por llamada) y el tope de mensaje con
   adjuntos (≤25MB) conviven en la misma página: un mensaje de 25MB en base64 no cabría en una
   llamada de <10MB. No son dos literales estrictamente excluyentes sobre el mismo campo — uno
@@ -209,6 +215,10 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
 - **Observación:** único rate con valor numérico, ventana y mecanismo de reposición
   publicados en toda la documentación revisada — y es de un endpoint concreto
   (`/messages/search`), no del envío. Confirma B8: se declara en el endpoint, no en el plan.
+- **Releída el 2026-10-31 (verificador, E3).** La URL da 404, también con JavaScript. La
+  documentación migró entre el 3 y el 5 de octubre, y la nota ya no tiene página propia. El
+  texto sigue literal en el índice [F17], en la entrada `"Apr 10, 2023"`, y la captura de
+  Wayback del 2026-07-11 lo trae en la URL antigua. La línea del YAML apunta ahora al índice.
 
 ## [F8] API reference — Messages (índice de endpoints)
 
@@ -247,6 +257,11 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
   are returned. This method may be called up to 20 times per minute."`
 - **Observación:** el propio endpoint publica el mismo rate que [F7] (20/min), en la página
   de referencia y no solo en la nota de versión — doble confirmación, no discrepancia.
+- **Releída el 2026-10-31 (verificador, E3).** La URL da 404. La página que la sucede,
+  `/api/messages/search`, solo trae `"If no date range is specified, results within the last 7
+  days are returned."`: ni el 20 por minuto ni el 429 están entre sus errores. La frase del
+  límite sigue en la captura de Wayback del 2026-04-21 de la URL antigua. Del 20 por minuto solo
+  queda la nota de versión, en el índice [F17].
 
 ## [F11] API reference — `POST /rejects/list`
 
@@ -282,6 +297,12 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
   cancel your account."`
 - **Observación:** consecuencia de suspensión/recargo por incumplimiento de AUP; es política
   (B4), no un tope de capacidad.
+- **Cita corregida el 2026-10-31 (verificador).** La de arriba no es el literal inglés, sino
+  una retrotraducción del castellano (`"le podemos cobrar a la tarifa del Plan de Marketing
+  Pago equivalente o cancelar su cuenta"`). La página en inglés dice, hoy y en la captura del
+  2026-09-21: `"If you use Transactional Email to send bulk emails in violation of our
+  Acceptable Use Policy, then we may charge you at the comparable Paid Marketing Plan rate or
+  terminate your account."` El sentido es el mismo.
 
 ---
 
@@ -298,6 +319,11 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
   discrepancia, es corroboración. Esta cita concreta llegó por resumen de herramienta y no
   por transcripción directa; el literal de [F4] es el de mayor confianza para citar el
   mecanismo, y este queda como refuerzo.
+- **Refutada el 2026-10-31 (verificador).** La página no lo dice, ni hoy ni en la captura de
+  Wayback de mayo, en inglés ni en castellano. Trata de cómo los proveedores de buzón limitan
+  las campañas, y no menciona Transactional, la cuota horaria ni ningún 5 %. La cita llegó por
+  resumen de herramienta, como ya avisaba la observación. El dato se queda con [F4] y la URL
+  sale de la línea del YAML.
 
 ## [F15] Help Center — Transactional Email Demo
 
@@ -318,6 +344,12 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
   días de retención son de la cuenta demo; ninguna fuente revisada publica la cifra para
   cuenta de pago, y una no se infiere de la otra. Es límite de recurso y no cuota (B3/B4): no
   entra en `capacity`.
+- **Corregido el 2026-10-31 (verificador).** La cifra para la cuenta de pago sí está publicada,
+  en una página que no estaba entre las revisadas,
+  `https://mailchimp.com/developer/transactional/docs/activity-reports/`: `"keeps a copy of the
+  HTML and text parts of emails you’ve sent for 30 days"`, `"Overall statistics … are stored
+  indefinitely"` y `"data about bounced messages is only kept for 90 days"`. Ya lo decía en la
+  captura de Wayback del 2026-07-30.
 
 ## [F16] Developer docs — Authentication and delivery
 
@@ -343,6 +375,11 @@ literal. La numeración [Fn] es la que referencia `datasheet.yaml`.
 - **Observación:** cuatro entradas relacionadas con Transactional encontradas entre 2023 y
   2025; ninguna cambia una cifra de rate o cuota. Recomendado releer cada nota individual
   antes de dar estas dos citas por verdes.
+- **Releída el 2026-10-31 (verificador).** Desde la migración de octubre, el índice es la única
+  página que conserva la nota del límite de búsqueda, en la entrada `"Apr 10, 2023"`: `"If you
+  exceed the limit of 20 searches per minute, we’ll now return a 429 Too Many Requests response
+  code. You can retry your request 60 seconds after you sent the first of the original 20
+  requests."` Es la fuente de esa línea del YAML. Volcado en `evidencias/paginas/2026-10-31/`.
 
 ---
 
@@ -516,6 +553,11 @@ sigue las reglas D11/D3/D8 mientras la discrepancia viva.
   discutida (ver `metadata.data_provenance`).
 - **Efecto declarado:** no excluyente entre autoría del fichero y lugar de publicación —son
   preguntas distintas, D15— · campo `type` sube a 🟢 por quedar el test C2/D9 entero
+- **Releída el 2026-10-31 (verificador, E3).** Lo que esta entrada dejaba sin constar ya
+  consta. Desde la migración de octubre, `llms.txt` enlaza `openapi.json`, un índice que lleva a
+  `openapi/api-reference-2.json`: es OpenAPI 3.1.0 y declara como servidor
+  `https://mandrillapp.com/api/1.4`. El 2026-09-21 la ausencia era cierta. No cambia ningún
+  valor ni ningún color.
 
 ### DISC-02 · La ventana de reinicio del límite de modo de pruebas
 
@@ -554,10 +596,10 @@ Deduplicado de los siete frentes documentales del 2026-09-21.
 | Límite de concurrencia de la API REST (peticiones/conexiones simultáneas) | No publicado — ninguna cifra en fundamentals/ ni outbound-email/. |
 | Rate de velocidad (req/s o req/min) para `/messages/send` y el resto de endpoints de envío | No publicado — el único rate con cifra en toda la documentación es el de `/messages/search`, 20/min ([F7], [F10]). |
 | Límite o registros específico de `/messages/send-template` distinto del general | No encontrado — la página propia del endpoint ([F9]) no menciona cifras propias. |
-| Umbral exacto de destinatarios que fuerza el envío asíncrono forzoso («more than 10 recipients») | No hay cita oficial con el número; [F4] confirma el encolado asíncrono en general, sin fijar el umbral en la frase transcrita. El «10» circula en fuentes de terceros sin respaldo oficial. |
+| Umbral exacto de destinatarios que fuerza el envío asíncrono forzoso («more than 10 recipients») | **Corregido el 2026-10-31: sí publicado en [F4]**, `"Emails with more than 10 recipients"`. Lo que sigue es el texto original de la fila. No hay cita oficial con el número; [F4] confirma el encolado asíncrono en general, sin fijar el umbral en la frase transcrita. El «10» circula en fuentes de terceros sin respaldo oficial. |
 | Consumo compuesto por destinatario (F-03): si N destinatarios en `to` cuentan como N unidades de cuota o como 1 por llamada | No verificable con fuente oficial accesible — el artículo del Zendesk de Mandrill que lo trataría (`mandrill.zendesk.com/hc/en-us/articles/360038783814-How-Transactional-Email-Billing-Works`) devolvió HTTP 403 Forbidden en esta pasada. |
 | Endpoint de envío por lotes (*batch*) propiamente dicho | No existe — confirmado por el índice de endpoints [F8]: el envío múltiple ocurre dentro de una sola llamada a `/messages/send` vía el array `to`. |
-| Especificación OpenAPI/Swagger servida **desde el dominio del proveedor** (`mailchimp.com`/`mandrillapp.com`) | No localizada. La propia referencia oficial de la API ([F19]) tampoco la enlaza ni la menciona, comprobado con navegador el 2026-09-21. El fichero de GitHub del proveedor sí puede citarse como fuente oficial por **D15** (organización `mailchimp`); lo que no consta es que el proveedor la sirva desde su propio dominio — es la mitad de DISC-01 que la regla no cierra, y sigue así. |
+| Especificación OpenAPI/Swagger servida **desde el dominio del proveedor** (`mailchimp.com`/`mandrillapp.com`) | **Desde octubre de 2026, servida**: `openapi/api-reference-2.json` (ver DISC-01, relectura del 2026-10-31). El 2026-09-21: No localizada. La propia referencia oficial de la API ([F19]) tampoco la enlaza ni la menciona, comprobado con navegador el 2026-09-21. El fichero de GitHub del proveedor sí puede citarse como fuente oficial por **D15** (organización `mailchimp`); lo que no consta es que el proveedor la sirva desde su propio dominio — es la mitad de DISC-01 que la regla no cierra, y sigue así. |
 | Códigos HTTP 429 y 403 en la tabla oficial de errores | Ausentes los dos — [F5] solo lista 401 (tres variantes), 404 (cuatro variantes) y 405. El exceso de envío se modela como *backlog*, no como rechazo HTTP. |
 | Cabeceras de rate limit (`X-RateLimit-*`, `Retry-After` o nombre propio) | No encontradas en ninguna página oficial revisada. Una búsqueda general devolvió solo un resumen genérico de una herramienta de búsqueda, sin URL de página oficial concreta que lo respalde — no se adopta (regla equivalente a D6). |
 | Página dedicada de referencia de errores, distinta de `fundamentals/` | No existe — todo el catálogo de errores vive en esa única página. |

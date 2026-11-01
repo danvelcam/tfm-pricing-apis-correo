@@ -1,0 +1,173 @@
+schema_version: "2.3"
+generator:
+  platform: "Claude"
+  provider: "Anthropic"
+  model: "claude-opus-5-5"
+  skill: "saas-interface-channel-analyzer"
+  skill_version: "3.0"
+generated_at: "2026-10-16T13:02:36+02:00"
+evidence_checked_at: "2026-10-16T13:02:47+02:00"
+input:
+  resolver_skill_version: "1.1"
+  resolver_generated_at: "2026-10-16T13:00:04+02:00"
+  query: "Marketing Platform"
+  resolved_as: autonomous_service
+outcome: analyzed
+outcome_reason: null
+service:
+  name: "Marketing Platform"
+  classification: autonomous_service
+  provider: "Brevo"
+  base_services: []
+  conditional_on_resolver: false
+scope:
+  index_pages:
+    - { kind: docs_home, source: s1 }
+    - { kind: developer_portal, source: null }
+    - { kind: help_center, source: s2 }
+    - { kind: integrations, source: s3 }
+  index_entries:
+    - { entry: ["Guides", "API Reference"], page: s1, disposition: covered, service: null }
+    - { entry: "Apps", page: s1, disposition: covered, service: null }
+    - { entry: "Changelog", page: s1, disposition: not_access, service: null }
+    - { entry: ["Marketing", "Automation", "Transactional", "Commerce", "Conversations", "Plugins & Integrations"], page: s2, disposition: covered, service: null }
+    - { entry: "CRM", page: s2, disposition: other_service, service: "Sales" }
+    - { entry: ["Deliverability", "My account", "GDPR", "Enterprise solutions", "Partner Programs", "Getting Started"], page: s2, disposition: not_access, service: null }
+    - { entry: "Brevo App Marketplace", page: s3, disposition: covered, service: null }
+  attribution_pages_used: 0
+sources:
+  - { id: s1, url: "https://developers.brevo.com/docs/getting-started" }
+  - { id: s2, url: "https://help.brevo.com/api/v2/help_center/en-us/categories.json" }
+  - { id: s3, url: "https://www.brevo.com/integrations/" }
+  - { id: s4, url: "https://www.brevo.com/pricing/" }
+  - { id: s5, url: "https://developers.brevo.com/docs/mcp-protocol.md" }
+  - { id: s6, url: "https://developers.brevo.com/docs/api-key-authentication.md" }
+  - { id: s7, url: "https://developers.brevo.com/docs/oauth.md" }
+  - { id: s8, url: "https://developers.brevo.com/docs/smtp-integration.md" }
+  - { id: s9, url: "https://developers.brevo.com/docs/marketing-webhooks.md" }
+  - { id: s10, url: "https://developers.brevo.com/docs/inbound-parse-webhooks.md" }
+  - { id: s13, url: "https://help.brevo.com/api/v2/help_center/articles/search.json?query=mobile%20app&locale=en-us" }
+interfaces:
+  - name: "Web app"
+    channel: Interactive
+    technology: "Browser web application at app.brevo.com"
+    rationale: "The consumer creates campaigns and manages contacts by manipulating the views, editors and forms of a persistent account workspace."
+    mechanisms: ["Web app (app.brevo.com)", "Help center sections Marketing, Automation, Transactional, Commerce and Conversations"]
+    requires: ["Marketing Platform"]
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "We only need your email address and the name of your organization, and then you will be able to start creating campaigns." }
+      - { source: s5, excerpt: "Log in to your [Brevo account](https://app.brevo.com)" }
+  - name: "REST API with API key"
+    channel: Programmatic
+    technology: "HTTPS REST API v3, api-key header"
+    rationale: "The consumer explicitly invokes provider-defined REST operations, authenticated by a key sent in the api-key header."
+    mechanisms: ["REST API v3", "API Reference", "API key authentication"]
+    requires: ["Marketing Platform"]
+    outside_catalog: null
+    evidence:
+      - { source: s1, excerpt: "A unified REST API for sending messages across email, SMS, and WhatsApp — and managing contacts, tracking custom events, syncing eCommerce data, and building custom objects." }
+      - { source: s6, excerpt: "Generate an API key from your account settings and include it in the `api-key` header for each request." }
+  - name: "REST API with OAuth 2.0"
+    channel: Programmatic
+    technology: "Same REST API, OAuth bearer tokens"
+    rationale: "The same operations are invoked explicitly, but authenticated by an OAuth access token sent as a bearer token, a different authentication scheme."
+    mechanisms: ["OAuth 2.0 authorization_code flow", "OAuth 2.0 machine-to-machine flow", "OAuth apps (app extensions)"]
+    requires: ["Marketing Platform"]
+    outside_catalog: null
+    evidence:
+      - { source: s7, excerpt: "Brevo's OAuth 2.0 support covers two different flows, depending on **who's authenticating**:" }
+      - { source: s7, excerpt: "App->>API: Request with Authorization: Bearer <access_token>" }
+  - name: "SMTP relay"
+    channel: Programmatic
+    technology: "SMTP submission, ports 587/2525/465, SMTP key"
+    rationale: "The consumer submits messages through explicit SMTP commands authenticated with an SMTP key."
+    mechanisms: ["SMTP relay"]
+    requires: ["Marketing Platform"]
+    outside_catalog: null
+    evidence:
+      - { source: s8, excerpt: "Use the SMTP relay to send transactional emails from your email client or application." }
+      - { source: s8, excerpt: "Use an SMTP key, not an API key, for SMTP relay connections." }
+  - name: "Webhooks"
+    channel: Event
+    technology: "HTTP POST to consumer Notify URL"
+    rationale: "The service initiates an HTTP request to the consumer's Notify URL when a subscribed marketing or transactional event occurs."
+    mechanisms: ["Marketing webhooks", "Transactional webhooks"]
+    requires: ["Marketing Platform"]
+    outside_catalog: null
+    evidence:
+      - { source: s9, excerpt: "This page lists all marketing events you can track." }
+      - { source: s9, excerpt: "Review the request schema and parameters for each event when building your Notify URL." }
+  - name: "Brevo MCP Server"
+    channel: Agentic
+    technology: "Remote MCP server, HTTP, bearer MCP token"
+    rationale: "The server exposes tools that an AI client discovers and selects by goal through the Model Context Protocol."
+    mechanisms: ["Brevo MCP Server (mcp.brevo.com)"]
+    requires: ["Marketing Platform"]
+    outside_catalog: null
+    evidence:
+      - { source: s5, excerpt: "The Brevo MCP Server lets you use AI assistants to interact with your Brevo account using natural language." }
+      - { source: s5, excerpt: "\"Create an email campaign for my product launch\"" }
+pending:
+  - name: "Inbound parsing webhook"
+    channel: Event
+    technology: "Webhook delivering parsed inbound email as JSON"
+    reason: requirement_unknown
+    blocked_on: null
+    outside_catalog: "Inbound parsing"
+    evidence:
+      - { source: s10, excerpt: "Emails are received and processed on our end, then delivered to you as a structured JSON payload (described in the next chapter) via a webhook." }
+  - name: "Conversations mobile app"
+    channel: Interactive
+    technology: "Mobile app for Conversations inbox"
+    reason: unresolved_candidate
+    blocked_on: "Live Chat"
+    outside_catalog: null
+    evidence:
+      - { source: s13, excerpt: "Discover the Conversations mobile app" }
+excluded:
+  - mechanism: "Phone desktop and mobile apps"
+    reason: other_service
+    service: "Sales"
+    detail: "Phone is a feature of Sales in the resolver"
+  - mechanism: "Brevo CLI"
+    reason: no_access
+    service: null
+    detail: "manages OAuth apps and scaffolds code, no marketing operations"
+  - mechanism: ["Developers", "API docs", "Documentation MCP server", "SDKs"]
+    reason: not_an_interface
+    service: null
+    detail: "documentation and client libraries of the REST API"
+  - mechanism: ["Action links", "Brevo Functions"]
+    reason: not_an_interface
+    service: null
+    detail: "customization artifacts inside the web app"
+  - mechanism: "Integrations"
+    reason: third_party
+    service: null
+    detail: "marketplace of third-party tools; no first-party plugin page opened"
+  - mechanism: "Mobile app for marketing"
+    reason: not_found
+    service: null
+    detail: "help-center search for mobile app returned only Conversations and Phone apps"
+  - mechanism: "Desktop app for marketing"
+    reason: not_found
+    service: null
+    detail: "only the Phone desktop app was found"
+  - mechanism: "Terminal client or TUI for marketing"
+    reason: not_found
+    service: null
+    detail: "the only CLI documented manages OAuth apps"
+  - mechanism: "Outbound notification email"
+    reason: not_found
+    service: null
+    detail: "no email notification on subscribed activity in the pages opened"
+summary:
+  interfaces: 6
+  channels: [Interactive, Agentic, Event, Programmatic]
+  multi_interface: true
+  multi_channel: true
+  verdict_provisional: false
+notes:
+  - "Inbound parsing may share the webhook contract of the counted Webhooks interface; it is left pending because no page states which plans include it."
+  - "Help-center categories were disposed of from their labels and the category index, without opening each category."

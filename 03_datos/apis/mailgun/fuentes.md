@@ -146,6 +146,12 @@ registran y se excluyen del modelado.
   API. El endpoint de **disparo de verificación DNS** de un dominio ya creado
   (`.../verify` o similar) no se ha podido citar literalmente: las páginas concretas de
   Domains devolvieron 404 vía WebFetch directo.
+- **Releída el 2026-10-31 (verificador).** `https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domains/put-v4-domains--name--verify`
+  responde 200 a `curl` con `"Verify the domains DNS records (includes A, CNAME, SPF, DKIM and MX
+  records) to ensure the domain is ready and able to send"` en `PUT /v4/domains/{name}/verify`. La
+  operación 3 del test C2 queda citada entera y `type` sube a 🟢 por D9. No hay captura en Wayback,
+  así que no se sabe si el 404 de septiembre era de la web o de WebFetch. Volcado en
+  `evidencias/paginas/2026-10-31/`.
 
 ## [F4] Developer docs — Domain Templates, `POST /v3/{domain_name}/templates`
 
@@ -155,6 +161,11 @@ registran y se excluyen del modelado.
   como parámetros requeridos según la página.
 - **Observación:** confirma la operación 2 del test C2 (crear/editar plantilla)
   disponible por API.
+- **Releída el 2026-10-31 (verificador).** La edición también tiene página y responde 200:
+  `https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domain-templates/put-v3--domain-name--templates--template-name-`,
+  `"Update the description of a template."` en `PUT /v3/{domain_name}/templates/{template_name}`. El
+  contenido se edita por versión: la especificación pública trae `"Update information or content of
+  the specific template version."` en `PUT /v3/{domain_name}/templates/{template_name}/versions/{version_name}`.
 
 ## [F5] Developer docs — Messages, referencia de `POST /v3/{domain_name}/messages`
 
@@ -219,6 +230,14 @@ registran y se excluyen del modelado.
 - **Observación:** límite de recurso (B3), no de cuota de envío; no va a `capacity`. No
   se ha localizado cita propia que confirme si las plantillas **a nivel de dominio**
   comparten el mismo tope 100/40.
+- **Corregida el 2026-10-31 (verificador; consejo del 2026-10-31).** La cita tenía al lado
+  la respuesta, en la frase siguiente del mismo párrafo: `"Domain-scoped templates have same
+  limit set on a per sending domain basis."` Las dos frases estaban juntas en la captura de
+  Wayback del 2026-06-12 (`20260612200001`), así que no es cambio de oferta (E3) sino un
+  defecto de registro. El endpoint modelado, `/v3/{domain_name}/templates`, es el de
+  plantillas de dominio; las de cuenta van por `/v4/templates` (especificación, volcada en
+  `evidencias/paginas/2026-10-31/`). Las cuatro `description` pasan de «en la cuenta» a «en
+  cada dominio de envío», y el provenance cita las dos frases juntas. Ningún valor cambia.
 
 ## [F10] Developer docs — Bounces
 
@@ -318,6 +337,10 @@ registran y se excluyen del modelado.
 - **Fecha de acceso:** 2026-09-21
 - **Observación:** menciona cualitativamente que Mailgun `"gradually increases sending
   rates"` para IPs nuevas, sin publicar ningún número ni duración.
+- **Corregida el 2026-10-31 (verificador).** Eso no es literal, ni hoy ni en la captura de Wayback
+  `20260417185539`. La frase es `"For newly allocated IPs, Mailgun protects and improves the
+  reputation by gradually increasing sending rates."`, y habla de IP nuevas. El `data_provenance`
+  ya no la atribuye al arranque de una cuenta nueva: esa línea cita solo [F18].
 
 ## [F18] FAQ — Deliverability and reputation
 
@@ -632,7 +655,7 @@ de los siete recolectores.
 | Contenido real del fichero OpenAPI (`mailgun.json`) | Existencia confirmada [F23]; no descargado ni parseado esta pasada. |
 | Endpoint de disparo de verificación DNS de un dominio ya creado (`.../verify`) | **No citable.** Las páginas concretas de Domains devolvieron 404 vía WebFetch. |
 | Endpoint de creación/rotación de una segunda clave API (Domain Keys / Account Keys) | **No citable.** Páginas concretas devolvieron 404 vía WebFetch. |
-| Reventa oficial de Mailgun en marketplaces (RapidAPI, AWS Marketplace) con pricing propio | **No encontrada.** Solo un listado de terceros no oficial en RapidAPI (`orliesaurus`), que por D1 no cuenta como fuente del proveedor. |
+| Reventa oficial de Mailgun en marketplaces (RapidAPI, AWS Marketplace) con pricing propio | **No encontrada.** Solo un listado de terceros no oficial en RapidAPI (`orliesaurus`), que por D19 no cuenta como fuente del proveedor. |
 | Precio anual o toggle mensual/anual | **No encontrado** en [F1]; solo precios `/mo`. |
 | Cifra de overage FIJA (no "from X") para Basic, Foundation y Scale | **No publicado.** [F1] solo da `"from $X / 1,000 emails"`, precio de arranque y no unitario fijo. |
 | Precio o condiciones del plan Custom/Enterprise | **No publicado.** Solo `"Request a quote"`. |

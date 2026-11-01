@@ -1,297 +1,368 @@
-\chapter{Construcción del catálogo de Datasheets de APIs de correo}
+\chapter[El catálogo de Datasheets de APIs de correo]{El catálogo de Datasheets\\ de APIs de correo}
 \label{cap:catalogo}
 
-Este capítulo presenta el método con el que se construye el catálogo de
-Datasheets de APIs de correo electrónico (la contribución C-01 de la
-Sección~\ref{sec:introduccion:contribuciones}) y su calibración sobre un
-piloto real. Se organiza en cinco piezas. El criterio de selección del
-dominio. El ciclo de construcción por API. Las reglas de trazabilidad y
-confianza que hacen revisable cada dato. La escalera de validación que
-convierte inferencias en evidencia. Y el marco de conformidad y evolución
-del esquema.
-Le sigue el piloto (Postmark) con los hallazgos que validan el método y anticipan la evolución del esquema (contribución C-02).
-Esa evolución no se formula aquí: se pospone al cierre del catálogo, conforme al criterio de promoción de la Sección~\ref{sec:propuesta:conformidad}, y ocupa el Capítulo~\ref{cap:evolucion}.
-El capítulo se cierra con la respuesta a la RQ1 (Sección~\ref{sec:propuesta:respuesta}).
+Este capítulo presenta el catálogo de ocho Datasheets de APIs de correo, que es la contribución C-01 (Sección~\ref{sec:introduccion:contribuciones}), y responde a la RQ1: qué APIs de correo deben incluirse en un análisis representativo del dominio y bajo qué criterios reproducibles.
+El modelo ACM, su esquema ACM2YAML y la Datasheet son de Gavira Sánchez y Ruiz López \citep{gavira2026tfm,ruizlopez2026tfm}, y este trabajo los aplica a un dominio nuevo.
+Lo propio es el método que construye el catálogo y el catálogo que resulta.
 
-\section{Criterio de selección del dominio}
+El capítulo se organiza del siguiente modo.
+En primer lugar, la Sección~\ref{sec:propuesta:seleccion} fija el dominio y las ocho APIs.
+A continuación, la Sección~\ref{sec:propuesta:ciclo} describe el ciclo de construcción de cada Datasheet, y la Sección~\ref{sec:propuesta:trazabilidad} las reglas que hacen revisable cada dato.
+Después, la Sección~\ref{sec:propuesta:catalogo} presenta el catálogo resultante, y la Sección~\ref{sec:propuesta:prime4api} mide si PRIME4API lo puede consumir.
+La Sección~\ref{sec:propuesta:sphere} describe su salida hacia SPHERE.
+Por último, la Sección~\ref{sec:propuesta:respuesta} responde a la RQ1.
+
+\section{Selección del dominio}
 \label{sec:propuesta:seleccion}
 
-El dominio del catálogo son las APIs de correo transaccional.
-Postmark, una de las ocho, define el correo transaccional como un mensaje individual que el destinatario espera recibir y que suele desencadenar el propio usuario \citep{postmarktransaccional}.
-Pone como ejemplos el restablecimiento de contraseña, el recibo de compra o el aviso de pago fallido.
-Excluye el correo con el mismo contenido para muchos destinatarios que no desencadena ningún evento, al que llama de \textit{marketing}.
-Una API de correo transaccional es la interfaz con la que una aplicación entrega esos mensajes a través del proveedor.
-El producto de \textit{marketing} que varios proveedores venden en la misma cuenta queda fuera (Sección~\ref{sec:propuesta:criterios}).
-Hasta dónde valen los resultados fuera de este dominio lo discute la Sección~\ref{sec:conclusiones:externa}.
+El catálogo de Datasheets de este trabajo reúne ocho APIs de correo transaccional.
+La Sección~\ref{sec:estado:correo} define el correo transaccional y lo distingue del correo de \textit{marketing}.
+Esas ocho APIs no son todas las que existen: la consulta a un modelo de lenguaje que eligió cuatro de ellas propuso además otras cuatro de reserva (Sección~\ref{sec:propuesta:reserva}).
+La Tabla~\ref{tab:propuesta:apis} presenta las ocho con el servicio que se modela, su proveedor y la vía por la que entraron en el catálogo.
 
-El conjunto de APIs analizadas se determina con el criterio fijado en el encargo del trabajo, que combina tres fuentes de inclusión.
-La selección se completó el 1 de septiembre de 2026 con la tercera fuente, una consulta a un modelo de lenguaje con cinco criterios fijados antes de hacerla.
-El Anexo~\ref{anx:uso-ia} registra la fecha, el modelo, el prompt con sus criterios y la respuesta íntegra de la consulta, y señala lo que no consta.
-Con ese registro un tercero puede repetir la consulta con el mismo prompt y contrastar lo que obtenga con lo que recoge el anexo.
-Los apartados que siguen desarrollan el protocolo, y el último fija la ventana en que se tomaron los datos del catálogo.
+\begin{table}[htbp]\centering\small
+\begin{tabular}{|p{5.8cm}|p{2.8cm}|p{5.5cm}|}
+\hline
+\raggedright\textbf{API y servicio que se modela} & \raggedright\textbf{Proveedor} & \raggedright\textbf{Vía de entrada} \tabularnewline
+\hline
+\raggedright Postmark & \raggedright ActiveCampaign & \raggedright API piloto del método \tabularnewline
+\hline
+\raggedright Resend, su producto transaccional & \raggedright Resend & \raggedright Modelada antes en el ecosistema \tabularnewline
+\hline
+\raggedright Twilio SendGrid Email API & \raggedright Twilio & \raggedright Modelada antes en el ecosistema \tabularnewline
+\hline
+\raggedright MailerSend, API y relé SMTP & \raggedright MailerSend & \raggedright Modelada antes en el ecosistema \tabularnewline
+\hline
+\raggedright Brevo, el correo transaccional de su plataforma de \textit{marketing} & \raggedright Brevo & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\hline
+\raggedright Amazon SES, versión 2 de la API & \raggedright Amazon Web Services & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\hline
+\raggedright Mailgun & \raggedright Sinch & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\hline
+\raggedright Mailchimp Transactional, antes Mandrill, complemento de Mailchimp & \raggedright Mailchimp & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\hline\end{tabular}
+\caption[Las ocho APIs del catálogo de Datasheets]{Las ocho APIs del catálogo de Datasheets, en el orden en que se construyeron. La vía de entrada es la fila de la Tabla~\ref{tab:propuesta:fuentes} por la que entró cada una.}
+\label{tab:propuesta:apis}\end{table}
+
+En el canal API, un proveedor de correo suele ofrecer dos interfaces: la API REST y el relé SMTP, el servidor del proveedor que recibe el correo por el protocolo SMTP (Sección~\ref{subsec:introduccion:canales}).
+Con esa terminología el objeto de estudio es el servicio de envío de correo y sus interfaces programáticas.
+Las Datasheets modelan la API REST, porque ACM2YAML v0.3 asigna cada límite al plan entero o a un \textit{endpoint} HTTP, y el relé no es un \textit{endpoint}.
+Lo que el relé comparte con la API, como la cuota diaria de peticiones de MailerSend, entra en la Datasheet, y los topes propios del relé se anotan como elementos que el esquema no soporta.
 
 \subsection{Fuentes de inclusión}
 \label{sec:propuesta:fuentes}
 
-La Tabla~\ref{tab:propuesta:fuentes} recoge las tres fuentes del encargo y lo que aportó cada una al catálogo.
-El catálogo resultante parte de ocho APIs: Postmark, Resend, SendGrid, MailerSend, Amazon SES, Mailgun, Brevo y Mailchimp Transactional.
+El protocolo de selección parte de tres fuentes de inclusión, y la Tabla~\ref{tab:propuesta:fuentes} recoge lo que aportó cada una.
+Las tres fuentes y la API piloto dan las ocho APIs de la Tabla~\ref{tab:propuesta:apis}.
 
 \begin{table}[H]\centering\small
 \begin{tabular}{|p{2.1cm}|p{5.2cm}|p{6.8cm}|}
 \hline
 \raggedright\textbf{Fuente} & \raggedright\textbf{Qué es} & \raggedright\textbf{Qué aportó al catálogo} \tabularnewline
 \hline
-\raggedright Primera & \raggedright Las APIs analizadas en un Trabajo Fin de Máster anterior señalado en el encargo & \raggedright Ninguna: no se ejecutó \tabularnewline
+\raggedright Primera & \raggedright Las APIs analizadas en el TFM de Noguerol Tirado \citep{noguerol2025tfm}, que compara SendGrid y Amazon SES para una demanda dada & \raggedright Ninguna \tabularnewline
 \hline
-\raggedright Segunda & \raggedright Las APIs ya modeladas en el ecosistema & \raggedright SendGrid y MailerSend, modeladas en el trabajo de Gavira Sánchez \citep{gavira2026tfm} y en el repositorio de la línea, y Resend, modelada en v0.1 en ese repositorio \citep{apisconsumptionmodel} \tabularnewline
+\raggedright Segunda & \raggedright Las APIs ya modeladas en el ecosistema & \raggedright SendGrid y MailerSend, modeladas en el trabajo de Gavira Sánchez \citep{gavira2026tfm} y en el repositorio de la línea, y Resend, modelada en la versión 0.1 de ACM2YAML en ese repositorio \citep{apisconsumptionmodel} \tabularnewline
 \hline
-\raggedright Tercera & \raggedright Una consulta a un modelo de lenguaje con cinco criterios fijados antes de hacerla & \raggedright Amazon SES, Mailgun, Brevo y Mailchimp Transactional, más cuatro APIs de reserva (Apartado~\ref{sec:propuesta:reserva}) \tabularnewline
+\raggedright Tercera & \raggedright Una consulta a un modelo de lenguaje con cinco criterios fijados antes de hacerla & \raggedright Amazon SES, Mailgun, Brevo y Mailchimp Transactional, más cuatro APIs de reserva (Mailjet, Zoho ZeptoMail, SparkPost y SMTP2GO) \tabularnewline
 \hline
-\raggedright Piloto del método & \raggedright No es fuente del encargo. Es la API con la que se calibró el método & \raggedright Postmark (Sección~\ref{sec:propuesta:piloto}) \tabularnewline
+\raggedright Piloto del método & \raggedright No es fuente del protocolo. Es la API con la que el método se probó y se ajustó & \raggedright Postmark \tabularnewline
 \hline\end{tabular}
-\caption{Fuentes de inclusión del catálogo. Las tres primeras filas son las del encargo. La última recoge el piloto con el que se calibró el método, que ya formaba parte del catálogo cuando se hizo la consulta. Resend figura en la segunda fuente porque el repositorio de la línea la tenía modelada en v0.1, aunque este trabajo empezó a construirla antes de la consulta.}
+\caption[Fuentes de inclusión del catálogo]{Fuentes de inclusión del catálogo. Las tres primeras filas son las fuentes del protocolo. La última recoge la API piloto, con la que el método se probó y se ajustó antes de aplicarlo a las demás, y que ya formaba parte del catálogo cuando se hizo la consulta. Resend figura en la segunda fuente porque el repositorio de la línea la tenía modelada en la versión 0.1 de ACM2YAML, aunque este trabajo empezó a construirla antes de la consulta.}
 \label{tab:propuesta:fuentes}\end{table}
 
-La primera fuente no pudo ejecutarse. La memoria del trabajo previo llegó el 14 de septiembre de 2026, con el proyecto ya avanzado y la selección del 1 de septiembre hecha.
-Se deja constancia y se sustituye por la tercera.
-
-Las tres APIs de la segunda fuente se construyeron en v0.3 con datos del proveedor recogidos en la ventana de toma de datos (Apartado~\ref{sec:propuesta:ventana}).
+La primera fuente no aportó ninguna API, porque la memoria de Noguerol Tirado se obtuvo cuando la selección ya estaba cerrada, y la tercera fuente ocupó su lugar.
+Sus dos APIs están aun así en el catálogo: SendGrid por la segunda fuente y Amazon SES por la tercera.
+Las tres APIs de la segunda fuente se construyeron en v0.3 con datos recogidos entre el 2 de agosto y el 21 de septiembre de 2026.
 El modelado previo sirvió de punto de partida en Resend y de contraste en MailerSend, y SendGrid se construyó sin consultarlo.
 
-\subsection{Criterios de inclusión y de exclusión}
+\subsection{Criterios de inclusión y regla de reemplazo}
 \label{sec:propuesta:criterios}
 
-La consulta pidió cuatro APIs de correo electrónico transaccional para completar un catálogo de ocho, con cinco criterios ordenados por peso.
-El encargo pedía que la consulta buscara APIs populares, diversas y diferenciadoras, y cuatro de los criterios desarrollan esa petición.
-El segundo criterio añade una condición propia del método: que la Datasheet pueda construirse con trazabilidad.
-Los criterios, en el orden y con el alcance del prompt, son estos:
+La consulta pidió cuatro APIs de correo transaccional para completar un catálogo de ocho, con cinco criterios ordenados por peso.
+Los criterios 1, 3, 4 y 5 buscan formas de cobro distintas, uso real, algún rasgo de límites que las demás APIs no tengan y proveedores de varios tamaños y regiones.
+El segundo añade una condición propia del método: que la Datasheet pueda construirse con trazabilidad, es decir, con la URL, la fecha de acceso y la cita literal que respaldan cada valor.
+Los criterios, en el orden en que los da el prompt (el texto de la consulta), son estos:
 \begin{enumerate}
 \item Diversidad del modelo de precios.
 El catálogo debe cubrir cuatro formas de cobro: planes por volumen mensual, pago por uso puro, producto vendido como añadido de otro y planes con límite diario además del mensual.
-Tienen prioridad las APIs que añadan una forma aún no cubierta.
 \item Documentación pública de precios y de límites (como los \textit{rates}, los tamaños máximos o los destinatarios por petición), consultable sin darse de alta.
-Sin ella, la Datasheet no puede construirse con trazabilidad.
 \item Adopción real en producción, para que la comparación tenga interés práctico.
 \item Un rasgo diferenciador para analizar la relación entre límites de uso y \textit{rates}, como un \textit{rate} publicado por \textit{endpoint}, un caudal negociado no publicado o un límite diario.
 \item Diversidad geográfica y de tamaño de proveedor, con al menos una API europea.
 \end{enumerate}
 
-La respuesta justifica tres de las cuatro seleccionadas por la forma de cobro que añaden al catálogo.
-A Amazon SES le atribuye el pago por uso puro, y a Brevo el límite diario además del mensual.
-A Mailchimp Transactional le atribuye el producto vendido como añadido de otro.
-Mailgun tiene, según la respuesta, la misma forma de cobro que tres de las cuatro APIs ya presentes, y entra por su rasgo de límites, que describe como «el caso limpio de rate documentado».
-La misma respuesta sitúa en Brevo la API europea que pide el quinto criterio.
-En la reserva, anota contra Mailjet que pertenece al mismo grupo que Mailgun, y contra SparkPost, «menos adopción reciente».
-La Sección~\ref{sec:propuesta:respuesta} contrasta estas caracterizaciones con lo que registró la construcción.
+La respuesta justifica tres de las cuatro APIs por la forma de cobro que añaden.
+A Amazon SES le atribuye el pago por uso puro, a Brevo el límite diario además del mensual y a Mailchimp Transactional el producto vendido como añadido.
+Mailgun entra por su rasgo de límites, que la respuesta describe como «el caso limpio de rate documentado», y Brevo cubre además la API europea del quinto criterio.
+Tres de estas atribuciones no se sostuvieron al construir las Datasheets (Sección~\ref{sec:propuesta:respuesta}).
+La única exclusión aplicada fue la del propio prompt, que impedía proponer las cuatro APIs ya presentes.
 
-La única exclusión de APIs aplicada fue la del propio prompt, que impedía proponer las cuatro ya presentes en el catálogo.
-El orden de la reserva no excluye ninguna API: fija cuál entraría primero si una del catálogo no pudiera documentarse con trazabilidad.
+\phantomsection\label{sec:propuesta:reserva}
+La consulta devolvió también cuatro APIs de reserva, por este orden: Mailjet, Zoho ZeptoMail, SparkPost y SMTP2GO.
+La respuesta íntegra está en el repositorio de datos del trabajo\footnote{\texttt{03\_datos/\allowbreak SELECCION\_APIS\_\allowbreak 2026-09-01.md}, en \url{https://github.com/danvelcam/tfm-pricing-apis-correo}.}.
+Si una API del catálogo no puede documentarse con trazabilidad, entra la primera de la reserva.
+La sustitución queda registrada con fecha y motivo.
+La regla no llegó a aplicarse, porque las ocho APIs se documentaron con fuente, fecha y cita para cada valor, y el validador de formato de este trabajo, que contrasta cada Datasheet con la guía de ACM2YAML v0.3, no devolvió ningún error en ninguna.
 
 Un último criterio, que no está entre los cinco del prompt, acota qué se modela de cada proveedor.
-El catálogo modela solo el canal API de cada proveedor, y el canal web, que el ecosistema representa con \textit{iPricing} \citep{garciafernandez2025ipricing}, queda fuera del alcance.
-Varios venden
-más de un producto bajo la misma cuenta. Resend, por ejemplo, ofrece un
-producto transaccional facturado por correos enviados y otro de
-\textit{marketing} facturado por contactos, con catálogos de precios
-independientes. El catálogo modela en cada API el producto transaccional,
-que es el comparable entre proveedores y el que consume la API de envío.
-El otro producto se documenta en el registro de fuentes y queda
-registrado como elemento no soportado (Capítulo~\ref{cap:evolucion}).
+El catálogo de Datasheets modela solo el canal API.
+El canal web, que el ecosistema representa con \textit{iPricing} \citep{garciafernandez2025ipricing}, no entra en las Datasheets, y el pricing de cada API se escribe aparte en Pricing2YAML, la serialización de \textit{iPricing}, para llevarlo a SPHERE (Sección~\ref{sec:propuesta:sphere}).
 
-Las ocho APIs son \textit{API products} en la taxonomía de Ruiz López (Sección~\ref{sec:estado:acm}).
-Un servicio SaaS se ofrece por interfaces de cliente o por interfaces programáticas, y una interfaz programática con pricing es un \textit{API product}.
-Amazon SES era el caso dudoso.
-Su página de precios publica tres planes y una tarifa por uso de 0,10 USD por cada mil correos \citep{sespricing}, así que también cumple la definición.
-Por eso las ocho caben en una colección de SPHERE.
+Varios proveedores venden además más de un producto bajo la misma cuenta, y Resend, por ejemplo, ofrece un producto transaccional facturado por correos enviados y otro de \textit{marketing} facturado por contactos.
+El catálogo modela en cada API el producto transaccional.
+Es el comparable entre proveedores y el que consume la API de envío.
+El otro producto queda en el registro de fuentes y se anota como elemento que el esquema no soporta.
 
-Dos \textit{skills} de Ruiz López, descritas en la Sección~\ref{sec:estado:acm}, contrastan este recorte con lo que publica cada proveedor.
-La palabra canal tiene en ellas otro sentido que en esta memoria: allí nombra el paradigma de interacción, y el canal API de este trabajo corresponde a sus interfaces programáticas.
-El resolvedor, \texttt{provider-service-resolver}, dice si un proveedor de correo ofrece varias colecciones de APIs y si cada una lleva su pricing o uno solo las cubre.
-El analizador, \texttt{saas-interface-channel-analyzer}, enumera las interfaces de cada servicio, como la API REST, el relé SMTP o los \textit{webhooks}, y asigna a cada una su canal.
-Los fines eran dos: decidir si la colección de SPHERE necesita mostrar el árbol de proveedor y servicio, y contrastar las reglas de las \textit{skills} en un dominio distinto del de su validación.
-Se aplicaron sin modificarlas, con Claude Opus 5.5 en esfuerzo medio, sobre las ocho APIs.
-Primero se probaron con Resend y Postmark.
-Después el resolvedor se aplicó a los cuatro proveedores multiproducto, y al final las dos \textit{skills} se aplicaron a las seis APIs restantes.
-Todos los YAML de salida pasan sin errores el validador que trae cada \textit{skill}.
-El nombre de entrada de cada API se fijó antes de abrir ninguna página, porque el catálogo que devuelve el resolvedor depende de ese nombre.
-Con «SendGrid», por ejemplo, el resolvedor devolvía una agrupación de productos, y con «Twilio SendGrid Email API», el producto.
+Cada API del catálogo tiene un pricing publicado que cubre el canal API, y de él salen los planes y los precios de su Datasheet.
+En Brevo es el de su plataforma de \textit{marketing}, que incluye el correo transaccional.
+El caso dudoso era Amazon SES, que se cobra por uso dentro de AWS (Amazon Web Services, la nube de Amazon), pero su página de precios publica tres planes y una tarifa de 0,10 USD por cada mil correos \citep{sespricing}, así que también lo tiene.
 
-En tres de los cuatro proveedores multiproducto hay varias colecciones de APIs, cada una con su pricing.
-Brevo es el contraejemplo: su correo transaccional va incluido en todos los planes de la plataforma de \textit{marketing}.
-Por eso el analizador no encontró en Brevo un servicio que analizar, y sus interfaces son las de la plataforma que contiene el producto.
-El analizador encontró entre cinco y diez interfaces por API.
-El cruce con las Datasheets deja interfaces en un solo lado.
-El analizador registra el servidor MCP, la CLI y el panel, que no tienen límites de consumo publicados.
-Las Datasheets registran los planes, las cuotas y el caudal, que el analizador no está hecho para recoger.
-
-Las reglas del analizador no cubren un mecanismo que tienen todos los proveedores: el correo entrante.
-En todos llega de forma parecida: el proveedor recibe el mensaje y lo entrega al cliente, casi siempre en una URL suya.
-Aun así, el analizador lo clasificó como interfaz programática en cinco APIs y como canal de eventos en SendGrid y Mailgun, y en Brevo lo dejó como evento pendiente.
-Las dos clasificaciones son compatibles con las reglas, que no dicen cuál corresponde a este mecanismo.
-Una nota de dominio para el correo fijaría una sola.
-Ningún dato de los Capítulos~\ref{cap:hallazgos} y~\ref{cap:evolucion} procede de las \textit{skills}.
-
-El uso de las \textit{skills} se plantea como una colaboración con su autor.
-Las \textit{skills}, sus reglas, sus esquemas y sus validadores son de Ruiz López \citep{ruizlopez2026skills}.
-Este trabajo las aplicó sin modificarlas al correo, un dominio que no estaba entre los de su validación: GitHub, GitHub Copilot, Claude Platform y Claude.
-Después cruzó cada salida con la Datasheet de la misma API, construida antes y sin las \textit{skills}, como se ha descrito en los párrafos anteriores.
-
-La colaboración da resultados en las dos direcciones.
-A este trabajo le da las interfaces de cada API y la respuesta sobre las colecciones: tres de los cuatro proveedores multiproducto tienen varias, cada una con su pricing.
-A las \textit{skills} les da ocho APIs de un dominio nuevo, con todos los YAML válidos y cada extracto encontrado literal en la página descargada.
-También les da cinco propuestas, cada una con la ejecución que la motiva.
-La primera es comprobar los extractos, porque el validador revisa la estructura y una copia con un extracto inventado pasó sin error.
-La segunda admite varios servicios base, o un código de duda, para un dependiente que vale en dos planes, como Automations en Resend.
-La tercera es una regla para cuando el nombre de entrada es el de la empresa y no el de un producto, como pasó con SendGrid y Brevo.
-La cuarta es la nota de dominio sobre el correo entrante descrita arriba.
-La quinta es un atributo opcional que enlace cada interfaz con sus límites de consumo, que es la línea de trabajo futuro de la Sección~\ref{sec:conclusiones:futuro}.
-
-Las cinco propuestas están redactadas en el informe del piloto, junto a los YAML de las ocho APIs y la salida de los validadores.
-
-\subsection{Lista de reserva y regla de reemplazo}
-\label{sec:propuesta:reserva}
-
-La consulta pidió cuatro APIs seleccionadas y cuatro de reserva, ordenadas.
-Para cada una pidió su forma de cobro y lo que aportaba al catálogo, además del riesgo principal para construir su Datasheet.
-También pidió que no inventara cifras y que describiera el tipo de modelo y no los precios.
-La respuesta da el riesgo solo para las cuatro seleccionadas.
-No contiene ningún precio ni límite con cifra, así que ninguno de los que cita esta memoria procede de ella.
-La Tabla~\ref{tab:propuesta:reserva} recoge la reserva en su orden.
-
-\begin{table}[H]\centering\small
-\begin{tabular}{|c|p{2.9cm}|p{4.6cm}|p{4.9cm}|}
-\hline
-\textbf{Orden} & \raggedright\textbf{API} & \raggedright\textbf{Forma de cobro según la respuesta} & \raggedright\textbf{Lo que anota la respuesta} \tabularnewline
-\hline
-1 & \raggedright Mailjet & \raggedright Planes por volumen con \textit{rate} documentado & \raggedright Europea, del mismo grupo que Mailgun, con menos diversidad que Brevo \tabularnewline
-\hline
-2 & \raggedright Zoho ZeptoMail & \raggedright Cobro por créditos prepagados & \raggedright Otra forma de pago por uso \tabularnewline
-\hline
-3 & \raggedright SparkPost & \raggedright Planes por volumen & \raggedright Muy documentada, con menos adopción reciente \tabularnewline
-\hline
-4 & \raggedright SMTP2GO & \raggedright Planes por volumen con límites diarios & \raggedright Proveedor pequeño, útil como caso de diversidad de tamaño \tabularnewline
-\hline\end{tabular}
-\caption{Lista de reserva de la consulta, en su orden. Las dos últimas columnas resumen la respuesta y no se verificaron, porque ninguna de estas APIs llegó a construirse.}
-\label{tab:propuesta:reserva}\end{table}
-
-El catálogo es mutable.
-Si una API no puede documentarse con la trazabilidad que exige la Sección~\ref{sec:propuesta:trazabilidad}, entra en su lugar la primera de la lista de reserva.
-La sustitución queda registrada con fecha y motivo.
-La regla sigue el orden de la lista y no la forma de cobro de la API que sale.
-Solo la dispara la falta de trazabilidad: que la construcción corrija una caracterización de la respuesta no basta.
-
-La regla no llegó a aplicarse, porque las ocho APIs cerraron el ciclo con cero errores de validación, que es su criterio de salida (Sección~\ref{sec:propuesta:ciclo}).
-Las ocho APIs de partida son, así, las ocho que presenta el Capítulo~\ref{cap:hallazgos}.
+Un mismo servicio puede llegar al cliente por más de una vía: SendGrid se contrata con Twilio, que lo comercializa, y también a través de RapidAPI, un mercado de APIs, y Gavira Sánchez modela el pricing de esa segunda vía \citep{gavira2026tfm}.
+El catálogo toma siempre el proveedor directo y no compara las dos vías.
 
 \subsection{Ventana de toma de datos}
 \label{sec:propuesta:ventana}
 
-Los datos del catálogo se tomaron en una sola ventana, del 2 de agosto al 21 de septiembre de 2026.
-Abarca la lectura de la documentación y la observación del panel, y dentro de ella se ejecutaron los sondeos, del 3 de agosto al 21 de septiembre.
-Hasta el 1 de septiembre (día de la consulta) solo se tomaron datos del piloto y de Resend.
-Las otras seis APIs empezaron a construirse entre el 6 y el 21 de septiembre, en el orden en que las presenta el Capítulo~\ref{cap:hallazgos}.
+La toma de datos principal del catálogo, con sus sondeos (peticiones controladas contra la API real para comprobar un límite que la documentación no fija o no deja claro), fue del 2 de agosto al 21 de septiembre de 2026.
+Fuera de esa ventana se hicieron, sin cambiar ningún valor de las Datasheets, su ingesta en PRIME4API, unos sondeos complementarios de Resend y Amazon SES, el 18 de octubre de 2026, y la captura en bruto de las páginas de cada proveedor, el 23 de octubre (Sección~\ref{sec:propuesta:ciclo}).
 
-Los precios, planes y límites que describe esta memoria son los de esa ventana.
-Una comparación entre dos APIs puede cruzar fechas distintas dentro de la ventana de toma de datos, porque la construcción se repartió a lo largo de ella.
-El esquema v0.3 lleva una sola fecha por documento, en el campo \texttt{date}, y no una por dato.
-La fecha de acceso de cada valor se conserva en el registro de fuentes (Sección~\ref{sec:propuesta:trazabilidad}).
-Un valor de otra fecha, como el de un modelado previo, se escribe con su fecha.
+Después de la ventana, dos revisiones sí cambiaron cifras de las Datasheets o su semáforo de confianza, el color que marca el respaldo de cada valor (Sección~\ref{sec:propuesta:semaforo}).
+El 18 de octubre se aplicó a SendGrid, Mailgun, Brevo y MailerSend la regla de que, si otra fuente da otro valor, se modela el de la página de precios: el sobrecoste del plan Essentials de SendGrid pasó de 0,00133 a 0,0013 USD por correo, y la cuota diaria del plan gratuito de Mailgun, de ámbar a verde.
+
+El 31 de octubre se volvió a abrir cada fuente citada en las Datasheets de Brevo, Amazon SES, Mailgun y Mailchimp Transactional.
+Esa verificación no cambió ninguna cifra y dejó en verde dos valores que estaban en ámbar, uno de ellos el \textit{rate} del resto de operaciones de Amazon SES (Sección~\ref{sec:propuesta:casos}).
+Abrió también una discrepancia sobre la unidad del caudal de envío del entorno de pruebas de Amazon SES, en el que empieza toda cuenta nueva: unas fuentes lo cuentan en mensajes y otras en destinatarios, y el valor bajó de verde a ámbar.
+El mismo día, una nueva lectura de dos páginas de MailerSend añadió a su Datasheet una nota: en septiembre una de ellas se leyó sin ejecutar JavaScript y dio los precios anuales de 2024.
+
+Los precios, planes y límites de esta memoria son los de la toma principal, y una comparación entre dos APIs puede cruzar fechas distintas dentro de ella.
+El esquema v0.3 lleva una sola fecha por documento, en el campo \texttt{date}, y la fecha de acceso de cada valor se conserva en el registro de fuentes.
 
 \section{El ciclo de construcción por API}
 \label{sec:propuesta:ciclo}
 
-Cada API del catálogo pasa por un ciclo de cinco fases, y el ciclo separa
-a quien construye de quien verifica: recolección, borrador, validación,
-revisión y consolidación. Los dos papeles los desempeñan agentes de
-inteligencia artificial distintos, y el verificador solo ve la Datasheet
-terminada (Anexo~\ref{anx:uso-ia}). En la
-\textit{recolección} se localizan y registran las fuentes: página de
-precios, documentación de desarrollador, especificaciones, artículos de
-soporte y políticas de uso. En la \textit{construcción del borrador} se
-elabora la Datasheet conforme a ACM2YAML v0.3 \citep{gavira2026tfm},
-siguiendo la guía de referencia del repositorio del ecosistema
-\citep{apisconsumptionmodel}. La \textit{validación} es automática y comprueba dos cosas: que el
-documento cumple el esquema (campos obligatorios, enumeraciones, unidades
-declaradas y referencias entre
-planes, cuotas y \textit{rates}) y que cada dato remite a una fuente
-registrada. El criterio de salida por API es cero errores, con los huecos
-deliberados señalizados como avisos justificados. La \textit{revisión}
-examina el borrador campo a campo con las fuentes a la vista. Resuelve
-las ambigüedades que la documentación no cierra y convierte en preguntas
-explícitas lo que requiere criterio o decisión. La \textit{consolidación},
-por último, incorpora el resultado de la revisión y de los sondeos
-empíricos que la revisión haya motivado.
+Cada API del catálogo pasa por un ciclo de cinco fases: recolección, borrador, validación,
+revisión y consolidación.
+La Figura~\ref{fig:propuesta:ciclo} lo representa con quién hace cada fase y qué resultado deja.
+El ciclo y sus reglas son de este trabajo.
 
-El ciclo produce, por cada API, cinco artefactos.
-Cuatro son la Datasheet en ACM2YAML, el registro de fuentes con sus citas, el registro de elementos no soportados y el acta de revisión con las decisiones de representación adoptadas.
-El quinto es una matriz de \textit{features} por plan (\textit{webhooks}, IP dedicada, retención, dominios, usuarios, entrada de correo, SMTP y plantillas).
-La recolección la captura con las mismas fuentes, y como v0.3 no la admite se conserva fuera del YAML para las preguntas funcionales del Capítulo~\ref{cap:hallazgos}.
-Los cinco se versionan junto al catálogo. Ninguno se reproduce en
-esta memoria.
-El conjunto íntegro (fuentes y elementos no soportados incluidos) está en el repositorio de datos que acompaña al trabajo (Sección~\ref{sec:conclusiones:replicacion}), de modo que cualquier dato sea auditable sin acceso a material privado.
-Los registros de elementos no soportados y de decisiones son, además, la materia prima de la contribución C-02.
-El catálogo de preguntas de C-04 se construye sobre la gramática de Pricing Intelligence \citep{cavero2026pricingintelligence}, y varias de las que no pueden responderse coinciden con elementos no soportados del registro.
+El ciclo separa a quien construye de quien verifica, dos papeles que desempeñan agentes de inteligencia artificial distintos.
+El agente que verifica recibe solo la Datasheet, sin el resto del trabajo de quien la construye, vuelve a abrir cada URL citada y deja un informe que dice, campo a campo, si el dato coincide con su fuente.
+Esa separación entró en el ciclo el 1 de septiembre de 2026, y Postmark, la API piloto, se cerró sin informe del verificador.
+Las otras siete lo tienen.
 
-\section{Trazabilidad y confianza}
+\begin{figure}[tbp]
+\centering
+\input{fig/ciclo_construccion.tex}
+\caption[Ciclo de construcción de cada Datasheet]{Ciclo de construcción de cada Datasheet: sus cinco fases, quién hace cada una y qué resultado deja. Las flechas discontinuas son desvíos que solo se recorren cuando la revisión los motiva: los sondeos y las preguntas abiertas, que resuelve el autor. Dos de estos resultados, el registro de fuentes y la Datasheet cerrada, son también artefactos de cada API, y la Figura~\ref{fig:propuesta:artefactos} muestra los cinco. Postmark, la API piloto, se cerró sin informe del verificador. Elaboración propia.}
+\label{fig:propuesta:ciclo}
+\end{figure}
+
+En la \textit{recolección} se localizan y registran las fuentes, que son las páginas donde el proveedor publica sus términos de consumo, es decir, el precio y la información de cómo, cuándo, cuánto y dónde se consume el servicio.
+Son la página de precios, la documentación de desarrollador, las especificaciones, los artículos de soporte y las políticas de uso.
+Desde el piloto, la recolección incluye también el panel con cuenta propia, la aplicación web en la que el cliente gestiona su cuenta en el servicio.
+
+En el \textit{borrador} se elabora la Datasheet conforme a ACM2YAML v0.3 \citep{gavira2026tfm}, siguiendo la guía del esquema que publica API-TaskForce, la organización de GitHub que reúne también el repositorio de PRIME4API y el de la extensión de SPHERE al canal API \citep{apisconsumptionmodel}.
+
+La \textit{validación} es automática: el validador de formato de este trabajo contrasta la Datasheet con la guía de v0.3 y comprueba dos cosas.
+La primera es que el documento cumple el esquema (campos obligatorios, enumeraciones, unidades declaradas y referencias entre planes, cuotas y \textit{rates}), y la segunda, que cada dato remite a una fuente registrada.
+La validación solo se da por superada con cero errores, y lo que el proveedor no publica queda como aviso justificado en la lista \texttt{not\_found}, que registra lo que se buscó y no se encontró.
+
+La \textit{revisión} examina el borrador campo a campo con las fuentes a la vista.
+Resuelve las ambigüedades que la documentación no cierra, como la ventana de la cuota diaria de Resend, que no dice desde cuándo se cuentan sus 24 horas, y registra como pregunta abierta la que ninguna regla del libro de criterios (Sección~\ref{sec:metodologia:enfoque}) resuelve todavía.
+El acta de revisión la escribe el agente que construye, con esas preguntas abiertas, y el agente que verifica deja aparte su informe.
+La \textit{consolidación} lleva a la Datasheet el resultado de la revisión y de los sondeos empíricos que esta haya motivado, y cierra el ciclo.
+
+El ciclo produce cinco artefactos por API.
+Cuatro son la Datasheet, el registro de fuentes con sus citas, el registro de elementos no soportados y el acta de revisión con las decisiones de representación.
+El quinto es una matriz de \textit{features} por plan (\textit{webhooks}, IP dedicada, retención, dominios, usuarios, correo entrante, SMTP y plantillas).
+Como v0.3 no la admite, se conserva fuera del YAML para las preguntas funcionales, como qué planes incluyen IP dedicada, una dirección IP de envío reservada a un solo cliente.
+
+Cada artefacto nace en una fase del ciclo: el registro de fuentes en la recolección, la Datasheet en el borrador y el acta en la revisión.
+El registro de elementos no soportados crece en cualquier fase del ciclo, desde la recolección hasta la consolidación, y la matriz se rellena con las fuentes de la recolección.
+
+En el registro de elementos no soportados, cada rasgo del proveedor que v0.3 no puede escribir queda con su cita y un identificador F-nn.
+La F viene de «fricción», el nombre que reciben esos registros en el repositorio de datos (fichero \texttt{fricciones.md}), y el número sigue el orden en que apareció cada elemento.
+La Tabla~\ref{tab:fricciones} recoge los ocho del piloto, y la Tabla~\ref{tab:recurrencia}, los treinta y cinco de las ocho APIs.
+
+La memoria no reproduce enteros los cinco artefactos.
+La Figura~\ref{fig:propuesta:artefactos} muestra un fragmento de cada uno en Postmark, y los de las ocho APIs están completos en el repositorio de datos del trabajo\footnote{\texttt{03\_datos/\allowbreak apis/}, en \url{https://github.com/danvelcam/tfm-pricing-apis-correo}.}, donde cualquier dato se puede auditar con lo que está publicado en él.
+
+Cada fragmento de la figura se copia tal cual de su fichero, con las marcas de formato de YAML o de Markdown.
+Las marcas entre corchetes, como [F1] o [F11], remiten al registro de fuentes, y los identificadores con guion, como F-02, al de elementos no soportados.
+El fragmento (4) es la novena pregunta del acta.
+En los fragmentos (3) y (4), la escalera es la lista de volúmenes contratados, cada uno un escalón, \textit{overage} es el sobrecoste y \textit{provenance}, el registro de procedencia.
+Una raya en la matriz indica que ninguna fuente registrada da el dato.
+
+\begin{figure}[p]
+\centering
+\input{fig/artefactos_postmark.tex}
+\caption[Los cinco artefactos de Postmark]{Fragmento literal de cada uno de los cinco artefactos de Postmark, todos con datos del plan Basic: su cuota y su sobrecoste en la Datasheet (1), la cita de la página de precios que los respalda (2), el elemento no soportado F-02 (3), la decisión de modelar cada \textit{tier} con la cuota de su volumen mínimo (4) y la fila de usuarios de la matriz de \textit{features} (5). [\ldots] marca un corte. Los círculos de color sustituyen a los emojis del semáforo de confianza (Sección~\ref{sec:propuesta:semaforo}), y la marca de verificación, al emoji de decisión cerrada. Elaboración propia.}
+\label{fig:propuesta:artefactos}
+\end{figure}
+
+\phantomsection\label{sec:propuesta:piloto}
+Postmark \citep{postmarkpricing} es la API piloto: con ella el método se probó y se ajustó antes de aplicarlo a las otras siete.
+El ecosistema no la tenía modelada, así que el ciclo se recorrió desde la recolección, sin un modelado previo del que partir.
+La Figura~\ref{fig:propuesta:artefactos} muestra cómo quedó en sus cinco artefactos, y los párrafos siguientes, qué salió de cada fase.
+
+La recolección de Postmark, el 2 y el 3 de agosto de 2026, registró doce fuentes en tres pasadas: once páginas públicas del proveedor y el panel con cuenta propia.
+La página de precios da cuatro planes, uno gratuito y tres de pago que empiezan en 10.000 correos al mes.
+La documentación describe el error que la API devuelve a quien pasa del \textit{rate}, pero no publica el valor del \textit{rate} (F-01).
+Cada una de las doce fuentes entró en el registro de fuentes con su URL, su fecha de acceso y sus citas literales.
+
+El panel produjo tres de los ocho elementos no soportados del piloto, y ninguno se podía reconstruir con las páginas públicas.
+Son las cuotas por volumen contratado (F-02), los \textit{add-ons} que cambian la capacidad (F-07) y el plan real como \textit{tier} por volumen (F-08).
+El \textit{tier} es el nivel de funcionalidades que se contrata: en Postmark, Basic, Pro o Platform.
+De esta fase salió el primer cambio del método: desde el 5 de agosto, el panel es obligatorio en todas las APIs, y una Datasheet sin panel no se da por cerrada.
+
+En el borrador, escribir la Datasheet contra ACM2YAML v0.3 obligó a las primeras decisiones de representación.
+Postmark se contrata eligiendo un \textit{tier} funcional y un volumen mensual, y en v0.3 cada plan lleva una cuota con un solo valor.
+Había dos salidas: enumerar como planes unas dieciocho combinaciones de \textit{tier} y volumen, o modelar un plan por \textit{tier} con la cuota de su volumen mínimo.
+Se eligió la segunda, que recoge el fragmento (4) de la Figura~\ref{fig:propuesta:artefactos}, y la Figura~\ref{fig:tiervolumen} muestra la cuota por volumen contratado (F-02) que queda fuera del bloque \texttt{plans}.
+
+La pregunta que abrió esta fase fijó el 3 de agosto el marco de todo el catálogo: la Datasheet se escribe conforme a v0.3, sin campos propios, y lo que el esquema no puede escribir va al registro de elementos no soportados.
+Un elemento pasa a candidato de extensión si reaparece en otra API, que es el criterio de recurrencia (Sección~\ref{sec:esquema:metodo}).
+El piloto dejó ocho, de F-01 a F-08, que la Tabla~\ref{tab:fricciones} recoge con su estado al cerrarlo.
+Ninguno impide la conformidad de la Datasheet, y cada uno se registra con la API y la cita que lo originan.
+
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{|l|>{\raggedright\arraybackslash}p{8.6cm}|l|}
+\hline
+\textbf{Id} & \textbf{Elemento no soportado por ACM2YAML v0.3} & \textbf{Estado} \\
+\hline
+F-01 & Un \textit{rate} que existe contractualmente pero sin valor
+publicado: el bloque vacío se confunde con «sin límite» & pendiente \\
+\hline
+F-02 & Cuotas por volumen contratado, con sobrecoste dependiente a la vez
+del volumen y del \textit{tier}, y tramo superior negociado & pendiente \\
+\hline
+F-03 & Factor de consumo multiplicativo (mensajes $\times$
+destinatarios) que una terna única no puede expresar & pendiente \\
+\hline
+F-04 & Restricciones declaradas que el proveedor admite no aplicar o que
+la respuesta a la petición no refleja & discusión \\
+\hline
+F-05 & La dimensión \textit{Results Per Request} aparece en el
+dominio y v0.3 no la serializa & pendiente \\
+\hline
+F-06 & Un \textit{workload}, lo que consume una petición, acotado por otra métrica (bytes del
+cuerpo de la petición, ya codificado) y no por un entero & pendiente \\
+\hline
+F-07 & \textit{Add-ons} que modifican dimensiones de capacidad,
+condicionados a volumen y a \textit{tier} & pendiente \\
+\hline
+F-08 & El «plan» real es \textit{tier} $\times$ volumen, con superficie
+de API dependiente del \textit{tier} & pendiente \\
+\hline
+\end{tabular}
+\caption[Elementos no soportados documentados en el piloto]{Elementos no soportados documentados en el piloto. «Pendiente» marca un dato que v0.3 no sabe escribir, como el consumo de mensajes por destinatarios de F-03, y que pasa a proponerse como extensión si aparece en al menos otra API o si su efecto se reproduce al ingerir la Datasheet en PRIME4API. «Discusión» marca una pregunta de fondo: si un límite que el proveedor declara y admite no aplicar forma parte de la capacidad.}
+\label{tab:fricciones}
+\end{table}
+
+La validación no dio ningún error en la Datasheet de Postmark, y los avisos del validador de formato eran los dos huecos deliberados del borrador.
+El primero es el bloque de \textit{rates}, vacío porque Postmark no publica el de su API REST.
+El segundo es el máximo de mensajes de \texttt{/email/bulk}, una de las rutas con las que Postmark envía varios mensajes en una sola petición, que el proveedor acota por el tamaño total de la petición, 50 MB, y no por un número de mensajes (F-06).
+El hueco del \textit{rate} quedó además en \texttt{not\_found}, con la búsqueda hecha (Sección~\ref{sec:propuesta:semaforo}).
+
+En la revisión de Postmark, hecha sin agente que verifica, el acta recogió diez preguntas que ni la documentación ni las reglas de modelado de entonces cerraban.
+Una era cuántos destinatarios admite un mensaje, y la resolvió el primer sondeo del catálogo, el 3 de agosto, con el token de pruebas de Postmark, una clave de acceso que valida las peticiones sin enviar correo ni consumir cuota \citep{postmarkapi}.
+
+La documentación fija un máximo de 50 destinatarios en cada campo To, Cc y Bcc, pero una petición con 51 repartidos entre To y Cc recibió un 422, el código HTTP con el que la API rechaza una petición que no cumple sus reglas.
+El tope de 50 es por mensaje, como dice el propio error: «Maximum of 50 recipients allowed per email message».
+Ese choque fue la primera entrada del registro de discrepancias, donde se enfrentan, con sus citas, las fuentes que se contradicen entre sí o con lo observado.
+
+El tope de 50 destinatarios es un término de consumo, porque Postmark lo publica y dice cuánto cabe en una petición, pero no es una dimensión de capacidad.
+Como los destinatarios por llamada de la Sección~\ref{subsec:introduccion:canales}, acota cuántos correos de la cuota gasta una petición, y en el modelo ACM eso es una regla de consumo, el CRF, que la Datasheet escribe en el \textit{workload} del \textit{endpoint} de envío.
+La respuesta de la API casa con esa lectura: la petición con 51 destinatarios recibe un 422, el de una petición mal formada, y no el 429 que la API devuelve a quien se ha pasado del \textit{rate}.
+De la revisión salió el segundo cambio del método: el sondeo contra la API real es desde entonces un peldaño ordinario de la escalera de validación de cada Datasheet (Sección~\ref{sec:propuesta:validacion}).
+
+La consolidación llevó a la Datasheet el tope de 50 destinatarios como valor confirmado, y dejó en el registro de procedencia los seis volúmenes contratados que muestra el panel, porque cada plan se modeló con el volumen mínimo de su \textit{tier}.
+La matriz de \textit{features}, el quinto artefacto, se construyó el 7 de septiembre, cuando el ciclo la incorporó, con las fuentes que ya tenía.
+
+Ya con otras APIs del catálogo en construcción, el 6 y el 7 de septiembre, tres sondeos más confirmaron el tope en el envío con plantilla y el lote de 500 mensajes que publica la documentación de \texttt{/email/batch}, y midieron un contador de 5.000 peticiones por segundo en una cabecera, uno de los campos de metadatos que acompañan a cada respuesta de la API.
+Ese valor entró como \textit{rate} de la Datasheet, pero sin darlo por definitivo, porque ningún sondeo llegó al 429, y de este caso sale la segunda regla de lectura de los sondeos (Sección~\ref{sec:propuesta:validacion}).
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{fig/tier_volumen_postmark_2026-10-25.png}
+\caption[Estructura comercial de Postmark frente a su proyección en el bloque \texttt{plans}
+de ACM2YAML v0.3]
+{Estructura comercial de Postmark (\textit{tier} funcional
+$\times$ volumen contratado) frente a la proyección representable en el
+bloque \texttt{plans} de ACM2YAML v0.3. La columna de 10.000 procede de
+la página de precios \citep{postmarkpricing}. La fila Basic y su
+sobrecoste por volumen proceden de la observación de panel con cuenta propia.
+Las celdas sin valor no son observables con una cuenta sin aprobar.
+Elaboración propia.}
+\label{fig:tiervolumen}
+\end{figure}
+
+Después de cerrar el catálogo, la recolección ganó una \textit{skill} propia, un conjunto de instrucciones empaquetadas que un modelo de lenguaje sigue para una tarea.
+Esa \textit{skill} recoge en bruto los términos de consumo de cada proveedor y está en el repositorio de datos del trabajo\footnote{\texttt{skills/\allowbreak recogida-terminos-consumo/}, en \url{https://github.com/danvelcam/tfm-pricing-apis-correo}.}.
+No intervino en las ocho Datasheets, que ya estaban cerradas: guarda el texto de cada página con su fecha, para que una captura posterior diga qué páginas cambiaron.
+Su estructura es la de las \textit{skills} de Ruiz López \citep{ruizlopez2026skills}: un único fichero de reglas, una salida en YAML con su esquema y un programa que comprueba esa salida.
+
+El fichero \texttt{SKILL.md} reúne las reglas de la \textit{skill}: el árbol de decisión que dice, en un orden fijo, si cada enlace entra en la captura o se descarta, y el presupuesto de peticiones de cada ejecución.
+La carpeta \texttt{references/} guarda el esquema del fichero de salida, un glosario, los dominios oficiales de cada proveedor, los patrones de texto que reconocen cada tema y unos ejemplos con un proveedor ficticio, que enseñan cómo se aplica el árbol de decisión.
+La carpeta \texttt{scripts/} guarda el programa que recoge las páginas, el que comprueba la salida y la definición del contenedor en el que corren, un entorno aislado que lee el repositorio sin poder modificarlo y solo escribe en la carpeta de la ejecución.
+
+La \textit{skill} trabaja en dos fases.
+La primera, descubrir, parte de las fuentes registradas y decide qué enlaces entran, respetando el \texttt{robots.txt}, el fichero en el que cada sitio dice qué páginas pueden recorrer los programas automáticos, y sin guardar ningún texto.
+La segunda, extraer, guarda cada página tal como llega, con su URL, su fecha de captura y su huella sha256.
+La huella es un resumen de los bytes de la página: si cambia uno solo, cambia la huella, y por eso sirve para comprobar después que la página sigue igual.
+
+En las ocho APIs hubo 14.362 páginas candidatas, las del sitio de cada proveedor enlazadas desde alguna de las 204 fuentes registradas o listadas en el índice de páginas que publica el propio sitio.
+De ellas entraron en la captura 1.197: las fuentes registradas y las que tratan alguno de los ocho temas de la \textit{skill} (precios, límites y cuotas, uso aceptable, SMTP, \textit{webhooks}, errores, reputación de la cuenta y envío).
+Los \textit{webhooks} son los avisos que el proveedor envía a una URL del cliente cuando ocurre algo con un correo, y la reputación es la valoración que el proveedor hace de los envíos de la cuenta.
+Se capturaron 1.174, y las otras 23 quedan anotadas con su motivo.
+
+Cada proveedor deja un único fichero \texttt{recogida.yaml} con el enlace, el título, la fecha y las huellas de cada página.
+La propia \textit{skill} comprueba después el formato de ese fichero, la cobertura de cada tema y que el texto en bruto no quede en la carpeta que se publica.
+De esas páginas solo se publican las citas literales del registro de fuentes, fragmentos cortos que respaldan cada valor.
+El texto entero no se publica, porque las condiciones de uso de los sitios de cinco de los ocho proveedores prohíben copiarlo.
+
+\section{Trazabilidad y escalera de validación}
 \label{sec:propuesta:trazabilidad}
 
-La regla central del método es que ningún dato entra en una Datasheet sin
-fuente verificable ni se rellena por estimación. Cada valor lleva asociada
-la URL de procedencia, la fecha de acceso y la \textit{cita literal} del
-texto que lo respalda. Las páginas de precios cambian con frecuencia, y
-una URL sin cita no permite verificar el dato meses después. El esquema ya
-prevé parte de este registro: \texttt{sources\_visited} y
-\texttt{data\_provenance}, en el bloque de metadatos
-\citep{apisconsumptionmodel}. El método añade dos elementos. Una lista
-\texttt{not\_found}, que documenta lo que se buscó y no se encontró, para
-que la ausencia quede como dato y no como descuido. Y un registro de
-\textit{discrepancias}, que enfrenta con sus citas las fuentes que se
-contradicen entre sí o con el comportamiento observado del servicio. El
-registro admite también la entrada que tiene por lado una ausencia de
-fuente.
+\subsection{Fuente, semáforo y procedencia}
+\label{sec:propuesta:semaforo}
 
-La página de precios del proveedor fija la verdad del dato, porque es lo que el cliente compra.
-Las demás fuentes (documentación, ayuda, blog, panel o sondeo) detectan incoherencias del \textit{pricing}, pero no lo corrigen.
-Si una de ellas da otro valor para el mismo dato, se modela el de la página y el otro se registra como incoherencia, con las dos citas.
-Si la propia página se contradice, no se elige: el campo queda en ámbar, el color intermedio del semáforo que se describe a continuación, mientras la discrepancia siga abierta.
+La regla central del método de construcción del catálogo de Datasheets es que ningún dato entra en una Datasheet sin fuente verificable ni se rellena por estimación.
+Cada valor lleva la URL de procedencia con su fecha de acceso, y la \textit{cita literal} del texto que lo respalda.
+La guía de ACM2YAML ya prevé parte de este registro en los campos \texttt{sources\_visited} y \texttt{data\_provenance} \citep{apisconsumptionmodel}.
+El método añade los dos registros que ya han salido en el ciclo: la lista \texttt{not\_found}, para que la ausencia quede registrada como dato, y el registro de \textit{discrepancias}.
 
-Sobre esa base, este trabajo introduce como aportación metodológica
-propia un \textit{semáforo de confianza}: cada campo de la Datasheet se
-etiqueta con el respaldo que tiene su valor. Verde, si el dato aparece
-explícito y literal en una fuente oficial. Ámbar, si se ha inferido o la
-fuente es ambigua. Rojo, si el proveedor no lo documenta.
-Si dos fuentes oficiales discrepan y una de ellas es la página de precios, el verde va al valor de la página.
-La etiqueta se
-serializa como comentario YAML con el color y nada más, de modo que no
-altera la conformidad del documento ni lo carga de prosa. El detalle de
-qué fuente respalda qué dato vive en el \textit{provenance} del propio
-documento y en el registro de fuentes, no en el comentario.
+Los términos de consumo de un mismo servicio están repartidos entre varias páginas del proveedor: la de precios, la documentación de cada interfaz, la ayuda o el blog.
+La página de precios fija la verdad del dato, porque es lo que el cliente compra.
+Las demás fuentes (documentación, ayuda, blog, panel o sondeo) detectan incoherencias del pricing, pero no lo corrigen.
+Si una de ellas da otro valor, se modela el de la página y el otro se registra como incoherencia, con las dos citas.
+Si la propia página se contradice, esta regla no decide: el campo se marca como interpretado mientras la discrepancia siga abierta.
 
-El semáforo cumple una doble función. La operativa: dirige el esfuerzo de
-revisión, porque con ocho APIs y decenas de campos por API no todo puede
-verificarse con la misma intensidad. Y la analítica. Que el bloque de
-\textit{rates} de Postmark estuviera en rojo en el piloto es un hueco de un proveedor. Que
-lo esté en todas las APIs del catálogo es un rasgo del dominio. Agregar
-los colores por API y por dimensión convierte esa diferencia en un dato
-medible: qué proporción de su capacidad contractual publican los
-proveedores de correo, qué dimensiones ocultan de forma sistemática y si
-la opacidad es común o propia de algunos. Es la lectura que alimenta el
-análisis de los capítulos posteriores. De ahí la segunda regla del
-método: cuando una dimensión de capacidad existe pero su valor no está
-publicado, el hueco se registra en \texttt{not\_found} y en el registro
-de elementos no soportados, con la búsqueda documentada, y el documento no incorpora
-ninguna forma que el esquema no acepte. Un hueco visible es un hallazgo
-sobre el dominio. Un hueco disimulado se confunde con la inexistencia del
-límite.
+Sobre esa base, este trabajo introduce como aportación metodológica propia un \textit{semáforo de confianza}: cada campo de la Datasheet se etiqueta con el respaldo que tiene su valor.
+Verde, si el valor está respaldado: es literal en lo que publica el proveedor, o lo fijó un panel con cuenta propia o un sondeo.
+Ámbar, si está interpretado: hay texto, pero el valor exige una lectura que la fuente no hace literal, o dos fuentes oficiales chocan.
+También es ámbar el valor que un sondeo de caudal leyó en una cabecera de respuesta sin llegar al rechazo por exceso de caudal (Sección~\ref{sec:propuesta:validacion}).
+Rojo, si el proveedor no lo publica, y eso ya es un hallazgo.
 
-El Extracto de código~\ref{lst:semaforo} ilustra ambas reglas sobre un
-fragmento real de la Datasheet del piloto, anterior a la adopción de su \textit{rate} el 7 de septiembre de 2026.
-Recoge una cuota cuyo valor procede del volumen mínimo
-observado (ámbar) junto a un sobrecoste publicado literalmente (verde), y
-el bloque de \textit{rates} vacío, con el hueco marcado en rojo.
-Desde esa fecha el bloque declara 5.000 peticiones por segundo en ámbar, y el Apartado~\ref{subsec:hallazgos:postmark} recoge el estado de la Datasheet al cierre del catálogo. En la
-memoria, los emojis de color del fichero se representan con los círculos
-\semverde{}, \semambar{} y \semrojo{}.
+La etiqueta se serializa como comentario YAML con el color y nada más, así que no altera la conformidad del documento, y qué fuente respalda cada dato lo dice el registro de procedencia (\textit{provenance}).
+
+El semáforo tiene una función operativa, que es dirigir la revisión hacia lo que no está en verde, y otra analítica, que nace de agregar.
+Que el bloque de \textit{rates} de Postmark estuviera en rojo en el piloto era un hueco de un proveedor, pero que lo estuviera en todas las APIs del catálogo sería un rasgo del dominio.
+Agregar los colores por API y por dimensión mide qué parte de su capacidad contractual publican los proveedores de correo y qué dimensiones no publican, y la Sección~\ref{sec:limites:catalogo} lo hace con la ventana de las cuotas.
+
+Para que ese recuento sea posible, el hueco se registra en \texttt{not\_found} con la búsqueda documentada cuando la dimensión existe pero su valor no está publicado.
+Así el bloque vacío queda acompañado de un registro que dice que el límite existe y no se publica.
+La guía de v0.3 no define ese registro, y el validador de formato lo admite porque no da error por una clave que la guía no recoge (Sección~\ref{sec:propuesta:prime4api}).
+
+El Extracto de código~\ref{lst:semaforo} muestra el semáforo y ese registro del hueco sobre la Datasheet del piloto, antes de que adoptara su \textit{rate}.
+Su bloque de cuota es el del primer fragmento de la Figura~\ref{fig:propuesta:artefactos}.
+Una cuota interpretada (ámbar) convive con un sobrecoste literal (verde), y el bloque de \textit{rates} queda vacío, con el hueco en rojo.
+La cuota es una interpretación porque la página de precios dice que el plan empieza en 10.000 correos al mes, no que los incluya.
+Al cierre del catálogo, ese bloque declara en ámbar el valor que devolvió una cabecera.
+En la memoria, los emojis del fichero se representan con los círculos \semverde{}, \semambar{} y \semrojo{}.
 
 \begin{lstlisting}[style=datasheetyaml,
 caption={Serialización del semáforo de confianza en la Datasheet del
@@ -309,364 +380,454 @@ capacity:
       price: 0.0018                                         # @\semverde@
       value: 1
 
-# @\semrojo@ rate no publicado — hueco deliberado (ver metadata.not_found)
+# @\semrojo@ rate no publicado: hueco deliberado (ver metadata.not_found)
 max_power: {}
 \end{lstlisting}
 
-\section{Validación: de la inferencia a la evidencia}
+Cómo se obtuvo el valor lo dice un segundo eje, la procedencia, con cinco valores.
+\textit{Publicado}: el valor es literal de una página del proveedor, como las 10 peticiones por segundo de Resend, comunes a sus planes Free, Pro y Scale.
+\textit{Interpretado}: hay texto y el modelador decide qué significa, como en la cuota diaria de Resend, que pide esperar 24 horas sin decir desde cuándo.
+Su ventana queda en ámbar.
+\textit{Medido}: lo fijó un sondeo o un panel con cuenta propia, como el tope de destinatarios de Resend: la API responde 422 con 51 en \texttt{to} y 200 con 25 en \texttt{to} más 25 en \texttt{cc}.
+
+Los otros dos valores no se leen en ninguna fuente ni se observan: se derivan.
+\textit{Calculado}: es una función reproducible de valores publicados o medidos, como el coste que PRIME4API deriva del precio del plan y del sobrecoste, y de él se guardan la fórmula y las entradas, no el resultado.
+\textit{Inferido por agente}: es una conclusión que ninguna página afirma y ninguna fórmula devuelve, producida por un modelo de lenguaje o por una \textit{skill} que cita sus fuentes y su versión.
+En las ocho Datasheets no hay ningún valor así.
+Que un agente escriba un valor no lo hace inferido: el publicado, el interpretado y el medido parten de un texto o de una medida que la cita reproduce, y el inferido es una conclusión que no dice ningún texto.
+
+Dos reglas enlazan el color con la procedencia.
+Un valor inferido por agente no pasa de ámbar hasta que lo respalde un valor publicado o medido, y un valor calculado toma el peor color de sus entradas.
+Las páginas del proveedor son el origen de cada dato, todavía sin contrastar, y la Datasheet es una vista construida a partir de ellas.
+La regla de la página de precios decide qué valor entra en la Datasheet, y el registro de procedencia dice si un valor publicado se confirmó después con un contraste, un panel o un sondeo.
+
+Los términos de consumo que reúne una Datasheet salen de fuentes distintas del mismo servicio: sus páginas, el panel y los sondeos.
+La Tabla~\ref{tab:propuesta:procedencia} reparte por su fuente principal las 437 entradas del registro de procedencia de las ocho Datasheets.
+La página de precios es la fuente principal de una entrada de cada cuatro, y la documentación y las demás páginas del proveedor, de casi la mitad.
+Cuando una entrada cita varias fuentes, cuenta la que va antes en la tabla, y ese orden solo sirve para contar: en un choque con la página de precios, entra el valor de la página.
+
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{|l|r|r|}
+\hline
+\textbf{Fuente principal} & \textbf{Entradas} & \textbf{\%} \\
+\hline
+Sondeo contra la API & 63 & 14,4 \\
+Panel con cuenta propia & 42 & 9,6 \\
+Página de precios & 109 & 24,9 \\
+Documentación y demás páginas del proveedor & 216 & 49,4 \\
+Nota aclaratoria, sin dato & 7 & 1,6 \\
+\hline
+Total & 437 & 100 \\
+\hline
+\end{tabular}
+\caption[Fuente principal de las entradas del registro de procedencia]{Fuente principal de las 437 entradas del registro de procedencia de las ocho Datasheets. Cuando una entrada cita varias fuentes, cuenta la que aparece antes en la tabla. Porcentajes redondeados a un decimal.}
+\label{tab:propuesta:procedencia}
+\end{table}
+
+\subsection{La escalera de validación}
 \label{sec:propuesta:validacion}
 
-Los campos en ámbar no se quedan en inferencias: el método define una
-escalera de validación de cuatro peldaños que se recorre en orden de
-coste. El primero es el \textit{contraste documental}: buscar una segunda
-fuente oficial que confirme o contradiga la primera.
-Si un lado de la contradicción es la página de precios, gana la página y el otro valor se registra como incoherencia del \textit{pricing}.
-Si la página de precios no interviene, o si la contradicción está dentro de ella, no se elige entre las dos y se registra como discrepancia.
-El segundo es la
-\textit{observación de panel} con cuenta propia: darse de alta en el
-servicio y confrontar lo publicado con lo que el panel de control muestra,
-archivando capturas fechadas como evidencia.
-El panel no sobrescribe el precio publicado: si muestra otra cifra para el mismo dato, la diferencia queda como incoherencia registrada.
-El tercero es el
-\textit{sondeo empírico ligero} contra la API real.
-Prefiere un mecanismo inocuo cuando el proveedor lo ofrece, y si no lo hay admite un envío real a destinatarios propios con un presupuesto declarado en el script del sondeo.
-Un sondeo que mide menos de lo que promete la página de precios deja el valor modelado como está y documenta una incoherencia del \textit{pricing}.
-En el caso de Postmark, un token de
-pruebas documentado valida las peticiones sin enviar correo ni consumir
-cuota \citep{postmarkapi}, lo que permite comprobar límites de aceptación
-con peticiones diseñadas al efecto. El catálogo de códigos de error del
-proveedor actúa aquí como mapa: cada límite que se aplica rechazando la
-petición tiene un error observable asociado. No todos los límites se
-aplican así.
-Brevo publica que, superada la cuota diaria de su plan Free, retiene en cola hasta mil correos transaccionales más \citep{brevohelpfree}.
-Mailchimp publica que retiene en cola lo que excede su cuota \citep{mailchimpdocs}. El lote de MailerSend se acepta con un
-\texttt{202}, y el error solo aparece al consultar su estado
-(Sección~\ref{sec:hallazgos:apis}). El cuarto peldaño es la \textit{medición empírica
-formal} con el banco de pruebas del ecosistema
-\citep{datasheetusagetesting}, para lo que ninguno de los anteriores
-alcanza (los umbrales no publicados, el cómputo real de consumo, el
-comportamiento bajo carga). Esa medición excede el ciclo documental que
-construye el catálogo. Este trabajo deja identificados los campos
-candidatos en la Sección~\ref{sec:conclusiones:constructo}: el
-\textit{rate} adoptado desde una cabecera en Postmark y Mailgun, el
-caudal de SendGrid y la unidad de la cuota en cuatro APIs. Así la
-medición puede ejecutarse sobre el catálogo terminado sin rehacer
-trabajo de documentación.
+Los campos en ámbar o en rojo pasan por una escalera de validación de cuatro peldaños.
+Es una escalera porque los peldaños están ordenados de menor a mayor coste, de leer otra página del proveedor a medir el servicio bajo carga, y un campo solo sube al siguiente cuando el anterior no lo resuelve.
+El panel es la excepción: desde el piloto se observa en todas las APIs, aunque el primer peldaño ya haya resuelto el campo.
 
-\section{Conformidad estricta y evolución del esquema: cómo una carencia
-llega a propuesta}
-\label{sec:propuesta:conformidad}
+El primer peldaño es el \textit{contraste documental}: buscar una segunda fuente oficial que confirme o contradiga la primera y resolver el choque con la regla de la página de precios del apartado anterior.
+Si la página no interviene, el choque se registra como discrepancia.
 
-El método adopta una posición deliberadamente conservadora respecto al
-esquema: todas las Datasheets del catálogo se escriben contra ACM2YAML v0.3,
-sin inventar campos nuevos. Dos formas quedan, sin embargo, al
-margen de lo que la guía define, y las ocho las comparten: la unidad \texttt{MBs} (con
-\texttt{MiBs} en Mailgun) para los topes de tamaño, y el registro de
-ausencias \texttt{not\_found}.
-Así el catálogo está escrito para que las herramientas del ecosistema lo consuman sin adaptación, y constituye una aportación compatible con la base documental existente \citep{apisconsumptionmodel}.
-En el ecosistema, PRIME4API analiza las Datasheets y SPHERE las publica \citep{gavira2026tfm,sphere}.
-El Capítulo~\ref{cap:evolucion} documenta hasta dónde las consume PRIME4API.
-El catálogo se entrega a SPHERE como contribución, y su publicación depende de los responsables de la plataforma.
-Cuando el dominio exhibe información que el esquema no puede representar,
-esa carencia no se resuelve bifurcando el formato. Se registra como
-«elemento no soportado»: un hecho del dominio que ACM2YAML v0.3 no puede expresar, o que expresa sin que el consumidor de referencia lo lea bien.
-Cada uno lleva un número, F-nn, con el caso real que lo motiva, la consecuencia
-para el análisis y una propuesta de resolución.
-En el repositorio de datos estos registros se llaman «fricciones» (\texttt{fricciones.md}), y de ahí la F de F-nn.
+El segundo es la \textit{observación de panel} con cuenta propia.
+Se da de alta una cuenta en el servicio y se confronta lo publicado con lo que muestra el panel, con capturas fechadas como evidencia.
+El panel no sobrescribe el precio publicado: si muestra otra cifra para el mismo dato, la diferencia queda como incoherencia.
 
-Un elemento no soportado se promueve por una de dos vías. La primera es la
-\textit{recurrencia}: los elementos que reaparecen en al menos dos APIs del
-dominio quedan promovidos. Quedar promovido no equivale a ser propuesta: el
-Capítulo~\ref{cap:evolucion} solo formula como propuesta de extensión, con
-número P-nn, el promovido cuya forma se contrasta con el texto de la guía.
-La segunda vía admite una sola API y exige tres condiciones. Primera: el
-hecho está citado con literal o medido en un sondeo, con su evidencia
-archivada. Segunda: la consecuencia está ejecutada sobre el consumidor de
-referencia, es decir, el motor devuelve un valor falso o deja sin responder
-lo que respondería si el esquema expresara la carencia.
-Un caso de control tiene que mostrar que el motor sabe responder bien.
-Tercera: ningún mecanismo ya existente de la guía cubre esa carencia, y no la explica un defecto del motor ya conocido.
-El veredicto de cada
-elemento no soportado se anota en el inventario consolidado del
-Capítulo~\ref{cap:evolucion} (Tablas~\ref{tab:recurrencia}
-y~\ref{tab:recurrencia:b}). Con el catálogo cerrado, el paquete completo
-queda formulado: nueve propuestas (Tabla~\ref{tab:propuestas}) y doce
-elementos promovidos con una forma esbozada, sin número de propuesta
-(Tabla~\ref{tab:sinforma}). Esta regla protege dos cosas a la vez. La
-utilidad inmediata del catálogo, que no depende de que las propuestas se
-acepten.
-Y la fuerza de las propuestas que nacen de un elemento no soportado, respaldadas por frecuencias observadas sobre el dominio completo o, cuando entran con una sola API, por la consecuencia ejecutada sobre el motor.
+El tercero es el \textit{sondeo empírico ligero} contra la API real.
+Prefiere un sondeo inocuo, que no entrega ningún correo: el que usa un token de pruebas, como el de Postmark (Sección~\ref{sec:propuesta:piloto}), el que solo hace lecturas o el que provoca que la API rechace la petición antes de entregarla.
+Si ninguno sirve, admite un envío real a destinatarios propios, con un número máximo de envíos declarado en el script.
 
-La regla hace explícito un criterio del método: solo entra en el modelo lo que generaliza.
-Un elemento que aparece en una sola API y no deja traza sobre el motor no se añade al esquema, aunque esté bien documentado, y queda en el inventario sin promover, con la condición que no cumple en la columna de vía de su fila.
-En la vía de traza, la tercera condición exige además descartar que el elemento ya estuviera soportado y que la carencia saliera de una mala lectura de la guía.
-Con el catálogo cerrado, el criterio promueve veinticuatro de los treinta y cinco elementos no soportados del inventario y deja once sin promover (Sección~\ref{sec:evolucion:inventario}).
+Lo que el sondeo puede ver depende de cómo aplica el proveedor cada límite.
+El sondeo parte de la lista de códigos de error que publica el proveedor, porque cada límite que se aplica rechazando la petición tiene un error observable.
+No todos los límites se aplican así.
+Superada la cuota diaria de su plan Free, Brevo retiene en cola hasta 1.000 correos más \citep{brevohelpfree}.
+El lote de MailerSend, hasta 500 mensajes en una petición, se acepta con un \texttt{202}, el código HTTP de una petición aceptada para procesarla después, y el error solo aparece al consultar su estado.
 
-Para comprobar si el criterio dejaba fuera casos generales, se preguntó a un modelo de lenguaje cómo se generalizaría cada uno de los doce elementos que entonces no promovía o dejaba en suspenso (Anexo~\ref{anx:uso-ia}).
-Uno de ellos, F-17, se retiró después del inventario, y la respuesta lo contaba entre los generalizables.
-La consulta recibió la descripción de cada caso, sin su veredicto.
-La respuesta da F-23, F-29 y F-35 por expresables con el esquema actual.
-En F-23 coincide con el inventario, donde la tercera condición falla, y en F-35, donde falta.
-En F-29 apunta en la misma dirección, aunque la comprobación de esa condición sigue pendiente.
-Los otros nueve los da por generalizables y los reduce a seis formas, como una lista de cuotas que se aplican a la vez o un precio por tramos.
-En F-25 la respuesta discrepa en parte del inventario, que da la tercera condición por fallida.
-Según la respuesta, la guía de ACM2YAML expresa los dos modos con alias, aunque no documenta un \texttt{workload} por alias.
-El criterio mide la generalidad por la recurrencia en el catálogo, y la respuesta sugiere que nueve casos se repetirían fuera de él.
-Sus ejemplos de otras APIs no se han comprobado, así que el criterio y las cifras no cambian.
-Revisarlo queda como decisión abierta.
+El cuarto es la \textit{medición empírica formal} con \texttt{datasheet-usage-testing}, el banco de pruebas de API-TaskForce para medir límites de uso \citep{datasheetusagetesting}.
+Cubre lo que los anteriores no alcanzan, como los umbrales no publicados o el comportamiento bajo carga.
+Esa medición queda fuera del ciclo que construye el catálogo.
+Los campos candidatos para ejecutarla sobre el catálogo terminado son los adoptados desde una cabecera, como los \textit{rates} de Postmark y Mailgun.
 
-\section{Calibración del método: el piloto Postmark}
-\label{sec:propuesta:piloto}
+Dos reglas gobiernan la lectura de los sondeos, igual en las ocho APIs.
+La primera dice qué valida un sondeo sin envío real.
+Un sondeo con token de pruebas o en modo \textit{sandbox} (un modo en el que la API procesa la petición sin entregar el correo) valida los topes que la API comprueba al recibir la petición, como los destinatarios o el tamaño del mensaje, pero no la cuota consumida ni el caudal.
+Cuando una petición con un token real se rechaza porque no cumple las reglas de la API, el contador de caudal sí descuenta, y en MailerSend también la cuota diaria de peticiones.
 
-El método anterior se calibró aplicándolo íntegramente a un piloto:
-Postmark, un proveedor de correo transaccional
-\citep{postmarkpricing} no modelado previamente en el ecosistema.
-Esta sección describe la Datasheet del piloto tal como estaba antes de los sondeos del 7 de septiembre de 2026.
-Su estado al cierre del catálogo está en el Apartado~\ref{subsec:hallazgos:postmark}, y el de sus elementos no soportados en la Tabla~\ref{tab:recurrencia}.
-El
-resultado es una Datasheet conforme a v0.3 con todos los campos tratados,
-con valor y fuente o con hueco explícito y trazable. Se construyó sobre
-trece fuentes registradas: diez documentales, la observación del panel
-con cuenta propia, la especificación que alimenta el explorador de la API
-del proveedor y un sondeo empírico. La validación estructural da cero
-errores y cinco avisos, correspondientes uno a uno a los huecos
-deliberados.
+La segunda dice cuándo un valor observado entra en la Datasheet: cuando el sondeo se diseñó para medirlo y es inocuo.
+Una cabecera aparecida en un sondeo con otro propósito se registra y no se adopta.
+Adoptarla exige un sondeo de caudal: si confirma el contador, el valor entra en ámbar, y solo pasa a verde cuando el sondeo llega al rechazo por exceso de caudal.
+Si el sondeo mide menos que la página de precios, se mantiene el valor publicado.
+La medida queda como incoherencia del pricing.
 
-La Datasheet completa no se reproduce en la memoria. Se conserva, con
-su registro de fuentes, el inventario de elementos no soportados y las evidencias
-fechadas, en el repositorio de datos que acompaña al trabajo. La
-Tabla~\ref{tab:lecturapostmark} ofrece su lectura resumida, pensada para
-leer el resultado del piloto sin recorrer el YAML, con cada valor
-acompañado del nivel de confianza que lleva en el documento.
+Al cruzar fuentes se distinguen tres fenómenos, siempre con el mismo nombre.
+Hay \textit{contradicción} si dos fuentes dan valores o condiciones incompatibles para el mismo atributo.
+En Brevo, la documentación de límites de su API admite 1.000 peticiones por segundo al \textit{endpoint} de envío en su categoría General, y su guía de envío por lotes da para la misma ruta 6.000 por hora, seiscientas veces menos que los 3.600.000 por hora que suman 1.000 por segundo \citep{brevodocs}.
+Cuando una de las dos fuentes es la página de precios y la otra no, la contradicción se registra como incoherencia, y en los demás casos, como discrepancia.
 
-\begin{table}[H]
+Hay \textit{ausencia} si una fuente no publica el límite, como el contrato legible por máquina de la versión 2 de Amazon SES, que no publica ninguno.
+Ese contrato es la descripción formal de las operaciones de la API, pensada para que la lean los programas.
+
+Hay \textit{diferencia de interfaz} si dos fuentes dan valores o reglas distintos porque describen interfaces distintas del mismo servicio.
+La cuota diaria de peticiones de MailerSend es común a la API REST y al relé SMTP, pero la página general de su API dice que cuenta cada petición, y la de su relé, que cuenta cada mensaje.
+No se contradicen: por la API, un envío en lote (\texttt{POST /v1/bulk-email}) de hasta 500 mensajes distintos es una sola petición, y por el relé cada mensaje descuenta uno.
+
+Una discrepancia puede venir también del modo de leer las fuentes, y no del proveedor.
+Los agentes de inteligencia artificial de la recolección leen parte de las páginas sin ejecutar su JavaScript, y reciben el HTML tal como lo envía el servidor, antes de que el navegador lo actualice.
+En MailerSend, ese HTML conserva los precios de 2024 con facturación anual: 5,60~USD al mes por el plan Hobby, frente a los 6,30 que ve en el navegador cualquier cliente.
+Lo detectó el verificador, y la Datasheet recoge el precio que muestra el navegador.
+
+\subsection{Dos casos de fuente a contradicción}
+\label{sec:propuesta:casos}
+
+Dos casos muestran la cadena completa, desde la fuente hasta la evidencia que resuelve la contradicción o la deja abierta.
+
+El primero es de Brevo y se cierra midiendo.
+La página de caudal de Brevo da una fila propia de 2 peticiones por segundo, 7.200 por hora \citep{brevodocs}, a \texttt{GET /v3/smtp/emails}, una ruta de su API REST aunque el nombre diga smtp, pero tres filas más abajo pone todas las rutas bajo \texttt{/v3/smtp/} a 300 por hora.
+Una nota al pie exime a dos rutas, y esta no es ninguna de ellas, así que, si el prefijo alcanzara a la ruta, la Datasheet sobrestimaría su caudal 24 veces.
+Como la contradicción está dentro de la página, el método no la da por resuelta: modela el valor de la fila propia, en ámbar, y deja abierta la discrepancia.
+
+Una lectura sin envío devolvió la cabecera \texttt{x-sib-\allowbreak ratelimit-\allowbreak limit:~2}, que coincide con la fila propia, pero la cabecera sola no basta para cambiar el color.
+El sondeo de caudal sí basta: tres peticiones en el mismo segundo devuelven 400, 400 y 429, el código HTTP con el que la API rechaza una petición por pasar del \textit{rate}.
+Las dos primeras, rechazadas porque les falta un parámetro, también descuentan del contador.
+Justo después, una lectura de otra ruta bajo \texttt{/v3/smtp/} devuelve 200, así que el contador agotado es el de la fila y no el del prefijo.\footnote{Evidencia en \texttt{03\_datos/\allowbreak apis/\allowbreak brevo/\allowbreak evidencias/\allowbreak probe\_brevo\_a\_429\_rps\_\allowbreak 2026-09-18\_195606.json}. La discrepancia está registrada en \texttt{03\_datos/\allowbreak apis/\allowbreak brevo/\allowbreak fuentes.md}.}
+El rechazo cae en la tercera petición de un segundo y no en la 301 de una hora, así que rige la fila propia, y el campo pasa a verde con 2 peticiones por segundo.
+
+El segundo es de Amazon SES y la medición lo deja abierto.
+La página de límites de SES declara que todas las acciones salvo las de envío se limitan a una petición por segundo: «All actions (except for SendEmail, SendRawEmail, and SendTemplatedEmail) are throttled at one request per second» \citep{sesdocs}.
+La Datasheet lo modeló en ámbar como un \textit{rate} de 1 petición por segundo para el resto de operaciones, porque la cita nombraba operaciones de la versión 1 de la API y la Datasheet modela la versión 2.
+La página cambió entre el 23 y el 31 de octubre de 2026, y hoy exime las dos operaciones de envío de la versión 2, SendEmail y SendBulkEmail.
+El sondeo hizo dos pasadas contra \texttt{GET /v2/email/account}, una lectura sujeta a ese límite.
+
+En la pasada secuencial, doce peticiones a 5,7 por segundo respondieron 200, sin rechazo ni cabecera de caudal.
+En la concurrente, treinta peticiones a 140,8 por segundo dieron 21 respuestas 200 frente a 9 rechazos 429 con el error \texttt{TooManyRequestsException}.
+El servicio aplica, por tanto, un límite, pero no el publicado: acepta más de cinco veces el valor declarado, y el umbral real queda entre 5,7 y 140,8 peticiones por segundo sin que dos pasadas lo fijen.
+Con la página nueva, que ya cubre esa operación, el valor publicado pasa a verde, pero la medición sigue sin casar con él.
+El caso suma a F-04, las restricciones declaradas que la respuesta no refleja\footnote{Evidencia en \texttt{03\_datos/\allowbreak apis/\allowbreak ses/\allowbreak evidencias/\allowbreak probe\_ses\_caudal\_lectura\_\allowbreak 2026-09-18\_100218.json}, con las dos pasadas. La discrepancia está registrada en \texttt{03\_datos/\allowbreak apis/\allowbreak ses/\allowbreak fuentes.md}.}.
+
+\section{El catálogo resultante}
+\label{sec:propuesta:catalogo}
+
+La Tabla~\ref{tab:propuesta:catalogo} resume las ocho Datasheets en el orden en que se construyeron.
+Las ocho llegaron al tercer peldaño de la escalera, el sondeo, y ninguna al cuarto.
+Ninguna cuenta contrató un plan de pago, así que lo medido describe una cuenta gratuita o de prueba, y los valores de los planes de pago salen de lo que publica el proveedor.
+
+\begin{table}[tbp]
 \centering
-\small
-\begin{tabular}{|p{4.2cm}|c|c|c|c|}
+\scriptsize
+\setlength{\tabcolsep}{3pt}
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|p{1.7cm}|p{2.6cm}|p{3.1cm}|p{2.9cm}|p{2.9cm}|}
 \hline
-\textbf{Propiedad} & \textbf{Free} & \textbf{Basic} & \textbf{Pro} &
-\textbf{Platform} \\
+\raggedright\textbf{API} & \raggedright\textbf{Planes} & \raggedright\textbf{Cuota de entrada} & \raggedright\textbf{Caudal de envío} & \raggedright\textbf{Cuenta del sondeo} \tabularnewline
 \hline
-Precio (USD/mes) & 0~\semverde & 15~\semverde & 16,50~\semverde &
-18~\semverde \\
+\raggedright Postmark & \raggedright Free, Basic, Pro, Platform & \raggedright 100 al mes (Free); 10.000 al mes (Basic) & \raggedright no publicado; 5.000 pet./s en cabecera~\semambar & \raggedright Free en modo de prueba, sin aprobar \tabularnewline
 \hline
-Cuota incluida (emails/mes) & 100~\semverde & 10.000~\semambar &
-10.000~\semambar & 10.000~\semambar \\
+\raggedright Resend & \raggedright Free, Pro, Scale, Enterprise & \raggedright 100 al día y 3.000 al mes (Free); 50.000 al mes (Pro) & \raggedright 10 pet./s por equipo & \raggedright Free sin dominio verificado \tabularnewline
 \hline
-Sobrecoste en 10.000 (USD/1.000 extra) & no admitido~\semverde &
-1,80~\semverde & 1,30~\semverde & 1,20~\semverde \\
+\raggedright SendGrid & \raggedright Free Trial, Essentials, Pro, Premier & \raggedright 100 al día durante 60 días (Trial); 50.000 al mes (Essentials 50K) & \raggedright 10.000 pet./s & \raggedright prueba gratuita, envíos en modo \textit{sandbox} \tabularnewline
 \hline
-\textit{Rate} de la API REST & \multicolumn{4}{c|}{no publicado~\semrojo} \\
+\raggedright MailerSend & \raggedright Free, Hobby, Starter, Professional & \raggedright 500 al mes y 100 peticiones al día (Free); 5.000 al mes (Hobby) & \raggedright 120 pet./min; 10 pet./min medidas sin aprobar & \raggedright cuenta en estado Sandbox, nunca aprobada \tabularnewline
 \hline
-Destinatarios por mensaje & \multicolumn{4}{c|}{50 en total~\semverde} \\
+\raggedright Brevo & \raggedright Free, Starter, Standard, Professional, Enterprise & \raggedright 300 al día (Free); 5.000 al mes (Starter) & \raggedright 1.000 pet./s en la categoría General~\semambar & \raggedright Free, un envío real \tabularnewline
 \hline
-Mensajes por lote (\texttt{/email/batch}) & \multicolumn{4}{c|}{500~\semambar} \\
+\raggedright Amazon SES & \raggedright pago por uso, Essentials, Pro, Enterprise & \raggedright sin cuota incluida; 200 por 24 h en pruebas & \raggedright 1 pet./s en pruebas; producción sin cifra & \raggedright entorno de pruebas, sin acceso de producción \tabularnewline
 \hline
-Envío masivo (\texttt{/email/bulk}) &
-\multicolumn{4}{c|}{sin tope numérico~\semrojo{} (carga $\leq$ 50 MB~\semverde)} \\
+\raggedright Mailgun & \raggedright Free, Basic, Foundation, Scale & \raggedright 100 al día (Free); 10.000 al mes (Basic) & \raggedright 80.000 pet. por ventana de unos 10~s, en cabecera~\semambar & \raggedright Free con dominio de pruebas, 13 envíos reales \tabularnewline
 \hline
-\end{tabular}
-\caption{Lectura resumida de la Datasheet del piloto antes de los sondeos del 7 de septiembre de 2026. Cada valor conserva
-su nivel del semáforo: \semverde{} explícito en fuente oficial,
-\semambar{} inferido, \semrojo{} no documentado. Los precios y el
-sobrecoste corresponden al volumen mínimo de cada \textit{tier}, que es
-el que la página de precios publica; su variación con el volumen
-contratado se recoge en la Figura~\ref{fig:tiervolumen}. La Datasheet
-completa, en el repositorio de datos del trabajo.}
-\label{tab:lecturapostmark}
+\raggedright Mailchimp Trans\-actional & \raggedright bloques de 25.000 correos, sin planes & \raggedright 500 envíos sin renovación (prueba) & \raggedright 25 correos/h en prueba; pago sin cifra & \raggedright cuenta de prueba sin dominio verificado \tabularnewline
+\hline\end{tabular}
+\caption[Las ocho Datasheets del catálogo]{Las ocho Datasheets del catálogo, en el orden en que se construyeron. Cuota de entrada: la del plan gratuito o de prueba y la del primer plan de pago al primer volumen. Las ocho llegaron al tercer peldaño de la escalera de validación.}
+\label{tab:propuesta:catalogo}
 \end{table}
 
-La misma lectura hace visible lo que el proveedor no publica. Además del
-límite de velocidad, la Datasheet registra como huecos la ausencia de un
-límite de concurrencia documentado para la API REST y la ventana exacta
-de la cuota en los planes de pago (confirmada solo en el gratuito, por
-panel, como ciclo de cuenta). También la URL de la especificación que
-alimenta el explorador oficial de la API, el precio de cada volumen en
-los \textit{tiers} superiores y la disponibilidad del envío masivo por
-plan. Cada uno figura en \texttt{not\_found} con su búsqueda documentada,
-de modo que la ausencia queda afirmada y fechada, no supuesta.
+Cada párrafo recoge los rasgos de una API que v0.3 no puede representar, con su identificador F-nn.
+De F-01 a F-08 son los del piloto de la Tabla~\ref{tab:fricciones}, y los siguientes se numeraron a medida que aparecían en las demás APIs.
+Un identificador se repite cuando el mismo rasgo vuelve a aparecer en otra API.
 
-El piloto validó el método precisamente porque el dominio se resistió al
-esquema en puntos concretos. Cuatro hallazgos lo ilustran. Primero, el
-límite de velocidad de la API REST resulta contractualmente inobservable.
-El proveedor documenta el error de \textit{rate limit} pero no publica
-umbral alguno \citep{postmarkapi}.
-Por eso el bloque correspondiente de la Datasheet queda vacío de forma deliberada, y la determinación del valor pasa a la fase empírica (Apartado~\ref{subsec:hallazgos:postmark}).
+\textbf{Postmark} \citep{postmarkpricing}, la API piloto, se describe fase a fase en la Sección~\ref{sec:propuesta:piloto}.
+No publica el \textit{rate} de su API REST (F-01), así que el caudal de la tabla sale de una cabecera de respuesta y está en ámbar.
+La cuenta está en modo de prueba y pendiente de aprobación, y ningún mensaje con token real llegó a salir.
 
-Segundo, la estructura comercial real difiere de la publicada. La página
-de precios presenta tres planes. El panel revela que contratar el
-servicio exige dos decisiones independientes: qué \textit{tier} funcional
-se quiere y qué volumen mensual se contrata. El volumen tiene su propia
-lista de precios, que llega hasta 1.500.000 correos por 775~USD al mes.
-Por encima de esa cifra el precio deja de publicarse y se negocia. El
-\textit{tier} decide cuántos recursos se pueden usar (usuarios,
-servidores, \textit{streams}) y qué partes de la API están disponibles:
-las de estadísticas y de seguimiento de aperturas y clics son exclusivas
-de Pro y Platform. El sobrecoste por correo excedido depende de los dos
-ejes a la vez: la página de precios lo hace variar por \textit{tier} y el
-panel por volumen. Su valor en cada cruce no es observable sin una cuenta
-aprobada, de modo que la Datasheet recoge lo que cada fuente publica por
-separado y registra el cruce como hueco. La Figura~\ref{fig:tiervolumen}
-contrasta esa estructura con la proyección que admite el bloque
-\texttt{plans} de v0.3, que es la adoptada en el catálogo: un plan por
-tier, valorado en su volumen mínimo, con la lista completa registrada
-en el \textit{provenance}.
+\textbf{Resend} \citep{resendpricing} cuenta la cuota por destinatario, así que el consumo es mensajes por destinatarios (F-03), y el sondeo fija el tope de 50 sobre la suma de \texttt{to} y \texttt{cc} (26 en \texttt{to} más 25 en \texttt{cc} dan 422).
+Pro y Scale se venden por volúmenes contratados, y una cuota de v0.3 admite un solo volumen (F-02).
+Enterprise no publica precio, volumen ni \textit{rate}, y, mientras figura en el fichero, PRIME4API no devuelve ningún plan al compararlos todos, porque un precio no público invalida la evaluación.
+Resend es la única API cuyo \textit{rate} coincide en documentación, panel y cabecera.
 
-\begin{figure}[H]
+\textbf{SendGrid} \citep{sendgridpricing} pone techo al envío mensual de Essentials y Pro: diez veces el volumen del plan, sobrecoste incluido, y v0.3 no tiene dónde declarar ese techo (F-16).
+Su prueba gratuita dura 60 días y después detiene el envío, y v0.3 no tiene campo de vigencia (F-14).
+El relé SMTP descuenta la misma cuota que la API, pero tiene topes propios (5.000 mensajes por conexión y hasta 10.000 conexiones simultáneas desde un mismo servidor), y v0.3 no tiene dónde declarar los topes de una interfaz que no es un \textit{endpoint} (F-15).
+Los envíos del sondeo usaron el modo \textit{sandbox}.
+
+\textbf{MailerSend} \citep{mailersendpricing} es la única API con una cuota diaria de peticiones junto a la mensual de correos.
+Su caudal y sus topes por petición cambian con el estado de la suscripción y la reputación, así que el plan no basta para saber cuáles rigen (F-18).
+Mientras la cuenta está sin aprobar, en el estado que MailerSend llama Sandbox, que no es el modo \textit{sandbox} de la Sección~\ref{sec:propuesta:validacion} porque sí entrega correo, solo puede enviar a dos destinatarios distintos, y ese cupo se encontró agotado sin que hubiera salido un solo correo y sin que se pudiera saber qué petición lo gastó.
+Ese cupo de la cuenta no se repone, y v0.3 no puede expresarlo (F-21).
+
+\textbf{Brevo} \citep{brevopricing} no publica el precio de un correo por encima del volumen de ningún plan (F-27).
+Lo único automático que documenta es el paso al escalón de volumen siguiente cuando la cuenta guarda más contactos, las direcciones de su lista de destinatarios, de los que admite el suyo.
+La cola de hasta 1.000 correos que Brevo retiene tras la cuota diaria del plan Free, descrita con los sondeos (Sección~\ref{sec:propuesta:validacion}), no tiene forma en v0.3 (F-24).
+Publica el caudal ruta a ruta, en tres categorías, y su contrato legible por máquina no lo recoge.
+El caudal de todo \texttt{/v3/smtp/} se publica con un comodín de prefijo y dos rutas exentas, y v0.3 no puede escribir esa excepción (F-23).
+
+\textbf{Amazon SES} \citep{sespricing} cobra cada correo por destinatario, a 0,10 USD por cada mil en el pago por uso y por tramos en cada plan, sin cuota incluida de la que colgar ese precio (F-29, F-30).
+Sus límites se aplican al par de cuenta y región, la zona geográfica de AWS en la que se usa el servicio, y el esquema no tiene dónde declarar ese ámbito (F-31).
+Los publica en cuatro fuentes: la página de límites, la referencia de la operación de envío, el contrato legible por máquina de la versión 2 y la guía del relé SMTP.
+El registro de discrepancias anota veintiuna para esta API.
+La cuenta no tiene acceso de producción, así que cada cifra medida es del entorno de pruebas.
+Como en MailerSend, el límite que rige depende del estado de la cuenta, no del plan (F-18).
+
+\textbf{Mailgun} \citep{mailgunpricing} tiene un selector de volumen que cambia el importe y el sobrecoste de los planes altos, y la Datasheet solo declara el tramo de entrada de cada uno (F-02).
+La única cifra de caudal que publica para su API REST, 1.500 peticiones por segundo, está en sus preguntas frecuentes, que dan la misma cifra para su relé SMTP (Sección~\ref{subsec:introduccion:pi}), y está acotada a una IP de cliente, un ámbito que el esquema no sabe declarar (F-31).
+La Datasheet declara esas 1.500 peticiones como caudal del plan.
+El caudal de la Tabla~\ref{tab:propuesta:catalogo}, 80.000 peticiones por ventana de unos 10 segundos, es el del \textit{endpoint} de envío y se lee en una cabecera de la respuesta.
+Esa misma respuesta trae un segundo contador sobre la misma ventana, de 2.000.000 de destinatarios (F-36).
+
+Otros tres topes de Mailgun no caben bien en v0.3.
+El titular de una cuenta puede fijar su propio tope mensual, y el esquema no tiene sitio para un límite que pone el cliente y no el proveedor (F-37).
+El plan Free anuncia 100 correos al día en su página y 3.000 al mes en el panel, sin decir si los dos topes se aplican a la vez (F-38).
+Como v0.3 admite una sola cuota por nivel, el plan o el \textit{endpoint}, la Datasheet cuelga la mensual del plan y la diaria del \textit{endpoint} de envío, como si solo valiera para él.
+En el tamaño, Mailgun publica 25 MB por mensaje, pero la API no rechaza por tamaño un adjunto de 48 MB y solo aplica un tope de 52,4 MiB a la petición entera (F-34).
+
+\textbf{Mailchimp Transactional} \citep{mailchimppricing}, antes Mandrill, vende bloques de 25.000 correos a seis precios según cuántos se compren, sin planes con nombre ni sobrecoste (F-32).
+No se vende suelto: es un complemento de los planes Standard y Premium de Mailchimp.
+Los 500 correos gratuitos de la cuenta de prueba no caducan ni se renuevan, y dejan vacío el periodo que v0.3 exige (F-33), un valor ausente que el motor no sabe tratar.
+Declara que no hay tope de destinatarios, y por encima de diez la API encola sin decir si enviará.
+
+\section{Conformidad y consumo por PRIME4API}
+\label{sec:propuesta:prime4api}
+
+PRIME4API, el motor de análisis de la capacidad de Gavira Sánchez \citep{gavira2026tfm,prime4apirepo}, ingiere una Datasheet y reduce cada pregunta a operaciones sobre sus límites, como la curva de capacidad o la recomendación de plan.
+En este trabajo se usa sin modificar, como motor de referencia del catálogo.
+
+El ecosistema no tiene un validador oficial de Datasheets: lo más cercano, el editor de Datasheets de SPHERE, solo comprueba en su versión del 10 de junio de 2026 que el YAML se puede leer.
+Por eso la conformidad se comprueba también por uso: el motor, con la Datasheet sin manipular, tiene que responder.
+
+Una herramienta de este trabajo ingiere cada Datasheet en el motor y la somete a diecisiete comprobaciones fijas y a una más por cada plan.
+Las fijas cubren la lectura del fichero, las curvas de capacidad, la curva de coste con la recomendación de plan y siete operaciones sobre los límites.
+La herramienta dibuja dos curvas de capacidad, y una de ellas es la acumulada, la curva $C(t)$ de la Sección~\ref{sec:estado:capacidad}: el máximo de peticiones que se pueden hacer desde el instante inicial hasta cada instante.
+
+Las ocho Datasheets superan con cero errores el validador de formato de este trabajo (Sección~\ref{sec:propuesta:ciclo}), que no da error por una clave o una unidad que la guía de v0.3 no recoge.
+Las ocho siguen la guía salvo en dos formas que esta no define: las unidades \texttt{MBs} y \texttt{MiBs}, la segunda solo en Mailgun, para los topes de tamaño, y el registro \texttt{not\_found} de lo que el proveedor no publica.
+Una Datasheet es plenamente consumible por PRIME4API si el motor responde sin error a todas las comprobaciones de la herramienta.
+Ninguna de las ocho lo es: la Tabla~\ref{tab:verificacion} recoge al menos un error en cada una.
+
+\begin{table}[tbp]
 \centering
-\includegraphics[width=\textwidth]{fig/tier_volumen_postmark.png}
-\caption[Estructura comercial de Postmark frente a su proyección en el bloque \texttt{plans}
-de ACM2YAML v0.3]
-{Estructura comercial de Postmark (\textit{tier} funcional
-$\times$ volumen contratado) frente a la proyección representable en el
-bloque \texttt{plans} de ACM2YAML v0.3. La columna de 10.000 procede de
-la página de precios \citep{postmarkpricing}. La fila Basic y su
-sobrecoste por volumen proceden de la observación de panel con cuenta propia.
-Las celdas sin valor no son observables con una cuenta sin aprobar.
-Elaboración propia (agosto de 2026).}
-\label{fig:tiervolumen}
+\begin{tabular}{|l|c|c|p{5.2cm}|}
+\hline
+\textbf{Datasheet} & \textbf{Correctas} & \textbf{Con error} & \textbf{Causa de los errores} \\
+\hline
+Postmark & 11 & 10 & Diez por valor ausente \\
+\hline
+Resend & 8 & 13 & Cinco por valor ausente y ocho por precio no público \\
+\hline
+SendGrid & 8 & 13 & Trece por precio no público \\
+\hline
+MailerSend & 20 & 1 & Uno por curva acumulada sobre un solo caudal \\
+\hline
+Brevo & 9 & 13 & Trece por precio no público \\
+\hline
+Amazon SES & 20 & 1 & Uno por curva acumulada sobre un solo caudal \\
+\hline
+Mailgun & 20 & 1 & Uno por curva acumulada con el mismo mensaje que MailerSend y Amazon SES \\
+\hline
+Mailchimp Transactional & 8 & 10 & Diez por valor ausente \\
+\hline
+\end{tabular}
+\caption[Resultado de ingerir las ocho Datasheets del catálogo en PRIME4API con la herramienta de verificación]{Resultado de ingerir las ocho Datasheets del catálogo en PRIME4API con la herramienta de verificación.}
+\label{tab:verificacion}
+\end{table}
+
+Un fichero puede pasar el validador de formato y dejar sin responder operaciones enteras de PRIME4API.
+Entre el esquema y el motor que lee los ficheros hay un contrato implícito que la guía de v0.3 no escribe.
+El motor da por hecho que todo valor existe y que todo plan tiene precio público.
+Los errores de la tabla tienen tres causas.
+Un valor ausente que el motor convierte como nulo deja sin respuesta diez comprobaciones en Postmark, diez en Mailchimp Transactional y cinco en Resend.
+Un plan cuyo precio existe y no es público invalida trece en SendGrid, trece en Brevo y ocho en Resend.
+
+La tercera causa está en el motor.
+En MailerSend, el \textit{workload} del lote, que dice cuánto consume cada petición, se mide en megabytes, con el tope publicado de 50 MB del cuerpo, y ninguna cuota se mide en megabytes.
+Es el caso de F-06: un \textit{workload} acotado por bytes en lugar de por un entero.
+El motor construye para esa unidad un escenario, el conjunto de caudales y cuotas que reúne para cada unidad de consumo, con un caudal y ninguna cuota.
+La curva acumulada divide entonces un entero de milisegundos por un objeto de duración sin convertirlo a la misma unidad.
+Solo falla esa comprobación, y el resto pasa.
+
+Amazon SES falla igual con el tope de 40 MB de su mensaje.
+La herramienta cuenta la curva acumulada como una sola comprobación, pero al ejecutar uno a uno los 84 escenarios de Amazon SES el fallo alcanza a 52.
+SendGrid lo esquiva porque su \textit{endpoint} de envío repite el \textit{rate} del plan, y con dos caudales el motor sí convierte la duración.
+En MailerSend y en Amazon SES ningún valor de la Datasheet causa el fallo, y basta con convertir la duración a milisegundos en una línea del motor para corregirlo.
+Mailgun termina con el mismo mensaje de error, pero su escenario no se ha aislado, así que la causa no está confirmada\footnote{Salida de la herramienta en \texttt{03\_datos/\allowbreak apis/\allowbreak mailgun/\allowbreak evidencias/\allowbreak verificar\_prime4api\_\allowbreak 2026-09-24.txt}.}.
+
+\section{Del catálogo a SPHERE}
+\label{sec:propuesta:sphere}
+
+Este trabajo aporta a SPHERE dos piezas.
+La primera es una colección con las ocho APIs del catálogo, cada una con su Datasheet y su pricing en Pricing2YAML \citep{garciafernandez2025trends}.
+La segunda es una propuesta de sección, en la ficha de cada API, para los términos de consumo que su pricing en Pricing2YAML no recoge, como los límites propios de cada interfaz o los que cambian con el estado de la cuenta.
+SPHERE, Pricing2YAML y sus herramientas son del grupo ISA, y la contribución se plantea en colaboración con sus desarrolladores.
+De este trabajo son las dos piezas y el inventario de lo que Pricing2YAML no modela.
+
+Los ocho pricings de la primera pieza están cargados en SPHERE desde el 27 de octubre de 2026, en una colección privada hasta el depósito de este trabajo.
+La Figura~\ref{fig:propuesta:sphere} muestra esa colección en SPHERE.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=\textwidth]{fig/sphere_coleccion_2026-10-28.png}
+\caption[La colección de los ocho pricings en SPHERE]{La colección «Email APIs Pricing Intelligence» en SPHERE, capturada el 28 de octubre de 2026. Cada tarjeta muestra un pricing con el tamaño de su espacio de configuración (cuántas suscripciones distintas se pueden contratar combinando un plan con sus \textit{add-ons}) y la fecha de su Datasheet. Las cifras en USD son su precio mínimo y máximo, redondeados por SPHERE. La cabecera deja en blanco el precio y el espacio de configuración de la colección entera.}
+\label{fig:propuesta:sphere}
 \end{figure}
 
-Tercero, el sondeo empírico desmintió a la documentación en un dato que
-condiciona el análisis de capacidad. La referencia de la API declara un
-máximo de cincuenta destinatarios \textit{por campo} (To, Cc y Cco), lo
-que sugiere hasta ciento cincuenta por mensaje. Las peticiones de sondeo
-demostraron que el límite real es de \textbf{cincuenta destinatarios
-totales por mensaje}: cincuenta se acepta en cualquier reparto entre
-campos y cincuenta y uno se rechaza en todos, y el propio mensaje de
-error lo confirma de forma literal. La discrepancia queda registrada con
-ambas citas. El sondeo del 7 de septiembre acotó después el factor de consumo por petición del envío por lotes: hasta quinientos mensajes por llamada, con cincuenta destinatarios cada uno (Apartado~\ref{subsec:hallazgos:postmark}).
+\subsection{La colección y su maqueta}
+\label{sec:propuesta:sphere:coleccion}
 
-Y cuarto, el piloto dejó un inventario de ocho elementos no soportados documentados
-entre el dominio y el esquema, que la Tabla~\ref{tab:fricciones} sintetiza
-junto con su estado en el marco de recurrencia. Ninguno de ellos impide la
-conformidad del catálogo.
-Todos eran candidatos a fundamentar las extensiones de la contribución C-02 hasta que el resto del dominio confirmara (o desmintiera) su generalidad.
-La Tabla~\ref{tab:recurrencia} recoge el veredicto de cada uno sobre las ocho APIs.
+La maqueta, un prototipo web propio que muestra cómo se vería la colección dentro de SPHERE\footnote{\url{https://danvelcam.github.io/tfm-pricing-apis-correo/sphere/coleccion.html}. Es el fichero \texttt{sphere/\allowbreak coleccion.html} del repositorio de datos del trabajo, publicado con GitHub Pages.}, la organiza como un árbol de tres niveles: proveedor, servicio e interfaz.
+El árbol sigue el modelo de iCan (la plataforma del grupo que recopila los términos y condiciones de los SaaS)\footnote{\url{https://ican.score.us.es/}}.
+La maqueta se construyó por prototipos sucesivos: la primera versión agrupaba las APIs por tipo de API, y la definitiva usa ese árbol.
 
-\begin{table}[H]
+El árbol lo construyen dos \textit{skills} de Ruiz López \citep{ruizlopez2026skills}.
+El resolvedor (\texttt{provider-service-\allowbreak resolver}) separa los servicios de cada proveedor y dice si cada uno lleva su pricing.
+Se probó en SendGrid, Amazon SES, Mailchimp Transactional y Brevo.
+Los tres primeros tienen varias colecciones de APIs, cada una con su pricing.
+Brevo es el contraejemplo: su correo transaccional va incluido en todos los planes de su plataforma de \textit{marketing}.
+El analizador (\texttt{saas-interface-\allowbreak channel-\allowbreak analyzer}) enumera las interfaces de cada servicio y asigna a cada una su canal.
+Se aplicaron sin modificarlas a las ocho APIs, y todos los YAML de salida pasan la comprobación de estructura que trae cada una de esas \textit{skills}.
+
+Al elegir un servicio se ven sus interfaces y dos pestañas, cada una con sus versiones: la del pricing, con los planes, la cuota, el sobrecoste y el \textit{rate}, y la del resto de términos de consumo, que la maqueta rotula «Otros términos» y es la sección que propone la segunda pieza.
+
+La maqueta rellena solo lo que entra en el alcance.
+Solo el servicio de correo transaccional de cada proveedor lleva interfaces, Datasheet y pricing.
+Son 8 proveedores, 23 servicios y 60 interfaces, y los 15 servicios que el resolvedor encuentra junto al de correo transaccional se marcan fuera del alcance.
+Las 60 interfaces son todas las que encuentra el analizador, que cuenta como interfaz cada vía de acceso al servicio, también los \textit{webhooks}, a los que asigna un canal de eventos.
+Por eso MailerSend tiene diez en la maqueta, frente a las tres de la Figura~\ref{fig:introduccion:mailersend}.
+
+Cada campo de la maqueta sale de una fuente distinta.
+El canal de cada interfaz sale de las \textit{skills}.
+Los límites y el sobrecoste de las interfaces REST y SMTP salen de la Datasheet.
+El tipo, el propósito y el modelo de pricing de cada interfaz se derivan del canal con una regla fija y están por validar.
+
+La Figura~\ref{fig:propuesta:maqueta} muestra la versión definitiva, con la ficha de MailerSend en la pestaña «Otros términos».
+Arriba está la línea temporal de las versiones de la página de límites de MailerSend que la maqueta registra, y debajo los límites del servicio, con lo que cambió respecto a la versión anterior.
+Las ocho APIs tienen versiones anteriores, que salen sobre todo de capturas de Wayback Machine, el archivo de versiones antiguas de páginas web de Internet Archive.
+Los cambios se pueden filtrar por tipo: cuotas y peticiones, \textit{rates}, y reputación y estado de cuenta.
+
+\begin{figure}[tbp]
 \centering
-\small
-\begin{tabular}{|l|p{8.6cm}|l|}
-\hline
-\textbf{Id} & \textbf{Elemento no soportado por ACM2YAML v0.3} & \textbf{Estado} \\
-\hline
-F-01 & Un \textit{rate} que existe contractualmente pero sin valor
-publicado: el bloque vacío se confunde con ``sin límite'' & candidato \\
-\hline
-F-02 & Cuotas por volumen contratado, con sobrecoste dependiente a la vez
-del volumen y del \textit{tier}, y tramo superior negociado & candidato \\
-\hline
-F-03 & Factor de consumo multiplicativo (mensajes $\times$
-destinatarios) que una terna única no puede expresar & candidato \\
-\hline
-F-04 & Restricciones declaradas que el proveedor admite no aplicar o que
-la respuesta a la petición no refleja & discusión \\
-\hline
-F-05 & La dimensión \textit{Results Per Request} existe documentada en el
-dominio y v0.3 no la serializa & candidato \\
-\hline
-F-06 & Un \textit{workload} acotado por otra métrica (bytes de
-\textit{payload}, tras codificación) y no por un entero & candidato \\
-\hline
-F-07 & \textit{Add-ons} que modifican dimensiones de capacidad,
-condicionados a volumen y a \textit{tier} & candidato \\
-\hline
-F-08 & El ``plan'' real es \textit{tier} $\times$ volumen, con superficie
-de API dependiente del \textit{tier} & candidato \\
-\hline
-\end{tabular}
-\caption{Elementos no soportados documentados en el piloto. Su promoción requiere
-recurrencia en al menos dos APIs del dominio, o una sola con la
-consecuencia ejecutada sobre el consumidor de referencia
-(Sección~\ref{sec:propuesta:conformidad}).}
-\label{tab:fricciones}
-\end{table}
+\includegraphics[width=0.72\textwidth]{fig/maqueta_v2_otros_terminos_2026-10-31.png}
+\caption[Maqueta de la colección: ficha de MailerSend]{Maqueta de la colección. Ficha de MailerSend en la pestaña «Otros términos». A la izquierda, el árbol de proveedores, servicios e interfaces. A la derecha, la línea temporal de la página seguida y los límites del servicio en la versión elegida.}
+\label{fig:propuesta:maqueta}
+\end{figure}
 
-El piloto cumple así las dos funciones que se le pedían. Ha calibrado la
-mecánica del ciclo antes de escalarlo al dominio completo.
-Y ha mostrado que el método produce a la vez lo que este trabajo persigue: Datasheets conformes sin extender el esquema y conocimiento fundamentado sobre los límites del modelo que las define.
-La verificación por uso del Capítulo~\ref{cap:evolucion} mide si el motor de referencia puede consumirlas, y ninguna de las ocho resulta plenamente consumible por PRIME4API (Tabla~\ref{tab:verificacion}).
-Fija además el formato de
-presentación del catálogo. Cada API se expondrá como aquí (caracterización
-breve, lectura resumida en tabla con su semáforo, huecos documentales y
-elementos no soportados nuevos o recurrentes respecto al inventario vigente), con la
-explicación del método ya dada por este capítulo, de modo que los
-epígrafes sucesivos resulten más breves, uniformes y comparables. Los
-capítulos siguientes aplican este ciclo al resto del catálogo y explotan
-sus resultados.
+\subsection{Lo que Pricing2YAML no modela}
+\label{sec:propuesta:sphere:nomodela}
+
+Al escribir los ocho pricings en Pricing2YAML aparecen 20 limitaciones, y cada una se documenta con el caso real que la origina, la limitación del modelo y la extensión que se propone.
+Los ocho ficheros pasan el analizador de pricing4ts 0.10.4 (la biblioteca con la que SPHERE lee y analiza los pricings en Pricing2YAML, en la versión que usa la plataforma) y se cargan sin errores por la interfaz de SPHERE.
+Las limitaciones caen en cuatro grupos, que recoge la Tabla~\ref{tab:propuesta:nomodela}.
+
+Resend limita a 10 peticiones por segundo por equipo, la cuenta que comparten todas sus claves de API, y a 3.000 correos al mes en el plan Free.
+El primer límite protege la infraestructura y el segundo es lo que se paga, pero Pricing2YAML escribe los dos como un límite renovable con su periodo, y la analítica de SPHERE los cuenta igual.
+Se propone un atributo \texttt{kind} con los valores \texttt{rate} y \texttt{quota}, para que no se compare un caudal con una cuota, y el caso se repite en las ocho APIs.
+
+MailerSend cobra 1,50 USD por cada 1.000 correos por encima de 5.000 en el plan Hobby, y lo factura al cerrar el mes.
+Lo más cercano en Pricing2YAML es un \textit{add-on} de 1.000 correos, que se compra antes de usarlo.
+Para el precio máximo, la analítica de SPHERE suma al plan más caro una unidad de cada \textit{add-on}.
+En MailerSend sale 115,3 USD, el plan Professional más un paquete de 1.000 correos y un dominio, una cifra que no corresponde a ningún mes real.
+Se propone un bloque de sobrecoste en el plan que declare el precio de cada tramo y el límite al que se aplica.
+
+Los límites de MailerSend cambian además con el estado de la cuenta: la Tabla~\ref{tab:propuesta:catalogo} da 120 peticiones por minuto en el plan y 10 en una cuenta sin aprobar.
+Pricing2YAML, en cambio, solo admite valores que dependan del plan o de sus \textit{add-ons}.
+Se propone un estado de cuenta con nombre que sobrescriba valores del plan.
+
+\begin{table}[H]\centering\small
+\begin{tabular}{|p{2.9cm}|p{1.7cm}|p{5.2cm}|p{3.9cm}|}
+\hline
+\raggedright\textbf{Grupo} & \raggedright\textbf{Limita\-ciones} & \raggedright\textbf{Lo que el modelo no admite} & \raggedright\textbf{Extensión propuesta} \tabularnewline
+\hline
+\raggedright La forma del límite & \raggedright 1 a 6 & \raggedright El ámbito por operación, la diferencia entre caudal y cuota, el tipo de ventana, el tope por petición, y los valores ilimitado, no aplicable y a medida & \raggedright Un ámbito y un tipo en cada límite, y valores reservados \tabularnewline
+\hline
+\raggedright Precio y consumo & \raggedright 7 a 12 & \raggedright El sobrecoste al cierre, el precio por volumen, el consumo múltiple, el precio del \textit{add-on} según volumen y plazo, el agotamiento de la cuota y los descuentos con condición & \raggedright Bloques de sobrecoste, de tramos y de descuentos, una función de consumo y una regla de agotamiento \tabularnewline
+\hline
+\raggedright Condiciones fuera del plan & \raggedright 13 a 16 & \raggedright El estado de la cuenta, los umbrales de uso, los dos productos bajo una cuenta y la procedencia del dato & \raggedright Estados con nombre, condiciones sobre el consumo, un nivel de producto y un campo de procedencia \tabularnewline
+\hline
+\raggedright Clave, plazo y divisa & \raggedright 17 a 20 & \raggedright El precio por uso sin volumen incluido, la clave del contador (cuenta, región o IP), los planes con plazo y la divisa & \raggedright Tramos marginales, un atributo de clave, un bloque de plazo y precios por divisa \tabularnewline
+\hline\end{tabular}
+\caption[Las 20 limitaciones de Pricing2YAML en las ocho APIs, agrupadas]{Las 20 limitaciones de Pricing2YAML en las ocho APIs, agrupadas. Cada una tiene su caso real, su limitación y su extensión en el repositorio de datos del trabajo.}
+\label{tab:propuesta:nomodela}\end{table}
+
+\subsection{Términos de consumo y versionado}
+\label{sec:propuesta:sphere:terminos}
+
+La extensión de SPHERE que se propone guardaría en bruto los términos de consumo y repartiría lo que sale de ellos en dos clases: lo que se ingiere y lo que se deriva.
+Lo publicado, lo interpretado y lo medido entrarían en SPHERE por una ingesta, con las fechas del proveedor y un estado, pendiente de validar o validado.
+Ese estado llevaría a SPHERE la idea de la Sección~\ref{sec:propuesta:trazabilidad}: un valor de la página del proveedor entraría como pendiente de validar, y pasaría a validado cuando un contraste, un panel o un sondeo lo confirmara.
+
+Lo calculado y lo inferido por agente son derivados, pero no son lo mismo (Sección~\ref{sec:propuesta:semaforo}).
+Lo calculado se reproduce con su fórmula y sus entradas, como el coste que da PRIME4API.
+Lo inferido no lo reproduce ninguna fórmula, y por eso exige validación: no pasa de ámbar hasta que lo respalde un valor publicado o medido.
+SPHERE versionaría los dos con sus ramas, las líneas de versiones que guarda de cada pricing, junto a su fórmula o su \textit{skill}.
+
+La extensión separaría además los límites según su ámbito: unos valen para una sola interfaz y otros se comparten entre varias.
+En el plan Starter de MailerSend, el relé SMTP admite como máximo cinco conexiones simultáneas, que es un límite de una sola interfaz.
+MailerSend descuenta de una misma cuota diaria las peticiones de la API y los mensajes del relé SMTP, que es un límite compartido.
+Esa separación en SPHERE es un diseño propuesto y no está implementado.
+
+SPHERE ya versiona los pricings que suben sus usuarios.
+La maqueta versiona lo que el proveedor publicó en cada fecha junto a su URL y su huella.
+Son dos registros distintos: una rama de SPHERE no dice cuándo cambió el proveedor su página, y una captura fechada de esa página no dice quién cambió el pricing en la plataforma.
+La extensión que se propone guardaría aparte la procedencia fechada del proveedor y la enlazaría a las ramas de SPHERE, sin sustituirlas.
 
 \section{Respuesta a la pregunta de investigación}
 \label{sec:propuesta:respuesta}
 
 La RQ1 pregunta qué APIs de correo deben incluirse en un análisis representativo del dominio, y bajo qué criterios reproducibles.
-La primera mitad se responde con una condición: el conjunto debe cubrir las cuatro formas de cobro del primer criterio, y sus APIs deben diferir en los rasgos de límites que pide el cuarto.
-En la ventana de toma de datos (Apartado~\ref{sec:propuesta:ventana}), las ocho APIs de la Tabla~\ref{tab:propuesta:rq1} forman un conjunto que la cumple.
-La condición fija qué debe cubrir el conjunto, y otro que cubriera lo mismo también la cumpliría.
-La segunda mitad la responde el protocolo de la Sección~\ref{sec:propuesta:seleccion}, y el Anexo~\ref{anx:uso-ia} registra la consulta.
+La primera mitad se responde con una condición: el conjunto debe cubrir las cuatro formas de cobro del primer criterio (volumen mensual, pago por uso, producto añadido y límite diario).
+Sus APIs deben diferir además en los rasgos de límites que pide el cuarto, como un \textit{rate} por \textit{endpoint} o un caudal negociado.
+Las ocho APIs de la Tabla~\ref{tab:propuesta:catalogo} cumplen esa condición en la ventana de toma de datos, y otro conjunto que cubriera lo mismo también la cumpliría.
+La Tabla~\ref{tab:propuesta:cobertura} da, para cada forma de cobro y para el cuarto criterio, una API y el dato de su Datasheet que la cumple, de modo que la condición se comprueba sin repetir la consulta al modelo de lenguaje.
 
-\begin{table}[H]\centering\small
-\begin{tabular}{|p{2.3cm}|p{1.6cm}|p{3.8cm}|p{5.6cm}|}
-\hline
-\raggedright\textbf{API} & \raggedright\textbf{Fuente} & \raggedright\textbf{Forma de cobro según la respuesta} & \raggedright\textbf{Lo que registró la construcción} \tabularnewline
-\hline
-\raggedright Postmark & \raggedright Piloto & \raggedright Planes por volumen mensual & \raggedright El plan real es \textit{tier} $\times$ volumen contratado (Sección~\ref{sec:propuesta:piloto}) \tabularnewline
-\hline
-\raggedright Resend & \raggedright Segunda & \raggedright Planes por volumen con caudal negociado no publicado & \raggedright Planes por volumen mensual, con Enterprise sin precio, volumen ni \textit{rate} publicados y Free con 100 correos al día y 3.000 al mes (Apartado~\ref{subsec:hallazgos:resend}) \tabularnewline
-\hline
-\raggedright SendGrid & \raggedright Segunda & \raggedright Planes por volumen mensual & \raggedright Planes por volumen mensual, cuyo sobrecoste tiene techo desde el 26 de marzo de 2026 (Apartado~\ref{subsec:hallazgos:sendgrid}) \tabularnewline
-\hline
-\raggedright MailerSend & \raggedright Segunda & \raggedright Planes por volumen mensual & \raggedright Planes por volumen mensual, y es la única con cuota diaria de peticiones junto a la mensual de correos (Apartado~\ref{subsec:hallazgos:mailersend}) \tabularnewline
-\hline
-\raggedright Brevo & \raggedright Tercera & \raggedright Planes por volumen con límite diario adicional & \raggedright Límite de 300 correos al día en Free y volumen mensual en los planes de pago (Apartado~\ref{subsec:hallazgos:brevo}) \tabularnewline
-\hline
-\raggedright Amazon SES & \raggedright Tercera & \raggedright Pago por uso puro & \raggedright Pago sin plan y, desde el 21 de julio de 2026, planes (Apartado~\ref{subsec:hallazgos:ses}) \tabularnewline
-\hline
-\raggedright Mailgun & \raggedright Tercera & \raggedright Planes por volumen mensual & \raggedright Planes por volumen mensual, sin umbral en la documentación de la API y con un único caudal publicado para la API REST, en las preguntas frecuentes y por IP de cliente (Apartado~\ref{subsec:hallazgos:mailgun}) \tabularnewline
-\hline
-\raggedright Mailchimp Transactional & \raggedright Tercera & \raggedright Añadido de otro producto, por bloques & \raggedright Complemento de los planes Standard y Premium o del mensual heredado, sin planes con nombre, en bloques de 25.000 correos (Apartado~\ref{subsec:hallazgos:mailchimp}) \tabularnewline
-\hline\end{tabular}
-\caption{Las ocho APIs del catálogo. La segunda columna indica la fuente de inclusión (Apartado~\ref{sec:propuesta:fuentes}). La tercera reproduce la clasificación de la respuesta a la consulta (Anexo~\ref{anx:uso-ia}). La cuarta dice qué forma de cobro encontró la construcción en la ventana de toma de datos y añade un rasgo de la API.}
-\label{tab:propuesta:rq1}\end{table}
+La segunda mitad la responde el protocolo de la Sección~\ref{sec:propuesta:seleccion} (tres fuentes de inclusión, cinco criterios ordenados y una regla de reemplazo), con la consulta registrada en el Anexo~\ref{anx:uso-ia}.
 
-La consulta pedía cubrir las cuatro formas de cobro, y la construcción las encontró todas en el catálogo.
-También corrigió tres afirmaciones de la respuesta.
-La respuesta describía Amazon SES sin planes, y el proveedor los tenía desde el 21 de julio de 2026, antes de la consulta.
-Atribuía a Mailgun \textit{rates} publicados por endpoint, y la documentación de su API no publica ningún umbral.
-El único caudal que el proveedor publica para su API REST está en sus preguntas frecuentes, acotado a una IP de cliente.
-Presentaba la combinación de cuota diaria y mensual como aportación de Brevo, y esa combinación ya estaba en el plan Free de Resend.
-La primera y la tercera corrección muestran además que las formas de cobro no son excluyentes.
-Ninguna de las tres correcciones activa la regla de reemplazo, que solo depende de la trazabilidad (Apartado~\ref{sec:propuesta:reserva}).
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{|>{\raggedright\arraybackslash}p{3.6cm}|>{\raggedright\arraybackslash}p{10.4cm}|}
+\hline
+\textbf{Condición} & \textbf{API y dato de su Datasheet que la sostiene} \\
+\hline
+Volumen mensual & Postmark Basic, 10.000 correos al mes; SendGrid Essentials 50K, 50.000 correos al mes \\
+\hline
+Pago por uso & Amazon SES, sin cuota incluida y con precio por destinatario, 0,10 USD por cada mil en el pago por uso \\
+\hline
+Producto añadido & Mailchimp Transactional, bloques de 25.000 correos que solo se venden con un plan Standard o Premium de Mailchimp \\
+\hline
+Límite diario además del mensual & Resend Free, 100 correos al día y 3.000 al mes; MailerSend Free, 100 peticiones al día y 500 correos al mes \\
+\hline
+Rasgos de límites distintos (cuarto criterio) & Brevo publica el \textit{rate} ruta a ruta, con 2 peticiones por segundo en \texttt{GET /v3/smtp/emails}; Postmark no publica el de su API REST, que se lee en una cabecera; Mailgun acota a una IP de cliente sus 1.500 peticiones por segundo \\
+\hline
+\end{tabular}
+\caption[Cobertura de la condición de la RQ1 sobre las Datasheets]{Cobertura de la condición de la RQ1, comprobada sobre las Datasheets del catálogo. Cada fila da un ejemplo entre las APIs que la cumplen.}
+\label{tab:propuesta:cobertura}
+\end{table}
 
-El Capítulo~\ref{cap:hallazgos} muestra qué aporta el conjunto frente a sus cuatro primeras APIs.
-Postmark, Resend, SendGrid y MailerSend tenían planes con cuota mensual.
-Todas tenían además sobrecoste decreciente y tope de destinatarios.
-Amazon SES, Brevo y Mailchimp Transactional, que la respuesta justificó por su forma de cobro, carecen de al menos uno de esos rasgos.
-Mailgun, que según la respuesta comparte forma de cobro con Postmark, SendGrid y MailerSend, es la única del catálogo que contesta por escrito sobre la concurrencia de su API REST.
-La Sección~\ref{sec:hallazgos:limites-rates} recoge seis afirmaciones que solo son visibles con las ocho APIs.
-En esta memoria, un análisis del dominio es representativo cuando cumple la condición con que se abre esta sección, fijada con los criterios antes de la consulta.
-La cuota de mercado de cada API no se midió y no entra en esa condición.
+La construcción encontró las cuatro formas de cobro y corrigió tres afirmaciones de la respuesta.
+La respuesta presentaba Amazon SES como pago por uso puro, pero SES publicaba planes desde el 21 de julio de 2026, antes de la consulta.
+También presentaba Mailgun como «el caso limpio de rate documentado», con \textit{rates} publicados por \textit{endpoint}, pero Mailgun no los publica en la documentación de su API (Sección~\ref{sec:propuesta:catalogo}).
+A Brevo le atribuía la cuota diaria junto a la mensual, pero su plan Free solo tiene la diaria y sus planes de pago, la mensual, y la combinación estaba en el plan Free de Resend.
+Ninguna corrección activa la regla de reemplazo, que solo depende de la trazabilidad.
 
-Este cierre de la RQ1 tiene limitaciones conocidas, y las primeras están en las fuentes.
-La primera fuente no se ejecutó.
-Postmark entró como piloto del método y no por una de las tres fuentes.
-Los cinco criterios solo decidieron cuatro de las ocho APIs: la consulta clasificó las otras cuatro por su forma de cobro, sin evaluarlas.
-El prompt ya fijaba un catálogo de ocho APIs, y ese tamaño no se deriva de la cobertura.
+Las cuatro primeras APIs, Postmark, Resend, SendGrid y MailerSend, tenían planes con cuota mensual, un sobrecoste por correo que baja al subir el volumen y tope de destinatarios.
+Solas no cubrían la diversidad del primer criterio.
+Amazon SES no tiene cuota incluida, Brevo no publica el precio por encima del volumen y Mailchimp Transactional no tiene planes ni sobrecoste.
+Mailgun aporta el rasgo del cuarto criterio, porque es la única de las ocho que publica, en sus preguntas frecuentes, cuántas peticiones admite su API REST por IP de cliente.
 
-Otras están en los criterios.
-La respuesta da por cumplidos dos de ellos sin aportar evidencia: la documentación pública del segundo y la adopción real del tercero.
-La documentación pública no cubrió todos los límites, y la construcción necesitó el panel con cuenta propia para algunos, como la cuota mensual del plan Free de Mailgun.
-Las cuatro formas de cobro se fijaron en el primer criterio antes de la consulta, sin un censo del mercado ni una lista cerrada de candidatas.
-Las diferencias en los límites que muestra el Capítulo~\ref{cap:hallazgos} se observaron después, sobre las ocho APIs, y describen la muestra sin garantizar que esté completa.
-Mailchimp Transactional fue una de las dos últimas en construirse.
-Resultó ser la única API sin planes y la única sin tope de destinatarios.
-Una novena API podría añadir otro rasgo.
+La selección tiene tres límites conocidos.
+La cuota de mercado de cada API no se midió y no entra en la condición.
+Los cinco criterios solo decidieron cuatro de las ocho APIs, y la respuesta de la consulta no se repite con garantía.
 
-La regla de reemplazo es ordinal, y de haberse aplicado no garantizaba conservar la forma de cobro de la API sustituida.
-Si hubiera salido Amazon SES, habría entrado Mailjet, y el catálogo habría perdido la única API que la respuesta clasificó como pago por uso puro.
-
-Las últimas están en la consulta, cuya respuesta no se repite con garantía.
-La consulta se hizo en la sesión de trabajo del proyecto, y la respuesta cita dos decisiones previas que el prompt no recoge.
-Un tercero con el mismo prompt y sin ese contexto puede obtener otra respuesta.
-El registro tampoco recoge cuántas veces se lanzó la consulta.
-El protocolo permite a ese tercero contrastar la respuesta que obtenga con los criterios y con lo que registre la construcción, como hace esta sección con la consulta del 1 de septiembre de 2026.

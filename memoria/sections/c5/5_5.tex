@@ -1,0 +1,109 @@
+\section{Lo que queda fuera}\label{sec:esquema:fuera}\label{sec:evolucion:fuera}
+
+De los veinticuatro elementos no soportados que superan el criterio de promoción, porque aparecen en dos APIs o más o porque una ejecución de PRIME4API muestra su efecto sobre la Datasheet, dieciséis no llevan número de propuesta.
+Su patrón se repite en el catálogo, pero les falta una forma concreta contrastada con el texto de la guía de ACM2YAML.
+Es un límite asumido: la guía recibe su recuento, no una forma que pueda adoptar.
+Llevar número depende de tener esa forma, no de la recurrencia: F-11, los límites de recursos por plan, recurre en seis APIs y no lo lleva, y F-21, el cupo de destinatarios distintos de MailerSend, aparece en una sola API y sí lo lleva.
+
+\phantomsection\label{subsec:evolucion:f07}F-07, los \textit{add-ons} que modifican dimensiones de capacidad, recurre en las ocho APIs.
+El caso común es la IP dedicada, una dirección IP de envío reservada a un solo cliente, que se paga aparte o exige un plan mínimo.
+Aun así no se propone extensión, por una razón de alcance: el esquema deja los \textit{add-ons} al canal web, y el catálogo modela solo la API REST, una de las interfaces del canal API (Sección~\ref{sec:propuesta:criterios}).
+Un bloque de \textit{add-ons} en la Datasheet repetiría lo que el pricing del canal web ya modela, y enlazar la capacidad con el pricing es una línea futura que Gavira Sánchez deja en el trabajo que introduce el modelo \citep{gavira2026tfm}.
+El catálogo aporta a esa línea ocho casos.
+
+F-04 reúne los límites que el proveedor declara y que la respuesta a la petición no refleja.
+Plantea si un límite que la respuesta no refleja forma parte de la capacidad contractual.
+Es una pregunta sobre la definición del ACM que no se resuelve con un campo nuevo, y por eso no se convierte en propuesta.
+En MailerSend, el \textit{endpoint} de lote acepta con un \texttt{202} un envío con un remitente de dominio sin verificar, que la validación diferida rechaza después.
+Los dos lotes medidos terminan con cinco errores de validación y ningún correo enviado\footnote{Evidencia en \texttt{03\_datos/\allowbreak apis/\allowbreak mailersend/\allowbreak evidencias/\allowbreak probe\_sandbox\_limites\_\allowbreak 2026-09-09.json} y en la repetición del mismo sondeo, en la misma carpeta.}.
+Quien mida su consumo por la respuesta cuenta cinco correos que nunca salieron.
+
+F-04 aparece también en los sondeos de Mailchimp Transactional y de Amazon SES, que respondieron con \texttt{200} por encima del límite que declara su proveedor.
+Mailchimp Transactional declara que el JSON de cada llamada debe ocupar menos de 10 MB \citep{mailchimpdocs}, y respondió con \texttt{200} a una llamada de unos 40 MB\footnote{Evidencia en \texttt{03\_datos/\allowbreak apis/\allowbreak mailchimp/\allowbreak evidencias/\allowbreak sondeo\_a\_preflight\_\allowbreak 2026-09-21.md}.}.
+Amazon SES declara una petición por segundo en sus acciones de gestión \citep{sesdocs}, y respondió con \texttt{200} a doce peticiones seguidas a 5,7 por segundo (Sección~\ref{sec:propuesta:casos}).
+En los dos casos la Datasheet conserva la cifra publicada, y la medida no tiene campo donde escribirse.
+El registro de elementos no soportados esboza una salida: distinguir en el esquema el límite publicado del aplicado, cada uno con su fuente.
+
+F-05, los resultados por petición que fija la documentación, es una de las dos dimensiones del ACM que ACM2YAML v0.3 deja fuera de su versión operativa.
+Gavira Sánchez ya recoge completar esa serialización como línea futura \citep{gavira2026tfm}, así que proponerla repetiría esa línea.
+F-08, la superficie de la API que cambia con el \textit{tier}, ya cabe en v0.3: un \textit{endpoint} que un plan no tiene se omite de ese plan (Sección~\ref{sec:esquema:inventario}).
+
+Los doce restantes están en la Tabla~\ref{tab:sinforma}.
+El registro de cada API esboza la forma de once, y la de F-12 la enuncia este trabajo, pero ninguna se ha contrastado con la guía.
+F-22, la credencial que solo se gestiona desde la web, está en la frontera de lo que el esquema describe.
+Su forma registra qué canal ofrece cada operación, y el esquema describe precios, cuotas y límites.
+
+Dos de los doce tienen argumentos que no dependen de cuántas APIs los presentan.
+En F-09, la caducidad de los datos, el repositorio de la guía conserva una Datasheet de MailerSend cuyos precios y sobrecostes difieren de los publicados cinco meses después \citep{apisconsumptionmodel}.
+Ese mismo ejemplo define caudales de 15 y 30 peticiones por minuto que ningún plan usa, un error de modelado distinto de la caducidad.
+En F-10, Resend vende un producto transaccional que se factura por correos y otro de \textit{marketing} que se limita por contactos, y la Datasheet modela el primero sin poder declarar que solo cubre ese.
+
+\begin{table}[tbp]
+\centering
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|l|c|>{\raggedright\arraybackslash}p{0.26\textwidth}|c|>{\raggedright\arraybackslash}p{0.36\textwidth}|}
+\hline
+\textbf{Dónde} & \textbf{Id} & \textbf{Carencia} & \textbf{APIs} & \textbf{Forma esbozada} \\
+\hline
+Documento & F-09 & El documento caduca entero, y sus datos caducan uno a uno & 5/8 & Fecha de verificación por afirmación en el registro de procedencia \\
+\hline
+Documento & F-10 & Dos productos de precio con unidades de consumo distintas & 3/8 & Varios catálogos por servicio, o un campo que acote qué producto se modela \\
+\hline
+Plan & F-11 & Límites de recursos por plan, que no son consumo & 6/8 & Bloque de recursos en el plan, con nombre, valor y unidad y sin periodo \\
+\hline
+Plan & F-13 & El sobrecoste es opcional y no existe en el plan gratuito & 5/8 & Modo del sobrecoste declarado en el plan \\
+\hline
+Plan & F-14 & El plan tiene fecha de caducidad & 2/8 & Vigencia del plan y plan al que cae al expirar \\
+\hline
+Precio & F-26 & Un precio que depende de la geografía y una sola divisa en el fichero & 3/8 & Precio como lista de ofertas, cada una con su divisa \\
+\hline
+Cuota & F-12 & La recepción consume la cuota de envío & 2/8 & Declarar que un evento entrante reenviado descuenta de la cuota de envío, con un factor que depende de la ruta \\
+\hline
+\texttt{workload} & F-34 & Dos topes de tamaño sobre la misma llamada, uno del mensaje y otro de la petición & 2/8 & \texttt{workload} que declara el objeto medido además de la unidad \\
+\hline
+Interfaz & F-15 & Dos interfaces con topes propios sobre la misma cuota & 5/8 & Interfaces declaradas, cada una con sus topes, o \texttt{workload} declarado por interfaz \\
+\hline
+Acceso & F-28 & Una lista de IP autorizadas decide si la llamada entra & 3/8 & Condiciones de admisión declarables en el plan o en la credencial \\
+\hline
+Bloque nuevo & F-37 & Un tope de capacidad que fija el cliente, no el proveedor & 2/8 & Bloque de límites que configura el cliente, fuera de la capacidad contractual \\
+\hline
+Operación & F-22 & Una credencial que solo se gestiona desde la web & 4/8 & Qué canal ofrece cada operación, registrado por operación \\
+\hline
+\end{tabular}
+\caption[Promovidos sin número de propuesta y con una forma esbozada]{Promovidos sin número de propuesta y con una forma esbozada en el registro de elementos no soportados de cada API, salvo F-12, cuya forma enuncia este trabajo. Dónde: la parte del esquema que tocaría la forma. APIs: recuento sobre las ocho del catálogo. Ninguna forma se ha trabajado ni contrastado con la guía.}
+\label{tab:sinforma}
+\end{table}
+
+Los once elementos sin promover aparecen en una sola API, así que solo podían entrar por la traza, y a cada uno le falta al menos una de sus tres condiciones (Tabla~\ref{tab:recurrencia}).
+En F-23, el prefijo \texttt{/v3/smtp/} de la API REST de Brevo (rutas HTTP, no el relé SMTP) con dos rutas exentas, el esquema ya lo expresa si se enumeran las rutas del prefijo que no tienen fila propia.
+En F-25, un \textit{endpoint} de Brevo con dos modos de envío, la guía expresa los dos modos con alias, aunque no documenta un \texttt{workload} por alias.
+En F-29, un precio por unidad sin cuota de la que colgarlo, falta comprobar si la guía lo cubre.
+
+A F-32 (precio degresivo sin planes), F-33 (franquicia sin ventana), F-36 (dos contadores sobre la misma ventana) y F-38 (dos cuotas concurrentes de la misma unidad) les falta una ejecución archivada de PRIME4API que muestre su efecto con la Datasheet sin manipular.
+En F-33, la división por cero del Apartado~\ref{subsec:evolucion:p04} solo aparece tras rellenar a mano otro campo vacío.
+A F-30 (precio por tramos marginales) y F-35 (tope fraccionario en un máximo entero) les faltan esa ejecución y el contraste con la guía.
+
+F-31, los límites que rigen por cuenta y región, y F-27, el exceso de Brevo que cambia el plan en lugar de pagarse por unidad, tienen ejecución, pero ninguno de los valores que devuelve se puede dar por falso.
+La de F-27 devuelve un coste plano, y con él no se distingue si Brevo deja de enviar al llegar a la cuota o pasa la cuenta al plan superior.
+
+F-36 y F-38 piden que un mismo nodo de la Datasheet, sea un plan, un \textit{endpoint} o un alias, admita varios \textit{rates} o varias cuotas a la vez.
+Es lo que pide el \textit{issue} «Soportar listas de rates y cuotas en datasheet», que Gavira Sánchez abrió en el repositorio del motor \citep{prime4apirepo}, y el motor ya lo implementa aunque la guía no lo documente.
+
+\phantomsection\label{sec:evolucion:compatibilidad}Todas las propuestas salvo tres son retrocompatibles: añaden campos opcionales que un documento escrito contra v0.3 puede no declarar, y no cambian cómo se lee ninguno de los que ya existen.
+Las dos que convierten el factor de consumo por petición en una expresión, P-02 y P-03, obligan a tocar las operaciones que lo leen.
+P-05, el plan con precio no público, sustituye la cadena \texttt{custom} que usan las Datasheets de Resend, SendGrid y Brevo.
+La corrección de la forma de \texttt{workload} rectifica la guía para que documente la lista que ya usan las ocho Datasheets (Sección~\ref{sec:esquema:contrato}), y queda fuera de ese recuento.
+Su coste recae sobre los documentos que siguen la redacción actual y escriben un mapa.
+
+La guía no tiene mecanismo para lo que piden las cuatro últimas propuestas: el estado de la suscripción declarado una vez y con su disparador (P-06), el tope del sobrecoste (P-07), el cupo de destinatarios distintos (P-08) y la cola tras la cuota (P-09).
+Aun así, declara que el esquema es preliminar y que habrá que extender campos \citep{apisconsumptionmodel}.
+En P-06, la parte que documenta el \texttt{workload} por alias no cuesta nada, porque PRIME4API ya lo lee.
+
+Las cuatro añaden claves que v0.3 no define, y un motor que rechazara las claves desconocidas invalidaría los documentos que las declaren.
+Ninguna Datasheet del catálogo las declara.
+Por eso la corrección del motor que pide P-06 avisa de la clave desconocida y no la rechaza: así sigue evaluando el resto del documento y no invalida estas cuatro extensiones antes de que la guía las defina.
+
+Antes de comunicar una carencia se comprueba si ya está reportada.
+En los repositorios de la guía, de PRIME4API, de SPHERE y de las pruebas de uso de Datasheets solo hay un \textit{issue} pertinente al esquema, el de listas de \textit{rates} y cuotas, que cubre F-36 y F-38.
+Fuera de ese \textit{issue}, ninguna de las carencias de P-01 a P-05 está reportada, y las de P-06 a P-09 no se han contrastado con los \textit{issues} abiertos.

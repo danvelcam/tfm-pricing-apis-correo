@@ -9,7 +9,7 @@
 # Lo que no cabe en esta sintaxis está en no_admite.md (R21), no aquí.
 saasName: Amazon SES
 syntaxVersion: '3.0'
-version: '2026-09-18'
+version: '2026-10-31'
 url: https://aws.amazon.com/ses/pricing/
 createdAt: '2026-09-18'
 currency: USD
@@ -137,7 +137,7 @@ usageLimits:
       - transactionalEmailApi
       - bulkEmailApi
   otherRequestsPerSecond:
-    description: 'Caudal del resto de operaciones; ámbar, porque el literal enumera nombres de la versión 1 [DS:34-39, DS:218]'
+    description: 'Caudal del resto de operaciones; verde desde que la página exime SendEmail y SendBulkEmail, las dos de envío de la versión 2 [DS:34-39, DS:218]'
     valueType: NUMERIC
     defaultValue: 1
     unit: request

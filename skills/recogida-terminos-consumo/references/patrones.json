@@ -1,0 +1,143 @@
+{
+  "version": "0.3",
+  "extensiones_pagina": [
+    "",
+    ".html",
+    ".htm",
+    ".md",
+    ".txt"
+  ],
+  "idiomas_no_ingles": [
+    "ar",
+    "cs",
+    "da",
+    "de",
+    "de-de",
+    "es",
+    "es-es",
+    "es-mx",
+    "es-la",
+    "fi",
+    "fr",
+    "fr-fr",
+    "fr-ca",
+    "he",
+    "hu",
+    "id",
+    "it",
+    "it-it",
+    "ja",
+    "ja-jp",
+    "ko",
+    "ko-kr",
+    "nb",
+    "nl",
+    "nl-nl",
+    "no",
+    "pl",
+    "pt",
+    "pt-br",
+    "pt-pt",
+    "ro",
+    "ru",
+    "sv",
+    "th",
+    "tr",
+    "uk",
+    "vi",
+    "zh",
+    "zh-cn",
+    "zh-tw"
+  ],
+  "ruido": "(?<![a-z])(privacy|cookies?|careers?|jobs|press|customers|case-stud[a-z]*|partners|login|sign-?(in|up)|register|download|glossary|webinars?|podcasts?|videos?|migration-guides?)(?![a-z])",
+  "novedades": "(?<![a-z])(blog|changelog|release-notes|releases|whats-new|newsroom|news)(?![a-z])",
+  "temas": [
+    {
+      "id": "precios",
+      "descripcion": "Precios, planes, facturación, excesos y créditos.",
+      "patron": "(?<![a-z])(pricing|prices?|plans?|billing|overages?|credits?|free-(plan|tier)|pay-as-you-go|subscriptions?|add-?ons?|costs?)(?![a-z])",
+      "evidencia": "(\\$|€|USD ?)\\d[\\d,.]*|per (month|year)|/ ?mo(nth)?\\b|pay[ -]as[ -]you[ -]go|overages?\\b"
+    },
+    {
+      "id": "limites_cuotas",
+      "descripcion": "Límites, cuotas, rate limits, tamaños y retención.",
+      "patron": "(rate-?limit[a-z]*|(?<![a-z])limits?(?![a-z])|(?<![a-z])quotas?(?![a-z])|throttl[a-z]*|(?<![a-z])maximum(?![a-z])|capacity|retention|attachments?|payload|size-limits?)",
+      "evidencia": "rate[ -]?limit|(requests?|emails?|messages?|calls?) (per|/|a) ?(second|minute|hour|day|month)|quotas?\\b|\\bmaximum\\b|\\bup to [\\d,.]+|\\d+ ?(MB|KB|GB)\\b"
+    },
+    {
+      "id": "uso_aceptable_terminos",
+      "descripcion": "Términos de servicio, uso aceptable y políticas de envío.",
+      "patron": "(acceptable-?use|(?<![a-z])aup(?![a-z])|(?<![a-z])terms?(?![a-z])|(?<![a-z])tos(?![a-z])|(?<![a-z])legal(?![a-z])|polic(y|ies)|anti-?spam|(?<![a-z])abuse(?![a-z])|compliance|(?<![a-z])sla(?![a-z])|(?<![a-z])dpa(?![a-z])|refund)",
+      "evidencia": "acceptable use|terms of (service|use)|\\bprohibited\\b|\\bspam\\b|you (agree|may not)"
+    },
+    {
+      "id": "smtp",
+      "descripcion": "Interfaz SMTP: conexiones, puertos y límites propios.",
+      "patron": "(?<![a-z])smtp(?![a-z])",
+      "evidencia": "\\bSMTP\\b"
+    },
+    {
+      "id": "webhooks",
+      "descripcion": "Webhooks: reintentos, tamaños y cuotas.",
+      "patron": "webhooks?",
+      "evidencia": "\\bwebhooks?\\b"
+    },
+    {
+      "id": "errores_estado",
+      "descripcion": "Códigos de error y cabeceras de consumo.",
+      "patron": "((?<![a-z])errors?(?![a-z])|status-codes?|response-codes?|(?<![a-z0-9])429(?![a-z0-9])|limit-headers|too-many-requests)",
+      "evidencia": "\\b429\\b|too many requests|error codes?|status codes?|\\b[45]\\d\\d (error|bad request|unauthorized|forbidden|not found|too many|internal)"
+    },
+    {
+      "id": "cuenta_reputacion",
+      "descripcion": "Estado de la cuenta: sandbox, prueba, producción, reputación, IP.",
+      "patron": "(reputation|warm(ing|-?up)|dedicated-ips?|suspen[a-z]*|sandbox|(?<![a-z])trial|production-access)",
+      "evidencia": "reputation|sandbox|dedicated IPs?|warm[ -]?(up|ing)|suspen(d|sion)|\\btrial\\b"
+    },
+    {
+      "id": "envio",
+      "descripcion": "Endpoints de envío y envío por lotes, donde viven los límites por endpoint.",
+      "patron": "((?<![a-z])(batch|bulk)(?![a-z])|mail-send|send-email|send-bulk|send-batch|send-transac[a-z]*|sendtransac[a-z]*|sending-messages|messages-api|email-api)",
+      "evidencia": "\\b(batch|bulk)\\b|send (an? )?emails?|sending (messages|emails?)"
+    }
+  ],
+  "superficies": [
+    {
+      "nombre": "SMTP",
+      "patron": "(?<![a-z])smtp(?![a-z])"
+    },
+    {
+      "nombre": "Webhooks",
+      "patron": "webhooks?"
+    },
+    {
+      "nombre": "Correo entrante",
+      "patron": "inbound"
+    },
+    {
+      "nombre": "Legal",
+      "patron": "(?<![a-z])(legal|terms?|tos|aup|acceptable-?use|polic(y|ies))(?![a-z])"
+    },
+    {
+      "nombre": "Precios y planes",
+      "patron": "(?<![a-z])(pricing|prices?|plans?|billing|overages?)(?![a-z])"
+    },
+    {
+      "nombre": "API",
+      "patron": "(api-?reference|apireference|/reference/|/developer/api|/api/|(?<![a-z])v[0-9](?![a-z0-9])|api-)"
+    },
+    {
+      "nombre": "Ayuda y soporte",
+      "patron": "(?<![a-z])(help|support|hc|faqs?|knowledge-base)(?![a-z])"
+    },
+    {
+      "nombre": "Blog y novedades",
+      "patron": "(?<![a-z])(blog|changelog|release-notes|whats-new|newsroom)(?![a-z])"
+    },
+    {
+      "nombre": "Documentación",
+      "patron": "(?<![a-z])(docs?|documentation|developers?|dg|guide|userguide)(?![a-z])"
+    }
+  ],
+  "superficie_por_defecto": "Web del proveedor"
+}

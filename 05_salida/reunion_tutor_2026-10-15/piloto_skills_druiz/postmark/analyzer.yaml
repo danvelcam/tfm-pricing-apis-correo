@@ -1,0 +1,192 @@
+schema_version: "2.3"
+
+generator:
+  platform: "Claude"
+  provider: "Anthropic"
+  model: "claude-opus-5-5"
+  skill: "saas-interface-channel-analyzer"
+  skill_version: "3.0"
+
+generated_at: "2026-10-15T23:09:13+02:00"
+evidence_checked_at: "2026-10-15T23:10:18+02:00"
+
+input:
+  resolver_skill_version: "1.1"
+  resolver_generated_at: "2026-10-15T23:05:29+02:00"
+  query: "Postmark"
+  resolved_as: autonomous_service
+
+outcome: analyzed
+outcome_reason: null
+
+service:
+  name: "Postmark"
+  classification: autonomous_service
+  provider: "AC PM, LLC"
+  base_services: []
+  conditional_on_resolver: false
+
+scope:
+  index_pages:
+    - { kind: docs_home, source: s1 }
+    - { kind: developer_portal, source: null }
+    - { kind: help_center, source: s2 }
+    - { kind: integrations, source: s3 }
+  index_entries:
+    - { entry: ["Introduction", "Get started", "Official libraries", "Tools and Integrations", "AI Prompts", "Sending email with API", "Sending email with SMTP", "Processing email", "Tracking opens", "Tracking links", "Sandbox mode", "Overview", "Email", "Bulk", "Bounce", "Templates", "Server", "Servers", "Message Streams", "Messages", "Domains", "Sender signatures", "Stats", "Webhooks"], page: s1, disposition: covered, service: null }
+    - { entry: ["IP Allowlisting", "Managing your account", "Community libraries"], page: s1, disposition: not_access, service: null }
+    - { entry: ["Getting Started", "Sending Emails", "Inbound Emails"], page: s2, disposition: covered, service: null }
+    - { entry: ["Email Delivery", "Account & Billing", "Sending Best Practices", "ActiveCampaign"], page: s2, disposition: not_access, service: null }
+    - { entry: "DMARC Reports", page: s2, disposition: other_service, service: "DMARC Digests" }
+    - { entry: ["Featured: Marketer-friendly email tools", "All integrations"], page: s3, disposition: covered, service: null }
+  attribution_pages_used: 0
+
+sources:
+  - { id: s1, url: "https://postmarkapp.com/developer" }
+  - { id: s2, url: "https://postmarkapp.com/support" }
+  - { id: s3, url: "https://postmarkapp.com/integrations" }
+  - { id: s4, url: "https://postmarkapp.com/email-templates" }
+  - { id: s5, url: "https://postmarkapp.com/email-analytics" }
+  - { id: s6, url: "https://postmarkapp.com/developer/api/overview" }
+  - { id: s7, url: "https://postmarkapp.com/email-api" }
+  - { id: s8, url: "https://postmarkapp.com/developer/user-guide/send-email-with-smtp" }
+  - { id: s9, url: "https://postmarkapp.com/smtp-service" }
+  - { id: s10, url: "https://postmarkapp.com/developer/webhooks/webhooks-overview" }
+  - { id: s11, url: "https://postmarkapp.com/developer/user-guide/inbound" }
+  - { id: s12, url: "https://postmarkapp.com/labs" }
+  - { id: s13, url: "https://postmarkapp.com/slack-app" }
+  - { id: s14, url: "https://postmarkapp.com/inbound-email" }
+
+interfaces:
+  - name: "Postmark web app"
+    channel: Interactive
+    technology: "Web application at account.postmarkapp.com, in the browser"
+    rationale: "The consumer acts by manipulating views, editors and activity feeds of a persistent, navigable representation of servers, streams, templates and messages."
+    mechanisms: ["Web app", "Template editor", "Activity feed", "API Explorer"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "You can edit your templates right in Postmark, send yourself a test email, and switch between HTML and text versions." }
+      - { source: s5, excerpt: "View bounce events in the activity feed, and quickly reactivate delivery to bouncing email addresses once the problem is resolved." }
+
+  - name: "Postmark MCP Server"
+    channel: Agentic
+    technology: "Open-source MCP server published by the provider (github.com/ActiveCampaign/postmark-mcp), run by the consumer"
+    rationale: "The contract exposes tools that an AI client discovers and selects by goal."
+    mechanisms: ["MCP server"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "Integrate Claude and Cursor AI with Postmark to send emails and monitor delivery stats." }
+
+  - name: "Webhooks"
+    channel: Event
+    technology: "HTTP POST requests with JSON payloads to consumer URLs, up to 10 per stream, with HTTP basic auth and custom headers; outbound and inbound webhooks"
+    rationale: "The service initiates delivery when message events occur or an inbound message is processed, to an endpoint the consumer controls."
+    mechanisms: ["Outbound webhooks", "Inbound webhook"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s10, excerpt: "A webhook is the act of Postmark making an HTTP POST request to your application’s API when an event occurs." }
+
+  - name: "Postmark Slack App"
+    channel: Event
+    technology: "Slack app published by Postmark"
+    rationale: "The service posts bounce and event notifications into a Slack channel the consumer chooses; its slash commands only show setup help and documentation links."
+    mechanisms: ["Slack bounce notifications"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s13, excerpt: "Send Bounce notification messages from Postmark to a Slack channel of your choice." }
+
+  - name: "REST API"
+    channel: Programmatic
+    technology: "HTTPS REST API at api.postmarkapp.com with token headers (X-Postmark-Server-Token, X-Postmark-Account-Token)"
+    rationale: "The consumer explicitly invokes provider-defined operations through structured HTTP requests."
+    mechanisms: ["Email API", "Bulk API", "Account API"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s7, excerpt: "With our powerful RESTful email APIs and robust libraries in pretty much every programming language, integrating email is fast and easy—whether you’re sending transactional or bulk email." }
+      - { source: s6, excerpt: "All requests to Postmark’s API require you to authenticate yourself to the service." }
+
+  - name: "SMTP service"
+    channel: Programmatic
+    technology: "SMTP submission at smtp.postmarkapp.com and smtp-broadcasts.postmarkapp.com, with the server API token or a per-stream SMTP token"
+    rationale: "The consumer explicitly submits messages through the structured SMTP command protocol, with its own hosts and authentication."
+    mechanisms: ["SMTP Service"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s9, excerpt: "Most development frameworks support SMTP without the need for any extra libraries, making SMTP the quickest way to start sending transactional email from your web application." }
+      - { source: s8, excerpt: "After enabling access, you will be able to connect to smtp.postmarkapp.com (for transactional messages) or smtp-broadcasts.postmarkapp.com (for broadcast messages)." }
+
+  - name: "Postmark CLI"
+    channel: Programmatic
+    technology: "Open-source command-line tool published by the provider (github.com/activecampaign/postmark-cli)"
+    rationale: "The consumer invokes provider-defined commands from the terminal."
+    mechanisms: ["CLI"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "Push and pull templates, send emails, and fetch server lists from the command line." }
+
+  - name: "Inbound email"
+    channel: Programmatic
+    technology: "Inbound SMTP to a generated address at inbound.postmarkapp.com or to the consumer's own domain"
+    rationale: "Each message received is taken literally, parsed into JSON and handed to the consumer, not interpreted as a request."
+    mechanisms: ["Inbound Email"]
+    requires: ["Postmark"]
+    outside_catalog: null
+    evidence:
+      - { source: s14, excerpt: "Use a pre-made inbound address or set them up with your own domain." }
+      - { source: s11, excerpt: "Inbound processing allows you to send inbound emails to Postmark, which we then process and deliver to you via a webhook in nicely formatted JSON." }
+
+pending: []
+
+excluded:
+  - mechanism: ["Official libraries", "Craft plugin", "WordPress plugin", "Grunt plugin", "Postmark Skills", "Rebound", "MailMason", "MailBrush", "MailHandler", "StyleMerge", "Mustachio", "Webhooks Tool", "Server and account API tokens"]
+    reason: not_an_interface
+    service: null
+    detail: "Client libraries, transport plugins, snippets, customization artifacts and authentication"
+  - mechanism: ["Community libraries", "Mailcoach", "Datadog", "Craft Campaign", "Customer.io", "Supabase", "Bubble", "Figma", "Google Sheets", "Gravity Forms", "Gravity SMTP for WordPress", "Netlify", "Stripe", "Stripo", "Typeform", "WP Mail SMTP", "Zapier"]
+    reason: third_party
+    service: null
+    detail: "Built and maintained by third parties"
+  - mechanism: "ActiveCampaign"
+    reason: third_party
+    service: null
+    detail: "Product of the parent company that sends through Postmark"
+  - mechanism: ["Slack /postmark commands"]
+    reason: not_an_interface
+    service: null
+    detail: "Commands only show webhook setup help and documentation links"
+  - mechanism: ["Support Center", "Account & Billing"]
+    reason: provider_relationship
+    service: null
+    detail: "Support, account and billing"
+  - mechanism: ["SpamCheck", "SMTP Field Manual"]
+    reason: no_access
+    service: null
+    detail: "Free standalone tools that give access to no capability of Postmark"
+  - mechanism: "DMARC Reports"
+    reason: other_service
+    service: "DMARC Digests"
+    detail: "DMARC reporting tool"
+  - mechanism: ["Mobile app", "Desktop app", "Terminal TUI"]
+    reason: not_found
+    service: null
+    detail: "Developer documentation, support center, labs and integrations checked; no first-party mobile, desktop or TUI client"
+  - mechanism: "Outbound email notifications"
+    reason: not_found
+    service: null
+    detail: "No subscribable email notification of account activity found; notifications go through webhooks or the Slack app"
+
+summary:
+  interfaces: 8
+  channels: [Interactive, Agentic, Event, Programmatic]
+  multi_interface: true
+  multi_channel: true
+  verdict_provisional: false
+
+notes: []

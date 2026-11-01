@@ -1,0 +1,174 @@
+\section{Lo que enseña el catálogo}
+\label{sec:limites:catalogo}
+
+Las Tablas~\ref{tab:limites-rates} y~\ref{tab:limites-rates-b} recogen el caudal, la cuota y la ventana de cada API, y de ellas salen seis afirmaciones sobre la relación entre límites de uso y \textit{rates}.
+Cada afirmación se cuenta sobre las ocho APIs y no sobre sus planes, para que una API con cinco planes no pese cinco veces.
+El recuento reparte las ocho en cuatro grupos, que se escriben siempre en este orden: a favor, en contra, no comprobable y no aplica.
+Una API cuenta a favor cuando su Datasheet tiene el dato que la afirmación necesita y ese dato va en la dirección enunciada.
+Cuenta en contra cuando tiene el dato y apunta al lado opuesto, y entonces es un contraejemplo y se nombra.
+
+Los otros dos grupos separan el dato que falta de la afirmación que no se puede plantear.
+Una API es no comprobable cuando la afirmación tiene sentido en ella pero ningún hecho recogido aporta el dato, y en ese caso nunca suma a favor.
+No aplica cuando la afirmación presupone una estructura que la API no tiene, como los planes en Mailchimp Transactional o la cuota incluida en Amazon SES.
+
+El cociente $R \cdot W / Q$ es el de la Sección~\ref{sec:limites:geometrica}: cuántas veces cabe la cuota en lo que el \textit{rate} admite durante su ventana.
+Como se calcula con un destinatario por petición ($k = 1$), es una cota inferior, porque enviar a varios destinatarios en cada petición solo puede agrandarlo.
+
+La primera afirmación es que, con la cuenta en estado sano, la cuota es la restricción activa en toda API cuya Datasheet lleva \textit{rate} y cuota con valor.
+El recuento es de seis a favor, ninguna en contra, una no comprobable y una que no aplica.
+El cociente $R \cdot W / Q$ va de 103,7 en MailerSend Starter a 129.600.000 en el plan Free de Postmark, es decir, de dos a ocho órdenes de magnitud.
+Con los volúmenes contratados que el proveedor publica y la Datasheet no recoge, el mínimo baja a 2,59 en MailerSend Professional 2M, algo más del doble.
+
+La no comprobable es Amazon SES, porque fuera del entorno de pruebas el proveedor no publica ni el \textit{rate} ni la cuota, que cada cuenta recibe al obtener el acceso de producción.
+La que no aplica es Mailchimp Transactional, que no tiene planes y cuya franquicia de prueba de 500 correos no caduca ni se renueva.
+Sin ventana en la cuota, el cociente no está definido.
+Con 25 correos por hora, agotar esa franquicia lleva veinte horas, así que en esta API el tiempo lo pone el caudal.
+
+En esas seis APIs el \textit{rate} del cociente sale de fuentes distintas, recogidas en la Sección~\ref{sec:limites:publicado}.
+Solo MailerSend lo publica para todos sus planes, con 120 peticiones por minuto, y Resend publica un valor por defecto por equipo.
+Postmark lo devuelve en la cabecera de respuesta, y la de Mailgun da 80.000 peticiones por una ventana medida de unos diez segundos, que la Tabla~\ref{tab:limites-rates-b} divide para obtener 8.000 por segundo.
+SendGrid lo da en unas preguntas frecuentes sin plan, y Brevo no dice qué plan cae en cada categoría.
+Para dimensionar un volumen de envío, el \textit{rate} puede ignorarse en seis de las ocho APIs mientras la cuenta esté sana, y en Amazon SES la pregunta no tiene respuesta antes de abrir la cuenta.
+
+La segunda afirmación tiene dos mitades que se cuentan aparte: el \textit{rate} del envío individual no varía con el plan, y lo que el plan compra es cuota.
+La primera mitad se limita al envío individual porque MailerSend publica para el envío por lotes, \texttt{/v1/bulk-email}, un caudal que sube con el plan: 10 peticiones por minuto en Hobby, 15 en Starter y 30 en Professional.
+Esa mitad queda en tres a favor, una en contra, dos no comprobables y dos que no aplican.
+Las tres a favor son Resend, SendGrid y MailerSend.
+Resend publica un valor por defecto por equipo, SendGrid publica 10.000 peticiones por segundo sin condición de plan y MailerSend publica 120 peticiones por minuto en \texttt{/v1/email} para sus cuatro planes.
+
+El contraejemplo es Brevo, con las tres categorías de caudal para el mismo \textit{endpoint} de envío que recoge la Sección~\ref{sec:limites:publicado}.
+Pasar de la categoría General a la Extended multiplica por seis el caudal del envío individual, que así puede crecer al subir de plan.
+El dato va en ámbar (\semambar{}) porque la página no dice qué plan cae en cada categoría.
+Postmark y Mailgun son no comprobables, porque su caudal de envío se observó en la cabecera de una sola cuenta gratuita y la Datasheet lo extiende a todos los planes por falta de dato.
+La mitad no aplica a Amazon SES, cuyo único caudal publicado es el del entorno de pruebas, un estado de la cuenta y no un plan.
+Tampoco aplica a Mailchimp Transactional, que no tiene planes y fija el caudal según su reputación.
+
+La segunda mitad queda en seis a favor y dos que no aplican.
+Las seis a favor son Postmark, Resend, SendGrid, MailerSend, Brevo y Mailgun, cuya cuota crece con el precio del plan, en Brevo de 300 correos al día a diez millones al mes.
+En Brevo el plan compra además caudal de envío individual, y en MailerSend, caudal de envío por lotes.
+En Amazon SES el plan no compra volumen, porque ningún plan incluye cuota: los 200 correos al día del entorno de pruebas valen igual para los cuatro planes, que compran funciones y tramos de precio unitario \citep{sespricing}.
+En Mailchimp Transactional no hay planes, y lo que se compra es la propia unidad de volumen, el bloque de 25.000 correos, a un precio que baja de 20 a 10 USD por bloque \citep{mailchimppricing}.
+
+La tercera afirmación es que el \textit{rate} que publica el proveedor coincide con el que devuelve la API en sus cabeceras o con el que mide un sondeo.
+El recuento es de cuatro a favor, ninguna en contra, cuatro no comprobables y ninguna que no aplique.
+Las cuatro que coinciden publican el valor con su ámbito escrito: Resend lo da por equipo, MailerSend por estado de la cuenta, Brevo ruta a ruta y Mailchimp Transactional para la cuenta de prueba.
+La cabecera del envío de Brevo devolvió las 1.000 peticiones por segundo de su tabla General, y en Mailchimp Transactional la documentación, el panel y la medición coinciden en 25 correos por hora.
+
+En MailerSend la coincidencia es de valor y no de estado.
+Las 10 peticiones por minuto que el proveedor publica para la cuenta en revisión son las que el sondeo midió en una cuenta sin aprobar, que es otro estado, y las 120 de la cuenta sana siguen sin observar.
+
+Dos de esas coincidencias tienen una segunda cifra al lado.
+En Brevo la coincidencia vale solo para la categoría General, porque su guía de envío por lotes da para el mismo \textit{endpoint} 6.000 peticiones por hora, 600 veces menos.
+En Resend, la Datasheet de ejemplo que publica el repositorio de la guía de ACM2YAML, fechada en febrero de 2026, fija 2 peticiones por segundo \citep{apisconsumptionmodel}, y la documentación consultada en agosto de 2026 publica 10 \citep{resenddocs}.
+Las capturas de su página de límites en Wayback Machine muestran que cambió la oferta: 2 por segundo hasta marzo de 2026, 5 entre abril y julio, y 10 desde agosto.
+
+Las cuatro no comprobables carecen de una cifra publicada y observada para el mismo \textit{endpoint} y el mismo ámbito.
+Postmark no publica \textit{rate} y devuelve 5.000 en la cabecera de cada respuesta.
+SendGrid publica 10.000 peticiones por segundo para un \textit{endpoint} de envío que, en modo \textit{sandbox}, no devuelve cabeceras, y en los de lectura devuelve 600 y 6 en \texttt{X-RateLimit-Limit}, valores que ninguna página documenta.
+Amazon SES no publica su caudal de producción.
+
+En Mailgun, la cifra publicada y la medida tienen ámbitos distintos.
+Sus preguntas frecuentes dan 1.500 peticiones por segundo por IP de cliente para toda la API, y la cabecera del envío cuenta otro contador, 80.000 peticiones por una ventana de unos diez segundos (unas 8.000 por segundo si se dividen).
+La medición no dice cuál de los dos rige en el envío, así que no contradice la cifra publicada.
+
+La cabecera de respuesta tampoco es una señal fiable en todo el catálogo.
+Amazon SES no emite ninguna cabecera de caudal, y sus nueve respuestas 429 medidas no traen \texttt{Retry-After}, la cabecera que dice cuánto esperar antes de reintentar.
+Mailchimp Transactional no emite cabecera de caudal en ninguna respuesta del sondeo ni la menciona en ninguna página oficial.
+Mailgun la emite solo en un POST aceptado, así que leer el caudal le cuesta al cliente un envío.
+
+Donde la cabecera llega, la documentación no siempre la describe bien.
+Brevo afirma que llega en todas las respuestas, y en la medición llegó en una respuesta de error 400 y no en dos respuestas correctas 200.
+En SendGrid, \texttt{X-RateLimit-Reset} trae en tres \textit{endpoints} un valor de una o dos cifras (6, 9 y 58), que se lee como los segundos que faltan, y en otros tres una marca de tiempo Unix.
+La documentación solo muestra la segunda forma \citep{sendgridratelimits}.
+Una herramienta que lea esa cabecera para calcular cuándo reintentar encuentra el mismo nombre con dos formas de valor y ningún aviso.
+
+La alternativa a la cabecera es un \textit{endpoint} que informa de la capacidad restante de la cuenta sin gastar cuota, y cuatro de las ocho APIs lo tienen, aunque el de Brevo da el saldo y no el límite.
+Amazon SES devuelve en un \texttt{GET} la cuota de 24 horas y el caudal máximo de envío de la cuenta, y su documentación lo señala como la vía para conocerlas.
+Mailchimp Transactional devuelve la cuota horaria junto a la reputación en \texttt{POST /users/info}, y MailerSend tiene \texttt{GET /v1/api-quota} \citep{mailersenddocs}.
+El \texttt{GET /v3/account} de Brevo devuelve el saldo de correos y el periodo exacto del ciclo, pero ninguno de sus campos es de límite.
+
+Postmark, Resend, SendGrid y Mailgun no tienen ninguno, y en ellas el cliente conoce su capacidad restante después de gastarla o no llega a conocerla.
+Donde existe, el \textit{endpoint} tampoco garantiza un dato al día.
+En MailerSend, once horas y veinticuatro minutos después de la medianoche que repone la cuota diaria, seguía sirviendo el saldo del día anterior.
+
+La cuarta afirmación es que el proveedor publica un tope de destinatarios por petición, el valor máximo del factor $k$ con el que se pasa del \textit{rate}, que cuenta peticiones, a la cuota, que cuenta correos.
+El recuento es de siete a favor, una en contra, ninguna no comprobable y ninguna que no aplique, porque siete APIs publican ese tope y una no.
+Postmark, Resend y Amazon SES admiten 50 destinatarios por petición, MailerSend 70, SendGrid 1.000, Mailgun 1.000 por lote y Brevo 2.000.
+El contraejemplo es Mailchimp Transactional, que escribe que no hay limitación de destinatarios y que el JSON de la llamada debe pesar menos de 10 MB \citep{mailchimpdocs}.
+Ahí la cota de una llamada está en megabytes, y no hay $k$ que pase de una unidad a la otra.
+
+Cinco de los siete topes están verificados por sondeo: los de Postmark, Resend, SendGrid y Mailgun, y el de la cuenta sin aprobar de MailerSend.
+En Mailgun el destinatario 1.001 devuelve un error 400 que nombra el máximo de 1.000.
+En Brevo no hubo sondeo de destinatarios, y el tope de Amazon SES sale de su página de cuotas, que lo define como la suma de \texttt{To}, \texttt{Cc} y \texttt{Bcc} \citep{sesdocs}.
+En Amazon SES una petición de 50 destinatarios consume la cuarta parte de la cuota diaria del entorno de pruebas, y en Brevo una de 2.000 equivale a casi siete veces la cuota diaria del plan Free.
+
+El factor $k$ solo conecta las dos magnitudes si cada destinatario descuenta una unidad de cuota.
+De las cuatro APIs en las que esa equivalencia está sostenida (Sección~\ref{sec:limites:geometrica}), Resend y SendGrid la publican, y en Brevo y Amazon SES salió de medir.
+En Brevo, el saldo de la cuenta bajó de 300 a 298 tras una petición con dos destinatarios.
+En Amazon SES, el contador marcó 5 sobre 200 tras cuatro mensajes con cinco destinatarios, porque uno llevaba la misma dirección en \texttt{to} y en \texttt{cc}.
+Ese recuento descarta a la vez que la unidad sea el mensaje y que el proveedor deduplique direcciones, porque cualquiera de las dos habría dado cuatro.
+En Postmark, MailerSend, Mailgun y Mailchimp Transactional esa equivalencia es una suposición que ningún dato confirma.
+
+La quinta afirmación es que el proveedor no publica un caudal propio de cada plan ni cuándo se repone la cuota.
+En la mitad que trata del caudal del envío individual, el recuento es de siete a favor, una en contra, ninguna no comprobable y ninguna que no aplique.
+Un caudal común a todos los planes, como las 120 peticiones por minuto de MailerSend, cuenta a favor, porque no es propio de ningún plan.
+El contraejemplo es Brevo, la única que pone una cifra de ese caudal junto a una categoría de plan.
+Amazon SES cuenta a favor porque no publica el caudal de producción.
+El envío por lotes de MailerSend, con 10, 15 y 30 peticiones por minuto según el plan, queda fuera de esta mitad por el mismo motivo que en la segunda afirmación.
+
+Cuatro de las siete Datasheets declaran de formas distintas el caudal que el proveedor no liga a un plan.
+La de Amazon SES deja vacío el bloque de caudal, la de Mailgun referencia un único valor desde sus cuatro planes y la de MailerSend toma las 120 peticiones por minuto como valor por defecto.
+La de Mailchimp Transactional repite el caudal como estado de la cuenta en sus tres \textit{endpoints} de envío.
+
+La otra mitad de la quinta afirmación, la de la ventana de la cuota, queda en ocho a favor.
+Ninguna API tiene esa ventana en verde si cada una se clasifica por el peor semáforo de sus cuotas: cuatro están en rojo (\semrojo{}) y cuatro en ámbar (\semambar{}).
+SendGrid es la que más se acerca, porque publica la medianoche UTC y el periodo de facturación, y solo la ventana de su plan Premier queda en ámbar.
+
+Los cuatro rojos responden a tres causas.
+Mailgun y Brevo dan valor y periodo para las cuotas de su plan Free, pero ninguna fuente fecha su reposición.
+Amazon SES describe su cuota diaria como deslizante en una página, es decir, que en cada envío cuenta lo enviado en las 24 horas anteriores, y como fija en otra, en la que hay que esperar al siguiente periodo de 24 horas.
+El campo se deja vacío a propósito.
+Mailchimp Transactional escribe que su franquicia no caduca ni se renueva, mientras ACM2YAML v0.3 exige un periodo en toda cuota.
+En esas cuatro APIs, quien integra la API no puede calcular cuándo se repone su cuota sin observarlo en su propia cuenta.
+
+La ventana del caudal no la declara ninguna de las ocho, y dos sondeos la acotaron.
+En Brevo la ruta \texttt{GET /v3/smtp/emails}, que consulta la actividad de envío, volvió a admitir peticiones antes de cumplirse un segundo desde la primera de la serie, y con una sola muestra no se distingue una ventana fija alineada con el reloj de una reposición gradual.
+En Mailgun la ventana dura entre 9,85 y 9,87 segundos, la abre la primera petición y no es deslizante, y ninguno de los tres tipos de ventana que admite ACM2YAML v0.3 (deslizante, fija a la medianoche UTC y fija al ciclo de facturación) la describe.
+
+La sexta afirmación es que el estado de la cuenta condiciona la capacidad, con independencia del plan.
+El recuento es de seis a favor, dos en contra, ninguna no comprobable y ninguna que no aplique.
+Son las seis APIs en que la capacidad depende del estado de la cuenta y no del plan, recogidas como F-18 en el Apartado~\ref{subsec:evolucion:p06}.
+Ese apartado describe el caso de MailerSend y la extensión que se propone para modelar el estado de la suscripción.
+Solo MailerSend da una cifra para cada estado: 120 peticiones por minuto en \texttt{/v1/email} con la cuenta sana y 10 con la cuenta en revisión.
+
+Las otras cinco a favor son Amazon SES, Mailchimp Transactional, Postmark, Resend y Mailgun.
+Amazon SES publica los topes del entorno de pruebas y no los de producción.
+Mailchimp Transactional fija 25 correos por hora en la cuenta de prueba y ata la de pago a su reputación.
+Postmark limita la cuenta en modo de prueba a 100 correos y a dominios verificados, y con la cuenta pendiente de aprobación rechazó con el código 412 cada mensaje a otro dominio.
+Resend sube su valor por defecto de 10 peticiones por segundo a los remitentes de confianza, sin decir cuánto ni qué umbral los define.
+Mailgun eleva el caudal a medida que crece la reputación de envío, sin una sola cifra.
+Ninguna de las seis publica el umbral que dispara el cambio de estado.
+
+Las dos en contra son SendGrid y Brevo.
+En SendGrid el único estado que cambia la capacidad es el fin de la prueba gratuita, que es la caducidad de un plan y no un estado de la cuenta.
+En Brevo lo que cambia el caudal es la categoría del acuerdo comercial y no el estado de la cuenta, y para la cuenta sin aprobar no hay cifra.
+ACM2YAML v0.3 ya cubre parte de esos estados con sus alias de estado, nombres bajo un \textit{endpoint} que agrupan los límites de cada estado, como el \texttt{sandbox} de Amazon SES (Apartado~\ref{subsec:evolucion:p06}).
+
+Fuera de las seis afirmaciones, el catálogo muestra qué pasa con el envío que supera la cuota.
+Cinco de las ocho APIs cobran un sobrecoste por cada correo que pasa de la cuota del plan, y en las cinco su precio baja con el volumen.
+Los tramos de Postmark y Resend ya se recogieron en el Apartado~\ref{subsec:evolucion:p01}, donde un mismo plan cambia de sobrecoste con el volumen contratado.
+En las otras tres, MailerSend va de 1,50 a 0,50 USD por cada mil correos y Mailgun de 1,80 a 0,40 USD \citep{mailgunpricing}.
+SendGrid fija el sobrecoste por correo, y llevado a mil correos va de 1,30 a 0,50 USD.
+
+Las tres APIs sin sobrecoste ponen algo distinto en su lugar.
+Brevo niega que haya cargos adicionales y sube de plan automáticamente cuando crece el número de contactos \citep{brevopricing}.
+Amazon SES no tiene cuota incluida que exceder, y sus tramos de precio bajan con el volumen sin corte ni penalización \citep{sespricing}.
+Mailchimp Transactional detiene el envío al agotar el bloque, y lo que ocupa el lugar del sobrecoste es comprar otro.
+
+En el borde de la cuota hay tres comportamientos documentados.
+Amazon SES rechaza la llamada que pasa de la cuota de 24 horas de la cuenta y descarta el mensaje sin ponerlo en cola ni reintentarlo.
+SendGrid en su prueba gratuita, MailerSend en el plan Free y Mailchimp Transactional al agotar los bloques detienen el envío.
+Brevo retiene en cola hasta 1.000 correos por encima de la cuota diaria y no entrega los que pasan de esa cifra.
+Los Apartados~\ref{subsec:evolucion:p07} y~\ref{subsec:evolucion:p09} recogen las dos propuestas que salen de este borde: el tope de diez veces el volumen del plan que SendGrid impone al sobrecoste y la cola con la que Brevo retiene los correos tras agotar la cuota.
+
+Ninguna de las seis afirmaciones se cumple entera en las ocho APIs, y Mailchimp Transactional y Amazon SES quedan fuera de al menos dos de ellas.

@@ -2,16 +2,11 @@
 \chapter{Metodología y planificación}
 \label{cap:metodologia}
 
-Este capítulo describe cómo se ha desarrollado el trabajo y se organiza
-del siguiente modo. En primer lugar, la
-Sección~\ref{sec:metodologia:enfoque} presenta el enfoque metodológico
-adoptado y lo relaciona con los objetivos y las contribuciones
-enunciados en el Capítulo~\ref{cap:introduccion}. A continuación, la
-Sección~\ref{sec:metodologia:planificacion} recoge la planificación del
-proyecto. Después, la Sección~\ref{sec:metodologia:presupuesto} presenta
-el presupuesto, previsto y real. Por último, la
-Sección~\ref{sec:metodologia:desviaciones} recoge las desviaciones
-observadas respecto al plan.
+Este capítulo explica cómo se ha hecho el trabajo. Primero presenta la metodología
+(Sección~\ref{sec:metodologia:enfoque}). Después recoge la planificación,
+el presupuesto y las desviaciones respecto al plan
+(Secciones~\ref{sec:metodologia:planificacion}
+a~\ref{sec:metodologia:desviaciones}).
 
 \section{Metodología}
 \label{sec:metodologia:enfoque}
@@ -19,526 +14,396 @@ observadas respecto al plan.
 El trabajo adopta el enfoque de investigación en ciencia del diseño
 (\textit{Design Science Research}, DSR) formulado por Hevner et al.
 \citep{hevner2004dsr}. Se elige porque el objetivo de la
-Sección~\ref{sec:introduccion:objetivos} pide construir artefactos que
-resuelvan un problema relevante y evaluar con rigor su utilidad, y no
-describir un fenómeno. Para operacionalizar el enfoque se sigue el
-proceso DSRM de Peffers et al. \citep{peffers2007dsrm}, que ordena la
+Sección~\ref{sec:introduccion:objetivos}, un catálogo de Datasheets y un
+método de comparación, pide construir artefactos que resuelvan un problema relevante y evaluar con rigor su utilidad, y no
+describir un fenómeno. Para aplicar el enfoque se sigue el
+proceso DSRM (\textit{Design Science Research Methodology}) de Peffers
+et al. \citep{peffers2007dsrm}, que ordena la
 investigación en seis actividades y admite iterar entre ellas.
 
-En términos de DSR, este trabajo produce artefactos de tres tipos. El
-catálogo de Datasheets es una instanciación (contribución C-01): un
-conjunto de documentos conformes a ACM2YAML v0.3 salvo dos formas que la
-guía no define (Sección~\ref{sec:propuesta:conformidad}), escritos
-para que las herramientas del ecosistema los consuman sin adaptación. El
-método de comparación sistemática es un método (contribución C-04). El
-método de construcción del catálogo lo es también, y la memoria lo
-cuenta dentro de C-01. Las extensiones propuestas al esquema son un
-modelo (contribución C-02). Cómo se relacionan límites y \textit{rates}
-(contribución C-03) es el conocimiento que resulta de analizar la
-instanciación con la lectura geométrica de la capacidad y las
-operaciones de análisis de PRIME4API. Ese modelo (C-02) no es un metamodelo
-nuevo, y el trabajo tampoco crea un motor de análisis nuevo
-(Capítulo~\ref{cap:estadoDelArte}): aplica el ACM y su serialización a
-un dominio completo y propone las extensiones que ese dominio justifica.
+El trabajo tiene cuatro contribuciones (C-01 a C-04). Tres son artefactos de alguno de los cuatro tipos que distinguen Hevner et al.: constructos, modelos, métodos e instanciaciones. El catálogo de Datasheets es una instanciación (C-01). Las extensiones al esquema son un modelo (C-02), construido sobre el ACM y su serialización ACM2YAML, de Gavira Sánchez \citep{gavira2026tfm}. El método de comparación sistemática es un método (C-04). El análisis de límites y \textit{rates} (C-03) no es un artefacto: es lo que se aprende al aplicar las operaciones de PRIME4API al catálogo.
 
-Las seis actividades del proceso DSRM se corresponden con los capítulos
-de la memoria del siguiente modo.
+La Tabla~\ref{tab:metodologia:dsrm} recorre las seis actividades del proceso DSRM. Para cada una dice qué se hace en este trabajo, en qué capítulo se recoge y a qué objetivo responde.
 
-\begin{description}
-  \item[A1. Identificación del problema y motivación.] El
-    Capítulo~\ref{cap:introduccion} plantea el problema: la capacidad
-    contractual de una API de correo está dispersa entre fuentes
-    heterogéneas y el instrumental del ecosistema se ha validado sobre
-    pocos servicios. El Capítulo~\ref{cap:estadoDelArte} sitúa ese
-    problema respecto a los trabajos previos sobre modelado de pricings
-    y de capacidad de APIs.
-  \item[A2. Definición de los objetivos de la solución.] La
-    Sección~\ref{sec:introduccion:objetivos} formula las preguntas RQ1 a
-    RQ4 y los objetivos OBJ-01 a OBJ-05 que se derivan de ellas. Cada
-    actividad posterior se evalúa contra esos identificadores.
-  \item[A3. Diseño y desarrollo.] El Capítulo~\ref{cap:catalogo} define
-    el criterio de selección del dominio (OBJ-01) y el ciclo de cinco
-    fases con el que se documenta cada API
-    (Sección~\ref{sec:propuesta:ciclo}). Las reglas de trazabilidad y el
-    semáforo de confianza (Sección~\ref{sec:propuesta:trazabilidad}) y
-    la escalera de validación (Sección~\ref{sec:propuesta:validacion})
-    hacen revisable cada dato (OBJ-02). El desarrollo produce el
-    catálogo, que parte de ocho APIs, y, junto a él, el inventario de
-    elementos del dominio que el esquema no soporta, del que parte OBJ-03.
-    Sobre ese inventario el Capítulo~\ref{cap:evolucion} diseña las
-    extensiones del esquema, en una segunda pasada por esta actividad. La
-    Sección~\ref{sec:hallazgos:catalogo-pi} diseña el método de comparación
-    (C-04): el catálogo de preguntas de decisión y la clase que dice con qué
-    instrumento se responde cada una.
-  \item[A4. Demostración.] Las Datasheets del catálogo se ejecutan con
-    PRIME4API y se preparan como contribución a SPHERE. La ejecución comprueba, dentro del
-    ecosistema al que se destinan, cuánto de cada una consume el motor, y
-    ninguna de las ocho resulta plenamente consumible
-    (Tabla~\ref{tab:verificacion}). El catálogo cubre
-    un dominio completo y no un servicio aislado, y sobre él el
-    Capítulo~\ref{cap:hallazgos} aplica el análisis de capacidad y el método
-    de comparación (OBJ-04 y OBJ-05).
-  \item[A5. Evaluación.] La conformidad de cada Datasheet se comprueba
-    con el validador de formato de este trabajo, y su consumo, con la
-    verificación por uso sobre PRIME4API
-    (Sección~\ref{sec:propuesta:conformidad} y
-    Capítulo~\ref{cap:evolucion}). Las fuentes de cada dato las
-    contrasta un verificador que vuelve a abrir cada URL citada. Es un
-    agente de inteligencia artificial distinto del que construye la
-    Datasheet (Anexo~\ref{anx:uso-ia}). Los elementos no soportados se someten a un criterio de promoción de dos
-    vías: la recurrencia en al menos dos APIs del dominio, o una sola API
-    que cumple tres condiciones. El hecho está citado o medido, la
-    consecuencia está ejecutada sobre el consumidor de referencia y la
-    carencia es propia del esquema. Solo
-    el elemento promovido cuya forma se contrasta con la guía llega a propuesta
-    (Sección~\ref{sec:propuesta:conformidad}). El método de comparación
-    (C-04) se evalúa aplicándolo sobre las ocho APIs (OBJ-05). Cada
-    pregunta del catálogo se clasifica por el instrumento que la
-    responde, sea la Datasheet, PRIME4API, HARVEY4API o la matriz de
-    \textit{features}, o por lo que falta para responderla. La
-    caracterización de C-03 se apoya en las operaciones de análisis del
-    mismo motor sobre las mismas Datasheets (OBJ-04). Esa evaluación se reúne
-    y se confronta con las contribuciones en el
-    Capítulo~\ref{cap:conclusiones}.
-  \item[A6. Comunicación.] Esta memoria, con sus conclusiones en el
-    Capítulo~\ref{cap:conclusiones}, es el vehículo principal. El catálogo se publica en un
-    repositorio abierto, con sus registros de fuentes y de elementos no
-    soportados, y se propone a SPHERE como colección. Las extensiones del esquema se elevarán como
-    propuestas al repositorio de la guía del ecosistema.
-\end{description}
+Cada Datasheet se construye con un ciclo de cinco fases: recolección de fuentes, borrador, validación, revisión y consolidación. La validación es automática, con el validador de formato, y la revisión examina el borrador campo a campo con las fuentes a la vista (Sección~\ref{sec:propuesta:ciclo}). El ciclo se probó y se ajustó con Postmark, la API piloto, antes de aplicarlo al resto de APIs. Las decisiones de modelado que se resuelven, como qué se considera cuota, se anotan como reglas en el libro de criterios, un fichero de reglas común a todas las Datasheets, y no se vuelven a plantear. Las decisiones de alcance se anotan en un registro, y de él sale la comparación entre lo previsto y lo ocurrido de la Sección~\ref{sec:metodologia:desviaciones}.
 
-El proceso no se recorre una sola vez: un piloto (Postmark) calibró el
-ciclo de construcción antes de escalarlo al resto del dominio
-(Capítulo~\ref{cap:catalogo}). Ese piloto fijó también el formato de
-presentación. El catálogo es mutable y cada sustitución
-se anota con fecha y motivo (Sección~\ref{sec:propuesta:seleccion}). Las
-decisiones de criterio que surgen al modelar (qué producto se modela
-cuando un proveedor vende varios, qué se considera cuota y qué no) se
-registran y se convierten en reglas de un libro de criterios. Así una
-pregunta resuelta en una API no vuelve a plantearse en la siguiente, y
-el catálogo se construye con un criterio uniforme. Ese libro forma
-parte del paquete de replicación como \texttt{03\_datos/CRITERIOS.md}
-(Tabla~\ref{tab:conclusiones:paquete}). Las decisiones de
-alcance quedan registradas con fecha y motivo en un registro de
-decisiones, que es la fuente de la sección de desviaciones de este
-capítulo.
+El trabajo lo ejecutan agentes de inteligencia artificial basados en Claude, el asistente de Anthropic (Anexo~\ref{anx:uso-ia}), y lo supervisa el autor. Los agentes recogen las fuentes, construyen cada Datasheet y la verifican, en flujos paralelos. El autor diseña el procedimiento, fija los criterios de modelado (como qué fuente prevalece cuando dos se contradicen), resuelve lo que queda abierto y valida el resultado. La verificación la hace un agente distinto del que construye la Datasheet, y reabre cada URL citada. La Datasheet de Postmark, la del piloto, se construyó antes de que se separaran la construcción y la verificación, y se cerró sin informe de verificador. Las otras siete lo tienen. Postmark sí pasó por el validador de formato y por PRIME4API (Tabla~\ref{tab:verificacion}).
 
-El enfoque tiene un límite conocido: DSR exige evaluar con rigor la
-utilidad del artefacto, y este trabajo la establece por uso de las
-herramientas del ecosistema, sin un estudio con integradores.
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|p{0.2\textwidth}|p{0.43\textwidth}|p{0.15\textwidth}|p{0.13\textwidth}|}
+\hline
+\raggedright \textbf{Actividad} & \raggedright \textbf{En este trabajo} & \raggedright \textbf{Dónde} & \raggedright \textbf{Objetivo} \tabularnewline
+\hline
+\raggedright A1. Problema y motivación & \raggedright Capacidad contractual dispersa en fuentes heterogéneas, e instrumental validado sobre pocos servicios & \raggedright Caps.~\ref{cap:introduccion} y~\ref{cap:estadoDelArte} & \raggedright --- \tabularnewline
+\hline
+\raggedright A2. Objetivos de la solución & \raggedright Preguntas RQ1 a RQ4 y objetivos específicos, contra los que se evalúa cada actividad posterior & \raggedright Sec.~\ref{sec:introduccion:objetivos} & \raggedright OBJ-01 a OBJ-06 \tabularnewline
+\hline
+\raggedright A3. Diseño y desarrollo & \raggedright Criterio de selección, ciclo de construcción por API, trazabilidad de cada valor a su fuente y escalera de validación. Sobre el catálogo terminado, las extensiones del esquema y el catálogo de preguntas de decisión & \raggedright Caps.~\ref{cap:catalogo} y~\ref{cap:evolucion}, Sec.~\ref{sec:comparacion:catalogo} & \raggedright OBJ-01, OBJ-02 y OBJ-03 \tabularnewline
+\hline
+\raggedright A4. Demostración & \raggedright Las ocho Datasheets se ejecutan con PRIME4API y se preparan como contribución a SPHERE. Sobre ellas se analiza la capacidad y se aplica el método de comparación & \raggedright Tabla~\ref{tab:verificacion}, Sec.~\ref{sec:propuesta:sphere}, Caps.~\ref{cap:limites} y~\ref{cap:comparacion} & \raggedright OBJ-04, OBJ-05 y OBJ-06 \tabularnewline
+\hline
+\raggedright A5. Evaluación & \raggedright Validador de formato, verificación por uso sobre PRIME4API y reapertura de cada URL citada. Criterio de promoción, que decide qué elementos no soportados (lo que el esquema no expresa o PRIME4API no consume) entran en el modelo, y clase de cada pregunta, que dice con qué se responde o qué falta para responderla & \raggedright Caps.~\ref{cap:catalogo} a~\ref{cap:comparacion} & \raggedright Todos \tabularnewline
+\hline
+\raggedright A6. Comunicación & \raggedright Esta memoria y el repositorio de datos abierto & \raggedright Cap.~\ref{cap:conclusiones} & \raggedright --- \tabularnewline
+\hline
+\end{tabular}
+\caption[Actividades del proceso DSRM]{Actividades del proceso DSRM \citep{peffers2007dsrm}, con lo que cada una hace en este trabajo, el capítulo que la recoge y el objetivo al que responde.}
+\label{tab:metodologia:dsrm}
+\end{table}
+
+El límite del enfoque está en la evaluación. El ecosistema no tiene un validador oficial de Datasheets. El validador de formato es de este trabajo: contrasta cada Datasheet con la guía de ACM2YAML v0.3 y comprueba los tipos de cada campo y las referencias entre bloques, como que exista la cuota que cita un plan. La ejecución en PRIME4API comprueba que el motor consume la Datasheet y que sus respuestas coinciden con el cálculo a mano en las preguntas que lo permiten. La utilidad para quien elige un proveedor, que es lo que DSR pide evaluar, no se ha medido, porque no hay un estudio con integradores, los desarrolladores que conectan su aplicación a la API de un proveedor.
 
 \section{Planificación}
 \label{sec:metodologia:planificacion}
 
-El Trabajo Fin de Máster tiene asignados 12 créditos ECTS
-\citep{us2026tfm}. A razón de 25 horas por crédito, el mínimo que fija la
-norma \citep{rd1125de2003}, la dedicación esperada es de
-\dato{total.prev}~horas. El alcance del trabajo se fijó en la reunión de
-arranque con los tutores del 13 de febrero de 2026. Con ese alcance, la
-línea base del proyecto reparte la dedicación esperada entre siete
-paquetes de trabajo (Tabla~\ref{tab:metodologia:paquetes}).
+El Trabajo Fin de Máster tiene 12 créditos ECTS \citep{us2026tfm}. A
+25 horas por crédito, el mínimo del Real Decreto 1125/2003
+\citep{rd1125de2003}, el esfuerzo previsto es de \dato{total.prev}~horas.
+El proyecto empieza el 13 de febrero de 2026. La línea base reparte las
+horas entre siete paquetes de trabajo
+(Tabla~\ref{tab:metodologia:paquetes}). PT0 y PT6 son transversales, y
+PT1 a PT5 siguen el orden del método. Cada paquete tiene un entregable,
+el objetivo específico al que responde y un rol, que fija su tarifa en
+el presupuesto.
 
-Dos paquetes son transversales: la gestión del proyecto (PT0) y la
-memoria (PT6) acompañan a todo el trabajo. Los otros cinco siguen el
-orden del método. El estudio previo (PT1) prepara la selección y el
-piloto (PT2), y el piloto calibra la construcción del catálogo (PT3).
-El análisis de límites y \textit{rates} (PT4) y la comparación
-sistemática (PT5) trabajan sobre el catálogo construido. Cada paquete
-tiene un rol, que fija su tarifa en el presupuesto
-(Sección~\ref{sec:metodologia:presupuesto}).
-
-\begin{table}[H]
+\begin{table}[tbp]
 \centering
 \small
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{|p{0.19\textwidth}|p{0.35\textwidth}|p{0.13\textwidth}|p{0.16\textwidth}|r|}
+\begin{tabular}{|p{0.19\textwidth}|p{0.37\textwidth}|p{0.12\textwidth}|p{0.15\textwidth}|r|}
 \hline
-\raggedright \textbf{Paquete} & \raggedright \textbf{Contenido} & \raggedright \textbf{Objetivo} & \raggedright \textbf{Rol} & \textbf{Horas} \tabularnewline
+\raggedright \textbf{Paquete} & \raggedright \textbf{Entregable} & \raggedright \textbf{Objetivo} & \raggedright \textbf{Rol} & \textbf{Horas} \tabularnewline
 \hline
-\raggedright PT0. Gestión y seguimiento & \raggedright Reuniones con los tutores, planificación y seguimiento, registro de decisiones y control de versiones & \raggedright --- & \raggedright Gestor de proyecto & \dato{PT0.prev} \tabularnewline
+\raggedright PT0. Gestión y seguimiento & \raggedright Registro de decisiones, seguimiento del plan y repositorio versionado & \raggedright --- & \raggedright Gestor de proyecto & \dato{PT0.prev} \tabularnewline
 \hline
-\raggedright PT1. Estudio previo & \raggedright Estudio del ecosistema de Pricing Intelligence y de los trabajos previos sobre modelado de pricings y de capacidad de APIs & \raggedright --- & \raggedright Analista de sistemas & \dato{PT1.prev} \tabularnewline
+\raggedright PT1. Estudio previo & \raggedright Estado del arte sobre modelado de pricings y de capacidad de APIs & \raggedright --- & \raggedright Analista de sistemas & \dato{PT1.prev} \tabularnewline
 \hline
-\raggedright PT2. Selección y piloto & \raggedright Criterio de inclusión, selección de las APIs del dominio y Datasheet piloto con la que se calibra el ciclo & \raggedright OBJ-01 & \raggedright Analista de sistemas & \dato{PT2.prev} \tabularnewline
+\raggedright PT2. Selección y piloto & \raggedright Criterio de inclusión, conjunto de APIs y Datasheet piloto & \raggedright OBJ-01 & \raggedright Analista de sistemas & \dato{PT2.prev} \tabularnewline
 \hline
-\raggedright PT3. Construcción del catálogo & \raggedright Datasheet de cada API con sus fuentes, su observación de panel y sus sondeos, registro de las fricciones con el esquema y extensiones que proponen & \raggedright OBJ-02 y OBJ-03 & \raggedright Desarrollador & \dato{PT3.prev} \tabularnewline
+\raggedright PT3. Construcción del catálogo & \raggedright Una Datasheet por API, con fuentes, observación de panel y sondeos. Inventario de elementos no soportados por el esquema y propuestas de extensión & \raggedright OBJ-02 y OBJ-03 & \raggedright Desarrollador & \dato{PT3.prev} \tabularnewline
 \hline
-\raggedright PT4. Límites y \textit{rates} & \raggedright Ejecución de las Datasheets en PRIME4API y caracterización de cómo se relacionan límites y \textit{rates} & \raggedright OBJ-04 & \raggedright Analista de sistemas & \dato{PT4.prev} \tabularnewline
+\raggedright PT4. Límites y \textit{rates} & \raggedright Datasheets ejecutadas en PRIME4API y caracterización de la relación entre límites y \textit{rates} & \raggedright OBJ-04 & \raggedright Analista de sistemas & \dato{PT4.prev} \tabularnewline
 \hline
-\raggedright PT5. Comparación sistemática & \raggedright Preguntas de decisión del dominio y método para responderlas con el instrumental del ecosistema & \raggedright OBJ-05 & \raggedright Analista de sistemas & \dato{PT5.prev} \tabularnewline
+\raggedright PT5. Comparación sistemática & \raggedright Catálogo de preguntas de decisión y procedimiento para responderlas & \raggedright OBJ-05 & \raggedright Analista de sistemas & \dato{PT5.prev} \tabularnewline
 \hline
-\raggedright PT6. Memoria y defensa & \raggedright Redacción de la memoria, depósito y preparación de la defensa & \raggedright --- & \raggedright Gestor de proyecto & \dato{PT6.prev} \tabularnewline
+\raggedright PT6. Memoria y defensa & \raggedright Memoria depositada y defensa & \raggedright --- & \raggedright Gestor de proyecto & \dato{PT6.prev} \tabularnewline
 \hline
 \raggedright \textbf{Total} & & & & \textbf{\dato{total.prev}} \tabularnewline
 \hline
 \end{tabular}
-\caption[Paquetes de trabajo de la línea base]{Paquetes de trabajo de la línea base, con el objetivo de la Sección~\ref{sec:introduccion:objetivos} al que responde cada uno, su rol y las horas previstas.}
+\caption[Paquetes de trabajo de la línea base]{Paquetes de trabajo de la línea base, con su entregable, el objetivo específico de la Sección~\ref{sec:introduccion:objetivos} al que responde, su rol y las horas previstas.}
 \label{tab:metodologia:paquetes}
 \end{table}
 
-La construcción del catálogo es el paquete mayor porque la línea base
-preveía diez a doce APIs, la cifra del encargo. La memoria es el
-segundo: incluye la defensa y empieza en marzo, sin esperar a que acabe
-el catálogo. El trabajo de \citet{gavira2026tfm} concluye que dejar la
-síntesis y el análisis para después de la implementación desgasta, y que
-el orden inverso habría sido más productivo. El reparto
-por paquete es nominal. Parte del alcance acordado en la reunión de
-arranque y de la dedicación esperada, y el primer plan escrito es
-posterior, del 2 de agosto de 2026
-(Sección~\ref{sec:metodologia:desviaciones}).
+La línea base distribuye el trabajo entre febrero y septiembre
+(Figura~\ref{fig:metodologia:cronograma}): selección y piloto hasta el
+15 de abril, catálogo hasta el 15 de julio, límites y comparación hasta
+el 31 de julio y memoria hasta el 30 de septiembre. La línea base se
+reconstruyó el 29 de septiembre de 2026: el reparto de horas y las
+ventanas son una asignación nominal del total, y el primer plan escrito
+con fechas es del 2 de agosto. Por eso, las desviaciones de calendario
+frente a ella miden la distancia a ese reparto y no el incumplimiento de
+un compromiso previo.
 
-La línea base repartía el trabajo entre febrero y septiembre, en
-paralelo a las asignaturas del segundo cuatrimestre, con el depósito en
-la convocatoria de septiembre. La Figura~\ref{fig:metodologia:cronograma}
-muestra la ventana prevista de cada paquete y, debajo, las horas reales
-de cada mes. El estudio previo y la selección ocupaban el primer tramo,
-hasta mediados de abril. La construcción del catálogo iba de abril a
-mediados de julio, y el análisis de límites y la comparación se
-solapaban con su final. La Sección~\ref{sec:metodologia:desviaciones}
-explica por qué las horas reales caen en otros meses.
+El 1 de septiembre se replanifica el trabajo restante con un calendario
+semanal. Ese calendario fija el cierre del catálogo el 28 de septiembre,
+la versión final de la memoria el 12 de octubre y el depósito el 15 de
+octubre. El 30 de septiembre, el calendario oficial de la tercera
+convocatoria sitúa el depósito el 2 de noviembre y la defensa entre el 9
+y el 13 de noviembre de 2026.
 
-\begin{figure}[H]
+\begin{figure}[tbp]
 \centering
 \input{sections/generado/cronograma}
-\caption[Cronograma previsto frente al real]{Cronograma del proyecto. Por cada paquete, la barra sin relleno es su ventana en la línea base, y las celdas rellenas de debajo son las horas reales de cada mes, más intensas cuantas más horas. Las de octubre y noviembre son previsión.}
+\caption[Cronograma previsto y al cierre]{Cronograma del proyecto. Por cada paquete, la barra sin relleno es su ventana en la línea base, y las celdas rellenas de debajo son las horas al cierre de cada mes, más intensas cuantas más horas. Las de octubre y noviembre incluyen horas pendientes.}
 \label{fig:metodologia:cronograma}
 \end{figure}
 
 \section{Presupuesto}
 \label{sec:metodologia:presupuesto}
 
-El presupuesto sigue el modelo de \citet{gavira2026tfm}. El temporal se
-da en horas por paquete, y el económico suma tres partidas: el personal,
-la amortización del equipo y los costes fijos, con una contingencia
-encima. El personal se calcula dos veces, con las horas de la línea base
-y con las horas reales. La amortización y los costes fijos no dependen de
-las horas: se calculan una vez, sobre el calendario real, y entran igual
-en las dos columnas. Así, la diferencia entre previsto y real es solo la
-de las horas.
-
-\subsection{Presupuesto temporal}
-\label{subsec:metodologia:temporal}
-
-Las horas previstas son las de la línea base
-(Tabla~\ref{tab:metodologia:paquetes}). Las reales no se llevaron en un
-parte de horas, y se reconstruyen de tres formas según el tramo.
+El presupuesto tiene tres partidas: personal, amortización del equipo y
+costes fijos, que son licencias y suministros. Sobre el subtotal previsto se añade una contingencia del
+\dato{pres.contingenciapct}~\%. El cálculo se apoya en las siguientes
+hipótesis.
 
 \begin{description}
-  \item[Medidas.] Del \dato{medido.desde} al \dato{medido.hasta}, las
-    horas salen de los registros de sesión de Claude Code, el asistente
-    de programación con el que se ha trabajado. Solo cuentan los mensajes
-    escritos por el autor. No cuentan los avisos que el propio asistente
-    inserta, ni las peticiones automáticas de revisión de seguridad.
-    Una sesión agrupa los mensajes separados por
-    \dato{medido.hueco}~minutos o menos, y dura del primero al último más
-    \dato{medido.cola}~minutos. El
-    resultado son \dato{total.medido}~horas en \dato{medido.dias}~días.
-    La media es de \dato{medido.mediadia}~horas por día con actividad,
-    sobre \dato{medido.diasmedia}~de esos días: del \dato{medido.desde}
-    solo se midió la noche, y no entra.
-  \item[Estimadas.] Antes del \dato{medido.desde} no hay registros de
-    sesión utilizables. El 8 y el 9 de septiembre se trabajó en otro
-    entorno, que no los deja, y lo mismo ocurrió durante el día del
-    \dato{medido.desde}. Con esa media se valoran
-    \dato{est.mediamedida.dias}~jornadas de agosto y septiembre con
-    trabajo registrado en el repositorio fuera de las sesiones medidas.
-    Suman \dato{est.mediamedida.horas}~horas.
-    Una es el día del \dato{medido.desde}, que se suma a su noche. La
-    fase de febrero a mayo se estima por tramos: la reunión de arranque
-    (\dato{est.kickoff.horas}~horas), la lectura gradual del estado del
-    arte hasta abril (\dato{est.estudioligero.horas}~horas) y la puesta al día
-    de mayo (\dato{est.puestadia.horas}~horas).
-  \item[Pendientes.] Lo posterior al corte es previsión. La revisión de
-    la memoria llega hasta su cierre, el 29 de octubre, para el depósito
-    del 2 de noviembre (\dato{est.revision.horas}~horas). La preparación
-    de la presentación y de la defensa, del 9 al 13 de noviembre, suma
-    \dato{est.defensa.horas}~horas.
+  \item[Horas.] Las previstas son las de la línea base. Las ejecutadas
+    son las dedicadas por el autor hasta el \dato{medido.hasta}, incluida
+    la revisión de lo que producen los agentes, y suman
+    \dato{total.registrado}. De ellas, \dato{total.medido} se
+    reconstruyen con la hora de cada mensaje del autor en los registros
+    de sesión: una pausa de más de \dato{medido.hueco} minutos abre una
+    sesión nueva, y cada sesión suma \dato{medido.cola} minutos al final.
+    Las otras \dato{total.estimado} son estimaciones para los periodos sin
+    registro. Las pendientes son las \dato{total.pendiente} que quedan
+    para preparar la defensa. Las horas al cierre son las ejecutadas más las pendientes. No son horas reales,
+    porque las pendientes son una previsión.
+  \item[Tarifas.] Cada rol se valora con la parte de costes directos,
+    el 77,46~\%, del precio medio de referencia que fija la Instrucción
+    1/2023 de la Agencia Digital de Andalucía \citep{ada2023perfiles}.
+    Ese precio es el de una empresa contratista, y la parte de costes
+    directos excluye sus gastos generales y su beneficio industrial. La
+    cotización a la Seguridad Social ya está incluida.
+  \item[Amortización.] El equipo es un portátil Huawei MateBook D~16
+    (2024). Se toma como coste de adquisición el precio de partida de la
+    gama, \dato{amort.precio}~€ \citep{xataka2024matebook}, con una vida
+    útil de \dato{amort.vida}~meses. Se amortiza linealmente durante los
+    \dato{amort.meses}~meses que van del inicio a la defensa.
+  \item[Licencias.] Se imputan dos: un mes de suscripción a Claude
+    Max 5x, por su importe facturado (\dato{fijo.claude.mensual}~€), y
+    GitHub Pro, el plan individual de pago de GitHub, donde se aloja el
+    repositorio de datos. GitHub Pro se valora a su precio de lista,
+    aunque el autor no lo paga por ser estudiante: 4~USD al mes, el precio
+    que GitHub fijó en abril de 2020 según su documentación
+    \citep{githubfaqplanes}. Al tipo de cambio de referencia del Banco
+    Central Europeo \citep{bce2026usd} del 30 de octubre de 2026
+    (1~€ = 1,1172~USD), son \dato{fijo.github.mensual}~€ al mes. GitHub
+    Pro cuenta los mismos \dato{fijo.github.meses}~meses que los
+    suministros: el repositorio de datos se creó en octubre, pero el
+    trabajo debió alojarse en GitHub desde el principio. Los proveedores del
+    catálogo no suman coste, porque se usaron sus planes gratuitos o de
+    prueba, abiertos a cualquiera.
+  \item[Suministros.] Internet (\dato{fijo.internet.mensual}~€ al mes)
+    y electricidad (\dato{fijo.luz.mensual}~€ al mes) cuentan en los
+    \dato{fijo.internet.meses}~meses con horas ejecutadas o pendientes,
+    de febrero a mayo y de agosto a noviembre. PRIME4API y SPHERE se
+    ejecutan en local, en el mismo equipo.
+  \item[Costes que no dependen del número de horas.] La amortización y los
+    costes fijos entran igual en la columna prevista y en la de cierre. No se
+    reparten entre lo ejecutado y lo pendiente.
 \end{description}
 
-Cada sesión medida se reparte entre paquetes por el vocabulario de sus
-mensajes. Cada paquete tiene una lista de términos, y la sesión se
-divide en proporción a las apariciones de cada uno. Los días estimados
-se reparten por las actividades que el repositorio registra ese día. La
-medición tiene límites en los dos sentidos. No ve el trabajo fuera del
-asistente, como la lectura o la revisión. Tampoco ve el trabajo en otro
-entorno, que se estima aparte cuando el repositorio lo registra. Y cuenta como trabajo las pausas de hasta
-\dato{medido.hueco}~minutos dentro de una sesión y la cola de
-\dato{medido.cola}. En total salen
-\dato{total.real}~horas reales frente a \dato{total.prev} previstas, y
-la Sección~\ref{sec:metodologia:desviaciones} las desglosa por paquete.
-
-\subsection{Presupuesto económico}
-\label{subsec:metodologia:economico}
-
-\paragraph{Costes de personal.} Las tarifas por rol salen de la
-Instrucción 1/2023 de la Agencia Digital de Andalucía
-\citep{ada2023perfiles}, que fija los precios medios de referencia de
-los perfiles TIC en las contrataciones de la Junta de Andalucía.
-El trabajo de \citet{gavira2026tfm} usa un informe de 2018 de la Junta,
-y aquí se usa esta instrucción porque es posterior. Sus precios son los
-que cobra una empresa contratista, e
-incluyen sus gastos generales (14,91~\%) y su beneficio industrial
-(7,63~\%). La propia instrucción deja los costes directos en el
-77,46~\% del precio, y la tarifa de cada rol es esa parte
-(Tabla~\ref{tab:metodologia:personal}). La instrucción calcula su precio
-mínimo sumando los gastos generales y el beneficio al salario con
-Seguridad Social. Con esa misma estructura, la parte de costes directos
-ya incluye la cotización, y no se suma aparte.
-
-\begin{table}[H]
-\centering
-\small
-\setlength{\tabcolsep}{4pt}
-\begin{tabular}{|p{0.2\textwidth}|r|r|r|r|r|r|}
-\hline
-\textbf{Rol} & \textbf{\shortstack{Precio\\medio}} & \textbf{Tarifa} & \textbf{\shortstack{Horas\\previstas}} & \textbf{\shortstack{Coste\\previsto}} & \textbf{\shortstack{Horas\\reales}} & \textbf{\shortstack{Coste\\real}} \\
-\hline
-Gestor de proyecto & 56,65 & \dato{rol.gestor.tarifa} & \dato{rol.gestor.horasprev} & \dato{rol.gestor.costeprev} & \dato{rol.gestor.horasreal} & \dato{rol.gestor.costereal} \\
-Analista de sistemas & 45,30 & \dato{rol.analista.tarifa} & \dato{rol.analista.horasprev} & \dato{rol.analista.costeprev} & \dato{rol.analista.horasreal} & \dato{rol.analista.costereal} \\
-Desarrollador & 35,80 & \dato{rol.desarrollador.tarifa} & \dato{rol.desarrollador.horasprev} & \dato{rol.desarrollador.costeprev} & \dato{rol.desarrollador.horasreal} & \dato{rol.desarrollador.costereal} \\
-\hline
-\textbf{Total personal} & & & \dato{total.prev} & \dato{pres.personal.prev} & \dato{total.real} & \dato{pres.personal.real} \\
-\hline
-\end{tabular}
-\caption[Costes de personal por rol]{Costes de personal por rol. El precio medio es el de referencia de la Instrucción 1/2023, sin IVA, y la tarifa es su parte de costes directos, en euros por hora. Los costes van en euros.}
-\label{tab:metodologia:personal}
-\end{table}
-
-\paragraph{Amortización del equipo.} El trabajo se ha hecho con un
-portátil Huawei MateBook D~16 (2024), con procesador Intel Core
-i5-13420H y 16~GB de memoria RAM. Como coste de adquisición se toma el
-precio de partida de la gama en España, \dato{amort.precio}~€
-\citep{xataka2024matebook}, con una vida útil de \dato{amort.vida}~meses.
-La amortización lineal sobre los \dato{amort.meses}~meses que van del
-arranque a la defensa da el coste imputable:
+La amortización resulta de
 \begin{equation}
   C_{\text{amortización}} = \frac{\text{\dato{amort.precio}}}{\text{\dato{amort.vida}}} \times \text{\dato{amort.meses}} = \text{\dato{pres.amort}~€}
 \end{equation}
 
-\paragraph{Costes fijos.} Recogen la suscripción al asistente y los
-suministros del puesto de trabajo (Tabla~\ref{tab:metodologia:fijos}).
-La suscripción a Claude Max 5x se imputa por el único mes pagado, con
-el importe de su factura. Para la conexión a
-internet y la electricidad se toman las mismas cuotas de referencia que
-\citet{gavira2026tfm}, imputadas en los \dato{fijo.internet.meses}~meses
-con trabajo: de febrero a mayo y de agosto a noviembre.
-
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
-\small
-\begin{tabular}{|l|r|r|r|}
+\footnotesize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{|l|r|r|r|r|r|r|}
 \hline
-\textbf{Concepto} & \textbf{Coste mensual (€)} & \textbf{Meses} & \textbf{Total (€)} \\
+\textbf{Partida} & \textbf{\shortstack{Horas\\prev./cierre}} & \textbf{Previsto} & \textbf{Ejecutado} & \textbf{Pendiente} & \textbf{Al cierre} & \textbf{Desviación} \\
 \hline
-Suscripción a Claude Max 5x & \dato{fijo.claude.mensual} & \dato{fijo.claude.meses} & \dato{fijo.claude.total} \\
-Conexión a internet & \dato{fijo.internet.mensual} & \dato{fijo.internet.meses} & \dato{fijo.internet.total} \\
-Electricidad & \dato{fijo.luz.mensual} & \dato{fijo.luz.meses} & \dato{fijo.luz.total} \\
+Gestor de proyecto (\dato{rol.gestor.tarifa}) & \dato{rol.gestor.horasprev} / \dato{rol.gestor.horasreal} & \dato{rol.gestor.costeprev} & \dato{rol.gestor.costereg} & \dato{rol.gestor.costepend} & \dato{rol.gestor.costereal} & \dato{rol.gestor.desvcoste} \\
+Analista de sistemas (\dato{rol.analista.tarifa}) & \dato{rol.analista.horasprev} / \dato{rol.analista.horasreal} & \dato{rol.analista.costeprev} & \dato{rol.analista.costereg} & \dato{rol.analista.costepend} & \dato{rol.analista.costereal} & \dato{rol.analista.desvcoste} \\
+Desarrollador (\dato{rol.desarrollador.tarifa}) & \dato{rol.desarrollador.horasprev} / \dato{rol.desarrollador.horasreal} & \dato{rol.desarrollador.costeprev} & \dato{rol.desarrollador.costereg} & \dato{rol.desarrollador.costepend} & \dato{rol.desarrollador.costereal} & \dato{rol.desarrollador.desvcoste} \\
+\textit{Personal} & \textit{\dato{total.prev} / \dato{total.real}} & \textit{\dato{pres.personal.prev}} & \textit{\dato{pres.personal.reg}} & \textit{\dato{pres.personal.pend}} & \textit{\dato{pres.personal.real}} & \textit{\dato{pres.personal.desv}} \\
 \hline
-\textbf{Total costes fijos} & & & \dato{pres.fijos} \\
+Amortización del equipo & & \dato{pres.amort} & & & \dato{pres.amort} & 0,00 \\
+Claude Max 5x (\dato{fijo.claude.meses} mes) & & \dato{fijo.claude.total} & & & \dato{fijo.claude.total} & 0,00 \\
+GitHub Pro (\dato{fijo.github.meses} meses) & & \dato{fijo.github.total} & & & \dato{fijo.github.total} & 0,00 \\
+Internet (\dato{fijo.internet.meses} meses) & & \dato{fijo.internet.total} & & & \dato{fijo.internet.total} & 0,00 \\
+Electricidad (\dato{fijo.luz.meses} meses) & & \dato{fijo.luz.total} & & & \dato{fijo.luz.total} & 0,00 \\
+\hline
+Subtotal & & \dato{pres.subtotal.prev} & & & \dato{pres.subtotal.real} & \dato{pres.desv} \\
+Contingencia (\dato{pres.contingenciapct}~\%) & & \dato{pres.contingencia} & & & --- & \\
+\hline
+\textbf{Total} & & \textbf{\dato{pres.total.prev}} & & & \textbf{\dato{pres.subtotal.real}} & \textbf{\dato{pres.total.desv}} \\
 \hline
 \end{tabular}
-\caption[Costes fijos]{Costes fijos del proyecto.}
-\label{tab:metodologia:fijos}
-\end{table}
-
-Los proveedores del catálogo no suman coste, porque en ninguno se
-contrató un plan de pago. Resend, Mailgun y Brevo se usaron con su plan
-gratuito, y Amazon SES en su entorno de pruebas. Postmark y MailerSend
-se usaron con una cuenta sin aprobar, y SendGrid y Mailchimp
-Transactional con una cuenta de prueba. La infraestructura tampoco suma:
-PRIME4API y una instancia local de SPHERE se ejecutaron en el mismo
-equipo, y la memoria se compila en local.
-
-\paragraph{Presupuesto total.} Como en \citet{gavira2026tfm}, no se
-aplica beneficio industrial, porque es un trabajo de investigación. Sí
-se añade una contingencia del \dato{pres.contingenciapct}~\% sobre el subtotal previsto
-(Tabla~\ref{tab:metodologia:total}).
-
-\begin{table}[H]
-\centering
-\small
-\begin{tabular}{|l|r|r|}
-\hline
-\textbf{Partida} & \textbf{Previsto (€)} & \textbf{Real (€)} \\
-\hline
-Personal & \dato{pres.personal.prev} & \dato{pres.personal.real} \\
-Amortización del equipo & \dato{pres.amort} & \dato{pres.amort} \\
-Costes fijos & \dato{pres.fijos} & \dato{pres.fijos} \\
-\hline
-Subtotal & \dato{pres.subtotal.prev} & \dato{pres.subtotal.real} \\
-Contingencia & \dato{pres.contingencia} & --- \\
-\hline
-\textbf{Total} & \textbf{\dato{pres.total.prev}} & \textbf{\dato{pres.subtotal.real}} \\
-\hline
-\end{tabular}
-\caption[Presupuesto total, previsto y real]{Presupuesto total del proyecto. El previsto aplica las horas de la línea base y suma la contingencia. El real aplica las horas reales, con las pendientes incluidas, y no la necesita.}
+\caption[Presupuesto, previsto y al cierre]{Presupuesto previsto y al cierre, en euros sin IVA. Entre paréntesis, la tarifa de cada rol en euros por hora. El ejecutado valora las horas dedicadas hasta el \dato{medido.hasta}, y el pendiente, las previstas hasta la defensa. La columna al cierre es la suma de ambos y no incluye contingencia.}
 \label{tab:metodologia:total}
 \end{table}
 
-Respecto al subtotal previsto, el coste real se desvía
-\dato{pres.desv}~€, sin tocar la contingencia. La diferencia sale entera
-del personal: las horas de analista y de desarrollador bajan más de lo
-que suben las de gestor (Tabla~\ref{tab:metodologia:personal}).
+El subtotal al cierre se desvía \dato{pres.desv}~€ del previsto
+(\dato{pres.desvpct}~\%). Como los costes que no dependen del número de horas
+son iguales en las dos columnas, toda la diferencia es de personal
+(\dato{pres.personal.desvpct}~\%). Por roles, la desviación es de
+\dato{rol.gestor.desvh}~horas en el gestor de proyecto,
+\dato{rol.analista.desvh} en el analista y \dato{rol.desarrollador.desvh}
+en el desarrollador. El total al cierre no consume la contingencia y se
+desvía \dato{pres.total.desv}~€ del total previsto
+(\dato{pres.total.desvpct}~\%). De los
+\dato{pres.personal.real}~€ de personal al cierre,
+\dato{pres.personal.pend}~€ corresponden a horas pendientes, todas del
+rol de gestor de proyecto.
 
 \section{Desviaciones}
 \label{sec:metodologia:desviaciones}
 
-Las desviaciones se analizan en tres planos: el calendario, las horas de
-cada paquete y las decisiones que cambiaron el alcance o el método. El
-calendario se lee en la Figura~\ref{fig:metodologia:cronograma}, las
-horas en la Tabla~\ref{tab:metodologia:horas}, y las decisiones salen del
-registro de decisiones (Sección~\ref{sec:metodologia:enfoque}).
+La ejecución se compara con la planificación según cuatro criterios por
+separado: calendario, horas, entregables y alcance. El resultado de un
+criterio no indica el de otro. Un paquete puede cerrar su entregable con menos
+horas de las previstas y fuera de su ventana.
 
-\subsection{Calendario}
-\label{subsec:metodologia:calendario}
+\paragraph{Calendario.} La Tabla~\ref{tab:metodologia:hitos} compara
+las fechas de los hitos con la línea base y con la replanificación del
+1 de septiembre. Respecto a la línea base, el catálogo se completa 68
+días más tarde y la memoria, 29 días más tarde. Respecto a la
+replanificación, el catálogo se adelanta 7 días, y la memoria y el
+depósito se retrasan 17 y 18 días. De las \dato{total.registrado}~horas
+ejecutadas, las de febrero a mayo son las de la reunión de arranque
+(\dato{est.kickoff.horas}~horas) y las del estudio previo:
+\dato{est.estudioligero.horas} de lectura del estado del arte hasta abril
+y \dato{est.puestadia.horas} de puesta al día en las líneas de
+investigación del grupo en mayo. Junio y julio no tienen horas, y el
+resto se concentra entre agosto y octubre
+(Figura~\ref{fig:metodologia:cronograma}).
 
-El trabajo no siguió el calendario de la línea base. Durante el segundo
-cuatrimestre, la dedicación al trabajo se compaginó con las asignaturas
-del máster y con un empleo, y se quedó en el estudio previo. Hubo
-\dato{est.estudioligero.horas}~horas de lectura gradual hasta abril y
-una puesta al día de \dato{est.puestadia.horas}~horas en mayo, y en
-junio y julio no consta trabajo. El grueso se concentró en agosto y
-septiembre, cuando la compaginación lo permitió. Del 11 al 31 de agosto
-la actividad bajó por un viaje, y no consta trabajo en esas fechas.
+\begin{table}[!htbp]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|l|c|c|c|r|r|}
+\hline
+\textbf{Hito} & \textbf{\shortstack{Línea\\base}} & \textbf{\shortstack{Replanif.\\1 sep}} & \textbf{\shortstack{Real o\\previsto}} & \textbf{\shortstack{Días frente a\\línea base}} & \textbf{\shortstack{Días frente a\\replanif.}} \\
+\hline
+Catálogo completo & 15 jul & 28 sep & 21 sep & +68 & $-$7 \\
+Memoria terminada & 30 sep & 12 oct & 29 oct\textsuperscript{a} & +29 & +17 \\
+Depósito & --- & 15 oct & 2 nov\textsuperscript{a} & --- & +18 \\
+Defensa & --- & --- & 9--13 nov\textsuperscript{a} & --- & --- \\
+\hline
+\end{tabular}
+\caption[Hitos previstos y reales]{Fechas de los hitos en 2026. La línea base no fija fecha de depósito ni de defensa. \textsuperscript{a}~Fecha prevista.}
+\label{tab:metodologia:hitos}
+\end{table}
 
-El autor elaboró el plan al retomar el trabajo. El 2 de agosto de 2026,
-su plan por fases ordenó lo pendiente: arranque, selección, construcción,
-análisis de límites, comparación y redacción. No tenía fechas, porque la
-convocatoria aún no estaba decidida. El 1 de septiembre, con la de
-septiembre ya fuera de alcance, se fijó la tercera convocatoria y, con
-ella, el primer calendario con fechas. Ese calendario reparte las seis semanas hasta el
-12 de octubre entre las tareas del catálogo y las de la memoria.
+\paragraph{Horas.} Las horas al cierre suman \dato{total.real} frente a las
+\dato{total.prev} previstas, \dato{total.desv}~horas
+(\dato{total.desvpct}~\%, Tabla~\ref{tab:metodologia:horas}). Suben la
+gestión (PT0) y el estudio previo (PT1), y bajan los paquetes PT2 a
+PT6. Las horas se asignan a cada paquete según el
+contenido de cada sesión de trabajo. Las actividades de PT4 y PT5 se
+ejecutaron dentro del ciclo de construcción de cada Datasheet y de la
+redacción de la memoria, y sus sesiones se asignan sobre todo a PT3 y a
+PT6. Por eso la desviación de PT3, PT4 y PT5 por separado no mide el
+esfuerzo de cada uno. Juntos pasan de \dato{grupo.PT3a5.prev} a
+\dato{grupo.PT3a5.real}~horas (\dato{grupo.PT3a5.desv},
+\dato{grupo.PT3a5.desvpct}~\%).
 
-La construcción del catálogo cumplió ese calendario. Ninguna Datasheet
-se cerró después de su semana prevista, y las de SendGrid, Brevo y
-Mailchimp Transactional se cerraron antes. El catálogo quedó completo el
-21 de septiembre, una semana antes de lo previsto.
+Las horas registran el tiempo del autor. El tiempo en que los agentes
+de inteligencia artificial trabajan sin intervención suya no se
+registra, así que el total no mide el esfuerzo completo del proyecto.
+Tampoco hay una medición del mismo trabajo sin agentes ni con el
+catálogo de diez a doce APIs de la línea base. Con estos datos, la
+reducción de horas no puede atribuirse a una causa.
 
-\subsection{Horas}
-\label{subsec:metodologia:horas}
-
-La Tabla~\ref{tab:metodologia:horas} compara las horas previstas y las
-reales de cada paquete, con las reales separadas en medidas, estimadas y
-pendientes (Sección~\ref{subsec:metodologia:temporal}).
-
-\begin{table}[H]
+\begin{table}[!htbp]
 \centering
 \small
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{|l|r|r|r|r|r|r|}
 \hline
-\textbf{Paquete} & \textbf{Previstas} & \textbf{Medidas} & \textbf{Estimadas} & \textbf{Pendientes} & \textbf{Reales} & \textbf{Desviación} \\
+\textbf{Paquete} & \textbf{Previstas} & \textbf{Ejecutadas} & \textbf{Pendientes} & \textbf{Al cierre} & \textbf{Desv.} & \textbf{Desv. (\%)} \\
 \hline
-PT0. Gestión & \dato{PT0.prev} & \dato{PT0.medido} & \dato{PT0.estimado} & \dato{PT0.pendiente} & \dato{PT0.real} & \dato{PT0.desv} \\
-PT1. Estudio previo & \dato{PT1.prev} & \dato{PT1.medido} & \dato{PT1.estimado} & \dato{PT1.pendiente} & \dato{PT1.real} & \dato{PT1.desv} \\
-PT2. Selección & \dato{PT2.prev} & \dato{PT2.medido} & \dato{PT2.estimado} & \dato{PT2.pendiente} & \dato{PT2.real} & \dato{PT2.desv} \\
-PT3. Catálogo & \dato{PT3.prev} & \dato{PT3.medido} & \dato{PT3.estimado} & \dato{PT3.pendiente} & \dato{PT3.real} & \dato{PT3.desv} \\
-PT4. Límites & \dato{PT4.prev} & \dato{PT4.medido} & \dato{PT4.estimado} & \dato{PT4.pendiente} & \dato{PT4.real} & \dato{PT4.desv} \\
-PT5. Comparación & \dato{PT5.prev} & \dato{PT5.medido} & \dato{PT5.estimado} & \dato{PT5.pendiente} & \dato{PT5.real} & \dato{PT5.desv} \\
-PT6. Memoria & \dato{PT6.prev} & \dato{PT6.medido} & \dato{PT6.estimado} & \dato{PT6.pendiente} & \dato{PT6.real} & \dato{PT6.desv} \\
+PT0. Gestión & \dato{PT0.prev} & \dato{PT0.registrado} & \dato{PT0.pendiente} & \dato{PT0.real} & \dato{PT0.desv} & \dato{PT0.desvpct} \\
+PT1. Estudio previo & \dato{PT1.prev} & \dato{PT1.registrado} & \dato{PT1.pendiente} & \dato{PT1.real} & \dato{PT1.desv} & \dato{PT1.desvpct} \\
+PT2. Selección & \dato{PT2.prev} & \dato{PT2.registrado} & \dato{PT2.pendiente} & \dato{PT2.real} & \dato{PT2.desv} & \dato{PT2.desvpct} \\
+PT3 a PT5. Catálogo y análisis & \dato{grupo.PT3a5.prev} & \the\numexpr\dato{PT3.registrado}+\dato{PT4.registrado}+\dato{PT5.registrado}\relax{} & \the\numexpr\dato{PT3.pendiente}+\dato{PT4.pendiente}+\dato{PT5.pendiente}\relax{} & \dato{grupo.PT3a5.real} & \dato{grupo.PT3a5.desv} & \dato{grupo.PT3a5.desvpct} \\
+PT6. Memoria & \dato{PT6.prev} & \dato{PT6.registrado} & \dato{PT6.pendiente} & \dato{PT6.real} & \dato{PT6.desv} & \dato{PT6.desvpct} \\
 \hline
-\textbf{Total} & \dato{total.prev} & \dato{total.medido} & \dato{total.estimado} & \dato{total.pendiente} & \dato{total.real} & \dato{total.desv} \\
+\textbf{Total} & \dato{total.prev} & \dato{total.registrado} & \dato{total.pendiente} & \dato{total.real} & \dato{total.desv} & \dato{total.desvpct} \\
 \hline
 \end{tabular}
-\caption[Horas previstas y reales por paquete]{Horas previstas y reales por paquete de trabajo, con el nombre abreviado de la Tabla~\ref{tab:metodologia:paquetes}. Las medidas van del \dato{medido.desde} al \dato{medido.hasta}, y las pendientes son previsión hasta la defensa.}
+\caption[Horas previstas y al cierre por paquete]{Horas previstas y al cierre por paquete de trabajo. PT3, PT4 y PT5 van en una sola fila porque sus actividades (construir el catálogo, ejecutarlo en PRIME4API y comparar las APIs) se ejecutaron dentro del mismo ciclo. Las ejecutadas llegan hasta el \dato{medido.hasta}, y las pendientes son previsión hasta la defensa.}
 \label{tab:metodologia:horas}
 \end{table}
 
-El total real queda en \dato{total.real}~horas, una desviación de
-\dato{total.desv}~horas sobre las \dato{total.prev} previstas
-(\dato{total.desvpct}~\%). Por paquete, la diferencia se concentra en
-tres puntos.
+\paragraph{Entregables.} La Tabla~\ref{tab:metodologia:entregables}
+da el estado de cada entregable de la línea base y dónde está su
+evidencia. Cinco se completan, el del catálogo con ocho APIs en lugar
+de diez a doce. El de la comparación queda parcial y el de la memoria
+sigue en curso. Se añade un
+entregable que la línea base no preveía, la contribución a SPHERE.
 
-El primero es la construcción del catálogo (PT3), con
-\dato{PT3.desv}~horas. La línea base preveía diez a doce APIs, y el 1 de
-septiembre el catálogo se fijó en ocho
-(Tabla~\ref{tab:metodologia:desviaciones}). Además, parte del trabajo de
-cada API, como la recolección de fuentes, los sondeos y la validación de
-formato, se ejecutó con el asistente de programación
-(Sección~\ref{subsec:metodologia:economico}), y eso reduce las horas que
-exige cada una.
-
-El segundo es el análisis de límites y \textit{rates} (PT4) y la
-comparación sistemática (PT5), que se quedan en \dato{PT4.real} y
-\dato{PT5.real}~horas propias. Los dos se hicieron sobre cada Datasheet
-y no como fases aparte. Los sondeos de cada una ya miden sus límites. La
-matriz de \textit{features} con la que se compara se captura en el ciclo
-de cada API desde MailerSend, y en las tres primeras se construyó
-después, desde sus fuentes (Sección~\ref{subsec:hallazgos:funcional}).
-El reparto por vocabulario no separa ese trabajo: una sesión que
-construye una Datasheet habla de la Datasheet aunque mida sus límites, y
-cuenta en PT3. Escribir sus secciones cuenta en PT6. Por eso la
-desviación de PT4 y PT5 se lee junto a la de PT3.
-
-El tercero son los paquetes que suben. El estudio previo (PT1) crece
-\dato{PT1.desv}~horas. De sus horas, \dato{PT1.estimado} son la
-estimación del autor para febrero a mayo, y la puesta al día de mayo
-cae fuera de la línea base, que cerraba el estudio previo a mediados de
-abril. La gestión (PT0) crece \dato{PT0.desv}, por el seguimiento del
-propio proceso: el registro de decisiones, el control de versiones y la
-coordinación del trabajo con el asistente. La memoria (PT6) cierra cerca
-de lo previsto, \dato{PT6.desv}, con \dato{PT6.pendiente}~horas todavía
-por delante. La selección y el piloto (PT2) ocuparon sobre todo tres días, el
-piloto de Postmark el 2 y el 3 de agosto y la selección el 1 de
-septiembre, y se quedan en \dato{PT2.real}~horas.
-
-\subsection{Alcance y método}
-\label{subsec:metodologia:alcance}
-
-Las decisiones de modelado, como qué se considera cuota, pasan a reglas
-del libro de criterios y no se cuentan como desviaciones: su efecto está
-en los Capítulos~\ref{cap:catalogo} a~\ref{cap:evolucion}. La
-Tabla~\ref{tab:metodologia:desviaciones} recoge los cambios de alcance y
-de método respecto a la línea base, al plan del 2 de agosto y al
-calendario del 1 de septiembre, con la fecha de la decisión que los
-fija.
-
-\begin{table}[H]
-\centering
-\footnotesize
+\begingroup
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{|p{0.07\textwidth}|p{0.25\textwidth}|p{0.33\textwidth}|p{0.28\textwidth}|}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{|>{\footnotesize}p{0.09\textwidth}|>{\footnotesize}p{0.31\textwidth}|>{\footnotesize}p{0.10\textwidth}|>{\footnotesize}p{0.2\textwidth}|>{\footnotesize}p{0.21\textwidth}|}
 \hline
-\raggedright \textbf{Fecha} & \raggedright \textbf{Previsto} & \raggedright \textbf{Real} & \raggedright \textbf{Motivo registrado} \tabularnewline
+\raggedright \textbf{Paquete} & \raggedright \textbf{Entregable} & \raggedright \textbf{Objetivo} & \raggedright \textbf{Evidencia} & \raggedright \textbf{Estado} \tabularnewline
 \hline
-\raggedright 3 ago & \raggedright Una versión nueva del esquema (v0.8 o v1.x) & \raggedright Datasheets conformes a v0.3. Las carencias se registran como fricciones, y las que cumplen el criterio de promoción se proponen como extensiones (Capítulo~\ref{cap:evolucion}) & \raggedright Mantener las Datasheets consumibles por las herramientas del ecosistema sin bifurcar el esquema \tabularnewline
+\endfirsthead
+\multicolumn{5}{l}{\footnotesize\textit{(continuación)}} \tabularnewline
 \hline
-\raggedright 5 ago & \raggedright Observación de panel solo en parte de las APIs, con el peldaño de validación alcanzado declarado en cada una & \raggedright Observación de panel con cuenta propia en las ocho APIs. Sin ella una Datasheet no se cierra, lo que exige una cuenta por proveedor & \raggedright Sin la misma observación en todas las APIs, el semáforo de confianza deja de medir lo que dice medir \tabularnewline
+\raggedright \textbf{Paquete} & \raggedright \textbf{Entregable} & \raggedright \textbf{Objetivo} & \raggedright \textbf{Evidencia} & \raggedright \textbf{Estado} \tabularnewline
 \hline
-\raggedright 1 sep & \raggedright Depósito en la convocatoria de septiembre & \raggedright Tercera convocatoria, con la entrega el 16 de octubre y la defensa del 9 al 13 de noviembre de 2026, y un calendario semanal hasta la entrega & \raggedright La dedicación del segundo cuatrimestre, compaginada con las asignaturas y con un empleo, no alcanzó para depositar en septiembre \tabularnewline
+\endhead
+\raggedright PT0 & \raggedright Registro de decisiones y repositorio versionado & \raggedright --- & \raggedright Repositorio de datos & \raggedright Completado \tabularnewline
 \hline
-\raggedright 1 sep & \raggedright Diez a doce APIs & \raggedright Ocho APIs, las ocho cerradas y sin ninguna sustitución (Sección~\ref{sec:propuesta:seleccion}) & \raggedright Sin motivo propio. La cifra se fija en la misma decisión que el calendario hasta el depósito \tabularnewline
+\raggedright PT1 & \raggedright Estado del arte & \raggedright --- & \raggedright Capítulo~\ref{cap:estadoDelArte} & \raggedright Completado \tabularnewline
 \hline
-\raggedright 1 sep & \raggedright Tres fuentes de selección & \raggedright Se ejecutan la segunda y la tercera, y la tercera sustituye a la primera (Sección~\ref{sec:propuesta:seleccion}) & \raggedright La memoria del trabajo previo llegó el 14 de septiembre, con el proyecto ya avanzado y la selección hecha \tabularnewline
+\raggedright PT2 & \raggedright Criterio de inclusión, conjunto de APIs y Datasheet piloto de Postmark & \raggedright OBJ-01 & \raggedright Secciones~\ref{sec:propuesta:seleccion} y~\ref{sec:propuesta:piloto} & \raggedright Completado \tabularnewline
 \hline
-\raggedright 6 sep & \raggedright Las Datasheets, en anexos de la memoria & \raggedright Las Datasheets, en el repositorio de datos que acompaña al trabajo. La memoria recoge los hallazgos y el catálogo de preguntas & \raggedright La memoria razona sobre los hallazgos y los datos van aparte, como en el artículo de Pricing Intelligence \citep{cavero2026pricingintelligence} \tabularnewline
+\raggedright PT3 & \raggedright Datasheets del catálogo, inventario de elementos no soportados y propuestas de extensión del esquema & \raggedright OBJ-02 y OBJ-03 & \raggedright Sección~\ref{sec:propuesta:catalogo}, Capítulo~\ref{cap:evolucion} y repositorio de datos & \raggedright Completado con ocho APIs de las diez a doce previstas \tabularnewline
 \hline
-\raggedright 7 sep & \raggedright Comparación por necesidades funcionales, además de por precio, con el instrumental del ecosistema & \raggedright Matriz de \textit{features} por plan y comparación funcional por lectura, fuera del esquema (Sección~\ref{subsec:hallazgos:funcional}) & \raggedright Las preguntas funcionales del catálogo de preguntas no tenían respuesta con ese instrumental \tabularnewline
+\raggedright PT4 & \raggedright Datasheets ejecutadas en PRIME4API y relación entre límites y \textit{rates} & \raggedright OBJ-04 & \raggedright Sección~\ref{sec:propuesta:prime4api} y Capítulo~\ref{cap:limites} & \raggedright Completado dentro del ciclo de PT3 \tabularnewline
 \hline
-\raggedright 7 sep & \raggedright Ejecución y publicación sobre el despliegue del ecosistema & \raggedright PRIME4API en local, donde se ejecutan las preguntas P (Sección~\ref{sec:hallazgos:catalogo-pi}). Las preguntas H, las que exigen HARVEY4API, quedan para el despliegue público del ecosistema. El catálogo se prepara como contribución a SPHERE, y su publicación depende de la plataforma & \raggedright Sin acceso al despliegue público del ecosistema. El motor sí corre en local \tabularnewline
+\raggedright PT5 & \raggedright Catálogo de preguntas de decisión y procedimiento de comparación & \raggedright OBJ-05 & \raggedright Secciones~\ref{sec:comparacion:catalogo} y~\ref{sec:comparacion:procedimiento} & \raggedright Parcial: las preguntas que exigen HARVEY4API no se ejecutan \tabularnewline
 \hline
-\raggedright 22 sep & \raggedright La evaluación de las contribuciones, en un capítulo propio & \raggedright Una sección del Capítulo~\ref{cap:conclusiones}. La memoria queda en siete capítulos & \raggedright El índice anunciaba un capítulo de evaluación sin escribir, y la numeración impresa no coincidía con la anunciada \tabularnewline
+\raggedright --- & \raggedright Colección de las ocho APIs con su pricing en Pricing2YAML, una maqueta (prototipo web de cómo se vería la colección en SPHERE) y una propuesta de sección, en la ficha de cada API de la colección, para los términos de consumo que su pricing no recoge & \raggedright OBJ-06 & \raggedright Sección~\ref{sec:propuesta:sphere} & \raggedright Añadido el 15 de octubre y cargado en SPHERE el 27 de octubre, en una colección privada, sin publicar \tabularnewline
 \hline
-\raggedright 15 oct & \raggedright Entrega de la memoria el 16 de octubre & \raggedright Memoria cerrada el 29 de octubre, para el depósito del 2 de noviembre & \raggedright La reunión con el tutor del 15 de octubre dejó cambios por incorporar. El tutor permitió entregar cuando el autor quisiera, y este mantuvo el depósito del 2 de noviembre \tabularnewline
+\raggedright PT6 & \raggedright Memoria y defensa & \raggedright --- & \raggedright Este documento & \raggedright En curso: depósito el 2 de noviembre y defensa del 9 al 13 \tabularnewline
 \hline
-\raggedright 15 oct & \raggedright Sin colección en SPHERE: Pricing2YAML quedaba fuera del alcance & \raggedright Contribución preparada a SPHERE: los ocho pricings en Pricing2YAML y una maqueta de la colección con el histórico de cada pricing (Sección~\ref{sec:estado:analisis}) & \raggedright Reestimación del alcance tras la reunión con el tutor del 15 de octubre, que nombró la colección de APIs en SPHERE como resultado del trabajo \tabularnewline
+\noalign{\vskip\abovecaptionskip}
+\caption[Entregables de la línea base y su estado]{Entregables de la línea base y su estado. La fila sin paquete es un entregable añadido después de la línea base.}
+\label{tab:metodologia:entregables}
+\end{longtable}
+\endgroup
+
+\paragraph{Alcance.} Las decisiones de modelado se registran como
+reglas en el libro de criterios y no cuentan como desviaciones. La
+Tabla~\ref{tab:metodologia:desviaciones} recoge las decisiones que
+cambian el alcance, con su fecha y el motivo que consta en el registro
+de decisiones.
+
+\begingroup
+\setlength{\tabcolsep}{3pt}
+\setlength{\LTcapwidth}{\textwidth}
+\begin{longtable}{|>{\footnotesize}p{0.07\textwidth}|>{\footnotesize}p{0.25\textwidth}|>{\footnotesize}p{0.33\textwidth}|>{\footnotesize}p{0.28\textwidth}|}
 \hline
-\end{tabular}
-\caption[Desviaciones de alcance y de método]{Desviaciones de alcance y de método, por fecha de decisión. Cada fila recoge lo previsto, lo que se hizo con su efecto y el motivo que consta en el registro de decisiones.}
+\raggedright \textbf{Fecha} & \raggedright \textbf{Previsto} & \raggedright \textbf{Ejecutado} & \raggedright \textbf{Motivo registrado} \tabularnewline
+\hline
+\endfirsthead
+\multicolumn{4}{l}{\footnotesize\textit{(continuación)}} \tabularnewline
+\hline
+\raggedright \textbf{Fecha} & \raggedright \textbf{Previsto} & \raggedright \textbf{Ejecutado} & \raggedright \textbf{Motivo registrado} \tabularnewline
+\hline
+\endhead
+\raggedright 3 ago & \raggedright Una versión nueva del esquema (v0.8 o v1.x) & \raggedright Datasheets conformes a ACM2YAML v0.3. Los elementos no soportados se registran, y de ellos salen las propuestas de extensión (Capítulo~\ref{cap:evolucion}) & \raggedright Mantener las Datasheets consumibles por PRIME4API y SPHERE sin bifurcar el esquema \tabularnewline
+\hline
+\raggedright 5 ago & \raggedright Revisar con cuenta propia el panel del proveedor solo en algunas APIs & \raggedright Se revisa el panel con cuenta propia en las ocho APIs, y ninguna Datasheet se cierra sin esa revisión (Sección~\ref{sec:propuesta:ciclo}) & \raggedright Si unas APIs se revisan más que otras, las diferencias entre sus Datasheets reflejan el esfuerzo dedicado a cada una y no lo que publica cada proveedor \tabularnewline
+\hline
+\raggedright 1 sep & \raggedright Diez a doce APIs & \raggedright Ocho APIs, con un mínimo de seis, cerradas sin sustituciones (Sección~\ref{sec:propuesta:seleccion}) & \raggedright Se fija junto con el calendario de la replanificación \tabularnewline
+\hline
+\raggedright 1 sep & \raggedright Tres fuentes de selección: un trabajo previo, las APIs ya modeladas y una consulta a un modelo de lenguaje & \raggedright Se ejecutan la segunda y la tercera, y la tercera sustituye a la primera (Sección~\ref{sec:propuesta:seleccion}) & \raggedright La memoria del trabajo previo llegó el 14 de septiembre, con la selección ya hecha \tabularnewline
+\hline
+\raggedright 6 sep & \raggedright Las Datasheets, en anexos de la memoria & \raggedright En el repositorio de datos. La memoria recoge los hallazgos & \raggedright Los ficheros de datos se publican en un solo medio, el repositorio \tabularnewline
+\hline
+\raggedright 7 sep & \raggedright Ejecución sobre el despliegue público del ecosistema & \raggedright PRIME4API en local, con las preguntas que ejecuta su motor (Sección~\ref{sec:comparacion:catalogo}). Las preguntas que exigen HARVEY4API quedan sin ejecutar & \raggedright Sin acceso al despliegue público \tabularnewline
+\hline
+\raggedright 15 oct & \raggedright Sin colección en SPHERE. Pricing2YAML, fuera del alcance & \raggedright Los ocho pricings en Pricing2YAML y una maqueta de la colección con el histórico de cada pricing (Sección~\ref{sec:propuesta:sphere}) & \raggedright Ampliación: la colección lleva el catálogo a la plataforma de la línea de investigación \tabularnewline
+\hline
+\raggedright 23 oct & \raggedright Cinco objetivos específicos. La recogida de los términos de consumo, implícita en el catálogo & \raggedright OBJ-02 nombra la recogida sistemática de los términos de consumo, y OBJ-06 recoge la contribución a SPHERE (Sección~\ref{sec:introduccion:objetivos}) & \raggedright Reformulación de objetivos para que reflejen el alcance ejecutado \tabularnewline
+\hline
+\noalign{\vskip\abovecaptionskip}
+\caption[Desviaciones de alcance]{Desviaciones de alcance, por fecha de decisión en 2026. Cada fila recoge lo previsto, lo ejecutado y el motivo que consta en el registro de decisiones.}
 \label{tab:metodologia:desviaciones}
-\end{table}
+\end{longtable}
+\endgroup
 
-El catálogo de ocho APIs reduce el alcance previsto. Las preguntas H sin
-ejecutar también lo reducen, mientras sigan abiertas. La observación de panel en todas las APIs lo
-amplía, porque cada API suma un alta con cuenta propia. La comparación
-funcional cumple lo previsto por otro medio: la lectura de una matriz de
-\textit{features} por API, capturada en su ciclo desde MailerSend y
-construida después en las tres primeras. La reestimación del 15 de octubre suma la contribución a SPHERE, que el
-plan inicial dejaba fuera. El resto
-cambia cómo se ejecuta o se presenta lo previsto, y no cuánto se hace.
+Dos decisiones reducen el alcance: el catálogo de ocho APIs y las
+preguntas que exigen HARVEY4API, que quedan sin ejecutar. Dos lo
+amplían: la contribución a SPHERE y la recogida sistemática de los
+términos de consumo como parte de OBJ-02. Las otras cuatro cambian cómo se
+ejecuta o se presenta lo previsto, no cuánto se hace.
 
-En conjunto, las horas reconstruidas quedan por debajo de las previstas y
-el trabajo termina más tarde, con la defensa en noviembre en lugar de
-septiembre y un catálogo menor que el del encargo. Las horas de menos se explican por ese
-catálogo menor y por el trabajo con el asistente, y el retraso, por una
-dedicación que hasta agosto no pudo ser continua.
+Lo que queda fuera pasa a trabajo futuro. La primera tarea es ejecutar
+las preguntas que exigen HARVEY4API. La segunda está en la maqueta: la
+ficha de cada API tiene dos pestañas, la del pricing y la del resto de
+los términos de consumo, y cada una guarda sus versiones por separado,
+así que falta una línea temporal única para toda la ficha.
+
+Las dos últimas tareas tratan de \textit{skills}, instrucciones que sigue
+un agente basado en un modelo de lenguaje para leer los términos de
+consumo. La tercera es una \textit{skill} que interprete la diferencia
+entre dos versiones de esos términos, pricing incluido, como un cambio del
+dominio, por ejemplo un descuento anual. La cuarta es publicar las
+\textit{skills} en un mercado en línea (\textit{marketplace}) y
+conectarlas con SPHERE.

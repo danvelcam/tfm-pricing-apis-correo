@@ -276,3 +276,32 @@ aún no tiene `fricciones.md` y no lleva columna).
 8. **La misma frase da dos anclas de reinicio incompatibles**, medianoche y veinticuatro horas desde que se agota el límite, y sigue abierta (DISC-02).
 9. **La tabla oficial de errores no tiene 429 ni 403.** El exceso de envío no se rechaza: se encola y se reprocesa (MC-58, MC-101).
 10. **Toda la capacidad de la cuenta de pago cuesta dinero de verdad.** El producto solo existe como complemento de una cuenta Mailchimp Standard o Premium, así que tres cifras —cuota horaria de pago, si el tramo es marginal o plano, y si N destinatarios gastan N unidades— quedan en `not_found` por decisión de gasto y no por falta de búsqueda (MC-16, MC-95, MC-106, MC-110).
+
+## Corrección del 2026-10-31 (verificador independiente)
+
+El 31-10 un verificador reabrió cada URL del `datasheet.yaml`. El informe íntegro está en
+`03_datos/apis/mailchimp/evidencias/verificador_adversarial_2026-10-31.md`. No cambia ningún valor
+ni ningún semáforo: siguen 11 🟢 · 2 🟡 · 4 🔴.
+
+- **MC-12 y MC-107, error del dato.** Por encima de 161 bloques sí hay precio: `"161+ bloques |
+  4M+ emails | $10/bloque"` (MC-09). Lo que remite a contacto comercial es un precio negociado
+  por debajo de 10 USD.
+- **MC-55 y MC-56, la fuente cambió (E3).** Con la migración de la documentación, entre el 3 y
+  el 5 de octubre, las dos URL dan 404. El 20 por minuto sigue literal en el índice de notas de
+  versión ([F17]), entrada `"Apr 10, 2023"`, y la línea del YAML apunta allí. La página que
+  sucede al endpoint ya no da la cifra. MC-56 queda solo en Wayback, en la captura del
+  2026-04-21.
+- **MC-51, fuente mal atribuida.** El artículo de ayuda sobre throttling no dice nada del 5 %.
+  El dato se queda con MC-50, de [F4].
+- **MC-66 y MC-111, error del dato.** El umbral está publicado en la misma página: `"Emails with
+  more than 10 recipients"`. Ya estaba en Wayback el 2026-03-12 y coincide con lo medido.
+- **MC-112, la oferta cambió (E3).** Desde octubre el proveedor sirve la especificación,
+  `openapi/api-reference-2.json`, enlazada desde `llms.txt`. El 2026-09-21 el hueco era cierto.
+- **MC-113, error del dato.** La retención de la cuenta de pago está en `docs/activity-reports`:
+  30 días de contenido, estadísticas sin límite y 90 días de datos de rebotes. Ya estaba en
+  Wayback el 2026-07-30.
+- **Términos.** La cita en inglés de la consecuencia del envío masivo era una retrotraducción.
+  El literal es `"we may charge you at the comparable Paid Marketing Plan rate or terminate your
+  account"`.
+
+Volcados: `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/LEEME.md`.

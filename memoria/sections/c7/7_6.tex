@@ -1,0 +1,28 @@
+\section{Respuesta a la RQ4}
+\label{sec:comparacion:respuesta}
+
+La RQ4 pregunta cómo pueden compararse las APIs de correo de forma sistemática para responder a preguntas de decisión que involucran simultáneamente requisitos funcionales y no funcionales.
+La respuesta es un procedimiento que instancia cada una de las 32 plantillas del catálogo sobre cada API.
+Cada instancia se responde con el instrumento que declara su clase: un campo de la Datasheet, una operación de PRIME4API, una composición de HARVEY4API o la matriz de \textit{features} por plan.
+Cada respuesta queda registrada con la fuente que la sostiene.
+
+Con ese instrumental, 25 de las 32 preguntas tienen una clase que las declara respondibles con la Datasheet, PRIME4API o HARVEY4API.
+Si se descuentan las cuatro de HARVEY4API, que no se ha ejecutado, quedan 21.
+Otras 2, fuera de esas 25, se responden leyendo la matriz de \textit{features}.
+Las cinco restantes señalan lo que falta, como la concurrencia de peticiones, que ACM2YAML v0.3 no serializa, o la retención de los registros de envío, un límite que no se gasta con cada envío.
+
+Cada API responde entre 18 de esas 25 preguntas, en Postmark, y 22, en Resend (Tabla~\ref{tab:cobertura-pi}).
+En SES, 17 de sus 21 respuestas no se dan sobre el plan de suscripción que presupone la pregunta: 16 se dan sobre el entorno de pruebas y una sobre la tarifa sin suscripción.
+En Mailchimp, 10 de 20 son de la cuenta de prueba.
+
+La comparación es asimétrica.
+El coste, la cuota y el caudal se comparan calculando sobre la Datasheet con PRIME4API, y los \textit{webhooks} o la IP dedicada se comparan leyendo a mano la matriz de \textit{features}.
+El caso de los 100.000 correos al mes necesita las dos: el precio, el caudal y el lote salen de la Datasheet, y los \textit{webhooks}, de la matriz.
+Cumplen SendGrid, Mailgun, Postmark y Brevo, y la más barata es SendGrid, a 34,95 USD al mes con Essentials 100K.
+Con los campos de v0.3 saldría a 84,95 USD, 2,4 veces el precio que SendGrid publica para ese volumen, porque la cuota no guarda el volumen de 100.000 correos (Sección~\ref{sec:comparacion:caso}).
+
+La respuesta tiene dos límites.
+La base son ocho APIs, y en cinco de ellas lo observado con cuenta propia corresponde a un estado de la suscripción, la fase en que el proveedor sitúa la cuenta, y no a un plan.
+Son el entorno de pruebas en SES, la cuenta de prueba en Mailchimp y una cuenta gratuita o sin aprobar en MailerSend, Mailgun y Brevo.
+El segundo límite es que las cuatro preguntas que combinan varias Datasheets o varias operaciones cuentan como respondibles por la especificación de HARVEY4API que publica Ruiz López \citep{ruizlopez2026tfm}, sin que la herramienta se haya ejecutado.
+Las respuestas que dio Claude Opus 5.5 leyendo las ocho Datasheets llegan a la misma conclusión que la referencia calculada a mano, pero no sustituyen a la herramienta (Sección~\ref{sec:comparacion:harvey}).

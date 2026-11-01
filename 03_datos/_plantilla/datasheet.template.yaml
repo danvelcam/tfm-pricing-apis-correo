@@ -1,5 +1,5 @@
 # Datasheet ACM2YAML v0.3 — <NOMBRE DE LA API>
-# Semáforo: 🟢 explícito en fuente oficial | 🟡 inferido o ambiguo | 🔴 no documentado
+# Semáforo: 🟢 respaldado (literal, panel o sondeo) | 🟡 interpretado o ambiguo | 🔴 no publicado
 # Convención de claves: [tipo]_[recurso]_[contexto]_[plan]  — nunca números en la clave
 
 associated_saas:            # 🟢/🟡/🔴 [Fn]

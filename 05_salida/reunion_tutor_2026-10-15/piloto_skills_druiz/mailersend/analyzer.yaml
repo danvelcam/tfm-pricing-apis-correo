@@ -1,0 +1,204 @@
+schema_version: "2.3"
+
+generator:
+  platform: "Claude"
+  provider: "Anthropic"
+  model: "claude-opus-5-5"
+  skill: "saas-interface-channel-analyzer"
+  skill_version: "3.0"
+
+generated_at: "2026-10-16T12:57:50+02:00"
+evidence_checked_at: "2026-10-16T12:59:29+02:00"
+
+input:
+  resolver_skill_version: "1.1"
+  resolver_generated_at: "2026-10-16T12:47:38+02:00"
+  query: "MailerSend"
+  resolved_as: autonomous_service
+
+outcome: analyzed
+outcome_reason: null
+
+service:
+  name: "MailerSend"
+  classification: autonomous_service
+  provider: "MailerSend, Inc."
+  base_services: []
+  conditional_on_resolver: false
+
+scope:
+  index_pages:
+    - { kind: docs_home, source: s1 }
+    - { kind: developer_portal, source: null }
+    - { kind: help_center, source: s2 }
+    - { kind: integrations, source: s3 }
+  index_entries:
+    - { entry: ["What is MailerSend?", "General API resources", "Sending emails with MailerSend SDKs", "Email API", "Account", "Tools", "MCP Server"], page: s1, disposition: covered, service: null }
+    - { entry: "Verification", page: s1, disposition: other_service, service: "Email verification" }
+    - { entry: "SMS API", page: s1, disposition: other_service, service: "Transactional SMS API" }
+    - { entry: "WhatsApp API", page: s1, disposition: other_service, service: "WhatsApp transactional messaging API" }
+    - { entry: "Guides", page: s1, disposition: not_access, service: null }
+    - { entry: ["Getting started: Sending your first email", "API reference", "Email", "Developer tools", "Integrations"], page: s2, disposition: covered, service: null }
+    - { entry: "SMS", page: s2, disposition: other_service, service: "Transactional SMS API" }
+    - { entry: "WhatsApp", page: s2, disposition: other_service, service: "WhatsApp transactional messaging API" }
+    - { entry: ["Deliverability", "Account, billing & add-ons", "Agency guides"], page: s2, disposition: not_access, service: null }
+    - { entry: ["All categories", "Automation", "E-commerce", "Devtools", "MCP", "Featured integrations"], page: s3, disposition: covered, service: null }
+    - { entry: "Suggest an integration", page: s3, disposition: not_access, service: null }
+  attribution_pages_used: 0
+
+sources:
+  - { id: s1, url: "https://developers.mailersend.com/" }
+  - { id: s2, url: "https://www.mailersend.com/help" }
+  - { id: s3, url: "https://www.mailersend.com/integrations" }
+  - { id: s4, url: "https://www.mailersend.com/features/email-template-builder" }
+  - { id: s5, url: "https://www.mailersend.com/features/email-activity" }
+  - { id: s6, url: "https://developers.mailersend.com/mcp" }
+  - { id: s7, url: "https://www.mailersend.com/features/webhooks" }
+  - { id: s8, url: "https://www.mailersend.com/integrations/slack-mailersend-integration" }
+  - { id: s9, url: "https://www.mailersend.com/features/blocklist-monitoring" }
+  - { id: s10, url: "https://developers.mailersend.com/general" }
+  - { id: s11, url: "https://www.mailersend.com/features/smtp-relay" }
+  - { id: s12, url: "https://developers.mailersend.com/tools/cli" }
+  - { id: s13, url: "https://www.mailersend.com/features/inbound-emails" }
+
+interfaces:
+  - name: "MailerSend web app"
+    channel: Interactive
+    technology: "Web application in the browser"
+    rationale: "The consumer acts by manipulating builders, activity views and settings of a persistent, navigable representation of domains, templates and messages."
+    mechanisms: ["Web app", "Drag & drop builder", "HTML builder", "Rich-text email editor", "Email activity dashboard"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "MailerSend’s drag & drop email template builder empowers anyone in your team to create professional transactional emails on their own." }
+      - { source: s5, excerpt: "Track email activity in real-time to learn how specific emails or domains are performing." }
+
+  - name: "MailerSend MCP Server"
+    channel: Agentic
+    technology: "Hosted remote MCP server at mcp.mailersend.com over streamable HTTP, used from Claude, ChatGPT, Cursor, VS Code and other MCP clients"
+    rationale: "The contract exposes MCP tools that an AI client discovers and selects by goal."
+    mechanisms: ["MCP server", "ChatGPT", "Claude", "Cursor", "VSCode"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s6, excerpt: "This server enables AI assistants to send emails and SMS, manage domains, templates, webhooks, suppressions, sender identities, users, and many other things through standardized MCP tools." }
+      - { source: s6, excerpt: "Usually, you would just add https://mcp.mailersend.com/mcp as a remote MCP address in any tooling that you are working with." }
+
+  - name: "Webhooks"
+    channel: Event
+    technology: "HTTP POST requests to consumer URLs on email events; the same webhook system also carries SMS and WhatsApp events"
+    rationale: "The service initiates delivery when subscribed message events occur, to an endpoint the consumer controls."
+    mechanisms: ["Webhooks", "Track delivery", "SMS webhooks", "WhatsApp webhooks"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s7, excerpt: "Get notified in real-time as soon as a transactional email event happens." }
+
+  - name: "MailerSend application for Slack"
+    channel: Event
+    technology: "Slack app published by MailerSend, fed by a MailerSend webhook"
+    rationale: "The service posts email event notifications into a Slack channel the consumer chooses."
+    mechanisms: ["Slack"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s8, excerpt: "The MailerSend application for Slack allows you to instantly receive notifications of clicks, bounces, and spam complaints in the channel of your choice." }
+
+  - name: "Email notifications"
+    channel: Event
+    technology: "Email alerts to an address the consumer chooses"
+    rationale: "The service initiates the delivery when a monitored event such as a blocklisting occurs, to a mailbox the consumer controls."
+    mechanisms: ["Outbound email notifications"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s9, excerpt: "Enable notifications to an email or endpoint URL for when a blocklisting is detected." }
+
+  - name: "REST API"
+    channel: Programmatic
+    technology: "HTTPS REST API at api.mailersend.com/v1 with a Bearer API token; the same contract also exposes verification, SMS and WhatsApp endpoints"
+    rationale: "The consumer explicitly invokes provider-defined operations through structured HTTP requests."
+    mechanisms: ["Email API", "Account API", "Email validation API", "Verification API", "SMS API", "WhatsApp API"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s1, excerpt: "MailerSend API is RESTful, fully featured, and easy to integrate with." }
+      - { source: s10, excerpt: "Authentication is done by adding an Authorization header containing an API token as a value to your API request." }
+
+  - name: "SMTP relay"
+    channel: Programmatic
+    technology: "SMTP submission with SMTP users managed in the account"
+    rationale: "The consumer explicitly submits messages through the structured SMTP command protocol, with its own authentication."
+    mechanisms: ["SMTP relay"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s1, excerpt: "At the moment, transactional emails can be sent through MailerSend’s Email API or using SMTP relay." }
+      - { source: s11, excerpt: "MailerSend’s SMTP relay service empowers you to send transactional emails quickly and at scale." }
+
+  - name: "MailerSend CLI"
+    channel: Programmatic
+    technology: "Command-line tool published by the provider, installed with Homebrew or from GitHub releases"
+    rationale: "The consumer invokes provider-defined commands from the terminal."
+    mechanisms: ["CLI"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "A command-line interface for the MailerSend API." }
+
+  - name: "MailerSend CLI TUI dashboard"
+    channel: Interactive
+    technology: "Terminal user interface included in the MailerSend CLI"
+    rationale: "The consumer monitors and navigates a persistent terminal representation of activity, analytics, domains and suppressions."
+    mechanisms: ["Terminal TUI"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "The CLI also includes an interactive TUI dashboard for monitoring your email activity, analytics, domains, and suppressions in real time." }
+
+  - name: "Inbound email routing"
+    channel: Programmatic
+    technology: "Inbound email to a MailerSend inbound address or the consumer's domain, forwarded to the consumer's app"
+    rationale: "Each message received is taken literally and forwarded to the consumer's application, not interpreted as a request."
+    mechanisms: ["Inbound email"]
+    requires: ["MailerSend"]
+    outside_catalog: null
+    evidence:
+      - { source: s13, excerpt: "Inbound email routes enable MailerSend to receive emails on your behalf, integrating them into your application." }
+
+pending: []
+
+excluded:
+  - mechanism: ["SDK libraries", "NodeJS", "Python", "Java", "Laravel", "PHP", "Go", "Ruby", "MailerSend OpenAPI collection", "Official SMTP plugin for WordPress", "Official WooCommerce plugin", "Django", "Rails", "API tokens"]
+    reason: not_an_interface
+    service: null
+    detail: "Client libraries, transport plugins, framework guides and authentication"
+  - mechanism: ["API reference", "Integrations", "Ask AI"]
+    reason: not_an_interface
+    service: null
+    detail: "Documentation, the integrations directory and the documentation assistant"
+  - mechanism: ["Zapier", "Supabase", "Firebase", "Symfony", "Airbyte", "Airtable", "Anymail", "Courier", "Google Cloud", "Integrately", "Knock", "Magento", "Mailster", "Make", "NocoDB", "Notifire / Novu", "Pabbly Connect", "Partnero", "Pipedream", "React Email", "Relay.app", "Tabular", "WHMCS"]
+    reason: third_party
+    service: null
+    detail: "Integrations built and maintained by third parties"
+  - mechanism: "SMS inbound routing"
+    reason: other_service
+    service: "Transactional SMS API"
+    detail: "Inbound SMS routes of the SMS service"
+  - mechanism: "Account, billing & add-ons"
+    reason: provider_relationship
+    service: null
+    detail: "Account, plan and billing management"
+  - mechanism: ["Mobile app", "Desktop app"]
+    reason: not_found
+    service: null
+    detail: "Developer documentation, help center, home page and integrations checked; no first-party mobile or desktop client"
+
+summary:
+  interfaces: 10
+  channels: [Interactive, Agentic, Event, Programmatic]
+  multi_interface: true
+  multi_channel: true
+  verdict_provisional: false
+
+notes: []

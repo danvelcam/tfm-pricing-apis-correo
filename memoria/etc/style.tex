@@ -1,6 +1,8 @@
 \titleformat{\chapter}[block]{\titlerule[0.8pt]\normalfont\huge\bfseries}{\thechapter.}{.5em}{\Huge}[{\titlerule[0.8pt]}]
 \titlespacing*{\chapter}{0pt}{-19pt}{25pt}
-\titleformat{\section}[block]{\normalfont\Large\bfseries}{\thesection.}{.5em}{\Large}
+\newcommand{\titulosinpartir}{\raggedright\hyphenpenalty=10000\relax}
+\titleformat{\section}[block]{\normalfont\Large\bfseries\titulosinpartir}{\thesection.}{.5em}{\Large}
+\titleformat*{\subsection}{\normalfont\large\bfseries\titulosinpartir}
 
 \lstset{
   basicstyle=\ttfamily,

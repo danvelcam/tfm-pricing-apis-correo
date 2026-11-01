@@ -1,0 +1,44 @@
+\section{Trabajo futuro}\label{sec:conclusiones:futuro}
+
+Sobre ACM2YAML quedan tres líneas de trabajo.
+La primera es distinguir el límite publicado del aplicado, el elemento F-04, que reúne los límites que el proveedor declara y que la respuesta a la petición no refleja (Sección~\ref{sec:esquema:fuera}).
+Es el caso de Mailchimp Transactional y de Amazon SES, que aceptaron llamadas por encima del tope que declaran.
+Queda por decidir qué cifra va a la Datasheet y cómo se declara la fuente de cada una.
+La segunda es fijar las doce formas esbozadas de la Tabla~\ref{tab:sinforma}, de una fecha de verificación para cada afirmación del registro de procedencia (F-09) al canal que ofrece cada operación (F-22), y contrastarlas con la guía de ACM2YAML.
+
+La tercera es llevar como \textit{issues} las nueve propuestas de extensión de la Tabla~\ref{tab:propuestas}, cada una con su caso y el número de APIs en que aparece, al repositorio que tiene que cambiar: el de la guía si cambia el esquema y el de PRIME4API si el arreglo está en el motor (Sección~\ref{sec:esquema:metodo}).
+De esas nueve, las cinco que van de los volúmenes contratados al plan con precio no público (P-01 a P-05) no figuran en ningún \textit{issue} de los repositorios de la guía, de PRIME4API ni de SPHERE (Sección~\ref{sec:esquema:fuera}).
+Las cuatro restantes, del estado de la suscripción al comportamiento de la cuota al superarse (P-06 a P-09), aún deben contrastarse con los \textit{issues} abiertos antes de enviarse.
+
+En las herramientas de consulta queda ejecutar con HARVEY4API las cuatro preguntas de clase H, las que combinan varias Datasheets u operaciones de PRIME4API, y comparar sus respuestas con las de Claude Opus 5.5 y con el cálculo a mano (Sección~\ref{sec:comparacion:harvey}).
+También queda vincular la Datasheet del canal API con el iPricing, el metamodelo con el que SPHERE representa los planes y las \textit{features} de la página de precios \citep{garciafernandez2024pricing4saas}.
+Con él, la pregunta de qué API da IP dedicada al menor precio para 200.000 correos al mes, que en la Sección~\ref{sec:comparacion:funcional} se calcula a mano, podría responderse con una consulta a SPHERE.
+
+En SPHERE, la primera línea es implementar la sección de términos de consumo que la Sección~\ref{sec:propuesta:sphere:terminos} deja diseñada.
+Lo publicado y lo medido entrarían por una ingesta que guarda la fecha de cada página, en un historial separado de las versiones de \textit{pricing} que SPHERE ya mantiene.
+Ese diseño separa los límites propios de una interfaz, como las 10 conexiones SMTP concurrentes por IP que recomienda Postmark, de los compartidos entre varias.
+Un límite compartido es la cuota diaria de MailerSend, que cuenta las peticiones de la API REST y las del relé SMTP.
+
+Al diseño le falta una tercera clase, la de los límites globales, que valen para el servicio entero y no para una interfaz concreta.
+Esa clase exige un nivel por encima de la interfaz.
+
+La segunda línea en SPHERE es comparar las vías de contratación de un mismo servicio.
+En RapidAPI, un mercado de APIs, hay fichas del servicio de envío de cuatro de las ocho APIs: SendGrid, Postmark, Brevo y Mailgun\footnote{Búsqueda sin cuenta en el buscador de RapidAPI, consultada el 23 de octubre de 2026.}.
+Comparar el precio y los límites de SendGrid contratado en RapidAPI con los de su página de precios pide un \textit{pricing} por vía de contratación y el árbol de proveedor, servicio e interfaz de la maqueta de la colección para SPHERE (Sección~\ref{sec:propuesta:sphere:coleccion}).
+Queda por aclarar si esas fichas, que publica un tercero, exigen una cuenta en el proveedor.
+
+Las últimas líneas son \textit{skills}, instrucciones que sigue un agente basado en un modelo de lenguaje para leer los términos de consumo, y van de la más próxima a este trabajo a la más lejana.
+Una agruparía las interfaces que comparten un límite, como la cuota diaria de MailerSend, y su salida se contrastaría con la página antes de entrar en la Datasheet.
+Otra listaría como candidatas las contradicciones entre páginas de un mismo proveedor, como la guía de envío por lotes de Brevo, que admite 6.000 llamadas por hora al \textit{endpoint} de envío, 600 veces menos que los 3.600.000 por hora de su categoría General (Sección~\ref{sec:limites:publicado}).
+Una tercera contaría los límites de cada versión fechada de una página, como las capturas de la página de límites de MailerSend.
+
+La cuarta traduciría a cambios del dominio el diff sintáctico con el que SPHERE compara dos versiones de un pricing, que marca qué líneas difieren entre ellas \citep{sphere}.
+La más lejana, porque depende de las otras, es publicarlas en un \textit{marketplace} que registre su uso real y conectarlas con SPHERE por el \textit{Model Context Protocol}, el mismo con el que HARVEY4API publica las operaciones de PRIME4API \citep{mcp}.
+
+\phantomsection\label{sec:conclusiones:replicacion}Cualquiera de estas líneas parte del repositorio de datos del trabajo, \url{https://github.com/danvelcam/tfm-pricing-apis-correo}.
+Reúne las ocho Datasheets con sus fuentes y evidencias junto a las herramientas del trabajo.
+No incluye las credenciales de las APIs ni PRIME4API, y de las copias archivadas de las páginas de los proveedores publica solo la huella sha256.
+
+Para comprobar la instalación, la herramienta \path{05_salida/_herramientas/verificar_prime4api.py} se ejecuta con \texttt{python3} sobre \path{03_datos/apis/postmark/datasheet.yaml}.
+La primera vez clona PRIME4API en \path{~/.cache/atf/prime4api} sin fijar la revisión, así que antes hay que situar esa copia en la revisión \texttt{8e6011c} (Sección~\ref{sec:conclusiones:interna}).
+El resultado debe coincidir con la fila de Postmark de la Tabla~\ref{tab:verificacion}: 11 comprobaciones superadas y 10 fallidas por valor ausente.

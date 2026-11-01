@@ -1,0 +1,21 @@
+\chapter[Evolución del esquema ACM2YAML]{Evolución del esquema\\ ACM2YAML}
+\label{cap:evolucion}
+
+Este capítulo presenta la contribución C-02 (Sección~\ref{sec:introduccion:contribuciones}) y responde a la RQ2: si ACM2YAML es suficientemente expresivo para representar la capacidad contractual de las APIs de correo, y qué extensiones requiere.
+Al escribir las ocho Datasheets del catálogo contra ACM2YAML v0.3 aparecieron treinta y cinco hechos del dominio que el esquema no puede expresar o que PRIME4API no consume.
+El primero salió del piloto: Postmark vende seis volúmenes contratados dentro de un mismo plan, de 10.000 a 1.500.000 mensajes, y una cuota de v0.3 solo admite una cifra y un sobrecoste.
+El esquema es de Gavira Sánchez y Ruiz López \citep{gavira2026tfm,ruizlopez2026tfm}, y este trabajo lo extiende con propuestas sobre sus campos, cada una con el caso real que la motiva.
+
+El capítulo se organiza del siguiente modo.
+En primer lugar, la Sección~\ref{sec:esquema:metodo} describe cómo un elemento no soportado llega a propuesta de extensión y distingue dos clases de carencia, la de expresividad y el defecto de contrato.
+A continuación, la Sección~\ref{sec:esquema:inventario} presenta el inventario de los treinta y cinco elementos, con su recurrencia en las ocho APIs y el origen de las nueve propuestas.
+Después, la Sección~\ref{sec:esquema:expresividad} formula las siete propuestas de expresividad, y la Sección~\ref{sec:esquema:contrato}, las dos de contrato y una rectificación de la guía.
+La Sección~\ref{sec:esquema:fuera} recoge los elementos promovidos sin propuesta y la compatibilidad de las propuestas con v0.3.
+Por último, la Sección~\ref{sec:esquema:respuesta} responde a la RQ2.
+
+\input{sections/c5/5_1}
+\input{sections/c5/5_2}
+\input{sections/c5/5_3}
+\input{sections/c5/5_4}
+\input{sections/c5/5_5}
+\input{sections/c5/5_6}

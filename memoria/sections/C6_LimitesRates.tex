@@ -1,0 +1,27 @@
+\chapter{Límites de uso y \textit{rates}}
+\label{cap:limites}
+
+Este capítulo responde a la RQ3: cómo se relacionan los límites de uso y los \textit{rates} en las APIs de correo, y qué implicaciones tiene esa relación para el consumidor.
+Un límite de uso es el máximo de un nivel de uso medible, como los correos enviados al mes o los días que se conservan los registros, y puede renovarse o no.
+La cuota es un límite de uso renovable: el volumen máximo que se puede enviar en un periodo, llamado ventana, y que se repone cuando la ventana se cierra.
+El \textit{rate}, o caudal, es la velocidad máxima de envío, en peticiones o en correos por unidad de tiempo.
+
+En seis de las ocho APIs (Postmark, Resend, SendGrid, MailerSend, Brevo y Mailgun), el \textit{rate} deja pasar en la ventana de la cuota entre 103,7 y 129.600.000 veces la cuota de los planes que recogen sus Datasheets, de MailerSend Starter al plan Free de Postmark.
+Con los volúmenes contratados que el proveedor publica y la Datasheet no recoge (Apartado~\ref{subsec:evolucion:p01}), el mínimo baja a 2,59 veces en MailerSend Professional 2M.
+En ellas la cuota se agota antes de que el \textit{rate} frene el envío.
+
+Las cifras de esa relación no salen de la misma fuente en todas las APIs.
+Postmark no publica su \textit{rate} y lo devuelve en una cabecera de la respuesta, uno de los campos que la API añade a cada respuesta HTTP.
+Amazon SES no publica cifras para la cuenta de producción, la que Amazon autoriza a enviar a cualquier destinatario al sacarla del entorno de pruebas.
+
+El capítulo se organiza del siguiente modo.
+En primer lugar, la Sección~\ref{sec:limites:geometrica} define las cuatro magnitudes del cálculo (el \textit{rate}, la cuota, su ventana y los destinatarios por petición) y la curva de capacidad que las combina.
+A continuación, la Sección~\ref{sec:limites:publicado} recoge lo que publica cada proveedor y calcula, plan a plan, cuántas veces admite el \textit{rate} la cuota.
+Después, la Sección~\ref{sec:limites:catalogo} extrae seis afirmaciones con su recuento sobre las ocho APIs, y la Sección~\ref{sec:limites:prime4api} contrasta el cálculo a mano con las respuestas de PRIME4API.
+Por último, la Sección~\ref{sec:limites:respuesta} responde a la RQ3.
+
+\input{sections/c6/6_1}
+\input{sections/c6/6_2}
+\input{sections/c6/6_3}
+\input{sections/c6/6_4}
+\input{sections/c6/6_5}

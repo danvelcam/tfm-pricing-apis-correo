@@ -1,0 +1,46 @@
+\section{Respuestas a las preguntas de investigación}\label{sec:conclusiones:rq}
+
+La Tabla~\ref{tab:conclusiones:rq} responde a las cuatro preguntas de investigación de la Sección~\ref{sec:introduccion:objetivos}.
+Cada celda da el resultado principal, y las cifras de detalle están en el capítulo que la sostiene, el de la última columna.
+
+\begin{table}[tbp]
+\centering
+\small
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.6cm}|p{10.2cm}|>{\centering\arraybackslash}p{1.3cm}|}
+\hline
+\textbf{Pregunta} & \textbf{Respuesta} & \textbf{Cap.} \\
+\hline
+RQ1. Qué APIs de correo incluir y con qué criterios reproducibles &
+El conjunto debe cubrir cuatro formas de cobro: volumen mensual, pago por uso, producto añadido y límite diario.
+Sus APIs deben diferir en cómo limitan el envío, por ejemplo con un \textit{rate} por \textit{endpoint} o con un caudal negociado con el proveedor.
+Las ocho del catálogo cumplen esa condición.
+Es reproducible el protocolo de selección (tres fuentes de inclusión, cinco criterios ordenados y una regla de reemplazo).
+La consulta al modelo de lenguaje no lo es, porque repetirla no garantiza las mismas APIs, y queda registrada en el Anexo~\ref{anx:uso-ia}. &
+\ref{cap:catalogo} \\
+\hline
+RQ2. Si ACM2YAML basta para la capacidad contractual y qué extensiones requiere &
+No basta: las ocho Datasheets dejan en el registro de procedencia, que ninguna herramienta lee, datos como los seis volúmenes contratados de Postmark.
+Las extensiones son nueve propuestas.
+Siete amplían lo que el esquema expresa, y dos corrigen formas que la guía de ACM2YAML admite y PRIME4API no lee: el límite vacío (P-04) y el precio \texttt{custom} del plan Enterprise de Resend (P-05). &
+\ref{cap:evolucion} \\
+\hline
+RQ3. Cómo se relacionan los límites de uso y los \textit{rates}, y qué implica para el consumidor &
+En seis de las ocho APIs la cuota es la restricción activa, el límite que corta antes el envío.
+Con los planes que recoge la Datasheet, el \textit{rate} admite en la ventana de la cuota entre 103,7 veces la cuota (MailerSend Starter) y 129.600.000 (Postmark Free).
+Quien contrata una de esas seis puede dimensionar el volumen sin consultar el \textit{rate} si su cuenta está aprobada y sin restricciones.
+En Amazon SES y Mailchimp Transactional no se puede decir que mande la cuota.
+El estado de la cuenta cambia la capacidad en seis de las ocho, esas dos incluidas, y ninguna publica el umbral que dispara el cambio. &
+\ref{cap:limites} \\
+\hline
+RQ4. Cómo comparar las APIs con requisitos funcionales y no funcionales a la vez &
+Un procedimiento instancia en cada API el catálogo de 32 preguntas de decisión y responde cada una con el instrumento de su clase: la Datasheet, PRIME4API o HARVEY4API.
+Son respondibles por su clase 25, y 21 sin HARVEY4API, que no se ha ejecutado.
+El coste, la cuota y el caudal se calculan sobre la Datasheet, y los \textit{webhooks} o la IP dedicada se leen a mano en la matriz de \textit{features}.
+En el caso de los 100.000 correos al mes cumplen cuatro APIs, y la más barata es SendGrid Essentials 100K, a 34,95 USD.
+Los campos de ACM2YAML v0.3, con un solo volumen por plan, dan 2,4 veces ese precio. &
+\ref{cap:comparacion} \\
+\hline
+\end{tabular}
+\caption[Respuestas a las preguntas de investigación]{Respuesta a cada pregunta de investigación y capítulo que la sostiene.}
+\label{tab:conclusiones:rq}
+\end{table}

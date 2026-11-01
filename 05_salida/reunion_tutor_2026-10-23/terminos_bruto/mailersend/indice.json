@@ -1,0 +1,3356 @@
+{
+  "schema_version": "0.1",
+  "generator": {
+    "skill": "recogida-terminos-consumo",
+    "skill_version": "0.1"
+  },
+  "api": "mailersend",
+  "run": {
+    "generated_at": "2026-10-23T15:01:06Z",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+    "intervalo_s": 0.4,
+    "peticiones": 135
+  },
+  "paginas": [
+    {
+      "id": "P-001",
+      "url": "https://developers.mailersend.com/",
+      "url_final": "https://developers.mailersend.com/",
+      "titulo": "What is MailerSend? | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "da5adaccf3e29e46ad9c75b282a315b0d93d3422311e66207f6e2e41ab9e707c",
+      "bytes": 86549,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html"
+      ],
+      "fichero_texto": "mailersend/da5adaccf3e29e46.html"
+    },
+    {
+      "id": "P-002",
+      "url": "https://developers.mailersend.com/api/v1/account/smtp-users",
+      "url_final": "https://developers.mailersend.com/api/v1/account/smtp-users",
+      "titulo": "SMTP Users | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:07Z",
+      "sha256": "eeffa51498b3bf57b816ee1f5e8080d12fb5fbaf89d069bc54ef584a4e5b61c8",
+      "bytes": 647205,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/smtp-users.html",
+        "https://developers.mailersend.com/api/v1/tokens.html",
+        "https://developers.mailersend.com/api/v1/webhooks",
+        "https://developers.mailersend.com/api/v1/webhooks.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/eeffa51498b3bf57.html"
+    },
+    {
+      "id": "P-003",
+      "url": "https://developers.mailersend.com/api/v1/account/tokens",
+      "url_final": "https://developers.mailersend.com/api/v1/account/tokens",
+      "titulo": "Tokens | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:07Z",
+      "sha256": "dc5afb5efbc428f9b201e75f6f28938d5e210112779595cfb5aece36faf10cbb",
+      "bytes": 569404,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/smtp-users.html",
+        "https://developers.mailersend.com/api/v1/tokens.html",
+        "https://developers.mailersend.com/api/v1/webhooks",
+        "https://developers.mailersend.com/api/v1/webhooks.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/dc5afb5efbc428f9.html"
+    },
+    {
+      "id": "P-004",
+      "url": "https://developers.mailersend.com/api/v1/account/webhooks",
+      "url_final": "https://developers.mailersend.com/api/v1/account/webhooks",
+      "titulo": "Webhooks | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "97bde94084efb89feec17c91a13bcb569b677792a41c9423fba3e0af68cc00c8",
+      "bytes": 1122734,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/smtp-users.html",
+        "https://developers.mailersend.com/api/v1/tokens.html",
+        "https://developers.mailersend.com/api/v1/webhooks",
+        "https://developers.mailersend.com/api/v1/webhooks.html",
+        "https://developers.mailersend.com/general"
+      ],
+      "fichero_texto": "mailersend/97bde94084efb89f.html"
+    },
+    {
+      "id": "P-005",
+      "url": "https://developers.mailersend.com/api/v1/activity.html",
+      "url_final": "https://developers.mailersend.com/api/v1/email/activity",
+      "titulo": "Activity | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:09Z",
+      "sha256": "33e5375b6451a02d6140cf3ce0478da2400185db5d05a5a124a3e66e668c9be4",
+      "bytes": 322143,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/33e5375b6451a02d.html"
+    },
+    {
+      "id": "P-006",
+      "url": "https://developers.mailersend.com/api/v1/domains.html",
+      "url_final": "https://developers.mailersend.com/api/v1/email/domains",
+      "titulo": "Domains | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "0fb1616e201b7c050d08962653947a3eca2a90d9049579d746fc2973562c3b3f",
+      "bytes": 1169488,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://www.mailersend.com/pricing"
+      ],
+      "fichero_texto": "mailersend/0fb1616e201b7c05.html"
+    },
+    {
+      "id": "P-007",
+      "url": "https://developers.mailersend.com/api/v1/email.html",
+      "url_final": "https://developers.mailersend.com/api/v1/email",
+      "titulo": "Sending an Email | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "e69b0ef801b8f52dd79c477e97fa084e201a798f135e30c57c1376b0bda957d6",
+      "bytes": 709016,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://www.mailersend.com/help/how-to-start-sending-emails",
+        "https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors",
+        "https://www.mailersend.com/help/schedule-bulk-emails-with-the-bulk-endpoint",
+        "https://www.mailersend.com/pricing"
+      ],
+      "fichero_texto": "mailersend/e69b0ef801b8f52d.html"
+    },
+    {
+      "id": "P-008",
+      "url": "https://developers.mailersend.com/api/v1/email/message-schedules",
+      "url_final": "https://developers.mailersend.com/api/v1/email/message-schedules",
+      "titulo": "Scheduled messages | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "f33de73fcd544e64ec121a47efa6d3667a110710893db68a705c7e9957d6fd6f",
+      "bytes": 391047,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients",
+        "https://developers.mailersend.com/api/v1/email/templates"
+      ],
+      "fichero_texto": "mailersend/f33de73fcd544e64.html"
+    },
+    {
+      "id": "P-009",
+      "url": "https://developers.mailersend.com/api/v1/email/messages",
+      "url_final": "https://developers.mailersend.com/api/v1/email/messages",
+      "titulo": "Messages | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "eaf5128a7d29fcd571a6c9e6c38a5719599137bbdcbfe16a713e324b47746dfe",
+      "bytes": 348657,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients",
+        "https://developers.mailersend.com/api/v1/email/templates"
+      ],
+      "fichero_texto": "mailersend/eaf5128a7d29fcd5.html"
+    },
+    {
+      "id": "P-010",
+      "url": "https://developers.mailersend.com/api/v1/email/recipients",
+      "url_final": "https://developers.mailersend.com/api/v1/email/recipients",
+      "titulo": "Recipients | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "1f4ac0ace0c4de810a2cc8d4073de17e4cf8751b7005bbbc9bf50f514ef7aa44",
+      "bytes": 1392875,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/1f4ac0ace0c4de81.html"
+    },
+    {
+      "id": "P-011",
+      "url": "https://developers.mailersend.com/api/v1/email/sender-identity",
+      "url_final": "https://developers.mailersend.com/api/v1/email/sender-identity",
+      "titulo": "Sender Identities | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "13288adfc0f1d7271138bda248b0c49cd10dda476fdab5ed4ff02e004549ddf8",
+      "bytes": 1140939,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients",
+        "https://developers.mailersend.com/api/v1/email/templates"
+      ],
+      "fichero_texto": "mailersend/13288adfc0f1d727.html"
+    },
+    {
+      "id": "P-012",
+      "url": "https://developers.mailersend.com/api/v1/email/smtp-relay",
+      "url_final": "https://developers.mailersend.com/api/v1/email/smtp-relay",
+      "titulo": "SMTP relay | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "be008ef14621d7a499d692e4ac7bdb67a03c3786029efe056b6fac6cad4325cb",
+      "bytes": 119653,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients",
+        "https://developers.mailersend.com/api/v1/email/templates"
+      ],
+      "fichero_texto": "mailersend/be008ef14621d7a4.html"
+    },
+    {
+      "id": "P-013",
+      "url": "https://developers.mailersend.com/api/v1/email/templates",
+      "url_final": "https://developers.mailersend.com/api/v1/email/templates",
+      "titulo": "Templates | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "0d1316b5edb203c907e814bae904bbae4b6137038acd3f9e27a3d05300bb856d",
+      "bytes": 799170,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients",
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/0d1316b5edb203c9.html"
+    },
+    {
+      "id": "P-014",
+      "url": "https://developers.mailersend.com/api/v1/inbound.html",
+      "url_final": "https://developers.mailersend.com/api/v1/email/inbound",
+      "titulo": "Inbound routing | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "66527a8bf22ced2cbda4859440ebc339036dca318e8dfd4b7a2ba7dd5aeeb603",
+      "bytes": 896116,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://www.mailersend.com/features/inbound-emails"
+      ],
+      "fichero_texto": "mailersend/66527a8bf22ced2c.html"
+    },
+    {
+      "id": "P-015",
+      "url": "https://developers.mailersend.com/api/v1/other-endpoints.html",
+      "url_final": "https://developers.mailersend.com/guides/checking-api-quota",
+      "titulo": "Checking your API quota | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "47dfdc13c7cc535d3f9d0db3b083c5bce0c753cea9036ccabfe2f8f5e69f554a",
+      "bytes": 170525,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/47dfdc13c7cc535d.html"
+    },
+    {
+      "id": "P-016",
+      "url": "https://developers.mailersend.com/api/v1/sms/webhooks",
+      "url_final": "https://developers.mailersend.com/api/v1/sms/webhooks",
+      "titulo": "Webhooks | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "9ba492076879525092c918532ec588374c5c0b79e7d0f662924b71a3d4a8a523",
+      "bytes": 612205,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/9ba4920768795250.html"
+    },
+    {
+      "id": "P-017",
+      "url": "https://developers.mailersend.com/api/v1/smtp-users.html",
+      "url_final": "https://developers.mailersend.com/api/v1/account/smtp-users",
+      "titulo": "SMTP Users | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "eeffa51498b3bf57b816ee1f5e8080d12fb5fbaf89d069bc54ef584a4e5b61c8",
+      "bytes": 647205,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/eeffa51498b3bf57.html"
+    },
+    {
+      "id": "P-018",
+      "url": "https://developers.mailersend.com/api/v1/templates.html",
+      "url_final": "https://developers.mailersend.com/api/v1/email/templates",
+      "titulo": "Templates | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "0d1316b5edb203c907e814bae904bbae4b6137038acd3f9e27a3d05300bb856d",
+      "bytes": 799170,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/0d1316b5edb203c9.html"
+    },
+    {
+      "id": "P-019",
+      "url": "https://developers.mailersend.com/api/v1/tokens.html",
+      "url_final": "https://developers.mailersend.com/api/v1/account/tokens",
+      "titulo": "Tokens | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "dc5afb5efbc428f9b201e75f6f28938d5e210112779595cfb5aece36faf10cbb",
+      "bytes": 569404,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/dc5afb5efbc428f9.html"
+    },
+    {
+      "id": "P-020",
+      "url": "https://developers.mailersend.com/api/v1/verification/email",
+      "url_final": "https://developers.mailersend.com/api/v1/verification/email",
+      "titulo": "Email Verification | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "cee8306305f53ba46ba0272eeff82a99a9fadba38a057a3c8300a81cc9ef391f",
+      "bytes": 981414,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/email/templates",
+        "https://developers.mailersend.com/api/v1/templates.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/cee8306305f53ba4.html"
+    },
+    {
+      "id": "P-021",
+      "url": "https://developers.mailersend.com/api/v1/webhooks",
+      "url_final": "https://developers.mailersend.com/api/v1/account/webhooks",
+      "titulo": "Webhooks | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "97bde94084efb89feec17c91a13bcb569b677792a41c9423fba3e0af68cc00c8",
+      "bytes": 1122734,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "semilla",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/97bde94084efb89f.html"
+    },
+    {
+      "id": "P-022",
+      "url": "https://developers.mailersend.com/api/v1/webhooks.html",
+      "url_final": "https://developers.mailersend.com/api/v1/account/webhooks",
+      "titulo": "Webhooks | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "97bde94084efb89feec17c91a13bcb569b677792a41c9423fba3e0af68cc00c8",
+      "bytes": 1122734,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "semilla",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://www.mailersend.com/features/webhooks",
+        "https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors"
+      ],
+      "fichero_texto": "mailersend/97bde94084efb89f.html"
+    },
+    {
+      "id": "P-023",
+      "url": "https://developers.mailersend.com/api/v1/whatsapp/webhooks",
+      "url_final": "https://developers.mailersend.com/api/v1/whatsapp/webhooks",
+      "titulo": "Webhooks | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "d2aab0782a6de444fb7fff3732f95efa5afd810a800d3473e9a247e97b6e81cb",
+      "bytes": 218354,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/general",
+        "https://developers.mailersend.com/general.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/d2aab0782a6de444.html"
+    },
+    {
+      "id": "P-024",
+      "url": "https://developers.mailersend.com/general",
+      "url_final": "https://developers.mailersend.com/general",
+      "titulo": "General API resources | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "67023bf7568081f2cfe16361ef9deeb5aa975c07c8de47814aa976944942acff",
+      "bytes": 266126,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/",
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients"
+      ],
+      "fichero_texto": "mailersend/67023bf7568081f2.html"
+    },
+    {
+      "id": "P-025",
+      "url": "https://developers.mailersend.com/general.html",
+      "url_final": "https://developers.mailersend.com/general",
+      "titulo": "General API resources | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "67023bf7568081f2cfe16361ef9deeb5aa975c07c8de47814aa976944942acff",
+      "bytes": 266126,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.mailersend.com/smtp-relay.html",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/how-to-start-sending-emails",
+        "https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors"
+      ],
+      "fichero_texto": "mailersend/67023bf7568081f2.html"
+    },
+    {
+      "id": "P-026",
+      "url": "https://developers.mailersend.com/guides/adding-attachments-to-emails",
+      "url_final": "https://developers.mailersend.com/guides/adding-attachments-to-emails",
+      "titulo": "Adding Attachments to Emails | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "61d3526d2ef22bda16b0ab8d66348f0a547afb5d532f6521c43f9faf681d938b",
+      "bytes": 106562,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/other-endpoints.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/61d3526d2ef22bda.html"
+    },
+    {
+      "id": "P-027",
+      "url": "https://developers.mailersend.com/guides/checking-api-quota",
+      "url_final": "https://developers.mailersend.com/guides/checking-api-quota",
+      "titulo": "Checking your API quota | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "47dfdc13c7cc535d3f9d0db3b083c5bce0c753cea9036ccabfe2f8f5e69f554a",
+      "bytes": 170525,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/other-endpoints.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/47dfdc13c7cc535d.html"
+    },
+    {
+      "id": "P-028",
+      "url": "https://developers.mailersend.com/guides/remediation-of-credential-leaks-api-token-and-smtp",
+      "url_final": "https://developers.mailersend.com/guides/remediation-of-credential-leaks-api-token-and-smtp",
+      "titulo": "Remediation of Credential Leaks: API Token and SMTP Credentials | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "7f079ef6648e574ec02d22eeffda419809713d343876fdd7cfbfa8e9227ea207",
+      "bytes": 105745,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/other-endpoints.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/7f079ef6648e574e.html"
+    },
+    {
+      "id": "P-029",
+      "url": "https://developers.mailersend.com/guides/setting-up-webhooks",
+      "url_final": "https://developers.mailersend.com/guides/setting-up-webhooks",
+      "titulo": "Setting Up Webhooks | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "df57fafbbd647748129dec92b44089cbfd30e56bb8bd275f8db051b13b9ddd69",
+      "bytes": 153833,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/other-endpoints.html",
+        "sitemap:https://developers.mailersend.com/sitemap.xml",
+        "llms.txt:https://developers.mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/df57fafbbd647748.html"
+    },
+    {
+      "id": "P-030",
+      "url": "https://developers.mailersend.com/sdk.html",
+      "url_final": "https://developers.mailersend.com/sdk",
+      "titulo": "Sending emails with MailerSend SDKs | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "422b73de14d6aa41f700e216d7397ccb9f00aa815b5c73dafedb540567458cb4",
+      "bytes": 260419,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/422b73de14d6aa41.html"
+    },
+    {
+      "id": "P-031",
+      "url": "https://developers.mailersend.com/smtp-relay.html",
+      "url_final": "https://developers.mailersend.com/api/v1/email/smtp-relay",
+      "titulo": "SMTP relay | MailerSend Developers",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "be008ef14621d7a499d692e4ac7bdb67a03c3786029efe056b6fac6cad4325cb",
+      "bytes": 119653,
+      "content_type": "text/html",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/be008ef14621d7a4.html"
+    },
+    {
+      "id": "P-032",
+      "url": "https://www.mailersend.com/compare/amazonses-alternative",
+      "url_final": "https://www.mailersend.com/compare/amazonses-alternative",
+      "titulo": "Free Amazon SES Alternative - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "9a4a2a2ab1e264921c03809ac52918668d8da041f5db2d78a9b44552340db9d7",
+      "bytes": 218696,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/9a4a2a2ab1e26492.html"
+    },
+    {
+      "id": "P-033",
+      "url": "https://www.mailersend.com/compare/mailchimp-alternative",
+      "url_final": "https://www.mailersend.com/compare/mailchimp-alternative",
+      "titulo": "Free Mailchimp Alternative - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "2bd432ee7ce36eba068b71c320e9c8fe40de90cd07bbcd511ed1f111cab4f334",
+      "bytes": 192857,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/2bd432ee7ce36eba.html"
+    },
+    {
+      "id": "P-034",
+      "url": "https://www.mailersend.com/compare/mailtrap-alternative",
+      "url_final": "https://www.mailersend.com/compare/mailtrap-alternative",
+      "titulo": "Mailtrap Alternative for Email Sending - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "11e0937c5fc3701b18fb8959c4d35e10c75ad7e75f004a8948b144f83d2149a5",
+      "bytes": 291256,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/11e0937c5fc3701b.html"
+    },
+    {
+      "id": "P-035",
+      "url": "https://www.mailersend.com/compare/mandrill-alternative",
+      "url_final": "https://www.mailersend.com/compare/mandrill-alternative",
+      "titulo": "Free Mandrill Alternative - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "0040ca178d741fcff6ebca304c43b5bd9932816e04c5923be065a22fc33eebd5",
+      "bytes": 213476,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "semilla",
+        "sitemap:https://www.mailersend.com/sitemap.xml",
+        "llms.txt:https://mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/0040ca178d741fcf.html"
+    },
+    {
+      "id": "P-036",
+      "url": "https://www.mailersend.com/compare/resend-alternative",
+      "url_final": "https://www.mailersend.com/compare/resend-alternative",
+      "titulo": "Is MailerSend a Suitable Resend Alternative for Your Business? - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "a8bc61d3dcaac164e06c17c04d3e8524f3c00d344e184e5a31e8c8bb6e6d34c4",
+      "bytes": 299599,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml",
+        "llms.txt:https://mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/a8bc61d3dcaac164.html"
+    },
+    {
+      "id": "P-037",
+      "url": "https://www.mailersend.com/compare/sendgrid-alternative",
+      "url_final": "https://www.mailersend.com/compare/sendgrid-alternative",
+      "titulo": "Sendgrid Alternative: MailerSend vs Sendgrid for Transactional Messaging - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "bfac60a23227203ba02843f8bb14972aefef3456040f3ca1bf3fad091100a10d",
+      "bytes": 255148,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "semilla",
+        "sitemap:https://www.mailersend.com/sitemap.xml",
+        "llms.txt:https://mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/bfac60a23227203b.html"
+    },
+    {
+      "id": "P-038",
+      "url": "https://www.mailersend.com/compare/sendinblue-alternative",
+      "url_final": "https://www.mailersend.com/compare/sendinblue-alternative",
+      "titulo": "Brevo (Formerly Sendinblue) Alternative for Transactional Emails - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "ec247e9a35947976515a4491b1024bb92221b0b4b2812401ceb71fd5724f1a5d",
+      "bytes": 303713,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/ec247e9a35947976.html"
+    },
+    {
+      "id": "P-039",
+      "url": "https://www.mailersend.com/compare/smtp-alternative",
+      "url_final": "https://www.mailersend.com/compare/smtp-alternative",
+      "titulo": "SMTP Alternative With a Free Plan - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "7b08398dfe313dc6430f07c47c9d895c7333ee9fe1195e76421d566f93ed1064",
+      "bytes": 298947,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/7b08398dfe313dc6.html"
+    },
+    {
+      "id": "P-040",
+      "url": "https://www.mailersend.com/compare/smtp2go-alternative",
+      "url_final": "https://www.mailersend.com/compare/smtp2go-alternative",
+      "titulo": "SMTP2GO Alternative for Transactional Messaging - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "faea290c3b6c79f7207f1474e1366f781c765c49d792a9962552a1b13ded2f50",
+      "bytes": 306825,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "sitemap:https://www.mailersend.com/sitemap.xml",
+        "llms.txt:https://mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/faea290c3b6c79f7.html"
+    },
+    {
+      "id": "P-041",
+      "url": "https://www.mailersend.com/features",
+      "url_final": "https://www.mailersend.com/features",
+      "titulo": "Explore all MailerSend Features - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "f22bc31ab962082b4af1bbed46f5ecb1cf5cdbe540e8043bb6bc19d9582a1dad",
+      "bytes": 154837,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/f22bc31ab962082b.html"
+    },
+    {
+      "id": "P-042",
+      "url": "https://www.mailersend.com/features/blocklist-monitoring",
+      "url_final": "https://www.mailersend.com/features/blocklist-monitoring",
+      "titulo": "Email Blocklist Check and Monitoring for Domains and IPs - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "5fba8b5773089bdf0fcae9f6a705665839a9535d04b0e62dec60e0e500cf314c",
+      "bytes": 162455,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/5fba8b5773089bdf.html"
+    },
+    {
+      "id": "P-043",
+      "url": "https://www.mailersend.com/features/dedicated-ip-email",
+      "url_final": "https://www.mailersend.com/features/dedicated-ip-email",
+      "titulo": "Dedicated IP for Transactional Emails - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "f1c0201c43a6dc9b0ca4ced1d5f3da19272f54b31dab0028a878c21c655aed92",
+      "bytes": 189990,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "semilla",
+        "https://www.mailersend.com/features/email-verification-tool"
+      ],
+      "fichero_texto": "mailersend/f1c0201c43a6dc9b.html"
+    },
+    {
+      "id": "P-044",
+      "url": "https://www.mailersend.com/features/dmarc-monitoring",
+      "url_final": "https://www.mailersend.com/features/dmarc-monitoring",
+      "titulo": "DMARC Monitoring & Reporting Tool - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "0c560dbb0bd4018824beaf6b5beb2647c86518d6d192f8a892a91056492de6dd",
+      "bytes": 172407,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion",
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/0c560dbb0bd40188.html"
+    },
+    {
+      "id": "P-045",
+      "url": "https://www.mailersend.com/features/email-api",
+      "url_final": "https://www.mailersend.com/features/email-api",
+      "titulo": "Flexible Email API for Developers - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "0043d771763f0de675534f5b0fd864dc1f45e3daa657ca27c6de946679c1a9ed",
+      "bytes": 235869,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/0043d771763f0de6.html"
+    },
+    {
+      "id": "P-046",
+      "url": "https://www.mailersend.com/features/email-api-fr",
+      "url_final": "https://www.mailersend.com/features/email-api-fr",
+      "titulo": "Une API e-mails adaptée aux développeurs - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "8e4c03cc2f48735533e261f6c39fb2f3d63fc4fae2a567fe4661d85cc39ceb58",
+      "bytes": 212551,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/8e4c03cc2f487355.html"
+    },
+    {
+      "id": "P-047",
+      "url": "https://www.mailersend.com/features/email-api-pl",
+      "url_final": "https://www.mailersend.com/features/email-api-pl",
+      "titulo": "Elastyczne Email API dla Developerów - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "17491b4df48f26e493af4dd39d116955da38081f448dd86f27e925b28351dad2",
+      "bytes": 210470,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/17491b4df48f26e4.html"
+    },
+    {
+      "id": "P-048",
+      "url": "https://www.mailersend.com/features/email-api-pt",
+      "url_final": "https://www.mailersend.com/features/email-api-pt",
+      "titulo": "API de e-mail versátil para devs - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "af79dbe7b888c4534dc8e16612f35a7a2513b028f3974f9c524f85ff44ac34c5",
+      "bytes": 180844,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/af79dbe7b888c453.html"
+    },
+    {
+      "id": "P-049",
+      "url": "https://www.mailersend.com/features/email-delivery",
+      "url_final": "https://www.mailersend.com/features/email-delivery",
+      "titulo": "Fast, Reliable and Secure Email Delivery Service - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "0aa729dc2acade74b9207305d939faa23aa166fdcb0155cfc12cf36b350c53e3",
+      "bytes": 179475,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas",
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/0aa729dc2acade74.html"
+    },
+    {
+      "id": "P-050",
+      "url": "https://www.mailersend.com/features/email-verification-tool",
+      "url_final": "https://www.mailersend.com/features/email-verification-tool",
+      "titulo": "Email Address Validation Tool - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "ac4148075491d5037e2412e787de309c89c8453c4fc8f78c81c6c86159968763",
+      "bytes": 290109,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/ac4148075491d503.html"
+    },
+    {
+      "id": "P-051",
+      "url": "https://www.mailersend.com/features/inbound-emails",
+      "url_final": "https://www.mailersend.com/features/inbound-emails",
+      "titulo": "Inbound Email Routing - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "0e464fbfbe5a7f3b11c815a71f35e2be0a2d6a3391417a014930ce41beca3238",
+      "bytes": 192779,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/0e464fbfbe5a7f3b.html"
+    },
+    {
+      "id": "P-052",
+      "url": "https://www.mailersend.com/features/logs",
+      "url_final": "https://www.mailersend.com/features/logs",
+      "titulo": "Logs Page: API Requests and SMTP Activity Monitoring - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "fcbb016b709640f6eb0b336f8a9eee25747908450bb7d380e1dd877e84a7e975",
+      "bytes": 252921,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "errores_estado",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/fcbb016b709640f6.html"
+    },
+    {
+      "id": "P-053",
+      "url": "https://www.mailersend.com/features/mcp",
+      "url_final": "https://www.mailersend.com/features/mcp",
+      "titulo": "Email MCP Server For Sending and Managing Transactional Emails - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "e3b6e5264595955f63559050b38cd252e5cebb44328c24744238b460e3b549d0",
+      "bytes": 206534,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/e3b6e5264595955f.html"
+    },
+    {
+      "id": "P-054",
+      "url": "https://www.mailersend.com/features/sms-api",
+      "url_final": "https://www.mailersend.com/features/sms-api",
+      "titulo": "SMS API Service - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "efcf625a34e0d4ea47b8da729499ecdc71e688aa4d67b6c7835f2a2835d4d908",
+      "bytes": 191180,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/efcf625a34e0d4ea.html"
+    },
+    {
+      "id": "P-055",
+      "url": "https://www.mailersend.com/features/smtp-relay",
+      "url_final": "https://www.mailersend.com/features/smtp-relay",
+      "titulo": "High-Performance SMTP Relay Service for Transactional Email - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "11802f19262ae92e939ba1ef8b87e3f1b82880e15e2c88a872aad64a3d452af4",
+      "bytes": 203184,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/11802f19262ae92e.html"
+    },
+    {
+      "id": "P-056",
+      "url": "https://www.mailersend.com/features/smtp-relay-fr",
+      "url_final": "https://www.mailersend.com/features/smtp-relay-fr",
+      "titulo": "Service de relais SMTP - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "febd2497ee749a31e49658a961a40d317e863fa95a7ea2ae715deee4eb4e230b",
+      "bytes": 197944,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/febd2497ee749a31.html"
+    },
+    {
+      "id": "P-057",
+      "url": "https://www.mailersend.com/features/smtp-relay-pl",
+      "url_final": "https://www.mailersend.com/features/smtp-relay-pl",
+      "titulo": "Usługa SMTP Relay - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "944f1db868820044c579bb0e5b3d56c89300f81d4df6bccdc103e80f9a9e1247",
+      "bytes": 200898,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/944f1db868820044.html"
+    },
+    {
+      "id": "P-058",
+      "url": "https://www.mailersend.com/features/smtp-relay-pt",
+      "url_final": "https://www.mailersend.com/features/smtp-relay-pt",
+      "titulo": "Serviço de relay de email SMTP - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "2b8add8d91f773bd4801cbe11b1ed0b44d6ca93922b445d97c68cb17bd5a89cf",
+      "bytes": 185729,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/2b8add8d91f773bd.html"
+    },
+    {
+      "id": "P-059",
+      "url": "https://www.mailersend.com/features/suppression-list-management",
+      "url_final": "https://www.mailersend.com/features/suppression-list-management",
+      "titulo": "Suppression List Management - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "6ad2e81293c342ca8adfe4c3c96bc72e7b3ccd10502dc1f80e713ee1ef727618",
+      "bytes": 261285,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/6ad2e81293c342ca.html"
+    },
+    {
+      "id": "P-060",
+      "url": "https://www.mailersend.com/features/transactional-emails",
+      "url_final": "https://www.mailersend.com/features/transactional-emails",
+      "titulo": "Send Transactional Emails - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "d3294ad4a3a44871a735bd58ae596febad1a7eb8d87ecf37afc1f0524143d3a6",
+      "bytes": 311592,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/d3294ad4a3a44871.html"
+    },
+    {
+      "id": "P-061",
+      "url": "https://www.mailersend.com/features/webhooks",
+      "url_final": "https://www.mailersend.com/features/webhooks",
+      "titulo": "Real-Time Email Webhooks - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "b799a9555708bc541273cc8ac395a0da5afbcc7a6c5327066ae2ab6949939e0d",
+      "bytes": 227040,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "semilla",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/b799a9555708bc54.html"
+    },
+    {
+      "id": "P-062",
+      "url": "https://www.mailersend.com/help",
+      "url_final": "https://www.mailersend.com/help",
+      "titulo": "Get Help - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "875c6ff6c962133a41db75bcb910ee0c2e75aae5466313dfa8ff66f1f24b1e4d",
+      "bytes": 122886,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/",
+        "https://developers.mailersend.com/api/v1/activity.html",
+        "https://developers.mailersend.com/api/v1/domains.html",
+        "https://developers.mailersend.com/api/v1/email.html",
+        "https://developers.mailersend.com/api/v1/email/recipients"
+      ],
+      "fichero_texto": "mailersend/875c6ff6c962133a.html"
+    },
+    {
+      "id": "P-063",
+      "url": "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+      "url_final": "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+      "titulo": "About MailerSend's refund and account policies - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "dcd0499c93d2e144eeed247d43d0d97ce9de8d11974b242c840d3c68b86f42ba",
+      "bytes": 145620,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "semilla",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/dcd0499c93d2e144.html"
+    },
+    {
+      "id": "P-064",
+      "url": "https://www.mailersend.com/help/account-reputation-statuses",
+      "url_final": "https://www.mailersend.com/help/account-reputation-statuses",
+      "titulo": "Account Reputation Statuses - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "9c5ff2b2f858f0c3274f8bac92ebd46c4b86cf31c4412d3e0f5ff3de208acf8f",
+      "bytes": 147482,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "semilla",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/9c5ff2b2f858f0c3.html"
+    },
+    {
+      "id": "P-065",
+      "url": "https://www.mailersend.com/help/account-settings",
+      "url_final": "https://www.mailersend.com/help/account-settings",
+      "titulo": "Account, Billing & Add-ons - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "d4415f5d146a42f2930302c63028770908b07a57ff810c8f918ae13dcc12528c",
+      "bytes": 164406,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/d4415f5d146a42f2.html"
+    },
+    {
+      "id": "P-066",
+      "url": "https://www.mailersend.com/help/api-smtp-logs",
+      "url_final": "https://www.mailersend.com/help/api-smtp-logs",
+      "titulo": "How to access and use MailerSend API & SMTP logs - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "d6d9336e72531f4c7708b7aec8b1a7ce8f7d2a77d58b62b77bcb1463f38c68f2",
+      "bytes": 151199,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "semilla",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/d6d9336e72531f4c.html"
+    },
+    {
+      "id": "P-067",
+      "url": "https://www.mailersend.com/help/getting-started",
+      "url_final": "https://www.mailersend.com/help/getting-started",
+      "titulo": "Getting Started - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "9ab8bcbcafd2c965c87b4d2fd9ac9b8b5d5d631a3e99efe459bb90e076135103",
+      "bytes": 201426,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/9ab8bcbcafd2c965.html"
+    },
+    {
+      "id": "P-068",
+      "url": "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan",
+      "url_final": "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan",
+      "titulo": "How To Change Or Cancel Your MailerSend Plan - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "b2713a2095f147543e452d49b710b13f5da7d5cdf5114e1c02649e03335f3de5",
+      "bytes": 152113,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/b2713a2095f14754.html"
+    },
+    {
+      "id": "P-069",
+      "url": "https://www.mailersend.com/help/how-to-create-a-template",
+      "url_final": "https://www.mailersend.com/help/how-to-create-a-template",
+      "titulo": "How to Create Transactional Email Templates - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "f9224877af68f609172e5cee8ad0b0bde7520cb709307034a0d430b1b16e9f7b",
+      "bytes": 176154,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://developers.mailersend.com/smtp-relay.html",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/f9224877af68f609.html"
+    },
+    {
+      "id": "P-070",
+      "url": "https://www.mailersend.com/help/how-to-request-dedicated-ip",
+      "url_final": "https://www.mailersend.com/help/how-to-request-dedicated-ip",
+      "titulo": "How to Request a Dedicated IP - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "0719f13beecca8a32a03dd65c566d461f05df441c7e110de9d764ad11013dd27",
+      "bytes": 142443,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/features/dedicated-ip-email",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/0719f13beecca8a3.html"
+    },
+    {
+      "id": "P-071",
+      "url": "https://www.mailersend.com/help/how-to-set-a-billing-limit",
+      "url_final": "https://www.mailersend.com/help/how-to-set-a-billing-limit",
+      "titulo": "How To Set A Billing Limit On Your MailerSend Account - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "726a2b8c2c9dc7e9c9fc1ad610e3b99daca3911c4f61abc8195d3a4bbb140e41",
+      "bytes": 144735,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/726a2b8c2c9dc7e9.html"
+    },
+    {
+      "id": "P-072",
+      "url": "https://www.mailersend.com/help/how-to-start-sending-emails",
+      "url_final": "https://www.mailersend.com/help/how-to-start-sending-emails",
+      "titulo": "How to Start Sending Emails With MailerSend - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "1e9cea8216b2f287fb5a676a990ee6867c4ee4a9a4e1d9e9d7de9d700fa71351",
+      "bytes": 192162,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "errores_estado",
+        "envio",
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/general",
+        "https://developers.mailersend.com/general.html",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs"
+      ],
+      "fichero_texto": "mailersend/1e9cea8216b2f287.html"
+    },
+    {
+      "id": "P-073",
+      "url": "https://www.mailersend.com/help/how-to-test-email-sending-in-mailersend",
+      "url_final": "https://www.mailersend.com/help/how-to-test-email-sending-in-mailersend",
+      "titulo": "How to Test Email Sending in MailerSend - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "fa32300c4b56590273f3303088a78d7976422c2e382cae723bceb0d0cfb5e104",
+      "bytes": 149357,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/features/webhooks",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/fa32300c4b565902.html"
+    },
+    {
+      "id": "P-074",
+      "url": "https://www.mailersend.com/help/inbound-route",
+      "url_final": "https://www.mailersend.com/help/inbound-route",
+      "titulo": "How to set up an Inbound Route - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "d7af2cb8399c87cc083bddf38ecf147739bb2afadc3f04d23a97ab814196cfaa",
+      "bytes": 165390,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/features/inbound-emails",
+        "https://www.mailersend.com/help/getting-started",
+        "semilla",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/d7af2cb8399c87cc.html"
+    },
+    {
+      "id": "P-075",
+      "url": "https://www.mailersend.com/help/navigating-the-dashboard",
+      "url_final": "https://www.mailersend.com/help/navigating-the-dashboard",
+      "titulo": "Navigating the Dashboard - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "18b3e1c52283dde03f84b1b130408f042e16ea3b41efb53a326b8f0766576ee2",
+      "bytes": 162146,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/18b3e1c52283dde0.html"
+    },
+    {
+      "id": "P-076",
+      "url": "https://www.mailersend.com/help/plan-add-ons",
+      "url_final": "https://www.mailersend.com/help/plan-add-ons",
+      "titulo": "MailerSend Plan Add-ons - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "341ee7933c50ed284e1a02f4571631f9c5ead2faf7122bd9594652a473567f0d",
+      "bytes": 172109,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/341ee7933c50ed28.html"
+    },
+    {
+      "id": "P-077",
+      "url": "https://www.mailersend.com/help/plans-features-and-limits",
+      "url_final": "https://www.mailersend.com/help/plans-features-and-limits",
+      "titulo": "MailerSend Plans and Limits - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "968db6f8c581b32ca8a18c7b025c9410cd0521ae67106e365dd06ce632469904",
+      "bytes": 155760,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/features/email-verification-tool",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/968db6f8c581b32c.html"
+    },
+    {
+      "id": "P-078",
+      "url": "https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors",
+      "url_final": "https://www.mailersend.com/help/rate-limits-how-to-reduce-403-422-429-errors",
+      "titulo": "Rate limits: How to Reduce 403, 422, & 429 Errors - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "cf5cb3eb02857e86caa048f065e1164174e28f3a79f57eeb9918fb184802ecc9",
+      "bytes": 150901,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/cf5cb3eb02857e86.html"
+    },
+    {
+      "id": "P-079",
+      "url": "https://www.mailersend.com/help/rest-api-response-codes",
+      "url_final": "https://www.mailersend.com/help/rest-api-response-codes",
+      "titulo": "REST API Response Codes - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "b4b89af3fd8604611ac28aa0519050e644bcd80bc4a609ed1722c6c7cd1ed09b",
+      "bytes": 153607,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/b4b89af3fd860461.html"
+    },
+    {
+      "id": "P-080",
+      "url": "https://www.mailersend.com/help/sandbox-mode-and-the-professional-trial",
+      "url_final": "https://www.mailersend.com/help/sandbox-mode-and-the-professional-trial",
+      "titulo": "Sandbox Mode and the Professional Trial, What's the Difference? - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "9385bbd4bd3b1a3bdb67ecdde8e752e6ec84855e61aa831a5af34044a111e901",
+      "bytes": 147816,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/9385bbd4bd3b1a3b.html"
+    },
+    {
+      "id": "P-081",
+      "url": "https://www.mailersend.com/help/schedule-bulk-emails-with-the-bulk-endpoint",
+      "url_final": "https://www.mailersend.com/help/schedule-bulk-emails-with-the-bulk-endpoint",
+      "titulo": "Schedule Bulk Emails - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "e86e8a26f6e287ae7fa6c25fb821c5477d5e5d58f613969b06ee95d128ea9609",
+      "bytes": 153803,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/e86e8a26f6e287ae.html"
+    },
+    {
+      "id": "P-082",
+      "url": "https://www.mailersend.com/help/send-email-on-behalf-of-clients",
+      "url_final": "https://www.mailersend.com/help/send-email-on-behalf-of-clients",
+      "titulo": "Sender Identities - Send Emails on Behalf of Clients - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "35948ba793d0388ed8b882422fc9dc1dbbbcf9d9c47669c3bfbe6c0cd8d2b2fc",
+      "bytes": 163054,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/35948ba793d0388e.html"
+    },
+    {
+      "id": "P-083",
+      "url": "https://www.mailersend.com/help/sms-verification-and-limits",
+      "url_final": "https://www.mailersend.com/help/sms-verification-and-limits",
+      "titulo": "SMS verification and usage limits - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "a00ecfe059b5f2152edf9ade5d5d56c9e5767b078c98e195e35ff3d347f1395b",
+      "bytes": 147436,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/a00ecfe059b5f215.html"
+    },
+    {
+      "id": "P-084",
+      "url": "https://www.mailersend.com/help/smtp-configuration-421-error",
+      "url_final": "https://www.mailersend.com/help/smtp-configuration-421-error",
+      "titulo": "How To Configure SMTP Connections Correctly (421 Error) - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "649d39939abb07723555bdb8eba88b486ca8a8c4d50ff5a21a4ca297ccc12bb2",
+      "bytes": 173964,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/649d39939abb0772.html"
+    },
+    {
+      "id": "P-085",
+      "url": "https://www.mailersend.com/help/smtp-relay",
+      "url_final": "https://www.mailersend.com/help/smtp-relay",
+      "titulo": "SMTP Configuration - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "2676887e82a7014552c6592c38a4dbb041207b3c46cf98c2f516374f092233c5",
+      "bytes": 164415,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/smtp-relay.html",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started"
+      ],
+      "fichero_texto": "mailersend/2676887e82a70145.html"
+    },
+    {
+      "id": "P-086",
+      "url": "https://www.mailersend.com/help/two-factor-authentication",
+      "url_final": "https://www.mailersend.com/help/two-factor-authentication",
+      "titulo": "How to set up Two-Factor Authentication (2FA) - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:42Z",
+      "sha256": "90f950018a3e5503a467e525c9c7795b1c0cdaad773223239387b03fc938d22c",
+      "bytes": 150056,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/90f950018a3e5503.html"
+    },
+    {
+      "id": "P-087",
+      "url": "https://www.mailersend.com/help/webhooks",
+      "url_final": "https://www.mailersend.com/help/webhooks",
+      "titulo": "Getting Started With Webhooks - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:42Z",
+      "sha256": "d6c8e74e76277654748c64941ecb3c78aef758d4fdcfec02e1fb6f71bb030c75",
+      "bytes": 149623,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/api/v1/webhooks",
+        "https://developers.mailersend.com/api/v1/webhooks.html",
+        "https://www.mailersend.com/features/webhooks",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses"
+      ],
+      "fichero_texto": "mailersend/d6c8e74e76277654.html"
+    },
+    {
+      "id": "P-088",
+      "url": "https://www.mailersend.com/help/whatsapp-sandbox",
+      "url_final": "https://www.mailersend.com/help/whatsapp-sandbox",
+      "titulo": "How to connect and use the WhatsApp sandbox - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:42Z",
+      "sha256": "6e11d70695cdf7d32f518219c41ca75a8330a5890912e7523970428cba64cade",
+      "bytes": 150229,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/help/account-reputation-statuses",
+        "https://www.mailersend.com/help/api-smtp-logs",
+        "https://www.mailersend.com/help/getting-started",
+        "https://www.mailersend.com/help/how-to-change-or-cancel-your-plan"
+      ],
+      "fichero_texto": "mailersend/6e11d70695cdf7d3.html"
+    },
+    {
+      "id": "P-089",
+      "url": "https://www.mailersend.com/integrations/official-smtp-plugin",
+      "url_final": "https://www.mailersend.com/integrations/official-smtp-plugin",
+      "titulo": "WordPress SMTP plugin - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:43Z",
+      "sha256": "35d9e8f2526d35901ca62c4f18e7f54052dd6b4e877227a4f8d9ab14a61eb7ce",
+      "bytes": 116129,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features/smtp-relay",
+        "https://www.mailersend.com/features/webhooks",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/35d9e8f2526d3590.html"
+    },
+    {
+      "id": "P-090",
+      "url": "https://www.mailersend.com/legal",
+      "url_final": "https://www.mailersend.com/legal",
+      "titulo": "Legal - Terms of Service - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:43Z",
+      "sha256": "ee5126114d642806092e196410b40e6b5e86d4f3fb5e51a21350f9de1edabd4c",
+      "bytes": 128281,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/ee5126114d642806.html"
+    },
+    {
+      "id": "P-091",
+      "url": "https://www.mailersend.com/legal/affiliate-program-terms",
+      "url_final": "https://www.mailersend.com/legal/affiliate-program-terms",
+      "titulo": "MailerSend's Affiliate Program Terms - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "cbbcdc8b2f018947059018321d10d9a1cd887efb708a5381b04a6027ab70db2e",
+      "bytes": 118533,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/cbbcdc8b2f018947.html"
+    },
+    {
+      "id": "P-092",
+      "url": "https://www.mailersend.com/legal/anti-spam-policy",
+      "url_final": "https://www.mailersend.com/legal/anti-spam-policy",
+      "titulo": "Anti-Spam Policy - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "43461ab34b6f37a2712fa3aafb8b15a4831afe4427349e68bad416ce595e0f23",
+      "bytes": 112338,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/legal/terms-of-use",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/43461ab34b6f37a2.html"
+    },
+    {
+      "id": "P-093",
+      "url": "https://www.mailersend.com/legal/api-use-policy",
+      "url_final": "https://www.mailersend.com/legal/api-use-policy",
+      "titulo": "API Use Policy: Guidelines and Best Practices - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "ece2012d3969cbcf6e8e1911fd4ddeda9b99c93c1ddd1b472239b5761a8c4ea4",
+      "bytes": 114394,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "semilla",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "semilla",
+        "https://www.mailersend.com/legal/terms-of-use",
+        "sitemap:https://www.mailersend.com/sitemap.xml",
+        "llms.txt:https://mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/ece2012d3969cbcf.html"
+    },
+    {
+      "id": "P-094",
+      "url": "https://www.mailersend.com/legal/customer-interview-terms",
+      "url_final": "https://www.mailersend.com/legal/customer-interview-terms",
+      "titulo": "Customer Interview Terms - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:45Z",
+      "sha256": "0f0cab591be1a93bcb485aa4b2dc8901dbab219fa3ba31ddc3a2f8031c04328f",
+      "bytes": 114041,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/0f0cab591be1a93b.html"
+    },
+    {
+      "id": "P-095",
+      "url": "https://www.mailersend.com/legal/data-processing-addendum",
+      "url_final": "https://www.mailersend.com/legal/data-processing-addendum",
+      "titulo": "MailerSend's Data Processing Addendum - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:45Z",
+      "sha256": "d51be1e68ce3cc8d425d3cfeaa21d1efb36cc84ff9d0a53d9196aadbb6faa168",
+      "bytes": 192739,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/legal/terms-of-use",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/d51be1e68ce3cc8d.html"
+    },
+    {
+      "id": "P-096",
+      "url": "https://www.mailersend.com/legal/guest-writing-terms",
+      "url_final": "https://www.mailersend.com/legal/guest-writing-terms",
+      "titulo": "Guest Writing Terms - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "93cb8a8deddadc50543f74078d8521c7529dae34d46eeed13a1fd3be8c7038ef",
+      "bytes": 111540,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/93cb8a8deddadc50.html"
+    },
+    {
+      "id": "P-097",
+      "url": "https://www.mailersend.com/legal/how-mailersend-stays-gdpr-compliant",
+      "url_final": "https://www.mailersend.com/legal/how-mailersend-stays-gdpr-compliant",
+      "titulo": "How MailerSend Stays GDPR Compliant - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "8f2ee3d4869536ed4ff81fd6076245db54f63febc72d46366a7c554a2bd0270e",
+      "bytes": 110100,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/8f2ee3d4869536ed.html"
+    },
+    {
+      "id": "P-098",
+      "url": "https://www.mailersend.com/legal/partner-program",
+      "url_final": "https://www.mailersend.com/legal/partner-program",
+      "titulo": "Partner Program Terms: Collaborate and Grow - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "a30570a716ef4d687ef89e2cd4ebde275397b50878b95ec3bd4efc4cbd6eb1ad",
+      "bytes": 114777,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/a30570a716ef4d68.html"
+    },
+    {
+      "id": "P-099",
+      "url": "https://www.mailersend.com/legal/responsible-disclosure-program",
+      "url_final": "https://www.mailersend.com/legal/responsible-disclosure-program",
+      "titulo": "Responsible Disclosure Program - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:47Z",
+      "sha256": "c5e876da61c7c934b4024861706bbb8df19c3366e3c7790fd49686cd518a49b4",
+      "bytes": 112985,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/c5e876da61c7c934.html"
+    },
+    {
+      "id": "P-100",
+      "url": "https://www.mailersend.com/legal/security-statement",
+      "url_final": "https://www.mailersend.com/legal/security-statement",
+      "titulo": "Security Statement: Protecting Your Data - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:47Z",
+      "sha256": "0a230912a2334bcd9795ae98ef323efb05171e80088bae44b51eefca495385b5",
+      "bytes": 113110,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml",
+        "llms.txt:https://mailersend.com/llms.txt"
+      ],
+      "fichero_texto": "mailersend/0a230912a2334bcd.html"
+    },
+    {
+      "id": "P-101",
+      "url": "https://www.mailersend.com/legal/service-level-agreement",
+      "url_final": "https://www.mailersend.com/legal/service-level-agreement",
+      "titulo": "Service Level Agreement - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "e95e74186ab1c3336243c7e094ba9c22baf4c1c78d512e6ebbc94aeb2861c339",
+      "bytes": 120898,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/pricing",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/e95e74186ab1c333.html"
+    },
+    {
+      "id": "P-102",
+      "url": "https://www.mailersend.com/legal/terms-of-country-based-discount",
+      "url_final": "https://www.mailersend.com/legal/terms-of-country-based-discount",
+      "titulo": "MailerSend's Country-based Discount Terms - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "296ed7aad08121e9ab6ed914787322af6782a51b0e3661fef34b2784defc1278",
+      "bytes": 110883,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/296ed7aad08121e9.html"
+    },
+    {
+      "id": "P-103",
+      "url": "https://www.mailersend.com/legal/terms-of-nonprofit-discount",
+      "url_final": "https://www.mailersend.com/legal/terms-of-nonprofit-discount",
+      "titulo": "Nonprofit Discount Terms - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "995c0fd16c1351b12bb885fd2d5072b0445aa1b8a72b7f9f466a9cb58fab388d",
+      "bytes": 112204,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/995c0fd16c1351b1.html"
+    },
+    {
+      "id": "P-104",
+      "url": "https://www.mailersend.com/legal/terms-of-use",
+      "url_final": "https://www.mailersend.com/legal/terms-of-use",
+      "titulo": "Terms of Use - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:49Z",
+      "sha256": "47ff0798f5c9f5c6bba3878f56e175c4618ae92b67f83180cf9c139d19c9d18d",
+      "bytes": 144020,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "semilla",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/features/email-verification-tool",
+        "https://www.mailersend.com/help/about-mailersends-refund-and-account-policies",
+        "https://www.mailersend.com/legal/api-use-policy",
+        "semilla",
+        "https://www.mailersend.com/pricing"
+      ],
+      "fichero_texto": "mailersend/47ff0798f5c9f5c6.html"
+    },
+    {
+      "id": "P-105",
+      "url": "https://www.mailersend.com/newsroom/price-and-plans-changes",
+      "url_final": "https://www.mailersend.com/newsroom",
+      "titulo": "The Latest News and Updates - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:49Z",
+      "sha256": "24c31d9b8e3fb5b3fd80bb6bc2f4e7f624622603db8363f57873990aad9ee62a",
+      "bytes": 106970,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/24c31d9b8e3fb5b3.html"
+    },
+    {
+      "id": "P-106",
+      "url": "https://www.mailersend.com/pricing",
+      "url_final": "https://www.mailersend.com/pricing",
+      "titulo": "MailerSend Pricing - Get Started Today - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:50Z",
+      "sha256": "583a8a6b1198dd25aae78e5ebd65b53b39fdff72c2ceeb58dfa3828b4583e088",
+      "bytes": 384912,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.mailersend.com/general",
+        "https://developers.mailersend.com/general.html",
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative"
+      ],
+      "fichero_texto": "mailersend/583a8a6b1198dd25.html"
+    },
+    {
+      "id": "P-107",
+      "url": "https://www.mailersend.com/pricing-fr",
+      "url_final": "https://www.mailersend.com/pricing-fr",
+      "titulo": "Tarifs MailerSend : démarrez dès aujourd’hui - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:50Z",
+      "sha256": "793ea6d103d17b562772b6941d8223d6f1d4d8072d765bb745759f991c55b493",
+      "bytes": 356954,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/793ea6d103d17b56.html"
+    },
+    {
+      "id": "P-108",
+      "url": "https://www.mailersend.com/pricing-pl",
+      "url_final": "https://www.mailersend.com/pricing-pl",
+      "titulo": "Cennik MailerSend – Zacznij już dziś - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "81e430ef9893c28867d4bed87fdbb42bdd0de0fd10f1d05a56bbe3e40b4dc721",
+      "bytes": 362773,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/81e430ef9893c288.html"
+    },
+    {
+      "id": "P-109",
+      "url": "https://www.mailersend.com/pricing-pt",
+      "url_final": "https://www.mailersend.com/pricing-pt",
+      "titulo": "Preços - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "c3d622ed5b2172302ced53e1fd734829335c8edefb1b90e2fec2632024910f83",
+      "bytes": 387110,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/c3d622ed5b217230.html"
+    },
+    {
+      "id": "P-110",
+      "url": "https://www.mailersend.com/report-abuse",
+      "url_final": "https://www.mailersend.com/report-abuse",
+      "titulo": "Report Abuse - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "a936f87aab5cd3257a6267847fa00b40bbd832c379840db245f6e5ebcfc9b181",
+      "bytes": 173016,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/a936f87aab5cd325.html"
+    },
+    {
+      "id": "P-111",
+      "url": "https://www.mailersend.com/roadmap/bulk-sending-endpoint",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:52Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-112",
+      "url": "https://www.mailersend.com/roadmap/data-storage-add-on",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:53Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-113",
+      "url": "https://www.mailersend.com/roadmap/dedicated-ip-add-on",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:53Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios",
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-114",
+      "url": "https://www.mailersend.com/roadmap/dedicated-ips",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-115",
+      "url": "https://www.mailersend.com/roadmap/domain-add-on",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-116",
+      "url": "https://www.mailersend.com/roadmap/smtp-plugin-for-wordpress",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:55Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-117",
+      "url": "https://www.mailersend.com/roadmap/smtp-relay",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:56Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-118",
+      "url": "https://www.mailersend.com/roadmap/trial-domain",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:56Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-119",
+      "url": "https://www.mailersend.com/roadmap/webhooks",
+      "url_final": "https://www.mailersend.com/roadmap",
+      "titulo": "Product Roadmap - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:57Z",
+      "sha256": "67072704b8879ebca1b016b908ed69975b72f8d65a69cfa9534c2f70d6580415",
+      "bytes": 292106,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/67072704b8879ebc.html"
+    },
+    {
+      "id": "P-120",
+      "url": "https://www.mailersend.com/sms-api",
+      "url_final": "https://www.mailersend.com/features/sms-api",
+      "titulo": "SMS API Service - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:58Z",
+      "sha256": "efcf625a34e0d4ea47b8da729499ecdc71e688aa4d67b6c7835f2a2835d4d908",
+      "bytes": 191180,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/features/smtp-relay",
+        "semilla"
+      ],
+      "fichero_texto": "mailersend/efcf625a34e0d4ea.html"
+    },
+    {
+      "id": "P-121",
+      "url": "https://www.mailersend.com/solutions/bulk-sms-api",
+      "url_final": "https://www.mailersend.com/solutions/bulk-sms-api",
+      "titulo": "Bulk SMS API - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:58Z",
+      "sha256": "6bf44c533ac71060b6915819d0236686990362c5fd1588def3bba544a5e309b2",
+      "bytes": 252238,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/6bf44c533ac71060.html"
+    },
+    {
+      "id": "P-122",
+      "url": "https://www.mailersend.com/solutions/send-bulk-email",
+      "url_final": "https://www.mailersend.com/solutions/send-bulk-email",
+      "titulo": "Send Bulk Email - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:58Z",
+      "sha256": "914da593616609891dd9038b4805b6ec6799550115b771604531f625069e8cb2",
+      "bytes": 267272,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/914da59361660989.html"
+    },
+    {
+      "id": "P-123",
+      "url": "https://www.mailersend.com/templates/drag-and-drop-editor/legal",
+      "url_final": "https://www.mailersend.com/templates/drag-and-drop-editor/legal",
+      "titulo": "Legal Update Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:59Z",
+      "sha256": "4dcb5e94054485a2620ec618fed07cb04a1b3a3c68392f60cd673cd1e5ba663b",
+      "bytes": 109262,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/4dcb5e94054485a2.html"
+    },
+    {
+      "id": "P-124",
+      "url": "https://www.mailersend.com/templates/drag-and-drop-editor/order-refunded",
+      "url_final": "https://www.mailersend.com/templates/drag-and-drop-editor/order-refunded",
+      "titulo": "Order refunded Email Template for WooCommerce - MailerSend - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:59Z",
+      "sha256": "15772842b778e70f198032c30d8263d7c38501860160e90b6e0cb30f9de44a8f",
+      "bytes": 109360,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/15772842b778e70f.html"
+    },
+    {
+      "id": "P-125",
+      "url": "https://www.mailersend.com/templates/drag-and-drop-editor/trial",
+      "url_final": "https://www.mailersend.com/templates/drag-and-drop-editor/trial",
+      "titulo": "Trial Ending Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:01:59Z",
+      "sha256": "001d71a0bd1468185710857c8cb318903248169121ec3bb4de5c0a1aae9fff48",
+      "bytes": 109243,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/001d71a0bd146818.html"
+    },
+    {
+      "id": "P-126",
+      "url": "https://www.mailersend.com/templates/drag-and-drop-editor/trial-ended",
+      "url_final": "https://www.mailersend.com/templates/drag-and-drop-editor/trial-ended",
+      "titulo": "Trial Ended Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:00Z",
+      "sha256": "21a06049e985f4810642d3b8237c8b1de3bd055786948b24f1bd6c07ef6490c9",
+      "bytes": 109215,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/21a06049e985f481.html"
+    },
+    {
+      "id": "P-127",
+      "url": "https://www.mailersend.com/templates/drag-and-drop-editor/trial-expiring",
+      "url_final": "https://www.mailersend.com/templates/drag-and-drop-editor/trial-expiring",
+      "titulo": "Trial Expiring Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:00Z",
+      "sha256": "719e692b21664a6567d48fab0ed994a7c377b4dd49a621e9bbe5b9950e237008",
+      "bytes": 109274,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/719e692b21664a65.html"
+    },
+    {
+      "id": "P-128",
+      "url": "https://www.mailersend.com/templates/drag-and-drop-editor/your-free-trial-starts-today",
+      "url_final": "https://www.mailersend.com/templates/drag-and-drop-editor/your-free-trial-starts-today",
+      "titulo": "Free Trial Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:01Z",
+      "sha256": "408f32bacc9c84db65a0fd64f74db9912af3a7fedbc20013de88ae9a4eb72816",
+      "bytes": 109340,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/408f32bacc9c84db.html"
+    },
+    {
+      "id": "P-129",
+      "url": "https://www.mailersend.com/templates/html-editor/trial-expired",
+      "url_final": "https://www.mailersend.com/templates/html-editor/trial-expired",
+      "titulo": "Trial Expired HTML Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:01Z",
+      "sha256": "3df79c8e740ae3e104f97e9ab14d1cdb5a69e31520e55ea25719b822cd2c897e",
+      "bytes": 108845,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/3df79c8e740ae3e1.html"
+    },
+    {
+      "id": "P-130",
+      "url": "https://www.mailersend.com/templates/html-editor/trial-expiring",
+      "url_final": "https://www.mailersend.com/templates/html-editor/trial-expiring",
+      "titulo": "Trial Expiring HTML Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:01Z",
+      "sha256": "eacadc0b9ca4d5cf4585cef725f2e41b26af4c14df80b4dc30c583fe9a300926",
+      "bytes": 109142,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/eacadc0b9ca4d5cf.html"
+    },
+    {
+      "id": "P-131",
+      "url": "https://www.mailersend.com/templates/rich-text-editor/order-refunded",
+      "url_final": "https://www.mailersend.com/templates/rich-text-editor/order-refunded",
+      "titulo": "Order Refunded Rich Text Email Template - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:02Z",
+      "sha256": "d952d7a882c2368dafd9e2f2271c003cb11eaf7110235f3c02fefde2d93ad731",
+      "bytes": 109432,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/d952d7a882c2368d.html"
+    },
+    {
+      "id": "P-132",
+      "url": "https://www.mailersend.com/whats-new",
+      "url_final": "https://www.mailersend.com/whats-new",
+      "titulo": "What's new - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:02Z",
+      "sha256": "2a9c9396f7744689e891a91145da81219dff2ba6506e524bada758caa2a22f59",
+      "bytes": 139917,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Blog y novedades",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://www.mailersend.com/compare/amazonses-alternative",
+        "https://www.mailersend.com/compare/mandrill-alternative",
+        "https://www.mailersend.com/compare/sendgrid-alternative",
+        "https://www.mailersend.com/features",
+        "https://www.mailersend.com/features/dedicated-ip-email"
+      ],
+      "fichero_texto": "mailersend/2a9c9396f7744689.html"
+    },
+    {
+      "id": "P-133",
+      "url": "https://www.mailersend.com/whats-new/data-retention-add-on",
+      "url_final": "https://www.mailersend.com/whats-new/data-retention-add-on",
+      "titulo": "Flexible Data Storage Options for Your Business - MailerSend",
+      "fecha_captura": "2026-10-23T15:02:03Z",
+      "sha256": "1277bddab5c8701614ab4b06b95fc4eba09e6f299de450103aa7f3027885c5a6",
+      "bytes": 124141,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Blog y novedades",
+      "motivo": "semilla",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://www.mailersend.com/pricing",
+        "semilla",
+        "sitemap:https://www.mailersend.com/sitemap.xml"
+      ],
+      "fichero_texto": "mailersend/1277bddab5c87016.html"
+    }
+  ],
+  "resumen": {
+    "incluidas": 133,
+    "capturadas": 133,
+    "fallidas": 0,
+    "con_aviso": 0
+  }
+}

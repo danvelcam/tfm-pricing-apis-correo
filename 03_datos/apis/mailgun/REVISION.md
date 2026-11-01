@@ -156,3 +156,28 @@ tráfico acumulado en la cuenta.
 | Discrepancias | DISC-01 abierta (caudal: ámbito y ventana) · DISC-02 cerrada midiendo el 2026-09-21 (plantillas por plan) |
 | Carril rojo | 3 · autorizar destinatarios, contratar plan de pago, alcance de Optimize e Inspect |
 | Conformidad con PRIME4API (`verificar_prime4api.py`, 2026-09-24) | **20 OK / 1 ERR**. El único fallo es `curve.accumulated`, `TypeError: unsupported operand type(s) for /: 'int' and 'TimeDuration'`, el mismo mensaje de DV-04 en MailerSend y SES. PRIME4API en `8e6011c` (la caché no se ha actualizado desde el clon). Salida en `evidencias/verificar_prime4api_2026-09-24.txt`. La ejecución del 2026-09-23 (BITACORA 240) dio el mismo 20/1 y no se archivó |
+
+## Informe del verificador adversarial (D-013) — 2026-10-31
+
+Un agente independiente, con acceso solo al `datasheet.yaml`, leyó cada URL dos veces, sin y con
+JavaScript, y fechó con Wayback lo que no encontró.
+
+- **31 entradas con URL: 19 coinciden y 8 son parciales.** Hay además 16 de panel o sondeo sin
+  URL pública. No se refutó ningún valor modelado.
+- **`type: api_first` 🟡 → 🟢 (aplicado).** Las dos páginas de referencia que la nota del
+  provenance daba por 404 responden hoy 200 con su operación, y con ellas el test C2 queda
+  entero (D9). Se añaden [F3] y [F4] en `fuentes.md`.
+- **Línea del arranque de remitentes nuevos (aplicado).** La cita `"gradually increases sending
+  rates"` no era literal y hablaba de IP nuevas. Se queda la de `faq/deliver-rep`, y la
+  corrección consta en [F17].
+- **Alcance del tope de plantillas (consejo del 2026-10-31, 5 a 0; aplicado).** El endpoint
+  modelado es el de plantillas de dominio. Las cuatro `description` dicen «en cada dominio de
+  envío» y el provenance cita las dos frases de [F9]. Ningún valor cambia. Regla nueva en
+  `CRITERIOS.md` §E: una cita de alcance respalda el objeto que nombra.
+- **Sin aplicar, fuera de la lista aprobada:** detalles menores de redacción en las líneas 322,
+  341, 350, 354, 370 y 380, recogidos en el informe.
+
+**Semáforos:** 23 🟢 · 11 🟡 · 2 🔴 desde el 2026-10-31 (antes, 22 · 12 · 2).
+
+Informe íntegro: `evidencias/verificador_adversarial_2026-10-31.md`. Volcados:
+`evidencias/paginas/2026-10-31/`.

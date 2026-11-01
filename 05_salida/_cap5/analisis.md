@@ -1617,3 +1617,15 @@ Sección (d):
 - PI-E02: «RS $190 < SG $199.95» → «RS $190 < SG $199.95; **PM y MS no elegibles**» (MS exige 500 000/mes [MS-108]).
 - PI-E03: retención «45 / 30 / 3–7 días» → + «1 / 1 / 7 / 30 días [MS-106]».
 - Ejecución de las P: 30 llamadas → 45; «3 APIs» → «4 APIs».
+
+## Corrección del 2026-10-31 (PI-E02 en Mailgun, decisión del autor en la revisión del capítulo 7)
+
+- PI-E02 en Mailgun pasa de **no** a **sí (matriz)**: Foundation de 100 000 correos a 75 USD [MG-07], con la IP
+  dedicada incluida desde 100k [MG-16, MG-31], más 100 000 × 1,10 USD/1 000 de sobrecoste del tramo
+  `"Foundation 100k $1.10"` [MG-102] = **185 USD**. Mismo método que la Tabla 7.4 de la memoria (caso de los
+  100 000 correos), que ya usa la escalera del selector. Orden: SES 44,95 < **MG 185** < MC 189,95 < RS 190 <
+  SG 199,95 < BR ≈ 620; PM y MS no elegibles.
+- Respondible sobre 27: Mailgun 21 → **22**. Preguntas comunes a las ocho con la matriz: PI-E02 entra (la memoria
+  pasa de 17 a 18; su recuento lleva además Brevo corregido a 22 por la escalera de Starter del provenance).
+- `tab:cobertura-pi`: Mailgun «sin respuesta en los hechos» 1 → 0, fila L 1 → 2, «Las ocho» de L 1 → 2.
+  El «primer no de clase L» de la sección (d) deja de existir.

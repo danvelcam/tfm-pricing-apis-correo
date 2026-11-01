@@ -339,3 +339,34 @@ disolviéndola. **Dos cerradas**, dieciocho abiertas, ocho de ellas acotadas.
 6. **La Datasheet describe una región y no puede decir cuál** (SE-190). Con 29 regiones con
    endpoint, y con el plan, el estado, las identidades y las credenciales atados a cada una,
    el fichero cubre una de ellas sin declararlo, porque no hay campo donde declararlo.
+
+## Corrección del 2026-10-31 (verificador independiente)
+
+El verificador reabrió el 31-10 cada URL del `datasheet.yaml` (informe íntegro en
+`03_datos/apis/ses/evidencias/verificador_adversarial_2026-10-31.md`). Ningún valor cambia.
+
+- **SE-84 sube a 🟢.** La página de cuotas ya no dice lo que cita la fila. Desde algún día entre el
+  23 y el 31 de octubre dice `"All actions (except for SendEmail and SendBulkEmail) are throttled at
+  one request per second."` y pone aparte la lista de la v1: `"In the SES API v1, the actions that
+  are excluded from this limit are SendEmail, SendRawEmail, SendTemplatedEmail, and
+  SendBulkTemplatedEmail."` El alcance que dejaba el campo en ámbar ya es literal, y
+  `max_power.rate_request_other` pasa a 🟢 por D1. Lo medido en SE-101 a SE-103 no cambia. La
+  captura de Wayback `20261023032108` trae el texto antiguo: cambio del proveedor (E3, F-09).
+- **SE-171 deja de ser hueco.** El lote figura entre los exentos del tope de una petición por
+  segundo. La entrada de `not_found` se conserva con la relectura fechada.
+- **SE-139, atribución.** `"Creates an email template..."` y `"Starts the process of verifying an
+  email identity"` no están en `API_Operations.html` ([F19]), que solo lista nombres. Están en
+  `API_CreateEmailTemplate.html` y `API_CreateEmailIdentity.html`. El provenance ya las cita; el
+  `type` no cambia.
+
+- **SE-80 baja a 🟡: DISC-21, la unidad del caudal del entorno de pruebas** (consejo del
+  2026-10-31). SE-81 y SE-87 lo cuentan en mensajes y la fila de [F1] lo cuenta en destinatarios,
+  `"If your account is in the sandbox, you can send 1 email per second."`, bajo la cabecera
+  `"Quotas are based on the number of recipients, rather than on the number of messages."`.
+  Ninguna fuente dice peticiones, tampoco el panel (SE-99). `unit: requests` se queda por la regla
+  B18: en `emails`, PRIME4API dejaría sin tope el envío por lotes. Medirlo exige el simulador de
+  buzones, que está fuera de la lista blanca de D-046 (rama F2 de E7). Ningún valor cambia.
+- **SE-195: veinte de veintiuna.** DISC-21 también enfrenta páginas de AWS entre sí, así que la
+  cifra de O-02 pasa a veinte contradicciones de AWS contra AWS en veintiuna entradas.
+
+Volcados: `03_datos/apis/ses/evidencias/paginas/2026-10-31/LEEME.md`.

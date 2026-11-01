@@ -1,0 +1,2503 @@
+{
+  "schema_version": "0.1",
+  "generator": {
+    "skill": "recogida-terminos-consumo",
+    "skill_version": "0.1"
+  },
+  "api": "resend",
+  "run": {
+    "generated_at": "2026-10-23T15:00:47Z",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+    "intervalo_s": 0.4,
+    "peticiones": 108
+  },
+  "paginas": [
+    {
+      "id": "P-001",
+      "url": "https://resend.com/",
+      "url_final": "https://resend.com/",
+      "titulo": "Resend",
+      "fecha_captura": "2026-10-23T15:00:47Z",
+      "sha256": "ba4662b7c9f53e0a570f8fcbcef69b3326442ef263e66cfb0319d4eab0dbe8b4",
+      "bytes": 8340,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://resend.com/other/sitemap.xml"
+      ],
+      "fichero_texto": "resend/ba4662b7c9f53e0a.md"
+    },
+    {
+      "id": "P-002",
+      "url": "https://resend.com/docs/api-reference/api-keys/create-api-key",
+      "url_final": "https://resend.com/docs/api-reference/api-keys/create-api-key",
+      "titulo": "Create API key",
+      "fecha_captura": "2026-10-23T15:00:47Z",
+      "sha256": "c0621960bf608e6d11fcb05dc8c09127f7566a8f6386ca3d55b09a4c5b60ddec",
+      "bytes": 4022,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/c0621960bf608e6d.md"
+    },
+    {
+      "id": "P-003",
+      "url": "https://resend.com/docs/api-reference/emails/list-email-attachments",
+      "url_final": "https://resend.com/docs/api-reference/emails/list-email-attachments",
+      "titulo": "List Attachments",
+      "fecha_captura": "2026-10-23T15:00:48Z",
+      "sha256": "ae103a966d913d6c64d185b1fc4671912aaddc7d6d72304a6d594a68814ca8d2",
+      "bytes": 4518,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/ae103a966d913d6c.md"
+    },
+    {
+      "id": "P-004",
+      "url": "https://resend.com/docs/api-reference/emails/list-received-email-attachments",
+      "url_final": "https://resend.com/docs/api-reference/emails/list-received-email-attachments",
+      "titulo": "List Attachments",
+      "fecha_captura": "2026-10-23T15:00:49Z",
+      "sha256": "c9a6e477d65d4f8f392eaf3f674f2655415bbbe88d7ca39f97e1eb93e2291b86",
+      "bytes": 4624,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/c9a6e477d65d4f8f.md"
+    },
+    {
+      "id": "P-005",
+      "url": "https://resend.com/docs/api-reference/emails/retrieve-email-attachment",
+      "url_final": "https://resend.com/docs/api-reference/emails/retrieve-email-attachment",
+      "titulo": "Retrieve Attachment",
+      "fecha_captura": "2026-10-23T15:00:49Z",
+      "sha256": "a32ae44d8f2d5e48ffd3657af20e09aecb106fa5e21f92f13dea3208336a70f4",
+      "bytes": 4066,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/a32ae44d8f2d5e48.md"
+    },
+    {
+      "id": "P-006",
+      "url": "https://resend.com/docs/api-reference/emails/retrieve-received-email-attachment",
+      "url_final": "https://resend.com/docs/api-reference/emails/retrieve-received-email-attachment",
+      "titulo": "Retrieve Attachment",
+      "fecha_captura": "2026-10-23T15:00:49Z",
+      "sha256": "9f201ffe477f3bd891c88423b9f2cd0a92ed5689e299f8aa5ddd613aa2b1f6c7",
+      "bytes": 4169,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/9f201ffe477f3bd8.md"
+    },
+    {
+      "id": "P-007",
+      "url": "https://resend.com/docs/api-reference/emails/send-batch-emails",
+      "url_final": "https://resend.com/docs/api-reference/emails/send-batch-emails",
+      "titulo": "Send Batch Emails",
+      "fecha_captura": "2026-10-23T15:00:50Z",
+      "sha256": "c723a7be91cb6df617d96e4bbd7f4331e02bdc6a0c01ddb685fe7284dbfaf188",
+      "bytes": 11000,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/c723a7be91cb6df6.md"
+    },
+    {
+      "id": "P-008",
+      "url": "https://resend.com/docs/api-reference/emails/send-email",
+      "url_final": "https://resend.com/docs/api-reference/emails/send-email",
+      "titulo": "Send Email",
+      "fecha_captura": "2026-10-23T15:00:50Z",
+      "sha256": "55823c2bacca3f862b5fd990ccb88b5d6e5d94d66cb3682ba4d745af7cb3d5f3",
+      "bytes": 9712,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/55823c2bacca3f86.md"
+    },
+    {
+      "id": "P-009",
+      "url": "https://resend.com/docs/api-reference/errors",
+      "url_final": "https://resend.com/docs/api-reference/errors",
+      "titulo": "Errors",
+      "fecha_captura": "2026-10-23T15:00:51Z",
+      "sha256": "73d3a94265031ab3296bb052c62fb98da78762b3db1a613b15f81e46d9e951a1",
+      "bytes": 9400,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/emails/send-batch-emails",
+        "https://resend.com/docs/api-reference/emails/send-email",
+        "semilla",
+        "https://resend.com/docs/api-reference/introduction",
+        "https://resend.com/docs/api-reference/rate-limit"
+      ],
+      "fichero_texto": "resend/73d3a94265031ab3.md"
+    },
+    {
+      "id": "P-010",
+      "url": "https://resend.com/docs/api-reference/introduction",
+      "url_final": "https://resend.com/docs/api-reference/introduction",
+      "titulo": "Introduction",
+      "fecha_captura": "2026-10-23T15:00:51Z",
+      "sha256": "833358d4ff217c536e9141899068e3d26ad45f38c689e3fabf14c997bddb6d41",
+      "bytes": 3313,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/errors",
+        "semilla",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/833358d4ff217c53.md"
+    },
+    {
+      "id": "P-011",
+      "url": "https://resend.com/docs/api-reference/rate-limit",
+      "url_final": "https://resend.com/docs/api-reference/rate-limit",
+      "titulo": "Usage Limits",
+      "fecha_captura": "2026-10-23T15:00:52Z",
+      "sha256": "a854a98d68c9ab53a7f35b3bdb55f054a467e1892af2a8186f2cb82ebe55217f",
+      "bytes": 3839,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/introduction",
+        "semilla",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/a854a98d68c9ab53.md"
+    },
+    {
+      "id": "P-012",
+      "url": "https://resend.com/docs/api-reference/suppressions/add-batch-suppressions",
+      "url_final": "https://resend.com/docs/api-reference/suppressions/add-batch-suppressions",
+      "titulo": "Add Batch Suppressions",
+      "fecha_captura": "2026-10-23T15:00:52Z",
+      "sha256": "bbc06d0e74d925b3fa643f36ebccba31bea1e117a941d26cdc06e6e902ea45d6",
+      "bytes": 3852,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/bbc06d0e74d925b3.md"
+    },
+    {
+      "id": "P-013",
+      "url": "https://resend.com/docs/api-reference/suppressions/remove-batch-suppressions",
+      "url_final": "https://resend.com/docs/api-reference/suppressions/remove-batch-suppressions",
+      "titulo": "Remove Batch Suppressions",
+      "fecha_captura": "2026-10-23T15:00:52Z",
+      "sha256": "edc600cde407e57bd7144bc7052f2763d9b78dc3cdf0e6f68963bdc839ee7db9",
+      "bytes": 5772,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/edc600cde407e57b.md"
+    },
+    {
+      "id": "P-014",
+      "url": "https://resend.com/docs/api-reference/webhooks/create-webhook",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/create-webhook",
+      "titulo": "Create Webhook",
+      "fecha_captura": "2026-10-23T15:00:53Z",
+      "sha256": "0d95802c31a506b71d03a3aca27226571162a8023a4ad0df7b6e9612f34bfb44",
+      "bytes": 4293,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/0d95802c31a506b7.md"
+    },
+    {
+      "id": "P-015",
+      "url": "https://resend.com/docs/api-reference/webhooks/delete-webhook",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/delete-webhook",
+      "titulo": "Delete Webhook",
+      "fecha_captura": "2026-10-23T15:00:53Z",
+      "sha256": "24ae0bd621faf179eaef026f9780226cf5314ee1bfd5b345391db9cdd96a1a70",
+      "bytes": 2928,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/24ae0bd621faf179.md"
+    },
+    {
+      "id": "P-016",
+      "url": "https://resend.com/docs/api-reference/webhooks/get-event",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/get-event",
+      "titulo": "Retrieve Event",
+      "fecha_captura": "2026-10-23T15:00:54Z",
+      "sha256": "0146e1ebafb8d6f9d29fd4fb2d1212a184b663a15c0ed5b640bb7cb8fc3a87d6",
+      "bytes": 4331,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/0146e1ebafb8d6f9.md"
+    },
+    {
+      "id": "P-017",
+      "url": "https://resend.com/docs/api-reference/webhooks/get-webhook",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/get-webhook",
+      "titulo": "Retrieve Webhook",
+      "fecha_captura": "2026-10-23T15:00:54Z",
+      "sha256": "3a0377725ea5ae1a5f3112436c622a709ef0c8b85628be13be4d55835a0d0313",
+      "bytes": 3161,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/3a0377725ea5ae1a.md"
+    },
+    {
+      "id": "P-018",
+      "url": "https://resend.com/docs/api-reference/webhooks/list-event-attempts",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/list-event-attempts",
+      "titulo": "List Attempts",
+      "fecha_captura": "2026-10-23T15:00:55Z",
+      "sha256": "18eac308d4e605d8fadce55c4d4fa84dcc11ac4a5be678a3e96fa7a44ab403d6",
+      "bytes": 4548,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/18eac308d4e605d8.md"
+    },
+    {
+      "id": "P-019",
+      "url": "https://resend.com/docs/api-reference/webhooks/list-events",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/list-events",
+      "titulo": "List Events",
+      "fecha_captura": "2026-10-23T15:00:55Z",
+      "sha256": "2c52de8fdc7a594e921d144888df3ce65cce7e9174cddeb197ea74048bc32fa4",
+      "bytes": 4166,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/2c52de8fdc7a594e.md"
+    },
+    {
+      "id": "P-020",
+      "url": "https://resend.com/docs/api-reference/webhooks/list-webhooks",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/list-webhooks",
+      "titulo": "List Webhooks",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "e8071a19a700da87d8647e2a781ac573ec9d823d95e3918b06d629c7e64a9103",
+      "bytes": 3856,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/e8071a19a700da87.md"
+    },
+    {
+      "id": "P-021",
+      "url": "https://resend.com/docs/api-reference/webhooks/replay-event",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/replay-event",
+      "titulo": "Replay Event",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "c37f726050a52b506ea754667166ec0109d6cf0bef6d19cff2fa2d0449c5b064",
+      "bytes": 3795,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/c37f726050a52b50.md"
+    },
+    {
+      "id": "P-022",
+      "url": "https://resend.com/docs/api-reference/webhooks/rotate-signing-secret",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/rotate-signing-secret",
+      "titulo": "Rotate Signing Secret",
+      "fecha_captura": "2026-10-23T15:00:56Z",
+      "sha256": "66366798e81daf8530120db93f3d8b09c01ded46f36d1f80920056307250e277",
+      "bytes": 3767,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/66366798e81daf85.md"
+    },
+    {
+      "id": "P-023",
+      "url": "https://resend.com/docs/api-reference/webhooks/update-webhook",
+      "url_final": "https://resend.com/docs/api-reference/webhooks/update-webhook",
+      "titulo": "Update Webhook",
+      "fecha_captura": "2026-10-23T15:00:59Z",
+      "sha256": "854e7c6a7c33d8a9bbf098f31c88a8797388a8c47bf714af394cc317dc7ff247",
+      "bytes": 5355,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/854e7c6a7c33d8a9.md"
+    },
+    {
+      "id": "P-024",
+      "url": "https://resend.com/docs/chat-sdk-attachments",
+      "url_final": "https://resend.com/docs/chat-sdk-attachments",
+      "titulo": "Chat SDK Attachments",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "d77c7a514d46a09305dbb060388c2522dc1fa7d6257cb0e8afade79dd2c05dc3",
+      "bytes": 2413,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/d77c7a514d46a093.md"
+    },
+    {
+      "id": "P-025",
+      "url": "https://resend.com/docs/dashboard/automations/send-email",
+      "url_final": "https://resend.com/docs/dashboard/automations/send-email",
+      "titulo": "Send Email",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "6d2a4c925facb42a2ad53841f9b49b269afb3a5a45a9fe7ee8e7bc304620827f",
+      "bytes": 12082,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/6d2a4c925facb42a.md"
+    },
+    {
+      "id": "P-026",
+      "url": "https://resend.com/docs/dashboard/emails/attachments",
+      "url_final": "https://resend.com/docs/dashboard/emails/attachments",
+      "titulo": "Attachments",
+      "fecha_captura": "2026-10-23T15:01:00Z",
+      "sha256": "c8f0ee51a89099b0c78d41ce7c564e714ce4f4a1e01ea1769634888d3b8c9a58",
+      "bytes": 23358,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/emails/send-email",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/c8f0ee51a89099b0.md"
+    },
+    {
+      "id": "P-027",
+      "url": "https://resend.com/docs/dashboard/emails/batch-sending",
+      "url_final": "https://resend.com/docs/dashboard/emails/batch-sending",
+      "titulo": "Batch Sending",
+      "fecha_captura": "2026-10-23T15:01:01Z",
+      "sha256": "a26729b422473878e7761ac10a2eff9c68c4258bff347bc3ab695945b7bc237a",
+      "bytes": 8593,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/a26729b422473878.md"
+    },
+    {
+      "id": "P-028",
+      "url": "https://resend.com/docs/dashboard/receiving/attachments",
+      "url_final": "https://resend.com/docs/dashboard/receiving/attachments",
+      "titulo": "Process Receiving Attachments",
+      "fecha_captura": "2026-10-23T15:01:01Z",
+      "sha256": "41bfb68947b951790d6adb9afdb743abe50650709d253d0c0b687a568b03ea08",
+      "bytes": 7768,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/41bfb68947b95179.md"
+    },
+    {
+      "id": "P-029",
+      "url": "https://resend.com/docs/dashboard/receiving/create-receiving-webhook",
+      "url_final": "https://resend.com/docs/dashboard/receiving/create-receiving-webhook",
+      "titulo": "Create a receiving Webhook",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "f469db61564f0c74936a45c5a81343095cde39cf1d9742e12729b673f93b33db",
+      "bytes": 5444,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/f469db61564f0c74.md"
+    },
+    {
+      "id": "P-030",
+      "url": "https://resend.com/docs/dashboard/settings/billing",
+      "url_final": "https://resend.com/docs/dashboard/settings/billing",
+      "titulo": "Managing Billing",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "56668a46b22c1db11c7d2e2089b27eec0996d50ef68ce9d8830752d78b9c3a05",
+      "bytes": 1943,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/56668a46b22c1db1.md"
+    },
+    {
+      "id": "P-031",
+      "url": "https://resend.com/docs/knowledge-base/403-error-1010",
+      "url_final": "https://resend.com/docs/knowledge-base/403-error-1010",
+      "titulo": "403 Error with Error Code 1010",
+      "fecha_captura": "2026-10-23T15:01:02Z",
+      "sha256": "35769e2fe03526b9d47bd7efcf060128ed262e2a78bc5b2df4641dec285142c4",
+      "bytes": 2408,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/introduction",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/35769e2fe03526b9.md"
+    },
+    {
+      "id": "P-032",
+      "url": "https://resend.com/docs/knowledge-base/403-error-domain-mismatch",
+      "url_final": "https://resend.com/docs/knowledge-base/403-error-domain-mismatch",
+      "titulo": "403 Error Using Verified Domain",
+      "fecha_captura": "2026-10-23T15:01:03Z",
+      "sha256": "f9d584d750a9733f2abd5d37f85a0c5d2df7d34a16fbc49bfc27947e1a00116b",
+      "bytes": 2264,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/errors",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/f9d584d750a9733f.md"
+    },
+    {
+      "id": "P-033",
+      "url": "https://resend.com/docs/knowledge-base/403-error-resend-dev-domain",
+      "url_final": "https://resend.com/docs/knowledge-base/403-error-resend-dev-domain",
+      "titulo": "403 Error Using resend.dev Domain",
+      "fecha_captura": "2026-10-23T15:01:03Z",
+      "sha256": "199982d49478b6cccb80644962b2f6421ef7088990a3530f4a91e61429529ee9",
+      "bytes": 2298,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/errors",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/199982d49478b6cc.md"
+    },
+    {
+      "id": "P-034",
+      "url": "https://resend.com/docs/knowledge-base/account-quotas-and-limits",
+      "url_final": "https://resend.com/docs/knowledge-base/account-quotas-and-limits",
+      "titulo": "What are Resend account quotas and limits?",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "596b58df0f6b6c24733839dbaeac769079d12b5ab01ef0dcb0aaee9ec4229edb",
+      "bytes": 8358,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/596b58df0f6b6c24.md"
+    },
+    {
+      "id": "P-035",
+      "url": "https://resend.com/docs/knowledge-base/domain-already-registered",
+      "url_final": "https://resend.com/docs/knowledge-base/domain-already-registered",
+      "titulo": "Domain Already Registered by Another Account",
+      "fecha_captura": "2026-10-23T15:01:04Z",
+      "sha256": "525dd76aa41c0fa3b36afe1613583e3c8e1981a3653438593695e6c131cedd0b",
+      "bytes": 1945,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "errores_estado",
+      "temas": [
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/errors",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/525dd76aa41c0fa3.md"
+    },
+    {
+      "id": "P-036",
+      "url": "https://resend.com/docs/knowledge-base/how-do-dedicated-ips-work",
+      "url_final": "https://resend.com/docs/knowledge-base/how-do-dedicated-ips-work",
+      "titulo": "How do Dedicated IPs work?",
+      "fecha_captura": "2026-10-23T15:01:05Z",
+      "sha256": "fbe6440c58b4b4aab84d2684354a68d5eec2428319f219fb8412bee2b6eb725f",
+      "bytes": 5258,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/fbe6440c58b4b4aa.md"
+    },
+    {
+      "id": "P-037",
+      "url": "https://resend.com/docs/knowledge-base/is-it-better-to-send-emails-from-a-subdomain-or-the-root-domain",
+      "url_final": "https://resend.com/docs/knowledge-base/is-it-better-to-send-emails-from-a-subdomain-or-the-root-domain",
+      "titulo": "Is it better to send emails from a subdomain or the root domain?",
+      "fecha_captura": "2026-10-23T15:01:05Z",
+      "sha256": "5b9eff5e683a1598c5d022e7f08ed085a195776156d34b6e41a0f4b1d88b7f4b",
+      "bytes": 2584,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/5b9eff5e683a1598.md"
+    },
+    {
+      "id": "P-038",
+      "url": "https://resend.com/docs/knowledge-base/warming-up",
+      "url_final": "https://resend.com/docs/knowledge-base/warming-up",
+      "titulo": "Domain and/or IP Warm-up Guide",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "977c24629924391b42a37ece42dc45b56f3106dd91b6a6a634b0267046bba103",
+      "bytes": 4468,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/977c24629924391b.md"
+    },
+    {
+      "id": "P-039",
+      "url": "https://resend.com/docs/knowledge-base/what-attachment-types-are-not-supported",
+      "url_final": "https://resend.com/docs/knowledge-base/what-attachment-types-are-not-supported",
+      "titulo": "What attachment types are not supported?",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "6efaba8453b008063e5915ef40f86c788fa1b1fe2a5d0c68db58f9d341948f4d",
+      "bytes": 1233,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/6efaba8453b00806.md"
+    },
+    {
+      "id": "P-040",
+      "url": "https://resend.com/docs/knowledge-base/what-is-resend-pricing",
+      "url_final": "https://resend.com/docs/knowledge-base/what-is-resend-pricing",
+      "titulo": "What is Resend Pricing",
+      "fecha_captura": "2026-10-23T15:01:06Z",
+      "sha256": "8531c4feb4c8dd1fa6aeabb7d3723dbe17aba7fde70092aeda6e7a1f0cbf5158",
+      "bytes": 3076,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/8531c4feb4c8dd1f.md"
+    },
+    {
+      "id": "P-041",
+      "url": "https://resend.com/docs/send-with-customer-io-smtp",
+      "url_final": "https://resend.com/docs/send-with-customer-io-smtp",
+      "titulo": "Send emails using Customer.io with SMTP",
+      "fecha_captura": "2026-10-23T15:01:07Z",
+      "sha256": "a5b876162a7e0f3ee9039b10e64727a7e504d7018322881c8a5423e08ccfac63",
+      "bytes": 2091,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/a5b876162a7e0f3e.md"
+    },
+    {
+      "id": "P-042",
+      "url": "https://resend.com/docs/send-with-django-smtp",
+      "url_final": "https://resend.com/docs/send-with-django-smtp",
+      "titulo": "Send emails using Django with SMTP",
+      "fecha_captura": "2026-10-23T15:01:07Z",
+      "sha256": "79fb9108735cb18116020707ebb326c047bdafa9c9b9e3cffa82af48fcbeab63",
+      "bytes": 2391,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/79fb9108735cb181.md"
+    },
+    {
+      "id": "P-043",
+      "url": "https://resend.com/docs/send-with-laravel-smtp",
+      "url_final": "https://resend.com/docs/send-with-laravel-smtp",
+      "titulo": "Send emails using Laravel with SMTP",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "cae89392aeaba0f45b2032672dc29f3d18c245f8251d15e72a67f04e38ddaf53",
+      "bytes": 2587,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/cae89392aeaba0f4.md"
+    },
+    {
+      "id": "P-044",
+      "url": "https://resend.com/docs/send-with-liferay-smtp",
+      "url_final": "https://resend.com/docs/send-with-liferay-smtp",
+      "titulo": "Send emails using Liferay with SMTP",
+      "fecha_captura": "2026-10-23T15:01:08Z",
+      "sha256": "83a66c22c2752caae833443718ffe3bbef92157a29f7116019fd599c841bf18a",
+      "bytes": 1528,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/83a66c22c2752caa.md"
+    },
+    {
+      "id": "P-045",
+      "url": "https://resend.com/docs/send-with-metabase-smtp",
+      "url_final": "https://resend.com/docs/send-with-metabase-smtp",
+      "titulo": "Send emails using Metabase with SMTP",
+      "fecha_captura": "2026-10-23T15:01:09Z",
+      "sha256": "243d226892d84e557cd6e653f6adbdb93334a9093d51786eef517b50d90434cc",
+      "bytes": 1460,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/243d226892d84e55.md"
+    },
+    {
+      "id": "P-046",
+      "url": "https://resend.com/docs/send-with-nextauth-smtp",
+      "url_final": "https://resend.com/docs/send-with-nextauth-smtp",
+      "titulo": "Send emails using NextAuth with SMTP",
+      "fecha_captura": "2026-10-23T15:01:09Z",
+      "sha256": "6e4ab534f8707ad5bfa46911c39dccfe018868bfd8edb6952a2d2862194b2baf",
+      "bytes": 2510,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/6e4ab534f8707ad5.md"
+    },
+    {
+      "id": "P-047",
+      "url": "https://resend.com/docs/send-with-nodemailer-smtp",
+      "url_final": "https://resend.com/docs/send-with-nodemailer-smtp",
+      "titulo": "Send emails using Nodemailer with SMTP",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "cff53ace1850ef3efd38dcecd54225cc74641e2c50f1e0775e1b33e8c208d0e9",
+      "bytes": 1903,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/cff53ace1850ef3e.md"
+    },
+    {
+      "id": "P-048",
+      "url": "https://resend.com/docs/send-with-phpmailer-smtp",
+      "url_final": "https://resend.com/docs/send-with-phpmailer-smtp",
+      "titulo": "Send emails using PHPMailer with SMTP",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "cd3810ba6ebe1b18e5eba81c7805c5ec374494a484eee58a27acfbddd4939313",
+      "bytes": 2091,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/cd3810ba6ebe1b18.md"
+    },
+    {
+      "id": "P-049",
+      "url": "https://resend.com/docs/send-with-rails-smtp",
+      "url_final": "https://resend.com/docs/send-with-rails-smtp",
+      "titulo": "Send emails using Rails with SMTP",
+      "fecha_captura": "2026-10-23T15:01:10Z",
+      "sha256": "351e4918925b595351bdfc62e7deb83d684ac4f088bd3eb137efc932b094cbf1",
+      "bytes": 2523,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/351e4918925b5953.md"
+    },
+    {
+      "id": "P-050",
+      "url": "https://resend.com/docs/send-with-retool-smtp",
+      "url_final": "https://resend.com/docs/send-with-retool-smtp",
+      "titulo": "Send emails using Retool with SMTP",
+      "fecha_captura": "2026-10-23T15:01:11Z",
+      "sha256": "16f75668fba65b07c0277e4632634d861a3bcd283f1bab0f1039fa5cf225ebe0",
+      "bytes": 1465,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/16f75668fba65b07.md"
+    },
+    {
+      "id": "P-051",
+      "url": "https://resend.com/docs/send-with-smtp",
+      "url_final": "https://resend.com/docs/send-with-smtp",
+      "titulo": "Send emails with SMTP",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "127dab7753d8c6869fe156b31f530f61abb52815daf8c12c8b9adf11d8f2572c",
+      "bytes": 2467,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/127dab7753d8c686.md"
+    },
+    {
+      "id": "P-052",
+      "url": "https://resend.com/docs/send-with-supabase-smtp",
+      "url_final": "https://resend.com/docs/send-with-supabase-smtp",
+      "titulo": "Send emails using Supabase with SMTP",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "5c9cbaefd230bc574c99151eacd5c36a06afdbbc92e049a76f6b29b8ac2c65b9",
+      "bytes": 1710,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/5c9cbaefd230bc57.md"
+    },
+    {
+      "id": "P-053",
+      "url": "https://resend.com/docs/send-with-wordpress-smtp",
+      "url_final": "https://resend.com/docs/send-with-wordpress-smtp",
+      "titulo": "Send emails using WordPress with SMTP",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "eab61ae7f5aaf3ee549b01f16a478e7f0459a503f616745dacd83b40df8c2989",
+      "bytes": 2175,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/eab61ae7f5aaf3ee.md"
+    },
+    {
+      "id": "P-054",
+      "url": "https://resend.com/docs/webhooks/contacts/created",
+      "url_final": "https://resend.com/docs/webhooks/contacts/created",
+      "titulo": "contact.created",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "0c62547653d1a5cfcc2e1ef93b21c3c1819a55a8f2a3b055314d903c35ef5527",
+      "bytes": 2273,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/0c62547653d1a5cf.md"
+    },
+    {
+      "id": "P-055",
+      "url": "https://resend.com/docs/webhooks/contacts/deleted",
+      "url_final": "https://resend.com/docs/webhooks/contacts/deleted",
+      "titulo": "contact.deleted",
+      "fecha_captura": "2026-10-23T15:01:13Z",
+      "sha256": "04a69623883e765d17043f9045f4b3f8b61d06599bc3f854620bb035e0cea10f",
+      "bytes": 2125,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/04a69623883e765d.md"
+    },
+    {
+      "id": "P-056",
+      "url": "https://resend.com/docs/webhooks/contacts/topics-updated",
+      "url_final": "https://resend.com/docs/webhooks/contacts/topics-updated",
+      "titulo": "contact.topics.updated",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "b695d09ba5ce26dd9a76b63334778d5ec2e9347373d328bb5bc13b428a0317e7",
+      "bytes": 1575,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/b695d09ba5ce26dd.md"
+    },
+    {
+      "id": "P-057",
+      "url": "https://resend.com/docs/webhooks/contacts/updated",
+      "url_final": "https://resend.com/docs/webhooks/contacts/updated",
+      "titulo": "contact.updated",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "e07a21030744fa315d1ec0a83f0cf3566825a2ba830e55aed2ca3a09225c28d3",
+      "bytes": 2125,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/e07a21030744fa31.md"
+    },
+    {
+      "id": "P-058",
+      "url": "https://resend.com/docs/webhooks/create-webhook",
+      "url_final": "https://resend.com/docs/webhooks/create-webhook",
+      "titulo": "Create a Webhook",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "e130abf1f4fa27a6ed109053e78fe8c417f14c1da25ffc2e4dd8874e7bc4600f",
+      "bytes": 7878,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/e130abf1f4fa27a6.md"
+    },
+    {
+      "id": "P-059",
+      "url": "https://resend.com/docs/webhooks/domains/created",
+      "url_final": "https://resend.com/docs/webhooks/domains/created",
+      "titulo": "domain.created",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "d61f43bc7848837d86541c335d8c7f0a38ca81c64728147fa80306bc2c66f1f0",
+      "bytes": 4507,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/d61f43bc7848837d.md"
+    },
+    {
+      "id": "P-060",
+      "url": "https://resend.com/docs/webhooks/domains/deleted",
+      "url_final": "https://resend.com/docs/webhooks/domains/deleted",
+      "titulo": "domain.deleted",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "b34f271583ecb76a15d07f27f93588b3e74e8d2e76999a2aba1fa8d8120909d0",
+      "bytes": 4507,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/b34f271583ecb76a.md"
+    },
+    {
+      "id": "P-061",
+      "url": "https://resend.com/docs/webhooks/domains/updated",
+      "url_final": "https://resend.com/docs/webhooks/domains/updated",
+      "titulo": "domain.updated",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "a4cea27c44596b4c768959f983d2a4cffad85fdfecc5caa15928a88abfb914d2",
+      "bytes": 4753,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/a4cea27c44596b4c.md"
+    },
+    {
+      "id": "P-062",
+      "url": "https://resend.com/docs/webhooks/emails/bounced",
+      "url_final": "https://resend.com/docs/webhooks/emails/bounced",
+      "titulo": "email.bounced",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "7ead7c1cfe0ed3ea3b380fd423ae8c9e6cb10ff1287506b869d9cd5f13e91eda",
+      "bytes": 3377,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/7ead7c1cfe0ed3ea.md"
+    },
+    {
+      "id": "P-063",
+      "url": "https://resend.com/docs/webhooks/emails/clicked",
+      "url_final": "https://resend.com/docs/webhooks/emails/clicked",
+      "titulo": "email.clicked",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "17794a4cc564e82c684cdc3ebdd61f10c4ae0774dc045ce8dbe91126c60042db",
+      "bytes": 3134,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/17794a4cc564e82c.md"
+    },
+    {
+      "id": "P-064",
+      "url": "https://resend.com/docs/webhooks/emails/complained",
+      "url_final": "https://resend.com/docs/webhooks/emails/complained",
+      "titulo": "email.complained",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "597deadb5ab472d8c7ea42ac49f1fcb89fa84f180f74269ebf0c1ed9545c7087",
+      "bytes": 2580,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/597deadb5ab472d8.md"
+    },
+    {
+      "id": "P-065",
+      "url": "https://resend.com/docs/webhooks/emails/delivered",
+      "url_final": "https://resend.com/docs/webhooks/emails/delivered",
+      "titulo": "email.delivered",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "7f59da6d9296f4d66418dd2496697bf77e2f66018b73da60ce5c2891eeb31e94",
+      "bytes": 2779,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/7f59da6d9296f4d6.md"
+    },
+    {
+      "id": "P-066",
+      "url": "https://resend.com/docs/webhooks/emails/delivery-delayed",
+      "url_final": "https://resend.com/docs/webhooks/emails/delivery-delayed",
+      "titulo": "email.delivery_delayed",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "0e677b8361fd3499a87a783bb9e3a4cbd6eb5a924b8d9f1251564449652836b2",
+      "bytes": 2732,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/0e677b8361fd3499.md"
+    },
+    {
+      "id": "P-067",
+      "url": "https://resend.com/docs/webhooks/emails/failed",
+      "url_final": "https://resend.com/docs/webhooks/emails/failed",
+      "titulo": "email.failed",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "b63103bc1a6c7724d8ca613bffc411a7d14cc0b22dace257e0bf7684af0761b8",
+      "bytes": 2894,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/b63103bc1a6c7724.md"
+    },
+    {
+      "id": "P-068",
+      "url": "https://resend.com/docs/webhooks/emails/opened",
+      "url_final": "https://resend.com/docs/webhooks/emails/opened",
+      "titulo": "email.opened",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "2e671b61dbe3c475eb1163782074bdbf2f16e88c8384375a61555a046ade0fc1",
+      "bytes": 2681,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/2e671b61dbe3c475.md"
+    },
+    {
+      "id": "P-069",
+      "url": "https://resend.com/docs/webhooks/emails/received",
+      "url_final": "https://resend.com/docs/webhooks/emails/received",
+      "titulo": "email.received",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "766d3dc1b5d668a2f2109326e1ea63bc653ba566aa6fd90e9a84b1f7278dc120",
+      "bytes": 3243,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/766d3dc1b5d668a2.md"
+    },
+    {
+      "id": "P-070",
+      "url": "https://resend.com/docs/webhooks/emails/scheduled",
+      "url_final": "https://resend.com/docs/webhooks/emails/scheduled",
+      "titulo": "email.scheduled",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "c6c724b1fe83ba7bb08ec103428135a30feefd11d10036ca712997605f39ece4",
+      "bytes": 2542,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/c6c724b1fe83ba7b.md"
+    },
+    {
+      "id": "P-071",
+      "url": "https://resend.com/docs/webhooks/emails/sent",
+      "url_final": "https://resend.com/docs/webhooks/emails/sent",
+      "titulo": "email.sent",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "1d65ee1b25ea1bda9725de864172c37cc82d9cbef8e037d8fe5319967bdb104c",
+      "bytes": 2578,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/1d65ee1b25ea1bda.md"
+    },
+    {
+      "id": "P-072",
+      "url": "https://resend.com/docs/webhooks/emails/suppressed",
+      "url_final": "https://resend.com/docs/webhooks/emails/suppressed",
+      "titulo": "email.suppressed",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "15f43551d6ab582c2d42f6ffb50c8a285fe6fe83bd8bfc09325157a3b7611610",
+      "bytes": 2904,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/15f43551d6ab582c.md"
+    },
+    {
+      "id": "P-073",
+      "url": "https://resend.com/docs/webhooks/event-types",
+      "url_final": "https://resend.com/docs/webhooks/event-types",
+      "titulo": "Event Types",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "5abecf9aee748c426170920c6d54f191f2e958478697714c846847781f71e8e3",
+      "bytes": 6062,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/5abecf9aee748c42.md"
+    },
+    {
+      "id": "P-074",
+      "url": "https://resend.com/docs/webhooks/how-to-store-webhooks-data",
+      "url_final": "https://resend.com/docs/webhooks/how-to-store-webhooks-data",
+      "titulo": "How to Store Webhooks Data",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "14499710cc9b2f448d776d9efad839fbb06eb820f177225a678d82d3375ef52a",
+      "bytes": 6955,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/14499710cc9b2f44.md"
+    },
+    {
+      "id": "P-075",
+      "url": "https://resend.com/docs/webhooks/inboxes/created",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/created",
+      "titulo": "inbox.created",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "2d84192908e05b806843a7a454e5cbe8c93ac91c7efb4436d5fcbb9425382450",
+      "bytes": 2745,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/2d84192908e05b80.md"
+    },
+    {
+      "id": "P-076",
+      "url": "https://resend.com/docs/webhooks/inboxes/deleted",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/deleted",
+      "titulo": "inbox.deleted",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "e0e195c6159ad03801407da27fec2b06fb1e329500094a3429ae200ecc57afca",
+      "bytes": 1143,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/e0e195c6159ad038.md"
+    },
+    {
+      "id": "P-077",
+      "url": "https://resend.com/docs/webhooks/inboxes/draft-created",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/draft-created",
+      "titulo": "inbox.draft.created",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "abf5763dbd5349e273245e9dcc60d436aafb1bc4b8c3022fe7d308680ecf9d61",
+      "bytes": 3948,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/abf5763dbd5349e2.md"
+    },
+    {
+      "id": "P-078",
+      "url": "https://resend.com/docs/webhooks/inboxes/draft-deleted",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/draft-deleted",
+      "titulo": "inbox.draft.deleted",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "0e255466c20bd192cef2fe1838808540c1008f7e4b95d8f16309a38704fb4fc4",
+      "bytes": 2234,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/0e255466c20bd192.md"
+    },
+    {
+      "id": "P-079",
+      "url": "https://resend.com/docs/webhooks/inboxes/draft-sent",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/draft-sent",
+      "titulo": "inbox.draft.sent",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "977f39b413882cfd0d22ceb448aef72c0c4cb202820e1dd3bd290fff8b10c3ec",
+      "bytes": 5244,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/977f39b413882cfd.md"
+    },
+    {
+      "id": "P-080",
+      "url": "https://resend.com/docs/webhooks/inboxes/draft-updated",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/draft-updated",
+      "titulo": "inbox.draft.updated",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "6945cff675ec0c7f77c0c129b8c8e4c6db53be03790d72cccbd5d02cbffc820b",
+      "bytes": 3927,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/6945cff675ec0c7f.md"
+    },
+    {
+      "id": "P-081",
+      "url": "https://resend.com/docs/webhooks/inboxes/email-received",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/email-received",
+      "titulo": "inbox.email.received",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "5a1d475d933e289ac4feecd12cf93ab193496f656e9bc1e7f68e1cf94994cd28",
+      "bytes": 4031,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/5a1d475d933e289a.md"
+    },
+    {
+      "id": "P-082",
+      "url": "https://resend.com/docs/webhooks/inboxes/email-sent",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/email-sent",
+      "titulo": "inbox.email.sent",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "efd899fdb999e44bc3873ce8d2eeb0fc67d83ab515c33d743e25c378d7de3918",
+      "bytes": 4113,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/efd899fdb999e44b.md"
+    },
+    {
+      "id": "P-083",
+      "url": "https://resend.com/docs/webhooks/inboxes/thread-assigned",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/thread-assigned",
+      "titulo": "inbox.thread.assigned",
+      "fecha_captura": "2026-10-23T15:01:25Z",
+      "sha256": "b82bcd7f832718f92fb630959d89a9c079bd045e9eee16643a59f358f371e97e",
+      "bytes": 2525,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/b82bcd7f832718f9.md"
+    },
+    {
+      "id": "P-084",
+      "url": "https://resend.com/docs/webhooks/inboxes/thread-created",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/thread-created",
+      "titulo": "inbox.thread.created",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "7f2958d709e0f39ffb285eb228f5374d54c7e6b2e97d402d4ebd9ecae7a55f5a",
+      "bytes": 4069,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/7f2958d709e0f39f.md"
+    },
+    {
+      "id": "P-085",
+      "url": "https://resend.com/docs/webhooks/inboxes/thread-folder-updated",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/thread-folder-updated",
+      "titulo": "inbox.thread.folder.updated",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "503b58e01823ac73be512ddf3704a572d4a7df63272957d65274dc165ea09069",
+      "bytes": 2372,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/503b58e01823ac73.md"
+    },
+    {
+      "id": "P-086",
+      "url": "https://resend.com/docs/webhooks/inboxes/thread-labels-updated",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/thread-labels-updated",
+      "titulo": "inbox.thread.labels.updated",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "cd2df63812642c86ed030ed68ca36e0384c422f6d78fae73feade7c6f472c056",
+      "bytes": 2878,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/cd2df63812642c86.md"
+    },
+    {
+      "id": "P-087",
+      "url": "https://resend.com/docs/webhooks/inboxes/thread-unassigned",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/thread-unassigned",
+      "titulo": "inbox.thread.unassigned",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "3d3332b8707c0fadab7aace22534cb0adff8f1a9a75a7f0051c30d9711ef73ae",
+      "bytes": 2184,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/3d3332b8707c0fad.md"
+    },
+    {
+      "id": "P-088",
+      "url": "https://resend.com/docs/webhooks/inboxes/updated",
+      "url_final": "https://resend.com/docs/webhooks/inboxes/updated",
+      "titulo": "inbox.updated",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "e628a86c4f5483989be9a917891eaa891154a85799454611c8bf8c9e5ebb47d8",
+      "bytes": 2787,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/e628a86c4f548398.md"
+    },
+    {
+      "id": "P-089",
+      "url": "https://resend.com/docs/webhooks/ingester",
+      "url_final": "https://resend.com/docs/webhooks/ingester",
+      "titulo": "Webhook Ingester",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "20145f9a918e9f281ad6def110acd3db1bd0be1778eaf1490c21e49db9f31e98",
+      "bytes": 10567,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/20145f9a918e9f28.md"
+    },
+    {
+      "id": "P-090",
+      "url": "https://resend.com/docs/webhooks/introduction",
+      "url_final": "https://resend.com/docs/webhooks/introduction",
+      "titulo": "Webhooks",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "18d0cb6e492ca6954ea218e7cef3070607a2196a73475a5fe344387c04677432",
+      "bytes": 5062,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/18d0cb6e492ca695.md"
+    },
+    {
+      "id": "P-091",
+      "url": "https://resend.com/docs/webhooks/retries-and-replays",
+      "url_final": "https://resend.com/docs/webhooks/retries-and-replays",
+      "titulo": "Retries and Replays",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "40dca122ccd5507ec2b8fd30529575651450d370732cb9eb7173a69c1c2d0c9a",
+      "bytes": 1928,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/40dca122ccd5507e.md"
+    },
+    {
+      "id": "P-092",
+      "url": "https://resend.com/docs/webhooks/suppressions/added",
+      "url_final": "https://resend.com/docs/webhooks/suppressions/added",
+      "titulo": "suppression.added",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "d0e46b1e26c6f58c1dc7581b6fb93aa2bd76da7d37ae9dcf7529d2ba335b225c",
+      "bytes": 1780,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/d0e46b1e26c6f58c.md"
+    },
+    {
+      "id": "P-093",
+      "url": "https://resend.com/docs/webhooks/suppressions/removed",
+      "url_final": "https://resend.com/docs/webhooks/suppressions/removed",
+      "titulo": "suppression.removed",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "b3ef3d8d9860d251f0efc45cb460d0625cf7acaddc6cbd392939943e40f4b0d0",
+      "bytes": 1647,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/b3ef3d8d9860d251.md"
+    },
+    {
+      "id": "P-094",
+      "url": "https://resend.com/docs/webhooks/topics/created",
+      "url_final": "https://resend.com/docs/webhooks/topics/created",
+      "titulo": "topic.created",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "f75dbfb88768fe5eb54ac0e10d4ead720e7b629532bd725adc54ea3903fd6a08",
+      "bytes": 1681,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/f75dbfb88768fe5e.md"
+    },
+    {
+      "id": "P-095",
+      "url": "https://resend.com/docs/webhooks/topics/deleted",
+      "url_final": "https://resend.com/docs/webhooks/topics/deleted",
+      "titulo": "topic.deleted",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "eee09e6eba009be582ab238c1498f1208d7e7af02ceb694f2eb58475dbffb9d5",
+      "bytes": 1680,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/eee09e6eba009be5.md"
+    },
+    {
+      "id": "P-096",
+      "url": "https://resend.com/docs/webhooks/topics/updated",
+      "url_final": "https://resend.com/docs/webhooks/topics/updated",
+      "titulo": "topic.updated",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "cf3f94eb505b578efea3fe85460f6bede7b9af7571925ea404bd4fc8f96a755e",
+      "bytes": 1681,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/cf3f94eb505b578e.md"
+    },
+    {
+      "id": "P-097",
+      "url": "https://resend.com/docs/webhooks/verify-webhooks-requests",
+      "url_final": "https://resend.com/docs/webhooks/verify-webhooks-requests",
+      "titulo": "Verify Webhooks Requests",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "0887ecebd7b6c98b78ea461e8eb2fa3588151caa0be4343c57836caba1426007",
+      "bytes": 4168,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/docs/sitemap.xml"
+      ],
+      "fichero_texto": "resend/0887ecebd7b6c98b.md"
+    },
+    {
+      "id": "P-098",
+      "url": "https://resend.com/features/dedicated-ips",
+      "url_final": "https://resend.com/features/dedicated-ips",
+      "titulo": "Dedicated IPs, fully managed",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "2fff151c54cac7d4448fb050ac18462a5746870a202b1e83b88babc19481a8f3",
+      "bytes": 4028,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/other/sitemap.xml"
+      ],
+      "fichero_texto": "resend/2fff151c54cac7d4.md"
+    },
+    {
+      "id": "P-099",
+      "url": "https://resend.com/features/email-api",
+      "url_final": "https://resend.com/features/email-api",
+      "titulo": "Email API · Start sending today · Resend",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "9a2f208278a339e4a01f95a72d174f2e6ce63bdbd121fff7f5aa39a803f0bdd5",
+      "bytes": 395266,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/other/sitemap.xml"
+      ],
+      "fichero_texto": "resend/9a2f208278a339e4.html"
+    },
+    {
+      "id": "P-100",
+      "url": "https://resend.com/features/smtp-service",
+      "url_final": "https://resend.com/features/smtp-service",
+      "titulo": "SMTP Service · Fast and reliable · Resend",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "2fa6ff8f4a219d4d04c894efcb6306bcf9e92686792b6f0f0e0b68a4973ba032",
+      "bytes": 335164,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/other/sitemap.xml"
+      ],
+      "fichero_texto": "resend/2fa6ff8f4a219d4d.html"
+    },
+    {
+      "id": "P-101",
+      "url": "https://resend.com/features/webhooks",
+      "url_final": "https://resend.com/features/webhooks",
+      "titulo": "Webhooks · Receive real-time notifications · Resend",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "db8354011655d18335830665231ce9891e301175e61f10f990f21d33adbdfb38",
+      "bytes": 222339,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/other/sitemap.xml"
+      ],
+      "fichero_texto": "resend/db8354011655d183.html"
+    },
+    {
+      "id": "P-102",
+      "url": "https://resend.com/legal",
+      "url_final": "https://resend.com/legal",
+      "titulo": "Legal",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "bc81375340f35c3cc3145e9150079cfe8030a571f15a9cf7fe380ebd381aac69",
+      "bytes": 349,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "sin_texto_visible",
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://resend.com/",
+        "sitemap:https://resend.com/other/sitemap.xml",
+        "llms.txt:https://resend.com/llms.txt"
+      ],
+      "fichero_texto": "resend/bc81375340f35c3c.md"
+    },
+    {
+      "id": "P-103",
+      "url": "https://resend.com/legal/terms-of-service",
+      "url_final": "https://resend.com/legal/terms-of-service",
+      "titulo": "Terms of Service",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "1d2a6008c75d44330dcd057342f56b4da31061cae0843f1aab700ad073b6d23f",
+      "bytes": 23777,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://resend.com/",
+        "llms.txt:https://resend.com/llms.txt"
+      ],
+      "fichero_texto": "resend/1d2a6008c75d4433.md"
+    },
+    {
+      "id": "P-104",
+      "url": "https://resend.com/pricing",
+      "url_final": "https://resend.com/pricing",
+      "titulo": "Resend Pricing",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "47af4d1c87605df4f26b4a27e00ecb86699fb150e84c68a7d920103349aa7179",
+      "bytes": 21151,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://resend.com/",
+        "https://resend.com/docs/knowledge-base/what-is-resend-pricing",
+        "semilla",
+        "sitemap:https://resend.com/other/sitemap.xml",
+        "llms.txt:https://resend.com/llms.txt"
+      ],
+      "fichero_texto": "resend/47af4d1c87605df4.md"
+    },
+    {
+      "id": "P-105",
+      "url": "https://resend.com/pricing.md",
+      "url_final": "https://resend.com/pricing.md",
+      "titulo": "Resend Pricing",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "47af4d1c87605df4f26b4a27e00ecb86699fb150e84c68a7d920103349aa7179",
+      "bytes": 21151,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "resend/47af4d1c87605df4.md"
+    },
+    {
+      "id": "P-106",
+      "url": "https://resend.com/request-dedicated-ip",
+      "url_final": "https://resend.com/support#contact",
+      "titulo": "Support · Resend",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "5a79a497aae718d9de67fd9dc04911dcc207bfc204bc80e0abad71f0e1937d31",
+      "bytes": 318243,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://resend.com/other/sitemap.xml"
+      ],
+      "fichero_texto": "resend/5a79a497aae718d9.html"
+    },
+    {
+      "id": "P-107",
+      "url": "https://resend.com/settings/billing",
+      "url_final": "https://resend.com/settings/billing",
+      "titulo": "Resend",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "9d853244f6f243010464a94d32c8884f91c0481aaae007b9010c0eda40694a85",
+      "bytes": 91034,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": "sin_texto_visible",
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://resend.com/docs/api-reference/errors",
+        "https://resend.com/docs/api-reference/rate-limit"
+      ],
+      "fichero_texto": "resend/9d853244f6f24301.html"
+    }
+  ],
+  "resumen": {
+    "incluidas": 107,
+    "capturadas": 107,
+    "fallidas": 0,
+    "con_aviso": 2
+  }
+}

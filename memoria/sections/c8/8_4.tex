@@ -1,0 +1,29 @@
+\section{Lecciones del método agéntico}
+\label{sec:conclusiones:lecciones}
+
+El Anexo~\ref{anx:uso-ia} declara qué tareas hicieron los agentes de inteligencia artificial y cuáles el autor.
+
+Este trabajo separa a quien construye una Datasheet de quien la verifica.
+El riesgo propio de un agente es dar por publicado un dato que la fuente vigente no contiene.
+Le ocurrió a Claude Opus 5.5 en la prueba de la Sección~\ref{sec:comparacion:harvey}, que le planteó preguntas de comparación con las Datasheets en el prompt y sin ellas.
+Sin ellas, atribuyó a Amazon SES en producción 50.000 correos al día y 14 por segundo.
+La documentación vigente no da ninguna de las dos: la primera solo sale en una entrada del blog de AWS de 2014, y la segunda no está en ninguna fuente de su Datasheet.
+El mismo error en un agente que construye una Datasheet pasaría al catálogo.
+
+En este trabajo lo acotan dos controles.
+El primero es que otro agente recibe la Datasheet terminada y la revisa campo a campo con las fuentes a la vista, en la fase de revisión del ciclo de la Sección~\ref{sec:propuesta:ciclo}.
+El segundo es el verificador de citas, una comprobación automática que contrasta la cita literal de cada valor con la copia archivada de su página, y no se aplica a Postmark, cuyas páginas no se archivaron.
+No se ha contado cuántos valores de las ocho Datasheets corrigieron esos dos controles, de modo que su eficacia no está medida.
+
+El libro de criterios es el fichero de reglas común a las ocho Datasheets.
+Cada duda de modelado que no cubría se decidió una sola vez y entró en él como regla nueva, de modo que no se volvió a plantear en otra API.
+Así, los límites de recursos, como el número de dominios o de \textit{webhooks} de una cuenta, no se modelan como cuotas en ninguna de las ocho.
+
+En la prueba de la Sección~\ref{sec:comparacion:harvey}, con las Datasheets en el prompt, Claude Opus 5.5 leyó bien los campos que pedían las cuatro preguntas, que tocan cinco de las ocho APIs.
+Citó el campo de cada cifra, separó el valor publicado del interpretado y llegó a la misma conclusión que la referencia calculada a mano, la misma a la que llegó sin ellas.
+La prueba comprueba la lectura y no que las Datasheets sean correctas: como se construyeron con la misma familia de modelos, un valor mal leído al construirlas pasaría a la respuesta sin que la prueba lo detectase.
+Por eso un valor que solo ha deducido un agente se queda en ámbar, el color de lo interpretado, mientras no lo respalde un valor publicado o medido.
+
+La reducción de horas del autor no se puede atribuir a los agentes.
+Las horas suman \dato{total.real} frente a las \dato{total.prev} previstas, pero el tiempo de los agentes no se registró y no hay una medición del mismo trabajo sin ellos (Sección~\ref{sec:metodologia:desviaciones}).
+Medir ese efecto exigiría registrar ese tiempo desde el inicio y construir sin agentes una muestra de Datasheets.

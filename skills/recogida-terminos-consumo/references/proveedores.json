@@ -1,0 +1,144 @@
+{
+  "version": "0.1",
+  "nota": "Ámbito oficial de cada proveedor de la ejecución de demo: host (sin www) y prefijo de ruta. Un proveedor nuevo se añade aquí antes de la fase 1. «exige» es una expresión sobre la ruta que una URL descubierta debe cumplir cuando el prefijo es compartido con otros productos del mismo dominio; las semillas no la necesitan.",
+  "proveedores": {
+    "postmark": {
+      "nombre": "Postmark",
+      "ambito": [
+        {
+          "prefijo": "postmarkapp.com/"
+        }
+      ],
+      "excluir": []
+    },
+    "resend": {
+      "nombre": "Resend",
+      "ambito": [
+        {
+          "prefijo": "resend.com/"
+        }
+      ],
+      "excluir": []
+    },
+    "sendgrid": {
+      "nombre": "SendGrid",
+      "ambito": [
+        {
+          "prefijo": "sendgrid.com/"
+        },
+        {
+          "prefijo": "support.sendgrid.com/"
+        },
+        {
+          "prefijo": "twilio.com/docs/sendgrid/"
+        },
+        {
+          "prefijo": "twilio.com/docs/api/errors/60603"
+        },
+        {
+          "prefijo": "twilio.com/en-us/products/email-api"
+        },
+        {
+          "prefijo": "twilio.com/en-us/changelog/sendgrid"
+        },
+        {
+          "prefijo": "twilio.com/en-us/legal/",
+          "exige": "sendgrid|email|acceptable|aup|terms|tos"
+        },
+        {
+          "prefijo": "twilio.com/en-us/sendgrid/"
+        }
+      ],
+      "excluir": []
+    },
+    "mailersend": {
+      "nombre": "MailerSend",
+      "ambito": [
+        {
+          "prefijo": "mailersend.com/"
+        },
+        {
+          "prefijo": "developers.mailersend.com/"
+        }
+      ],
+      "excluir": []
+    },
+    "brevo": {
+      "nombre": "Brevo",
+      "ambito": [
+        {
+          "prefijo": "brevo.com/"
+        },
+        {
+          "prefijo": "developers.brevo.com/"
+        },
+        {
+          "prefijo": "help.brevo.com/"
+        }
+      ],
+      "excluir": []
+    },
+    "ses": {
+      "nombre": "Amazon SES",
+      "ambito": [
+        {
+          "prefijo": "aws.amazon.com/ses/"
+        },
+        {
+          "prefijo": "aws.amazon.com/blogs/messaging-and-targeting/"
+        },
+        {
+          "prefijo": "docs.aws.amazon.com/ses/"
+        },
+        {
+          "prefijo": "docs.aws.amazon.com/sesmailmanager/"
+        },
+        {
+          "prefijo": "docs.aws.amazon.com/general/latest/gr/ses"
+        }
+      ],
+      "excluir": []
+    },
+    "mailgun": {
+      "nombre": "Mailgun",
+      "ambito": [
+        {
+          "prefijo": "mailgun.com/"
+        },
+        {
+          "prefijo": "documentation.mailgun.com/"
+        },
+        {
+          "prefijo": "help.mailgun.com/"
+        }
+      ],
+      "excluir": []
+    },
+    "mailchimp": {
+      "nombre": "Mailchimp Transactional (Mandrill)",
+      "ambito": [
+        {
+          "prefijo": "mailchimp.com/developer/transactional/"
+        },
+        {
+          "prefijo": "mailchimp.com/developer/release-notes/",
+          "exige": "transactional|mandrill|rate-limit|message-search"
+        },
+        {
+          "prefijo": "mailchimp.com/pricing/transactional-email"
+        },
+        {
+          "prefijo": "mailchimp.com/en/pricing/transactional-email"
+        },
+        {
+          "prefijo": "mailchimp.com/help/",
+          "exige": "mandrill|transactional|throttl"
+        },
+        {
+          "prefijo": "mailchimp.com/legal/"
+        }
+      ],
+      "excluir": []
+    }
+  }
+}

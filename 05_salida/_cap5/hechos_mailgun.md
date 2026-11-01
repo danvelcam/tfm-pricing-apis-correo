@@ -77,7 +77,7 @@ Convenciones:
 | MG-41 | Las dos cuotas del plan Free se quedan **sin `window_type`**, con el campo vacío y el hueco declarado: el panel no publica ninguna ancla de reinicio. | `metadata.not_found` #7 | panel | 🔴 | `capacity.quota_email_{daily,monthly}_free.window_type` (vacío) | F-33 (no recurre) |
 | MG-42 | Existe un tope de envío que fija **el propio titular**: `"The custom message limit imposes a hard limit on how many messages your account can send during a calendar month."`, con `"The timeframe for which the limit applies - m for months, d for days, h for hours"`. No es cuota de plan. | [F7] | doc | — | `plans.*.endpoints./v5/accounts/limit/custom/monthly`; `metadata.not_found` #12 | F-37 |
 | MG-43 | El ejemplo de la documentación usa `limit=10000` solo como valor de muestra, no como valor por defecto del proveedor. | [F7] | doc | — | — | F-37 |
-| MG-44 | Plantillas, tope de recurso: `"Mailgun caps usage of account-level templates to 100 templates and 40 versions per template."` No entra en `capacity` (B3). | [F9] | doc | — | `plans.*.endpoints./v3/{domain_name}/templates.workload[0].description` | F-11 |
+| MG-44 | Plantillas, tope de recurso: `"Mailgun caps usage of account-level templates to 100 templates and 40 versions per template. Domain-scoped templates have same limit set on a per sending domain basis."` El endpoint modelado es el de dominio: 100 y 40 en cada dominio de envío (corregido el 2026-10-31). No entra en `capacity` (B3). | [F9] | doc | — | `plans.*.endpoints./v3/{domain_name}/templates.workload[0].description` | F-11 |
 | MG-45 | Umbrales de la política de uso aceptable, que son política y no cuota (B4): rebotes hasta el 5 %, quejas por correo no deseado hasta el 0,08 %, bajas hasta el 1,4 % (o 1 % si las bajas superan a los clics) y bloqueos por debajo del 20 %. | [F19] | doc | — | — (solo `data_provenance`) | F-18 |
 | MG-46 | Y esos umbrales no se aplican de forma automática: `"The determination of whether and to what extent a customer's act or omission and is in violation of this AUP will be made at our sole discretion."` y `"Sinch Email reserves the right to update the parameters of the acceptable sending threshold without prior notice."` | [F19] | doc | — | — (solo `data_provenance`) | F-04, F-18 |
 | MG-47 | La versión archivada de la política declara los mismos umbrales que la vigente (rebotes ≤5 %, quejas ≤0,08 %, bajas ≤1,4 %): no hay cambio de cifra entre las dos versiones públicas, así que **E3 no aplica**. | [F21] (revisión `01/14/2022`) | doc | — | — | F-09 |
@@ -198,7 +198,7 @@ por eso cada fila lleva la línea que lo sostiene.
 | MG-133 | Reventa oficial en marketplaces con pricing propio: no encontrada. Solo un listado de terceros no oficial en RapidAPI (`orliesaurus`), que por **D1** no cuenta como fuente del proveedor. | `fuentes.md` (no encontradas) | doc | — | — | — |
 | MG-134 | La condición de *account probation* y el umbral de 100 mensajes/hora que citan terceros (Courier, MailTester): **no encontrados en fuente oficial**. | `fuentes.md` (no encontradas) | doc | — | — | F-18 |
 | MG-135 | Changelog con un cambio numérico del caudal de la API REST del producto transaccional: no encontrado. Las entradas del último año sobre límites son todas de Optimize o de IP dedicada: `"ability to set usage limits for subaccounts enabled with Optimize features"`. | [F22]; `fuentes.md` (no encontradas) | doc | — | — | F-09 |
-| MG-136 | Plantillas **a nivel de dominio**: no se ha localizado cita propia que confirme si comparten el tope 100/40 de las de cuenta. | [F9] | doc | — | — | F-11 |
+| MG-136 | Plantillas **a nivel de dominio**: ~~no se ha localizado cita propia que confirme si comparten el tope 100/40 de las de cuenta~~. Corregido el 2026-10-31: la frase siguiente de [F9] lo dice, `"Domain-scoped templates have same limit set on a per sending domain basis."`, y ya estaba en Wayback el 2026-06-12. Deja de ser hueco. | [F9] | doc | — | `plans.*.endpoints./v3/{domain_name}/templates.workload[0].description` | F-11 |
 
 ## 8. Lo medido en el escalón 3
 
@@ -294,3 +294,27 @@ una en variante en duda, dos variantes, cuatro nuevas y cinco sin dato**.
 7. **El contador del que depende la comparación de lotes es el que el esquema no admite**
    (MG-59, MG-159): la misma ventana devuelve 80.000 peticiones y 2.000.000 de
    destinatarios, y `max_power` solo aloja uno.
+
+## Corrección del 2026-10-31 (verificador independiente)
+
+El 31-10 un verificador reabrió cada URL del `datasheet.yaml`. El informe íntegro está en
+`03_datos/apis/mailgun/evidencias/verificador_adversarial_2026-10-31.md`. Ningún valor cambia.
+
+- **MG-92 sube a 🟢.** Las dos páginas de referencia que MG-132 daba por 404 responden hoy 200 con
+  su operación. Verificación DNS: `"Verify the domains DNS records (includes A, CNAME, SPF, DKIM and
+  MX records) to ensure the domain is ready and able to send"`. Edición de plantilla: `"Update the
+  description of a template."`. Con eso el test C2 queda entero, y `type: api_first` pasa a 🟢 por
+  D9. No hay captura de Wayback de esas páginas, así que no se sabe si el 404 de septiembre lo daba
+  la web o la herramienta.
+- **MG-132 deja de ser hueco** por lo mismo.
+- **MG-48, cita corregida.** `"gradually increases sending rates"` no está en ninguna de las dos
+  páginas. La frase que hay, `"For newly allocated IPs, Mailgun protects and improves the reputation
+  by gradually increasing sending rates."`, habla de IP nuevas y no de cuentas nuevas. La entrada
+  del YAML se queda con la cita de `faq/deliver-rep`.
+- **MG-44 y MG-136, alcance del tope de plantillas** (consejo del 2026-10-31, 5 a 0). El endpoint
+  modelado es el de plantillas de dominio. La frase que le da alcance es la segunda del párrafo:
+  `"Domain-scoped templates have same limit set on a per sending domain basis."`. Las cuatro
+  `description` dicen ahora «en cada dominio de envío». Las dos frases ya estaban en Wayback el
+  2026-06-12.
+
+Volcados: `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/LEEME.md`.

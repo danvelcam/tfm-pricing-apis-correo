@@ -1,6 +1,6 @@
 # Copias de páginas de los proveedores
 
-Este repositorio no publica las 149 copias de páginas y especificaciones de los proveedores en
+Este repositorio no publica las 215 copias de páginas y especificaciones de los proveedores en
 las que se apoyan las Datasheets. Cinco de los ocho proveedores prohíben en sus términos copiar o
 reproducir su contenido. El autor conserva las copias y las facilita al tribunal si las pide.
 
@@ -41,6 +41,15 @@ sha256 permite comprobar que una copia entregada es la misma que se usó.
 | `03_datos/apis/brevo/evidencias/paginas/2026-09-21/www_brevo_com_pricing_pay_as_you_go_selected_ip.txt` | 380 | `659ef6bab63084bf9509f6744f3b4e0c6b85964d68a894b2d22a93aa709d8ca4` |
 | `03_datos/apis/brevo/evidencias/paginas/2026-09-21/www_brevo_com_pricing_see_all_features.txt` | 17856 | `2541904ee52bc75b77417930e0a8eb6f41e24cabcb8a859e1bc2986fbacbab38` |
 | `03_datos/apis/brevo/evidencias/paginas/2026-09-21/www_brevo_com_products_transactional_email.txt` | 15897 | `33bff9875971259f0891b011db0506de80150666f2e06be95a88d96a665f7984` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/LEEME.md` | 4213 | `01d9e68930eaef55e50608eafae3ed05c80d3628072c18092e4c7abfbe77a5b1` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/developers_brevo_com_docs_batch_send_transactional_emails.html` | 290638 | `fd2cb28d5349365ca64086ea27ac4a244e342917e2a8f02a977f0a146b20e791` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/developers_brevo_com_docs_batch_send_transactional_emails.txt` | 13482 | `2fd222df78f1a72b891ddf51e5d839aa09b551ec49e77ef96eff4d16f01f52b6` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/developers_brevo_com_openapi_email_api_json.txt` | 124704 | `d56adf661e413abc2436312fce0e83ee4219635bec4066c562ea6c9f5f77d43c` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/dom_www_brevo_com_pricing.html` | 832198 | `b56bffcd37724f19b2d3dd46601010db6dc7cb35df2d0a2de6a273b8f35093d3` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/dom_www_brevo_com_pricing.txt` | 13032 | `12f0c5ca0dba64f43b8063fbdc474784e61953d08ddac8819c4287b01f3afb90` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/help_brevo_com_hc_en_us_articles_208589409_About_Brevo_s_pricing_plans.html` | 116637 | `c0a558c1f15d3b165606e0bbc1f72ba3a162192b5d7ef3edea35bb61d60ed00c` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/help_brevo_com_hc_en_us_articles_208589409_About_Brevo_s_pricing_plans.txt` | 18102 | `da10e30b56c1feb6e2ab47dcad3eab42b52984228a73220355baca791289f552` |
+| `03_datos/apis/brevo/evidencias/paginas/2026-10-31/wayback_20260717053211_developers_brevo_com_reference_sendtransacemail.txt` | 18519 | `6d41f720591c9788721683da0786b12abc9e188d2895cdd94684cabd46881b20` |
 | `03_datos/apis/brevo/evidencias/swagger_definition_v3_2026-09-18.yml` | 1162191 | `924e7b80833868cfd9be8705c94540fa1ae966266d4291bcc086e69f3fe36716` |
 | `03_datos/apis/mailchimp/evidencias/paginas/2026-09-21/endpoints-01.txt` | 1674 | `3e3e0cd3b56cc5c500b1d3c190a0ba9832b5ebbec8fff50eff8519ae10bdac32` |
 | `03_datos/apis/mailchimp/evidencias/paginas/2026-09-21/endpoints-02.txt` | 405 | `53518e40929d301af60b6b43c591ab7f033cba94529c04dcb17e048a4bb69a88` |
@@ -67,6 +76,31 @@ sha256 permite comprobar que una copia entregada es la misma que se usó.
 | `03_datos/apis/mailchimp/evidencias/paginas/2026-09-21/tos-05.txt` | 385 | `4f93b8169308c917f3b2824279ca9eb141936a6eeaf0a870433b3f25eac5391a` |
 | `03_datos/apis/mailchimp/evidencias/paginas/2026-09-21/tos-06.txt` | 725 | `62544be11880ad2687725c128d24ac44d8eda2aa463949f60e432dd3c7958d2e` |
 | `03_datos/apis/mailchimp/evidencias/paginas/2026-09-21/tos-07.txt` | 1275 | `03ec09bae0285957020bbb61cb3cd5086380fd9651a407af87c8dfbf2bd005ad` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/LEEME.md` | 5135 | `0b71b64b8955c345abb35cbbf2d503a9b1917e2505af136698fbd324b3e37151` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_openapi_api_reference_2_json.txt` | 254774 | `00211d86cac558397c7b8ceaee63ff1a6fb0c05330a461b42cb022d5c15d3e14` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_openapi_json.html` | 1209 | `3817563ae64a6c73d2fd677295e850a159f8224626d2dc87301f076f574a1ae6` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_openapi_json.txt` | 106 | `0437d3aeda8bd3524478d6c508049874642513b1852f434e9d8ed675e40a20e9` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_release_notes.html` | 302518 | `e1b8772ad4dc8c9645bbe7b738fe7d2baf345b1544515d5e809a7280691d1798` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_release_notes.txt` | 10879 | `351f3b39d4ef95c31daa936a182d40f79a21331d10aa8dab4f6956538d7cb1da` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_transactional_docs_activity_reports.html` | 236199 | `b70134e15a160f152cf54311cb964724f920f5b8c74c92d26d4f7fbd608e55b0` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_transactional_docs_activity_reports.txt` | 19406 | `c8b58046dfb913a8fefd9f37627cbb27274ceae5fe0da4dab66bd3dd26a0662c` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_transactional_docs_outbound_email.html` | 203078 | `215e1096a48f75933e8766b603f4f3b9918dd5f43f824d26021784d44ccee181` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_transactional_docs_outbound_email.txt` | 15841 | `5f006af5383f8e96510d425e95470d4ceabc98a524bf747315e000c77e290050` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_developer_transactional_llms_txt.txt` | 20769 | `f146be2a98e32c4f317c2a0cadadd02f9264db35ad249298d0f09b00fde5d223` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_legal_acceptable_use.html` | 226755 | `14f12df3ec719b3793b3d05eb5a2db2892dfccaf318413f31b4f20659ab9adeb` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_legal_acceptable_use.txt` | 18018 | `d859b8f4f6542e363736924d4b3f1346d613468cbec9b88f8ed515fc70ad9f98` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_legal_terms.html` | 325813 | `9bea4243a1f4884316246476e72e1ed0e754d01daab00d45997671572945c91c` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_legal_terms.txt` | 112613 | `bf5df73dcaf6bfc5a586d4daba15d1bafa572858e22ae2d2fd2dac69ccd41d34` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_legal_terms_locale_en.html` | 310078 | `8f1992b70a6742e8e2006275dc29d877ab929eee063880b522a84db719a4470a` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_legal_terms_locale_en.txt` | 96983 | `41b5b3a1b3dbe74c4741233cc17e13c43299be882a11578c7b81bdd8dc8b7f7b` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_pricing_transactional_email.html` | 272768 | `bc4d925b7313aafac2fd97ef8fae49f27994613f85d551bbf2ed344587dc7228` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_pricing_transactional_email.txt` | 14807 | `3f385d50f2d967b046ed8c94e46da82e9d1cb93907aa6a89ce590de3144cf12a` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_pricing_transactional_email_locale_en.html` | 266694 | `24c128f325f9f05e8af7ea853b7b0f71f0e62df46244a4933e6d0bbb001c8e87` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/mailchimp_com_pricing_transactional_email_locale_en.txt` | 11412 | `a9bffcbbf36bfa2ed975aa74564dc295ea21af60279f0e698829c45ef09e6cce` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/wayback_20260312171358_mailchimp_com_developer_transactional_docs_outbound_email.html` | 264199 | `78bb1b6d36ab56b31c7ed072b83107a12591f6e84e840118a470ebcad9f4e538` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/wayback_20260312171358_mailchimp_com_developer_transactional_docs_outbound_email.txt` | 15329 | `f8fc1fb989abdac66964e2c038caaa3c0c734ca2fc979b72b357bc0802b1a70e` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/wayback_20260730212733_mailchimp_com_developer_transactional_docs_activity_reports.html` | 276957 | `6aec2ef7e82f5918fb17a776f9cb707dfab1e024a1dc5c01a53d41e571468ddc` |
+| `03_datos/apis/mailchimp/evidencias/paginas/2026-10-31/wayback_20260730212733_mailchimp_com_developer_transactional_docs_activity_reports.txt` | 18789 | `609f4bb4495cd7701ff1e1bf4bd1022f939251a10e5a416a475dd97cb173c0b6` |
 | `03_datos/apis/mailersend/evidencias/paginas/2026-09-08/developers_mailersend_com_api_v1_bulk_email_html.txt` | 12977 | `0627838ab9d981007c506e7bed3049fdd5410842f25e6a4f2c1a48271bc26956` |
 | `03_datos/apis/mailersend/evidencias/paginas/2026-09-08/developers_mailersend_com_api_v1_email.txt` | 12977 | `0627838ab9d981007c506e7bed3049fdd5410842f25e6a4f2c1a48271bc26956` |
 | `03_datos/apis/mailersend/evidencias/paginas/2026-09-08/developers_mailersend_com_api_v1_email_html.txt` | 12977 | `0627838ab9d981007c506e7bed3049fdd5410842f25e6a4f2c1a48271bc26956` |
@@ -88,6 +122,9 @@ sha256 permite comprobar que una copia entregada es la misma que se usó.
 | `03_datos/apis/mailersend/evidencias/paginas/2026-09-14/developers_mailersend_com_api_v1_email_domains.txt` | 32288 | `e7e42963b90d973d5fc740edae327d613e8de79c32a2f2fc29714a50bbb9d7b9` |
 | `03_datos/apis/mailersend/evidencias/paginas/2026-09-14/developers_mailersend_com_api_v1_email_recipients.txt` | 41938 | `fd98f4c05affb31b3b1b14051ad7a7e6c30103f86fc7dec54207292471bc2210` |
 | `03_datos/apis/mailersend/evidencias/paginas/2026-09-14/developers_mailersend_com_api_v1_email_templates.txt` | 22623 | `75d77a666abc624a00cadb72bc57412c001d0058296969fa8bd10d834d28a697` |
+| `03_datos/apis/mailersend/evidencias/paginas/2026-10-31/LEEME.md` | 1481 | `edff6c32536db1b8188cebe0f15f6af372baada0a7201151cd6f3af146dd7ed5` |
+| `03_datos/apis/mailersend/evidencias/paginas/2026-10-31/www_mailersend_com_features_email-verification-tool_sinJS.html` | 290145 | `d14a461e8a7f0ed7b2e7d5769d88e1f71baf6238708464cd6998e3232246884b` |
+| `03_datos/apis/mailersend/evidencias/paginas/2026-10-31/www_mailersend_com_pricing_sinJS.html` | 384948 | `6118e0132a30d3227bf89b18bc9a35867bb8f6a00ee791ef63a1fb2a83b33cdc` |
 | `03_datos/apis/mailgun/evidencias/paginas/2026-09-21/endpoints-01.txt` | 470 | `93be8b39868e05cb0ada3411bf381d08587a4905933fc923d1166ffdc88d7626` |
 | `03_datos/apis/mailgun/evidencias/paginas/2026-09-21/endpoints-02.txt` | 298 | `a3d9abb32a9b2c6f44eb3c731bd6a7de077f8c3d8ca2913a7da1c8d98d15e7b3` |
 | `03_datos/apis/mailgun/evidencias/paginas/2026-09-21/endpoints-03.txt` | 439 | `cee7a5150869cd2c13e38e83821a904bf95374754ffdc47625e2d5ce9bf128ec` |
@@ -125,6 +162,18 @@ sha256 permite comprobar que una copia entregada es la misma que se usó.
 | `03_datos/apis/mailgun/evidencias/paginas/2026-09-21/tos-05.txt` | 774 | `317a0519cf8bef0ad21ca5c746e5e9817f39b92347f9df4c9ecaa8a7458a2c58` |
 | `03_datos/apis/mailgun/evidencias/paginas/2026-09-21/tos-06.txt` | 931 | `20ccace8f4c2123692e5879be3ef31f1f0b683644e7e35d524e44c433d3d6d34` |
 | `03_datos/apis/mailgun/evidencias/paginas/2026-09-21/tos-07.txt` | 1181 | `d78384fc49e7ff6b004570e0fb46a4cc74ba25961a6014763f3c19ccc4a6bc05` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/LEEME.md` | 3328 | `3023466b3de93a37c1290610fcad06681525b7abb57bdb89be0343830bc30208` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_api_reference_send_mailgun_domain_templates_put_v3_domain_name_templates_template.html` | 481043 | `456e3d287989e7fa5bdf0bffb29b727749a90dd5e15c95e9e2c1300d99ed5eee` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_api_reference_send_mailgun_domain_templates_put_v3_domain_name_templates_template.txt` | 2831 | `b33c1f1d97bff4de020b9e4103283df94f102cadb24d55a55595c0d836585231` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_api_reference_send_mailgun_domains_put_v4_domains_name_verify.html` | 476030 | `4b754773590cff6246a2e0f320fc5c019e2c86b36b2fe4cb4cdc43f6bd6417e6` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_api_reference_send_mailgun_domains_put_v4_domains_name_verify.txt` | 2940 | `2e4196dc5b9ddcd0df0b4746f22cefba4cdb2245ee7b7afadf16bf12863204b9` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_faq_deliver_rep.html` | 367346 | `922f05133203e771d63af38d39318c028643ff0564fa8816d2b81de43be46b0c` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_faq_deliver_rep.txt` | 7989 | `6d948cbcddb38aca6a31431c18311ee60009bb9c5705399c1df7e78112acbe5d` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_faq_sending.html` | 368843 | `488c5a09885fb66a11de997af6427c3e069b913071ce6711c4f3b74ad94c6d4b` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_faq_sending.txt` | 4849 | `669c180c2fe9386853772301137fd0076fdd9df8ef8d2143e3a7c50010dab8b5` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_user_manual_sending_messages_send_templates.html` | 542955 | `c077e4266334111c9a97c0abf1570a81b5c61f8963c7a2704bd4edcc0f494f89` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_docs_mailgun_user_manual_sending_messages_send_templates.txt` | 11440 | `7fda68db49e9d250ebc9ceb7d8605c276951ce852df6fabc93d313f6eb9044a3` |
+| `03_datos/apis/mailgun/evidencias/paginas/2026-10-31/documentation_mailgun_com_spec_docs_mailgun_api_reference_send_mailgun_json.txt` | 1143463 | `2aafe4964e4fc68fb3b92be7372a42403fa8500e8c0ae69de8361d392fa6549d` |
 | `03_datos/apis/postmark/evidencias/paginas/2026-09-28/postmarkapp_com_support_article_804_what_are_transactional_emails.txt` | 4252 | `fef1f469a637a96e01f6af5a0255ad67379bf551742b7435219ed997ef9931f8` |
 | `03_datos/apis/resend/evidencias/paginas/2026-09-01/resend_com_docs_api_reference_rate_limit.txt` | 2840 | `02fee69b5c5db26cadbbc0c056dbf5442fe74df3ffa20c660f5ccf7ce0820704` |
 | `03_datos/apis/resend/evidencias/paginas/2026-09-01/resend_com_pricing_md.txt` | 3196 | `621679961e01f5337b92c95269d12ea5c5cee2237e9ad62f14099bf7ea58adfe` |
@@ -154,6 +203,23 @@ sha256 permite comprobar que una copia entregada es la misma que se usó.
 | `03_datos/apis/ses/evidencias/paginas/2026-09-18/aws_amazon_com_ses_pricing.txt` | 18842 | `5beebe6ec88b108f14c4b46dff5b5d572cb961bdd0b9539d4f57a5ac908cd62b` |
 | `03_datos/apis/ses/evidencias/paginas/2026-09-18/docs_aws_amazon_com_ses_latest_dg_smtp-connect.txt` | 3261 | `78a9dffbe77b87c97416a7fbd43355e5f05f902a9555ee561122d9e0a9b9e9bc` |
 | `03_datos/apis/ses/evidencias/paginas/2026-09-18/docs_aws_amazon_com_ses_latest_dg_troubleshoot-smtp.txt` | 11244 | `4b83b7d8c3bfdb21ee40a7293e0fb4b92e304bc3446eb88266ef29afe169d8f3` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/LEEME.md` | 4037 | `0a0ee00aa8b276d9ffe3c27b59a3ea81d179d05585fdb8c20e49ff5cc677a225` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_APIReference_V2_API_CreateEmailIdentity_html.html` | 27253 | `a7d1a126d09167683c73e9f6010a80d9ff0613fd740d59d174756705cf463496` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_APIReference_V2_API_CreateEmailIdentity_html.txt` | 6103 | `88381ddc992b21505e637bc808f5e669ff8e1d8cfd665f04cb8352f5eac18790` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_APIReference_V2_API_CreateEmailTemplate_html.html` | 19729 | `9f1d32042a740554d00351c7bb704e4aaf2596f48cea9e2cf2de71007bca49ed` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_APIReference_V2_API_CreateEmailTemplate_html.txt` | 2750 | `32454911e9f83294385088965dbbb9307d634cde0b1878d4217f026bc3a7a64f` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_APIReference_V2_API_SendQuota_html.html` | 13672 | `5f05600c2d37a561024073ede3dfe6c20ed29943ffbabffa009c130ea3c6dfc0` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_APIReference_V2_API_SendQuota_html.txt` | 1527 | `11297e63e24b78eef5afa9a1f57ee0c3155303605493afadfe6a13f5f3f7e838` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_manage_sending_quotas_html.html` | 16521 | `b3498274a8513148eb6afdfd24f6b3402709c1d5376255a157521b596fb95a4b` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_manage_sending_quotas_html.txt` | 4306 | `b04d3f7d781c47cd8ecb51f2686d4a5dfd928bdc6989147f3771357f687df86a` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_quotas_html.html` | 43550 | `485b1b68c8e888f5a39eb02f8b32494adf3a12ac67a8f719ad20e990e3d7116c` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_quotas_html.txt` | 6470 | `cc76c379417e331712492abb9f238db12c3ce0bbe90f8dee020a95e6aedfb86f` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_request_production_access_html.html` | 22540 | `7c09a3ad1e36b50b47cbcc9f6e441f73118e3de435bcc6f08d0ea6b6d6feb2a5` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_request_production_access_html.txt` | 7195 | `0c0ffafcd52862b0246ef1f1188f122e922bdb759cada7fc02e9f6b8ec836622` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_send_an_email_from_console_html.html` | 30265 | `82cf609d64a45960104407914c1547482c8a2456ddc2cefe2cb0e568e6471460` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/docs_aws_amazon_com_ses_latest_dg_send_an_email_from_console_html.txt` | 10575 | `2ed9d46ca58375b98cadbd255d7cbb4604464e0b01dfa16aba63762ddb9d4655` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/wayback_20261023032108_docs_aws_amazon_com_ses_latest_dg_quotas_html.html` | 43034 | `6a40534ecbfd11d3dbe28fa19e931e04038c232f3b0c266a81abc8d042a701d6` |
+| `03_datos/apis/ses/evidencias/paginas/2026-10-31/wayback_20261023032108_docs_aws_amazon_com_ses_latest_dg_quotas_html.txt` | 6408 | `6d51662812f51f81e13dcbb12fecde83dbe4d5b113b2e6ab278c119981841f59` |
 | `03_datos/apis/ses/evidencias/paginas/API_SendEmail_v1_2026-10-18.html` | 28752 | `8016b7a24b1db9df9f9fcc150f823f1cb3f6eb528be3fc421f19f0369a807d2b` |
 | `03_datos/apis/ses/evidencias/paginas/gr_ses_2026-10-18.html` | 76232 | `9a0cd27fa04ed550d0dbaab37696136db3cbe981ba50ba1bf06380f68a34fb40` |
 | `03_datos/apis/ses/evidencias/paginas/smtp-credentials_2026-10-18.html` | 35067 | `c665f62d4b4c7ca9b8fc26f0852ce94ff4b24e9e41f2bf8c5b272e24b993ffa2` |

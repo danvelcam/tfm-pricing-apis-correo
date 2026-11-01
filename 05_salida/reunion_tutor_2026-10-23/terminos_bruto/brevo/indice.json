@@ -1,0 +1,3668 @@
+{
+  "schema_version": "0.1",
+  "generator": {
+    "skill": "recogida-terminos-consumo",
+    "skill_version": "0.1"
+  },
+  "api": "brevo",
+  "run": {
+    "generated_at": "2026-10-23T15:01:12Z",
+    "user_agent": "Mozilla/5.0 (X11; Linux x86_64; rv:130.0) Gecko/20100101 Firefox/130.0",
+    "intervalo_s": 0.4,
+    "peticiones": 152
+  },
+  "paginas": [
+    {
+      "id": "P-001",
+      "url": "https://brevo.com/llms.txt",
+      "url_final": "https://www.brevo.com/llms.txt",
+      "titulo": "Brevo",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "1e8de5c9d5c0d02df8e60a5e8a24c54c93c273f178b4a28c0398c1f5ab575076",
+      "bytes": 22165,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/1e8de5c9d5c0d02d.txt"
+    },
+    {
+      "id": "P-002",
+      "url": "https://developers.brevo.com/changelog/2026/2/10",
+      "url_final": "https://developers.brevo.com/changelog/2026/2/10.md",
+      "titulo": "Dedicated rate limits for orders and products endpoints",
+      "fecha_captura": "2026-10-23T15:01:12Z",
+      "sha256": "3408a8554e363da3eba89c56c05dd32ff0be338abcbe1a9d0330bd3dc2bce466",
+      "bytes": 639,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Blog y novedades",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://developers.brevo.com/sitemap.xml"
+      ],
+      "fichero_texto": "brevo/3408a8554e363da3.md"
+    },
+    {
+      "id": "P-003",
+      "url": "https://developers.brevo.com/docs/api-limits",
+      "url_final": "https://developers.brevo.com/docs/api-limits.md",
+      "titulo": "Rate limits",
+      "fecha_captura": "2026-10-23T15:01:14Z",
+      "sha256": "e08eda3887352d7d4bb6599d8f62ceb34f484faeeead20671ad6d92ec79a7ad8",
+      "bytes": 6918,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/changelog/2026/2/10",
+        "semilla",
+        "https://developers.brevo.com/docs/how-it-works",
+        "https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/e08eda3887352d7d.md"
+    },
+    {
+      "id": "P-004",
+      "url": "https://developers.brevo.com/docs/base44-integration",
+      "url_final": "https://developers.brevo.com/docs/base44-integration.md",
+      "titulo": "Send emails from your Base44 app with Brevo",
+      "fecha_captura": "2026-10-23T15:01:15Z",
+      "sha256": "607f2444c8d6f9ed0cdd3771f1160d6f78ee0d1b2d3474f834e1dcbccce360e2",
+      "bytes": 3888,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/607f2444c8d6f9ed.md"
+    },
+    {
+      "id": "P-005",
+      "url": "https://developers.brevo.com/docs/batch-send-transactional-emails",
+      "url_final": "https://developers.brevo.com/docs/batch-send-transactional-emails.md",
+      "titulo": "Batch send transactional emails",
+      "fecha_captura": "2026-10-23T15:01:16Z",
+      "sha256": "966d18c6b5fa4f4754c8e3b9db17bf0762a2f12d630f1d61f723b92bbfc1bedd",
+      "bytes": 12267,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "https://developers.brevo.com/reference/send-transac-email",
+        "https://developers.brevo.com/reference/sendtransacemail",
+        "https://www.brevo.com/products/transactional-email/"
+      ],
+      "fichero_texto": "brevo/966d18c6b5fa4f47.md"
+    },
+    {
+      "id": "P-006",
+      "url": "https://developers.brevo.com/docs/batch-webhooks",
+      "url_final": "https://developers.brevo.com/docs/batch-webhooks.md",
+      "titulo": "Batched webhooks",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "605d68074f4186924da31b77b83150e9df4913086b43dc94e69fbfcbbf429c71",
+      "bytes": 1935,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "semilla",
+      "temas": [
+        "webhooks",
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/605d68074f418692.md"
+    },
+    {
+      "id": "P-007",
+      "url": "https://developers.brevo.com/docs/bolt-new-integration",
+      "url_final": "https://developers.brevo.com/docs/bolt-new-integration.md",
+      "titulo": "Send emails from Bolt.new with Brevo",
+      "fecha_captura": "2026-10-23T15:01:17Z",
+      "sha256": "8c9fa4001b0a3a0f75572bf284447234cd767ac3b98f6f1af17bddad179882f7",
+      "bytes": 7008,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/8c9fa4001b0a3a0f.md"
+    },
+    {
+      "id": "P-008",
+      "url": "https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity",
+      "url_final": "https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity.md",
+      "titulo": "Weekly event exports",
+      "fecha_captura": "2026-10-23T15:01:18Z",
+      "sha256": "f661936bc1156f392f29ae6831cb33d9def7ed6e45f863466d843047477358ad",
+      "bytes": 5244,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f661936bc1156f39.md"
+    },
+    {
+      "id": "P-009",
+      "url": "https://developers.brevo.com/docs/conversations-webhooks",
+      "url_final": "https://developers.brevo.com/docs/conversations-webhooks.md",
+      "titulo": "Conversations webhooks",
+      "fecha_captura": "2026-10-23T15:01:19Z",
+      "sha256": "aa937d2a4ca7d4a83ccbcf2ec7d28ea89985f8dcc6f617666d441315e8dcf0e6",
+      "bytes": 46104,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/aa937d2a4ca7d4a8.md"
+    },
+    {
+      "id": "P-010",
+      "url": "https://developers.brevo.com/docs/heterogenous-versions-batch-emails",
+      "url_final": "https://developers.brevo.com/docs/heterogenous-versions-batch-emails.md",
+      "titulo": "Idempotency for batch emails",
+      "fecha_captura": "2026-10-23T15:01:20Z",
+      "sha256": "8abf4f71d0d8401253dc21a9f68ad12568f3fb93043b0d978bee9d5348b60aeb",
+      "bytes": 4059,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/batch-send-transactional-emails",
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/8abf4f71d0d84012.md"
+    },
+    {
+      "id": "P-011",
+      "url": "https://developers.brevo.com/docs/how-it-works",
+      "url_final": "https://developers.brevo.com/docs/how-it-works.md",
+      "titulo": "Key concepts",
+      "fecha_captura": "2026-10-23T15:01:21Z",
+      "sha256": "bd732b1fab21441ec1eace1713b962bec596c9b06bbb2096d87ff63022902d88",
+      "bytes": 7740,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/bd732b1fab21441e.md"
+    },
+    {
+      "id": "P-012",
+      "url": "https://developers.brevo.com/docs/how-to-use-webhooks",
+      "url_final": "https://developers.brevo.com/docs/how-to-use-webhooks.md",
+      "titulo": "Getting started",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "49dbb880a852bfb54980cb7f70417c5b816f88caf1a6ba87111217a3548962b1",
+      "bytes": 4280,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/api-limits",
+        "https://developers.brevo.com/docs/limit-headers",
+        "https://developers.brevo.com/llms.txt",
+        "https://www.brevo.com/products/transactional-email/",
+        "sitemap:https://developers.brevo.com/sitemap.xml"
+      ],
+      "fichero_texto": "brevo/49dbb880a852bfb5.md"
+    },
+    {
+      "id": "P-013",
+      "url": "https://developers.brevo.com/docs/inbound-parse-webhooks",
+      "url_final": "https://developers.brevo.com/docs/inbound-parse-webhooks.md",
+      "titulo": "Parse inbound email",
+      "fecha_captura": "2026-10-23T15:01:22Z",
+      "sha256": "6cde5368a4dc4810870611ec7191ded5227d6302233aa62e643d2c27c3ac4996",
+      "bytes": 21197,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "https://www.brevo.com/products/transactional-email/",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://brevo.com/llms.txt",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/6cde5368a4dc4810.md"
+    },
+    {
+      "id": "P-014",
+      "url": "https://developers.brevo.com/docs/limit-headers",
+      "url_final": "https://developers.brevo.com/docs/limit-headers.md",
+      "titulo": "Rate limit headers",
+      "fecha_captura": "2026-10-23T15:01:23Z",
+      "sha256": "1d4807b1dc40cd51dc2638af94d3082e5c250a0d3ec81a22c3791c34011a90b4",
+      "bytes": 8495,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas",
+        "errores_estado"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/api-limits",
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/1d4807b1dc40cd51.md"
+    },
+    {
+      "id": "P-015",
+      "url": "https://developers.brevo.com/docs/lovable-integration",
+      "url_final": "https://developers.brevo.com/docs/lovable-integration.md",
+      "titulo": "Send emails from your Lovable app with Brevo",
+      "fecha_captura": "2026-10-23T15:01:24Z",
+      "sha256": "f6462072e43fca460fe1823de7533bccd1c0f97d134de6bfc23ac53e27cbac68",
+      "bytes": 3653,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f6462072e43fca46.md"
+    },
+    {
+      "id": "P-016",
+      "url": "https://developers.brevo.com/docs/loyalty-subscriptions",
+      "url_final": "https://developers.brevo.com/docs/loyalty-subscriptions.md",
+      "titulo": "Enroll members",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "8725d591d230fa6e36a3d4c5573a36702761174024d4493d84277e0aaa407ba3",
+      "bytes": 4035,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/8725d591d230fa6e.md"
+    },
+    {
+      "id": "P-017",
+      "url": "https://developers.brevo.com/docs/loyalty-transactions",
+      "url_final": "https://developers.brevo.com/docs/loyalty-transactions.md",
+      "titulo": "Credit & debit points",
+      "fecha_captura": "2026-10-23T15:01:26Z",
+      "sha256": "8683603420463eeba784bdda5037e08d7493accc152c43e9178fce04c4bebbab",
+      "bytes": 13446,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/8683603420463eeb.md"
+    },
+    {
+      "id": "P-018",
+      "url": "https://developers.brevo.com/docs/loyalty-webhooks",
+      "url_final": "https://developers.brevo.com/docs/loyalty-webhooks.md",
+      "titulo": "Loyalty webhooks",
+      "fecha_captura": "2026-10-23T15:01:27Z",
+      "sha256": "c3bc6cbfbd4354d152b35e82d0ae8c5855cbb2009e01efe25c967c8e1545eb34",
+      "bytes": 33044,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/c3bc6cbfbd4354d1.md"
+    },
+    {
+      "id": "P-019",
+      "url": "https://developers.brevo.com/docs/marketing-webhooks",
+      "url_final": "https://developers.brevo.com/docs/marketing-webhooks.md",
+      "titulo": "Marketing webhooks",
+      "fecha_captura": "2026-10-23T15:01:28Z",
+      "sha256": "80d9155ea19161a805d430a7e57f6d56687edffcd2bc335cf389ed0d4ac2a266",
+      "bytes": 38235,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/80d9155ea19161a8.md"
+    },
+    {
+      "id": "P-020",
+      "url": "https://developers.brevo.com/docs/meeting-webhooks",
+      "url_final": "https://developers.brevo.com/docs/meeting-webhooks.md",
+      "titulo": "Meetings and phone webhooks",
+      "fecha_captura": "2026-10-23T15:01:29Z",
+      "sha256": "820fb9457f0fff405759770ddec39cd8ede559ad5dd2ad841046c8e9e9178846",
+      "bytes": 9701,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/820fb9457f0fff40.md"
+    },
+    {
+      "id": "P-021",
+      "url": "https://developers.brevo.com/docs/n8n-integration",
+      "url_final": "https://developers.brevo.com/docs/n8n-integration.md",
+      "titulo": "Send email from n8n with Brevo",
+      "fecha_captura": "2026-10-23T15:01:30Z",
+      "sha256": "89ccc8a19745c1e30319cb1ccdd5d79e5c6a469865e9764fdee3fb86dc5ef21c",
+      "bytes": 3114,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/89ccc8a19745c1e3.md"
+    },
+    {
+      "id": "P-022",
+      "url": "https://developers.brevo.com/docs/node-smtp-relay-example",
+      "url_final": "https://developers.brevo.com/docs/node-smtp-relay-example.md",
+      "titulo": "Node.js example",
+      "fecha_captura": "2026-10-23T15:01:31Z",
+      "sha256": "3dc2f162b492a4e4b19706c64c6af9c217920908f88fe3a7102a1bac86c1ec6f",
+      "bytes": 3121,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/3dc2f162b492a4e4.md"
+    },
+    {
+      "id": "P-023",
+      "url": "https://developers.brevo.com/docs/payment-webhooks",
+      "url_final": "https://developers.brevo.com/docs/payment-webhooks.md",
+      "titulo": "Payment webhooks",
+      "fecha_captura": "2026-10-23T15:01:32Z",
+      "sha256": "f73b1d6e4078c9125fd36db639c4a67bab58fafb053e2316078b6773ec8e7856",
+      "bytes": 6411,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f73b1d6e4078c912.md"
+    },
+    {
+      "id": "P-024",
+      "url": "https://developers.brevo.com/docs/platform-quotas",
+      "url_final": "https://developers.brevo.com/docs/platform-quotas.md",
+      "titulo": "Platform quotas",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "a409ffa62e57b1f00c076d6f408822230c04b4357173f6048dd40b49e89440a6",
+      "bytes": 33778,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/api-limits",
+        "https://developers.brevo.com/docs/batch-send-transactional-emails",
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml"
+      ],
+      "fichero_texto": "brevo/a409ffa62e57b1f0.md"
+    },
+    {
+      "id": "P-025",
+      "url": "https://developers.brevo.com/docs/push-notification-webhooks",
+      "url_final": "https://developers.brevo.com/docs/push-notification-webhooks.md",
+      "titulo": "Push notification webhooks",
+      "fecha_captura": "2026-10-23T15:01:33Z",
+      "sha256": "2b22b43c6a9a360557c0f90f79e095de3b2f12c856349f899cea01bea245eea2",
+      "bytes": 3787,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/2b22b43c6a9a3605.md"
+    },
+    {
+      "id": "P-026",
+      "url": "https://developers.brevo.com/docs/sales-crm-webhooks",
+      "url_final": "https://developers.brevo.com/docs/sales-crm-webhooks.md",
+      "titulo": "Sales CRM webhooks",
+      "fecha_captura": "2026-10-23T15:01:34Z",
+      "sha256": "da193c95b549e1d713e019646fd6ebae9401298d92190401cecfbabb4e22d1a8",
+      "bytes": 7212,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/da193c95b549e1d7.md"
+    },
+    {
+      "id": "P-027",
+      "url": "https://developers.brevo.com/docs/schedule-batch-sendings",
+      "url_final": "https://developers.brevo.com/docs/schedule-batch-sendings.md",
+      "titulo": "Schedule emails",
+      "fecha_captura": "2026-10-23T15:01:35Z",
+      "sha256": "dd0313b3bc401380e8f18ea371e7dc8f688a3e96191e3b660ed84f07f2cc1700",
+      "bytes": 4549,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/dd0313b3bc401380.md"
+    },
+    {
+      "id": "P-028",
+      "url": "https://developers.brevo.com/docs/secured-webhooks",
+      "url_final": "https://developers.brevo.com/docs/secured-webhooks.md",
+      "titulo": "Secure webhook calls",
+      "fecha_captura": "2026-10-23T15:01:36Z",
+      "sha256": "6fbadcc6637f2a75785aae2155f48b17aab7993e7fa9bcb3736cc4cad11a0faa",
+      "bytes": 2866,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/6fbadcc6637f2a75.md"
+    },
+    {
+      "id": "P-029",
+      "url": "https://developers.brevo.com/docs/send-a-transactional-email",
+      "url_final": "https://developers.brevo.com/docs/send-a-transactional-email.md",
+      "titulo": "Send a transactional email",
+      "fecha_captura": "2026-10-23T15:01:37Z",
+      "sha256": "57307eab79e1772adda12aac004a0933d47e5aba37389edf9bfbd11c217a3192",
+      "bytes": 21918,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/batch-send-transactional-emails",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://brevo.com/llms.txt",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/57307eab79e1772a.md"
+    },
+    {
+      "id": "P-030",
+      "url": "https://developers.brevo.com/docs/smtp-integration",
+      "url_final": "https://developers.brevo.com/docs/smtp-integration.md",
+      "titulo": "SMTP relay integration",
+      "fecha_captura": "2026-10-23T15:01:38Z",
+      "sha256": "4644b3011db37f5019a92d40a8413e21be6f408d158c6624ee170021d6f2729a",
+      "bytes": 8689,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://brevo.com/llms.txt",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/4644b3011db37f50.md"
+    },
+    {
+      "id": "P-031",
+      "url": "https://developers.brevo.com/docs/supabase-smtp-integration",
+      "url_final": "https://developers.brevo.com/docs/supabase-smtp-integration.md",
+      "titulo": "Connect Brevo SMTP to Supabase: send your auth emails",
+      "fecha_captura": "2026-10-23T15:01:39Z",
+      "sha256": "c85340a60135fb4e824103d4533c68221672c0d4bf55894601c18f45ea45c197",
+      "bytes": 6537,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/c85340a60135fb4e.md"
+    },
+    {
+      "id": "P-032",
+      "url": "https://developers.brevo.com/docs/transactional-sms-endpoints",
+      "url_final": "https://developers.brevo.com/docs/transactional-sms-endpoints.md",
+      "titulo": "Send transactional SMS",
+      "fecha_captura": "2026-10-23T15:01:40Z",
+      "sha256": "d5cc3dc26a64c7cb883e7b6bfe96efb93fad0825d195b13abf73d1e6edc92086",
+      "bytes": 13993,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://brevo.com/llms.txt",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d5cc3dc26a64c7cb.md"
+    },
+    {
+      "id": "P-033",
+      "url": "https://developers.brevo.com/docs/transactional-webhooks",
+      "url_final": "https://developers.brevo.com/docs/transactional-webhooks.md",
+      "titulo": "Transactional webhooks",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "954890fc118cc21e9375d52ffc900b825bb3a9a4e6ee5d9033f8cd1caa3373bd",
+      "bytes": 63225,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/954890fc118cc21e.md"
+    },
+    {
+      "id": "P-034",
+      "url": "https://developers.brevo.com/docs/using-sandbox-mode",
+      "url_final": "https://developers.brevo.com/docs/using-sandbox-mode.md",
+      "titulo": "Using sandbox mode",
+      "fecha_captura": "2026-10-23T15:01:41Z",
+      "sha256": "a6a7ca16fc78733cd05dbc43a52dbae3b2b394fa393e12d012b535bfb70223c0",
+      "bytes": 1809,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://brevo.com/llms.txt",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/a6a7ca16fc78733c.md"
+    },
+    {
+      "id": "P-035",
+      "url": "https://developers.brevo.com/docs/using-the-smtp-relay-with-postfix",
+      "url_final": "https://developers.brevo.com/docs/using-the-smtp-relay-with-postfix.md",
+      "titulo": "Postfix integration",
+      "fecha_captura": "2026-10-23T15:01:42Z",
+      "sha256": "d05155b33738850676e7f8bf983a9f56e8c3b3fef82e245f4413f8243491b238",
+      "bytes": 1300,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d05155b337388506.md"
+    },
+    {
+      "id": "P-036",
+      "url": "https://developers.brevo.com/docs/v0-integration",
+      "url_final": "https://developers.brevo.com/docs/v0-integration.md",
+      "titulo": "Send emails from your v0 app with Brevo",
+      "fecha_captura": "2026-10-23T15:01:43Z",
+      "sha256": "d97c3f6ccd15c150d3ad5efb41e905e50e38d60cf26da1d160ea975cb57eeb82",
+      "bytes": 5102,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d97c3f6ccd15c150.md"
+    },
+    {
+      "id": "P-037",
+      "url": "https://developers.brevo.com/llms.txt",
+      "url_final": "https://developers.brevo.com/llms.txt",
+      "titulo": "Brevo API Documentation",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": "9dac58a2382f922c32dc3cb0cc79d293290f3d8b08b2a83b4f16e3f0f7378fe7",
+      "bytes": 50817,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://developers.brevo.com/changelog/2026/2/10",
+        "https://developers.brevo.com/docs/api-limits",
+        "https://developers.brevo.com/docs/batch-send-transactional-emails",
+        "https://developers.brevo.com/docs/batch-webhooks",
+        "https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity"
+      ],
+      "fichero_texto": "brevo/9dac58a2382f922c.txt"
+    },
+    {
+      "id": "P-038",
+      "url": "https://developers.brevo.com/openapi",
+      "url_final": "https://developers.brevo.com/openapi.md",
+      "titulo": "Page Not Found",
+      "fecha_captura": "2026-10-23T15:01:44Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": "text/plain; charset=utf-8",
+      "http": 200,
+      "estado": "fallida",
+      "error": "soft_404",
+      "aviso": null,
+      "interfaz": "Documentación",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-039",
+      "url": "https://developers.brevo.com/reference/add-subscription-to-tier",
+      "url_final": "https://developers.brevo.com/reference/add-subscription-to-tier.md",
+      "titulo": "Assign a tier",
+      "fecha_captura": "2026-10-23T15:01:45Z",
+      "sha256": "f4bcf544d945213af0224251d69b89b6b9159f1390fc78c503bb2da8a9c5240b",
+      "bytes": 5982,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f4bcf544d945213a.md"
+    },
+    {
+      "id": "P-040",
+      "url": "https://developers.brevo.com/reference/create-balance-limit",
+      "url_final": "https://developers.brevo.com/reference/create-balance-limit.md",
+      "titulo": "Create balance limits",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "b68debd6315112f0bccc126d65f1faa1e2e100294eb851b6d7f4c7dd27cdf99b",
+      "bytes": 9231,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/b68debd6315112f0.md"
+    },
+    {
+      "id": "P-041",
+      "url": "https://developers.brevo.com/reference/create-batch-events",
+      "url_final": "https://developers.brevo.com/reference/create-batch-events.md",
+      "titulo": "Create events in batch",
+      "fecha_captura": "2026-10-23T15:01:46Z",
+      "sha256": "4cc17b77e40897b38352095f542b4b04f35506a44a20eee3e6750a87ebe18139",
+      "bytes": 16448,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/4cc17b77e40897b3.md"
+    },
+    {
+      "id": "P-042",
+      "url": "https://developers.brevo.com/reference/create-batch-order",
+      "url_final": "https://developers.brevo.com/reference/create-batch-order.md",
+      "titulo": "Create orders in batch",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "35306d92fb93b70508b00c0e433685f870eeb5ec90cbc811615c2e34d3ef6b10",
+      "bytes": 11690,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/35306d92fb93b705.md"
+    },
+    {
+      "id": "P-043",
+      "url": "https://developers.brevo.com/reference/create-sender",
+      "url_final": "https://developers.brevo.com/reference/create-sender.md",
+      "titulo": "Create email sender",
+      "fecha_captura": "2026-10-23T15:01:48Z",
+      "sha256": "d16652213f3fbb067ad92667f3f16e990b1ebc83694846200f8f636b81493d6b",
+      "bytes": 26013,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d16652213f3fbb06.md"
+    },
+    {
+      "id": "P-044",
+      "url": "https://developers.brevo.com/reference/create-smtp-template",
+      "url_final": "https://developers.brevo.com/reference/create-smtp-template.md",
+      "titulo": "Create an email template",
+      "fecha_captura": "2026-10-23T15:01:49Z",
+      "sha256": "ccbdf50187834b1627cf81bbd9b112f6926ef017f2a2913a3b54fb0e5939fb8a",
+      "bytes": 9090,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/ccbdf50187834b16.md"
+    },
+    {
+      "id": "P-045",
+      "url": "https://developers.brevo.com/reference/create-subscription-balances",
+      "url_final": "https://developers.brevo.com/reference/create-subscription-balances.md",
+      "titulo": "Create subscription balances",
+      "fecha_captura": "2026-10-23T15:01:50Z",
+      "sha256": "aeef48b8ad75a5085e157ef5a6224f3f529bf4ff382ff9ba12d0f7e48017d284",
+      "bytes": 7216,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/aeef48b8ad75a508.md"
+    },
+    {
+      "id": "P-046",
+      "url": "https://developers.brevo.com/reference/create-update-batch-category",
+      "url_final": "https://developers.brevo.com/reference/create-update-batch-category.md",
+      "titulo": "Create categories in batch",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "52485c9b5d949ccb995820f15043fcff26b0db82dab4e37ea60262121a0e9dd2",
+      "bytes": 7563,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/52485c9b5d949ccb.md"
+    },
+    {
+      "id": "P-047",
+      "url": "https://developers.brevo.com/reference/create-update-batch-products",
+      "url_final": "https://developers.brevo.com/reference/create-update-batch-products.md",
+      "titulo": "Create products in batch",
+      "fecha_captura": "2026-10-23T15:01:51Z",
+      "sha256": "650c408939f586c5d131345b152e8734b2365d4a58525ac53688ae6f4bd0c4e1",
+      "bytes": 8946,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/650c408939f586c5.md"
+    },
+    {
+      "id": "P-048",
+      "url": "https://developers.brevo.com/reference/create-webhook",
+      "url_final": "https://developers.brevo.com/reference/create-webhook.md",
+      "titulo": "Create a webhook",
+      "fecha_captura": "2026-10-23T15:01:52Z",
+      "sha256": "22738d7997d12e68ee7f3c1e874f5b7d23ca00b0334604549ecb4205831e4504",
+      "bytes": 8363,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/batch-webhooks",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/22738d7997d12e68.md"
+    },
+    {
+      "id": "P-049",
+      "url": "https://developers.brevo.com/reference/custom-objects/batch-delete-object-records",
+      "url_final": "https://developers.brevo.com/reference/custom-objects/batch-delete-object-records.md",
+      "titulo": "Delete multiple object records (up to 1000) asynchronously",
+      "fecha_captura": "2026-10-23T15:01:53Z",
+      "sha256": "2c775cc9511045259fac71f4a3b8f20c44d74aa21e6c7d865602d86b43b5fe58",
+      "bytes": 7485,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/2c775cc951104525.md"
+    },
+    {
+      "id": "P-050",
+      "url": "https://developers.brevo.com/reference/custom-objects/upsertrecords",
+      "url_final": "https://developers.brevo.com/reference/custom-objects/upsertrecords.md",
+      "titulo": "Create/Update object records in bulk",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "0fc5d714409f5e859d7c41aacaec920fafd97d3977362b538496c202696209ed",
+      "bytes": 27641,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/0fc5d714409f5e85.md"
+    },
+    {
+      "id": "P-051",
+      "url": "https://developers.brevo.com/reference/delete-an-smtp-transactional-log",
+      "url_final": "https://developers.brevo.com/reference/delete-an-smtp-transactional-log.md",
+      "titulo": "Delete an SMTP transactional log",
+      "fecha_captura": "2026-10-23T15:01:54Z",
+      "sha256": "0bd788a4fb37030dce56dc4f803087513b686e8554ad729a0af0a8f7e730bc3a",
+      "bytes": 5611,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/0bd788a4fb37030d.md"
+    },
+    {
+      "id": "P-052",
+      "url": "https://developers.brevo.com/reference/delete-balance-limit",
+      "url_final": "https://developers.brevo.com/reference/delete-balance-limit.md",
+      "titulo": "Delete balance limit",
+      "fecha_captura": "2026-10-23T15:01:55Z",
+      "sha256": "41a0798863dfe7374642f05efbedf0b5080409da9e79ae433ac76db2ba5b3980",
+      "bytes": 5123,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/41a0798863dfe737.md"
+    },
+    {
+      "id": "P-053",
+      "url": "https://developers.brevo.com/reference/delete-contact-members",
+      "url_final": "https://developers.brevo.com/reference/delete-contact-members.md",
+      "titulo": "Delete subscription member",
+      "fecha_captura": "2026-10-23T15:01:56Z",
+      "sha256": "d8452e89e09f22733cf7a4990fe8d2debc1b4cc224c51738fdd823839443e4a5",
+      "bytes": 5632,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d8452e89e09f2273.md"
+    },
+    {
+      "id": "P-054",
+      "url": "https://developers.brevo.com/reference/delete-contact-subscription",
+      "url_final": "https://developers.brevo.com/reference/delete-contact-subscription.md",
+      "titulo": "Delete subscription",
+      "fecha_captura": "2026-10-23T15:01:57Z",
+      "sha256": "dd28ec89222673b77d74480e73d1f07a518165eb8a89eec226e5c32d62c53e6a",
+      "bytes": 5117,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/dd28ec89222673b7.md"
+    },
+    {
+      "id": "P-055",
+      "url": "https://developers.brevo.com/reference/delete-smtp-template",
+      "url_final": "https://developers.brevo.com/reference/delete-smtp-template.md",
+      "titulo": "Delete an inactive email template",
+      "fecha_captura": "2026-10-23T15:01:57Z",
+      "sha256": "3812407aea80617471efeaa44d20df26e9d36e3ed8cbf523e4af428c0ee24a77",
+      "bytes": 5315,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/3812407aea806174.md"
+    },
+    {
+      "id": "P-056",
+      "url": "https://developers.brevo.com/reference/delete-webhook",
+      "url_final": "https://developers.brevo.com/reference/delete-webhook.md",
+      "titulo": "Delete a webhook",
+      "fecha_captura": "2026-10-23T15:01:58Z",
+      "sha256": "cff87e1dc6ed695ee166798fb36c013ab37e61e9f7b1e607a1e031e84658a390",
+      "bytes": 6083,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/cff87e1dc6ed695e.md"
+    },
+    {
+      "id": "P-057",
+      "url": "https://developers.brevo.com/reference/export-webhooks-history",
+      "url_final": "https://developers.brevo.com/reference/export-webhooks-history.md",
+      "titulo": "Export webhook history",
+      "fecha_captura": "2026-10-23T15:01:59Z",
+      "sha256": "a5db98798a4964d919c805dbf61fc926d4ae3e98cea9221ed445a0ea1850d884",
+      "bytes": 6901,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/bulk-fetch-all-your-transactional-activity",
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/a5db98798a4964d9.md"
+    },
+    {
+      "id": "P-058",
+      "url": "https://developers.brevo.com/reference/get-account",
+      "url_final": "https://developers.brevo.com/reference/get-account.md",
+      "titulo": "Get account details",
+      "fecha_captura": "2026-10-23T15:02:00Z",
+      "sha256": "11c76b0625041b67d6fbab48f8835ebb5ebf56e4443a3c771069217540f926cd",
+      "bytes": 11568,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "semilla",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/11c76b0625041b67.md"
+    },
+    {
+      "id": "P-059",
+      "url": "https://developers.brevo.com/reference/get-aggregated-smtp-report",
+      "url_final": "https://developers.brevo.com/reference/get-aggregated-smtp-report.md",
+      "titulo": "Get your transactional email activity aggregated over a period of time",
+      "fecha_captura": "2026-10-23T15:02:01Z",
+      "sha256": "48fb5ab390180dc749ff6e83d0bf6f3f85dd51579db476e89e3e109f7a2efec4",
+      "bytes": 6893,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/48fb5ab390180dc7.md"
+    },
+    {
+      "id": "P-060",
+      "url": "https://developers.brevo.com/reference/get-balance-limit",
+      "url_final": "https://developers.brevo.com/reference/get-balance-limit.md",
+      "titulo": "Get balance limits",
+      "fecha_captura": "2026-10-23T15:02:02Z",
+      "sha256": "6a08df5494906b5563863e5f605accb13524ac9944ac2e70a42d186dab1d2d88",
+      "bytes": 6625,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/6a08df5494906b55.md"
+    },
+    {
+      "id": "P-061",
+      "url": "https://developers.brevo.com/reference/get-inbound-email-attachment",
+      "url_final": "https://developers.brevo.com/reference/get-inbound-email-attachment.md",
+      "titulo": "Retrieve inbound attachment with download token.",
+      "fecha_captura": "2026-10-23T15:02:02Z",
+      "sha256": "d7ebe9bccee69e3ae4272216a02dc943c87648d48ac9ae53ded69982a2cfabfc",
+      "bytes": 5144,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Correo entrante",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d7ebe9bccee69e3a.md"
+    },
+    {
+      "id": "P-062",
+      "url": "https://developers.brevo.com/reference/get-ips",
+      "url_final": "https://developers.brevo.com/reference/get-ips.md",
+      "titulo": "Get all the dedicated IPs for your account",
+      "fecha_captura": "2026-10-23T15:02:04Z",
+      "sha256": "38b9a2139ccd78725b3f2df18de97f1116f80c7105d6a649bf40d728983d00c9",
+      "bytes": 9207,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/38b9a2139ccd7872.md"
+    },
+    {
+      "id": "P-063",
+      "url": "https://developers.brevo.com/reference/get-ips-from-sender",
+      "url_final": "https://developers.brevo.com/reference/get-ips-from-sender.md",
+      "titulo": "Get all the dedicated IPs for a specific sender",
+      "fecha_captura": "2026-10-23T15:02:04Z",
+      "sha256": "e33ddb8101bca4d9f5d5ff9adec0c03c4c0ba9d99c092311c368d05b3ee5625f",
+      "bytes": 9444,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/e33ddb8101bca4d9.md"
+    },
+    {
+      "id": "P-064",
+      "url": "https://developers.brevo.com/reference/get-parameter-subscription-info",
+      "url_final": "https://developers.brevo.com/reference/get-parameter-subscription-info.md",
+      "titulo": "Get Subscription Data",
+      "fecha_captura": "2026-10-23T15:02:05Z",
+      "sha256": "96752bf510b2987fa7f3fc06d58ba75eafa3dbd48b4c2d61e6a569b7e9e95723",
+      "bytes": 11669,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/96752bf510b2987f.md"
+    },
+    {
+      "id": "P-065",
+      "url": "https://developers.brevo.com/reference/get-senders",
+      "url_final": "https://developers.brevo.com/reference/get-senders.md",
+      "titulo": "Get email senders",
+      "fecha_captura": "2026-10-23T15:02:06Z",
+      "sha256": "c421b4fa8878d6fe14920572f6bf3140117ffe6ee2121d9a709f659a633aa1a9",
+      "bytes": 11301,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/c421b4fa8878d6fe.md"
+    },
+    {
+      "id": "P-066",
+      "url": "https://developers.brevo.com/reference/get-smtp-report",
+      "url_final": "https://developers.brevo.com/reference/get-smtp-report.md",
+      "titulo": "Get your transactional email activity aggregated per day",
+      "fecha_captura": "2026-10-23T15:02:08Z",
+      "sha256": "d710adf779c47398bfd0b5dfcf4535997b9d283803a3a63d90579d1082dac565",
+      "bytes": 7563,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/d710adf779c47398.md"
+    },
+    {
+      "id": "P-067",
+      "url": "https://developers.brevo.com/reference/get-smtp-template",
+      "url_final": "https://developers.brevo.com/reference/get-smtp-template.md",
+      "titulo": "Returns the template information",
+      "fecha_captura": "2026-10-23T15:02:09Z",
+      "sha256": "44e9e942a86ceb7e757b5b5dc318788e6b002627dfa57ea22e49fd15d3621421",
+      "bytes": 7668,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/44e9e942a86ceb7e.md"
+    },
+    {
+      "id": "P-068",
+      "url": "https://developers.brevo.com/reference/get-smtp-templates",
+      "url_final": "https://developers.brevo.com/reference/get-smtp-templates.md",
+      "titulo": "Get the list of email templates",
+      "fecha_captura": "2026-10-23T15:02:10Z",
+      "sha256": "758f9c7392ce4e7ee834c3943497345c59654ac36dcd2bced3c33b7803bc47e8",
+      "bytes": 8506,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/758f9c7392ce4e7e.md"
+    },
+    {
+      "id": "P-069",
+      "url": "https://developers.brevo.com/reference/get-subscription-balances",
+      "url_final": "https://developers.brevo.com/reference/get-subscription-balances.md",
+      "titulo": "Get subscription balances",
+      "fecha_captura": "2026-10-23T15:02:11Z",
+      "sha256": "7aa62062f82dbde46b6a2076ef51b0ecb25cc066249455b900e8b1530c989faa",
+      "bytes": 5845,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/7aa62062f82dbde4.md"
+    },
+    {
+      "id": "P-070",
+      "url": "https://developers.brevo.com/reference/get-transac-emails-list",
+      "url_final": "https://developers.brevo.com/reference/get-transac-emails-list.md",
+      "titulo": "Get the list of transactional emails on the basis of allowed filters",
+      "fecha_captura": "2026-10-23T15:02:11Z",
+      "sha256": "f2022e168d1318b537b64800d3b9c09616b87edb7a1b659f9fd45f07190ba29e",
+      "bytes": 7577,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "semilla",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f2022e168d1318b5.md"
+    },
+    {
+      "id": "P-071",
+      "url": "https://developers.brevo.com/reference/get-webhook",
+      "url_final": "https://developers.brevo.com/reference/get-webhook.md",
+      "titulo": "Get a webhook details",
+      "fecha_captura": "2026-10-23T15:02:12Z",
+      "sha256": "04e4bcf80c7e558e83352b47ef94b41f095c716c3dfdf5eab4fe190a2795c529",
+      "bytes": 7970,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/04e4bcf80c7e558e.md"
+    },
+    {
+      "id": "P-072",
+      "url": "https://developers.brevo.com/reference/get-webhooks",
+      "url_final": "https://developers.brevo.com/reference/get-webhooks.md",
+      "titulo": "Get all webhooks",
+      "fecha_captura": "2026-10-23T15:02:13Z",
+      "sha256": "f8726333f9c3e35e70f7df4acc009f6361062db4f66b51500de447c9644429a0",
+      "bytes": 7503,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f8726333f9c3e35e.md"
+    },
+    {
+      "id": "P-073",
+      "url": "https://developers.brevo.com/reference/post-preview-smtp-email-templates",
+      "url_final": "https://developers.brevo.com/reference/post-preview-smtp-email-templates.md",
+      "titulo": "Generate the rendered preview of transactional template",
+      "fecha_captura": "2026-10-23T15:02:15Z",
+      "sha256": "aff788546b525d6edd57570f8cef06bc48246a12629e6d9d5f4d4258344ab481",
+      "bytes": 6764,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/aff788546b525d6e.md"
+    },
+    {
+      "id": "P-074",
+      "url": "https://developers.brevo.com/reference/send-email-campaign-now",
+      "url_final": "https://developers.brevo.com/reference/send-email-campaign-now.md",
+      "titulo": "Send an email campaign immediately, based on campaignId",
+      "fecha_captura": "2026-10-23T15:02:15Z",
+      "sha256": "4dec79af4a60be7fc891e7dd6f1efaab60c83a7fafe3361e14b030831860d57c",
+      "bytes": 5549,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/4dec79af4a60be7f.md"
+    },
+    {
+      "id": "P-075",
+      "url": "https://developers.brevo.com/reference/send-transac-email",
+      "url_final": "https://developers.brevo.com/reference/send-transac-email.md",
+      "titulo": "Send a transactional email",
+      "fecha_captura": "2026-10-23T15:02:16Z",
+      "sha256": "4ed658f6b226c4acdfdb3522a02e461dcde165e3c82f7c34c4e3eb603061cc97",
+      "bytes": 36923,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/docs/schedule-batch-sendings",
+        "https://developers.brevo.com/llms.txt",
+        "semilla",
+        "https://developers.brevo.com/reference/sendtransacemail"
+      ],
+      "fichero_texto": "brevo/4ed658f6b226c4ac.md"
+    },
+    {
+      "id": "P-076",
+      "url": "https://developers.brevo.com/reference/sendtransacemail",
+      "url_final": "https://developers.brevo.com/reference/send-transac-email.md",
+      "titulo": "Send a transactional email",
+      "fecha_captura": "2026-10-23T15:02:17Z",
+      "sha256": "4ed658f6b226c4acdfdb3522a02e461dcde165e3c82f7c34c4e3eb603061cc97",
+      "bytes": 36923,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "brevo/4ed658f6b226c4ac.md"
+    },
+    {
+      "id": "P-077",
+      "url": "https://developers.brevo.com/reference/subscribe-member-to-a-subscription",
+      "url_final": "https://developers.brevo.com/reference/subscribe-member-to-a-subscription.md",
+      "titulo": "Create subscription member",
+      "fecha_captura": "2026-10-23T15:02:18Z",
+      "sha256": "2f77055de75c0d0c6581863de9f9968927555acca7c91d281d73eca284012df0",
+      "bytes": 7305,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/2f77055de75c0d0c.md"
+    },
+    {
+      "id": "P-078",
+      "url": "https://developers.brevo.com/reference/subscribe-to-loyalty-program",
+      "url_final": "https://developers.brevo.com/reference/subscribe-to-loyalty-program.md",
+      "titulo": "Create subscription",
+      "fecha_captura": "2026-10-23T15:02:19Z",
+      "sha256": "ca41ceac0bab3c3ab1af039b56b1ed85f0bc31f8d37965c1b146fe3fecc715db",
+      "bytes": 7450,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/ca41ceac0bab3c3a.md"
+    },
+    {
+      "id": "P-079",
+      "url": "https://developers.brevo.com/reference/update-balance-limit",
+      "url_final": "https://developers.brevo.com/reference/update-balance-limit.md",
+      "titulo": "Updates balance limit",
+      "fecha_captura": "2026-10-23T15:02:20Z",
+      "sha256": "22669c537da62a8a5a24e3f70cd5570f2b84690aa58246188e9b5aa5901ad81a",
+      "bytes": 9247,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/22669c537da62a8a.md"
+    },
+    {
+      "id": "P-080",
+      "url": "https://developers.brevo.com/reference/update-smtp-template",
+      "url_final": "https://developers.brevo.com/reference/update-smtp-template.md",
+      "titulo": "Update an email template",
+      "fecha_captura": "2026-10-23T15:02:21Z",
+      "sha256": "7bdbf40f596b59ef2f5872c79e68269cd0363f20abb9994147426cf78d4af605",
+      "bytes": 8832,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/7bdbf40f596b59ef.md"
+    },
+    {
+      "id": "P-081",
+      "url": "https://developers.brevo.com/reference/update-sub-account-plan",
+      "url_final": "https://developers.brevo.com/reference/update-sub-account-plan.md",
+      "titulo": "Update sub-account plan",
+      "fecha_captura": "2026-10-23T15:02:22Z",
+      "sha256": "e3bf6332eb991facd6bcb0fae0a3ee024e07df3d48afa26b189f46ce7407ad56",
+      "bytes": 9543,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/e3bf6332eb991fac.md"
+    },
+    {
+      "id": "P-082",
+      "url": "https://developers.brevo.com/reference/update-sub-accounts-plan",
+      "url_final": "https://developers.brevo.com/reference/update-sub-accounts-plan.md",
+      "titulo": "Update sub-accounts plan",
+      "fecha_captura": "2026-10-23T15:02:23Z",
+      "sha256": "cb3f90d65c409eaafbf81c9894e571dd7ae7871338ef54071bd8122bc33be41c",
+      "bytes": 9841,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/cb3f90d65c409eaa.md"
+    },
+    {
+      "id": "P-083",
+      "url": "https://developers.brevo.com/reference/update-webhook",
+      "url_final": "https://developers.brevo.com/reference/update-webhook.md",
+      "titulo": "Update a webhook",
+      "fecha_captura": "2026-10-23T15:02:23Z",
+      "sha256": "74ad0772d2c19bbba30cce8f7ac7ac70d2b0bc1d46c37418b5702c49f5d48106",
+      "bytes": 8720,
+      "content_type": "text/markdown; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Webhooks",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://developers.brevo.com/llms.txt",
+        "sitemap:https://developers.brevo.com/sitemap.xml",
+        "llms.txt:https://developers.brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/74ad0772d2c19bbb.md"
+    },
+    {
+      "id": "P-084",
+      "url": "https://help.brevo.com/hc/en-us/articles/11098615382802",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/11098615382802-Add-an-attachment-to-an-email-campaign",
+      "titulo": "Add an attachment to an email campaign – Home",
+      "fecha_captura": "2026-10-23T15:02:24Z",
+      "sha256": "cdfb89b62cec51d5009a4450f22de9f056191367c60562bf8fa33541a5445b7a",
+      "bytes": 77465,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "limites_cuotas",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email"
+      ],
+      "fichero_texto": "brevo/cdfb89b62cec51d5.html"
+    },
+    {
+      "id": "P-085",
+      "url": "https://help.brevo.com/hc/en-us/articles/115000188150-Troubleshooting-Issues-with-Brevo-SMTP",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/115000188150-Troubleshooting-Issues-with-Brevo-SMTP",
+      "titulo": "Troubleshooting - Issues with Brevo SMTP – Home",
+      "fecha_captura": "2026-10-23T15:02:25Z",
+      "sha256": "21e961fe59512b64ad5b2552c146bb91b8e275776d1e14e57ecdfec31dc80383",
+      "bytes": 94207,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/21e961fe59512b64.html"
+    },
+    {
+      "id": "P-086",
+      "url": "https://help.brevo.com/hc/en-us/articles/115000240344-Set-up-your-dedicated-IP-in-Brevo",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/115000240344-Set-up-your-dedicated-IP-in-Brevo",
+      "titulo": "Set up your dedicated IP in Brevo – Home",
+      "fecha_captura": "2026-10-23T15:02:25Z",
+      "sha256": "c9610bab967e8c792a082482808baa075c1d651a4b1672d719b4953f3815ec37",
+      "bytes": 166851,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/c9610bab967e8c79.html"
+    },
+    {
+      "id": "P-087",
+      "url": "https://help.brevo.com/hc/en-us/articles/15403782599570-Where-can-I-find-the-Data-Processing-Agreement-DPA",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/15403782599570-Where-can-I-find-the-Data-Processing-Agreement-DPA",
+      "titulo": "Where can I find the Data Processing Agreement (DPA)? – Home",
+      "fecha_captura": "2026-10-23T15:02:26Z",
+      "sha256": "f935c4fef260555fe9f7cf81323f978bfef4a01eb7122588748a500cc7ec632f",
+      "bytes": 68906,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f935c4fef260555f.html"
+    },
+    {
+      "id": "P-088",
+      "url": "https://help.brevo.com/hc/en-us/articles/17629099685394",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/17629099685394-Downgrade-to-the-Free-plan-or-a-lower-plan",
+      "titulo": "Downgrade to the Free plan or a lower plan – Home",
+      "fecha_captura": "2026-10-23T15:02:26Z",
+      "sha256": "0f3c66768a3252e97d194aaff87f0b47a570e1c5143d11e01300df99102c4478",
+      "bytes": 74439,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/0f3c66768a3252e9.html"
+    },
+    {
+      "id": "P-089",
+      "url": "https://help.brevo.com/hc/en-us/articles/208580669",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+      "titulo": "FAQs - What are the limits of the Free plan? – Home",
+      "fecha_captura": "2026-10-23T15:02:27Z",
+      "sha256": "b028bf3d3ba5bc9d2120332eb0e11f22d68f3a560918920b9d5773df7f7033ef",
+      "bytes": 77268,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/b028bf3d3ba5bc9d.html"
+    },
+    {
+      "id": "P-090",
+      "url": "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+      "titulo": "FAQs - What are the limits of the Free plan? – Home",
+      "fecha_captura": "2026-10-23T15:02:27Z",
+      "sha256": "b028bf3d3ba5bc9d2120332eb0e11f22d68f3a560918920b9d5773df7f7033ef",
+      "bytes": 77268,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios",
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/b028bf3d3ba5bc9d.html"
+    },
+    {
+      "id": "P-091",
+      "url": "https://help.brevo.com/hc/en-us/articles/208589409",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+      "titulo": "About Brevo's pricing plans – Home",
+      "fecha_captura": "2026-10-23T15:02:27Z",
+      "sha256": "6aa1c827d67d37ed7db853e5e794692fadd02fd2943fd979d4aecb50c2190a43",
+      "bytes": 116709,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan"
+      ],
+      "fichero_texto": "brevo/6aa1c827d67d37ed.html"
+    },
+    {
+      "id": "P-092",
+      "url": "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+      "titulo": "About Brevo's pricing plans – Home",
+      "fecha_captura": "2026-10-23T15:02:28Z",
+      "sha256": "6aa1c827d67d37ed7db853e5e794692fadd02fd2943fd979d4aecb50c2190a43",
+      "bytes": 116709,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/6aa1c827d67d37ed.html"
+    },
+    {
+      "id": "P-093",
+      "url": "https://help.brevo.com/hc/en-us/articles/208593449",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/208593449-Cancel-your-subscription",
+      "titulo": "Cancel your subscription – Home",
+      "fecha_captura": "2026-10-23T15:02:28Z",
+      "sha256": "a921ac2d2f9b7cfdf1d0a0f39d896fdbec09a8349b71b9f93ce454902cc4e584",
+      "bytes": 78782,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/a921ac2d2f9b7cfd.html"
+    },
+    {
+      "id": "P-094",
+      "url": "https://help.brevo.com/hc/en-us/articles/208835449",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/208835449-Introduction-to-dedicated-IPs",
+      "titulo": "Introduction to dedicated IPs – Home",
+      "fecha_captura": "2026-10-23T15:02:29Z",
+      "sha256": "24892d36e26f970d41d6bc708a9a883eeec0572b4052f30f2e4778fdbf2117a6",
+      "bytes": 74640,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/24892d36e26f970d.html"
+    },
+    {
+      "id": "P-095",
+      "url": "https://help.brevo.com/hc/en-us/articles/209296725",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/209296725-Upgrade-to-a-higher-plan",
+      "titulo": "Upgrade to a higher plan – Home",
+      "fecha_captura": "2026-10-23T15:02:29Z",
+      "sha256": "2974221e045a85db147ec5b393a241350133a7f91c1b504bb66bab169837fa33",
+      "bytes": 73952,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan"
+      ],
+      "fichero_texto": "brevo/2974221e045a85db.html"
+    },
+    {
+      "id": "P-096",
+      "url": "https://help.brevo.com/hc/en-us/articles/209462765-What-is-Brevo-SMTP",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/209462765-What-is-Brevo-SMTP",
+      "titulo": "What is Brevo SMTP? – Home",
+      "fecha_captura": "2026-10-23T15:02:30Z",
+      "sha256": "534983be873a12853560eb17eb2d6bb80c13ad31413673aca8bb2fef8af6b8ff",
+      "bytes": 71319,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/534983be873a1285.html"
+    },
+    {
+      "id": "P-097",
+      "url": "https://help.brevo.com/hc/en-us/articles/24645462216466",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/24645462216466-Create-inbound-webhooks-to-receive-real-time-data-from-another-app-in-Brevo",
+      "titulo": "Create inbound webhooks to receive real-time data from another app in Brevo – Home",
+      "fecha_captura": "2026-10-23T15:02:30Z",
+      "sha256": "714fa5d534dc6507cd2be6538e7d87a530dc0c78c26ae62a1972bbf2eafc7d83",
+      "bytes": 90090,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/714fa5d534dc6507.html"
+    },
+    {
+      "id": "P-098",
+      "url": "https://help.brevo.com/hc/en-us/articles/27824932835474",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/27824932835474-Create-outbound-webhooks-to-send-real-time-data-from-Brevo-to-an-external-app",
+      "titulo": "Create outbound webhooks to send real-time data from Brevo to an external app – Home",
+      "fecha_captura": "2026-10-23T15:02:30Z",
+      "sha256": "34408d86597fa0f8d833de44cb956ea89d58b4975b8b4e1b7fbc72eaafecb8ed",
+      "bytes": 89356,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "webhooks",
+      "temas": [
+        "webhooks"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/34408d86597fa0f8.html"
+    },
+    {
+      "id": "P-099",
+      "url": "https://help.brevo.com/hc/en-us/articles/360001005870-SMTP-relay",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/360001005870-SMTP-relay",
+      "titulo": "SMTP relay – Home",
+      "fecha_captura": "2026-10-23T15:02:31Z",
+      "sha256": "f10d0b64e493f74f60c745eb7c58400197e24c1199ecc006e397f9eeae03b46c",
+      "bytes": 67996,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/f10d0b64e493f74f.html"
+    },
+    {
+      "id": "P-100",
+      "url": "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+      "titulo": "Add an attachment to a transactional email – Home",
+      "fecha_captura": "2026-10-23T15:02:31Z",
+      "sha256": "b06375d4df2bd35017930ec133620c432dc79e3b873503c4d90f002ddd97fd0b",
+      "bytes": 74766,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "brevo/b06375d4df2bd350.html"
+    },
+    {
+      "id": "P-101",
+      "url": "https://help.brevo.com/hc/en-us/articles/4409354969746",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/4409354969746-Customize-your-plan-with-add-ons",
+      "titulo": "Customize your plan with add-ons – Home",
+      "fecha_captura": "2026-10-23T15:02:31Z",
+      "sha256": "2ef839524b2fcb6b9a8d6fe1a4c798514a3bd6c12d78e9492404d43b1001233a",
+      "bytes": 129054,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/2ef839524b2fcb6b.html"
+    },
+    {
+      "id": "P-102",
+      "url": "https://help.brevo.com/hc/en-us/articles/4416961286674-Supported-countries-and-pricing-for-WhatsApp-messages",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/4416961286674-Supported-countries-and-pricing-for-WhatsApp-messages",
+      "titulo": "Supported countries and pricing for WhatsApp messages – Home",
+      "fecha_captura": "2026-10-23T15:02:32Z",
+      "sha256": "b4135699c769f7d291e9f02c1706fe60564201dae32da1db053522794a481f27",
+      "bytes": 80016,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/b4135699c769f7d2.html"
+    },
+    {
+      "id": "P-103",
+      "url": "https://help.brevo.com/hc/en-us/articles/7924908994450-Send-transactional-emails-using-Brevo-SMTP",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/7924908994450-Send-transactional-emails-using-Brevo-SMTP",
+      "titulo": "Send transactional emails using Brevo SMTP – Home",
+      "fecha_captura": "2026-10-23T15:02:32Z",
+      "sha256": "8b5b14faa71eee09664fb48ad682f8cc38fecde8bf32c301a9d6221eefd65364",
+      "bytes": 81318,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp",
+        "envio"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/8b5b14faa71eee09.html"
+    },
+    {
+      "id": "P-104",
+      "url": "https://help.brevo.com/hc/en-us/articles/7959631848850-Create-and-manage-your-SMTP-keys",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/7959631848850-Create-and-manage-your-SMTP-keys",
+      "titulo": "Create and manage your SMTP keys – Home",
+      "fecha_captura": "2026-10-23T15:02:33Z",
+      "sha256": "71c9c09db6a32da913d1fb4bfa94f9fc16772225b2ebcaf2a312a43d74fb13b5",
+      "bytes": 86644,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/71c9c09db6a32da9.html"
+    },
+    {
+      "id": "P-105",
+      "url": "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+      "titulo": "Add or remove emails from your plan – Home",
+      "fecha_captura": "2026-10-23T15:02:33Z",
+      "sha256": "e7301c45ea43299f71d3db9ce7eecf2b73c73acc5f0671e0666f0cf2991aad5b",
+      "bytes": 76052,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "brevo/e7301c45ea43299f.html"
+    },
+    {
+      "id": "P-106",
+      "url": "https://help.brevo.com/hc/en-us/articles/8817303571602",
+      "url_final": "https://help.brevo.com/hc/en-us/articles/8817303571602-Pause-your-monthly-subscription",
+      "titulo": "Pause your monthly subscription – Home",
+      "fecha_captura": "2026-10-23T15:02:33Z",
+      "sha256": "9b432d2fe83ca35efccb90ba4e9e27919669c2d66857dce6a46cf0e12937ba6b",
+      "bytes": 74884,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Ayuda y soporte",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans"
+      ],
+      "fichero_texto": "brevo/9b432d2fe83ca35e.html"
+    },
+    {
+      "id": "P-107",
+      "url": "https://help.brevo.com/hc/en-us/sections/4412559563922-Pricing-Plans",
+      "url_final": "https://help.brevo.com/hc/en-us/sections/4412559563922-Pricing-Plans",
+      "titulo": "Pricing Plans – Home",
+      "fecha_captura": "2026-10-23T15:02:34Z",
+      "sha256": "b68242c6453a4d3567d92f8502ad86e8ddccc04588988e070e9437c9db9959e6",
+      "bytes": 63021,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan"
+      ],
+      "fichero_texto": "brevo/b68242c6453a4d35.html"
+    },
+    {
+      "id": "P-108",
+      "url": "https://www.brevo.com/blog/api-rate-limiting/",
+      "url_final": "https://www.brevo.com/blog/api-rate-limiting/",
+      "titulo": "Email API Rate Limits & Throttling: A Developer's Guide | Brevo",
+      "fecha_captura": "2026-10-23T15:02:34Z",
+      "sha256": "422dfcde52e5f5c1b64a47e9a6330e06eb2041ef0814aa9103b72aaca7a2ae00",
+      "bytes": 714123,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "API",
+      "motivo": "semilla",
+      "temas": [
+        "limites_cuotas"
+      ],
+      "cuelga_de": [
+        "semilla",
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/422dfcde52e5f5c1.html"
+    },
+    {
+      "id": "P-109",
+      "url": "https://www.brevo.com/bulk-email-service/",
+      "url_final": "https://www.brevo.com/bulk-email-service/",
+      "titulo": "Free Bulk Email Service",
+      "fecha_captura": "2026-10-23T15:02:35Z",
+      "sha256": "ae28d89ce4d73ffbf897b2ef3fb547bc920dbb8791b8ff1fb14b84a240ea5ff8",
+      "bytes": 662350,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.brevo.com/blog/api-rate-limiting/",
+        "https://www.brevo.com/pricing/",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip",
+        "https://www.brevo.com/pricing/see-all-features/"
+      ],
+      "fichero_texto": "brevo/ae28d89ce4d73ffb.html"
+    },
+    {
+      "id": "P-110",
+      "url": "https://www.brevo.com/bulk-sms-sender/",
+      "url_final": "https://www.brevo.com/bulk-sms-sender/",
+      "titulo": "Bulk SMS Sender: Gateway for Marketing and Transactional SMS",
+      "fecha_captura": "2026-10-23T15:02:35Z",
+      "sha256": "4f1066453cc0c3846531aed4ae92124699648f612ce3102a2d23ccc533198f38",
+      "bytes": 521311,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml",
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/4f1066453cc0c384.html"
+    },
+    {
+      "id": "P-111",
+      "url": "https://www.brevo.com/enterprise/pro-trial-user/",
+      "url_final": "https://www.brevo.com/enterprise/pro-trial-user/",
+      "titulo": "Brevo l Get a free Trial",
+      "fecha_captura": "2026-10-23T15:02:36Z",
+      "sha256": "b06835ef5f9bf90ed0cb391ab78c278acadaf05b354407e0139de660c3239ed7",
+      "bytes": 367758,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "cuenta_reputacion",
+      "temas": [
+        "cuenta_reputacion"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/b06835ef5f9bf90e.html"
+    },
+    {
+      "id": "P-112",
+      "url": "https://www.brevo.com/features/email-api/",
+      "url_final": "https://www.brevo.com/features/email-api/",
+      "titulo": "Free Email API for Developers | Brevo",
+      "fecha_captura": "2026-10-23T15:02:36Z",
+      "sha256": "2f2fecaf0ee1120e27913d36ef07888fbccf91c310ac17026bcfa983fdce307f",
+      "bytes": 691382,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://www.brevo.com/blog/api-rate-limiting/",
+        "https://www.brevo.com/products/transactional-email/",
+        "sitemap:https://www.brevo.com/sitemap_en.xml",
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/2f2fecaf0ee1120e.html"
+    },
+    {
+      "id": "P-113",
+      "url": "https://www.brevo.com/free-smtp-server/",
+      "url_final": "https://www.brevo.com/free-smtp-server/",
+      "titulo": "Free SMTP Server | Deliver to the Inbox Every Time",
+      "fecha_captura": "2026-10-23T15:02:37Z",
+      "sha256": "3ac5a519c85ba0587526be137a1af09c67ad39a516e4fcceb1009cf1c50da851",
+      "bytes": 570255,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://www.brevo.com/blog/api-rate-limiting/",
+        "https://www.brevo.com/pricing/",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip",
+        "https://www.brevo.com/pricing/see-all-features/"
+      ],
+      "fichero_texto": "brevo/3ac5a519c85ba058.html"
+    },
+    {
+      "id": "P-114",
+      "url": "https://www.brevo.com/integrations/wp-mail-smtp/",
+      "url_final": "https://www.brevo.com/integrations/wp-mail-smtp/",
+      "titulo": "WP Mail SMTP with Brevo for WordPress email delivery",
+      "fecha_captura": "2026-10-23T15:02:37Z",
+      "sha256": "d6f900b73c3dc642d9acd0efe3b0b49465183fc3f6abdba21698ff3e6009203a",
+      "bytes": 384197,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "SMTP",
+      "motivo": "smtp",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/d6f900b73c3dc642.html"
+    },
+    {
+      "id": "P-115",
+      "url": "https://www.brevo.com/jp/pricing/",
+      "url_final": "https://www.brevo.com/jp/pricing/",
+      "titulo": "料金プラン | Brevo（ブレヴォ）",
+      "fecha_captura": "2026-10-23T15:02:37Z",
+      "sha256": "92a9fce6e0211c2eaa627dba3f6a3515a593afdce454709680dc8bf46b6e184d",
+      "bytes": 387751,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "llms.txt:https://brevo.com/llms.txt"
+      ],
+      "fichero_texto": "brevo/92a9fce6e0211c2e.html"
+    },
+    {
+      "id": "P-116",
+      "url": "https://www.brevo.com/legal-notice/",
+      "url_final": "https://www.brevo.com/legal/notice/",
+      "titulo": "Legal Notice | Brevo",
+      "fecha_captura": "2026-10-23T15:02:38Z",
+      "sha256": "b227f925b30ce59d48418068bf24e6a770147bd7171fa4c707854ef9d7596986",
+      "bytes": 251535,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.brevo.com/blog/api-rate-limiting/",
+        "https://www.brevo.com/pricing/",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip",
+        "https://www.brevo.com/pricing/see-all-features/"
+      ],
+      "fichero_texto": "brevo/b227f925b30ce59d.html"
+    },
+    {
+      "id": "P-117",
+      "url": "https://www.brevo.com/legal/",
+      "url_final": "https://www.brevo.com/legal/",
+      "titulo": "Legal Information | Brevo",
+      "fecha_captura": "2026-10-23T15:02:38Z",
+      "sha256": "045f57c07d206f84513fd0a844ba0ca5308929a50226d6a0b7d9dd3034a06972",
+      "bytes": 250330,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/045f57c07d206f84.html"
+    },
+    {
+      "id": "P-118",
+      "url": "https://www.brevo.com/legal/antispampolicy/",
+      "url_final": "https://www.brevo.com/legal/antispampolicy/",
+      "titulo": "Anti-spam policy | Brevo",
+      "fecha_captura": "2026-10-23T15:02:39Z",
+      "sha256": "f71a82b9ee3c9d0d794456640b7553dec8e1fb931d4d232d274c9693ab1defca",
+      "bytes": 344792,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+        "https://www.brevo.com/blog/api-rate-limiting/"
+      ],
+      "fichero_texto": "brevo/f71a82b9ee3c9d0d.html"
+    },
+    {
+      "id": "P-119",
+      "url": "https://www.brevo.com/legal/archive-enterprise-agreement/",
+      "url_final": "https://www.brevo.com/legal/archive-enterprise-agreement/",
+      "titulo": "Archive: Enterprise Solution Agreement",
+      "fecha_captura": "2026-10-23T15:02:39Z",
+      "sha256": "46e51767f74909aa7b6068526357cf296c79fdb2b4b0a60cd0f4161266d53247",
+      "bytes": 271712,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/46e51767f74909aa.html"
+    },
+    {
+      "id": "P-120",
+      "url": "https://www.brevo.com/legal/archive-us-enterprise-agreement/",
+      "url_final": "https://www.brevo.com/legal/archive-us-enterprise-agreement/",
+      "titulo": "Archive: Enterprise Solution Agreement (North America)",
+      "fecha_captura": "2026-10-23T15:02:39Z",
+      "sha256": "bb50998c08325ec70052e1306c01e7a006f498a7a3018efc9bae2cd3544a580f",
+      "bytes": 271317,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/bb50998c08325ec7.html"
+    },
+    {
+      "id": "P-121",
+      "url": "https://www.brevo.com/legal/brevo-influencer-agreement/",
+      "url_final": "https://www.brevo.com/legal/brevo-influencer-agreement/",
+      "titulo": "brevo-influencer-agreement",
+      "fecha_captura": "2026-10-23T15:02:40Z",
+      "sha256": "7a8b8e1b56b708e39b590628be736f0747e9eb369cbe828b8e3c40901675d220",
+      "bytes": 250298,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/7a8b8e1b56b708e3.html"
+    },
+    {
+      "id": "P-122",
+      "url": "https://www.brevo.com/legal/brevo-payment-terms-of-use/",
+      "url_final": "https://www.brevo.com/legal/brevo-payment-terms-of-use/",
+      "titulo": "Brevo Payment Terms & Conditions",
+      "fecha_captura": "2026-10-23T15:02:40Z",
+      "sha256": "a99dddb098bebc692625f1f582873efe336135947ea10e2adb4e5af246b86133",
+      "bytes": 501757,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/a99dddb098bebc69.html"
+    },
+    {
+      "id": "P-123",
+      "url": "https://www.brevo.com/legal/notice/",
+      "url_final": "https://www.brevo.com/legal/notice/",
+      "titulo": "Legal Notice | Brevo",
+      "fecha_captura": "2026-10-23T15:02:41Z",
+      "sha256": "9e2898b9e4795fe5acd7c08f488657df5c0bd1727654a2d625b0c525350ad928",
+      "bytes": 251535,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/9e2898b9e4795fe5.html"
+    },
+    {
+      "id": "P-124",
+      "url": "https://www.brevo.com/legal/privacypolicy/",
+      "url_final": "https://www.brevo.com/legal/privacypolicy/",
+      "titulo": "Privacy Policy | Brevo",
+      "fecha_captura": "2026-10-23T15:02:41Z",
+      "sha256": "bca340733cce8bf172beb09b55f132f8ec7d8fd9cce000fc4ebe36a04f7308ff",
+      "bytes": 585300,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+        "https://www.brevo.com/blog/api-rate-limiting/"
+      ],
+      "fichero_texto": "brevo/bca340733cce8bf1.html"
+    },
+    {
+      "id": "P-125",
+      "url": "https://www.brevo.com/legal/responsible-disclosure/",
+      "url_final": "https://www.brevo.com/legal/responsible-disclosure/",
+      "titulo": "Responsible Disclosure Policy | Brevo",
+      "fecha_captura": "2026-10-23T15:02:42Z",
+      "sha256": "cbe4806ab8a4507cd15e409cf8ec846971f99991df2586cca0ada0f5888918fa",
+      "bytes": 268092,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://www.brevo.com/blog/api-rate-limiting/",
+        "https://www.brevo.com/pricing/",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip",
+        "https://www.brevo.com/pricing/see-all-features/"
+      ],
+      "fichero_texto": "brevo/cbe4806ab8a4507c.html"
+    },
+    {
+      "id": "P-126",
+      "url": "https://www.brevo.com/legal/termsofservice-archive/",
+      "url_final": "https://www.brevo.com/legal/termsofservice-archive/",
+      "titulo": "Brevo Terms of Service",
+      "fecha_captura": "2026-10-23T15:02:42Z",
+      "sha256": "f40b86e182b1c722a8e768e14d528fb28b0e7baad6b250804d04ca7b88945718",
+      "bytes": 1197780,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/f40b86e182b1c722.html"
+    },
+    {
+      "id": "P-127",
+      "url": "https://www.brevo.com/legal/termsofuse/",
+      "url_final": "https://www.brevo.com/legal/termsofuse/",
+      "titulo": "Brevo Terms of Service",
+      "fecha_captura": "2026-10-23T15:02:43Z",
+      "sha256": "696c15d8fad33912b73d5c52b628ae35b13874f7d0eee0460fa0697f83361c75",
+      "bytes": 1347315,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+        "https://www.brevo.com/blog/api-rate-limiting/"
+      ],
+      "fichero_texto": "brevo/696c15d8fad33912.html"
+    },
+    {
+      "id": "P-128",
+      "url": "https://www.brevo.com/legal/test-page-2/",
+      "url_final": "https://www.brevo.com/legal/test-page-2/",
+      "titulo": "test-page-2",
+      "fecha_captura": "2026-10-23T15:02:43Z",
+      "sha256": "82e434679b1d9d63e6580378eb2f6f9f3025693b1260c035acef8afedf3da141",
+      "bytes": 379140,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Legal",
+      "motivo": "uso_aceptable_terminos",
+      "temas": [
+        "uso_aceptable_terminos"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/82e434679b1d9d63.html"
+    },
+    {
+      "id": "P-129",
+      "url": "https://www.brevo.com/plan/enterprise/",
+      "url_final": "https://www.brevo.com/plan/enterprise/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:44Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-130",
+      "url": "https://www.brevo.com/plan/free/",
+      "url_final": "https://www.brevo.com/plan/free/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:44Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-131",
+      "url": "https://www.brevo.com/plan/pro/",
+      "url_final": "https://www.brevo.com/plan/pro/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:44Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-132",
+      "url": "https://www.brevo.com/plan/sales-advanced/",
+      "url_final": "https://www.brevo.com/plan/sales-advanced/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:45Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-133",
+      "url": "https://www.brevo.com/plan/sales-essentials/",
+      "url_final": "https://www.brevo.com/plan/sales-essentials/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:45Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-134",
+      "url": "https://www.brevo.com/plan/standard/",
+      "url_final": "https://www.brevo.com/plan/standard/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:46Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-135",
+      "url": "https://www.brevo.com/plan/starter/",
+      "url_final": "https://www.brevo.com/plan/starter/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:46Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-136",
+      "url": "https://www.brevo.com/pricing-pre-prod/",
+      "url_final": "https://www.brevo.com/pricing-pre-prod/",
+      "titulo": "pricing-pre-prod",
+      "fecha_captura": "2026-10-23T15:02:46Z",
+      "sha256": "f49d555900e2cf549f043beb2130bcb1537bea43d9c1001e3de2ea4d52d0aac0",
+      "bytes": 565520,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/f49d555900e2cf54.html"
+    },
+    {
+      "id": "P-137",
+      "url": "https://www.brevo.com/pricing-pre-prod/see-all-features-pre-prod/",
+      "url_final": "https://www.brevo.com/pricing-pre-prod/see-all-features-pre-prod/",
+      "titulo": null,
+      "fecha_captura": "2026-10-23T15:02:47Z",
+      "sha256": null,
+      "bytes": null,
+      "content_type": null,
+      "http": 404,
+      "estado": "fallida",
+      "error": "http_404",
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": null
+    },
+    {
+      "id": "P-138",
+      "url": "https://www.brevo.com/pricing/",
+      "url_final": "https://www.brevo.com/pricing/",
+      "titulo": "Pricing Plans | Brevo",
+      "fecha_captura": "2026-10-23T15:02:47Z",
+      "sha256": "e260b1e2e9fd25f1987641736474090b7ad2de810a33d17d212d589905974468",
+      "bytes": 641587,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://www.brevo.com/blog/api-rate-limiting/",
+        "semilla"
+      ],
+      "fichero_texto": "brevo/e260b1e2e9fd25f1.html"
+    },
+    {
+      "id": "P-139",
+      "url": "https://www.brevo.com/pricing/pay-as-you-go/",
+      "url_final": "https://www.brevo.com/pricing/pay-as-you-go/",
+      "titulo": "Pay As You Go Pricing | Brevo",
+      "fecha_captura": "2026-10-23T15:02:48Z",
+      "sha256": "671bf824e34ba62cdc3a0cac19cd1bcc0ce30addc7439e65c6b09e0b47b7a2a6",
+      "bytes": 330868,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+        "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip"
+      ],
+      "fichero_texto": "brevo/671bf824e34ba62c.html"
+    },
+    {
+      "id": "P-140",
+      "url": "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+      "url_final": "https://www.brevo.com/pricing/pay-as-you-go/?selected=email",
+      "titulo": "Pay As You Go Pricing | Brevo",
+      "fecha_captura": "2026-10-23T15:02:48Z",
+      "sha256": "287153562bcf92de4106b2555e69f1d71dee949aa036e9a2de847e581be2d49b",
+      "bytes": 324507,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "brevo/287153562bcf92de.html"
+    },
+    {
+      "id": "P-141",
+      "url": "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip",
+      "url_final": "https://www.brevo.com/pricing/pay-as-you-go/?selected=ip",
+      "titulo": "Pay As You Go Pricing | Brevo",
+      "fecha_captura": "2026-10-23T15:02:48Z",
+      "sha256": "31ee29e7d88228f65747c8f861ebdc4918739ec5b6ed372bb92792f8260fe6f6",
+      "bytes": 322996,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "semilla"
+      ],
+      "fichero_texto": "brevo/31ee29e7d88228f6.html"
+    },
+    {
+      "id": "P-142",
+      "url": "https://www.brevo.com/pricing/see-all-features/",
+      "url_final": "https://www.brevo.com/pricing/see-all-features/",
+      "titulo": "Marketing Platform | See All Features & Compare Plans | Brevo",
+      "fecha_captura": "2026-10-23T15:02:49Z",
+      "sha256": "99119fa3acdde17921ab6d2b9cfcf889f3bba1001cf7cca605c8397eb09268ad",
+      "bytes": 1137490,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "semilla",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://www.brevo.com/pricing/",
+        "semilla",
+        "https://www.brevo.com/products/transactional-email/"
+      ],
+      "fichero_texto": "brevo/99119fa3acdde179.html"
+    },
+    {
+      "id": "P-143",
+      "url": "https://www.brevo.com/products/marketing-platform/",
+      "url_final": "https://www.brevo.com/products/marketing-platform/",
+      "titulo": "Marketing Platform | Brevo",
+      "fecha_captura": "2026-10-23T15:02:49Z",
+      "sha256": "39bd638dd820219b43fd495c84efd51202a119ab80f4ad09807c90b5d1412f4c",
+      "bytes": 695202,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "envio",
+      "temas": [
+        "envio"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+        "https://www.brevo.com/blog/api-rate-limiting/"
+      ],
+      "fichero_texto": "brevo/39bd638dd820219b.html"
+    },
+    {
+      "id": "P-144",
+      "url": "https://www.brevo.com/products/transactional-email/",
+      "url_final": "https://www.brevo.com/products/transactional-email/",
+      "titulo": "Transactional Email Service & API with 99% Deliverability | Brevo",
+      "fecha_captura": "2026-10-23T15:02:50Z",
+      "sha256": "d74cdd6d2529977fe0e98fe2cb8dabb312856ef1b8c1d6c9acaa2751036928ae",
+      "bytes": 763509,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "semilla",
+      "temas": [
+        "smtp"
+      ],
+      "cuelga_de": [
+        "https://help.brevo.com/hc/en-us/articles/208580669-FAQs-What-are-the-limits-of-the-Free-plan",
+        "https://help.brevo.com/hc/en-us/articles/208589409-About-Brevo-s-pricing-plans",
+        "https://help.brevo.com/hc/en-us/articles/4402811730962-Add-an-attachment-to-a-transactional-email",
+        "https://help.brevo.com/hc/en-us/articles/8292912279954-Add-or-remove-emails-from-your-plan",
+        "https://www.brevo.com/blog/api-rate-limiting/"
+      ],
+      "fichero_texto": "brevo/d74cdd6d2529977f.html"
+    },
+    {
+      "id": "P-145",
+      "url": "https://www.brevo.com/resources/ecommerce-sms-whatsapp-cost-calculator/",
+      "url_final": "https://www.brevo.com/resources/ecommerce-sms-whatsapp-cost-calculator/",
+      "titulo": "ecommerce-sms-whatsapp-cost-calculator",
+      "fecha_captura": "2026-10-23T15:02:50Z",
+      "sha256": "4f06d3a9a9be3627736a77cbf7723c2945de66a94a4a472645bc3933ea52efbf",
+      "bytes": 305607,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/4f06d3a9a9be3627.html"
+    },
+    {
+      "id": "P-146",
+      "url": "https://www.brevo.com/resources/marketing-relationship-plan-generator/",
+      "url_final": "https://www.brevo.com/resources/marketing-relationship-plan-generator/",
+      "titulo": "Free Marketing Relationship Plan Generator | Brevo",
+      "fecha_captura": "2026-10-23T15:02:50Z",
+      "sha256": "1c18d1facb3dc74d37c2a6a7987ef7a641fae66d9bcfb09f52ea64a7d5906f3d",
+      "bytes": 310907,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Precios y planes",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/1c18d1facb3dc74d.html"
+    },
+    {
+      "id": "P-147",
+      "url": "https://www.brevo.com/resources/success-story-island-federal-credit-union/",
+      "url_final": "https://www.brevo.com/success-stories/island-federal-credit-union/",
+      "titulo": "island-federal-credit-union",
+      "fecha_captura": "2026-10-23T15:02:51Z",
+      "sha256": "54c012c7dbc5de6fb4ffb349e0b0c512e3a5b47ecb1b2e26e3a551346e52cc1e",
+      "bytes": 345322,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/54c012c7dbc5de6f.html"
+    },
+    {
+      "id": "P-148",
+      "url": "https://www.brevo.com/success-stories/island-federal-credit-union/",
+      "url_final": "https://www.brevo.com/success-stories/island-federal-credit-union/",
+      "titulo": "island-federal-credit-union",
+      "fecha_captura": "2026-10-23T15:02:51Z",
+      "sha256": "54c012c7dbc5de6fb4ffb349e0b0c512e3a5b47ecb1b2e26e3a551346e52cc1e",
+      "bytes": 345322,
+      "content_type": "text/html; charset=utf-8",
+      "http": 200,
+      "estado": "capturada",
+      "error": null,
+      "aviso": null,
+      "interfaz": "Web del proveedor",
+      "motivo": "precios",
+      "temas": [
+        "precios"
+      ],
+      "cuelga_de": [
+        "sitemap:https://www.brevo.com/sitemap_en.xml"
+      ],
+      "fichero_texto": "brevo/54c012c7dbc5de6f.html"
+    }
+  ],
+  "resumen": {
+    "incluidas": 148,
+    "capturadas": 139,
+    "fallidas": 9,
+    "con_aviso": 0
+  }
+}

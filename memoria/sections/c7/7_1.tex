@@ -1,0 +1,149 @@
+\section{Catálogo de preguntas de decisión}\label{sec:comparacion:catalogo}\label{sec:hallazgos:catalogo-pi}
+
+Una plantilla de pregunta es una pregunta con huecos, como la API, el plan, el volumen o el precio, que se rellenan para cada caso.
+El catálogo tiene 32 plantillas, y 25 de ellas (el 78~\%) se pueden responder con el instrumental del canal API: la Datasheet, PRIME4API y HARVEY4API.
+De esas 25, 11 se responden leyendo la Datasheet, 10 con una operación de PRIME4API y 4 con HARVEY4API.
+Otras 2 se responden leyendo una matriz de \textit{features} por plan, que se captura con las mismas fuentes que la Datasheet pero queda fuera del esquema.
+Las 5 restantes no tienen respuesta, y cada una deja escrito qué falta para tenerla.
+
+La proporción de preguntas respondibles es la cobertura, la misma métrica con la que Cavero et al., que definen el Pricing Intelligence como disciplina, miden el alcance de sus herramientas: un 54~\% sobre un banco de 56 plantillas \citep{cavero2026pricingintelligence}.
+
+Las dos cifras no se miden igual.
+Cavero et al.\ prueban herramientas que ya existían contra un banco que no se hizo para ellas, y aquí la clase de cada pregunta, el instrumento con el que se responde, se asigna conociendo el instrumental.
+La categoría B, la de selección de suscripción, parte de las operaciones del motor, y las cuatro preguntas que el catálogo asigna a HARVEY4API cuentan por la especificación de la herramienta, que no se ha ejecutado.
+Sin esas cuatro, la cobertura con un instrumento leído o ejecutado es de 21 sobre 32, el 66~\%.
+
+Del trabajo de Cavero et al.\ se toma también la gramática de las plantillas, con siete \textit{placeholders} (los huecos): la API (\texttt{SAAS}), el plan con sus complementos (\texttt{CONFIGURATION}), una funcionalidad (\texttt{FEATURE}), una cantidad como un volumen de correos o una ventana de tiempo (\texttt{USAGE LIMIT}), la necesidad del usuario (\texttt{ACTION}), un precio (\texttt{PRICE}) y el año de una versión del \textit{pricing} (\texttt{YEAR}).
+Ninguna plantilla nombra una API, porque el proveedor solo aparece al rellenar los huecos, en el ejemplo de cada pregunta, y 13 de las 32 hablan de correo, como los envíos al mes o los límites que crecen con la reputación del remitente.
+Con esa gramática, cada pregunta del catálogo puede incorporarse al banco de plantillas del grupo ISA de la Universidad de Sevilla.
+
+Cada pregunta tiene una plantilla, un ejemplo instanciado sobre una de las ocho APIs y una clase, que dice con qué se responde.
+Instanciar es rellenar los huecos: con SendGrid y 100.000, la plantilla de PI-B01, «suscripción más barata de \texttt{SAAS} para \texttt{USAGE LIMIT} correos al mes», da «la suscripción más barata de SendGrid para 100.000 correos al mes», una pregunta del caso de los 100.000 correos.
+Los ejemplos instanciados están en \texttt{03\_datos/preguntas/catalogo.yaml}, en el repositorio del trabajo.
+
+La clase D indica que basta leer la Datasheet, incluido su \textit{provenance}, las notas en las que la Datasheet guarda lo que los campos de ACM2YAML v0.3 no admiten.
+Es el caso de los volúmenes contratados del plan Basic de Postmark, que se vende en seis volúmenes, cada uno con su precio.
+
+La clase P indica que PRIME4API resuelve la pregunta con la operación que responde una de las diez preguntas de análisis de Gavira Sánchez \citep{gavira2026tfm}, y la tabla anota cuál.
+El catálogo emplea siete de esas operaciones: el tiempo mínimo, la capacidad en una ventana, la suscripción más barata, la suscripción con presupuesto, el importe del sobrecoste, la demanda sostenible y las cuotas que se agotan a la vez.
+Su correspondencia con el cálculo a mano de la restricción activa (el límite que se alcanza primero y frena el envío), el tiempo mínimo y el factor $k$ (los destinatarios por petición) está en la Sección~\ref{sec:limites:prime4api}.
+
+Las otras tres clases son H, L y X.
+La clase H pide combinar varias Datasheets o varias operaciones, que es la tarea de HARVEY4API \citep{ruizlopez2026tfm}.
+La clase L se responde leyendo la matriz de \textit{features}, sin instrumento.
+La clase X marca una pregunta sin respuesta y dice qué falta: un campo que v0.3 no serializa, una operación que el motor no tiene o un comportamiento que ninguna dimensión de capacidad del ACM recoge.
+Una dimensión de capacidad es un aspecto del consumo que el proveedor limita por separado, como el volumen al mes o las peticiones por segundo.
+La clase depende del instrumento y no de lo que publique cada proveedor, así que el reparto es el mismo en las ocho APIs: 25 preguntas respondibles con la Datasheet, PRIME4API o HARVEY4API, 2 que se responden leyendo la matriz y 5 sin respuesta.
+
+Las 32 plantillas se agrupan en siete categorías, de la A a la G, según la fuente de la que salen.
+La A recorre los bloques de capacidad de la Datasheet (cuota, caudal y sobrecoste) y la B parte de las operaciones de Gavira Sánchez sobre un plan.
+La C compara APIs entre sí y la D convierte en preguntas la RQ3, la relación entre límites de uso y \textit{rates}.
+Un límite de uso es el máximo de un nivel de uso medible, como la cuota de correos al mes.
+La E, la F y la G salen de los elementos no soportados que se registraron al construir las Datasheets, los hechos del dominio que ACM2YAML v0.3 no puede expresar.
+Recogen las necesidades funcionales, la vigencia de los precios y el riesgo de operar.
+
+El catálogo se cerró en 32 preguntas sin un criterio de saturación fijado de antemano, y al pasar de tres APIs a ocho no ganó ninguna.
+Tampoco cubre los cinco retos abiertos que enumeran Cavero et al.\ \citep{cavero2026pricingintelligence}, entre ellos la predicción de la evolución de un \textit{pricing} y los análisis \textit{what-if}.
+
+Las tablas~\ref{tab:catalogo-pi-1}, \ref{tab:catalogo-pi-2} y~\ref{tab:catalogo-pi-3} recogen las 32 preguntas con su plantilla abreviada, su clase, la operación o composición que la resuelve y lo que falta para responder las X o cómo se leen las L.
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\begin{tabular}{|l|>{\raggedright\arraybackslash}p{6.6cm}|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}p{3.4cm}|}
+\hline
+\textbf{Id} & \textbf{Pregunta (plantilla abreviada)} & \textbf{Clase y operación} & \textbf{Qué falta (X) o cómo se lee (L)} \\
+\hline
+\multicolumn{4}{|l|}{\textbf{A. Lectura de la capacidad contractual de una API (8)}} \\
+\hline
+PI-A01 & Correos al mes que incluye \texttt{CONFIGURATION} de \texttt{SAAS}, y qué pasa al superarlos & D & \\
+PI-A02 & \textit{Rate} máximo con el que \texttt{SAAS} acepta peticiones de \texttt{ACTION} en \texttt{CONFIGURATION} & D & \\
+PI-A03 & Destinatarios por petición de \texttt{ACTION} en \texttt{SAAS}, y si cuentan uno a uno contra la cuota & D & \\
+PI-A04 & Si hay límite diario además del mensual en \texttt{CONFIGURATION} de \texttt{SAAS} & D & \\
+PI-A05 & Tamaño máximo de un mensaje (adjuntos incluidos) en \texttt{SAAS} & D & \\
+PI-A06 & Tiempo mínimo que necesita \texttt{CONFIGURATION} de \texttt{SAAS} para enviar \texttt{USAGE LIMIT} correos & P, tiempo mínimo & \\
+PI-A07 & Capacidad que acumula \texttt{CONFIGURATION} de \texttt{SAAS} en una ventana de \texttt{USAGE LIMIT} & P, capacidad en una ventana & \\
+PI-A08 & Peticiones simultáneas que admite \texttt{SAAS} en \texttt{CONFIGURATION} & X & Concurrencia: v0.3 no la serializa, y de las ocho APIs solo Mailgun publica algo sobre ella para la API REST: que no limita las peticiones simultáneas \\
+\hline
+\multicolumn{4}{|l|}{\textbf{B. Selección de suscripción para una necesidad (5)}} \\
+\hline
+PI-B01 & Suscripción más barata de \texttt{SAAS} para \texttt{USAGE LIMIT} correos al mes & P, suscripción más barata & \\
+PI-B02 & Con \texttt{PRICE} al mes, máximo de correos con \texttt{SAAS} & P, suscripción con presupuesto & \\
+PI-B03 & Con \texttt{USAGE LIMIT} al mes, si sale más barato el sobrecoste o el siguiente plan de \texttt{SAAS} & P, importe del sobrecoste & \\
+PI-B04 & Si se puede empezar gratis en \texttt{SAAS} y qué limita el plan gratuito para \texttt{ACTION} & D & \\
+PI-B05 & Plan de \texttt{SAAS} que sostiene un pico de \texttt{USAGE LIMIT} correos en \texttt{USAGE LIMIT 2} & P, demanda sostenible & \\
+\hline
+\end{tabular}
+\caption[Catálogo de preguntas de decisión, categorías A y B]{Catálogo de preguntas de decisión, categorías A y B. Clase: D
+Datasheet, P PRIME4API, H HARVEY4API, L lectura de la matriz de \textit{features}, X no respondible.}
+\label{tab:catalogo-pi-1}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\begin{tabular}{|l|>{\raggedright\arraybackslash}p{6.6cm}|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}p{3.4cm}|}
+\hline
+\textbf{Id} & \textbf{Pregunta (plantilla abreviada)} & \textbf{Clase y operación} & \textbf{Qué falta (X) o cómo se lee (L)} \\
+\hline
+\multicolumn{4}{|l|}{\textbf{C. Comparación entre APIs (5)}} \\
+\hline
+PI-C01 & Para \texttt{USAGE LIMIT} correos al mes, cuál sale más barata, \texttt{SAAS 1} o \texttt{SAAS 2} & H, suscripción más barata por API, más comparación & \\
+PI-C02 & Cuál de \texttt{SAAS 1}, \texttt{SAAS 2} y \texttt{SAAS 3} da más capacidad por dólar en el primer plan de pago & H, lectura por API, más comparación & \\
+PI-C03 & Qué API de correo publica su \textit{rate} y cuál no & D & \\
+PI-C04 & Cuál envía antes \texttt{USAGE LIMIT} correos, \texttt{SAAS 1} o \texttt{SAAS 2} & H, tiempo mínimo por API, más comparación & \\
+PI-C05 & En qué se parecen y en qué se diferencian los pricings de \texttt{SAAS 1} y \texttt{SAAS 2} para \texttt{ACTION} & X & Una operación de \textit{diff} entre pricings que el motor no tiene \\
+\hline
+\multicolumn{4}{|l|}{\textbf{D. Relación entre límites de uso y \textit{rates} (RQ3) (6)}} \\
+\hline
+PI-D01 & En \texttt{CONFIGURATION} de \texttt{SAAS}, qué se agota antes, la cuota mensual o el \textit{rate} & P, demanda sostenible & \\
+PI-D02 & A partir de qué volumen mensual el \textit{rate} de \texttt{SAAS} deja de ser el límite efectivo & P, demanda sostenible & \\
+PI-D03 & Si \texttt{SAAS} cobra por correo y limita por petición, cuántos destinatarios por petición igualan los dos límites & P, cuotas que se agotan a la vez & \\
+PI-D04 & Si el \textit{rate} de \texttt{SAAS} sube al subir de plan o es el mismo en todos & D & \\
+PI-D05 & Si los límites de \texttt{SAAS} crecen con el uso (reputación) o son fijos por plan & D & \\
+PI-D06 & Qué ocurre en \texttt{SAAS} al superar el \textit{rate}: rechazo, cola o degradación & X & El comportamiento al exceder no es una dimensión del ACM \\
+\hline
+\end{tabular}
+\caption[Catálogo de preguntas de decisión, categorías C y D]{Catálogo de preguntas de decisión, categorías C y D. Misma
+leyenda que la Tabla~\ref{tab:catalogo-pi-1}.}
+\label{tab:catalogo-pi-2}
+\end{table}
+
+\begin{table}[htbp]
+\centering
+\scriptsize
+\begin{tabular}{|l|>{\raggedright\arraybackslash}p{6.6cm}|>{\raggedright\arraybackslash}p{2.2cm}|>{\raggedright\arraybackslash}p{3.4cm}|}
+\hline
+\textbf{Id} & \textbf{Pregunta (plantilla abreviada)} & \textbf{Clase y operación} & \textbf{Qué falta (X) o cómo se lee (L)} \\
+\hline
+\multicolumn{4}{|l|}{\textbf{E. Necesidades funcionales (3)}} \\
+\hline
+PI-E01 & Si \texttt{CONFIGURATION} de \texttt{SAAS} incluye \texttt{FEATURE} & L & Por lectura de la matriz de \textit{features}. Con instrumento exigiría el iPricing del canal web, fuera del alcance fijado en el Capítulo~\ref{cap:catalogo} \\
+PI-E02 & Cuál de \texttt{SAAS 1} y \texttt{SAAS 2} da \texttt{FEATURE} al menor precio para \texttt{USAGE LIMIT} correos al mes & L & Por lectura: \textit{feature} en la matriz, capacidad en la Datasheet, composición a mano. Con instrumento faltaría el vínculo entre canales \\
+PI-E03 & Cuánto tiempo conserva \texttt{SAAS} los registros de envío en \texttt{CONFIGURATION} & X & Un límite de uso que no se consume (retención): v0.3 no lo modela \\
+\hline
+\multicolumn{4}{|l|}{\textbf{F. Evolución y vigencia (2)}} \\
+\hline
+PI-F01 & Si el pricing de \texttt{SAAS} ha cambiado desde \texttt{YEAR} en cuota o en \textit{rate} & D & \\
+PI-F02 & Qué parte de la Datasheet de \texttt{SAAS} sigue vigente & X & Una Datasheet no dice qué parte sigue vigente (\mbox{F-09}, la caducidad de los datos): exige reverificar fuente a fuente \\
+\hline
+\multicolumn{4}{|l|}{\textbf{G. Operación y riesgo (3)}} \\
+\hline
+PI-G01 & Si el tráfico crece un \texttt{USAGE LIMIT}~\% al mes, cuándo habrá que cambiar de plan en \texttt{SAAS} & H, suscripción más barata iterada & \\
+PI-G02 & Coste de un mes de \texttt{USAGE LIMIT} correos en \texttt{SAAS} sin cambiar de plan & P, importe del sobrecoste & \\
+PI-G03 & Si se puede contratar más volumen en \texttt{SAAS} sin cambiar de plan, y a qué precio & D & \\
+\hline
+\end{tabular}
+\caption[Catálogo de preguntas de decisión, categorías E a G]{Catálogo de preguntas de decisión, categorías E a G. Misma
+leyenda que la Tabla~\ref{tab:catalogo-pi-1}.}
+\label{tab:catalogo-pi-3}
+\end{table}
+
+Las cinco preguntas X no se descartan: cada una deja anotado en la última columna de las tablas lo que le falta al instrumental.
+PI-E03, la retención de los registros de envío, pide un límite que no se consume con cada envío, y PI-D06, el comportamiento al superar el \textit{rate}, algo que ninguna dimensión de capacidad del ACM recoge.
+Una pregunta X solo pasa a respondible cuando el esquema o el motor ganan lo que le falta, y por eso la cobertura del 78~\% se mide sobre el instrumental actual.
+
+Solo una de las cinco tiene una forma esbozada en el Capítulo~\ref{cap:evolucion}: PI-F02, la vigencia de la Datasheet.
+Se respondería con una fecha de verificación en cada afirmación del registro de procedencia, la forma que la Tabla~\ref{tab:sinforma} esboza para F-09, la caducidad de los datos.
+P-09 (Apartado~\ref{subsec:evolucion:p09}) declara qué hace una cuota al superarse, la cola de reintento de Brevo, pero no cubre el exceso sobre el \textit{rate} que pide PI-D06.
+La concurrencia de PI-A08, el \textit{diff} entre pricings de PI-C05 y la retención de PI-E03 no tienen extensión propuesta, y quedan como límite del esquema y del motor.

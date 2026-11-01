@@ -23,10 +23,14 @@ rellenó las tres columnas vacías de `features.md` y obligó a acotar F-29.
 **precio no cabe en el fichero**, y la primera cuya capacidad no cuelga del plan sino del par
 cuenta × región.
 
-**Semáforo:** **22 🟢 · 1 🟡 · 2 🔴**, contado por `verificar_estado.py`. Ninguno de los cuatro
-colores lo pone hoy una discrepancia abierta. El único 🟡 es el caudal del resto de operaciones,
-por **D1**. Los 🔴 son la ventana de la cuota diaria, por la cuarta cláusula de **D3**, y el bloque
-de caudales de producción, que no se publica. El `type` subió a 🟢 al completarse el test C2.
+**Semáforo:** **22 🟢 · 1 🟡 · 2 🔴**, contado por `verificar_estado.py`. El recuento es el mismo
+que antes del 2026-10-31, pero el ámbar ha cambiado de campo. El caudal del resto de operaciones
+subió a 🟢 cuando el proveedor publicó su alcance. El caudal del entorno de pruebas bajó a 🟡
+porque ninguna fuente lo cuenta en peticiones y la discrepancia sobre su unidad (DISC-21) no se
+puede medir con la lista blanca. Eso lo deciden D1 y la rama F2 de E7, y lo votó el consejo del
+2026-10-31. Los dos cambios se explican en el informe del verificador, abajo. Los 🔴 son la ventana de la cuota diaria, por la
+cuarta cláusula de **D3**, y el bloque de caudales de producción, que no se publica. El `type`
+subió a 🟢 al completarse el test C2.
 
 ---
 
@@ -260,19 +264,54 @@ Esto es lo que quedó fuera de esta tanda, con su motivo. Nada se omite en silen
 
 ---
 
+## Informe del verificador adversarial (D-013) — 2026-10-31
+
+Agente independiente con acceso solo al `datasheet.yaml`. Leyó cada URL dos veces, sin y con
+JavaScript, y fechó con Wayback lo que no encontró.
+
+- **21 entradas de procedencia: 12 COINCIDEN, 3 parciales, 2 CAMBIÓ, 2 NO ENCONTRADAS, 2 de
+  consola.** Ningún valor modelado refutado.
+- **CAMBIÓ, caudal del resto de operaciones.** La página de cuotas exceptúa hoy `"SendEmail and
+  SendBulkEmail"`, las operaciones de envío de v2, y lleva aparte la lista de v1. La captura del
+  23-10 trae el texto antiguo. **Aplicado:** `max_power.rate_request_other` 🟡 → 🟢 por D1, la
+  línea del provenance con las dos fechas, `not_found` del lote reescrita como hueco que se cierra
+  y la del caudal por operación sin la frase de v1. DISC-05 queda acotada solo por lo medido.
+- **CAMBIÓ, configuration sets.** La guía de cuotas da hoy Adjustable **Yes**, como la referencia
+  general (ya en la captura del 23-10). La contradicción de la línea del provenance y de F-11 ya
+  no está en las páginas de hoy. **Sin aplicar:** no estaba en la lista aprobada y toca una
+  fricción; anotado en [F1] de `fuentes.md`.
+- **NO ENCONTRADAS, test del type, operaciones 2 y 3.** Error de atribución: los literales están en
+  la página de cada operación, no en `API_Operations.html`. **Aplicado:** las dos URL reapuntadas,
+  con nota en [F19].
+- **Unidad del caudal del entorno de pruebas (consejo del 2026-10-31; aplicado).** Las fuentes lo
+  cuentan en mensajes ([F2], [F3]) o en destinatarios ([F1], bajo su cabecera), y ninguna en
+  peticiones. Se abre **DISC-21** por la rama F2 de E7: sin contador que leer, y la única medida
+  que separa las dos lecturas usa el simulador de buzones, que está fuera de la lista blanca de
+  D-046. `unit: requests` se queda por la regla nueva **B18**. En `emails`, PRIME4API dejaría sin
+  tope el envío por lotes. El `value: 1` baja de 🟢 a 🟡. El provenance lo explica en la línea de los dos límites del entorno de pruebas, y `not_found` lleva una entrada.
+  Ningún valor cambia. Abrir el simulador es decisión del autor.
+- **Parciales, sin aplicar:** los tramos de precio de la línea 209, que solo
+  describen Essentials; y la versión de la lista de precios, hoy `20261027230824` con los mismos
+  valores.
+
+Informe íntegro: `evidencias/verificador_adversarial_2026-10-31.md`. Volcados:
+`evidencias/paginas/2026-10-31/`.
+
 ## Lo que queda abierto
 
-- **Veinte discrepancias.** **Ninguna cerró por arbitraje**: los veinte arbitrajes fueron
+- **Veintiuna discrepancias.** **Ninguna cerró por arbitraje**: los veinte arbitrajes fueron
   refutados por su escéptico, y el registro se quedó con las correcciones de cita que sí se
-  sostienen. **Dos cierran midiendo**, DISC-02 con el sondeo y DISC-15 con el panel, que es uno
-  de los dos caminos que **E5** admite, junto con disolverlas. **Dieciocho siguen abiertas**, y
-  ocho de ellas quedan acotadas.
-- **Las dieciocho abiertas no tiñen ni un campo.** El único ámbar que **D11** fundaba era el `unit`
-  de la cuota, y DISC-02 cerró. La cabecera que prometía un 🟡 por discrepancia se ha corregido: el
+  sostienen. DISC-21, abierta el 2026-10-31, no pasó por arbitraje. **Dos cierran midiendo**,
+  DISC-02 con el sondeo y DISC-15 con el panel, que es uno de los dos caminos que **E5** admite,
+  junto con disolverlas. **Diecinueve siguen abiertas**, y ocho de ellas quedan acotadas.
+- **Solo una de las diecinueve abiertas tiñe un campo:** DISC-21, el caudal del entorno de
+  pruebas, en 🟡. El ámbar que **D11** fundaba antes era el `unit` de la cuota, y DISC-02
+  cerró. La cabecera que prometía un 🟡 por discrepancia se ha corregido: el
   efecto lo declara cada entrada, en su línea.
 - **El proveedor se contradice consigo mismo diecinueve veces**, y esa es la aportación de O-02. La
   única que no es AWS contra AWS es DISC-15, cuyo lado B no es una página del proveedor sino su
-  ausencia. La cifra se recontó entrada por entrada, porque la pasada 1 decía dieciséis.
+  ausencia. La cifra se recontó entrada por entrada, porque la pasada 1 decía dieciséis. Desde el
+  2026-10-31 son **veinte**: DISC-21 también enfrenta páginas de AWS entre sí.
 - **Tres fricciones nuevas.** **F-29** y **F-31** tienen ya **L2 medida con caso de control**:
   PRIME4API devuelve el mismo coste a un correo, a cien mil y a diez millones. **F-30 no recurre**:
   las escaleras de las otras cinco APIs son volumen contratado y caen por **B10**, así que se queda

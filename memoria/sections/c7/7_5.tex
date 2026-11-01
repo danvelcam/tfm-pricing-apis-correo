@@ -1,0 +1,72 @@
+\section{Comparación funcional}\label{sec:comparacion:funcional}\label{subsec:hallazgos:funcional}
+
+El catálogo tiene tres preguntas sobre funcionalidades: si el plan gratuito incluye \textit{webhooks}, qué API da IP dedicada (una dirección IP de envío que usa un solo cliente) al menor precio y cuánto tiempo se conservan los registros de envío.
+Ninguna se responde con la Datasheet ni con PRIME4API, aunque casi todos los datos que piden están publicados en la página de precios o en el panel de cada API.
+
+Para responderlas se lee la matriz de \textit{features} por plan, una tabla que el ciclo de cada Datasheet rellena con las mismas fuentes (Sección~\ref{sec:propuesta:ciclo}).
+Cada celda lleva su cita y su peldaño de la escalera de validación, como el contraste documental o la observación de panel, igual que un campo de la Datasheet, y queda vacía cuando ninguna fuente da el dato.
+Ocho de sus filas se registran en las ocho APIs, entre ellas los \textit{webhooks} de eventos, la IP dedicada y la retención de actividad.\footnote{Las ocho matrices, con el literal y la fuente de cada celda, están en \texttt{03\_datos/\allowbreak apis/\allowbreak<api>/\allowbreak features.md} del repositorio de datos del trabajo, \url{https://github.com/danvelcam/tfm-pricing-apis-correo}.}
+
+\subsection{\textit{Webhooks} en el plan gratuito}
+
+PI-E01 pregunta si el plan gratuito incluye \textit{webhooks} de eventos, es decir, avisos HTTP que el proveedor envía cuando un correo se entrega, rebota o se abre.
+Como en el caso de los 100.000 correos (Sección~\ref{sec:comparacion:caso}), cuenta como \textit{webhook} el aviso HTTP que el propio servicio de correo envía a una URL del cliente, sin otro servicio intermedio.
+Es de clase L, la que se responde leyendo la matriz, y las ocho APIs la contestan.
+
+Cinco de las ocho APIs dan \textit{webhooks} en su plan gratuito o en su cuenta de prueba.
+Resend Free y MailerSend Free dan un \textit{webhook} cada uno, y la cuenta de prueba de SendGrid da un \textit{Event Webhook}.
+Mailgun los incluye en sus cuatro planes, hasta tres URL por tipo de evento, sin recorte en el plan gratuito.
+En Postmark la respuesta es «no consta», porque el panel solo los declara en Pro y Platform.
+En Brevo la matriz separa dos cosas: los \textit{webhooks} salientes están en los cinco planes, y los de entrada, que reciben en Brevo eventos de otros sistemas, solo en Professional y Enterprise.
+
+Las dos respuestas atípicas son de las APIs que no tienen un plan gratuito con nombre.
+SES no tiene \textit{webhooks} en ningún plan, porque sus eventos salen por otros servicios de AWS, como SNS o EventBridge.
+En Mailchimp Transactional la cuenta de prueba no los muestra en el panel y la matriz responde «no consta», aunque la documentación da la operación \texttt{webhooks/add} para la cuenta de pago.
+
+\subsection{IP dedicada al menor precio}
+
+PI-E02 pregunta qué API da IP dedicada al menor precio para 200.000 correos al mes.
+Combina un dato de la matriz, la IP dedicada, con el precio de enviar 200.000 correos, que la Datasheet da en todas las APIs salvo SES, y la suma se hace a mano.
+SES es la más barata, con 44,95 USD: 20,00 de envío, a 0,0001 USD por destinatario, más 24,95 de una IP estándar.
+SES vende la IP sin exigir un volumen mínimo de envío.
+
+Tras SES van Mailgun, con 185 USD (plan Foundation de 100.000 correos a 75, con la IP incluida, más 100.000 de sobrecoste a 1,10 USD el millar), y Mailchimp Transactional, con 189,95 USD (ocho bloques de 25.000 correos a 20 USD más 29,95 de la IP).
+Resend cuesta 190 USD (plan Scale de 200.000 correos a 160 más 30 de la IP) y SendGrid 199,95 (plan Pro de 100.000 correos a 89,95, con la IP incluida, más 100.000 de sobrecoste a 0,0011).
+Mailchimp adelanta a Resend por cinco céntimos.
+
+Brevo tiene la IP dedicada más barata, 251 USD al año, unos 20,92 al mes, pero solo la vende en el plan Professional.
+Ese plan arranca en 150.000 correos por 499 USD, y el volumen contratado que cubre 200.000 es el de 250.000, a 599 USD, así que el coste total queda en unos 620 USD al mes.
+Es el coste total más alto de las seis APIs que venden la IP con precio publicado, más del triple que Resend.
+
+Dos APIs quedan fuera de la comparación.
+Postmark no es elegible, porque exige 300.000 correos al mes para vender la IP.
+MailerSend tampoco, porque su página de precios reserva la IP al plan Enterprise sin publicar su precio.
+
+Dos de las tres cifras más bajas llevan salvedad.
+La de Mailchimp Transactional no incluye la cuenta Mailchimp de pago que el producto exige, y con los 25 correos por hora de la cuenta de prueba los 200.000 correos tardarían 333 días.
+La de SES no sale de la Datasheet, que no tiene campo para el precio por destinatario, y su entorno de pruebas solo permite 200 correos al día.
+
+\subsection{Retención de la actividad}
+
+PI-E03 pregunta cuánto tiempo conserva cada API los registros de envío, y es de clase X: pide un campo que ACM2YAML v0.3 no tiene.
+La matriz tiene valor para siete de las ocho APIs.
+Postmark guarda 45 días y Resend 30.
+SendGrid guarda entre 3 y 7 días según el plan, y MailerSend entre 1 y 30.
+Mailgun guarda los registros entre 1 y 30 días y Mailchimp Transactional 30 días en la cuenta de prueba.
+En Brevo el periodo lo fija el cliente entre 1 y 24 meses, y es el único caso de las ocho APIs en que no lo pone el proveedor.
+En SES ninguna fuente publica la retención, así que la pregunta no tiene respuesta en ningún sitio.
+
+La pregunta sigue en clase X aunque la matriz tenga siete valores, porque la retención es un límite de uso, el máximo de un nivel de uso medible, y no una \textit{feature}.
+A diferencia de la cuota mensual, no se gasta con cada envío, y ACM2YAML v0.3 no tiene campo para ese tipo de límite.
+
+\subsection{Lo que la matriz añade}
+
+Con la matriz el catálogo pasa de 25 a 27 preguntas respondibles, porque se suman las dos de clase L.
+Las ocho APIs ganan dos respuestas cada una y quedan entre las 20 de Postmark y las 24 de Resend.
+Las preguntas comunes a las ocho APIs pasan de 16 a 18, porque se añaden las dos de clase L, PI-E01 y PI-E02.
+
+El resultado deja una asimetría entre los dos tipos de pregunta.
+La capacidad se responde con instrumento, ya sea leyendo campos de la Datasheet o ejecutando PRIME4API, mientras que las \textit{features} se responden leyendo la matriz a mano.
+En PI-E02 la IP dedicada de cada API está en la matriz y el precio de los 200.000 correos, en la Datasheet salvo en SES, y ninguna herramienta une las dos mitades.
+Lo que haría a PI-E02 respondible con instrumento es un vínculo entre la Datasheet del canal API y el iPricing, el metamodelo con el que SPHERE representa los planes y las \textit{features} que un SaaS publica en su canal web \citep{garciafernandez2024pricing4saas}.
+Ese vínculo cae fuera del alcance fijado en el Capítulo~\ref{cap:catalogo}, que modela solo el canal API, y por eso la comparación funcional se queda en lectura trazada, celda a celda, sin cálculo automático.

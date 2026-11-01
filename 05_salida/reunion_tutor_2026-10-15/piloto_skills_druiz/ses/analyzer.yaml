@@ -1,0 +1,340 @@
+schema_version: "2.3"
+
+generator:
+  platform: "Claude"
+  provider: "Anthropic"
+  model: "claude-opus-5-5"
+  skill: "saas-interface-channel-analyzer"
+  skill_version: "3.0"
+
+generated_at: "2026-10-16T12:47:40+02:00"
+evidence_checked_at: "2026-10-16T12:54:56+02:00"
+
+input:
+  resolver_skill_version: "1.1"
+  resolver_generated_at: "2026-10-15T23:23:58+02:00"
+  query: "Amazon SES"
+  resolved_as: autonomous_service
+
+outcome: analyzed
+outcome_reason: null
+
+service:
+  name: "Amazon Simple Email Service"
+  classification: autonomous_service
+  provider: "Amazon Web Services, Inc."
+  base_services: []
+  conditional_on_resolver: false
+
+scope:
+  index_pages:
+    - { kind: docs_home, source: s1 }
+    - { kind: developer_portal, source: null }
+    - { kind: help_center, source: null }
+    - { kind: integrations, source: null }
+  index_entries:
+    - { entry: ["Amazon SES Developer Guide", "Amazon SES API Reference", "AWS CLI Reference for Amazon SES", "Amazon SES API v2 Reference", "AWS CLI Reference for Amazon SES v2", "Amazon SES Mail Manager Developer Guide", "Amazon SES Mail Manager API Reference", "AWS CLI Reference for Amazon SES Mail Manager", "Amazon WorkMail User Guide", "Amazon WorkMail Administrator Guide", "Amazon WorkMail API Reference", "SDKs & Tools"], page: s1, disposition: covered, service: null }
+    - { entry: ["AWS Glossary", "Getting Started with AWS", "AWS General Reference", "AWS Training", "AWS Case Studies", "AWS Whitepapers"], page: s1, disposition: not_access, service: null }
+  attribution_pages_used: 4
+
+sources:
+  - { id: s1, url: "https://docs.aws.amazon.com/ses/" }
+  - { id: s2, url: "https://docs.aws.amazon.com/ses/latest/dg/Welcome.html" }
+  - { id: s3, url: "https://docs.aws.amazon.com/ses/latest/dg/send-email-smtp.html" }
+  - { id: s4, url: "https://docs.aws.amazon.com/ses/latest/dg/send-email-api.html" }
+  - { id: s5, url: "https://docs.aws.amazon.com/ses/latest/dg/receiving-email.html" }
+  - { id: s6, url: "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity.html" }
+  - { id: s7, url: "https://docs.aws.amazon.com/ses/latest/dg/agent-setup-guide.html" }
+  - { id: s8, url: "https://docs.aws.amazon.com/ses/latest/dg/monitor-using-event-publishing.html" }
+  - { id: s9, url: "https://docs.aws.amazon.com/ses/latest/dg/monitoring-eventbridge.html" }
+  - { id: s10, url: "https://docs.aws.amazon.com/ses/latest/dg/eb-ingress.html" }
+  - { id: s11, url: "https://docs.aws.amazon.com/ses/latest/dg/eb-relay.html" }
+  - { id: s12, url: "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity-using-notifications-email.html" }
+  - { id: s13, url: "https://docs.aws.amazon.com/ses/latest/dg/monitor-sending-activity-using-notifications-sns.html" }
+  - { id: s14, url: "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-concepts.html" }
+  - { id: s15, url: "https://docs.aws.amazon.com/ses/latest/APIReference/Welcome.html" }
+  - { id: s16, url: "https://docs.aws.amazon.com/ses/latest/APIReference-V2/Welcome.html" }
+  - { id: s17, url: "https://docs.aws.amazon.com/ses/latest/dg/receiving-email-mx-record.html" }
+  - { id: s19, url: "https://docs.aws.amazon.com/sesmailmanager/latest/APIReference/Welcome.html" }
+  - { id: s20, url: "https://docs.aws.amazon.com/cli/latest/reference/sesv2/index.html" }
+  - { id: s21, url: "https://docs.aws.amazon.com/cli/latest/userguide/getting-started-prereqs.html" }
+  - { id: s22, url: "https://docs.aws.amazon.com/powershell/latest/userguide/pstools-getting-started.html" }
+  - { id: s23, url: "https://docs.aws.amazon.com/awsconsolehelpdocs/latest/gsg/what-is.html" }
+  - { id: s24, url: "https://docs.aws.amazon.com/ses/latest/dg/eb-logging.html" }
+  - { id: s25, url: "https://docs.aws.amazon.com/ses/latest/APIReference/CommonParameters.html" }
+  - { id: s26, url: "https://docs.aws.amazon.com/ses/latest/APIReference-V2/API_SendEmail.html" }
+
+interfaces:
+  - name: "AWS Management Console"
+    channel: Interactive
+    technology: "Web application (the Amazon SES console at console.aws.amazon.com/ses inside the AWS Management Console), in the browser"
+    rationale: "The consumer acts by manipulating views, forms and wizards of a persistent, navigable representation of identities, configuration sets, receipt rules and metrics."
+    mechanisms: ["Amazon SES console", "Account dashboard", "Reputation metrics page", "Email receiving console wizards", "Mailbox simulator test emails", "Virtual Deliverability Manager dashboard and advisor", "Email Validation Dashboard", "Mail Manager console pages and archive search"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "Sign in to the AWS Management Console and open the Amazon SES console at https://console.aws.amazon.com/ses/." }
+      - { source: s23, excerpt: "The AWS Management Console is a web-based application that contains and provides centralized access to all individual AWS service consoles." }
+
+  - name: "Email feedback forwarding"
+    channel: Event
+    technology: "Outbound email with bounce and complaint notifications sent to the message's MAIL FROM or Return-Path address"
+    rationale: "The service initiates delivery when a bounce or complaint occurs, to a mailbox the consumer controls."
+    mechanisms: ["Email feedback forwarding"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s12, excerpt: "Amazon SES can send you email when you receive bounces and complaints by using a process called email feedback forwarding." }
+      - { source: s3, excerpt: "If you're using the SMTP interface and have feedback forwarding enabled, then your bounces, complaints, and delivery notifications are sent to the \"MAIL FROM\" address." }
+
+  - name: "Amazon SES API v2"
+    channel: Programmatic
+    technology: "HTTPS REST API with JSON bodies (paths under /v2/email) on regional endpoints, signed with AWS Signature Version 4"
+    rationale: "The consumer explicitly invokes provider-defined operations through structured REST requests."
+    mechanisms: ["Amazon SES API v2", "Email Validation API", "Tenants operations", "List and subscription management operations"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "To send production email through Amazon SES, you can use the Simple Mail Transfer Protocol (SMTP) interface or the Amazon SES API." }
+      - { source: s16, excerpt: "Welcome to the Amazon SES API v2 Reference." }
+      - { source: s26, excerpt: "POST /v2/email/outbound-emails HTTP/1.1" }
+
+  - name: "Amazon SES API (version 2010-12-01)"
+    channel: Programmatic
+    technology: "HTTPS Query API with an Action parameter, signed with AWS Signature Version 4; carries the receipt rule and IP filter operations"
+    rationale: "The consumer explicitly invokes provider-defined actions through structured query requests, a different invocation style from API v2."
+    mechanisms: ["Amazon SES API (v1)", "Receipt rule and IP address filter operations", "GetSendStatistics"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s15, excerpt: "This document contains reference information for the Amazon Simple Email Service (Amazon SES) API, version 2010-12-01." }
+      - { source: s25, excerpt: "The following list contains the parameters that all actions use for signing Signature Version 4 requests with a query string." }
+
+  - name: "SMTP interface"
+    channel: Programmatic
+    technology: "SMTP submission to regional email-smtp endpoints with STARTTLS or TLS wrapper, using per-Region SMTP credentials"
+    rationale: "The consumer explicitly submits messages through the structured SMTP command protocol, with its own endpoints and authentication."
+    mechanisms: ["Amazon SES SMTP interface"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s3, excerpt: "Amazon SES sends email using SMTP, which is the most common email protocol on the internet." }
+      - { source: s3, excerpt: "SMTP credentials are unique to each AWS Region." }
+
+  - name: "AWS Command Line Interface"
+    channel: Programmatic
+    technology: "Command-line tool (aws ses, aws sesv2 and aws mailmanager command groups) on Linux, macOS and Windows, also usable from AWS CloudShell"
+    rationale: "The consumer invokes provider-defined commands from the terminal."
+    mechanisms: ["aws ses commands", "aws sesv2 commands", "aws mailmanager commands"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "The AWS Command Line Interface is the command line tool for Amazon SES." }
+      - { source: s20, excerpt: "Amazon SES is an Amazon Web Services service that you can use to send email messages to your customers." }
+      - { source: s21, excerpt: "To access AWS services with the AWS CLI, you need an AWS account with IAM or IAM Identity Center credentials." }
+
+  - name: "Inbound email"
+    channel: Programmatic
+    technology: "Inbound SMTP to regional inbound-smtp endpoints set as the domain's MX record, processed by receipt rules and IP address filters"
+    rationale: "Each received message is taken literally and processed by the consumer's receipt rules, not interpreted as a request."
+    mechanisms: ["Email receiving", "Receipt rules", "IP address filters", "Return bounce response action", "Add header action", "Stop rule set action"]
+    requires: ["Amazon Simple Email Service"]
+    outside_catalog: null
+    evidence:
+      - { source: s5, excerpt: "Besides using Amazon SES to manage your email sending, you can also configure SES to receive email on behalf of one or more of your domains." }
+      - { source: s17, excerpt: "For example, the endpoint for the US West (Oregon) Region is inbound-smtp.us-west-2.amazonaws.com." }
+
+pending:
+  - name: "AWS MCP Server"
+    channel: Agentic
+    technology: "Remote MCP server at aws-mcp.us-east-1.api.aws, via a local proxy or OAuth 2.1, that serves the amazon-ses skill and calls AWS APIs"
+    reason: requirement_unknown
+    blocked_on: null
+    outside_catalog: "AWS MCP Server"
+    evidence:
+      - { source: s7, excerpt: "If your agent supports MCP, connect it directly to the AWS MCP Server." }
+
+  - name: "AWS Tools for PowerShell"
+    channel: Programmatic
+    technology: "PowerShell cmdlets for the Amazon SES API, on Windows PowerShell and PowerShell"
+    reason: requirement_unknown
+    blocked_on: null
+    outside_catalog: null
+    evidence:
+      - { source: s4, excerpt: "We also offer the AWS Tools for PowerShell for those who script in the PowerShell environment." }
+      - { source: s22, excerpt: "For example, they explain how to specify which AWS Region the Tools for PowerShell should use when interacting with AWS." }
+
+  - name: "Notifications to Amazon SNS topics"
+    channel: Event
+    technology: "JSON notifications published to a consumer's SNS topic: identity feedback notifications, the SNS event destination and receipt rule SNS actions"
+    reason: unresolved_candidate
+    blocked_on: "Amazon Simple Notification Service"
+    outside_catalog: null
+    evidence:
+      - { source: s13, excerpt: "You can configure Amazon SES to notify an Amazon SNS topic when you receive bounces or complaints, or when emails are delivered." }
+
+  - name: "Events to Amazon EventBridge"
+    channel: Event
+    technology: "JSON events sent to the EventBridge default event bus: the EventBridge event destination and feature events such as Virtual Deliverability Manager advisor status changes"
+    reason: unresolved_candidate
+    blocked_on: "Amazon EventBridge"
+    outside_catalog: null
+    evidence:
+      - { source: s9, excerpt: "SES sends events to EventBridge when a feature has a state change or status update." }
+
+  - name: "Metrics to Amazon CloudWatch"
+    channel: Event
+    technology: "Sending, reputation and receiving metrics published to the consumer's CloudWatch account, including the CloudWatch event destination"
+    reason: unresolved_candidate
+    blocked_on: "Amazon CloudWatch"
+    outside_catalog: null
+    evidence:
+      - { source: s8, excerpt: "you can set up Amazon SES to publish email sending events to Amazon CloudWatch, Amazon Data Firehose, Amazon Pinpoint, Amazon Simple Notification Service, or Amazon EventBridge based on characteristics that you define." }
+      - { source: s6, excerpt: "(Additional charges apply, see Price per metric for CloudWatch.)" }
+
+  - name: "Events to Amazon Data Firehose"
+    channel: Event
+    technology: "Event destination streaming sending events to a consumer's Firehose delivery stream"
+    reason: requirement_unknown
+    blocked_on: null
+    outside_catalog: "Amazon Data Firehose"
+    evidence:
+      - { source: s8, excerpt: "you can set up Amazon SES to publish email sending events to Amazon CloudWatch, Amazon Data Firehose, Amazon Pinpoint, Amazon Simple Notification Service, or Amazon EventBridge based on characteristics that you define." }
+
+  - name: "Events to Amazon Pinpoint"
+    channel: Event
+    technology: "Event destination publishing sending events to a consumer's Pinpoint project"
+    reason: unresolved_candidate
+    blocked_on: "Amazon Pinpoint"
+    outside_catalog: null
+    evidence:
+      - { source: s8, excerpt: "you can set up Amazon SES to publish email sending events to Amazon CloudWatch, Amazon Data Firehose, Amazon Pinpoint, Amazon Simple Notification Service, or Amazon EventBridge based on characteristics that you define." }
+
+  - name: "Received mail delivered to Amazon S3"
+    channel: Event
+    technology: "Receipt rule action writing each received message to a consumer's S3 bucket"
+    reason: unresolved_candidate
+    blocked_on: "Amazon Simple Storage Service"
+    outside_catalog: null
+    evidence:
+      - { source: s14, excerpt: "Deliver to S3 bucket action—Delivers the mail to an Amazon S3 bucket and, optionally, notifies you through Amazon SNS." }
+
+  - name: "Received mail delivered to AWS Lambda"
+    channel: Event
+    technology: "Receipt rule action invoking a consumer's Lambda function for each received message"
+    reason: unresolved_candidate
+    blocked_on: "AWS Lambda"
+    outside_catalog: null
+    evidence:
+      - { source: s14, excerpt: "Invoke AWS Lambda function action—Calls your code through a Lambda function and, optionally, notifies you through Amazon SNS." }
+
+  - name: "Received mail delivered to Amazon WorkMail"
+    channel: Event
+    technology: "Receipt rule action handing each received message to a WorkMail organization"
+    reason: unresolved_candidate
+    blocked_on: "Amazon WorkMail"
+    outside_catalog: null
+    evidence:
+      - { source: s14, excerpt: "Integrate with Amazon WorkMail action—Handles the mail with Amazon WorkMail." }
+
+  - name: "API activity logs to AWS CloudTrail"
+    channel: Event
+    technology: "Records of SES API calls made from the console or the API, delivered through CloudTrail"
+    reason: unresolved_candidate
+    blocked_on: "AWS CloudTrail"
+    outside_catalog: null
+    evidence:
+      - { source: s2, excerpt: "Use AWS CloudTrail to log Amazon SES API calls that you make using the console or the Amazon SES API." }
+
+  - name: "Amazon SES Mail Manager API"
+    channel: Programmatic
+    technology: "HTTPS API with its own regional endpoints, signed with AWS Signature Version 4"
+    reason: unresolved_candidate
+    blocked_on: "Mail Manager"
+    outside_catalog: null
+    evidence:
+      - { source: s19, excerpt: "The Amazon SES Mail Manager API contains operations and data types that comprise the Mail Manager feature of Amazon Simple Email Service (SES)." }
+
+  - name: "Mail Manager open ingress endpoint"
+    channel: Programmatic
+    technology: "Inbound SMTP on port 25 with STARTTLS to a mail-manager-smtp host, no authentication, filtered by a traffic policy and a rule set"
+    reason: unresolved_candidate
+    blocked_on: "Mail Manager"
+    outside_catalog: null
+    evidence:
+      - { source: s10, excerpt: "Mail sent to your domain will resolve directly to your ingress endpoint—no authentication required." }
+
+  - name: "Mail Manager authenticated ingress endpoint"
+    channel: Programmatic
+    technology: "Inbound SMTP on ports 25 and 587 with STARTTLS and SMTP AUTH credentials"
+    reason: unresolved_candidate
+    blocked_on: "Mail Manager"
+    outside_catalog: null
+    evidence:
+      - { source: s10, excerpt: "Mail sent to your domain has to come from authorized senders whom you’ve shared your SMTP credentials with, such as your on-premise email servers." }
+
+  - name: "Mail Manager mTLS ingress endpoint"
+    channel: Programmatic
+    technology: "Inbound SMTP on port 25 authenticated by TLS client certificates against the endpoint's trust store"
+    reason: unresolved_candidate
+    blocked_on: "Mail Manager"
+    outside_catalog: null
+    evidence:
+      - { source: s10, excerpt: "Mail sent to your domain must come from clients that present a TLS client certificate signed by one of the certificate authorities (CAs) in the ingress endpoint's trust store." }
+
+  - name: "Mail Manager SMTP relay"
+    channel: Event
+    technology: "Rule action relaying processed mail over SMTP to the consumer's email environment (Microsoft 365, Google Workspace, Exchange)"
+    reason: unresolved_candidate
+    blocked_on: "Mail Manager"
+    outside_catalog: null
+    evidence:
+      - { source: s11, excerpt: "Mail Manager uses SMTP relays to route incoming emails that are processed by Mail Manager to your email environment." }
+
+  - name: "Mail Manager log delivery"
+    channel: Event
+    technology: "Ingress endpoint and rule set logs delivered to CloudWatch Logs, Amazon S3 or Amazon Data Firehose"
+    reason: unresolved_candidate
+    blocked_on: "Mail Manager"
+    outside_catalog: null
+    evidence:
+      - { source: s24, excerpt: "Mail Manager delivers logs using the Amazon CloudWatch Logs service and the logs can be delivered to any of the following destinations: CloudWatch Logs, Amazon S3, or Amazon Data Firehose." }
+
+excluded:
+  - mechanism: ["AWS SDKs", "Code examples", "amazon-ses agent skill", "aws-core plugin and Agent Toolkit for AWS", "aws configure agent-toolkit wizard", "SMTP credentials", "AWS Signature Version 4 and IAM or IAM Identity Center credentials", "Email Add Ons"]
+    reason: not_an_interface
+    service: null
+    detail: "libraries, customization artifacts, local client setup, authentication, and a catalog candidate applied inside Mail Manager rules"
+  - mechanism: "AWS CloudShell"
+    reason: not_an_interface
+    service: null
+    detail: "catalog candidate that hosts the AWS CLI contract already counted"
+  - mechanism: ["Regional and FIPS endpoints", "Global endpoints", "VPC interface endpoints (AWS PrivateLink)"]
+    reason: another_deployment
+    service: null
+    detail: "the same API and SMTP contracts on other hosts"
+  - mechanism: ["Amazon WorkMail web application", "Amazon WorkMail desktop and mobile clients", "Amazon WorkMail API"]
+    reason: no_access
+    service: null
+    detail: "listed on the SES documentation home but give access to Amazon WorkMail, a not_evaluated candidate, not to SES"
+  - mechanism: "AWS Console Mobile Application"
+    reason: not_found
+    service: null
+    detail: "it covers a select subset of AWS services; no official page inspected names Amazon SES among them"
+  - mechanism: "Desktop client"
+    reason: not_found
+    service: null
+    detail: "no first-party desktop client for SES in the documentation home or developer guide"
+
+summary:
+  interfaces: 7
+  channels: [Interactive, Event, Programmatic]
+  multi_interface: true
+  multi_channel: true
+  verdict_provisional: true
+
+notes:
+  - "The AWS Management Console and the AWS Command Line Interface are themselves not_evaluated candidates of the input YAML; they were counted because the pages opened for (b) show no plan, licence or subscription of their own, only an AWS account with IAM credentials, which was treated as authentication and not as a requirement of AWS Identity and Access Management."
+  - "The Mail Manager API reference calls Mail Manager a feature of Amazon SES, while the input YAML keeps it as a doubtful add-on with entitlement and enhance unknown; its mechanisms stay pending until the resolver settles it."
+  - "Authenticated Ingress Endpoint is a decided feature of Amazon SES in the input YAML, but it is configured and documented only inside Mail Manager, so it stays pending on that open candidate."
+  - "The AWS Management Console getting started page opened for (b) returned no text without JavaScript; it counts in attribution_pages_used and is not cited."

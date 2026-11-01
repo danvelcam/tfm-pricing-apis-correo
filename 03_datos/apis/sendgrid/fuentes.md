@@ -364,9 +364,13 @@ Volcados de cada página en `evidencias/paginas/2026-09-06/` (regla E2).
   - `"There is a hard limit of 10,000 addresses in a multiple recipient email. However, the
     best practice is to split large jobs into separate transactions of approximately 1,000
     recipients, which allows better processing load distribution."`
-- **Observación crítica:** por SMTP el tope de destinatarios por mensaje es **10.000**, diez
-  veces el de la API REST [F3]. El mismo plan, la misma cuota, dos canales con dos
-  *workloads* distintos → **F-15**.
+- **Observación crítica:** el tope de 10.000 direcciones es de la cabecera X-SMTPAPI, no del
+  relé SMTP en general: la página lo da entre lo que hay que vigilar al usar la cabecera
+  (`"However, there are several things to keep in mind when using the header."`). Un mensaje
+  SMTP sin la cabecera no tiene tope de destinatarios publicado en las páginas de SMTP
+  consultadas, así que la cifra no es el equivalente SMTP de los 1.000 de la API [F3].
+  Corregido el 2026-10-31: hasta esa fecha esta observación lo leía como tope del relé y lo
+  llevaba a **F-15**.
 
 ## [F15] Developer docs — Email Activity: Filter all messages *(señalada por el verificador)*
 

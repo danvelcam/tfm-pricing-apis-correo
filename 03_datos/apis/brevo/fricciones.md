@@ -787,7 +787,9 @@ declara RPS y RPH a la vez y obliga a respetar los dos (*"When both apply, you m
 both simultaneously."* [F6]), mientras B8 exige declarar cada límite una vez y v0.3 admite
 un solo `rate` por endpoint. **Comprobado fila a fila, la carencia se disuelve**: en las
 **diez** filas de [F6] que publican las dos unidades, el RPH es exactamente el RPS por
-3.600.
+3.600. *(Corregido el 2026-10-31, verificador: [F6] publica las dos unidades en **catorce**
+filas, siete por tramo; la tabla de abajo agrupa rutas con la misma cifra. La proporción se
+cumple en las catorce.)*
 
 | Tramo · ruta | RPS | RPH publicado | RPS × 3.600 |
 |---|---|---|---|

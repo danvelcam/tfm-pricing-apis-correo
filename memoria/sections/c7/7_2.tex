@@ -1,0 +1,131 @@
+\section{Procedimiento y cobertura}\label{sec:comparacion:procedimiento}\label{sec:hallazgos:comparacion}
+
+El catálogo se aplica a las ocho Datasheets en tres pasos.
+Primero, cada una de las 32 preguntas se instancia sobre cada Datasheet con los hechos que esta registra, cada dato que se recogió con su fuente al construirla, esté o no en un campo.
+Después, las preguntas de clase P, las que resuelve una operación de PRIME4API, se calculan a mano con la definición de la operación y se contrastan con la respuesta del motor.
+Por último, cada pareja de pregunta y API recibe una de cuatro salidas.
+
+La primera salida es la respuesta con su cifra y con la fuente que la sostiene.
+La segunda es la respuesta parcial, cuando solo sale una parte de la pregunta, y la tercera es «no», con el dato que falta.
+La cuarta, «fuera de los campos», solo existe en la clase X, la de las preguntas que el instrumental no responde.
+Se anota cuando los hechos de la API contienen el dato aunque ningún campo de la Datasheet lo recoja, por ejemplo en el \textit{provenance} o en la matriz de \textit{features}.
+
+El recuento acepta «no publicado» como respuesta cuando la pregunta lo admite.
+Así se responde PI-A02, la velocidad máxima de envío, en Postmark.
+La respuesta es que el proveedor no publica el \textit{rate}, junto con las 5.000 peticiones por segundo que la Datasheet toma de la cabecera \texttt{ratelimit-limit} leída en un sondeo, una prueba propia contra la API.
+Ese valor está en ámbar (\semambar{}), el color que el semáforo de la Datasheet da a un valor interpretado.
+En las preguntas de comparación de la categoría C, una API cuenta como respondida cuando aporta su lado de la comparación.
+
+Un mes se toma como 30 días (2.592.000 segundos).
+Cada respuesta vale a la fecha de su Datasheet, dentro de la ventana de toma de datos del 2 de agosto al 21 de septiembre de 2026 (Sección~\ref{sec:propuesta:ventana}).
+Entre capturas sucesivas de una misma página cambió la redacción, pero ningún valor que la Datasheet modele.
+
+Los términos de consumo de una API (el precio y la información de cómo, cuándo, cuánto y dónde se consume) están repartidos entre el panel de la cuenta y varias páginas del proveedor, como la de precios, la documentación de la API, el centro de ayuda o el blog.
+Cuando la página de precios y otra de esas fuentes no coinciden, la comparación usa el valor de la página de precios, que es el que modela la Datasheet: las demás fuentes señalan la incoherencia, pero no corrigen el dato (Sección~\ref{sec:propuesta:semaforo}).
+
+El catálogo de Datasheets registra 82 divergencias entre fuentes, cada una un dato que dos fuentes dan distinto, y en 37 la página de precios es uno de los dos lados.
+En siete de esas 37 la página se contradice a sí misma, y la regla de la página de precios no ordena nada.
+En once de las 30 restantes, esa regla cambió la fuente que ganaba antes de adoptarla o cerró una divergencia que seguía abierta.
+Solo dos de esas once cambiaron la Datasheet: un valor, el sobrecoste de Essentials 50K en SendGrid, y un color del semáforo, el de la cuota diaria del plan gratuito de Mailgun.
+Las otras nueve solo cambian la procedencia anotada, sin tocar ningún campo.
+
+Algunas preguntas presuponen un plan con su cuota, y no todos los proveedores lo tienen.
+PI-B02 pregunta cuántos correos compra un presupuesto mensual en un plan, y Mailchimp Transactional no tiene planes.
+En esos casos la pregunta se responde sobre lo que la Datasheet sí declara, como una cuenta de prueba o una tarifa sin suscripción, y la celda se rotula entre corchetes con el nombre que le da el proveedor.
+En Mailchimp es \texttt{[demo]}, como llama el proveedor a su cuenta de prueba.
+En Amazon SES es \texttt{[sandbox]}, su entorno de pruebas y el único con cuota publicada, o \texttt{[à la carte]}, su tarifa sin suscripción, que cobra solo por correo enviado.
+El corchete no lleva semáforo, porque no mide la fiabilidad del dato.
+
+\paragraph{Ejecución contra PRIME4API.}
+Las preguntas P se ejecutaron en 128 llamadas al motor, todas con su petición y su respuesta archivadas\footnote{En \texttt{05\_salida/\allowbreak \_cap5/\allowbreak prime4api\_ejecucion*/} del repositorio del trabajo.}.
+Fueron 45 llamadas para Postmark, Resend y SendGrid, 15 para MailerSend y 68 para las 40 instancias de Brevo, Amazon SES, Mailgun y Mailchimp.
+En las cuatro primeras APIs el motor contestó 58 de las 60 llamadas, y las dos que fallan piden PI-B01 con todos los planes y tropiezan con el plan Enterprise de Resend y con el de SendGrid.
+En las otras cuatro contestó las 17 llamadas de Mailgun y las 17 de Amazon SES, 16 de 17 en Brevo y 3 de 17 en Mailchimp.
+De sus 40 instancias resuelve 30, las diez de Brevo, las diez de Amazon SES y las diez de Mailgun.
+
+Las respuestas del motor coinciden con el cálculo a mano salvo por las tres convenciones de conteo de la Sección~\ref{sec:limites:prime4api}.
+Una de ellas abre la ventana siguiente en el instante final del intervalo.
+Por eso, en PI-B02, el motor da 3.100 correos en el plan gratuito de Mailgun, cien más que su cuota mensual: suma 30 ventanas diarias de 100 correos y la que abre en $t = 30$ días, que ya es del mes siguiente.
+
+Entre esas otras cuatro, el motor devuelve errores en Brevo y en Mailchimp.
+La única llamada de Brevo que no nombra los planes alcanza Enterprise, cuyo precio es \texttt{custom}, y devuelve HTTP 400, el caso de un precio que existe y no es público que recoge P-05 (Sección~\ref{subsec:evolucion:p05}).
+Las otras dieciséis nombran los planes y lo dejan fuera.
+En Mailchimp, catorce llamadas devuelven HTTP 500 por dos campos vacíos que el esquema admite: el tope de destinatarios y el periodo de la franquicia de 500 correos de la cuenta de prueba (Sección~\ref{sec:esquema:contrato}).
+Las tres que contesta solo leen su cuota o su caudal, y por eso sus diez respuestas de clase P están calculadas a mano, sin confirmación del motor, y la celda lo indica en cada caso.
+
+\paragraph{Cobertura.}
+De las 25 preguntas de clase D, P y H, las que el catálogo declara respondibles con una Datasheet, PRIME4API o HARVEY4API, Resend responde 22 con los hechos de su Datasheet.
+Amazon SES y MailerSend responden 21, SendGrid, Mailgun, Mailchimp y Brevo 20 y Postmark 18.
+Dieciséis preguntas se responden en las ocho APIs a la vez.
+La Tabla~\ref{tab:cobertura-pi} recoge el recuento completo por API.
+
+\begin{table}[tbp]
+\centering
+\scriptsize
+\setlength{\tabcolsep}{2pt}
+\begin{tabular}{|p{4.5cm}|c|c|c|c|c|c|c|c|c|}
+\hline
+\textbf{Salida} & \rotatebox{90}{\textbf{Postmark}} & \rotatebox{90}{\textbf{Resend}} &
+\rotatebox{90}{\textbf{SendGrid}} & \rotatebox{90}{\textbf{MailerSend}} &
+\rotatebox{90}{\textbf{Brevo}} & \rotatebox{90}{\textbf{SES}} &
+\rotatebox{90}{\textbf{Mailgun}} & \rotatebox{90}{\textbf{Mailchimp}} &
+\rotatebox{90}{\textbf{Las ocho}} \\
+\hline
+Respondible con los hechos & 18 & 22 & 20 & 21 & 20 & 21 & 20 & 20 & 16 \\
+\hline
+\quad de ellas, con un dato del \textit{provenance} y no de un campo del esquema & 4 & 3 & 2 & 1 & 5 & 6 & 1 & 2 & 1 \\
+\hline
+Parcial & 4 & 2 & 4 & 4 & 4 & 4 & 5 & 3 & 2 \\
+\hline
+Respondible en el catálogo, sin respuesta en los hechos & 3 & 1 & 1 & 0 & 1 & 0 & 0 & 2 & 0 \\
+\hline
+L, respondida leyendo la matriz de \textit{features} de la Datasheet & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 & 2 \\
+\hline
+X sin respuesta en ningún sitio & 2 & 2 & 2 & 2 & 2 & 3 & 1 & 2 & 1 \\
+\hline
+X con respuesta en los hechos (fuera de los campos) & 3 & 3 & 3 & 3 & 3 & 2 & 4 & 3 & 2 \\
+\hline
+Total & 32 & 32 & 32 & 32 & 32 & 32 & 32 & 32 & --- \\
+\hline
+\end{tabular}
+\caption[Cobertura del catálogo de preguntas sobre las ocho APIs]{Cobertura del catálogo de preguntas sobre las ocho APIs. El catálogo declara 25 respondibles con una Datasheet, PRIME4API o HARVEY4API (clases D, P y H), 2 que se responden leyendo (L) y 5 que el instrumental no responde (X), y ese reparto no cambia de una API a otra. La columna «Las ocho» cuenta las preguntas con la misma salida en las ocho APIs y no suma 32. La lista de preguntas de cada celda está en \texttt{05\_salida/\allowbreak \_cap5/\allowbreak analisis.md} del repositorio del trabajo.}
+\label{tab:cobertura-pi}
+\end{table}
+
+De las dieciséis preguntas comunes, cinco piden cuota, precio o si el \textit{rate} está publicado (PI-A02, B03, C02, C03 y G03), y siete necesitan el valor del \textit{rate} (PI-A06, A07, B05, C04, D01, D02 y D03).
+Las cuatro restantes piden el precio de un volumen (PI-B01, B02, C01 y G02).
+En Brevo esas cuatro se responden con los volúmenes contratados de Starter, que van de 5.000 correos por 9 USD a 100.000 por 82 USD y constan en el \textit{provenance}, no en un campo (P-01, Apartado~\ref{subsec:evolucion:p01}).
+El selector de volumen de su página de precios solo deja sin precio la última posición, «More», por encima de 100.000 correos en Starter, de 500.000 en Standard y de diez millones en Professional.
+
+Los cuatro parciales de Brevo salen de lo que el proveedor no publica.
+PI-A01, la cuota y lo que ocurre al superarla, queda en parcial porque sus tres planes de pago no lo documentan y la página de precios niega que exista precio de exceso \citep{brevopricing}.
+Los otros tres salen de los tres tramos de caudal de su API, General, Advanced y Extended.
+Professional puede acogerse a dos y Enterprise a los tres, y ninguna fuente dice cuál se les aplica.
+
+\paragraph{Un caso resuelto: PI-B02.}
+PI-B02, cuántos correos se envían como máximo con 50 USD al mes, recorre el procedimiento completo.
+Resend llega a 116.000 correos con el segundo volumen de Pro (100.000 por 35 USD) más 16 bloques de 1.000 a 0,90 USD.
+SendGrid llega a 116.722 con Essentials 100K, de 34,95 USD, más 15,05 USD de sobrecoste a 0,0009 USD por correo.
+MailerSend con Starter y Mailgun con Foundation llegan los dos a 61.538: 50.000 correos por 35 USD y 15 USD a 1,30 USD el millar.
+
+Las respuestas de Postmark y de Brevo llevan una salvedad cada una.
+Postmark se queda en 36.666 con Platform (18 USD de plan y 32 USD a 1,20 USD el millar), sobre una cuota marcada en ámbar (\semambar{}).
+Brevo llega a 40.000 correos con el volumen contratado de Starter que cuesta 46 USD, un precio que consta en el \textit{provenance} y no en un campo (P-01).
+
+En las otras dos APIs el presupuesto no fija la respuesta.
+En Amazon SES los 50 USD compran 500.000 destinatarios a la tarifa sin suscripción, pero el entorno de pruebas solo deja enviar 200 correos al día, 6.000 al mes, así que la respuesta la fija la capacidad y no el precio.
+En Mailchimp compran 50.000 correos de cuota, pero la cuenta de pago no tiene caudal publicado, y con los 25 correos por hora de la cuenta de prueba el mes da 18.000, rotulados \texttt{[demo]}.
+
+PRIME4API da 83.343 correos en Resend y 83.115 en SendGrid, frente a los 116.000 y 116.722 del cálculo a mano, porque de cada plan solo ve el primer volumen contratado, el de 50.000 correos (Sección~\ref{sec:limites:prime4api}).
+Los 100.000 correos de Pro en Resend los vende la página de precios, y ACM2YAML v0.3 no tiene campo para guardarlos (P-01, los volúmenes contratados de un plan, Sección~\ref{subsec:evolucion:p01}).
+
+\paragraph{Lectura de las columnas.}
+Las respuestas que se apoyan en al menos un hecho en ámbar son 13 de 18 en Postmark y 12 de 20 en Mailgun, y bajan a 1 de 22 en Resend y 1 de 20 en SendGrid.
+
+Las respuestas rotuladas entre corchetes se cuentan aparte y no se descuentan de la columna: son 17 de 21 en Amazon SES y 10 de 20 en Mailchimp.
+
+De las cinco preguntas X, las que el instrumental no responde, seis APIs responden tres fuera de los campos.
+Mailgun responde cuatro, porque es la única que publica la concurrencia que pide PI-A08, y Amazon SES dos, porque ninguna de sus fuentes publica la retención que pide PI-E03.
+
+La versión del catálogo legible por máquina (\texttt{catalogo.yaml}) se conserva en el repositorio del trabajo junto con las 128 llamadas al motor, de modo que el procedimiento puede repetirse.
+Su límite está en la clase H: las diez preguntas P se han ejecutado contra PRIME4API, pero las cuatro H cuentan como respondibles por la especificación de HARVEY4API, sin haberse ejecutado con esa herramienta.

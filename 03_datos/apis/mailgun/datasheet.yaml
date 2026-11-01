@@ -2,7 +2,7 @@
 # Semáforo: 🟢 explícito en fuente oficial · 🟡 inferido · 🔴 no documentado
 
 associated_saas: mailgun                                    # 🟢
-type: api_first                                             # 🟡
+type: api_first                                             # 🟢
 url: https://www.mailgun.com/pricing/                       # 🟢
 syntax_version: 0.3
 date: 2026-09-21
@@ -118,7 +118,7 @@ plans:
           - unit: requests
             min: 1
             max: 1
-            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en cada dominio de envío.
       /v3/{domain_name}/bounces/import:
         workload:
           - unit: MBs
@@ -168,7 +168,7 @@ plans:
           - unit: requests
             min: 1
             max: 1
-            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en cada dominio de envío.
       /v3/{domain_name}/bounces/import:
         workload:
           - unit: MBs
@@ -218,7 +218,7 @@ plans:
           - unit: requests
             min: 1
             max: 1
-            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en cada dominio de envío.
       /v3/{domain_name}/bounces/import:
         workload:
           - unit: MBs
@@ -268,7 +268,7 @@ plans:
           - unit: requests
             min: 1
             max: 1
-            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en la cuenta.
+            description: Alta de una plantilla por petición; hasta 100 plantillas y 40 versiones por plantilla en cada dominio de envío.
       /v3/{domain_name}/bounces/import:
         workload:
           - unit: MBs
@@ -340,16 +340,16 @@ metadata:
     - "Paginación de la consulta de eventos, medida con el rango en el propio error: 'limit=300' devuelve 200 y 'limit=301' devuelve 400 con 'Invalid parameter: limit=[\"301\"], Number out of range [1, 300]'; la referencia publica el mismo tope, 'The number of entries to return (300 max)' [verificación empírica sobre dominio sandbox, 2026-09-21; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/events/get-v3-domain_name-events]"
     - "Tope de los parámetros de opciones, publicado y medido: 'Send options (parameters starting with o:, h:, v:, or t:) are limited to 16KB total'; 16 kB pasan la comprobación y 17 kB devuelven 400 con 'Send options (parameters starting with o:, h:, or v:) are limited to 16 kB total' [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/messages/post-v3--domain-name--messages; verificación empírica sobre dominio sandbox, 2026-09-21]"
     - "Importación masiva de rebotes: 'The CSV file must be 25MB or under' [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/bounces]"
-    - "Plantillas: 'Mailgun caps usage of account-level templates to 100 templates and 40 versions per template.' Es tope de recurso, no de volumen de envío, así que no entra en las cuotas [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-templates]"
+    - "Plantillas: 'Mailgun caps usage of account-level templates to 100 templates and 40 versions per template. Domain-scoped templates have same limit set on a per sending domain basis.' El endpoint modelado, /v3/{domain_name}/templates, es el de plantillas de dominio, y su alcance lo da la segunda frase, que toma la cifra de la primera: 100 y 40 en cada dominio de envío. Las de cuenta viven en /v4/templates. Es tope de recurso, no de volumen de envío, así que no entra en las cuotas. Corregida el 2026-10-31: la entrada citaba solo la primera frase y describía el tope «en la cuenta»; las dos frases ya estaban juntas en la captura de Wayback del 2026-06-12 [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-templates; https://web.archive.org/web/20260612200001/https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-templates]"
     - "Tope de envío que el titular se impone: 'The custom message limit imposes a hard limit on how many messages your account can send during a calendar month.', con 'The timeframe for which the limit applies - m for months, d for days, h for hours'. Lo fija, lo consulta y lo borra el propio titular con una llamada, sin coste y sin aprobación del proveedor, así que el endpoint se modela sin cuota ni caudal asociados y la cifra no entra en la capacidad comparable [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/custom-message-limit]"
     - "Restricción del plan Free, medida: un envío a una dirección cualquiera devuelve 403 con 'Domain sandboxcc7d3466734a4ff18c9247a488599261.mailgun.org is not allowed to send: Free accounts are for test purposes only. Please upgrade or add the address to your authorized recipients.' El texto nombra la cuenta Free, no el dominio de pruebas [verificación empírica sobre dominio sandbox, 2026-09-21]"
-    - "NOTA Test del tipo de producto: el envío se opera por API, y también el alta de plantilla con 'POST /v3/{domain_name}/templates' y el alta de dominio con 'Creates a domain for sending emails'. Quedan sin cita la edición de una plantilla ya creada y el disparo de la verificación DNS de un dominio ya creado, cuyas páginas de referencia devolvieron 404. El valor api_first se sostiene porque ninguna operación consta como exclusiva del panel, y el color mide que el test no se recorrió entero [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domain-templates/post-v3--domain-name--templates; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domains/post-v4-domains]"
+    - "NOTA Test del tipo de producto, completo desde el 2026-10-31: el envío se opera por API, y también el alta de plantilla con 'POST /v3/{domain_name}/templates' y el alta de dominio con 'Creates a domain for sending emails'. El 2026-09-21 quedaron sin cita la edición de una plantilla ya creada y el disparo de la verificación DNS de un dominio ya creado, porque sus páginas de referencia devolvieron 404 a WebFetch, y el color medía que el test no se había recorrido entero. RELEÍDAS el 2026-10-31 con curl, las dos responden 200 y traen la operación: 'Verify the domains DNS records (includes A, CNAME, SPF, DKIM and MX records) to ensure the domain is ready and able to send' en 'PUT /v4/domains/{name}/verify', y 'Update the description of a template.' en 'PUT /v3/{domain_name}/templates/{template_name}'. El contenido se edita por versión, 'Update information or content of the specific template version.', según la especificación pública. Ninguna operación consta como exclusiva del panel y el color sube a verde por D9 [https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domain-templates/post-v3--domain-name--templates; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domains/post-v4-domains; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domains/put-v4-domains--name--verify; https://documentation.mailgun.com/docs/mailgun/api-reference/send/mailgun/domain-templates/put-v3--domain-name--templates--template-name-; https://documentation.mailgun.com/_spec/docs/mailgun/api-reference/send/mailgun.json]"
     - "Base de la API por región: 'https://api.mailgun.net/' en Estados Unidos y 'https://api.eu.mailgun.net/' en la Unión Europea; el panel de la cuenta confirma 'Base URL' 'https://api.mailgun.net' [https://documentation.mailgun.com/docs/mailgun/api-reference/api-overview; observación de panel con cuenta propia, 2026-09-21]"
     - "Retención de mensajes en el plan Free, confirmada en la cuenta: 'Message retention is unavailable for your plan. Upgrade to start storing message bodies (MIMES) for later retrieval...' Es política de retención, no cuota [observación de panel con cuenta propia, 2026-09-21]"
     - "Límites de recurso publicados, que no son cuotas de volumen: 'The default limit is 1,000 domains per Mailgun account.', 'Each event type is configured individually and can contain up to 3 URLs per event type.', '2 API keys' en Free y en Basic, y 'Free plans are limited to 1 user per account.' [https://www.mailgun.com/ai-info/; https://documentation.mailgun.com/docs/mailgun/user-manual/webhooks/configuring-webhooks; https://www.mailgun.com/pricing/]"
     - "Umbrales de la política de uso aceptable, que el proveedor no aplica de forma automática: rebotes hasta el 5 %, quejas por correo no deseado hasta el 0,08 %, bajas hasta el 1,4 % y bloqueos por debajo del 20 %, con 'The determination of whether and to what extent a customer's act or omission and is in violation of this AUP will be made at our sole discretion.' y 'Sinch Email reserves the right to update the parameters of the acceptable sending threshold without prior notice.' [https://www.mailgun.com/legal/aup/]"
     - "Canal SMTP: 'Mailgun SMTP servers listen on ports 25, 465, 587, and 2525. Port 465 requires a TLS connection.' y 'Depending on your billing plan, you can schedule messages up to 3 or 7 days in advance.', sin decir qué plan lleva cada horizonte [https://documentation.mailgun.com/docs/mailgun/user-manual/sending-messages/send-smtp]"
-    - "Arranque de una cuenta nueva, descrito sin ninguna cifra: el proveedor 'gradually increases sending rates' y 'automatically queues your email and sends them at rates that makes the ESPs happy, increasing those rates as your sending reputation grows' [https://documentation.mailgun.com/docs/mailgun/faq/sending; https://documentation.mailgun.com/docs/mailgun/faq/deliver-rep]"
+    - "Arranque de un remitente nuevo, descrito sin ninguna cifra: 'We use algorithms for our new senders that automatically queues your email and sends them at rates that makes the ESPs happy, increasing those rates as your sending reputation grows' [https://documentation.mailgun.com/docs/mailgun/faq/deliver-rep]. Corregida el 2026-10-31: la entrada citaba además «gradually increases sending rates», que no es literal de ninguna de las dos páginas. La de envío dice 'For newly allocated IPs, Mailgun protects and improves the reputation by gradually increasing sending rates.', y habla de IP nuevas, no de cuentas nuevas; ya era así en la captura de Wayback del 2026-04-17 [https://documentation.mailgun.com/docs/mailgun/faq/sending]"
     - "NOTA El proveedor vende bajo la misma cuenta dos productos más, que quedan fuera de lo modelado: el panel los muestra como 'Mailgun Optimize' y 'Mailgun Inspect', los dos en 'No subscription', y con espacio propio en la aplicación. El caudal que Optimize publica, 'API calls are subject to a rate limit of 500 requests every 10 seconds', no se traslada al producto transaccional: ninguna fuente declara contador ni credencial compartidos [observación de panel con cuenta propia, 2026-09-21; https://documentation.mailgun.com/docs/inboxready/api-reference/optimize/mailgun/metrics/rate-limits-and-quotas]"
     - "La matriz comparativa de la página de precios marca 'Email Templates' incluido en las cuatro columnas: Free, Basic, Foundation y Scale [https://www.mailgun.com/pricing/]"
     - "Endpoint de plantillas, medido en el plan Free: 'POST /v3/{domain_name}/templates' devolvió 'template has been stored', y el propio sondeo la borró después sin dejar estado en la cuenta [verificación empírica sobre dominio sandbox, 2026-09-21]"

@@ -1,0 +1,93 @@
+\section{Las preguntas que piden HARVEY4API}
+\label{sec:comparacion:harvey}
+
+Cuatro de las 32 plantillas del catálogo de preguntas de decisión combinan varias Datasheets o varias operaciones del motor, y por eso el catálogo les asigna la clase H, la que reserva a HARVEY4API.
+PI-C01 compara el coste de dos APIs para un volumen mensual y PI-C02 busca cuál de tres da más correos por dólar en su primer plan de pago.
+PI-C04 pregunta cuál de dos APIs envía antes un volumen dado y PI-G01, en qué mes un crecimiento sostenido obliga a cambiar de plan.
+
+HARVEY4API, el agente conversacional de Ruiz López, publica las operaciones del motor como herramientas mediante el \textit{Model Context Protocol}, el protocolo con el que un modelo de lenguaje llama a herramientas externas \citep{ruizlopez2026tfm,mcp}.
+HARVEY4API no se ha ejecutado en este trabajo.
+Su despliegue en SPHERE, la plataforma web del grupo ISA que reúne pricings en colecciones, llama a un modelo de OpenAI y necesita una clave de pago de esa API.
+El presupuesto del trabajo (Sección~\ref{sec:metodologia:presupuesto}) solo imputa como servicio de modelos de lenguaje la suscripción a Claude, y no incluye esa clave.
+
+\paragraph{Procedimiento.}
+
+Para no dejar sin respuesta esas cuatro preguntas, se hicieron a otro modelo de lenguaje, Claude Opus 5.5, de Anthropic.
+La diferencia con HARVEY4API está en quién calcula: HARVEY4API invoca el motor como herramienta, y aquí el modelo lee el YAML y hace él mismo las cuentas.
+
+La prueba tiene dos condiciones.
+En la primera, el modelo recibe un prompt de sistema fijo, el texto de instrucciones que lee antes de cada pregunta.
+Contiene las ocho Datasheets y seis reglas: usar solo esos datos, citar el campo de cada cifra, enseñar el cálculo, decir qué falta, avisar del semáforo y contestar en pocas líneas.
+En la segunda, el modelo recibe solo la pregunta, como en un chat sin contexto.
+
+Al modelo se le planteó una instancia acotada de cada plantilla.
+En PI-C01, Postmark o Resend a 50.000 correos al mes, y en PI-C02, los correos por dólar de Postmark, Resend y SendGrid.
+En PI-C04, Mailgun o SES para 100.000 correos, y en PI-G01, un crecimiento del 20~\% mensual sobre el plan Basic de Postmark.
+
+Cada pregunta se hizo tres veces en cada condición, sin herramientas ni acceso a la web.
+Las 24 respuestas están archivadas\footnote{Las 24 respuestas, el prompt de sistema y el script que las obtiene están en \texttt{05\_salida/\_cap5/claude\_ejecucion/2026-10-25/} y \texttt{05\_salida/\_herramientas/ejecutar\_claude\_contexto.py}.}.
+Cada respuesta se contrasta con una referencia calculada a mano sobre las Datasheets.
+
+\paragraph{Respuesta de referencia.}
+
+La referencia de PI-C01 a 50.000 correos al mes ordena las ocho APIs así: Amazon SES 5,00 USD, SendGrid 19,95, Resend 20, Mailgun y MailerSend 35, Mailchimp 40, Postmark 55 y Brevo 56.
+SES queda a la cuarta parte de SendGrid porque cobra 0,10 USD por cada 1.000 correos, sin suscripción ni volumen incluido \citep{sespricing}.
+
+Los precios de Postmark y de Brevo salen de volúmenes contratados que la Datasheet guarda en el \textit{provenance}.
+Los 55 USD de Postmark corresponden al volumen de 50.000 correos de su plan Basic, observado en el panel \citep{postmarkpricing}.
+Los 56 USD de Brevo son el precio del volumen de 50.000 correos de su plan Starter, leído en el deslizador de la página de precios \citep{brevopricing}.
+Ninguno de los dos volúmenes está en un campo, porque una cuota de v0.3 solo admite un valor (P-01, los volúmenes contratados de un plan, Sección~\ref{subsec:evolucion:p01}).
+
+Si se parte de la cuota de entrada de Postmark, 10.000 correos, y se suma al precio de cada plan el sobrecoste de los 40.000 restantes, el envío costaría 66 USD en Platform, 68,50 en Pro y 87 en Basic.
+La Datasheet registra esa cuota de entrada en ámbar (\semambar{}), el color de un valor interpretado y no publicado tal cual, y los tres cálculos heredan ese color.
+
+PI-C02 divide la cuota del primer plan de pago entre su precio.
+El orden es SES 10.000 correos por dólar, SendGrid 2.506, Resend 2.500, Mailchimp 1.250, MailerSend 714, Mailgun y Postmark 667 y Brevo 556.
+Los 667 correos por dólar de Postmark (10.000 correos entre 15 USD) heredan el ámbar de su cuota de entrada.
+
+En PI-C04, Mailgun envía 100.000 correos en 66,7 segundos con un destinatario por petición, al caudal de 1.500 peticiones por segundo que su Datasheet lleva en ámbar.
+SES tarda 500 días en su entorno de pruebas, con 200 correos al día, y en producción no publica ni la cuota ni el caudal.
+PI-G01 solo tiene respuesta parcial, porque la pregunta no fija el volumen inicial y sin él no hay mes en que se agote la cuota.
+La Tabla~\ref{tab:comparacion:harvey} recoge, para cada una de las cuatro instancias, la referencia y lo que contestó el modelo en cada condición.
+
+\begin{table}[tbp]
+\centering
+\small
+\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.6cm}|>{\raggedright\arraybackslash}p{3.4cm}|>{\raggedright\arraybackslash}p{3.6cm}|>{\raggedright\arraybackslash}p{3.6cm}|}
+\hline
+\textbf{Pregunta} & \textbf{Referencia} & \textbf{Con Datasheets} & \textbf{Sin Datasheets} \\
+\hline
+PI-C01: Postmark o Resend a 50.000 correos al mes & Resend 20 USD. Postmark 55 USD en el panel, de 66 a 87 USD por sobrecoste & Resend 20 USD frente a 55 USD, con los tres cálculos por sobrecoste y el ámbar de la cuota de Postmark & Resend. Postmark entre 50 y 70 USD, sin fuente \\
+\hline
+PI-C02: correos por dólar entre Postmark, Resend y SendGrid & SendGrid 2.506, Resend 2.500, Postmark 667 & Las mismas tres cifras, cada una con su campo, y el ámbar de Postmark & Las mismas tres cifras, sin fuente \\
+\hline
+PI-C04: Mailgun o SES para 100.000 correos & Mailgun 66,7 s (un destinatario) o menos de 1 s (1.000). SES 500 días en pruebas (499 si el primer envío cuenta en $t = 0$) y sin cifra en producción & Mailgun en menos de 10 s con 1.000 destinatarios, cota más holgada que la de la referencia. SES 500 días en pruebas. Producción no publicada, sin comparar & Mailgun. SES en producción con 50.000 correos al día y 14 por segundo, cifras sin fuente publicada \\
+\hline
+PI-G01: crecimiento del 20~\% al mes en Postmark Basic & Parcial: cuota de 10.000 en ámbar. Falta el volumen inicial & Pide el volumen inicial, da la fórmula y avisa del ámbar & Pide el volumen inicial, da la fórmula y supone 10.000 sin fuente \\
+\hline
+\end{tabular}
+\caption{Las cuatro preguntas que piden HARVEY4API, contestadas por Claude Opus 5.5 con las ocho Datasheets en el prompt y sin ellas. Cada celda resume tres repeticiones con la misma conclusión y las mismas cifras.}
+\label{tab:comparacion:harvey}
+\end{table}
+
+\paragraph{Resultado.}
+
+Las respuestas con Datasheets y sin ellas se separan en la fuente de cada cifra.
+Con las Datasheets, cada respuesta cita entre 4 y 11 campos y avisa del semáforo de los que están en ámbar o en rojo.
+Cada una separa lo publicado, lo interpretado y lo calculado, con la procedencia que define la Sección~\ref{sec:propuesta:trazabilidad}.
+En PI-C01, los 20 USD de Resend son un valor publicado, la cuota de 10.000 correos de Postmark es interpretada y los 87 USD de su plan Basic se calculan con el sobrecoste.
+La misma respuesta da aparte los 55 USD del panel, porque no salen de un campo modelado.
+Sin las Datasheets ninguna cifra cita una fuente, y varias llevan «unos» o «\textasciitilde{}» delante.
+
+Las dos condiciones se separan más en PI-C04, que pregunta si conviene Mailgun o SES para enviar 100.000 correos.
+Con las Datasheets, las tres respuestas dicen que SES no publica su cuota ni su caudal en producción y que esa parte no se puede comparar.
+Sin ellas, las tres dan para SES en producción 50.000 correos al día y 14 por segundo, dos cifras que el proveedor no publica, así que la comparación con Mailgun se apoya en valores que ninguna fuente respalda.
+
+En las cuatro preguntas, el modelo llega con las Datasheets y sin ellas a la misma conclusión que la referencia, y las tres repeticiones de cada condición dan las mismas cifras.
+Son proveedores conocidos, y es probable que sus precios de entrada figuren en los datos con los que se entrenó el modelo.
+Por eso el acierto de las respuestas sin Datasheets se trata como una amenaza a la validez de la prueba.
+
+Las respuestas del modelo tienen la procedencia «inferido por agente», la de los valores que deduce un modelo de lenguaje, que no pasan de ámbar mientras no los respalde un valor publicado o medido.
+Tampoco sustituyen a HARVEY4API, porque ningún cálculo pasa por el motor de PRIME4API.
+La referencia y las Datasheets son del mismo autor, y las Datasheets se construyeron con asistencia de Claude (Anexo~\ref{anx:uso-ia}), la misma familia de modelos que responde, de modo que la prueba comprueba que el modelo lee bien la Datasheet, no que la Datasheet sea correcta.

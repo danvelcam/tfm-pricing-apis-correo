@@ -1,0 +1,289 @@
+\section{Propuestas de expresividad}
+\label{sec:esquema:expresividad}\label{sec:evolucion:expresividad}
+
+Siete de las nueve propuestas responden a una carencia de expresividad: el proveedor publica un límite y ACM2YAML v0.3 no tiene dónde escribirlo.
+Son la cuota con varios volúmenes contratados (P-01), el consumo por petición que multiplica dos factores (P-02) o que tiene la cota en otra métrica (P-03) y los estados de la suscripción y de la reputación (P-06).
+Completan las siete el tope del sobrecoste (P-07), el cupo de destinatarios distintos que no se repone (P-08) y lo que hace la cuota con lo que la supera (P-09).
+Las dos restantes, P-04 y P-05, son defectos de contrato, porque v0.3 admite la forma y el motor no la consume.
+Son un límite que existe y cuyo valor no se publica y un plan con precio que existe y no es público.
+Las extensiones se escriben contra la guía de v0.3 \citep{apisconsumptionmodel} y no sustituyen ningún campo que ya exista.
+
+\subsection{P-01. La cuota declara volúmenes contratados}
+\label{subsec:evolucion:p01}
+
+\textbf{El caso.} Los tres planes de pago de Postmark se anuncian como \textit{«Starting at 10,000 emails/month»} \citep{postmarkpricing}.
+La estructura completa solo se ve desde el panel de una cuenta propia: seis volúmenes contratados, de 10.000 mensajes por 15 USD a 1.500.000 por 775 USD, con negociación directa por encima del último.
+En el \textit{tier} Basic el sobrecoste baja de 1,80 a 1,70 USD por millar al pasar de 125.000 a 300.000 mensajes (Figura~\ref{fig:tiervolumen}, que cruza los tres \textit{tiers} con los seis volúmenes).
+
+Resend vende la misma estructura y la publica en su página de precios \citep{resendpricing}.
+Su plan Pro tiene dos volúmenes, de 50.000 mensajes por 20 USD y de 100.000 por 35 USD.
+Su plan Scale recorre seis, de 100.000 mensajes por 90 USD a 2.500.000 por 1.150 USD, y el sobrecoste baja de 0,90 a 0,46 USD por millar.
+Resend permite demostrar la carencia con una página pública de precios, sin cuenta propia.
+Mailgun publica su lista de volúmenes en un selector de la página de precios, y en su plan Scale el sobrecoste baja de 1,10 a 0,40 USD por millar \citep{mailgunpricing}.
+
+La carencia aparece en cinco de las ocho APIs: Postmark, Resend, Mailgun, SendGrid y MailerSend (Tabla~\ref{tab:recurrencia}).
+Brevo también vende volúmenes contratados, pero sin sobrecoste, y esa variante cumple solo una parte del enunciado, así que no suma al recuento (Sección~\ref{sec:esquema:inventario}).
+
+\textbf{Qué permite v0.3.} Una cuota de v0.3 declara un \texttt{value} escalar y un solo sobrecoste en \texttt{overage\_cost}.
+No cabe la lista de volúmenes contratados ni el sobrecoste propio de cada uno.
+Las Datasheets de Postmark, Resend y Mailgun modelan por eso el volumen mínimo de cada plan.
+La lista completa solo queda en el registro de procedencia, en prosa que ninguna herramienta lee.
+
+\textbf{Consecuencia.} La Datasheet de Resend afirma que Scale son 100.000 mensajes con un sobrecoste de 0,90 USD por millar.
+Es cierto en el primer volumen contratado y falso en el último, donde el mismo plan son 2.500.000 mensajes a 0,46 USD por millar.
+Comparar ese plan con el de un proveedor de volumen fijo usando el único número serializado falsea la comparación de precios.
+
+\textbf{Propuesta.} Que una cuota admita una lista de volúmenes contratados, cada uno con su precio y su sobrecoste, más una entrada explícita para el tramo negociado.
+El Extracto de código~\ref{lst:p01} muestra la forma sobre el plan Scale de Resend.
+
+\needspace{18\baselineskip}
+\begin{lstlisting}[style=datasheetyaml,caption={P-01: volúmenes contratados dentro de un plan, con precio y sobrecoste propios (caso Resend, plan Scale, tres de los seis volúmenes).},label={lst:p01}]
+quota_email_transactional_monthly_scale:
+  unit: emails
+  period: {value: 1, unit: MONTH}
+  window_type: fixed_billing_cycle
+  contracted_volumes:
+    - value: 100000
+      price: 90
+      overage_cost: {price: 0.90, value: 1000}
+    - value: 500000
+      price: 350
+      overage_cost: {price: 0.70, value: 1000}
+    - value: 2500000
+      price: 1150
+      overage_cost: {price: 0.46, value: 1000}
+\end{lstlisting}
+
+\textbf{Efecto sobre PRIME4API.} El motor calcula la curva de coste con el precio del plan y el sobrecoste de la cuota.
+Con un único par de valores la curva es una recta, y el resultado solo es correcto en el volumen modelado.
+Con la lista, la curva cambia de pendiente en cada volumen contratado, que es lo que el proveedor cobra.
+La recomendación de plan que ya ejecuta el TFM de Gavira Sánchez (su Tabla 5.12, para 100.000 correos con sobrecoste) depende de esa curva \citep{gavira2026tfm}.
+
+\subsection{P-02 y P-03. El \texttt{workload} deja de ser una terna escalar}
+\label{subsec:evolucion:p02}
+
+Las dos propuestas salen de dos elementos no soportados que recurren por separado: F-03, el consumo de una petición multiplica dos factores, y F-06, la cota de la petición está en otra métrica.
+Los dos piden que el consumo de una petición deje de expresarse con una sola terna \texttt{unit}, \texttt{min}, \texttt{max}.
+Se presentan juntas porque reformar el campo por separado obligaría a proponer dos veces la misma forma de \texttt{workload}.
+
+\textbf{El caso de P-02.} El \textit{endpoint} \texttt{/emails/batch} de Resend acepta \textit{«up to 100 batch emails at once»} \citep{resenddocs}.
+Cada mensaje admite cincuenta destinatarios, y un sondeo con cuenta propia contra Resend mostró que el tope cuenta la suma de \texttt{to} y \texttt{cc} y no cada campo por separado.
+Contar cada destinatario como un correo podría ser una elección de modelado, pero Resend declara cómo cuenta los destinatarios: \textit{«Multiple To, CC, or BCC recipients count as separate emails»} \citep{resenddocs}.
+El consumo de una llamada es, por tanto, la suma de los destinatarios de sus mensajes, y su máximo, el producto de los dos topes: 100 mensajes por 50 destinatarios.
+
+En Postmark, \texttt{/email/batch} admite quinientos mensajes por llamada y cincuenta destinatarios en total por mensaje \citep{postmarkapi}.
+La documentación declaraba ese tope por campo, y el sondeo del piloto (Sección~\ref{sec:propuesta:piloto}), que midió el tope sobre la suma de \texttt{to} y \texttt{cc}, lo corrigió.
+Postmark no declara cómo cuenta ese consumo, y en su caso el producto de los dos factores se deduce de los dos topes medidos.
+
+Amazon SES es el tercer caso: su envío en lote recibe una lista de entradas con sus propios destinatarios, y su cuota cuenta destinatarios y no mensajes \citep{sesdocs}.
+SendGrid, MailerSend y Brevo ponen un tope sobre el total de destinatarios de la petición, y esa variante acota el total sin multiplicar dos factores, así que cumple solo una parte del enunciado y no suma al recuento (Sección~\ref{sec:esquema:inventario}).
+
+\textbf{Consecuencia de P-02.} La Datasheet de Resend serializa \texttt{max: 100}, que es el número de mensajes y no el de unidades consumidas.
+El factor de consumo por petición (el CRF, que la Datasheet serializa en \texttt{workload}) alimenta las preguntas del motor sobre agotamiento de cuota y sobrecoste.
+Con ese valor, el motor subestima hasta cincuenta veces el consumo de una petición, y quien consulta el motor no puede distinguir ese número, que es plausible, de uno correcto.
+
+\textbf{El caso de P-03.} El \textit{endpoint} \texttt{/email/bulk} de Postmark no tiene tope de mensajes.
+El proveedor admite \textit{«as many recipients as you need, as long as your total payload (including attachments) stays under 50 MB»} \citep{postmarkapi}.
+La cota efectiva de la llamada es un tamaño en megabytes y no un número de correos.
+Resend también mide en bytes, y después de codificar, el tamaño de cada mensaje: \textit{«max 40MB per email, after Base64 encoding of the attachments»} \citep{resenddocs}.
+En los dos casos el contenido útil que cabe depende de la codificación.
+F-06 aparece en las ocho APIs del catálogo, con el tamaño expresado en MB, en MiB o en MB por segundo según el proveedor.
+
+\textbf{Consecuencia de P-03.} En Postmark el campo \texttt{max} de \texttt{/email/bulk} queda sin cifra, porque el tope real está en megabytes, y en Resend el tope de 40 MB solo consta en el registro de procedencia.
+Las otras seis Datasheets declaran el tope de tamaño como un segundo \texttt{workload} del \textit{endpoint} con unidad \texttt{MBs}, una forma que la guía no recoge (Sección~\ref{sec:propuesta:prime4api}).
+
+\textbf{Propuesta.} Que \texttt{workload} admita dimensiones anidadas que se multiplican, y que \texttt{max} pueda expresarse en una métrica distinta de la unidad declarada.
+El Extracto de código~\ref{lst:p02} muestra la primera forma sobre Resend y la segunda sobre Postmark.
+
+\begin{lstlisting}[style=datasheetyaml,caption={P-02 y P-03: composición de dimensiones anidadas y cota expresada en otra métrica (caso Resend para P-02 y caso Postmark para P-03).},label={lst:p02}]
+# P-02. El consumo es el producto de los dos factores.
+workload:
+  - unit: messages
+    min: 1
+    max: 100
+    composes:
+      unit: emails
+      max_per_unit: 50
+# P-03. El tope real esta en otra metrica: el tamano de la peticion.
+workload:
+  - unit: emails
+    min: 1
+    max_by: {unit: MBs, value: 50, scope: payload}
+\end{lstlisting}
+
+\textbf{Efecto sobre PRIME4API.} Las dos formas alimentan el mismo cálculo.
+El factor de consumo por petición deja de ser un entero y pasa a depender de la petición, de modo que el motor tiene que evaluar el consumo máximo y no solo el declarado.
+El cambio es mayor que el de P-01, porque afecta también a las operaciones que recorren la Datasheet, como la que devuelve los rangos del factor de consumo de cada \textit{endpoint}, además de a las que calculan capacidad y coste.
+
+\subsection{P-06. El estado de la suscripción y la reputación se declaran una vez}
+\label{subsec:evolucion:p06}
+
+\textbf{El caso.} MailerSend publica cuatro estados de reputación con nombre (\textit{Healthy}, \textit{Under review}, \textit{Rebuilding} y \textit{Sending paused}) y da cifra para dos de ellos \citep{mailersenddocs}.
+Cuando la cuenta entra bajo revisión, \texttt{/v1/email} pasa de 120 a 10 peticiones por minuto y el envío en lote, \texttt{/v1/bulk-email}, de 10 a 1 petición por minuto, sin cambiar de plan.
+Un sondeo sobre una cuenta recién creada, que nunca se aprobó ni contrató plan, midió esos mismos 10 y 1 peticiones por minuto, una sola dirección en \texttt{to} por envío y cinco mensajes por lote.
+Esa cuenta no es la que describe el valor por defecto de la Datasheet, que corresponde a la cuenta aprobada.
+
+El caso obliga a separar tres nociones.
+La cuenta es la identidad del cliente ante el proveedor, y puede tener varias suscripciones: Resend muestra bajo una misma cuenta una suscripción transaccional y otra de \textit{marketing}.
+El «estado de la suscripción» es la fase en que el proveedor sitúa esa suscripción, como la aprobación pendiente de MailerSend, el entorno de pruebas de Amazon SES o el modo de prueba de Mailchimp Transactional.
+La «reputación» es la valoración que hace el proveedor de cómo consume el cliente, por ejemplo por los errores que provocan sus peticiones, y amplía o reduce la capacidad sin cambiar de suscripción.
+
+En MailerSend, la cuenta sin aprobar es un estado de la suscripción, y la revisión que baja \texttt{/v1/email} a 10 peticiones por minuto es un efecto de la reputación.
+La carencia, contada sobre los estados que cambian los topes de una suscripción, recurre en seis de las ocho APIs (Tabla~\ref{tab:recurrencia}): además de MailerSend, en Postmark, Resend, Amazon SES, Mailchimp Transactional y Mailgun.
+
+\textbf{Qué permite v0.3.} La guía documenta alias dentro de un \textit{endpoint} (bloques con nombre que llevan los límites de cada modo de consumo, aquí de cada estado) y usa MailerSend como ejemplo \citep{apisconsumptionmodel}.
+Su vocabulario de ejemplo tiene dos nombres, \texttt{healthy\_reputation} y \texttt{under\_review\_reputation}.
+La Datasheet de MailerSend adopta ese alias de estado que v0.3 ya ofrece y añade un tercero, \texttt{unapproved\_account}, para la cuenta sin aprobar, que el proveedor documenta y el ejemplo de la guía no recoge.
+El estado sano conserva el valor por defecto, y el motor devuelve una fila por estado donde antes devolvía una sola.
+Con ese alias, v0.3 ya escribe los topes de cada estado de MailerSend, y lo que falta es lo que el alias no cubre.
+
+\textbf{Qué no cubre.} Al aplicar el mecanismo a MailerSend aparecen tres carencias.
+
+La primera es que el alias no tiene campo para el disparador del cambio de estado.
+Un \texttt{trigger} escalar dentro del alias se ignora sin aviso.
+Escrito al nivel del \textit{endpoint}, el motor lo lee como un estado más, porque trata como estado todo diccionario cuya clave no sea una de las cuatro que conoce (\texttt{rate}, \texttt{quota}, \texttt{workload} y \texttt{cost\_per\_request}).
+Una copia de la Datasheet con el campo dentro del alias y otra con el campo al nivel del \textit{endpoint} lo muestran.
+En el comodín \texttt{/*}, que fija el caudal general de las demás rutas y lleva su \texttt{rate} al nivel del \textit{endpoint}, el motor devuelve 60 peticiones por minuto sin estado y, con el campo, las devuelve bajo un estado llamado \texttt{trigger}, que no existe.
+
+Ninguna de las tres comprobaciones de cierre de una Datasheet detecta el estado \texttt{trigger}.
+El validador de formato de este trabajo, que comprueba los tipos de cada campo y las referencias entre bloques, da 16 comprobaciones superadas y 2 avisos.
+El verificador de citas comprueba que cada cita literal del registro de procedencia sigue en la copia archivada de su página, cuando la hay.
+La verificación por uso con PRIME4API da 20 aciertos y 1 error.
+Las tres dan el mismo resultado que sin el campo.
+
+La segunda carencia está en la guía.
+Un alias admite también un \texttt{workload} propio, y PRIME4API lo lee, pero la guía solo documenta el \textit{rate} y la cuota.
+En MailerSend el tope de destinatarios por petición cambia con la aprobación de la cuenta, y ese cambio cabe en un alias aunque la guía no lo diga.
+Mientras la guía no lo documente, una Datasheet que la siga al pie de la letra deja fuera del alias el tope de destinatarios de la cuenta sin aprobar de MailerSend.
+
+La tercera es que un estado de la suscripción se declara siete veces.
+El estado no depende del plan ni del \textit{endpoint}, y el esquema no tiene dónde declararlo una sola vez para toda la Datasheet.
+En MailerSend la referencia se repite en los siete bloques de \textit{endpoint} y nada liga las copias, de modo que cambiar el estado obliga a tocar siete sitios.
+Esta tercera carencia recurre, porque la Datasheet de Amazon SES repite su alias de entorno de pruebas en ocho bloques y la de Mailchimp Transactional repite el de la cuenta de prueba en tres.
+
+El recuento del semáforo de confianza, que etiqueta cada valor según el respaldo de su fuente, cuenta cada copia como una evidencia.
+En MailerSend, el tope de 50 MB del lote aparece tres veces en verde, una por plan, copiado del \textit{endpoint} en el estado de cuenta sin aprobar.
+Solo una nota del registro de procedencia impide leer esas tres copias como tres evidencias.
+
+\textbf{Propuesta.} Se proponen tres cambios sobre el mecanismo de alias de la guía, que se conserva.
+El primero es un atributo de disparador con sitio propio, que diga si el cambio de estado lo impone el proveedor o lo elige el cliente y lleve su condición en prosa.
+El segundo es documentar el \texttt{workload} por alias, que PRIME4API ya admite.
+El tercero es declarar cada estado una sola vez para toda la Datasheet, con las referencias de cada \textit{endpoint} apuntando a esa declaración.
+El Extracto de código~\ref{lst:p06} muestra los tres sobre MailerSend.
+
+\needspace{15\baselineskip}
+\begin{lstlisting}[style=datasheetyaml,caption={P-06: estados de la suscripción y de la reputación declarados una vez, con su disparador y con el \texttt{workload} que la guía no documenta (caso MailerSend).},label={lst:p06}]
+# Declaracion unica, fuera de los endpoints.
+account_states:
+  unapproved_account:
+    trigger: {mode: provider_managed, condition: "cuenta pendiente de aprobacion"}
+    rate: rate_request_email_unapproved
+    quota: quota_email_monthly_unapproved
+    workload: workload_email_unapproved   # admitido por el motor, no documentado
+# Cada endpoint referencia el estado en lugar de repetirlo.
+/v1/email:
+  states: [healthy_reputation, under_review_reputation, unapproved_account]
+\end{lstlisting}
+
+\textbf{La reputación como campo.} Los estados de ejemplo de la guía llevan la reputación en el nombre, pero ningún campo dice cómo se mueve ni cuánto cambia la capacidad.
+Fuera del mecanismo de alias, se propone un campo de reputación que declare cuánto amplía o reduce la capacidad y qué lo dispara.
+Con él, la Datasheet registraría si el proveedor publica cómo funciona la reputación de la cuenta de forma completa, con la capacidad de cada estado, y determinista, con el umbral que hace cambiar de estado.
+Ninguna de las ocho APIs la publica así.
+Seis dicen que la reputación mueve la capacidad sin dar a la vez la cifra de cada estado y el umbral, y Postmark y Brevo solo la nombran para su infraestructura de envío.\footnote{Las fuentes de cada API están en \texttt{03\_datos/\allowbreak apis/\allowbreak <api>/\allowbreak fuentes.md}, en \texttt{fricciones.md} y en \texttt{05\_salida/\allowbreak \_cap5/\allowbreak hechos\_<api>.md} del repositorio del trabajo.}
+
+\textbf{Efecto sobre PRIME4API.} El motor ya devuelve una fila por estado, así que leer la capacidad por estado no le exige ningún cambio.
+Con el disparador declarado, una consulta puede separar los estados que elige el cliente de los que impone el proveedor, que es la diferencia entre una capacidad contratable y una contingencia.
+Con la declaración única, el recuento de evidencia deja de contar copias.
+Hace falta además una corrección del motor y no del esquema: avisar de la clave que no reconoce y no convertirla en estado.
+
+\subsection{P-07. El sobrecoste declara su tope}
+\label{subsec:evolucion:p07}
+
+\textbf{El caso.} Desde el 26 de marzo de 2026, SendGrid limita el envío mensual de los planes Essentials y Pro a diez veces el volumen contratado, sobrecoste incluido.
+Una cuenta con el plan Essentials de 50.000 correos puede enviar 500.000 al mes, y por encima recibe el error \textit{«Maximum Credits Exceeded»}.\footnote{Artículo de soporte de SendGrid, \url{https://support.sendgrid.com/hc/en-us/articles/35466138799899-Understanding-the-Maximum-Credits-Exceeded-error}, consultado el 6 de septiembre de 2026.}
+El literal cuenta \textit{requests}, que el mismo artículo define como correos procesados más descartados (\textit{«Requests = Processed + Dropped»}), así que la unidad no es la petición HTTP.
+El dato aparece en un artículo de resolución de errores, y la página de precios y el artículo de sobrecostes no lo mencionan.
+
+\textbf{Qué permite v0.3.} \texttt{overage\_cost} es un precio unitario sin límite de cantidad: la guía lo define como un objeto con precio y valor, sin ningún subcampo que acote la cantidad \citep{apisconsumptionmodel}.
+La Datasheet declara los 50.000 correos incluidos y el precio de cada correo extra, y eso se lee como capacidad ilimitada a ese precio.
+El tope solo cabe en el registro de procedencia, en prosa, donde ninguna herramienta lo evalúa.
+
+\textbf{Lo que responde PRIME4API.} Pedida al motor la recomendación de presupuesto para 600.000 correos sobre ese plan, responde 734,95 USD y declara el objetivo alcanzable en 59 segundos.
+El punto de control por debajo del tope, 400.000 correos, devuelve 474,95 USD con la misma forma, y el motor cruza los 500.000 sin que nada cambie.\footnote{Ejecución en \texttt{05\_salida/\_cap5/prime4api\_ejecucion\_d042/tope\_sobrecoste\_2026-10-18/} del repositorio del trabajo.}
+En el caso de control, con un presupuesto de 100 USD en la consulta, el mismo motor declara el objetivo inalcanzable.
+El motor declara inalcanzable un objetivo cuando el límite le llega por la consulta o por la Datasheet, así que el error de los 600.000 correos procede de que la Datasheet no puede declarar el tope.
+
+\textbf{Propuesta.} Que \texttt{overage\_cost} admita un máximo opcional, expresado como factor sobre el volumen contratado o en unidades absolutas.
+Con él, la Datasheet de SendGrid declara diez veces el plan y el motor deja de prometer un volumen que el proveedor rechaza.
+
+\subsection{P-08. Un cupo que cuenta destinatarios distintos y no se repone}
+\label{subsec:evolucion:p08}
+
+\textbf{El caso.} La cuenta de MailerSend sin aprobar puede escribir a dos direcciones distintas, y solo a esas dos \citep{mailersenddocs}.
+El cupo es de la cuenta y no de la petición. Solo lo levanta la aprobación, y la documentación no le da ventana.
+El listado de destinatarios de la API (\texttt{GET /v1/recipients}) devuelve cero, así que el cupo no se puede leer por ese \textit{endpoint}.
+Los sondeos lo encontraron alcanzado sin haber enviado nunca un correo, y de ahí se deduce que lo gastaron intentos que no enviaron nada.
+Qué petición lo gastó no se determinó.
+
+\textbf{Qué permite v0.3.} Una cuota tiene valor, unidad y periodo, y aquí el valor cabe, dos direcciones, pero fallan la unidad y el periodo.
+La unidad son direcciones distintas, que no equivalen a correos ni a peticiones.
+No hay periodo, porque el cupo no se renueva.
+Y, como los sondeos encontraron el cupo gastado sin un solo correo enviado, lo consume el intento y no el envío, dos cosas que el esquema no distingue.
+
+La guía da seis ejemplos de unidad (peticiones, correos, SMS, registros, gigabytes y \textit{tokens}), a los que sus formatos estándar suman horas y minutos \citep{apisconsumptionmodel}.
+Ninguna de esas unidades cuenta entidades distintas.
+Una unidad nueva, como la \texttt{MBs} del catálogo, no bastaría, porque la cuota seguiría sin decir su ámbito, su falta de periodo ni qué la consume.
+La Datasheet deja el cupo en el registro de procedencia, en prosa.
+
+\textbf{Lo que responde PRIME4API.} El motor lee la Datasheet de MailerSend y atribuye a la cuenta sin aprobar una capacidad acumulada de 110 correos en un mes, por encima incluso de los 100 correos al mes que la Datasheet le declara, cuando la capacidad medida es cero.
+Un objetivo de tres correos lo declara alcanzable en cero segundos y sin coste.\footnote{Ejecución en \texttt{05\_salida/\_cap5/prime4api\_ejecucion\_d042/cupo\_destinatarios/} del repositorio del trabajo.}
+La cuenta del sondeo no envió ni un correo y la cuota mensual de correos quedó intacta. Solo bajó la diaria de peticiones, de 100 a 97.
+Con la misma Datasheet, el motor declara inalcanzable un objetivo de 100.000 correos por el límite de caudal, así que sabe negarse cuando el límite está escrito.
+El objetivo de tres correos sería alcanzable en una cuenta recién abierta, que aún conserva sus dos direcciones, y deja de serlo en cuanto el cupo se ha gastado.
+
+\textbf{Propuesta.} Que una cuota pueda declarar cuatro cosas que v0.3 no declara.
+Son que su unidad son entidades distintas, que su ámbito es la cuenta, que no tiene periodo y qué la consume, si el intento o el resultado.
+En el catálogo el cupo es solo de MailerSend: las otras siete APIs se comprobaron y no lo tienen (Tabla~\ref{tab:recurrencia}).
+Por eso la propuesta se sostiene en una sola API, con la respuesta errónea que PRIME4API da sobre la cuenta sin aprobar.
+
+\textbf{Frontera con P-06.} El cupo aparece en la cuenta sin aprobar, igual que los topes reducidos de P-06, pero pide otra cosa.
+En P-06 el esquema sabe escribir el número de cada estado y no sabe decir cuál rige ni qué dispara el cambio.
+En P-08 el límite no cabe ni con estado ni sin él, porque su unidad no existe en v0.3.
+Se separan para que ninguna carencia cuente dos veces y cada propuesta pida una sola forma.
+
+\subsection{P-09. La cuota declara qué hace con lo que la supera}
+\label{subsec:evolucion:p09}
+
+\textbf{El caso.} La cuota del plan gratuito de Brevo es de 300 correos al día.
+Al agotarla, el correo transaccional no se corta en seco: \textit{«once you reach your daily limit, up to 1,000 additional emails are held in a retry queue. Emails beyond this queue are not delivered»} \citep{brevohelpfree}.
+La cuota tiene así dos umbrales, el de la cifra publicada y el de la cola, y lo que ocurre entre los dos solo vale para el correo transaccional.
+El literal no dice si el cliente recibe algún error por los correos que la cola ya no admite, y la cola no se ha observado.
+
+\textbf{Qué permite v0.3.} De los campos de la cuota, solo \texttt{overage\_cost} habla de su borde \citep{apisconsumptionmodel}.
+Sin él, la cuota se lee como un corte estricto: al llegar a la cifra no se envía nada más.
+Con precio cero, se lee como un exceso que no se cobra ni se acaba.
+Ninguna de las dos lecturas es la de Brevo.
+La Datasheet declara los 300 correos sin sobrecoste, que en v0.3 se escribe igual que un corte estricto.
+
+\textbf{Lo que responde PRIME4API.} Con la Datasheet sin manipular, PRIME4API devuelve para esa cuota 300 correos al día sin sobrecoste y sin rastro de la cola.\footnote{Ejecución en \texttt{03\_datos/apis/brevo/evidencias/l2\_prime4api\_2026-09-18.json} del repositorio del trabajo.}
+Es la misma forma que devuelve para la prueba gratuita de SendGrid, que sí es un corte estricto, mientras que Brevo retiene hasta 1.000 correos más en la cola de reintento.
+El caso de control es el plan Essentials de SendGrid: su Datasheet declara sobrecoste, y el motor lo devuelve con su precio.
+El motor distingue un corte estricto de un exceso que se cobra, pero no de una cola, porque la Datasheet no tiene cómo decirlo.
+
+\textbf{Propuesta.} Que la cuota admita un bloque \texttt{overflow} con las unidades que retiene por encima de su valor y lo que hace con ellas.
+Si el bloque falta, la cuota es un corte estricto.
+Si hay sobrecoste, sigue en \texttt{overage\_cost}, y el bloque nuevo solo describe la franja que no se cobra.
+El Extracto de código~\ref{lst:p09} muestra la forma sobre el caso de Brevo.
+
+\begin{lstlisting}[style=datasheetyaml,caption={P-09: una cuota que retiene lo que la supera hasta un tope fijo (caso Brevo, plan gratuito, correo transaccional).},label={lst:p09}]
+quota_email_daily_free:
+  value: 300
+  unit: emails
+  period: {value: 1, unit: DAY}
+  overflow:              # P-09: lo que la cuota hace al superarse
+    capacity: 1000       # envios retenidos en la cola de reintento
+    behavior: queued     # en cola, y el exceso no se entrega
+\end{lstlisting}
+
+\textbf{Frontera con P-07.} El tope de SendGrid de P-07 acota lo que se cobra por encima de la cuota, y la cola de Brevo describe lo que se retiene sin cobrarlo.
+Las dos propuestas tocan el mismo borde de la cuota, y reunirlas en una sola forma es una decisión que corresponde a la guía.

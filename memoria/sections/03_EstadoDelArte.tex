@@ -1,475 +1,745 @@
 \chapter{Estado del arte}
 \label{cap:estadoDelArte}
 
-Este capítulo revisa los trabajos existentes más relevantes en relación
-con los objetivos formulados en el Capítulo~\ref{cap:introduccion}. La
-revisión se organiza del siguiente modo. En primer lugar se revisa el
-modelado de pricings de SaaS en el canal web, de donde proceden el
-metamodelo y las herramientas cuyo patrón replica después el canal API. A
-continuación, el modelado de la capacidad de las APIs y el análisis de esa
-capacidad. Después, la extensión del ecosistema de Pricing Intelligence al
-canal API: el ACM, la Datasheet y su motor de análisis, que son la
-plataforma inmediata sobre la que este trabajo se construye. Por último,
-el dominio de aplicación, las APIs de correo electrónico.
-El capítulo se cierra con un
-análisis del estado del arte que sintetiza qué resuelve cada propuesta y
-qué limitaciones concretas permanecen abiertas, de las que se derivan
-las contribuciones enumeradas en la
-Sección~\ref{sec:introduccion:contribuciones}.
-
-Conviene advertir una particularidad de esta revisión. El bloque
-dedicado al canal API procede de dos Trabajos Fin de Máster coordinados
-del mismo grupo de investigación. Uno aporta el modelo de capacidad, su
-serialización y el motor de análisis, y se defendió pocos meses antes
-que este trabajo \citep{gavira2026tfm}. El otro, desarrollado en
-paralelo, se centra en el agente conversacional del ecosistema y
-comparte la autoría del modelo \citep{ruizlopez2026tfm}. Ninguno de los
-dos es aquí una referencia lejana. Ambos son el punto de partida
-operativo de este trabajo, y por eso se revisan con un detalle mayor del
-habitual. Una de las preguntas de investigación de este TFM, la de la
-expresividad de ACM2YAML, responde a una línea que Gavira Sánchez deja
-pendiente de forma explícita \citep{gavira2026tfm}. Las demás se derivan
-del análisis de la Sección~\ref{sec:estado:analisis}.
-
-\section{Modelado de pricings de SaaS}
+\section{Modelado y análisis de pricings de SaaS}
 \label{sec:estado:pricingsaas}
 
 El pricing de un servicio SaaS es la estructura de planes,
-características (\textit{features}), complementos (\textit{add-ons}) y
-límites de uso con la que el proveedor regula el acceso a su servicio.
-Ha dejado de ser un elemento puramente comercial para convertirse en un
-artefacto que condiciona el diseño, la operación y la evolución del
-propio sistema. La evidencia empírica de este desplazamiento la aportan
-los estudios de García-Fernández et al. El primero analiza más de 150
-pricings de una treintena de SaaS comerciales a lo largo de seis años y
-documenta espacios de configuración de miles de combinaciones y un
-crecimiento sostenido de su complejidad
-\citep{garciafernandez2024racing}. El segundo es un estudio posterior
-sobre el grado de soporte industrial para la operación dirigida por
-pricings (\textit{pricing-driven DevOps}), publicado en \textit{IEEE
-Transactions on Services Computing} \citep{garciafernandez2025trends}.
-Gestionar manualmente estructuras de ese tamaño no es viable, y esa
-constatación es la que motiva su formalización.
+características (\textit{features}) y complementos (\textit{add-ons}) con
+la que el proveedor regula el acceso a su servicio. Postmark, uno de los
+ocho proveedores de correo transaccional que estudia este trabajo, publica
+cuatro planes en su página de precios (Figura~\ref{fig:estado:postmark}a):
+Free, por 0 USD, y Basic, Pro y Platform, que con 10.000 correos al mes
+cuestan 15, 16,50 y 18 USD \citep{postmarkpricing}. Pro añade sobre Basic,
+entre otras, una característica: el procesado del correo entrante. La IP
+dedicada, una dirección IP de envío reservada a un solo cliente, es un
+complemento, desde 50 USD al mes por IP.
 
-La respuesta del grupo ISA a este problema sigue una tradición que le es
-propia: convertir un artefacto informal en un modelo estructurado para
-someterlo a análisis automatizado. Es el mismo camino que en su día
-recorrieron los modelos de características \citep{benavides2010fm}. Su
-materialización para los pricings es el metamodelo \textbf{iPricing},
-propuesto originalmente bajo el nombre Pricing4SaaS
-\citep{garciafernandez2024pricing4saas} y consolidado después con su
-denominación actual \citep{garciafernandez2025ipricing}. El metamodelo
-estructura un pricing en planes, complementos y características. Estas últimas están
-sujetas a límites de uso renovables o no renovables. Su serialización,
-Pricing2YAML, permite representar pricings de forma portable e
-interoperable \citep{garciafernandez2025trends}. Sobre esta base, el
-trabajo presentado en CAiSE~2025 define siete operaciones de análisis
-(cardinalidad del espacio de configuración, filtrado, enumeración de
-suscripciones, coste, validación del pricing y de la suscripción, y
-suscripción óptima). Las siete se resuelven traduciendo el pricing a un
-problema de satisfacción de restricciones con optimización (CSOP). El
-trabajo las valida sobre más de 150 pricings reales y detecta
-inconsistencias en 35 de ellos \citep{garciafernandez2025ipricing}.
+Junto al pricing, la página de Postmark publica los límites de uso de cada
+plan, que fijan cuánto correo entra en él. Free incluye 100 correos al mes
+y no admite pasar de ellos. En Basic, Pro y Platform, el volumen más bajo
+que se contrata es de 10.000 correos, y la página deja elegir volúmenes
+mayores (Figura~\ref{fig:estado:postmark}a). Con 10.000 correos, cada
+millar de más se cobra a 1,80, 1,30 y 1,20 USD (el sobrecoste)
+\citep{postmarkpricing}.
+
+\begin{figure}[tbp]
+\centering
+\subfigure[Página de precios de Postmark, capturada el 1 de noviembre de 2026 \citep{postmarkpricing}.]{\includegraphics[width=\textwidth,height=0.38\textheight,keepaspectratio]{fig/postmark_precios_2026-11-01.png}}
+
+\subfigure[El pricing de Postmark escrito en Pricing2YAML por este trabajo a partir de su Datasheet, con límites que la página de precios no publica, y representado en SPHERE \citep{sphere}.]{\includegraphics[width=\textwidth,height=0.38\textheight,keepaspectratio]{fig/postmark_sphere_2026-11-01.png}}
+\caption[El pricing de Postmark en su página de precios y en SPHERE]{El pricing del servicio de correo transaccional de Postmark en su página de precios (a) y en SPHERE (b).}
+\label{fig:estado:postmark}
+\end{figure}
+
+Además de fijar lo que se vende, el pricing condiciona el diseño, la
+operación y la evolución del propio sistema. En la operación dirigida por
+pricings (\textit{pricing-driven DevOps}), un cambio de pricing puede
+adaptar el \textit{frontend} y el \textit{backend} del sistema sin
+redesplegarlo \citep{garciafernandez2025trends}.
+
+Un estudio de García-Fernández et al. sobre más de 150 pricings de una
+treintena de SaaS comerciales a lo largo de seis años documenta que su
+complejidad crece de forma sostenida y que sus espacios de configuración
+(el conjunto de combinaciones válidas de plan y complementos que admite un
+pricing) llegan a miles de combinaciones
+\citep{garciafernandez2024racing}. Gestionar a mano estructuras de ese
+tamaño no es viable, y por eso los pricings se formalizan.
+
+La respuesta a ese crecimiento de la complejidad sigue una aproximación
+asentada en la investigación realizada por el grupo ISA: convertir un
+artefacto informal en un modelo estructurado para someterlo a análisis
+automatizado. El análisis automatizado empezó en el ámbito de los servicios
+\citep{ruizcortes2005procurement} y se ha aplicado también a los procesos de
+negocio \citep{delrio2013ppinot}
+y a los modelos de características, que describen qué combinaciones de
+características admite una familia de productos software
+\citep{benavides2010fm}. Analizar un modelo de forma automatizada es
+responder preguntas sobre él con una herramienta, y cada tipo de pregunta
+es una operación de análisis. En un modelo de características, una
+operación de análisis cuenta cuántos productos distintos representa el
+modelo.
+
+En los pricings, ese modelo estructurado es el metamodelo
+\textbf{iPricing}: un modelo que fija cómo se describe cualquier pricing.
+Se propuso con el nombre Pricing4SaaS \citep{garciafernandez2024pricing4saas}
+y se consolidó después con su denominación actual
+\citep{garciafernandez2025ipricing}. iPricing
+estructura un pricing en planes, complementos y características. Las
+características están sujetas a límites de uso, que son renovables si se
+reinician cada periodo, como las llamadas mensuales a una API, o no
+renovables si el recurso se agota al consumirse.
+
+La serialización de iPricing, Pricing2YAML, escribe cada pricing en YAML,
+un formato portable que pueden leer herramientas distintas
+\citep{garciafernandez2025trends}. La Figura~\ref{fig:estado:postmark}b
+muestra el pricing de Postmark escrito en Pricing2YAML y representado en
+SPHERE (\textit{SaaS Pricing Holistic Evaluation and Regulation
+Environment}), la plataforma web del ecosistema que reúne pricings en
+colecciones \citep{sphere,gavira2026tfm}. Postmark se consume por API,
+pero su página de precios tiene la forma de las del canal web, y
+Pricing2YAML recoge sus planes, características y complementos. Los
+límites propios del canal API, como el \textit{rate} de la API REST, se
+escriben en él igual que la cuota mensual, sin nada que los distinga de
+ella.
+
+Sobre iPricing, García-Fernández et al. presentaron en la conferencia
+CAiSE~2025 (\textit{Conference on Advanced Information Systems
+Engineering}) siete operaciones de análisis (cardinalidad del espacio de
+configuración, filtrado, enumeración de suscripciones, coste, validación
+del pricing y de la suscripción, y suscripción óptima)
+\citep{garciafernandez2025ipricing}. Una suscripción es la configuración
+que contrata un consumidor: un plan con sus complementos, si los hay.
+
+Las siete operaciones se resuelven traduciendo el pricing a un problema
+de satisfacción de restricciones con optimización (CSOP): unas variables
+con sus dominios, unas restricciones entre ellas y una función objetivo
+que se optimiza, como el coste. Los autores las validan sobre más de 150
+pricings reales y detectan inconsistencias en 35 de ellos
+\citep{garciafernandez2025ipricing}.
 
 En torno a iPricing se ha construido un ecosistema de herramientas
-interoperables, articulado por la línea de \textit{Pricing
-Intelligence} \citep{cavero2026pricingintelligence}. A-MINT automatiza
+interoperables, que Cavero et al. presentan como la línea de
+\textit{Pricing Intelligence} \citep{cavero2026pricingintelligence}. A-MINT automatiza
 la extracción: toma la URL de la página de pricing de un SaaS y devuelve
 un iPricing válido en Pricing2YAML. Lo hace con un pipeline de modelos de
-lenguaje que valida y corrige su propia salida en bucle. Alcanza una F1
-del 70,51\,\% y valida con éxito el 98,73\,\% de los modelos que genera
-\citep{cavero2025amint}, evaluado sobre SPECTRA, un corpus público con
-los pricings de una treintena de SaaS entre 2019 y 2024
-\citep{spectra2025}.
+lenguaje que valida y corrige su propia salida en bucle. Según sus
+autores, alcanza una F1 del 70,51\,\% en la extracción (la media armónica
+de la precisión y la exhaustividad), y el 98,73\,\% de los modelos que
+genera supera la comprobación de conformidad con Pricing2YAML
+\citep{cavero2025amint}. La evaluación se hizo sobre SPECTRA, un
+corpus público con los pricings de una treintena de SaaS entre 2019 y
+2024 \citep{spectra2025}.
+
 PRIME (\textit{PRicing Intelligence and Modelling Engine}) es el motor
 que ejecuta las operaciones de análisis sobre el modelo
 \citep{garciafernandez2025ipricing}. HARVEY, presentado en CAiSE~2026,
 es el agente conversacional que traduce preguntas en lenguaje natural a
-llamadas sobre esas herramientas y sintetiza los resultados
-\citep{cavero2026pricingintelligence}. SPHERE, por último, actúa como
-\textit{hub} del ecosistema: repositorio compartido de pricings
-organizados en colecciones, editor con validación formal y renderizado
-en tiempo real, y punto de acceso público a las demás herramientas
-\citep{sphere}.
+llamadas a herramientas como A-MINT y PRIME, y sintetiza los resultados
+\citep{cavero2026pricingintelligence}.
 
-De este bloque interesan dos rasgos para los objetivos de este trabajo.
-El primero, el papel del artefacto central. El pricing formalizado
-concentra la información en una representación común e independiente de
-la implementación. Sobre esa fuente compartida de conocimiento operan
-extracción, análisis, consulta y publicación, y el canal API replicará
-después ese patrón con la Datasheet. El segundo, la especialización de
-canal. iPricing fue concebido para el canal web y no representa conceptos
-del canal API como los \textit{endpoints}, los \textit{rates} por ventana
-temporal o las reglas de consumo por petición. No es una deficiencia:
-Gavira Sánchez concluye de forma explícita que canales distintos
-requieren modelos distintos \citep{gavira2026tfm}. Aun así, esa
-especialización delimita dónde termina su alcance y dónde debe empezar
-otro instrumental.
+El canal API copia del canal web la idea de un artefacto central sobre el
+que trabajan todas las herramientas. En el canal web ese artefacto es el
+pricing formalizado en iPricing, una representación común de planes,
+características, complementos y límites, independiente de la
+implementación. En el canal API es la Datasheet. El modelo, en cambio, no
+se reutiliza: iPricing se concibió para el canal web y no representa
+\textit{endpoints}, \textit{rates} por ventana temporal ni reglas de
+consumo por petición. Gavira Sánchez concluye que canales distintos
+requieren modelos distintos \citep{gavira2026tfm}, y por eso el canal API
+tiene su propio modelo, el ACM.
 
-\section{Modelado de la capacidad de las APIs}
+\section{Modelado y análisis de la capacidad de las APIs}
 \label{sec:estado:capacidad}
-
-En el canal API la situación de partida es asimétrica. La superficie
-funcional de una API REST \citep{fielding2000rest} cuenta con un
-estándar de descripción maduro y universalmente adoptado, la
-especificación OpenAPI \citep{openapi2025}, que documenta rutas,
-métodos, parámetros y respuestas. Las condiciones de consumo, en cambio,
-carecen de un equivalente asentado: cuántas peticiones admite un
-endpoint por unidad de tiempo, qué volumen mensual permite cada
-plan, qué ocurre al superarlo. Y es la información determinante para
-quien integra el servicio.
-
-Que esas condiciones son ubicuas y heterogéneas está documentado
-empíricamente. El análisis de Gámez-Díaz et al. sobre 69 ofertas comerciales de APIs
-RESTful muestra que las cuotas y los \textit{rates} son las limitaciones
-dominantes y que la métrica más habitual es el número de peticiones
-\citep{gamezdiaz2017offerings}. Muestra también que los modelos de
-negocio se articulan en planes escalonados, con y sin sobrecoste por
-exceso. Un estudio posterior, realizado junto a actores industriales del
-sector de la gestión de APIs, sitúa esas limitaciones y los acuerdos de
-nivel de servicio que las contienen en el centro de la industria del API
-\citep{gamezdiaz2019limitations}. El mismo estudio constata la ausencia
-de una representación estándar y procesable de esas limitaciones.
-
-Los intentos de dotar a esas condiciones de una representación formal
-heredan de la larga tradición de especificación de acuerdos de nivel de
-servicio, cuyo exponente clásico es WS-Agreement \citep{andrieux2007wsagreement}.
-SLA4OAI traslada esa línea al ecosistema
-OpenAPI como extensión de la especificación \citep{gamezdiaz2019sla4oai}. Ancla las limitaciones
-(cuotas y \textit{rates}, con umbrales, periodos y costes por operación
-o por exceso) a las mismas rutas y métodos que el documento funcional ya
-describe. El respaldo conceptual de esa sintaxis es
-\textbf{Pricing4APIs}, el modelo riguroso de pricings de APIs RESTful de
-Fresno-Aranda et al. \citep{fresno2025pricing4apis}. Organiza la
-información en planes, limitaciones y capacidad, entendida como el techo
-máximo que el proveedor puede ofrecer, del que las limitaciones son
-fracciones. El modelo incorpora además una operación de validación con
-criterios jerárquicos (del límite individual al pricing completo) que
-detecta inconsistencias como límites inalcanzables o planes más caros
-menos generosos que otros más baratos \citep{fresno2025pricing4apis}.
-
-Tres de los rasgos que Gavira Sánchez destaca en esta familia de
-propuestas \citep{gavira2026tfm} resultan determinantes para este
-trabajo, porque son los que motivaron el modelo que se revisa en la
-Sección~\ref{sec:estado:acm}. Primero, la capacidad es
-unidimensional. Se reduce a un valor máximo de \textit{throughput} sobre
-la métrica de peticiones, de modo que restricciones reales como la
-concurrencia o el tamaño de la respuesta quedan fuera de su semántica.
-Segundo, la distinción entre cuota y \textit{rate} se delega en el
-\textit{limitador}, el componente del proveedor que lleva la cuenta de
-las peticiones recibidas y rechaza las que exceden lo permitido. Que un
-límite sea cuota o \textit{rate} depende de cómo ese componente cuente:
-sobre una ventana de tiempo fija o sobre una ventana deslizante. Es, en
-palabras de Gavira Sánchez, «un detalle de implementación que la mayoría
-de proveedores no publica» \citep{gavira2026tfm}. Dos
-límites publicados pueden resultar inclasificables desde la
-documentación. Y tercero, el plan es el único eje de segmentación:
-cualquier variación en las condiciones de dos consumidores exige planes
-distintos \citep{fresno2025pricing4apis,gavira2026tfm}.
-
-\section{Análisis de la capacidad de las APIs}
 \label{sec:estado:analisis-capacidad}
 
-Modelar la capacidad es condición necesaria pero no suficiente: el valor
-está en poder razonar sobre ella. La gestión de la capacidad es una
-preocupación clásica de la gestión de servicios TI
-\citep{grummit2010capacity}. Trasladada a las APIs cristaliza en las
-\textit{operaciones de análisis de la capacidad}, cómputos formales
-sobre una noción de capacidad que evalúan el uso de una API bajo
-condiciones de carga determinadas. En la literatura coexisten dos
+En el canal API la situación de partida es asimétrica. La superficie
+funcional de una API REST \citep{fielding2000rest} tiene un estándar de
+descripción maduro, la especificación OpenAPI
+\citep{openapi2025}, que documenta rutas, métodos, parámetros y
+respuestas. Los términos de consumo no tienen un equivalente
+asentado: cuántas peticiones admite un \textit{endpoint} por unidad de tiempo,
+qué volumen mensual permite cada plan y qué ocurre al superarlo. Son
+tres de los elementos principales que caracterizan el consumo de una API.
+
+El análisis de Gámez-Díaz et al. sobre 69 ofertas comerciales de APIs
+RESTful muestra que las cuotas y los \textit{rates} son las limitaciones
+dominantes y que la métrica más habitual es el número de peticiones
+\citep{gamezdiaz2017offerings}. Los modelos de negocio son planes
+escalonados, con sobrecoste por exceso o sin él. Un estudio posterior,
+hecho con actores industriales de la gestión de APIs, analiza el papel de
+esas limitaciones y de los acuerdos de nivel de servicio (SLA, por sus
+siglas en inglés) que las contienen, y constata que no existe una
+representación estándar y procesable de ellas
+\citep{gamezdiaz2019limitations}.
+
+Los intentos de formalizar las cuotas y los \textit{rates} heredan de las
+especificaciones de acuerdos de nivel de servicio, como WS-Agreement,
+pensada para servicios web \citep{andrieux2007wsagreement}. SLA4OAI
+traslada esos acuerdos a OpenAPI como extensión de su
+especificación \citep{gamezdiaz2019sla4oai}. Ancla las limitaciones (cuotas y
+\textit{rates}, con umbrales, periodos y costes por operación o por
+exceso) a las mismas rutas y métodos que el documento OpenAPI ya
+describe.
+
+La sintaxis de SLA4OAI se apoya en \textbf{Pricing4APIs}, el modelo de
+pricings de APIs RESTful de Fresno-Aranda et al.
+\citep{fresno2025pricing4apis}. Organiza la
+información en planes, limitaciones y capacidad, entendida como el
+máximo que el proveedor puede ofrecer, del que las limitaciones son
+fracciones. El modelo incorpora una operación de validación con
+criterios jerárquicos (del límite individual al pricing completo). Esa
+operación detecta inconsistencias como límites inalcanzables o planes
+más caros menos generosos que otros más baratos
+\citep{fresno2025pricing4apis}.
+
+Gavira Sánchez destaca cuatro rasgos de Pricing4APIs que explican las
+decisiones de diseño del ACM \citep{gavira2026tfm}. Aquí se recogen los tres
+que tratan de la capacidad y sus límites. El cuarto son los criterios con los
+que el modelo detecta inconsistencias en un pricing. Primero, la
+capacidad es unidimensional. Se reduce a un valor máximo de
+\textit{throughput} (la cantidad de trabajo que el servicio atiende en un
+tiempo dado) sobre la métrica de peticiones. Restricciones reales como la
+concurrencia o el tamaño de la respuesta quedan fuera de su semántica.
+
+El segundo rasgo es que la distinción entre cuota y \textit{rate} se
+delega en el \textit{limitador}, el componente del proveedor que lleva la
+cuenta de las peticiones recibidas y rechaza las que exceden lo
+permitido. Si el limitador cuenta sobre una ventana fija, que empieza y
+acaba en momentos predeterminados, el límite es una cuota. Si cuenta
+sobre una ventana deslizante, que se abre con la primera petición, es un
+\textit{rate}. Es, en palabras de Gavira Sánchez, «un detalle de
+implementación que la mayoría de proveedores no publica»
+\citep{gavira2026tfm}. Por eso, con solo la documentación, no siempre se
+puede saber si un límite publicado es cuota o \textit{rate}.
+
+El tercer rasgo es que el plan es el único eje de segmentación: cualquier
+variación en las condiciones de dos consumidores exige planes distintos
+\citep{fresno2025pricing4apis,gavira2026tfm}. En la API de GitHub, por
+ejemplo, el límite pasa de 60 a 5.000 peticiones por hora cuando el
+consumidor se autentica \citep{githubratelimits}, y en Pricing4APIs esa
+diferencia exige dos planes \citep{gavira2026tfm}.
+
+La gestión de la capacidad es uno de los procesos de la gestión de
+servicios TI \citep{grummit2010capacity}. En las APIs, la capacidad que
+interesa al consumidor es la contractual, la que el proveedor se
+compromete a dejar consumir, y no la de la infraestructura. Se estudia
+con \textit{operaciones de análisis de la capacidad}: cómputos formales
+que evalúan el uso de una API bajo una carga determinada. Hay dos
 aproximaciones, que difieren en cómo entienden la capacidad y en cómo
 resuelven el análisis.
 
-La primera, de Fresno-Aranda et al., opera sobre arquitecturas de
+La primera aproximación, de Fresno-Aranda et al., opera sobre arquitecturas de
 microservicios \citep{fowler2014microservices} que consumen APIs
-externas reguladas por planes con limitaciones, bautizadas LAMA
-(\textit{Limitation-Aware Microservice Architecture}). La capacidad es
-el máximo volumen de trabajo que la arquitectura completa puede atender
-sin exceder ninguna limitación externa. Smart LAMA, la API REST que los
-autores construyen sobre ese estilo, traduce la topología (un grafo de servicios propios y APIs
-consumidas) a un CSOP. Resolverlo responde a operaciones como el máximo
-de peticiones servibles en un periodo y coste dados, el coste mínimo
-para un volumen dado o el tiempo mínimo para completarlo
-\citep{fresno2023gecon,fresno2022lama,fresno2025tesis}. La misma línea
-aporta además un catálogo de once operaciones de análisis centradas en
-el consumidor individual de una API \citep{fresno2023catalogo}. Sus
-cinco escenarios van del suscriptor que calcula tiempos de espera al
-prosumidor que busca la suscripción que soporte su propio modelo de
-precios. Para Gavira Sánchez, frente a Smart LAMA, el catálogo convierte
-por primera vez el pricing de una API en objeto directo del análisis,
-aunque se definió sin implementación de referencia \citep{gavira2026tfm}.
+externas reguladas por planes con limitaciones. Los autores llaman a esas
+arquitecturas LAMA (\textit{Limitation-Aware Microservice Architecture}).
+La capacidad es el máximo volumen de trabajo que la arquitectura completa
+puede atender sin exceder ninguna limitación externa. Smart LAMA, la API
+REST que los autores construyen para ellas, traduce la topología (un grafo de
+servicios propios y APIs consumidas) a un CSOP. Resolverlo responde a
+operaciones como el máximo de peticiones servibles en un periodo y coste
+dados, el coste mínimo para un volumen dado o el tiempo mínimo para
+completarlo \citep{fresno2023gecon,fresno2022lama,fresno2025tesis}.
 
-La segunda aproximación es geométrica y parte de la visión de la capacidad
-bajo un enfoque de caja negra planteada por Antonio Ruiz-Cortés y
-Miguel Ruiz-López \citep{ruizcortes2025cajanegra}. El \textit{rate} se
-interpreta como la velocidad máxima de consumo y la cuota como el
-volumen máximo acumulable en un periodo. Ambos límites operan a la vez, y su intersección define la capacidad
-efectiva.
-Esta idea se materializa en la biblioteca Pricing4API, cuyo primer
-prototipo desarrolló Daniel Ruiz López y que Gavira Sánchez extendió en su
-Trabajo Fin de Grado \citep{pricing4api,gavira2025tfg}. El
-\textit{BoundedRate} agrupa un rate y una o varias cuotas
-interdependientes. Sobre él se define la \textbf{curva de capacidad}
-$C(t)$: el máximo número de peticiones realizables desde el instante
-inicial hasta $t$ sin violar ninguna restricción. Su ventaja es doble.
-Se lee de un vistazo en una gráfica, y evaluarla en un punto cuesta mucho
-menos que resolver un problema de restricciones. Sobre ella la biblioteca
-responde preguntas de tiempo mínimo, capacidad acumulada, agotamiento de
-cuota o rentabilidad entre planes \citep{gavira2025tfg}.
-
-Leídas desde los objetivos de este TFM, ambas aproximaciones comparten
-dos características que delimitan su alcance. La primera es la entrada.
-Smart LAMA asume los pricings ya descritos conforme a Pricing4APIs, y la
-biblioteca Pricing4API ni siquiera contaba con un artefacto de entrada
-estructurado: cada plan debía codificarse a mano en Python, trasladando
-uno a uno los parámetros de la documentación del proveedor. Ninguna de
-las dos responde de dónde sale, de forma trazable y a escala, la
-información de capacidad sobre la que analizan. La segunda es que la
-interacción entre límites de uso y \textit{rates} queda definida como
-semántica del modelo (la intersección de rectas que da lugar al
-BoundedRate), pero no caracterizada sobre ningún dominio real. Qué formas
-adopta esa relación en las APIs de un sector concreto, y qué
-consecuencias tiene para el consumidor, es una pregunta que ninguno de
-estos trabajos aborda.
-
-\section{El canal API del ecosistema: ACM, Datasheets y motor de
-análisis}
-\label{sec:estado:acm}
-
-Esta sección revisa los dos Trabajos Fin de Máster presentados al
-principio del capítulo, que extienden el ecosistema de Pricing
-Intelligence al canal API. Son el de Gavira Sánchez \citep{gavira2026tfm}
-y el de Ruiz López, centrado en el agente HARVEY4API \citep{ruizlopez2026tfm}.
-
-El \textbf{ACM} (\textit{API Capacity Model}) reconceptualiza la
-capacidad para superar las tres limitaciones señaladas al final de la
-Sección~\ref{sec:estado:capacidad}. Frente a la visión unidimensional,
-el ACM define la capacidad como un conjunto de \textit{dimensiones}
-independientes, cada una expresada sobre su propia métrica:
-\textit{Volume} (las cuotas), \textit{Frequency} (los \textit{rates}),
-\textit{Concurrent Requests} y \textit{Results Per Request}. A ellas se
-añade el CRF (\textit{Consumption Request Factor}), que no es un límite
-sino la regla que declara cuántas unidades de cada métrica gasta una
-petición. En una API de correo esa distinción importa. Una misma llamada
-consume una petición y, a la vez, tantos correos de la cuota mensual como
-destinatarios incluya \citep{gavira2026tfm}. Frente a la semántica
-delegada en el limitador, el ACM decide la clasificación comparando los
-límites entre sí. De los que una API publica, el de menor unidad temporal
-es el \textit{rate}, que gobierna la velocidad, y el de mayor unidad es
-la cuota, que gobierna el volumen. Los 900 puntos por minuto y las 5.000
-peticiones por hora de la API de GitHub \citep{githubratelimits} quedan
-así clasificados sin necesidad de conocer el mecanismo interno del
-proveedor \citep{gavira2026tfm}. La interpretación
-geométrica de la Sección~\ref{sec:estado:analisis-capacidad} queda
-integrada en el modelo como semántica oficial de la capacidad.
-
-La serialización del modelo, \textbf{ACM2YAML}, da lugar a la
-\textbf{Datasheet}: un documento orientado a máquinas que reúne en una
-sola representación la capacidad de una API. En el canal API esa
-capacidad aparece dispersa entre páginas de precios, documentación de
-desarrollador, especificaciones OpenAPI y políticas de uso. Su
-estructura combina los conceptos de capacidad con los elementos de
-pricing que los contextualizan. Los primeros son los catálogos de cuotas
-y rates (bloques \texttt{capacity} y \texttt{max\_power}), el CRF
-serializado como \texttt{workload} y el sobrecoste como
-\texttt{overage\_cost}. Los segundos, la jerarquía
-Plan~$\rightarrow$~Endpoint~$\rightarrow$~Alias. Frente al plan como
-único eje de segmentación, esa jerarquía asocia cada restricción al
-nivel al que aplica, sin crear planes artificiales \citep{gavira2026tfm}.
-La versión operativa, ACM2YAML v0.3, captura dos de las cuatro
-dimensiones del modelo (Volume y Frequency, además del CRF) y deja fuera
-concurrencia y resultados por petición. Su propio autor la califica de
-versión operativa parcial, priorizada para poner en marcha el ecosistema
-antes que para agotar la expresividad del metamodelo
+La línea de Fresno-Aranda et al. aporta también un catálogo de once
+operaciones de análisis centradas en el consumidor individual de una API
+\citep{fresno2023catalogo}. El catálogo las reparte en cinco escenarios
+según el punto de partida, y el último es el del prosumidor, una
+organización que consume APIs externas y, a la vez, ofrece su propio
+servicio a terceros. La Tabla~\ref{tab:estado:operaciones-fresno}
+enumera las once por escenario, tal como las describe Gavira Sánchez.
+Según él, el catálogo se definió sin implementación de referencia
 \citep{gavira2026tfm}.
 
-Sobre la Datasheet operan las herramientas del canal.
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{|>{\centering\arraybackslash}p{0.7cm}|>{\raggedright\arraybackslash}p{12.4cm}|}
+\hline
+\textbf{Nº} & \textbf{Operación de análisis} \\
+\hline
+\multicolumn{2}{|l|}{\textit{Dada una suscripción concreta: el consumidor ya está suscrito}} \\
+\hline
+1 & Calcular el tiempo requerido para enviar $N$ peticiones \\
+\hline
+2 & Verificar si es viable mantener simultáneamente un \textit{rate} y una
+cuota dados, identificando el motivo en caso de no serlo \\
+\hline
+3 & Determinar la velocidad máxima de envío y su duración máxima sostenida \\
+\hline
+4 & Estimar el tiempo de espera tras agotar su cuota \\
+\hline
+\multicolumn{2}{|l|}{\textit{Dado un presupuesto máximo: el consumidor aún no está suscrito}} \\
+\hline
+5 & Identificar la combinación óptima de planes que maximice su capacidad
+sin exceder el límite económico establecido \\
+\hline
+\multicolumn{2}{|l|}{\textit{Dada una capacidad deseada}} \\
+\hline
+6 & Encontrar la suscripción más barata que le garantice un volumen mínimo
+de peticiones \\
+\hline
+7 & Cuantificar qué porcentaje de esa capacidad queda cubierto por su
+suscripción actual \\
+\hline
+\multicolumn{2}{|l|}{\textit{Dado un conjunto de features deseadas}} \\
+\hline
+8 & Buscar la suscripción de menor coste que integre las funcionalidades
+requeridas \\
+\hline
+9 & Evaluar el porcentaje de cumplimiento de esas características bajo el
+plan vigente \\
+\hline
+\multicolumn{2}{|l|}{\textit{Dado un pricing deseado: el consumidor es prosumidor}} \\
+\hline
+10 & Buscar la suscripción a la API externa más económica que soporte el
+modelo de precios propio \\
+\hline
+11 & Calcular la proporción de ese modelo de precios que resulta cubierta por
+la suscripción actual \\
+\hline
+\end{tabular}
+\caption[Operaciones del catálogo de Fresno-Aranda et al.]{Las once operaciones de análisis del catálogo de Fresno-Aranda et al. \citep{fresno2023catalogo}, agrupadas por los cinco escenarios de partida. Descripción de Gavira Sánchez \citep{gavira2026tfm}, Sección 3.3.2, con los verbos en infinitivo; llama \textit{features} a las características.}
+\label{tab:estado:operaciones-fresno}
+\end{table}
+
+La segunda aproximación es geométrica. Parte de la visión de Antonio
+Ruiz-Cortés y Miguel Ruiz-López, que estudian la gestión de la capacidad
+de las APIs con un enfoque de caja negra \citep{ruizcortes2025cajanegra}:
+la API se trata como un sistema del que se ve lo que entra y lo que sale,
+sin saber cómo aplica el proveedor sus límites por dentro. Con esa
+visión, el \textit{rate} se interpreta como la velocidad máxima de
+consumo y la cuota como el volumen máximo acumulable en un periodo
+\citep{gavira2025tfg}.
+
+En una gráfica de peticiones acumuladas frente al tiempo, el
+\textit{rate} es una recta cuya pendiente es la velocidad máxima de
+consumo, y la cuota, una recta horizontal a la altura del volumen máximo
+\citep{gavira2025tfg}.
+Los dos límites operan a la vez: la capacidad efectiva es lo que queda
+por debajo de las dos rectas, y el punto en que se cortan marca el
+instante en que se agota la cuota si se consume a la velocidad máxima.
+
+La biblioteca Pricing4API implementa la lectura geométrica de la
+capacidad. Su nombre se inspira en Pricing4APIs, el modelo que
+Fresno-Aranda desarrolló en su tesis doctoral \citep{fresno2025tesis}, pero
+es otro trabajo \citep{gavira2026tfm}. Su
+primer prototipo lo desarrolló Daniel Ruiz López, y Gavira Sánchez la
+extendió en su Trabajo Fin de Grado \citep{pricing4api,gavira2025tfg}.
+
+El \textit{BoundedRate} de Pricing4API agrupa un \textit{rate} y una o
+varias cuotas interdependientes. Sobre él se define la \textbf{curva de
+capacidad} $C(t)$: el máximo número de peticiones realizables desde el
+instante inicial hasta $t$ sin violar ninguna restricción. La
+Figura~\ref{fig:estado:curva-capacidad} muestra la curva de un plan con un
+\textit{rate} de una petición cada dos segundos y una cuota de 1.000
+peticiones por hora. La curva sube con la pendiente del \textit{rate}
+hasta que la cuota la corta con un techo horizontal \citep{gavira2026tfm}.
+
+\begin{figure}[tbp]
+\centering
+\includegraphics[width=0.85\textwidth]{fig/gavira2026_curva_capacidad.png}
+\caption[Curva de capacidad de un \textit{BoundedRate}]{Curva de capacidad de un plan con un \textit{rate} de una petición cada dos segundos y una cuota de 1.000 peticiones por hora. La pendiente es el \textit{rate}, y el techo horizontal, la cuota. La línea discontinua inferior marca un objetivo de 650 peticiones, que se alcanza a los 21 minutos y 38 segundos. La cuota se agota a los 33 minutos y 18 segundos. Reproducida del Trabajo Fin de Máster de Gavira Sánchez \citep{gavira2026tfm}, Figura 3.9.}
+\label{fig:estado:curva-capacidad}
+\end{figure}
+
+La curva de capacidad tiene dos ventajas: se lee de un vistazo en una
+gráfica, y evaluarla en un punto cuesta menos que resolver un CSOP. Sobre
+ella la biblioteca responde preguntas de tiempo mínimo, capacidad
+acumulada, agotamiento de cuota o rentabilidad entre planes
+\citep{gavira2025tfg}.
+
+Las dos aproximaciones comparten dos características que delimitan su
+alcance. La primera es la entrada. Smart LAMA asume los pricings ya
+descritos conforme a Pricing4APIs. La biblioteca Pricing4API no contaba
+con un artefacto de entrada estructurado: cada plan se codificaba a mano
+en Python, con los parámetros copiados uno a uno de la documentación del
+proveedor. Ninguna de las dos responde de dónde salen, de forma trazable
+y a escala, las cuotas y los \textit{rates} que analiza.
+
+La segunda característica común es que la interacción entre límites de
+uso y \textit{rates} queda definida como semántica del modelo (las
+restricciones del CSOP en Smart LAMA, la curva del \textit{BoundedRate} en
+Pricing4API), pero no caracterizada sobre ningún dominio real. Ninguno de estos trabajos estudia qué formas
+adopta esa relación en las APIs de un sector concreto ni qué
+consecuencias tiene para el consumidor.
+
+\section{El ecosistema SPHERE}
+\label{sec:estado:acm}
+
+Iansiti y Levien, que estudian los ecosistemas de negocio, llaman
+\textit{keystone} al actor central de un ecosistema, del que dependen los demás porque les ofrece los recursos
+comunes sobre los que construyen su propia oferta
+\citep{iansiti2004keystone}. En el ecosistema de GitHub ese papel lo
+tiene la plataforma de repositorios GitHub. En el ecosistema de \textit{Pricing Intelligence}
+del grupo ISA lo tiene SPHERE, la plataforma web que reúne los pricings
+y da acceso a las herramientas del canal web \citep{sphere,gavira2026tfm}. Gavira Sánchez la
+llama el \textit{hub} del ecosistema, y su extensión al canal API reúne
+también las Datasheets \citep{gavira2026tfm}. Por eso esta memoria habla del ecosistema
+SPHERE.
+
+En el ecosistema SPHERE funcionan artefactos y herramientas de los dos
+canales, y cada pieza del canal web tiene su par en el canal API
+\citep{gavira2026tfm}. Los artefactos son el modelo (iPricing y el ACM),
+su serialización (Pricing2YAML y ACM2YAML) y el documento que describe la
+oferta de un proveedor concreto (el pricing y la Datasheet). Las
+herramientas son la extracción automática (A-MINT y A-MINT4API), el motor
+de análisis (PRIME y PRIME4API) y el agente conversacional (HARVEY y
+HARVEY4API). En el canal API, SPHERE da acceso a HARVEY4API.
+El resto de la sección describe las piezas del canal API. De ellas, este trabajo aplica y extiende el ACM, ACM2YAML, la
+Datasheet, PRIME4API y HARVEY4API.
+
+El modelo, su serialización, el motor y el agente del canal API proceden
+de dos Trabajos Fin de Máster coordinados del mismo grupo. El de Gavira Sánchez aporta el modelo de
+capacidad, su serialización y el motor de análisis, y se defendió pocos
+meses antes que este \citep{gavira2026tfm}. El de Daniel Ruiz López,
+desarrollado en paralelo, se centra en el agente conversacional
+HARVEY4API y comparte la autoría del modelo \citep{ruizlopez2026tfm}.
+Los dos son el punto de partida operativo de este trabajo.
+
+El \textbf{ACM} (\textit{API Capacity Model}) reconceptualiza la
+capacidad para superar los tres rasgos señalados antes: la capacidad unidimensional, la
+distinción entre cuota y \textit{rate} delegada en el limitador y el plan como
+único eje de segmentación. Define la capacidad como un conjunto
+de \textit{dimensiones} independientes: \textit{Volume} o volumen (las
+cuotas), \textit{Frequency} o frecuencia (los \textit{rates}),
+\textit{Concurrent Requests} o peticiones concurrentes y \textit{Results
+Per Request} o resultados por petición. La dimensión fija qué aspecto del consumo
+se limita, y la métrica, en qué unidad se cuenta. Una misma métrica,
+como las peticiones, puede aparecer en varias dimensiones
+\citep{gavira2026tfm}.
+
+A las cuatro dimensiones se añade el CRF (\textit{Consumption Request Factor}),
+la regla que declara cuántas unidades de cada métrica gasta una petición.
+En una API de correo, una misma llamada consume una petición y, a la vez, tantos correos de la
+cuota mensual como destinatarios incluya \citep{gavira2026tfm}. El ACM
+incorpora también la lectura geométrica, la curva de capacidad sobre el
+\textit{BoundedRate} (Figura~\ref{fig:estado:curva-capacidad}).
+
+En lugar
+de delegar en el limitador, el ACM clasifica los límites comparándolos
+entre sí. De los que una API publica, el de menor unidad temporal es el
+\textit{rate}, que gobierna la velocidad, y el de mayor unidad es la
+cuota, que gobierna el volumen. La API de GitHub cuenta parte del consumo
+en puntos: una petición GET gasta uno y una POST, cinco
+\citep{githubratelimits}. Con este criterio, su \textit{rate} es el límite
+de 900 puntos por minuto y su cuota, el de 5.000 peticiones por hora, sin
+conocer el mecanismo interno del proveedor \citep{gavira2026tfm}.
+
+La serialización del modelo es \textbf{ACM2YAML}, y cada API se describe
+en ella con una \textbf{Datasheet}: un documento orientado a máquinas que
+reúne en una sola representación la capacidad de la API. Esa capacidad
+está dispersa entre la documentación de desarrollador, los artículos de
+soporte, las especificaciones OpenAPI y las políticas de uso aceptable
+\citep{gavira2026tfm}.
+
+La Datasheet combina los conceptos de capacidad con los elementos de
+pricing que los contextualizan. Los primeros son las cuotas, en el bloque
+\texttt{capacity}, cada una con su sobrecoste (\texttt{overage\_cost}),
+los \textit{rates}, en \texttt{max\_power}, y el CRF, en el
+\texttt{workload} de cada \textit{endpoint}. Los segundos forman la jerarquía
+Plan~$\rightarrow$~Endpoint~$\rightarrow$~Alias. Un alias es un modo de
+consumo distinto de una misma operación, cuyas restricciones cambian con
+una condición que no es el plan, como el estado de reputación de la
+cuenta. La jerarquía asocia cada restricción al nivel al que aplica sin
+crear planes artificiales, y así resuelve el tercer rasgo, el plan como
+único eje de segmentación \citep{gavira2026tfm}.
+
+La versión operativa, ACM2YAML v0.3, captura dos de las cuatro
+dimensiones del modelo (\textit{Volume} y \textit{Frequency}, además del
+CRF) y deja fuera \textit{Concurrent Requests} y \textit{Results Per
+Request}. Gavira Sánchez la califica de
+versión operativa parcial, priorizada para poner en marcha el ecosistema
+antes que para agotar la expresividad del modelo
+\citep{gavira2026tfm}.
+
+Sobre la Datasheet operan las herramientas del canal API.
 \textbf{PRIME4API} refactoriza la biblioteca Pricing4API como API REST y
 convierte el análisis en un proceso dirigido por la Datasheet: cada
-pregunta se reduce a operaciones sobre el BoundedRate y la curva de
-capacidad \citep{gavira2026tfm}.
-Junto al motor, Gavira Sánchez define un catálogo de diez preguntas de
-análisis (Q1--Q10) en tres categorías: análisis de la capacidad de una suscripción, selección de la suscripción
-óptima y equilibrio entre cuotas heterogéneas. Lo instancia sobre tres
-pricings de dos servicios (SendGrid, en dos versiones, y DBLP), y esas
-respuestas de referencia funcionan como \textit{ground truth} para validar el
-ecosistema \citep{gavira2026tfm}. La tercera categoría es especialmente
-relevante para este trabajo. Q8 (cuál de dos cuotas se agota primero
-dado un CRF), Q9 (qué CRF iguala el agotamiento de dos cuotas) y Q10
-(cuánto cuesta completar un volumen incurriendo en sobrecoste) razonan
-sobre la interacción entre límites heterogéneos. Esa categoría no tiene correspondencia en el
-catálogo de Fresno-Aranda precisamente porque su modelo carecía del
-factor de conversión \citep{gavira2026tfm}. Por último, HARVEY4API expone
-estas capacidades tras una interfaz conversacional, publicando las
-operaciones del motor como herramientas mediante el \textit{Model
-Context Protocol} \citep{mcp,ruizlopez2026tfm}. La extensión de SPHERE
-al canal API aporta colecciones de Datasheets, renderizado en tiempo
-real y edición validada \citep{gavira2026tfm,sphere}. La extracción
-automática es tarea de otra herramienta del canal, A-MINT4API, y el
-editor de SPHERE sirvió para validar visualmente las Datasheets que
-genera \citep{gavira2026tfm}.
+pregunta se reduce a operaciones sobre el \textit{BoundedRate} y la curva de
+capacidad \citep{gavira2026tfm}. Junto al motor, Gavira Sánchez define
+diez preguntas de análisis en tres categorías: la
+capacidad de una suscripción, la suscripción óptima y el
+equilibrio entre cuotas heterogéneas. La
+Tabla~\ref{tab:estado:preguntas-gavira} las recoge.
+Gavira Sánchez las responde con PRIME4API sobre tres pricings de dos servicios (SendGrid,
+en dos versiones, y la API de datos bibliográficos DBLP) y usa los
+resultados como respuestas de referencia (\textit{ground truth}) para
+validar las herramientas que consumen el motor
+\citep{gavira2026tfm}.
 
-Ruiz López ha desarrollado también dos \textit{skills} para caracterizar cómo se accede a un servicio SaaS \citep{ruizlopez2026skills}.
-Una \textit{skill} es un conjunto de instrucciones empaquetadas que un modelo de lenguaje sigue para una tarea.
-La primera, \texttt{provider-service-resolver} (versión 1.1), recibe el nombre de un SaaS e identifica a su proveedor.
-Después clasifica cada candidato de su catálogo como servicio autónomo, servicio dependiente, complemento, característica u oferta, y cada afirmación lleva su fuente oficial con el extracto literal.
-La segunda, \texttt{saas-interface-channel-analyzer} (versión 3.0), parte de ese resultado y separa la interfaz del canal.
-Una interfaz es un mecanismo definido por el proveedor con un solo paradigma de interacción, y el canal es ese paradigma: programático, por eventos, interactivo, conversacional o agéntico.
-Con esas reglas, el envío por SMTP y la API REST de un proveedor de correo son dos interfaces del mismo canal programático, porque cambian el protocolo y la autenticación pero no el paradigma.
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{|>{\raggedleft\arraybackslash}p{0.8cm}|>{\raggedright\arraybackslash}p{12.7cm}|}
+\hline
+\textbf{N.º} & \textbf{Pregunta} \\
+\hline
+\multicolumn{2}{|l|}{\textit{Análisis de la capacidad de una suscripción}} \\
+\hline
+1 & Dado un plan o un pricing, ¿cuánto tiempo mínimo se necesita para consumir un volumen objetivo $V$? \\
+\hline
+2 & Dado un plan o un pricing, ¿a qué velocidad máxima instantánea se puede consumir y en qué instante se agota la cuota? \\
+\hline
+3 & Dado un plan o un pricing y una ventana de duración $W$, ¿cuánta capacidad se acumula durante ese intervalo? \\
+\hline
+4 & Dado un plan o un pricing, ¿cuánto tiempo hay que esperar tras agotar la cuota para poder volver a consumir? \\
+\hline
+5 & Dado un plan o un pricing y una demanda definida por un \textit{rate} $R$ y una cuota $Q$, ¿puede sostenerse ese consumo durante un período $P$? \\
+\hline
+\multicolumn{2}{|l|}{\textit{Selección de la suscripción óptima}} \\
+\hline
+6 & Dada una capacidad deseada $V$, ¿cuál es la suscripción más barata que la cubre, con o sin \textit{overage cost}? \\
+\hline
+7 & Dada una capacidad deseada $V$ y un presupuesto máximo $B$, ¿cuál es la suscripción más barata que cubre $V$ sin exceder $B$? \\
+\hline
+\multicolumn{2}{|l|}{\textit{Equilibrio entre cuotas heterogéneas}} \\
+\hline
+8 & Dado un plan o un pricing con dos cuotas y un CRF, ¿cuál de las cuotas se agota primero? \\
+\hline
+9 & Dado un plan o un pricing con dos cuotas, ¿qué valor de CRF hace que ambas se agoten simultáneamente? \\
+\hline
+10 & Dado un plan o un pricing, un CRF y un volumen objetivo que excede una de las cuotas, ¿cuánto cuesta completarlo incurriendo en \textit{overage}? \\
+\hline
+\end{tabular}
+\caption[Las diez preguntas de análisis de Gavira Sánchez]{Las diez preguntas de análisis de Gavira Sánchez, por categorías. Formulación literal de su Trabajo Fin de Máster \citep{gavira2026tfm}, Sección 5.4.1. \textit{Overage} es el consumo por encima de la cuota, y \textit{overage cost}, el sobrecoste que se paga por él.}
+\label{tab:estado:preguntas-gavira}
+\end{table}
 
-Esta distinción es un avance reciente del trabajo.
-Hasta octubre de 2026, esta memoria llamaba canal a cada vía de acceso a un servicio: el canal web, donde se publica el pricing, y el canal API, que es el que se modela.
-Esa palabra mezclaba dos cosas, la vía de acceso y la forma de interactuar a través de ella.
-En la revisión con el tutor del 15 de octubre de 2026 se acordó usar interfaz con la definición del NIST: la frontera común entre sistemas o módulos independientes en la que tienen lugar las interacciones \citep{nist80053r5}.
-Con ella, la API REST, el relé SMTP y el panel web de un proveedor son interfaces distintas del mismo servicio.
-El canal queda para el paradigma de interacción, como en las \textit{skills} de Ruiz López.
-La multicanalidad de un servicio de correo se lee entonces como el conjunto de sus interfaces y el canal de cada una.
-Las expresiones canal web y canal API que siguen en esta memoria nombran, por tanto, la interfaz web y las interfaces programáticas del servicio.
+La tercera categoría, el equilibrio entre cuotas heterogéneas, trata las
+cuotas de un mismo plan que cuentan métricas distintas, como las
+peticiones y los correos. Es la más próxima a este trabajo, porque en el
+correo una petición gasta tantos correos de la cuota como destinatarios
+lleve. Sus preguntas son las tres últimas de la
+Tabla~\ref{tab:estado:preguntas-gavira}. Esa categoría no tiene
+correspondencia en el catálogo de operaciones de Fresno-Aranda, porque su modelo
+carecía del CRF \citep{gavira2026tfm}.
 
-El resultado es una cadena completa y operativa: extracción, modelo,
-motor, agente y hub funcionan sobre ACM2YAML v0.3. Sus límites, sin
-embargo, están declarados con la misma claridad en la propia memoria de
-Gavira Sánchez \citep{gavira2026tfm}. La validación descansa sobre tres
-pricings de dos servicios. Dos de las cuatro dimensiones de capacidad carecen de
-serialización. La integración entre capacidad y estructura comercial se
-resolvió de forma pragmática y se señala como trabajo futuro. Y tanto
-completar la serialización como someterla a validación formal figuran
-literalmente entre sus líneas pendientes. Con la plataforma construida,
-falta confrontarla con un dominio completo.
+\textbf{HARVEY4API} es el agente conversacional del canal API: publica
+las operaciones de PRIME4API como herramientas mediante el
+\textit{Model Context Protocol} (MCP), el protocolo con el que un modelo
+de lenguaje llama a herramientas externas \citep{mcp,ruizlopez2026tfm}.
+A-MINT4API extrae Datasheets de forma automática \citep{gavira2026tfm}.
 
-\section{El dominio de aplicación: las APIs de correo electrónico}
-\label{sec:estado:correo}
+Según Gavira Sánchez, la cadena completa (extracción, modelo, motor,
+agente y \textit{hub}) funciona sobre ACM2YAML v0.3, y él mismo declara
+lo que le falta \citep{gavira2026tfm}. Las respuestas de referencia de sus
+diez preguntas de análisis se calculan sobre tres pricings, y las
+Datasheets de GitHub, SendGrid, DBLP y MailerSend sirvieron de banco de
+pruebas durante el diseño. Las dos dimensiones que v0.3 no captura
+carecen de serialización. Los elementos de pricing de la Datasheet se
+eligieron por lo que necesitaban las herramientas, sin un modelo formal
+de la estructura comercial de una API. Integrar capacidad y estructura
+comercial queda como trabajo futuro, igual que completar la serialización
+y someterla a validación formal.
 
-El dominio elegido para esa confrontación es el del correo electrónico
-programático, presentado en la
-Sección~\ref{subsec:introduccion:canales}. Es un dominio maduro y
-competitivo, en el que varios proveedores ofrecen el mismo servicio por
-API. La información de
-capacidad (\textit{rates} por endpoint, cuotas por plan, factores de
-consumo por destinatario o por lote) resulta especialmente dispersa y
-heterogénea. Eso lo convierte en un banco de pruebas exigente para el
-instrumental recién revisado.
+La segunda pregunta de investigación de este trabajo, la RQ2, responde a
+una de esas líneas de trabajo futuro: completar la serialización
+ACM2YAML, que Gavira Sánchez deja pendiente de forma explícita
+\citep{gavira2026tfm}. El enunciado de la RQ2 es «¿Es ACM2YAML suficientemente expresivo para representar la
+capacidad contractual de las APIs de correo? ¿Qué extensiones requiere?»
+(Sección~\ref{sec:introduccion:objetivos}).
 
-Sobre cómo se comparan estas APIs se han revisado dos comparativas
-públicas del sector. Las dos las publican actores que ofrecen servicios
-de correo y que se incluyen a sí mismos en la comparación
-\citep{mailtrap2026comparativa,mailslurp2026comparativa}. Adoptan el formato de listas de
-recomendaciones: útiles como panorámica del mercado, pero elaboradas con
-criterios no declarados, sin trazabilidad de fuentes, no reproducibles y
-no procesables por máquina. En la literatura académica revisada en este
-capítulo, las APIs de correo aparecen únicamente como casos de
-ilustración o validación. SendGrid, en dos versiones, forma parte del
-\textit{ground truth} sobre el que se validó el canal API del
-ecosistema, y MailerSend sirvió como banco de pruebas en el diseño de
-ACM2YAML \citep{gavira2026tfm}. En los trabajos revisados en este
-capítulo no se ha identificado un tratamiento sistemático del dominio
-como objeto de comparación. Tampoco ofrecen un
-catálogo estructurado, trazable y procesable de las condiciones de
-consumo de las APIs de correo, ni un método asentado para compararlas
-combinando requisitos funcionales y no funcionales.
+Las otras tres preguntas de investigación, formuladas en la misma
+sección, salen de lo que el análisis de la capacidad deja abierto. La
+RQ1 pregunta qué APIs de correo deben incluirse en un análisis
+representativo del dominio y bajo qué criterios reproducibles, porque el
+modelo no se ha validado sobre un dominio entero. La RQ3 pregunta cómo se
+relacionan los límites de uso y los \textit{rates} en las APIs de correo
+y qué implicaciones tiene esa relación para el consumidor, porque esa
+relación no se ha caracterizado.
 
-\section{Análisis del estado del arte}
-\label{sec:estado:analisis}
+La RQ4 pregunta cómo pueden compararse las APIs de correo de forma
+sistemática para responder a preguntas de decisión que involucran
+simultáneamente requisitos funcionales y no funcionales, porque la
+comparación existente entre APIs parte de una demanda dada.
 
-La Tabla~\ref{tab:estado:sintesis} sintetiza la revisión anterior. Para
-cada propuesta se indica el canal que modela, cómo entiende la
-capacidad, qué análisis ofrece y sobre qué se ha validado.
+La Tabla~\ref{tab:estado:aportacion} separa, pieza a pieza,
+lo que ya existía de lo que aporta cada contribución de este trabajo. En
+la fila de HARVEY4API, las preguntas de decisión del método de
+comparación (C-04) que piden el agente cuentan como respondibles según la
+especificación que publica Ruiz López, porque el agente no se ha
+ejecutado en este trabajo.
 
 \begin{table}[H]
 \centering
 \small
-\begin{tabular}{|p{3.1cm}|p{1.9cm}|p{2.9cm}|p{2.9cm}|p{2.6cm}|}
+\begin{tabular}{|>{\raggedright\arraybackslash}p{2.7cm}|>{\raggedright\arraybackslash}p{5.4cm}|>{\raggedright\arraybackslash}p{5.4cm}|}
 \hline
-\textbf{Propuesta} & \textbf{Canal} & \textbf{Capacidad} &
-\textbf{Análisis} & \textbf{Validación} \\
+\textbf{Pieza} & \textbf{Lo que ya existía} & \textbf{Lo que aporta este trabajo} \\
 \hline
-iPricing / Pricing2YAML
-\citep{garciafernandez2024pricing4saas,garciafernandez2024racing} &
-Web & Límites de uso sobre \textit{features} & 7 operaciones sobre
-CSOP \citep{garciafernandez2025ipricing} & $>$150 pricings; corpus
-SPECTRA \citep{spectra2025} \\
+ACM y ACM2YAML &
+Modelo de capacidad en cuatro dimensiones más el CRF, y su serialización
+v0.3, que captura dos de ellas. Gavira Sánchez, con Ruiz López como
+coautor del modelo \citep{gavira2026tfm,ruizlopez2026tfm}. &
+Extensión del esquema justificada caso a caso (C-02). \\
 \hline
-Pricing4APIs / SLA4OAI
-\citep{fresno2025pricing4apis,gamezdiaz2019sla4oai} & API &
-Unidimensional (peticiones); cuota/\textit{rate} según ventana del
-limitador & Validación de consistencia (VC1--VC4) & Casos de
-ilustración \\
+Datasheet &
+Documento que reúne la capacidad de una API. Gavira Sánchez
+\citep{gavira2026tfm}. &
+Catálogo de Datasheets de APIs de correo (C-01). \\
 \hline
-Smart LAMA \citep{fresno2022lama,fresno2023gecon} & API (arquitectura) &
-Máximo \textit{workload} de la LAMA & CSOP: max.\ peticiones, min.\
-coste, min.\ tiempo & Notebook con 10 preguntas \\
+PRIME4API &
+Motor de análisis de la capacidad dirigido por la Datasheet, con diez
+preguntas de análisis. Gavira Sánchez \citep{gavira2026tfm}. &
+Caracterización de la relación entre límites y \textit{rates} en el
+correo (C-03). \\
 \hline
-Catálogo de operaciones \citep{fresno2023catalogo} & API & La del modelo
-Pricing4APIs & 11 operaciones formuladas, sin implementación & --- \\
+HARVEY4API &
+Agente conversacional que publica las operaciones del motor como
+herramientas MCP. Ruiz López \citep{ruizlopez2026tfm}. &
+Método de comparación sistemática (C-04). Las preguntas que exigen el
+agente se clasifican por especificación. \\
 \hline
-Pricing4API (biblioteca) \citep{pricing4api,gavira2025tfg} & API &
-Curva de capacidad $C(t)$; BoundedRate & Q1--Q7, programático y visual &
-Casos sin entrada estructurada \\
-\hline
-ACM / Datasheet / PRIME4API \citep{gavira2026tfm,ruizlopez2026tfm} & API
-& 4 dimensiones + CRF (v0.3 serializa 2) & Q1--Q10 dirigido por la
-Datasheet & 3 APIs (\textit{ground truth}) \\
+SPHERE &
+\textit{Hub} del ecosistema \citep{sphere}. Su extensión al canal API,
+con colecciones de Datasheets, la programó un técnico de investigación
+con los requisitos de Gavira Sánchez y Ruiz López
+\citep{gavira2026tfm}. &
+Catálogo preparado como contribución a SPHERE (C-01). \\
 \hline
 \end{tabular}
-\caption{Síntesis del estado del arte revisado.}
-\label{tab:estado:sintesis}
+\caption{Piezas del canal API que usa este trabajo: lo que ya existía, con su autoría, y lo que aporta este trabajo.}
+\label{tab:estado:aportacion}
 \end{table}
 
-De esta síntesis se desprenden cuatro observaciones, que son los cuatro
-huecos sobre los que se articula este trabajo.
+\subsection{La plataforma SPHERE}
+\label{sec:estado:sphere}
 
-\textbf{Primera: el instrumental existe; su validación a escala de
-dominio, no.} La cadena completa del canal API funciona, pero se ha
-ejercitado sobre tres pricings de dos servicios \citep{gavira2026tfm}. Ningún
-trabajo ha confrontado todavía el modelo con un conjunto representativo de las APIs de un sector, elegido con un criterio declarado,
-incluidas las que no encajan con
-naturalidad. Con una confrontación así se contrasta si la Datasheet es un formato
-general o un formato que funciona donde ya se probó. Este es el
-hueco que aborda el catálogo de Datasheets de correo (contribución
-C-01).
+SPHERE es la plataforma web del grupo ISA desde la que se usan las
+herramientas de \textit{Pricing Intelligence} sin instalar ni configurar
+nada en local. Es a la vez el repositorio compartido de los pricings que
+modelan sus usuarios y el punto de acceso público a las demás
+herramientas \citep{sphere,gavira2026tfm}.
 
-\textbf{Segunda: la expresividad de ACM2YAML v0.3 es parcial, y sus
-carencias están declaradas pero no inventariadas.} Se sabe qué
-dimensiones faltan (concurrencia, resultados por petición), pero no qué
-extensiones concretas exige un dominio real ni con qué prioridad. Ese
-inventario solo puede producirlo la confrontación sistemática con casos
-reales, documentando cada carencia con la API que la revela. Es el
-hueco de la evolución justificada del esquema (C-02).
+Para los pricings del canal web, Gavira Sánchez describe tres funciones
+de SPHERE \citep{gavira2026tfm}. Las colecciones públicas agrupan los
+pricings. Según esa descripción, el editor de Pricing2YAML comprueba las
+mismas reglas de consistencia sobre las que razona PRIME y muestra el
+pricing a medida que se edita. HARVEY se consulta desde la propia
+plataforma, sin configurar el agente aparte. SPHERE tiene otras dos
+funciones: dentro de una colección, cada pricing aparece en una tarjeta
+con el tamaño de su espacio de configuración, y la plataforma conserva
+las versiones de los pricings que suben sus usuarios \citep{sphere}.
 
-\textbf{Tercera: la relación entre límites de uso y \textit{rates} está
-definida, pero no caracterizada.} La semántica existe (la intersección
-que define el BoundedRate) y las operaciones Q8--Q10 la ejercitan sobre
-casos concretos. Lo que ningún trabajo ofrece es una caracterización de
-esa relación sobre un dominio real: qué patrones adopta, cuándo el
-\textit{rate} enmascara a la cuota o la cuota al \textit{rate}, y qué
-implicaciones tiene para el consumidor. Es el hueco de la contribución
-C-03.
+La extensión de SPHERE al canal API la programó un técnico de
+investigación a partir de los requisitos que Gavira Sánchez y Ruiz López
+definieron y supervisaron \citep{gavira2026tfm}. Su código está en una
+copia aparte (\textit{fork}) del repositorio original de la plataforma
+\citep{sphereapitaskforce}. Añade una sección de Datasheets organizada en
+colecciones y una página para cada Datasheet. En esa página, cada plan es
+una tarjeta con su precio y su \textit{rate}, y debajo van los
+\textit{endpoints} con sus límites. La plataforma guarda cada cambio de la
+Datasheet como una versión fechada. Desde SPHERE se llega a HARVEY4API de
+dos formas: por el menú de herramientas o desde la página de cada
+Datasheet.
 
-\textbf{Cuarta: no hay método de comparación entre APIs.} Los catálogos
-de preguntas existentes (las once operaciones de Fresno-Aranda, las diez
-de Gavira Sánchez) razonan sobre la capacidad de un pricing. La decisión
-que motiva este trabajo, \textit{qué API conviene a unas necesidades
-dadas}, exige además preguntas funcionales y no funcionales propias
-del dominio y un procedimiento sistemático para responderlas sobre un
-conjunto de Datasheets comparables. Ese método, con su catálogo de
-preguntas de decisión, es la contribución C-04.
+El editor de Datasheets de la extensión muestra el YAML a un lado y, al
+otro, la Datasheet representada, que se actualiza al momento. Gavira
+Sánchez escribe que cada cambio «se valida contra la sintaxis del modelo»
+\citep{gavira2026tfm}. En la versión del código del 10 de junio de 2026,
+esa comprobación consiste en que el texto se pueda leer como YAML
+\citep{sphereapitaskforce}. Si no se puede leer, el editor muestra el
+error. Si se lee, lo representa sin comprobar los campos ni los tipos de
+ACM2YAML. No se ha revisado qué comprueba la versión de la plataforma que
+está en línea. Este mismo editor se usó para validar visualmente las
+Datasheets que genera A-MINT4API: se cargaban y se comprobaba que se
+representaban bien \citep{gavira2026tfm}.
 
-Este trabajo, conviene subrayarlo, no propone un modelo nuevo ni un
-motor nuevo. Aplica y extiende los instrumentos revisados en este
-capítulo (la Datasheet, PRIME4API, SPHERE), llevándolos a un dominio
-real y a escala. El catálogo resultante queda en el repositorio de datos
-que acompaña al trabajo (Sección~\ref{sec:conclusiones:replicacion}),
-preparado como contribución a SPHERE, y el Capítulo~\ref{cap:evolucion}
-propone las extensiones del esquema que el dominio justifica. Los capítulos
-siguientes desarrollan cómo.
+Este trabajo prepara para SPHERE una colección con las ocho APIs del
+catálogo, cada una con su Datasheet y su pricing en Pricing2YAML. Los
+ocho pricings están cargados desde el 27 de octubre de 2026, en una
+colección privada hasta el depósito de esta memoria, y la
+Figura~\ref{fig:estado:postmark}b muestra el de Postmark.
+Este trabajo propone también una sección de términos de consumo para la
+ficha de cada API, su página dentro de la colección.
 
-Este trabajo aporta a SPHERE dos piezas.
-La primera es una colección con las ocho APIs del catálogo como \textit{API products}, es decir, interfaces programáticas con un pricing propio.
-Cada una lleva su Datasheet y su pricing en Pricing2YAML \citep{garciafernandez2025trends}.
-La segunda es una propuesta de sección de términos de consumo para la ficha de cada API.
-Los términos de consumo (\textit{API consumption terms} \citep{fisapuntes}) son los términos y condiciones del proveedor que afectan a la velocidad y a la capacidad de consumo de su API, como sus \textit{rates}, sus cuotas y su política de uso.
-La sección llevará una pestaña con las versiones registradas de esos términos y la procedencia de cada dato: URL, tipo de fuente y fecha.
-El repositorio del trabajo incluye una maqueta de la colección con esa pestaña y con las versiones anteriores de cada pricing, tomadas sobre todo de capturas de Wayback Machine.
-SPHERE y Pricing2YAML son del grupo ISA: la colección los usará tal como son, y la sección se propone como extensión de la plataforma.
+\section{Las APIs de correo}
+\label{sec:estado:correo}
 
-Las \textit{skills} de Ruiz López se aplican sin modificarlas, con el procedimiento de la Sección~\ref{sec:propuesta:criterios}.
+Un correo transaccional se define como un mensaje individual, único para
+cada destinatario, que este espera recibir y que suele desencadenar el
+propio usuario. La definición es de Postmark, uno de los ocho proveedores
+que estudia este trabajo \citep{postmarktransaccional}. Postmark pone
+como ejemplos el restablecimiento de contraseña, el correo de bienvenida,
+la factura, el recibo de compra y el aviso de un pago fallido, y añade
+que este correo no necesita enlace para darse de baja.
+
+El correo de \textit{marketing}, que Postmark llama también masivo o
+promocional, no es transaccional: lleva el mismo contenido, como el
+anuncio de un producto o una promoción, a muchos destinatarios, sin que
+lo desencadene ningún evento \citep{postmarktransaccional}. La
+Figura~\ref{fig:estado:transaccional} ilustra la diferencia.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/correo_transaccional.tex}
+\caption[Correo transaccional frente a correo de \textit{marketing}]{Correo transaccional frente a correo de \textit{marketing}. El transaccional lo suele desencadenar una acción del usuario y va a un único destinatario, que lo espera. La aplicación pide su envío al proveedor por la API REST o por el relé SMTP. El de \textit{marketing} lleva el mismo contenido a muchos destinatarios, sin un evento que lo desencadene. Elaboración propia a partir de la definición de Postmark \citep{postmarktransaccional}.}
+\label{fig:estado:transaccional}
+\end{figure}
+
+En el canal API, el servicio de envío de
+cada proveedor suele tener dos interfaces, la API REST y el relé SMTP (el
+servidor del proveedor que recibe el correo por el protocolo estándar de
+envío). Las dos dan acceso al mismo servicio, pero no todos los términos de
+consumo valen para las dos: en SendGrid, el tope de 1.000 destinatarios por
+petición es un límite de la API REST \citep{sendgriddocs}.
+
+El correo transaccional es el dominio elegido para confrontar el modelo y
+las herramientas del canal API del ecosistema SPHERE. Varios proveedores
+venden el mismo servicio y lo limitan con combinaciones distintas de
+\textit{rates} por \textit{endpoint}, cuotas por plan y CRF: una petición
+puede gastar de la cuota un correo por cada destinatario o uno por cada
+correo de un lote (varios correos en una sola petición). Esa variedad
+hace del correo transaccional un banco de pruebas exigente para el ACM,
+la Datasheet y PRIME4API.
+
+Sobre cómo se comparan estas APIs se han revisado dos guías públicas
+del sector, las de Mailtrap y MailSlurp. Las publican empresas que venden
+servicios de correo y recomiendan su propio producto
+\citep{mailtrap2026comparativa,mailslurp2026comparativa}. Mailtrap ordena
+seis proveedores. Describe cómo los probó (cuenta gratuita, IP compartida
+y la misma plantilla), mide la entregabilidad (la proporción de correos
+que llegan a la bandeja de entrada) y enlaza la página de
+precios de cada uno, pero da sin fuente los \textit{rates} y los
+destinatarios por llamada. MailSlurp propone un procedimiento de
+evaluación de seis pasos, sin datos de ningún proveedor. Ninguna reúne los límites
+de uso y los \textit{rates} de cada proveedor en un esquema común, con la
+fuente de cada dato.
+
+En los trabajos del grupo sobre capacidad, las APIs de correo aparecen
+como casos de ilustración o validación. SendGrid, en dos versiones, está
+entre los pricings sobre los que Gavira Sánchez calcula las respuestas de
+referencia del canal API, y MailerSend sirvió como banco de pruebas en el
+diseño de ACM2YAML \citep{gavira2026tfm}. En los trabajos revisados no se ha
+encontrado un catálogo estructurado y trazable de las cuotas, los
+\textit{rates} y los topes por petición de varias APIs de correo, ni un
+procedimiento que combine requisitos funcionales y no funcionales para
+compararlas.
+
+El antecedente más próximo es el Trabajo Fin de Máster de Noguerol
+Tirado, del mismo programa \citep{noguerol2025tfm}. Parte de una demanda
+histórica, los comentarios del New York Times tratados como traza de
+notificaciones, y busca la combinación de plan, complementos y estrategia
+de envío de menor coste en SendGrid y Amazon SES. Simula tres estrategias
+de agrupación, comprueba cada una contra la cuota, el \textit{rate} y los
+topes por petición, y compara el coste y el retraso de notificación de
+los dos proveedores.
+
+Noguerol Tirado toma los límites de dos proveedores para servir una
+demanda concreta \citep{noguerol2025tfm}. Este trabajo recoge los
+términos de consumo de ocho APIs sin una demanda previa, con la fuente de
+cada dato y en un formato que lee una herramienta: la Datasheet de
+ACM2YAML, sobre la que opera PRIME4API.
+
+\section{Huecos que aborda el trabajo}
+\label{sec:estado:analisis}
+
+La revisión deja cuatro huecos, uno por contribución.
+
+\textbf{Primero: el instrumental existe, pero no se ha validado a escala
+de dominio.} Las diez preguntas de análisis de Gavira Sánchez se
+responden con PRIME4API sobre tres pricings, y el diseño de ACM2YAML se
+probó con cuatro APIs. Ninguno de los trabajos revisados confronta
+todavía el modelo con un conjunto representativo
+de las APIs de un sector, elegido con un criterio declarado e incluidas
+las que no encajan con naturalidad. Es el hueco del catálogo (C-01).
+
+\textbf{Segundo: las carencias de ACM2YAML v0.3 están declaradas, pero
+no inventariadas.} Se sabe qué dimensiones faltan, pero no qué
+extensiones exige un dominio real ni con qué prioridad. Es el hueco de la
+evolución del esquema (C-02).
+
+\textbf{Tercero: la relación entre límites de uso y \textit{rates} está
+definida, pero no caracterizada.} PRIME4API la ejercita sobre casos
+concretos, y Noguerol Tirado la comprueba en dos proveedores frente a una
+demanda dada. Falta ver qué patrones adopta en las APIs de un dominio y
+qué le cuestan al consumidor (C-03).
+
+\textbf{Cuarto: la comparación entre APIs existente parte de una demanda
+dada.} El catálogo de operaciones de Fresno-Aranda y las diez preguntas
+de análisis de Gavira Sánchez razonan sobre un pricing, y Noguerol Tirado
+toma los límites de dos proveedores para servir una demanda concreta y
+compara los dos por coste y retraso. Elegir una API para unas necesidades dadas exige
+preguntas funcionales y no funcionales y un procedimiento para
+responderlas sobre Datasheets comparables (C-04).

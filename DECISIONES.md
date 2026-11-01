@@ -1,7 +1,7 @@
 # Decisiones citadas
 
 Los ficheros de este repositorio citan decisiones del trabajo por su número (D-nnn). Esta tabla
-recoge las 39 que se citan, con la fecha y lo que se decidió. Se genera desde el registro
+recoge las 44 que se citan, con la fecha y lo que se decidió. Se genera desde el registro
 completo del autor, que no se publica.
 
 | Decisión | Fecha | Qué se decidió | Estado |
@@ -45,3 +45,8 @@ completo del autor, que no se publica.
 | D-058 | 2026-09-23 | El Capítulo 6 se rehace sobre las ocho APIs aplicando B9 sin cambiarla, y F-27 queda sin promover | cerrada |
 | D-060 | 2026-09-25 | W2 entra por fusión, la verificación por uso pasa a ocho filas y P-04 se reescribe con la regla E19 del consejo | cerrada |
 | D-068 | 2026-10-18 | El pricing define la verdad: regla D17, recuento y colaboración con Ruiz López en la memoria | cerrada |
+| D-075 | 2026-10-23 | El semáforo mide respaldo y un segundo eje dice la procedencia; las páginas del fabricante son la fuente de verdad sin validar | cerrada |
+| D-076 | 2026-10-23 | Propósito y coste de una interfaz de la maqueta van por separado | cerrada |
+| D-078 | 2026-10-23 | Cuatro términos con un sentido fijo, y lo interpretado sale de Pricing a «Derivado» | cerrada |
+| D-081 | 2026-10-23 | Una lista de RapidAPI es otra vía de contratar el servicio, sea oficial o de un tercero | cerrada |
+| D-094 | 2026-10-31 | Cierre del catálogo y de la revisión de Antonio: los datos se quedan como están | cerrada |

@@ -240,6 +240,10 @@ panel, con una cabecera que decía que el panel no se había incorporado.
   los cinco planes**; (2) el comodín de prefijo con exclusión no es expresable en v0.3
   (F-23); (3) en **las diez filas** que publican las dos unidades a la vez, RPH es
   exactamente RPS × 3.600 — comprobado fila a fila en `fricciones.md`, observación O-15.
+  *(Corregido el 2026-10-31, verificador: en la página son **catorce** filas con las dos
+  unidades, siete del tramo General y siete del Advanced, hoy y en las capturas de Wayback del
+  2026-05-21 y del 2026-10-13. La proporción se cumple en las catorce y la conclusión no
+  cambia.)*
   La página **no declara ningún valor como «por defecto»**, así que la regla **E4** no
   sirve para arbitrar DISC-01.
 
@@ -400,6 +404,12 @@ panel, con una cabecera que decía que el panel no se había incorporado.
   `POST /v3/smtp/email` con `messageVersions`, y los dos modos son **excluyentes**
   (F-25). Su caudal contradice a la página canónica por un factor de 600 (DISC-01) y su
   capacidad contradice a la referencia (DISC-03).
+- **Releída el 2026-10-31 (verificador).** La lista `"Bulk sending limits"` sigue igual que en
+  el volcado del 2026-09-21. Trae `"Maximum 2000 total recipients per API request"` y
+  `"Maximum 99 recipients per message version"` debajo del `"Send up to 1000 email messages in
+  one API call"`, que es por lo que DISC-03 cerró ese día por E5 (1). La NOTA del YAML que
+  seguía diciendo que la guía contradice el 2.000 se ha corregido. DISC-01 (6.000 por hora
+  frente a 1.000 por segundo) sigue en pie.
 
 ## [F14] Developer docs — Programación de lotes
 
@@ -493,6 +503,10 @@ panel, con una cabecera que decía que el panel no se había incorporado.
   el 429 ni las cabeceras `x-sib-ratelimit-*`. Omite además el 202 que la histórica y la
   referencia renderizada sí declaran (DISC-05), lo que la descalifica como contrato
   completo del endpoint de envío.
+- **URL corregida en el YAML el 2026-10-31 (verificador).** La NOTA del 202 citaba
+  `https://developers.brevo.com/openapi`, que da 404 con y sin JavaScript y no tiene capturas.
+  Aquí ya figuraba la buena, `/openapi/email-api.json`, y la cita no cambia. Volcado en
+  `evidencias/paginas/2026-10-31/`.
 
 ## [F21] Especificación OpenAPI histórica — plataforma completa
 
@@ -635,6 +649,21 @@ panel, con una cabecera que decía que el panel no se había incorporado.
   **único mecanismo automático de sobrecoste que Brevo publica**, que se dispara por
   **contactos** y no por correos (F-27). Tres add-ons no cuadran con la página de precios
   (DISC-08).
+- **Releída el 2026-10-31 (verificador, E3).** El artículo se ha reescrito entre el volcado
+  del 2026-09-21 y el 31-10. Hay tres cambios del proveedor, sin efecto en ningún valor:
+  - El asiento de marketing ya no cuesta 9 USD: `"Standard plan: $12 per month for each
+    seat"`, como en la página de precios. Cae una de las tres incoherencias de DISC-08;
+    siguen el logo (`"$9 per month"` frente a 12) y Sales Advanced (`"$64 per month"` frente
+    a 65).
+  - Desaparecen dos frases de los créditos prepago: `"One credit equals one email sent to
+    one contact."` y `"Prepaid email credits give you access to all Starter plan features
+    and the Remove Brevo logo add-on. The limit of 2,000 contacts in automations also
+    applies."` Las dos seguían en la captura de Wayback del 2026-10-05. En su lugar,
+    `"Varies based on the number of credits (packs from 5,000 to 1 million emails)"` y
+    `"One email sent equals one credit deducted."`.
+  - Starter, en otras palabras: `"The Starter plan includes no daily sending limit"`.
+  Volcado en `evidencias/paginas/2026-10-31/`; las líneas del YAML llevan su relectura
+  fechada.
 
 ## [F26] Centro de ayuda — Añadir o quitar correos del plan
 
