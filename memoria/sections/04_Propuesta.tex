@@ -432,6 +432,14 @@ Total & 437 & 100 \\
 Los campos en ámbar o en rojo pasan por una escalera de validación de cuatro peldaños.
 Es una escalera porque los peldaños están ordenados de menor a mayor coste, de leer otra página del proveedor a medir el servicio bajo carga, y un campo solo sube al siguiente cuando el anterior no lo resuelve.
 El panel es la excepción: desde el piloto se observa en todas las APIs, aunque el primer peldaño ya haya resuelto el campo.
+La Figura~\ref{fig:propuesta:escalera} dibuja los cuatro peldaños.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/escalera_validacion.tex}
+\caption[Escalera de validación]{Escalera de validación de los campos en ámbar o en rojo. Un campo sube al peldaño siguiente solo cuando el anterior no lo resuelve, salvo el panel, que se observa en todas las APIs. El cuarto peldaño va con línea discontinua porque queda fuera del ciclo que construye el catálogo, y ningún campo llegó a él.}
+\label{fig:propuesta:escalera}
+\end{figure}
 
 El primer peldaño es el \textit{contraste documental}: buscar una segunda fuente oficial que confirme o contradiga la primera y resolver el choque con la regla de la página de precios del apartado anterior.
 Si la página no interviene, el choque se registra como discrepancia.
@@ -483,15 +491,37 @@ Los agentes de inteligencia artificial de la recolección leen parte de las pág
 En MailerSend, ese HTML conserva los precios de 2024 con facturación anual: 5,60~USD al mes por el plan Hobby, frente a los 6,30 que ve en el navegador cualquier cliente.
 Lo detectó el verificador, y la Datasheet recoge el precio que muestra el navegador.
 
-\subsection{Dos casos de fuente a contradicción}
+\subsection{Dos casos, de la página de límites al sondeo}
 \label{sec:propuesta:casos}
 
-Dos casos muestran la cadena completa, desde la fuente hasta la evidencia que resuelve la contradicción o la deja abierta.
+Dos casos muestran la cadena completa, desde la página de límites del proveedor hasta el sondeo que resuelve la contradicción o la deja abierta.
 
 El primero es de Brevo y se cierra midiendo.
-La página de caudal de Brevo da una fila propia de 2 peticiones por segundo, 7.200 por hora \citep{brevodocs}, a \texttt{GET /v3/smtp/emails}, una ruta de su API REST aunque el nombre diga smtp, pero tres filas más abajo pone todas las rutas bajo \texttt{/v3/smtp/} a 300 por hora.
-Una nota al pie exime a dos rutas, y esta no es ninguna de ellas, así que, si el prefijo alcanzara a la ruta, la Datasheet sobrestimaría su caudal 24 veces.
+La página de límites de la API de Brevo da una fila propia de 2 peticiones por segundo, 7.200 por hora \citep{brevodocs}, a \texttt{GET /v3/smtp/emails}, una ruta de su API REST aunque el nombre diga smtp, pero en la misma tabla pone todas las rutas bajo \texttt{/v3/smtp/} a 300 por hora (Tabla~\ref{tab:propuesta:brevo}).
+La nota del asterisco exime a dos rutas, y esta no es ninguna de ellas, así que, si el prefijo alcanzara a la ruta, la Datasheet sobrestimaría su caudal 24 veces.
 Como la contradicción está dentro de la página, el método no la da por resuelta: modela el valor de la fila propia, en ámbar, y deja abierta la discrepancia.
+
+\begin{table}[htbp]
+\centering
+\small
+\begin{tabular}{|l|r|r|}
+\hline
+\textbf{Endpoint} & \textbf{Rate limit} & \textbf{Requests per second} \\
+\hline
+\begin{tabular}{@{}l@{}}\texttt{POST /v3/smtp/email}\\ \texttt{GET /v3/smtp/blockedContacts}\end{tabular} & 3,600,000 RPH & 1,000 RPS \\
+\hline
+\texttt{GET /v3/smtp/emails} & 7,200 RPH & 2 RPS \\
+\hline
+\multicolumn{3}{|c|}{\dots} \\
+\hline
+\texttt{All endpoints under /v3/smtp/\{}\textrm{…}\texttt{\}*} & 300 RPH & - \\
+\hline
+\multicolumn{3}{|l|}{\footnotesize\begin{tabular}{@{}l@{}}*Excludes POST /v3/smtp/email and GET /v3/smtp/blockedContacts,\\ which have dedicated limits.\end{tabular}} \\
+\hline
+\end{tabular}
+\caption[Fragmento de la página de límites de la API de Brevo]{Fragmento de la tabla «General rate limits» de la página de límites de la API de Brevo, en la captura del 21 de septiembre de 2026 \citep{brevodocs}. Las filas y la nota se copian literales. Los puntos suspensivos sustituyen a cuatro filas de otras rutas. RPH son peticiones por hora y RPS, peticiones por segundo.}
+\label{tab:propuesta:brevo}
+\end{table}
 
 Una lectura sin envío devolvió la cabecera \texttt{x-sib-\allowbreak ratelimit-\allowbreak limit:~2}, que coincide con la fila propia, pero la cabecera sola no basta para cambiar el color.
 El sondeo de caudal sí basta: tres peticiones en el mismo segundo devuelven 400, 400 y 429, el código HTTP con el que la API rechaza una petición por pasar del \textit{rate}.
@@ -515,7 +545,7 @@ El caso suma a F-04, las restricciones declaradas que la respuesta no refleja\fo
 \label{sec:propuesta:catalogo}
 
 La Tabla~\ref{tab:propuesta:catalogo} resume las ocho Datasheets en el orden en que se construyeron.
-Las ocho llegaron al tercer peldaño de la escalera, el sondeo, y ninguna al cuarto.
+Las ocho llegaron al tercer peldaño de la escalera, el sondeo, y ninguna al cuarto (Figura~\ref{fig:propuesta:escalera}).
 Ninguna cuenta contrató un plan de pago, así que lo medido describe una cuenta gratuita o de prueba, y los valores de los planes de pago salen de lo que publica el proveedor.
 
 \begin{table}[tbp]
@@ -543,7 +573,7 @@ Ninguna cuenta contrató un plan de pago, así que lo medido describe una cuenta
 \hline
 \raggedright Mailchimp Trans\-actional & \raggedright bloques de 25.000 correos, sin planes & \raggedright 500 envíos sin renovación (prueba) & \raggedright 25 correos/h en prueba; pago sin cifra & \raggedright cuenta de prueba sin dominio verificado \tabularnewline
 \hline\end{tabular}
-\caption[Las ocho Datasheets del catálogo]{Las ocho Datasheets del catálogo, en el orden en que se construyeron. Cuota de entrada: la del plan gratuito o de prueba y la del primer plan de pago al primer volumen. Las ocho llegaron al tercer peldaño de la escalera de validación.}
+\caption[Las ocho Datasheets del catálogo]{Las ocho Datasheets del catálogo, en el orden en que se construyeron. Cuota de entrada: la del plan gratuito o de prueba y la del primer plan de pago al primer volumen. Las ocho llegaron al tercer peldaño de la escalera de validación (Figura~\ref{fig:propuesta:escalera}).}
 \label{tab:propuesta:catalogo}
 \end{table}
 
@@ -696,6 +726,7 @@ El resolvedor (\texttt{provider-service-\allowbreak resolver}) separa los servic
 Se probó en SendGrid, Amazon SES, Mailchimp Transactional y Brevo.
 Los tres primeros tienen varias colecciones de APIs, cada una con su pricing.
 Brevo es el contraejemplo: su correo transaccional va incluido en todos los planes de su plataforma de \textit{marketing}.
+
 El analizador (\texttt{saas-interface-\allowbreak channel-\allowbreak analyzer}) enumera las interfaces de cada servicio y asigna a cada una su canal.
 Se aplicaron sin modificarlas a las ocho APIs, y todos los YAML de salida pasan la comprobación de estructura que trae cada una de esas \textit{skills}.
 
@@ -727,9 +758,9 @@ Los cambios se pueden filtrar por tipo: cuotas y peticiones, \textit{rates}, y r
 \subsection{Lo que Pricing2YAML no modela}
 \label{sec:propuesta:sphere:nomodela}
 
-Al escribir los ocho pricings en Pricing2YAML aparecen 20 limitaciones, y cada una se documenta con el caso real que la origina, la limitación del modelo y la extensión que se propone.
+Al escribir los ocho pricings en Pricing2YAML aparecen 20 carencias del formato, y cada una se documenta con el caso real que la origina, lo que el formato no puede expresar y la extensión que se propone.
 Los ocho ficheros pasan el analizador de pricing4ts 0.10.4 (la biblioteca con la que SPHERE lee y analiza los pricings en Pricing2YAML, en la versión que usa la plataforma) y se cargan sin errores por la interfaz de SPHERE.
-Las limitaciones caen en cuatro grupos, que recoge la Tabla~\ref{tab:propuesta:nomodela}.
+Las carencias caen en cuatro grupos, que recoge la Tabla~\ref{tab:propuesta:nomodela}.
 
 Resend limita a 10 peticiones por segundo por equipo, la cuenta que comparten todas sus claves de API, y a 3.000 correos al mes en el plan Free.
 El primer límite protege la infraestructura y el segundo es lo que se paga, pero Pricing2YAML escribe los dos como un límite renovable con su periodo, y la analítica de SPHERE los cuenta igual.
@@ -748,7 +779,7 @@ Se propone un estado de cuenta con nombre que sobrescriba valores del plan.
 \begin{table}[H]\centering\small
 \begin{tabular}{|p{2.9cm}|p{1.7cm}|p{5.2cm}|p{3.9cm}|}
 \hline
-\raggedright\textbf{Grupo} & \raggedright\textbf{Limita\-ciones} & \raggedright\textbf{Lo que el modelo no admite} & \raggedright\textbf{Extensión propuesta} \tabularnewline
+\raggedright\textbf{Grupo} & \raggedright\textbf{Caren\-cias} & \raggedright\textbf{Lo que el formato no admite} & \raggedright\textbf{Extensión propuesta} \tabularnewline
 \hline
 \raggedright La forma del límite & \raggedright 1 a 6 & \raggedright El ámbito por operación, la diferencia entre caudal y cuota, el tipo de ventana, el tope por petición, y los valores ilimitado, no aplicable y a medida & \raggedright Un ámbito y un tipo en cada límite, y valores reservados \tabularnewline
 \hline
@@ -758,7 +789,7 @@ Se propone un estado de cuenta con nombre que sobrescriba valores del plan.
 \hline
 \raggedright Clave, plazo y divisa & \raggedright 17 a 20 & \raggedright El precio por uso sin volumen incluido, la clave del contador (cuenta, región o IP), los planes con plazo y la divisa & \raggedright Tramos marginales, un atributo de clave, un bloque de plazo y precios por divisa \tabularnewline
 \hline\end{tabular}
-\caption[Las 20 limitaciones de Pricing2YAML en las ocho APIs, agrupadas]{Las 20 limitaciones de Pricing2YAML en las ocho APIs, agrupadas. Cada una tiene su caso real, su limitación y su extensión en el repositorio de datos del trabajo.}
+\caption[Las 20 carencias de Pricing2YAML en las ocho APIs, agrupadas]{Las 20 carencias de Pricing2YAML en las ocho APIs, agrupadas. Cada una tiene su caso real, lo que el formato no expresa y su extensión en el repositorio de datos del trabajo.}
 \label{tab:propuesta:nomodela}\end{table}
 
 \subsection{Términos de consumo y versionado}

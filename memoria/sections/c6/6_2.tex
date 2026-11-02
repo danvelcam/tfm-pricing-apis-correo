@@ -37,7 +37,7 @@ Esa cuota no entra en la Ecuación~\eqref{eq:limites-rates} porque cuenta petici
 \setlength{\tabcolsep}{2.5pt}
 \begin{tabular}{|l|r|r|r|c|p{3.2cm}|}
 \hline
-\textbf{API · plan} & \textbf{$R \cdot W$} & \textbf{$Q$} & \textbf{$R \cdot W / Q$} & \textbf{$t_{\min}$ ($k{=}1$ / $k$ máx)} & \textbf{Datos en ámbar o rojo} \\
+\textbf{API · plan} & \textbf{$R \cdot W$} & \textbf{$Q$} & \textbf{$R \cdot W / Q$} & \textbf{$t_{\min}$ ($k{=}1$ / $k$ máx)} & \textbf{Salvedades del cálculo} \\
 \hline
 Postmark · Free & $1{,}296 \cdot 10^{10}$ & 100 & 129.600.000 & 0,02 s / 0,0004 s & \textit{rate} medido, no publicado \semambar{} \\
 \hline
@@ -78,7 +78,7 @@ MailerSend · Professional 2M & 5.184.000 & 2.000.000 & 2,59 & 11,6 d / 4 h & vo
 MailerSend · Starter 1M, rev. & 432.000 & 1.000.000 & 0,43 & $>$ 30 d / 24 h & \textit{rate} de 10/min medido en la cuenta sin aprobar, volumen contratado no recogido \\
 \hline
 \end{tabular}
-\caption[Relación entre \textit{rate} y cuota en Postmark, Resend, SendGrid y MailerSend]{Relación entre \textit{rate} y cuota en Postmark, Resend, SendGrid y MailerSend. $R \cdot W$ va en peticiones por ventana y $Q$ en correos, con un mes de 30 días. $t_{\min}$ se da con $k = 1$ y con el $k$ máximo de cada API: 50 en Postmark y Resend, 1.000 en SendGrid y 70 en MailerSend, este en ámbar. Cuando la cuota se agota en unas pocas peticiones con el $k$ máximo, $t_{\min}$ se da en número de peticiones en lugar de en segundos. La fila «rev.» usa el \textit{rate} de una cuenta de MailerSend bajo revisión. Un volumen contratado «no recogido» lo publica el proveedor y la Datasheet no lo recoge (Apartado~\ref{subsec:evolucion:p01}). Postmark Pro y Platform tienen la misma cuota y el mismo \textit{rate} que Basic, y se omiten. n.c.: no calculable.}
+\caption[Relación entre \textit{rate} y cuota en Postmark, Resend, SendGrid y MailerSend]{Relación entre \textit{rate} y cuota en Postmark, Resend, SendGrid y MailerSend. $R \cdot W$ va en peticiones por ventana y $Q$ en correos, con un mes de 30 días. $t_{\min}$ se da con $k = 1$ y con el $k$ máximo de cada API: 50 en Postmark y Resend, 1.000 en SendGrid y 70 en MailerSend, este en ámbar. Cuando la cuota se agota en unas pocas peticiones con el $k$ máximo, $t_{\min}$ se da en número de peticiones en lugar de en segundos. La fila «rev.» usa el \textit{rate} de una cuenta de MailerSend bajo revisión. La última columna recoge las salvedades del cálculo de cada fila y, cuando afectan a una cifra, su color en el semáforo. Un volumen contratado «no recogido» lo publica el proveedor y la Datasheet no lo recoge (Apartado~\ref{subsec:evolucion:p01}). Postmark Pro y Platform tienen la misma cuota y el mismo \textit{rate} que Basic, y se omiten. n.c.: no calculable.}
 \label{tab:limites-rates}
 \end{table}
 
@@ -133,7 +133,7 @@ La franquicia de 500 correos de esa cuenta no tiene ventana, y en la cuenta de p
 \setlength{\tabcolsep}{2.3pt}
 \begin{tabular}{|l|r|r|r|c|p{2.7cm}|}
 \hline
-\textbf{API · plan} & \textbf{$R \cdot W$} & \textbf{$Q$} & \textbf{$R \cdot W / Q$} & \textbf{$t_{\min}$ ($k{=}1$ / $k$ máx)} & \textbf{Datos en ámbar o rojo} \\
+\textbf{API · plan} & \textbf{$R \cdot W$} & \textbf{$Q$} & \textbf{$R \cdot W / Q$} & \textbf{$t_{\min}$ ($k{=}1$ / $k$ máx)} & \textbf{Salvedades del cálculo} \\
 \hline
 Brevo · Free (día) & 86.400.000 & 300 & 288.000 & 0,3 s / $<$ 1 pet. & \textit{rate} \semambar{}, hora del reinicio diario \semrojo{} \\
 \hline

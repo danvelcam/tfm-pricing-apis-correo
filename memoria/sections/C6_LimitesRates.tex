@@ -6,13 +6,8 @@ Un límite de uso es el máximo de un nivel de uso medible, como los correos env
 La cuota es un límite de uso renovable: el volumen máximo que se puede enviar en un periodo, llamado ventana, y que se repone cuando la ventana se cierra.
 El \textit{rate}, o caudal, es la velocidad máxima de envío, en peticiones o en correos por unidad de tiempo.
 
-En seis de las ocho APIs (Postmark, Resend, SendGrid, MailerSend, Brevo y Mailgun), el \textit{rate} deja pasar en la ventana de la cuota entre 103,7 y 129.600.000 veces la cuota de los planes que recogen sus Datasheets, de MailerSend Starter al plan Free de Postmark.
-Con los volúmenes contratados que el proveedor publica y la Datasheet no recoge (Apartado~\ref{subsec:evolucion:p01}), el mínimo baja a 2,59 veces en MailerSend Professional 2M.
-En ellas la cuota se agota antes de que el \textit{rate} frene el envío.
-
-Las cifras de esa relación no salen de la misma fuente en todas las APIs.
-Postmark no publica su \textit{rate} y lo devuelve en una cabecera de la respuesta, uno de los campos que la API añade a cada respuesta HTTP.
-Amazon SES no publica cifras para la cuenta de producción, la que Amazon autoriza a enviar a cualquier destinatario al sacarla del entorno de pruebas.
+En seis de las ocho APIs, si la cuenta no está en revisión, en pruebas ni restringida por reputación, el \textit{rate} deja pasar en la ventana de la cuota más de lo que la cuota admite, así que la cuota se agota antes de que el \textit{rate} frene el envío.
+En las otras dos no se puede decir lo mismo: Amazon SES no publica la cuota ni el \textit{rate} de su cuenta de producción, y en la cuenta de prueba de Mailchimp Transactional el caudal, de 25 correos por hora, frena antes que la cuota.
 
 El capítulo se organiza del siguiente modo.
 En primer lugar, la Sección~\ref{sec:limites:geometrica} define las cuatro magnitudes del cálculo (el \textit{rate}, la cuota, su ventana y los destinatarios por petición) y la curva de capacidad que las combina.
