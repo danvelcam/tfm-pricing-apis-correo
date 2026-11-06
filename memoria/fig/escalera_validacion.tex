@@ -1,23 +1,65 @@
 \begingroup\hyphenpenalty=10000\relax
+\def\figchica{\fontsize{7}{8.5}\selectfont}
 \begin{tikzpicture}[
-  font=\footnotesize,
+  font=\scriptsize,
   peldano/.style={align=left, text width=31mm, anchor=south west, inner sep=2pt},
-  nota/.style={align=left, text width=31mm, anchor=north west, inner sep=2pt, font=\scriptsize}
+  nota/.style={align=left, text width=31mm, anchor=north west, inner sep=2pt, font=\figchica},
+  salida/.style={tfm artefacto, text width=27mm, anchor=south, font=\figchica},
+  flecha/.style={-stealth, thick},
+  rama/.style={font=\figchica\itshape, inner sep=1.5pt}
 ]
 \fill[gray!18] (0,0) -- (0,0.9) -- (3.5,0.9) -- (3.5,1.8) -- (7,1.8) -- (7,2.7) -- (10.5,2.7) -- (10.5,0) -- cycle;
 \fill[gray!7] (10.5,0) rectangle (14,3.6);
 \draw[thick] (0,0) -- (0,0.9) -- (3.5,0.9) -- (3.5,1.8) -- (7,1.8) -- (7,2.7) -- (10.5,2.7) -- (10.5,3.6);
 \draw[thick, dashed] (10.5,3.6) -- (14,3.6) -- (14,0);
-\draw (0,0) -- (14,0);
-\node[peldano] at (0.1,0.95) {\textbf{1. Contraste documental}\\ Otra fuente oficial del proveedor confirma o contradice la primera};
-\node[peldano] at (3.6,1.85) {\textbf{2. Observación de panel}\\ Lo publicado frente a lo que muestra el panel de una cuenta propia, con capturas fechadas};
-\node[peldano] at (7.1,2.75) {\textbf{3. Sondeo empírico ligero}\\ Peticiones controladas a la API real, sin entregar correo cuando se puede};
-\node[peldano] at (10.6,3.65) {\textbf{4. Medición empírica formal}\\ Umbrales no publicados y comportamiento bajo carga};
+\draw[-stealth] (-0.15,0) -- (14.9,0) node[anchor=north east, font=\figchica] at (14.9,-0.05) {Tiempo};
+\draw[-stealth] (-0.15,0) -- (-0.15,7.3);
+\node[rotate=90, anchor=south, font=\figchica] at (-0.2,3.6) {Coste de ejecución};
+\node[peldano] (d1) at (0.1,0.95) {\textbf{1. Contraste documental}\\ Otra fuente oficial del proveedor confirma o contradice la primera};
+\node[peldano] (d2) at (3.6,1.85) {\textbf{2. Observación de panel}\\ Lo publicado frente a lo que muestra el panel de una cuenta propia};
+\node[peldano] (d3) at (7.1,2.75) {\textbf{3. Sondeo empírico ligero}\\ Peticiones controladas a la API real, sin entregar correo cuando se puede};
+\node[peldano] (d4) at (10.6,3.65) {\textbf{4. Medición empírica formal}\\ Umbrales no publicados y comportamiento bajo carga};
 \node[nota] at (0.1,0.85) {Lectura de otra página del proveedor};
 \node[nota] at (3.6,1.75) {Se observa en todas las APIs, aunque el peldaño 1 haya resuelto el campo};
 \node[nota] at (7.1,2.65) {Las ocho Datasheets tienen campos que llegaron hasta aquí};
 \node[nota] at (10.6,3.55) {Fuera del ciclo que construye el catálogo};
-\draw[-stealth] (0,-0.3) -- (14,-0.3);
-\node[font=\scriptsize, anchor=north] at (7,-0.35) {Coste creciente: de leer otra página del proveedor a medir el servicio bajo carga};
+\node[salida] (s1) at (1.75,5.9) {Campo en verde, con la cita de la segunda fuente};
+\node[salida] (s2) at (5.25,5.9) {Campo en verde, con la captura fechada del panel};
+\node[salida] (s3) at (8.75,5.9) {Campo en verde, con la evidencia del sondeo};
+\node[salida, densely dashed] (s4) at (12.25,5.9) {Umbral medido bajo carga};
+\draw[flecha] (d1.north -| s1.south) -- (s1.south);
+\draw[flecha] (d2.north -| s2.south) -- (s2.south);
+\draw[flecha] (d3.north -| s3.south) -- (s3.south);
+\draw[flecha, dashed] (d4.north -| s4.south) -- (s4.south);
+\node[font=\footnotesize, anchor=north] at (7.3,-0.55) {(a) La escalera: cada peldaño cuesta más que el anterior};
+
+\begin{scope}[yshift=-2.4cm]
+\draw[line width=1.1pt] (2.75,0.75) rectangle (10.55,-3.75);
+\node[anchor=south west, font=\figchica\bfseries, inner sep=1pt] at (2.75,0.8) {Escalera de validación};
+\foreach \k/\y/\t in {1/0/Contraste documental, 2/-1.5/Observación de panel, 3/-3.0/Sondeo empírico ligero}{
+  \node[tfm actividad, text width=24mm, minimum height=7mm] (a\k) at (4.45,\y) {\k. \t};
+  \draw[fill=white] (8.0,\y+0.6) -- (9.6,\y) -- (8.0,\y-0.6) -- (6.4,\y) -- cycle;
+  \node[font=\figchica, align=center, inner sep=0pt] at (8.0,\y) {¿Lo resuelve\\el peldaño \k?};
+  \coordinate (r\k-w) at (6.4,\y);
+  \coordinate (r\k-e) at (9.6,\y);
+  \coordinate (r\k-s) at (8.0,\y-0.6);
+  \draw[flecha] (a\k.east) -- (r\k-w);
+  \draw[flecha] (r\k-e) -- (10.15,\y) node[rama, pos=0.45, above] {sí};
+}
+\draw[flecha] (r1-s) -- (8.0,-0.78) node[rama, right, pos=0.3] {no} -| (a2.north);
+\draw[flecha] (r2-s) -- (8.0,-2.28) node[rama, right, pos=0.3] {no} -| (a3.north);
+\draw[thick] (10.15,0) -- (10.15,-3.0);
+\node[tfm artefacto, text width=21mm, font=\figchica] (ent) at (1.25,0) {Campo en ámbar o en rojo de la Datasheet};
+\draw[flecha] (ent.east) -- (a1.west);
+\node[font=\figchica, align=left, text width=23mm, anchor=east] (exc) at (2.55,-1.5) {El panel se observa en todas las APIs, aunque el peldaño 1 haya resuelto el campo};
+\draw[densely dotted] (exc.east) -- (a2.west);
+\node[tfm artefacto, text width=27mm, font=\figchica] (ver) at (12.85,-1.5) {Campo en verde, con su fuente o su evidencia};
+\draw[flecha] (10.15,-1.5) -- (ver.west);
+\node[tfm artefacto, text width=40mm, font=\figchica, anchor=north] (sig) at (8.0,-4.1) {Campo que sigue en ámbar o en rojo, con lo que se sabe anotado: la discrepancia abierta o el hueco en \texttt{not\_found}};
+\draw[flecha] (r3-s) -- (sig.north) node[rama, right, pos=0.8] {no};
+\node[tfm actividad, densely dashed, fill=gray!7, text width=22mm, font=\figchica] (a4) at (13.15,-4.6) {4. Medición empírica formal, fuera del ciclo};
+\draw[-stealth, dashed] (sig.east |- a4.west) -- (a4.west) node[rama, above, midway] {candidatos};
+\node[font=\footnotesize, anchor=north] at (7.3,-5.5) {(b) El mismo proceso como árbol de decisión};
+\end{scope}
 \end{tikzpicture}
 \endgroup

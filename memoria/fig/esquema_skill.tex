@@ -1,0 +1,22 @@
+\begingroup\hyphenpenalty=10000\relax
+\begin{tikzpicture}[
+  font=\scriptsize,
+  bloque/.style={draw, align=left, text width=78mm, inner sep=3pt, fill=white}
+]
+\node[tfm artefacto, minimum width=84mm, minimum height=101mm, anchor=north west] (skill) at (2.4,0.1) {};
+\node[anchor=north west, font=\scriptsize\bfseries] at (2.55,0) {SKILL.md};
+\node[bloque, anchor=north west] (b1) at (2.7,-0.55) {\textbf{Cabecera}: nombre y descripción, con cuándo se usa y cuándo no};
+\node[bloque, anchor=north west] (b2) at (2.7,-1.6) {\textbf{Propósito y criterio de éxito}: recoger las páginas en bruto, sin interpretarlas; el trabajo está bien hecho si el validador sale con 0};
+\node[bloque, anchor=north west] (b3) at (2.7,-3.05) {\textbf{Límites}: qué hace y qué no, y reglas de seguridad (solo páginas públicas, sin credenciales, comandos de una lista cerrada)};
+\node[bloque, anchor=north west] (b4) at (2.7,-4.5) {\textbf{Ficheros y cuándo leerlos} y \textbf{conceptos}};
+\node[bloque, anchor=north west] (b5) at (2.7,-5.4) {\textbf{Proceso}: fase 1, descubrir, con un árbol de decisión de ocho preguntas por enlace; fase 2, extraer, con lo que se guarda de cada página; presupuesto de peticiones};
+\node[bloque, anchor=north west] (b6) at (2.7,-6.85) {\textbf{Puerta de calidad}: seis medidas con su umbral y la cobertura de los ocho temas};
+\node[bloque, anchor=north west] (b7) at (2.7,-7.95) {\textbf{Salida}: qué escribe cada paso y qué hacer con cada código del validador (0: se entrega; 1: se corrige la causa y se repite; 2: se repite una vez y, si no pasa, se entrega avisando)};
+\node[bloque, anchor=north west] (b8) at (2.7,-9.4) {\textbf{Puerta final}: lista de comprobación antes de entregar};
+\node[tfm artefacto, text width=40mm, anchor=north west, align=left] (refs) at (11.6,-2.75) {\textbf{references/}\\ \tiny esquema de la salida, glosario, dominios de cada proveedor, patrones de cada tema y ejemplos con un proveedor ficticio};
+\node[tfm actividad, text width=40mm, anchor=north west, align=left] (scr) at (11.6,-5.4) {\textbf{scripts/}\\ \tiny programa que recoge, validador de la salida y contenedor en el que corren};
+\draw[-stealth] (b4.east) -- (refs.west |- b4.east) node[pos=0.6, below, font=\tiny] {se leen};
+\draw[-stealth] (b5.east) -- (scr.west |- b5.east) node[pos=0.6, above, font=\tiny] {ejecuta};
+\draw[-stealth] (scr.south) |- (b7.east);
+\end{tikzpicture}
+\endgroup

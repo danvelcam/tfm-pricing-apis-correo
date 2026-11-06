@@ -6,12 +6,12 @@ Un límite de uso es el máximo de un nivel de uso medible, como los correos env
 La cuota es un límite de uso renovable: el volumen máximo que se puede enviar en un periodo, llamado ventana, y que se repone cuando la ventana se cierra.
 El \textit{rate}, o caudal, es la velocidad máxima de envío, en peticiones o en correos por unidad de tiempo.
 
-En seis de las ocho APIs, si la cuenta no está en revisión, en pruebas ni restringida por reputación, el \textit{rate} deja pasar en la ventana de la cuota más de lo que la cuota admite, así que la cuota se agota antes de que el \textit{rate} frene el envío.
+En seis de las ocho APIs, si la cuenta no está en revisión, en pruebas ni restringida por reputación, al ritmo máximo del \textit{rate} la cuota se agota antes de que acabe su ventana, así que lo que frena el envío es la cuota.
 En las otras dos no se puede decir lo mismo: Amazon SES no publica la cuota ni el \textit{rate} de su cuenta de producción, y en la cuenta de prueba de Mailchimp Transactional el caudal, de 25 correos por hora, frena antes que la cuota.
 
 El capítulo se organiza del siguiente modo.
 En primer lugar, la Sección~\ref{sec:limites:geometrica} define las cuatro magnitudes del cálculo (el \textit{rate}, la cuota, su ventana y los destinatarios por petición) y la curva de capacidad que las combina.
-A continuación, la Sección~\ref{sec:limites:publicado} recoge lo que publica cada proveedor y calcula, plan a plan, cuántas veces admite el \textit{rate} la cuota.
+A continuación, la Sección~\ref{sec:limites:publicado} recoge lo que publica cada proveedor y calcula, plan a plan, cuántas veces cabe la cuota en lo que el \textit{rate} admite durante su ventana.
 Después, la Sección~\ref{sec:limites:catalogo} extrae seis afirmaciones con su recuento sobre las ocho APIs, y la Sección~\ref{sec:limites:prime4api} contrasta el cálculo a mano con las respuestas de PRIME4API.
 Por último, la Sección~\ref{sec:limites:respuesta} responde a la RQ3.
 

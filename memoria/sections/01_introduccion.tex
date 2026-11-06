@@ -29,8 +29,8 @@ de planes, características (\textit{features}) y complementos
 (\textit{add-ons}) con la que el proveedor regula el acceso a su servicio
 \citep{garciafernandez2025ipricing}. Un plan es la oferta que se contrata, una
 \textit{feature} es una funcionalidad del servicio y un \textit{add-on} es un
-complemento que se suma al plan. El canal API sirve para que otros sistemas
-usen el servicio de forma programática.
+complemento que se suma al plan. El canal API, o canal programático, es para
+otros sistemas, que usan el servicio desde su propio código.
 
 En esta memoria, el canal es el modo de interacción, como el canal web o el
 canal API, y la interfaz es el punto concreto de acceso. El NIST
@@ -198,8 +198,9 @@ agente conversacional del grupo, que traduce preguntas en lenguaje natural a
 llamadas a las herramientas de análisis de pricings del grupo y responde con
 sus resultados.
 
-Gavira Sánchez explica el \textit{Pricing Intelligence} con tres conceptos, que
-resume la Figura~\ref{fig:introduccion:pi} \citep{gavira2026tfm}. El espacio de
+La idea de explicar el \textit{Pricing Intelligence} con tres conceptos es de
+Daniel Ruiz López \citep{ruizlopez2026tfm}, y Gavira Sánchez los recoge en su Trabajo Fin de Máster, del que se
+reproduce la Figura~\ref{fig:introduccion:pi} \citep{gavira2026tfm}. El espacio de
 consultas (\textit{Query Space}) es el conjunto de preguntas que se pueden
 formular sobre los pricings y que las herramientas de \textit{Pricing
 Intelligence} son capaces de resolver. La base de conocimiento
@@ -299,7 +300,7 @@ HARVEY4API es el agente conversacional de Ruiz López para el canal API
 \citep{ruizlopez2026tfm}. Publica las operaciones de PRIME4API como
 herramientas a través del
 \textit{Model Context Protocol} (MCP), el protocolo con el que un modelo de
-lenguaje llama a herramientas externas \citep{mcp}, y responde en lenguaje
+lenguaje de gran tamaño (\textit{Large Language Model}, LLM) llama a herramientas externas \citep{mcp}, y responde en lenguaje
 natural.
 
 SPHERE es la plataforma web del grupo que reúne pricings en colecciones y da
@@ -312,18 +313,33 @@ Pricing2YAML. Más detalles en la Sección~\ref{sec:estado:sphere}.
 \label{subsec:introduccion:ejemplo}
 
 Una aplicación tiene que enviar 100.000 correos al mes, con ráfagas de 1.000
-peticiones por minuto, \textit{webhooks} de eventos y envío en lote. Quien la
-desarrolla quiere saber qué API y qué plan lo cubren al menor coste.
+peticiones por minuto, \textit{webhooks} de eventos y envío en lote. Sus
+administradores y su equipo de DevOps quieren saber qué API y qué plan lo
+cubren al menor coste, y para decidirlo se apoyan en el ecosistema SPHERE
+(Figura~\ref{fig:introduccion:ejemplo}).
 
 Cada condición se lee en un sitio distinto. El volumen y el coste salen de la
 cuota, el precio y el sobrecoste del plan. La ráfaga se compara con el
 \textit{rate} de envío, y el lote, con el tope de correos por petición
-(\texttt{workload}) del \textit{endpoint} de envío. Los \textit{webhooks} son
-una \textit{feature} que la Datasheet no recoge. Se leen en una matriz de
-\textit{features}, una tabla por API que dice qué \textit{features} trae cada
-plan y que se guarda junto a su Datasheet. El Extracto de
+(\texttt{workload}) del \textit{endpoint} de envío. El volumen, la ráfaga y
+el lote son necesidades no funcionales, lo que la ingeniería del software
+llama requisitos no funcionales: dicen cuántos correos envía la aplicación,
+a qué ritmo y cuántos por petición, y se comparan con campos de la Datasheet
+de cada API. El Extracto de
 código~\ref{lst:introduccion:sendgrid} muestra dónde se leen en la Datasheet
 de SendGrid el volumen, la ráfaga y el lote.
+
+Los \textit{webhooks} son una necesidad funcional, porque dicen qué tiene
+que hacer la API. Son una \textit{feature} que la Datasheet no recoge, y se leen en una
+matriz de \textit{features}, una tabla por API que dice qué \textit{features}
+trae cada plan y que se guarda junto a su Datasheet.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/ejemplo_100k.tex}
+\caption[El ejemplo de los 100.000 correos]{El ejemplo de los 100.000 correos. Los administradores y el equipo de DevOps de la aplicación formulan una pregunta de decisión, del espacio de consultas. El volumen, la ráfaga y el lote se comparan con la cuota, el \textit{rate} y el tope por petición de las Datasheets de las ocho APIs del catálogo, que forman la base de conocimiento, y PRIME4API responde sobre ellas preguntas de decisión más concretas, como el tiempo mínimo de un plan. Las respuestas de PRIME4API pertenecen al espacio de conocimiento (Figura~\ref{fig:introduccion:pi}). Los \textit{webhooks} se leen a mano en la matriz de \textit{features} de cada API, fuera de la Datasheet, y su respuesta queda fuera de ese espacio. La respuesta a la pregunta de decisión está en la Sección~\ref{sec:comparacion:caso}. El recuadro discontinuo agrupa las piezas del ecosistema SPHERE que intervienen. Elaboración propia.}
+\label{fig:introduccion:ejemplo}
+\end{figure}
 
 \begin{lstlisting}[style=datasheetyaml,float=tbp,caption={Fragmento de la Datasheet de SendGrid del catálogo: la cuota mensual del plan Essentials 50K con su sobrecoste, el \textit{rate} de envío, que la Datasheet declara en el plan, y el plan, con su precio en USD al mes y el tope de correos por petición. Las líneas \texttt{\# ...} marcan lo que se omite.},label={lst:introduccion:sendgrid}]
 capacity:
@@ -359,9 +375,10 @@ plans:
             # ...
 \end{lstlisting}
 
-Para el tiempo mínimo de enviar los 100.000 correos con el plan Essentials
-50K de SendGrid, que incluye 50.000 y admite 10.000 peticiones por segundo,
-PRIME4API \citep{prime4apirepo} da dos respuestas según qué ocurra al pasar de
+Sobre esas Datasheets, PRIME4API \citep{prime4apirepo} responde preguntas de
+decisión más concretas, sobre un solo plan. Para el tiempo mínimo de enviar los 100.000
+correos con el plan Essentials 50K de SendGrid, que incluye 50.000 y admite
+10.000 peticiones por segundo, da dos respuestas según qué ocurra al pasar de
 la cuota. Con un destinatario por petición y un presupuesto que cubre el
 sobrecoste, da 9 segundos: diez ráfagas de 10.000 peticiones, la primera en el
 instante cero. Si la cuota corta el envío, da 30 días y 4 segundos, porque la
@@ -557,13 +574,15 @@ aborda el trabajo, uno por contribución.
 
 El \textbf{Capítulo~\ref{cap:catalogo}} construye el catálogo de ocho Datasheets y
 responde a la RQ1 (OBJ-01). El catálogo responde al OBJ-02 y es el medio para
-las RQ2 a RQ4. Su salida hacia SPHERE responde al OBJ-06, que no deriva de
+las RQ2 a RQ4. Su salida hacia SPHERE\footnote{Una maqueta web, fuera de SPHERE, muestra
+cómo se vería en la plataforma la colección de las ocho APIs, y puede abrirse en
+\url{https://danvelcam.github.io/tfm-pricing-apis-correo/sphere/coleccion.html} (Sección~\ref{sec:propuesta:sphere:coleccion}).} responde al OBJ-06, que no deriva de
 ninguna RQ. El capítulo fija el criterio de selección de las APIs y el ciclo
 de construcción de cada Datasheet, con la escalera de validación por la que
 pasan los datos que ninguna fuente da de forma literal o en los que dos
 fuentes chocan. Sus cuatro peldaños son el contraste con otra
-fuente, la observación del panel con una cuenta propia, el sondeo, que comprueba un
-límite con peticiones controladas contra la API real, y la medición formal.
+fuente, la observación del panel con una cuenta propia, el sondeo con peticiones de
+prueba contra la API real y la medición formal.
 
 El mismo capítulo comprueba si las ocho Datasheets superan el validador de
 formato de este trabajo, que revisa los tipos de cada campo y las referencias

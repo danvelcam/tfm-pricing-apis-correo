@@ -82,7 +82,7 @@ Queda abierto repetir el inventario en otro dominio, comprobando cada propuesta 
 La marca de valor no publicado (P-04) y el plan con precio no público (P-05) se han medido contra un único motor, PRIME4API.
 Claude Opus 5.5, con el que se contrastaron las preguntas de HARVEY4API, lee el YAML como texto y no cuenta como segundo motor.
 
-En la relación entre límites de uso y \textit{rates} (RQ3), que la cuota sea la restricción activa se explica por las unidades, y por eso cabe esperarlo fuera del catálogo: frente a una cuota mensual o diaria, un \textit{rate} por segundo o por minuto deja pasar en la ventana de la cuota mucho más volumen.
+En la relación entre límites de uso y \textit{rates} (RQ3), que la cuota sea la restricción activa se explica por las unidades, y por eso cabe esperarlo fuera del catálogo: frente a una cuota mensual o diaria, un \textit{rate} por segundo o por minuto, sostenido durante la ventana de la cuota, suma mucho más volumen.
 Lo que sí depende de la muestra son las excepciones, como el \textit{rate} reducido de la cuenta sin aprobar de MailerSend (Sección~\ref{sec:conclusiones:constructo}) o la discrepancia de Mailgun.
 Mailgun publica 1.500 peticiones por segundo por IP de cliente, y la cabecera del envío devuelve un límite de 80.000 peticiones en una ventana medida de unos diez segundos.
 Que el \textit{rate} del envío individual no cambie con el plan vale en Resend, SendGrid y MailerSend, y Brevo lo contradice.

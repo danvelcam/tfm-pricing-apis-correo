@@ -4,7 +4,7 @@
 
 En el plan Pro de Resend el \textit{rate} es de 10 peticiones por segundo, el valor por defecto que el proveedor publica por equipo, compartido por todas sus claves de API \citep{resenddocs}.
 A ese ritmo, un mes de 30 días admite 25.920.000 peticiones, y la cuota del plan es de 50.000 correos al mes \citep{resendpricing}.
-El \textit{rate} deja pasar, por tanto, 518 veces la cuota en su ventana de 30 días, contando un destinatario por petición.
+Al ritmo máximo, en esos 30 días cabría, por tanto, 518 veces la cuota, contando un destinatario por petición.
 En SendGrid Essentials 50K \citep{sendgridpricing} el mismo cálculo da 518.400 veces, con un \textit{rate} de 10.000 peticiones por segundo.
 El proveedor publica ese \textit{rate} una sola vez, en una pregunta frecuente que no lo liga a ningún plan.
 En la cuenta de prueba de Mailchimp Transactional el cálculo no se puede hacer.
@@ -27,12 +27,12 @@ c_{\mathrm{cuota}} = \frac{Q}{W}, \qquad c_{\mathit{rate}} = R \cdot k, \qquad t
 \label{eq:limites-rates}
 \end{equation}
 El primer umbral es el ritmo medio que agota la cuota justo al cerrar su ventana.
-El segundo es el ritmo máximo de correos que deja pasar el \textit{rate}.
+El segundo es el ritmo máximo de correos que admite el \textit{rate}.
 El tiempo $t_{\min}$ es el que tarda una ráfaga sostenida a ese ritmo máximo en agotar la cuota.
 
 De los dos límites, la restricción activa es el de umbral menor: el que se alcanza primero y frena el envío, mientras el otro no llega a actuar.
-En Resend Pro la cuota pide 0,019 correos por segundo de media y el \textit{rate} deja pasar 10, así que la restricción activa es la cuota.
-El cociente $R \cdot W / Q$ mide cuántas veces deja pasar el \textit{rate} la cuota dentro de su ventana: 518 en Resend Pro y 518.400 en SendGrid Essentials 50K.
+En Resend Pro la cuota pide 0,019 correos por segundo de media y el \textit{rate} admite 10, así que la restricción activa es la cuota.
+El cociente $R \cdot W / Q$ compara los dos topes en la misma ventana: cuántas veces cabría la cuota en lo que el \textit{rate} admite en ella: 518 en Resend Pro y 518.400 en SendGrid Essentials 50K.
 Se calcula con $k = 1$ para comparar las APIs en peticiones, y $k$ solo entra en el umbral del \textit{rate} y en $t_{\min}$.
 
 Las cuatro magnitudes son las que PRIME4API lee de la Datasheet para construir los límites de cada plan \citep{gavira2026tfm}.

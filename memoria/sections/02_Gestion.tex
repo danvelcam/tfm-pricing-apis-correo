@@ -118,7 +118,7 @@ y el 13 de noviembre de 2026.
 \begin{figure}[tbp]
 \centering
 \input{sections/generado/cronograma}
-\caption[Cronograma previsto y al cierre]{Cronograma del proyecto. Por cada paquete, la barra sin relleno es su ventana en la línea base, y las celdas rellenas de debajo son las horas al cierre de cada mes, más intensas cuantas más horas. Las de octubre y noviembre incluyen horas pendientes.}
+\caption[Cronograma previsto y al cierre]{Cronograma del proyecto. Por cada paquete, la barra sin relleno es su ventana en la línea base, y las celdas rellenas de debajo son las horas de cada mes, más intensas cuantas más horas. Las \dato{total.sinregistro} horas de revisión e iteración posteriores al primer borrador completo no tienen mes asignado y no aparecen.}
 \label{fig:metodologia:cronograma}
 \end{figure}
 
@@ -131,17 +131,10 @@ costes fijos, que son licencias y suministros. Sobre el subtotal previsto se añ
 hipótesis.
 
 \begin{description}
-  \item[Horas.] Las previstas son las de la línea base. Las ejecutadas
-    son las dedicadas por el autor hasta el \dato{medido.hasta}, incluida
-    la revisión de lo que producen los agentes, y suman
-    \dato{total.registrado}. De ellas, \dato{total.medido} se
-    reconstruyen con la hora de cada mensaje del autor en los registros
-    de sesión: una pausa de más de \dato{medido.hueco} minutos abre una
-    sesión nueva, y cada sesión suma \dato{medido.cola} minutos al final.
-    Las otras \dato{total.estimado} son estimaciones para los periodos sin
-    registro. Las pendientes son las \dato{total.pendiente} que quedan
-    para preparar la defensa. Las horas al cierre son las ejecutadas más las pendientes. No son horas reales,
-    porque las pendientes son una previsión.
+  \item[Horas.] Las previstas son las de la línea base y suman
+    \dato{total.prev}. Las de cierre suman \dato{total.real}
+    (Tabla~\ref{tab:metodologia:horas}). Las horas de cada rol son la suma
+    de las de sus paquetes.
   \item[Tarifas.] Cada rol se valora con la parte de costes directos,
     el 77,46~\%, del precio medio de referencia que fija la Instrucción
     1/2023 de la Agencia Digital de Andalucía \citep{ada2023perfiles}.
@@ -169,12 +162,11 @@ hipótesis.
     prueba, abiertos a cualquiera.
   \item[Suministros.] Internet (\dato{fijo.internet.mensual}~€ al mes)
     y electricidad (\dato{fijo.luz.mensual}~€ al mes) cuentan en los
-    \dato{fijo.internet.meses}~meses con horas ejecutadas o pendientes,
+    \dato{fijo.internet.meses}~meses con horas,
     de febrero a mayo y de agosto a noviembre. PRIME4API y SPHERE se
     ejecutan en local, en el mismo equipo.
   \item[Costes que no dependen del número de horas.] La amortización y los
-    costes fijos entran igual en la columna prevista y en la de cierre. No se
-    reparten entre lo ejecutado y lo pendiente.
+    costes fijos entran igual en la columna prevista y en la de cierre.
 \end{description}
 
 La amortización resulta de
@@ -186,28 +178,28 @@ La amortización resulta de
 \centering
 \footnotesize
 \setlength{\tabcolsep}{3pt}
-\begin{tabular}{|l|r|r|r|r|r|r|}
+\begin{tabular}{|l|r|r|r|r|}
 \hline
-\textbf{Partida} & \textbf{\shortstack{Horas\\prev./cierre}} & \textbf{Previsto} & \textbf{Ejecutado} & \textbf{Pendiente} & \textbf{Al cierre} & \textbf{Desviación} \\
+\textbf{Partida} & \textbf{\shortstack{Horas\\prev./cierre}} & \textbf{Previsto} & \textbf{Al cierre} & \textbf{Desviación} \\
 \hline
-Gestor de proyecto (\dato{rol.gestor.tarifa}) & \dato{rol.gestor.horasprev} / \dato{rol.gestor.horasreal} & \dato{rol.gestor.costeprev} & \dato{rol.gestor.costereg} & \dato{rol.gestor.costepend} & \dato{rol.gestor.costereal} & \dato{rol.gestor.desvcoste} \\
-Analista de sistemas (\dato{rol.analista.tarifa}) & \dato{rol.analista.horasprev} / \dato{rol.analista.horasreal} & \dato{rol.analista.costeprev} & \dato{rol.analista.costereg} & \dato{rol.analista.costepend} & \dato{rol.analista.costereal} & \dato{rol.analista.desvcoste} \\
-Desarrollador (\dato{rol.desarrollador.tarifa}) & \dato{rol.desarrollador.horasprev} / \dato{rol.desarrollador.horasreal} & \dato{rol.desarrollador.costeprev} & \dato{rol.desarrollador.costereg} & \dato{rol.desarrollador.costepend} & \dato{rol.desarrollador.costereal} & \dato{rol.desarrollador.desvcoste} \\
-\textit{Personal} & \textit{\dato{total.prev} / \dato{total.real}} & \textit{\dato{pres.personal.prev}} & \textit{\dato{pres.personal.reg}} & \textit{\dato{pres.personal.pend}} & \textit{\dato{pres.personal.real}} & \textit{\dato{pres.personal.desv}} \\
+Gestor de proyecto (\dato{rol.gestor.tarifa}) & \dato{rol.gestor.horasprev} / \dato{rol.gestor.horasreal} & \dato{rol.gestor.costeprev} & \dato{rol.gestor.costereal} & \dato{rol.gestor.desvcoste} \\
+Analista de sistemas (\dato{rol.analista.tarifa}) & \dato{rol.analista.horasprev} / \dato{rol.analista.horasreal} & \dato{rol.analista.costeprev} & \dato{rol.analista.costereal} & \dato{rol.analista.desvcoste} \\
+Desarrollador (\dato{rol.desarrollador.tarifa}) & \dato{rol.desarrollador.horasprev} / \dato{rol.desarrollador.horasreal} & \dato{rol.desarrollador.costeprev} & \dato{rol.desarrollador.costereal} & \dato{rol.desarrollador.desvcoste} \\
+\textit{Personal} & \textit{\dato{total.prev} / \dato{total.real}} & \textit{\dato{pres.personal.prev}} & \textit{\dato{pres.personal.real}} & \textit{\dato{pres.personal.desv}} \\
 \hline
-Amortización del equipo & & \dato{pres.amort} & & & \dato{pres.amort} & 0,00 \\
-Claude Max 5x (\dato{fijo.claude.meses} mes) & & \dato{fijo.claude.total} & & & \dato{fijo.claude.total} & 0,00 \\
-GitHub Pro (\dato{fijo.github.meses} meses) & & \dato{fijo.github.total} & & & \dato{fijo.github.total} & 0,00 \\
-Internet (\dato{fijo.internet.meses} meses) & & \dato{fijo.internet.total} & & & \dato{fijo.internet.total} & 0,00 \\
-Electricidad (\dato{fijo.luz.meses} meses) & & \dato{fijo.luz.total} & & & \dato{fijo.luz.total} & 0,00 \\
+Amortización del equipo & & \dato{pres.amort} & \dato{pres.amort} & 0,00 \\
+Claude Max 5x (\dato{fijo.claude.meses} mes) & & \dato{fijo.claude.total} & \dato{fijo.claude.total} & 0,00 \\
+GitHub Pro (\dato{fijo.github.meses} meses) & & \dato{fijo.github.total} & \dato{fijo.github.total} & 0,00 \\
+Internet (\dato{fijo.internet.meses} meses) & & \dato{fijo.internet.total} & \dato{fijo.internet.total} & 0,00 \\
+Electricidad (\dato{fijo.luz.meses} meses) & & \dato{fijo.luz.total} & \dato{fijo.luz.total} & 0,00 \\
 \hline
-Subtotal & & \dato{pres.subtotal.prev} & & & \dato{pres.subtotal.real} & \dato{pres.desv} \\
-Contingencia (\dato{pres.contingenciapct}~\%) & & \dato{pres.contingencia} & & & --- & \\
+Subtotal & & \dato{pres.subtotal.prev} & \dato{pres.subtotal.real} & \dato{pres.desv} \\
+Contingencia (\dato{pres.contingenciapct}~\%) & & \dato{pres.contingencia} & --- & \\
 \hline
-\textbf{Total} & & \textbf{\dato{pres.total.prev}} & & & \textbf{\dato{pres.subtotal.real}} & \textbf{\dato{pres.total.desv}} \\
+\textbf{Total} & & \textbf{\dato{pres.total.prev}} & \textbf{\dato{pres.subtotal.real}} & \textbf{\dato{pres.total.desv}} \\
 \hline
 \end{tabular}
-\caption[Presupuesto, previsto y al cierre]{Presupuesto previsto y al cierre, en euros sin IVA. Entre paréntesis, la tarifa de cada rol en euros por hora. El ejecutado valora las horas dedicadas hasta el \dato{medido.hasta}, y el pendiente, las previstas hasta la defensa. La columna al cierre es la suma de ambos y no incluye contingencia.}
+\caption[Presupuesto, previsto y al cierre]{Presupuesto previsto y al cierre, en euros sin IVA. Entre paréntesis, la tarifa de cada rol en euros por hora. La columna al cierre valora las horas al cierre y no incluye contingencia.}
 \label{tab:metodologia:total}
 \end{table}
 
@@ -217,12 +209,10 @@ son iguales en las dos columnas, toda la diferencia es de personal
 (\dato{pres.personal.desvpct}~\%). Por roles, la desviación es de
 \dato{rol.gestor.desvh}~horas en el gestor de proyecto,
 \dato{rol.analista.desvh} en el analista y \dato{rol.desarrollador.desvh}
-en el desarrollador. El total al cierre no consume la contingencia y se
-desvía \dato{pres.total.desv}~€ del total previsto
-(\dato{pres.total.desvpct}~\%). De los
-\dato{pres.personal.real}~€ de personal al cierre,
-\dato{pres.personal.pend}~€ corresponden a horas pendientes, todas del
-rol de gestor de proyecto.
+en el desarrollador. La desviación del subtotal cabe en la contingencia,
+de \dato{pres.contingencia}~€, y el total al cierre se desvía
+\dato{pres.total.desv}~€ del total previsto
+(\dato{pres.total.desvpct}~\%).
 
 \section{Desviaciones}
 \label{sec:metodologia:desviaciones}
@@ -237,8 +227,7 @@ las fechas de los hitos con la línea base y con la replanificación del
 1 de septiembre. Respecto a la línea base, el catálogo se completa 68
 días más tarde y la memoria, 29 días más tarde. Respecto a la
 replanificación, el catálogo se adelanta 7 días, y la memoria y el
-depósito se retrasan 17 y 18 días. De las \dato{total.registrado}~horas
-ejecutadas, las de febrero a mayo son las de la reunión de arranque
+depósito se retrasan 17 y 18 días. De las horas con mes asignado, las de febrero a mayo son las de la reunión de arranque
 (\dato{est.kickoff.horas}~horas) y las del estudio previo:
 \dato{est.estudioligero.horas} de lectura del estado del arte hasta abril
 y \dato{est.puestadia.horas} de puesta al día en las líneas de
@@ -264,44 +253,38 @@ Defensa & --- & --- & 9--13 nov\textsuperscript{a} & --- & --- \\
 \label{tab:metodologia:hitos}
 \end{table}
 
-\paragraph{Horas.} Las horas al cierre suman \dato{total.real} frente a las
-\dato{total.prev} previstas, \dato{total.desv}~horas
-(\dato{total.desvpct}~\%, Tabla~\ref{tab:metodologia:horas}). Suben la
-gestión (PT0) y el estudio previo (PT1), y bajan los paquetes PT2 a
-PT6. Las horas se asignan a cada paquete según el
-contenido de cada sesión de trabajo. Las actividades de PT4 y PT5 se
+\paragraph{Horas.} La planificación inicial es de \dato{total.prev}~horas,
+y la dedicación real, de \dato{total.real}: \dato{total.desv}~horas
+(\dato{total.desvpct}~\%, Tabla~\ref{tab:metodologia:horas}). La revisión
+y las iteraciones posteriores al primer borrador completo llevaron más
+tiempo del previsto. Suben la gestión (PT0), el estudio previo (PT1) y la memoria
+(PT6), y bajan los paquetes PT2 a PT5. Las actividades de PT4 y PT5 se
 ejecutaron dentro del ciclo de construcción de cada Datasheet y de la
-redacción de la memoria, y sus sesiones se asignan sobre todo a PT3 y a
-PT6. Por eso la desviación de PT3, PT4 y PT5 por separado no mide el
-esfuerzo de cada uno. Juntos pasan de \dato{grupo.PT3a5.prev} a
-\dato{grupo.PT3a5.real}~horas (\dato{grupo.PT3a5.desv},
-\dato{grupo.PT3a5.desvpct}~\%).
-
-Las horas registran el tiempo del autor. El tiempo en que los agentes
-de inteligencia artificial trabajan sin intervención suya no se
-registra, así que el total no mide el esfuerzo completo del proyecto.
-Tampoco hay una medición del mismo trabajo sin agentes ni con el
-catálogo de diez a doce APIs de la línea base. Con estos datos, la
-reducción de horas no puede atribuirse a una causa.
+redacción de la memoria, así que la desviación de PT3, PT4 y PT5 por
+separado no mide el esfuerzo de cada uno. Juntos pasan de
+\dato{grupo.PT3a5.prev} a \dato{grupo.PT3a5.real}~horas
+(\dato{grupo.PT3a5.desv}, \dato{grupo.PT3a5.desvpct}~\%).
 
 \begin{table}[!htbp]
 \centering
 \small
-\setlength{\tabcolsep}{2.5pt}
-\begin{tabular}{|l|r|r|r|r|r|r|}
+\setlength{\tabcolsep}{4pt}
+\begin{tabular}{|l|r|r|r|r|}
 \hline
-\textbf{Paquete} & \textbf{Previstas} & \textbf{Ejecutadas} & \textbf{Pendientes} & \textbf{Al cierre} & \textbf{Desv.} & \textbf{Desv. (\%)} \\
+\textbf{Paquete} & \textbf{Previstas} & \textbf{Al cierre} & \textbf{Desv.} & \textbf{Desv. (\%)} \\
 \hline
-PT0. Gestión & \dato{PT0.prev} & \dato{PT0.registrado} & \dato{PT0.pendiente} & \dato{PT0.real} & \dato{PT0.desv} & \dato{PT0.desvpct} \\
-PT1. Estudio previo & \dato{PT1.prev} & \dato{PT1.registrado} & \dato{PT1.pendiente} & \dato{PT1.real} & \dato{PT1.desv} & \dato{PT1.desvpct} \\
-PT2. Selección & \dato{PT2.prev} & \dato{PT2.registrado} & \dato{PT2.pendiente} & \dato{PT2.real} & \dato{PT2.desv} & \dato{PT2.desvpct} \\
-PT3 a PT5. Catálogo y análisis & \dato{grupo.PT3a5.prev} & \the\numexpr\dato{PT3.registrado}+\dato{PT4.registrado}+\dato{PT5.registrado}\relax{} & \the\numexpr\dato{PT3.pendiente}+\dato{PT4.pendiente}+\dato{PT5.pendiente}\relax{} & \dato{grupo.PT3a5.real} & \dato{grupo.PT3a5.desv} & \dato{grupo.PT3a5.desvpct} \\
-PT6. Memoria & \dato{PT6.prev} & \dato{PT6.registrado} & \dato{PT6.pendiente} & \dato{PT6.real} & \dato{PT6.desv} & \dato{PT6.desvpct} \\
+PT0. Gestión & \dato{PT0.prev} & \dato{PT0.real} & \dato{PT0.desv} & \dato{PT0.desvpct} \\
+PT1. Estudio previo & \dato{PT1.prev} & \dato{PT1.real} & \dato{PT1.desv} & \dato{PT1.desvpct} \\
+PT2. Selección y piloto & \dato{PT2.prev} & \dato{PT2.real} & \dato{PT2.desv} & \dato{PT2.desvpct} \\
+PT3. Catálogo & \dato{PT3.prev} & \dato{PT3.real} & \dato{PT3.desv} & \dato{PT3.desvpct} \\
+PT4. Límites y \textit{rates} & \dato{PT4.prev} & \dato{PT4.real} & \dato{PT4.desv} & \dato{PT4.desvpct} \\
+PT5. Comparación & \dato{PT5.prev} & \dato{PT5.real} & \dato{PT5.desv} & \dato{PT5.desvpct} \\
+PT6. Memoria y defensa & \dato{PT6.prev} & \dato{PT6.real} & \dato{PT6.desv} & \dato{PT6.desvpct} \\
 \hline
-\textbf{Total} & \dato{total.prev} & \dato{total.registrado} & \dato{total.pendiente} & \dato{total.real} & \dato{total.desv} & \dato{total.desvpct} \\
+\textbf{Total} & \textbf{\dato{total.prev}} & \textbf{\dato{total.real}} & \textbf{\dato{total.desv}} & \textbf{\dato{total.desvpct}} \\
 \hline
 \end{tabular}
-\caption[Horas previstas y al cierre por paquete]{Horas previstas y al cierre por paquete de trabajo. PT3, PT4 y PT5 van en una sola fila porque sus actividades (construir el catálogo, ejecutarlo en PRIME4API y comparar las APIs) se ejecutaron dentro del mismo ciclo. Las ejecutadas llegan hasta el \dato{medido.hasta}, y las pendientes son previsión hasta la defensa.}
+\caption[Horas previstas y al cierre por paquete]{Horas previstas y al cierre por paquete de trabajo. Las de PT6 incluyen la preparación de la defensa.}
 \label{tab:metodologia:horas}
 \end{table}
 

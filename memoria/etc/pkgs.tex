@@ -13,6 +13,7 @@
 \usepackage{graphicx}
 \usepackage{titlesec}
 \usepackage{float}
+\usepackage[font=small,textfont=it,labelfont=bf]{caption}
 \renewcommand{\topfraction}{0.9}
 \renewcommand{\textfraction}{0.1}
 \renewcommand{\floatpagefraction}{0.75}
@@ -40,3 +41,17 @@
 \DefineBibliographyStrings{spanish}{jourser={serie}, urlseen={Visitado}, url={Dirección}, artno={art.}}
 \setcounter{biburlucpenalty}{8000}
 \defbibheading{bibchapter}[\bibname]{\chapter{#1}}
+\newcommand{\tfmdoc}[2]{%
+  \tikzset{#1/.style={align=center, inner sep=3pt,
+    append after command={\pgfextra{\let\tfmn\tikzlastnode
+      \fill[white] (\tfmn.north west) -- ([xshift=-3.2mm]\tfmn.north east) -- ([yshift=-3.2mm]\tfmn.north east) -- (\tfmn.south east) -- (\tfmn.south west) -- cycle;
+      \fill[gray!35] ([xshift=-3.2mm]\tfmn.north east) -- ([yshift=-3.2mm]\tfmn.north east) -| cycle;
+      \draw[line width=#2] (\tfmn.north west) -- ([xshift=-3.2mm]\tfmn.north east) -- ([yshift=-3.2mm]\tfmn.north east)
+        -- (\tfmn.south east) -- (\tfmn.south west) -- cycle;
+      \draw[line width=#2] ([xshift=-3.2mm]\tfmn.north east) |- ([yshift=-3.2mm]\tfmn.north east);}}}}}
+\tfmdoc{tfm artefacto}{0.4pt}
+\tfmdoc{tfm artefacto grueso}{1.1pt}
+\tikzset{
+  tfm actividad/.style={draw, rounded corners=4pt, fill=gray!18, align=center, inner sep=3pt},
+  tfm grueso/.style={line width=1.1pt},
+}

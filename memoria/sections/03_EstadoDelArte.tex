@@ -212,10 +212,16 @@ resuelven el análisis.
 La primera aproximación, de Fresno-Aranda et al., opera sobre arquitecturas de
 microservicios \citep{fowler2014microservices} que consumen APIs
 externas reguladas por planes con limitaciones. Los autores llaman a esas
-arquitecturas LAMA (\textit{Limitation-Aware Microservice Architecture}).
-La capacidad es el máximo volumen de trabajo que la arquitectura completa
-puede atender sin exceder ninguna limitación externa. Smart LAMA, la API
-REST que los autores construyen para ellas, traduce la topología (un grafo de
+arquitecturas LAMA (\textit{Limitation-Aware Microservice Architecture}) y
+definen la capacidad de una LAMA como \textit{«the maximum workload that it
+can handle over a given period of time and at a maximum cost, without
+exceeding any of the external limitations derived from subscribed pricing
+plans»} \citep[p.~80]{fresno2023gecon}, en traducción propia, el máximo volumen de trabajo que puede
+atender en un periodo dado y con un coste máximo, sin superar ninguna de las
+limitaciones externas que se derivan de los planes de precios contratados.
+
+Smart LAMA, la API REST que Fresno-Aranda et al. construyen para las LAMA,
+traduce la topología (un grafo de
 servicios propios y APIs consumidas) a un CSOP. Resolverlo responde a
 operaciones como el máximo de peticiones servibles en un periodo y coste
 dados, el coste mínimo para un volumen dado o el tiempo mínimo para
@@ -367,7 +373,16 @@ herramientas son la extracción automática (A-MINT y A-MINT4API), el motor
 de análisis (PRIME y PRIME4API) y el agente conversacional (HARVEY y
 HARVEY4API). En el canal API, SPHERE da acceso a HARVEY4API.
 El resto de la sección describe las piezas del canal API. De ellas, este trabajo aplica y extiende el ACM, ACM2YAML, la
-Datasheet, PRIME4API y HARVEY4API.
+Datasheet, PRIME4API y HARVEY4API. La
+Figura~\ref{fig:estado:ecosistema} dibuja las piezas de los dos canales con
+lo que entra y sale de cada herramienta.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/ecosistema_sphere.tex}
+\caption[El ecosistema SPHERE en sus dos canales]{El ecosistema SPHERE en sus dos canales. Las herramientas y el ciclo de construcción son cajas grises, y los artefactos, documentos con la esquina doblada. En su despliegue actual, SPHERE contiene las herramientas de los dos canales y las colecciones de pricings y de Datasheets, entre ellas la de los ocho pricings de este trabajo. Fuera quedan, a la izquierda, las páginas del proveedor y, a la derecha, las respuestas y los clientes: los administradores y el equipo de DevOps de una aplicación, que preguntan a los agentes conversacionales. En cada canal, la extracción pasa de las páginas del proveedor al pricing o a la Datasheet, y el motor de análisis responde preguntas sobre ellos. El agente llama a las herramientas de su canal; en el canal API, al motor y mediante MCP. Las flechas discontinuas llevan los pricings y las Datasheets a sus colecciones. Con borde grueso, las piezas que este trabajo aplica y extiende y el ciclo con el que construye sus Datasheets (Capítulo~\ref{cap:catalogo}), que queda fuera de SPHERE. El borde de HARVEY4API es además de puntos, porque el agente se usa según su especificación y no se ha ejecutado en este trabajo (Tabla~\ref{tab:estado:aportacion}). Elaboración propia a partir de \citep{gavira2026tfm,ruizlopez2026tfm,cavero2026pricingintelligence,cavero2025amint,garciafernandez2025ipricing,sphere}.}
+\label{fig:estado:ecosistema}
+\end{figure}
 
 El modelo, su serialización, el motor y el agente del canal API proceden
 de dos Trabajos Fin de Máster coordinados del mismo grupo. El de Gavira Sánchez aporta el modelo de

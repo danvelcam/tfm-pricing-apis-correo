@@ -1,8 +1,13 @@
 \section{El caso de los 100.000 correos}\label{sec:comparacion:caso}
 
 Una aplicación necesita enviar 100.000 correos al mes, con ráfagas de 1.000 peticiones por minuto (16,7 peticiones por segundo), \textit{webhooks} de eventos y envío en lote.
+¿Qué API y qué plan lo cubren al menor coste?
+Parece que basta con buscar en cada página de precios el plan de 100.000 correos.
+Pero la ráfaga se mide en peticiones y la cuota en correos, y una petición de lote lleva muchos correos.
+¿Cuenta como un correo un mensaje con varios destinatarios, o como tantos como destinatarios lleve?
+¿Y rigen los mismos límites si la aplicación envía por el relé SMTP y no por la API REST?
+
 Es el ejemplo de la Sección~\ref{subsec:introduccion:ejemplo}.
-El catálogo debe decir qué API y qué plan lo cubren al menor coste.
 Las cuatro condiciones se comprueban sobre la API REST, la interfaz que modelan las Datasheets (Sección~\ref{sec:propuesta:seleccion}).
 El relé SMTP, la otra interfaz del canal API, queda fuera de la comparación.
 
@@ -53,6 +58,14 @@ Si solo se leen los campos, Resend cubre el volumen por menos dinero que ninguna
 Resend admite 10 peticiones por segundo por equipo, 600 por minuto, en todos sus planes.
 MailerSend admite 120 peticiones por minuto en \texttt{/v1/email} y 15 en \texttt{/v1/bulk-email} con el plan Starter.
 El requisito cuenta peticiones y no correos: leído como 1.000 correos por minuto, las dos lo cumplirían enviando en lote.
+La Figura~\ref{fig:comparacion:caso} sigue el caso en MailerSend Starter y muestra en qué unidad cuenta cada paso.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/caso_conteo.tex}
+\caption[Conteo del caso de los 100.000 correos en el plan Starter de MailerSend]{Secuencia del caso de los 100.000 correos con el plan Starter de MailerSend, el de su fila en la Tabla~\ref{tab:comparacion:caso}, y lo que cuenta cada paso. Las dos peticiones de envío gastan el \textit{rate} de su \textit{endpoint}, en peticiones por minuto, y la de lote admite además un máximo publicado de 35.000 destinatarios por petición. El envío gasta la cuota mensual, en correos. Los \textit{webhooks} configurados tienen un límite de recursos del plan, no de consumo, que se lee en la matriz de \textit{features}, fuera de la Datasheet. MailerSend no publica en qué unidad cuenta la cuota, y la Datasheet cuenta un correo por destinatario, la unidad con la que el proveedor suma los 35.000 del lote. Abajo, las dos lecturas del requisito de ráfaga, en peticiones y en correos. Elaboración propia a partir de la Datasheet y la matriz de \textit{features} de MailerSend \citep{mailersendpricing,mailersenddocs,mailersendemailapi,mailersendbulk}.}
+\label{fig:comparacion:caso}
+\end{figure}
 
 Amazon SES no cumple el caso.
 SES cobra por destinatario, a 0,10 USD por millar en la tarifa sin suscripción, unos 10 USD para 100.000 correos, pero ese precio está en una nota del \textit{provenance} porque v0.3 no tiene un precio por unidad sin cuota.

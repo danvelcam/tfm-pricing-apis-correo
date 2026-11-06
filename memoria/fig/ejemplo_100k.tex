@@ -1,0 +1,24 @@
+\begingroup\hyphenpenalty=10000\exhyphenpenalty=10000\relax
+\begin{tikzpicture}[
+  font=\footnotesize,
+  caja/.style={draw, rounded corners=3pt, fill=white, align=left, inner sep=3pt},
+  herramienta/.style={draw, fill=gray!18, align=center, inner sep=3pt},
+  grupo/.style={font=\scriptsize\itshape, anchor=south west, inner sep=2pt}
+]
+\node[caja, text width=37mm] (app) at (2.0,0.55) {\textbf{Aplicación}\\ 100.000 correos al mes\\ ráfagas de 1.000 peticiones por minuto\\ \textit{webhooks} de eventos\\ envío en lote};
+\node[caja, text width=37mm, align=center] (equipo) at (2.0,-1.55) {\textbf{Administradores y equipo de DevOps}};
+\node[caja, text width=37mm, align=center, fill=gray!7] (pregunta) at (2.0,-3.1) {{\scriptsize\itshape pregunta de decisión, del espacio de consultas}\\[2pt] ¿Qué API y qué plan lo cubren al menor coste?};
+\draw[-stealth] (app) -- (equipo);
+\draw[-stealth] (equipo) -- (pregunta);
+\draw[dashed, rounded corners=3pt] (4.6,1.75) rectangle (10.6,-3.75);
+\node[grupo] at (4.6,1.75) {Ecosistema SPHERE};
+\node[caja, text width=52mm] (datasheets) at (7.6,0.1) {{\scriptsize\itshape base de conocimiento}\\[2pt] \textbf{Datasheets de las ocho APIs}, con la cuota, el \textit{rate} y el tope por petición: SendGrid, Mailgun, Postmark, Brevo, Resend, MailerSend, Amazon SES y Mailchimp Transactional};
+\node[herramienta, text width=52mm] (prime) at (7.6,-3.0) {\textbf{PRIME4API}, motor de análisis\\ \scriptsize preguntas sobre un plan, como el tiempo mínimo};
+\draw[-stealth] (datasheets.south) -- (prime.north);
+\draw[-stealth] (pregunta.east |- prime.west) -- (prime.west);
+\node[caja, text width=52mm] (matriz) at (7.6,-4.8) {\textbf{Matriz de \textit{features}} de cada API, fuera de la Datasheet: los \textit{webhooks}};
+\draw[-stealth] (pregunta.south) |- (matriz.west) node[pos=0.75, above, font=\scriptsize\itshape] {por lectura};
+\node[caja, text width=37mm] (respuesta) at (13.3,-2.4) {{\scriptsize\itshape espacio de conocimiento}\\[2pt] \textbf{Respuestas de PRIME4API}, como el tiempo mínimo con SendGrid Essentials 50K y un destinatario por petición:\\[2pt] 9 segundos si se paga el sobrecoste\\[2pt] 30 días y 4 segundos si la cuota corta el envío};
+\draw[-stealth] (prime.east) -- (prime.east -| respuesta.west);
+\end{tikzpicture}
+\endgroup

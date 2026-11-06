@@ -21,7 +21,7 @@ Esas ocho APIs no son todas las que existen: la consulta a un modelo de lenguaje
 La Tabla~\ref{tab:propuesta:apis} presenta las ocho con el servicio que se modela, su proveedor y la vía por la que entraron en el catálogo.
 
 \begin{table}[htbp]\centering\small
-\begin{tabular}{|p{5.8cm}|p{2.8cm}|p{5.5cm}|}
+\begin{tabular}{|p{7.4cm}|p{2.9cm}|p{3.8cm}|}
 \hline
 \raggedright\textbf{API y servicio que se modela} & \raggedright\textbf{Proveedor} & \raggedright\textbf{Vía de entrada} \tabularnewline
 \hline
@@ -33,13 +33,13 @@ La Tabla~\ref{tab:propuesta:apis} presenta las ocho con el servicio que se model
 \hline
 \raggedright MailerSend, API y relé SMTP & \raggedright MailerSend & \raggedright Modelada antes en el ecosistema \tabularnewline
 \hline
-\raggedright Brevo, el correo transaccional de su plataforma de \textit{marketing} & \raggedright Brevo & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\raggedright Brevo, el correo transaccional de su plataforma de \textit{marketing} & \raggedright Brevo & \raggedright Consulta a un LLM \tabularnewline
 \hline
-\raggedright Amazon SES, versión 2 de la API & \raggedright Amazon Web Services & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\raggedright Amazon SES, versión 2 de la API & \raggedright Amazon Web Services & \raggedright Consulta a un LLM \tabularnewline
 \hline
-\raggedright Mailgun & \raggedright Sinch & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\raggedright Mailgun & \raggedright Sinch & \raggedright Consulta a un LLM \tabularnewline
 \hline
-\raggedright Mailchimp Transactional, antes Mandrill, complemento de Mailchimp & \raggedright Mailchimp & \raggedright Consulta a un modelo de lenguaje \tabularnewline
+\raggedright Mailchimp Transactional, antes Mandrill, complemento de Mailchimp & \raggedright Mailchimp & \raggedright Consulta a un LLM \tabularnewline
 \hline\end{tabular}
 \caption[Las ocho APIs del catálogo de Datasheets]{Las ocho APIs del catálogo de Datasheets, en el orden en que se construyeron. La vía de entrada es la fila de la Tabla~\ref{tab:propuesta:fuentes} por la que entró cada una.}
 \label{tab:propuesta:apis}\end{table}
@@ -154,7 +154,7 @@ Las otras siete lo tienen.
 \begin{figure}[tbp]
 \centering
 \input{fig/ciclo_construccion.tex}
-\caption[Ciclo de construcción de cada Datasheet]{Ciclo de construcción de cada Datasheet: sus cinco fases, quién hace cada una y qué resultado deja. Las flechas discontinuas son desvíos que solo se recorren cuando la revisión los motiva: los sondeos y las preguntas abiertas, que resuelve el autor. Dos de estos resultados, el registro de fuentes y la Datasheet cerrada, son también artefactos de cada API, y la Figura~\ref{fig:propuesta:artefactos} muestra los cinco. Postmark, la API piloto, se cerró sin informe del verificador. Elaboración propia.}
+\caption[Ciclo de construcción de cada Datasheet]{Ciclo de construcción de cada Datasheet: sus cinco fases, quién hace cada una y qué resultado deja. Las fases van en cajas grises, y los resultados, como documentos con la esquina doblada. Bajo quién hace cada fase se indica dónde queda en el ecosistema SPHERE: la recolección y el borrador hacen a mano lo que en el ecosistema hace A-MINT4API, la extracción automática, y la Datasheet cerrada va a PRIME4API y a la colección preparada para SPHERE. La validación, la revisión, los sondeos y el autor quedan fuera del ecosistema, que no tiene un validador oficial de Datasheets. Las flechas discontinuas son desvíos que solo se recorren cuando la revisión los motiva: los sondeos y las preguntas abiertas, que resuelve el autor. Dos de estos resultados, el registro de fuentes y la Datasheet cerrada, son también artefactos de cada API, y la Figura~\ref{fig:propuesta:artefactos} muestra los cinco. Postmark, la API piloto, se cerró sin informe del verificador. Elaboración propia.}
 \label{fig:propuesta:ciclo}
 \end{figure}
 
@@ -304,6 +304,14 @@ Después de cerrar el catálogo, la recolección ganó una \textit{skill} propia
 Esa \textit{skill} recoge en bruto los términos de consumo de cada proveedor y está en el repositorio de datos del trabajo\footnote{\texttt{skills/\allowbreak recogida-terminos-consumo/}, en \url{https://github.com/danvelcam/tfm-pricing-apis-correo}.}.
 No intervino en las ocho Datasheets, que ya estaban cerradas: guarda el texto de cada página con su fecha, para que una captura posterior diga qué páginas cambiaron.
 Su estructura es la de las \textit{skills} de Ruiz López \citep{ruizlopez2026skills}: un único fichero de reglas, una salida en YAML con su esquema y un programa que comprueba esa salida.
+La Figura~\ref{fig:propuesta:skill} resume cómo está organizado su fichero de reglas, sin su texto.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/esquema_skill.tex}
+\caption[Esquema de la \textit{skill} de recogida de términos de consumo]{Esquema de la \textit{skill} de recogida de términos de consumo. El fichero \texttt{SKILL.md} va de cuándo se usa a cómo se comprueba que el trabajo está bien hecho, y remite a las carpetas \texttt{references/}, que se leen cuando hacen falta, y \texttt{scripts/}, que se ejecutan. Elaboración propia a partir de la \textit{skill} publicada en el repositorio del trabajo.}
+\label{fig:propuesta:skill}
+\end{figure}
 
 El fichero \texttt{SKILL.md} reúne las reglas de la \textit{skill}: el árbol de decisión que dice, en un orden fijo, si cada enlace entra en la captura o se descarta, y el presupuesto de peticiones de cada ejecución.
 La carpeta \texttt{references/} guarda el esquema del fichero de salida, un glosario, los dominios oficiales de cada proveedor, los patrones de texto que reconocen cada tema y unos ejemplos con un proveedor ficticio, que enseñan cómo se aplica el árbol de decisión.
@@ -336,10 +344,13 @@ La guía de ACM2YAML ya prevé parte de este registro en los campos \texttt{sour
 El método añade los dos registros que ya han salido en el ciclo: la lista \texttt{not\_found}, para que la ausencia quede registrada como dato, y el registro de \textit{discrepancias}.
 
 Los términos de consumo de un mismo servicio están repartidos entre varias páginas del proveedor: la de precios, la documentación de cada interfaz, la ayuda o el blog.
-La página de precios fija la verdad del dato, porque es lo que el cliente compra.
+La \textit{regla de la página de precios} dice que esa página fija la verdad del dato, porque es lo que el cliente compra.
 Las demás fuentes (documentación, ayuda, blog, panel o sondeo) detectan incoherencias del pricing, pero no lo corrigen.
 Si una de ellas da otro valor, se modela el de la página y el otro se registra como incoherencia, con las dos citas.
-Si la propia página se contradice, esta regla no decide: el campo se marca como interpretado mientras la discrepancia siga abierta.
+
+La regla no decide en dos casos.
+Si la propia página se contradice, el campo se marca como interpretado mientras la discrepancia siga abierta.
+Si la página no publica el dato y las demás fuentes discrepan, manda el panel con cuenta propia cuando da el mismo dato con más precisión que ellas, y la página de un \textit{endpoint} cuando desglosa por plan un valor que la página general da por defecto. En los demás casos, la discrepancia sigue abierta hasta que la escalera de validación (Sección~\ref{sec:propuesta:validacion}) encuentre otra fuente o mida el dato.
 
 Sobre esa base, este trabajo introduce como aportación metodológica propia un \textit{semáforo de confianza}: cada campo de la Datasheet se etiqueta con el respaldo que tiene su valor.
 Verde, si el valor está respaldado: es literal en lo que publica el proveedor, o lo fijó un panel con cuenta propia o un sondeo.
@@ -399,7 +410,7 @@ Que un agente escriba un valor no lo hace inferido: el publicado, el interpretad
 Dos reglas enlazan el color con la procedencia.
 Un valor inferido por agente no pasa de ámbar hasta que lo respalde un valor publicado o medido, y un valor calculado toma el peor color de sus entradas.
 Las páginas del proveedor son el origen de cada dato, todavía sin contrastar, y la Datasheet es una vista construida a partir de ellas.
-La regla de la página de precios decide qué valor entra en la Datasheet, y el registro de procedencia dice si un valor publicado se confirmó después con un contraste, un panel o un sondeo.
+El registro de procedencia dice si un valor publicado se confirmó después con un contraste, un panel o un sondeo.
 
 Los términos de consumo que reúne una Datasheet salen de fuentes distintas del mismo servicio: sus páginas, el panel y los sondeos.
 La Tabla~\ref{tab:propuesta:procedencia} reparte por su fuente principal las 437 entradas del registro de procedencia de las ocho Datasheets.
@@ -432,12 +443,12 @@ Total & 437 & 100 \\
 Los campos en ámbar o en rojo pasan por una escalera de validación de cuatro peldaños.
 Es una escalera porque los peldaños están ordenados de menor a mayor coste, de leer otra página del proveedor a medir el servicio bajo carga, y un campo solo sube al siguiente cuando el anterior no lo resuelve.
 El panel es la excepción: desde el piloto se observa en todas las APIs, aunque el primer peldaño ya haya resuelto el campo.
-La Figura~\ref{fig:propuesta:escalera} dibuja los cuatro peldaños.
+La Figura~\ref{fig:propuesta:escalera} dibuja los cuatro peldaños, y su panel (b) muestra el mismo recorrido como árbol de decisión.
 
 \begin{figure}[tbp]
 \centering
 \input{fig/escalera_validacion.tex}
-\caption[Escalera de validación]{Escalera de validación de los campos en ámbar o en rojo. Un campo sube al peldaño siguiente solo cuando el anterior no lo resuelve, salvo el panel, que se observa en todas las APIs. El cuarto peldaño va con línea discontinua porque queda fuera del ciclo que construye el catálogo, y ningún campo llegó a él.}
+\caption[Escalera de validación]{Escalera de validación de los campos en ámbar o en rojo. (a) Los peldaños, ordenados por coste de ejecución y por el orden en que los recorre un campo. La flecha que sale de cada uno lleva a lo que produce cuando resuelve el campo. Un campo sube al peldaño siguiente solo cuando el anterior no lo resuelve, salvo el panel, que se observa en todas las APIs. El cuarto peldaño va con línea discontinua porque queda fuera del ciclo que construye el catálogo, y ningún campo llegó a él. (b) El mismo proceso como árbol de decisión dentro de una caja: entra un campo y sale en verde o sigue en ámbar o en rojo, con lo que se sabe anotado. Las cajas redondeadas son actividades y los documentos con la esquina doblada, artefactos.}
 \label{fig:propuesta:escalera}
 \end{figure}
 
@@ -451,6 +462,15 @@ El panel no sobrescribe el precio publicado: si muestra otra cifra para el mismo
 El tercero es el \textit{sondeo empírico ligero} contra la API real.
 Prefiere un sondeo inocuo, que no entrega ningún correo: el que usa un token de pruebas, como el de Postmark (Sección~\ref{sec:propuesta:piloto}), el que solo hace lecturas o el que provoca que la API rechace la petición antes de entregarla.
 Si ninguno sirve, admite un envío real a destinatarios propios, con un número máximo de envíos declarado en el script.
+La Figura~\ref{fig:propuesta:panel-sondeo} muestra los dos peldaños con Resend.
+El panel da el \textit{rate} del equipo, y tres peticiones comprueban si el tope de destinatarios que publica la documentación es el que aplica la API.
+
+\begin{figure}[tbp]
+\centering
+\input{fig/panel_sondeo_resend.tex}
+\caption[Observación de panel y sondeo en Resend]{Observación de panel y sondeo en Resend. El panel se mira con la cuenta abierta, sin enviar nada; el sondeo envía peticiones a la API y lee lo que responde. (a) El panel de una cuenta propia muestra los límites del equipo, entre ellos el \textit{rate}. (b) El sondeo compara lo que publica la documentación con lo que responde la API: tres peticiones con distinto número de destinatarios en \texttt{to} y \texttt{cc}. Las dos primeras reciben un 422 y la tercera se acepta y se entrega a una dirección propia, así que el tope de 50 se aplica a la suma de los dos campos y no solo a \texttt{to}. Capturas y respuestas del 1 y el 6 de septiembre de 2026. Elaboración propia.}
+\label{fig:propuesta:panel-sondeo}
+\end{figure}
 
 Lo que el sondeo puede ver depende de cómo aplica el proveedor cada límite.
 El sondeo parte de la lista de códigos de error que publica el proveedor, porque cada límite que se aplica rechazando la petición tiene un error observable.
@@ -717,7 +737,12 @@ La Figura~\ref{fig:propuesta:sphere} muestra esa colección en SPHERE.
 \subsection{La colección y su maqueta}
 \label{sec:propuesta:sphere:coleccion}
 
-La maqueta, un prototipo web propio que muestra cómo se vería la colección dentro de SPHERE\footnote{\url{https://danvelcam.github.io/tfm-pricing-apis-correo/sphere/coleccion.html}. Es el fichero \texttt{sphere/\allowbreak coleccion.html} del repositorio de datos del trabajo, publicado con GitHub Pages.}, la organiza como un árbol de tres niveles: proveedor, servicio e interfaz.
+La maqueta es un prototipo web propio, fuera de SPHERE, que muestra cómo se vería en la plataforma la colección con la segunda pieza, la sección de los términos de consumo que el pricing no recoge.
+Está publicada con GitHub Pages\footnote{Es el fichero \texttt{sphere/\allowbreak coleccion.html} del repositorio de datos del trabajo.} y puede abrirse en esta dirección:
+\begin{center}
+\url{https://danvelcam.github.io/tfm-pricing-apis-correo/sphere/coleccion.html}
+\end{center}
+La maqueta organiza la colección como un árbol de tres niveles: proveedor, servicio e interfaz.
 El árbol sigue el modelo de iCan (la plataforma del grupo que recopila los términos y condiciones de los SaaS)\footnote{\url{https://ican.score.us.es/}}.
 La maqueta se construyó por prototipos sucesivos: la primera versión agrupaba las APIs por tipo de API, y la definitiva usa ese árbol.
 
